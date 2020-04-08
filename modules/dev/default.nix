@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./nix.nix ]; }
+{ ... }: { imports = [ ./nix.nix ./purescript.nix ]; }

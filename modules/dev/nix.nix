@@ -1,3 +1,7 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ nixfmt niv cached-nix-shell ];
+  home-manager.users.adrielus.home.packages = with pkgs; [
+    nixfmt
+    niv
+    cached-nix-shell
+  ];
 }

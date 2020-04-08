@@ -1,8 +1,6 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    # Tool to allow hashing passwords from the cmd
+  home-manager.users.adrielus.home.packages = with pkgs; [
     mkpasswd
-
     vscodium
     google-chrome
     discord
