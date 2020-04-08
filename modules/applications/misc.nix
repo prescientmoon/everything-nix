@@ -4,6 +4,6 @@
     vscodium
     google-chrome
     discord
-    git
+    spectacle
   ];
 }
