@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home-manager.users.adrielus = {
-    home.packages = with pkgs.gitAndTools; [ hub ];
+    home.packages = with pkgs; [ gource gitAndTools.hub ];
     programs.git = {
       enable = true;
 
