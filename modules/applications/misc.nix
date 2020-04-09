@@ -4,6 +4,7 @@
     vscodium
     google-chrome
     discord
+    slack
     spectacle
   ];
 }
