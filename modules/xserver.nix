@@ -14,7 +14,7 @@
       enable = true;
 
       naturalScrolling = true;
-      accelSpeed = "2.5";
+      accelSpeed = "3.5";
 
       # who thought letting this be true by default was a good idea
       tappingDragLock = false;
