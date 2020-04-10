@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./misc.nix ./locale.nix ./git ]; }
+{ ... }: { imports = [ ./misc.nix ./locale.nix ./git ./shells ]; }
