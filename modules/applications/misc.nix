@@ -17,11 +17,5 @@
     google-chrome
     spectacle # take screenshots
     unstable.elementary-planner # project planner
-
-    # for the memes
-    fortune
-    cowsay
-    lolcat
-    figlet
   ];
 }
