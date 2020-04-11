@@ -5,9 +5,4 @@ let
     GITHUB_USERNAME = "Mateiadrielrafael";
     inherit GITHUB_TOKEN;
   };
-in {
-  home-manager.users.adrielus = {
-    home.sessionVariables = variables;
-    # programs.zsh.sessionVariables = variables;
-  };
-}
+in { home-manager.users.adrielus = { home.sessionVariables = variables; }; }

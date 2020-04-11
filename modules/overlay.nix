@@ -1,12 +1,17 @@
 { ... }:
-let imports = import ../nix/sources.nix;
+let
+  imports = import ../nix/sources.nix;
+  unstable = import imports.nixpkgs-unstable { config.allowUnfree = true; };
 in {
   nixpkgs.overlays = [
     (self: super:
       with self; rec {
         inherit imports;
+        inherit unstable;
+
         cached-nix-shell = callPackage imports.cached-nix-shell { };
         easy-purescript-nix = callPackage imports.easy-purescript-nix { };
+
         inherit (import imports.niv { }) niv;
         inherit (import imports.all-hies { }) all-hies;
       })

@@ -1,12 +1,27 @@
 { pkgs, ... }: {
   home-manager.users.adrielus.home.packages = with pkgs; [
-    tree
-    mkpasswd
+    # cmd stuff
+    tree # print a file structure
+    exa # ls replacement
+    mkpasswd # hash passwords
     gnupg
+
+    # editors
     vscodium
-    google-chrome
+
+    # chat apps
     discord
     slack
-    spectacle
+
+    # gui studf
+    google-chrome
+    spectacle # take screenshots
+    unstable.elementary-planner # project planner
+
+    # for the memes
+    fortune
+    cowsay
+    lolcat
+    figlet
   ];
 }
