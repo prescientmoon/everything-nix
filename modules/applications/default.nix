@@ -1,3 +1,12 @@
 { ... }: {
-  imports = [ ./misc.nix ./locale.nix ./git ./shells ./wakatime ./memes.nix ];
+  imports = [
+    ./git
+    ./shells
+    ./wakatime
+
+    ./misc.nix
+    ./locale.nix
+    ./memes.nix
+    ./alacritty.nix
+  ];
 }

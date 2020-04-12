@@ -5,6 +5,7 @@
     exa # ls replacement
     mkpasswd # hash passwords
     gnupg
+    typespeed
 
     # editors
     vscodium
@@ -13,8 +14,11 @@
     discord
     slack
 
-    # gui studf
+    # browsers
     google-chrome
+    brave
+
+    # other stuff
     spectacle # take screenshots
     unstable.elementary-planner # project planner
   ];
