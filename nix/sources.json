@@ -11,6 +11,18 @@
         "url": "https://github.com/nix-community/NUR/archive/d28e8f7d40e2683d57589f8ffa7568bdf89d316f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "agnoster": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "oh-my-fish",
+        "repo": "theme-agnoster",
+        "rev": "99d4e9f1b6bb1c828155495bddf3e0f0516e35f1",
+        "sha256": "0vyg30zi3xhl7m2y40ihb7ikwifz5ifq5wq0y58rz9hpb19wf8ws",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/theme-agnoster/archive/99d4e9f1b6bb1c828155495bddf3e0f0516e35f1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "all-hies": {
         "branch": "master",
         "description": "Cached Haskell IDE Engine Nix builds for all GHC versions",

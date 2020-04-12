@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 with import ../secrets.nix; {
   users = {
     mutableUsers = false;
@@ -7,6 +7,7 @@ with import ../secrets.nix; {
 
       extraGroups = [ "wheel" "networkmanager" ];
       isNormalUser = true;
+      shell = pkgs.fish;
     };
   };
 }
