@@ -20,4 +20,6 @@
       tappingDragLock = false;
     };
   };
+
+  hardware.opengl.enable = true;
 }

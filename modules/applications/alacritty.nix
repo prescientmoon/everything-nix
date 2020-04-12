@@ -14,6 +14,9 @@
 
       fonts.normal.family = "Source Code Pro";
 
+      # transparent bg:)
+      background_opacity = 0.7;
+
       colors = {
         cursor = {
           text = "#1460d2";
