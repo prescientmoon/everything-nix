@@ -9,13 +9,17 @@ in {
         inherit imports;
         inherit unstable;
 
+        inherit (import imports.niv { }) niv;
+
         cached-nix-shell = callPackage imports.cached-nix-shell { };
         easy-purescript-nix = callPackage imports.easy-purescript-nix { };
 
-        brave = unstable.brave;
+        all-hies = import imports.all-hies { };
+        snack = (import imports.snack).snack-exe;
 
-        inherit (import imports.niv { }) niv;
-        inherit (import imports.all-hies { }) all-hies;
+        # unstable stuff
+        brave = unstable.brave;
+        ghc = unstable.ghc;
       })
   ];
 
