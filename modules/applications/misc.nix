@@ -13,6 +13,7 @@
     # chat apps
     discord
     slack
+    zoom-us # for online classes / church and stuff
 
     # browsers
     google-chrome

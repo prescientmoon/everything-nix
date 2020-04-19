@@ -2,7 +2,6 @@
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
-    layout = "us";
     xkbOptions = "eurosign:e";
 
     # Enable the KDE Desktop Environment.
@@ -16,7 +15,6 @@
       naturalScrolling = true;
       accelSpeed = "3.5";
 
-      # who thought letting this be true by default was a good idea
       tappingDragLock = false;
     };
   };

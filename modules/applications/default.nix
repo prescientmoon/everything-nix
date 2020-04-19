@@ -3,6 +3,7 @@
     ./git
     ./shells
     ./wakatime
+    ./xmonad
 
     ./misc.nix
     ./locale.nix
