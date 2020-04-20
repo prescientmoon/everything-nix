@@ -10,12 +10,13 @@ import           XMonad.Hooks.ManageDocks
 
 main =
   xmonad
-    $ docks
-    $ kdeConfig { modMask    = mod4Mask
-                , layoutHook = myLayoutHook
-                , manageHook = myManagerHook <+> manageHook kdeConfig
-                , terminal   = myTerminal
-                }
+    $                docks
+    $                kdeConfig
+                       { modMask    = mod4Mask
+                       , layoutHook = myLayoutHook
+                       , manageHook = manageDocks <+> myManagerHook <+> manageHook kdeConfig
+                       , terminal   = myTerminal
+                       }
     `additionalKeys` keymap
  where
   kdeFloats =
@@ -37,7 +38,7 @@ main =
     composeAll [ className =? name --> doFloat | name <- kdeFloats ]
 
   myTerminal    = "alacritty"
-  keymap        = [((mod4Mask, xK_P), spawn "rofi -show run")]
+  keymap        = [((mod4Mask, xK_p), spawn "rofi -show run")]
 
   uniformBorder = join $ join $ join Border
   border        = uniformBorder 4

@@ -9,5 +9,7 @@
     ./locale.nix
     ./memes.nix
     ./alacritty.nix
+    ./rofi.nix
   ];
 }
+
