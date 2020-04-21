@@ -3,10 +3,12 @@ import           Control.Monad                  ( join )
 
 import           XMonad
 import           XMonad.Config.Kde
-import           XMonad.Layout.Spacing
 import           XMonad.Util.EZConfig
 import           XMonad.Actions.SpawnOn
 import           XMonad.Hooks.ManageDocks
+
+import           XMonad.Layout.Spacing
+import           XMonad.Layout.ThreeColumns
 
 main =
   xmonad
@@ -44,7 +46,10 @@ main =
   border        = uniformBorder 4
   spacingHook   = spacingRaw True border True border True
 
-  layouts       = Tall 1 (3 / 100) (1 / 2) ||| Full
+  tall          = Tall 1 (3 / 100) (1 / 2)
+  threeCols     = ThreeCol 1 (3 / 100) (1 / 2)
+
+  layouts       = tall ||| threeCols ||| Full
   myLayoutHook  = desktopLayoutModifiers $ spacingHook layouts
 
 
