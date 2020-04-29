@@ -13,6 +13,6 @@ in {
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  system.stateVersion = "19.09";
+  system.stateVersion = "10.09";
 }
 

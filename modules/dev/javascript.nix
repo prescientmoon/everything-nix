@@ -9,5 +9,7 @@ in {
 
       pnpm
       yarn
+
+      tsdx
     ];
 }
