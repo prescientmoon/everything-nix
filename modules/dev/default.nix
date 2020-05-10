@@ -1,3 +1,4 @@
 { ... }: {
-  imports = [ ./nix.nix ./purescript.nix ./javascript.nix ./haskell ];
+  imports =
+    [ ./nix.nix ./purescript.nix ./javascript.nix ./rust.nix ./haskell ];
 }
