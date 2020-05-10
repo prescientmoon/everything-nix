@@ -10,6 +10,7 @@
     ./memes.nix
     ./alacritty.nix
     ./rofi.nix
+    ./postgres.nix
   ];
 }
 

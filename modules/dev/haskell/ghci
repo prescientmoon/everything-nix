@@ -7,4 +7,4 @@
 
 :def pointfree \str -> return $ ":! pointfree " ++ show str
 :def pf        \str -> return $ ":! pointfree " ++ show str
-:def pointful  \str -> return $ ":! pointful " ++ show str
+-- :def pointful  \str -> return $ ":! pointful " ++ show str

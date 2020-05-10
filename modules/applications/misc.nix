@@ -21,7 +21,9 @@
 
     # other stuff
     spectacle # take screenshots
-    unstable.elementary-planner # project planner
     vlc # video player
+    gimp # image editing
+    korganizer # calendar
+    akonadi
   ];
 }

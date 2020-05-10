@@ -19,7 +19,7 @@ in {
 
         # unstable stuff
         brave = unstable.brave;
-        ghc = unstable.ghc;
+        # ghc = unstable.ghc;
         vscodium = unstable.vscodium;
       })
   ];
