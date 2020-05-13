@@ -5,7 +5,10 @@
     exa # ls replacement
     mkpasswd # hash passwords
     gnupg
-    typespeed
+    typespeed # speed typing game
+    unixtools.xxd # to dump binary stuff into a text file (used it for a ctf)
+    youtube-dl # download from youtube
+    neofetch # display system information
 
     # editors
     vscodium
