@@ -27,6 +27,7 @@
     vlc # video player
     gimp # image editing
     korganizer # calendar
+    libreoffice # free office suite
     akonadi
   ];
 }
