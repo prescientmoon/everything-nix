@@ -13,9 +13,14 @@
     '';
 
     initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE adrielus WITH LOGIN PASSWORD '\' CREATEDB;
+      CREATE ROLE adrielus WITH 
+        LOGIN
+        SUPERUSER
+        INHERIT
+        CREATEDB
+        CREATEROLE
+        REPLICATION;
 
-      # lunarbox db
       CREATE DATABASE lunarbox;
       GRANT ALL PRIVILEGES ON DATABASE lunarbox TO adrielus;
     '';

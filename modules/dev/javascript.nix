@@ -7,6 +7,7 @@ in {
     with nodePackages;
     with fromNpm; [
       node
+      deno
       node2nix
 
       pnpm

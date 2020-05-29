@@ -20,6 +20,7 @@ in {
         # unstable stuff
         brave = unstable.brave;
         vscodium = unstable.vscodium;
+        deno = unstable.deno;
       })
   ];
 
