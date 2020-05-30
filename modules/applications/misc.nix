@@ -29,6 +29,7 @@
     gimp # image editing
     korganizer # calendar
     libreoffice # free office suite
+    # edopro # yugioh simulator (my derivation doesn't work yet)
     akonadi
   ];
 }

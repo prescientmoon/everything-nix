@@ -1,6 +1,7 @@
 { ... }:
 let
   imports = import ../nix/sources.nix;
+  edoproPackage = import ./applications/edopro.nix;
   unstable = import imports.nixpkgs-unstable { config.allowUnfree = true; };
 in {
   nixpkgs.overlays = [
@@ -14,6 +15,9 @@ in {
         cached-nix-shell = callPackage imports.cached-nix-shell { };
         easy-purescript-nix = callPackage imports.easy-purescript-nix { };
 
+        # This is a derivation I made myself for edopro
+        edopro = callPackage edoproPackage { };
+
         all-hies = import imports.all-hies { };
         snack = (import imports.snack).snack-exe;
 
@@ -21,6 +25,7 @@ in {
         brave = unstable.brave;
         vscodium = unstable.vscodium;
         deno = unstable.deno;
+        dotnet-sdk = dotnet-sdk_3;
       })
   ];
 
