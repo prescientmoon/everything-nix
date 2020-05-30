@@ -9,6 +9,7 @@
     unixtools.xxd # to dump binary stuff into a text file (used it for a ctf)
     youtube-dl # download from youtube
     neofetch # display system information
+    xclip # copy paste stuff
 
     # editors
     vscodium
