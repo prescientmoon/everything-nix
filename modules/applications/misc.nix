@@ -10,6 +10,7 @@
     youtube-dl # download from youtube
     neofetch # display system information
     xclip # copy paste stuff
+    feh # image viewer
 
     # editors
     vscodium
