@@ -14,5 +14,6 @@ in {
       (yarn.override { nodejs = node; })
 
       tsdx
+      mklicense
     ];
 }
