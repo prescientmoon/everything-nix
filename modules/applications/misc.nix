@@ -25,6 +25,7 @@
     brave
 
     # other stuff
+    milkytracker # music tracker thingy
     spectacle # take screenshots
     vlc # video player
     gimp # image editing
