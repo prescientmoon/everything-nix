@@ -12,14 +12,14 @@ import           XMonad.Layout.ThreeColumns
 
 main =
   xmonad
-    $                docks
-    $                kdeConfig
-                       { modMask    = mod4Mask
-                       , layoutHook = myLayoutHook
-                       , manageHook = manageDocks <+> myManagerHook <+> manageHook kdeConfig
-                       , terminal   = myTerminal
-                       }
-    `additionalKeys` keymap
+    $                 docks
+    $                 kdeConfig
+                        { modMask    = mod4Mask
+                        , layoutHook = myLayoutHook
+                        , manageHook = manageDocks <+> myManagerHook <+> manageHook kdeConfig
+                        , terminal   = myTerminal
+                        }
+    `additionalKeysP` keymap
  where
   kdeFloats =
     [ "yakuake"
@@ -39,8 +39,17 @@ main =
   myManagerHook =
     composeAll [ className =? name --> doFloat | name <- kdeFloats ]
 
-  myTerminal    = "alacritty"
-  keymap        = [((mod4Mask, xK_p), spawn "rofi -show run")]
+  myTerminal = "alacritty"
+  myBrowser  = "google-chrome-stable"
+
+  -- TODO: find a way to bind all the program-opening-keybindings to a single sub-map
+  keymap =
+    [ ("M-p", spawn "rofi -show run")
+    , ("M-g", spawn myBrowser)
+    , ("M-d", spawn "Discord")
+    , ("M-s", spawn "slack")
+    , ("M-r", spawn "ksysgurad")
+    ]
 
   uniformBorder = join $ join $ join Border
   border        = uniformBorder 4

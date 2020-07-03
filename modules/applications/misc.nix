@@ -11,14 +11,20 @@
     neofetch # display system information
     xclip # copy paste stuff
     feh # image viewer
+    speedtest-cli # test the internet speed and stuff
 
     # editors
     vscodium
+    vim
+    neovim
+    emacs
+    # vscode
 
     # chat apps
     discord
     slack
-    zoom-us # for online classes / church and stuff
+    tdesktop # telegram for the desktop
+    zoom-us
 
     # browsers
     google-chrome

@@ -6,6 +6,7 @@
     ./javascript.nix
     ./fsharp.nix
     ./rust.nix
+    ./racket.nix
     ./haskell
   ];
 }
