@@ -7,6 +7,7 @@
     ./fsharp.nix
     ./rust.nix
     ./racket.nix
+    ./elm.nix
     ./haskell
   ];
 }

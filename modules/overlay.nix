@@ -2,7 +2,10 @@
 let
   imports = import ../nix/sources.nix;
   edoproPackage = import ./applications/edopro.nix;
-  unstable = import imports.nixpkgs-unstable { config.allowUnfree = true; };
+  unstable = import imports.nixpkgs-unstable {
+    config.allowUnfree = true;
+    config.allowBroken = true;
+  };
 in {
   nixpkgs.overlays = [
     (self: super:
@@ -26,6 +29,7 @@ in {
         vscodium = unstable.vscodium;
         deno = unstable.deno;
         dotnet-sdk = dotnet-sdk_3;
+        elm-repl = unstable.haskellPackages.elm-repl;
       })
   ];
 

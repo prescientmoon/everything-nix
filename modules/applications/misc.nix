@@ -25,6 +25,7 @@
     slack
     tdesktop # telegram for the desktop
     zoom-us
+    teams
 
     # browsers
     google-chrome
