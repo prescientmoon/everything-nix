@@ -5,7 +5,7 @@ with import ../secrets.nix; {
     users.adrielus = {
       inherit hashedPassword;
 
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" "networkmanager" "lp" ];
       isNormalUser = true;
       shell = pkgs.fish;
     };

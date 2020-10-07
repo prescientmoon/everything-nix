@@ -5,7 +5,7 @@ in {
     file.".ghci".source = ./ghci;
 
     packages = with pkgs;
-      [ ghc ghcid hlint cabal-install snack stack hie ]
+      [ ghc ghcid hlint cabal-install snack stack ]
       ++ (with haskellPackages; [ brittany hoogle hpack pointfree ]);
   };
 }

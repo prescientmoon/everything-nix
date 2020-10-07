@@ -13,6 +13,7 @@
         "milkytracker",
         "mklicense",
         "pnpm",
+        "preact",
         "rofi",
         "xmonad"
     ]

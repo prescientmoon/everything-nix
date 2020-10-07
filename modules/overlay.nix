@@ -26,8 +26,10 @@ in {
 
         # unstable stuff
         brave = unstable.brave;
+        ngrok = unstable.ngrok;
         vscodium = unstable.vscodium;
         deno = unstable.deno;
+        discord-canary = unstable.discord-canary;
         dotnet-sdk = dotnet-sdk_3;
         elm-repl = unstable.haskellPackages.elm-repl;
       })

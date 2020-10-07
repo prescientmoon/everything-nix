@@ -4,6 +4,7 @@
     spago
     purty
     pscid
+    pulp
     zephyr
   ];
 }

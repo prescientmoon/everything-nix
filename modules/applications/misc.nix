@@ -11,17 +11,24 @@
     neofetch # display system information
     xclip # copy paste stuff
     feh # image viewer
+    unzip # for working with .zip files
     speedtest-cli # test the internet speed and stuff
+    openssl
+    pkgconfig
+    ngrok
+    hugo
 
     # editors
-    vscodium
+    # vscodium
+    vscode
     vim
     neovim
     emacs
-    # vscode
 
     # chat apps
     discord
+    # discord-canary
+    deluge
     slack
     tdesktop # telegram for the desktop
     zoom-us
@@ -30,6 +37,7 @@
     # browsers
     google-chrome
     brave
+    firefox
 
     # other stuff
     milkytracker # music tracker thingy
@@ -40,5 +48,12 @@
     libreoffice # free office suite
     # edopro # yugioh simulator (my derivation doesn't work yet)
     akonadi
+    obs-studio # video recorder
+    # blueman # bluetooth manager
+
+    # Nes emulators and stuff
+    zsnes
+    higan
+    fceux
   ];
 }
