@@ -47,6 +47,18 @@
         "url": "https://github.com/xzfc/cached-nix-shell/archive/48dbef37bec653e23c1801cea3979f053e10654b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "easy-dhall-nix": {
+        "branch": "master",
+        "description": "Derivations for easily downloading Dhall binaries and putting them to use.",
+        "homepage": "",
+        "owner": "justinwoo",
+        "repo": "easy-dhall-nix",
+        "rev": "3e9101c5dfd69a9fc28fe4998aff378f91bfcb64",
+        "sha256": "1nsn1n4sx4za6jipcid1293rdw8lqgj9097s0khiij3fz0bzhrg9",
+        "type": "tarball",
+        "url": "https://github.com/justinwoo/easy-dhall-nix/archive/3e9101c5dfd69a9fc28fe4998aff378f91bfcb64.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "easy-purescript-nix": {
         "branch": "master",
         "description": "Easy PureScript (and other tools) with Nix",

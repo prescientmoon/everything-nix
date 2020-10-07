@@ -8,6 +8,7 @@
     ./rust.nix
     ./racket.nix
     ./elm.nix
+    ./dhall.nix
     ./haskell
   ];
 }

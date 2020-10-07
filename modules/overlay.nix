@@ -17,6 +17,7 @@ in {
 
         cached-nix-shell = callPackage imports.cached-nix-shell { };
         easy-purescript-nix = callPackage imports.easy-purescript-nix { };
+        easy-dhall-nix = callPackage imports.easy-dhall-nix { };
 
         # This is a derivation I made myself for edopro
         edopro = callPackage edoproPackage { };
