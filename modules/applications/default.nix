@@ -5,6 +5,8 @@
     ./wakatime
     ./xmonad
 
+    ./wine.nix
+    ./docker.nix
     ./misc.nix
     ./locale.nix
     ./memes.nix

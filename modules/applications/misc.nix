@@ -50,6 +50,7 @@
     akonadi
     obs-studio # video recorder
     # blueman # bluetooth manager
+    freesweep # minesweeper I can play w the keyboard.
 
     # Nes emulators and stuff
     zsnes

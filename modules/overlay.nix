@@ -29,6 +29,7 @@ in {
         brave = unstable.brave;
         ngrok = unstable.ngrok;
         vscodium = unstable.vscodium;
+        docker-compose = unstable.docker-compose;
         deno = unstable.deno;
         discord-canary = unstable.discord-canary;
         dotnet-sdk = dotnet-sdk_3;
