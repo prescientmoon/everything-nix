@@ -6,18 +6,22 @@ import           XMonad.Config.Kde
 import           XMonad.Util.EZConfig
 import           XMonad.Actions.SpawnOn
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.EwmhDesktops      ( fullscreenEventHook )
+import           XMonad.Hooks.EwmhDesktops      ( ewmh )
 
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.ThreeColumns
 
 main =
   xmonad
+    $                 ewmh
     $                 docks
     $                 kdeConfig
-                        { modMask    = mod4Mask
+                        { modMask = mod4Mask
                         , layoutHook = myLayoutHook
                         , manageHook = manageDocks <+> myManagerHook <+> manageHook kdeConfig
-                        , terminal   = myTerminal
+                        , handleEventHook = handleEventHook kdeConfig <+> fullscreenEventHook
+                        , terminal = myTerminal
                         }
     `additionalKeysP` keymap
  where

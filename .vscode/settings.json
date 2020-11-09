@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
+        "Ewmh",
+        "Fullscreen",
         "Kmix",
         "alacritty",
         "concat",
@@ -10,6 +12,7 @@
         "ksplashqml",
         "ksplashsimple",
         "ksplashx",
+        "ksysgurad",
         "milkytracker",
         "mklicense",
         "pnpm",

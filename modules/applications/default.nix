@@ -2,17 +2,18 @@
   imports = [
     ./git
     ./shells
-    ./wakatime
+    # ./wakatime
     ./xmonad
 
-    ./wine.nix
-    ./docker.nix
+    # ./wine.nix
+    ./steam.nix
+    # ./docker.nix
     ./misc.nix
     ./locale.nix
-    ./memes.nix
+    # ./memes.nix
     ./alacritty.nix
     ./rofi.nix
-    ./postgres.nix
+    # ./postgres.nix
   ];
 }
 

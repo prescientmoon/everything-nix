@@ -3,5 +3,6 @@
     fira-code
     fira-code-symbols
     source-code-pro
+    corefonts
   ];
 }
