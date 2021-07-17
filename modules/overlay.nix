@@ -27,12 +27,15 @@ in {
 
         # unstable stuff
         brave = unstable.brave;
+        idris2 = unstable.idris2;
         ngrok = unstable.ngrok;
         vscodium = unstable.vscodium;
+        vscode = unstable.vscode;
         docker-compose = unstable.docker-compose;
         deno = unstable.deno;
+        # discord = unstable.discord;
         discord-canary = unstable.discord-canary;
-        dotnet-sdk = dotnet-sdk_3;
+        dotnet-sdk = unstable.dotnet-sdk_5;
         elm-repl = unstable.haskellPackages.elm-repl;
       })
   ];

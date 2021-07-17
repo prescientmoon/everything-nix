@@ -5,22 +5,29 @@
     exa # ls replacement
     mkpasswd # hash passwords
     gnupg
-    typespeed # speed typing game
-    unixtools.xxd # to dump binary stuff into a text file (used it for a ctf)
+    # typespeed # speed typing game
+    # unixtools.xxd # to dump binary stuff into a text file (used it for a ctf)
     # youtube-dl # download from youtube
     neofetch # display system information
     xclip # copy paste stuff
-    feh # image viewer
+    # feh # image viewer
     unzip # for working with .zip files
     speedtest-cli # test the internet speed and stuff
     # openssl
     # pkgconfig
     # ngrok
-    hugo
+    # hugo
     unrar
     # jdk11o
     # jdk8
     # gtk3
+    gnumake
+    # unison-ucm    
+    xorg.libX11
+    texlive.combined.scheme-full
+    okular
+    zathura
+    cmake
 
     # editors
     # vscodium
@@ -52,7 +59,7 @@
     libreoffice # free office suite
     # edopro # yugioh simulator (my derivation doesn't work yet)
     # akonadi
-    # obs-studio # video recorder
+    obs-studio # video recorder
     # blueman # bluetooth manager
     # freesweep # minesweeper I can play w the keyboard.
     # multimc

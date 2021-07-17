@@ -6,8 +6,9 @@
     ./javascript.nix
     ./fsharp.nix
     ./rust.nix
-    ./racket.nix
-    ./elm.nix
+    ./idris.nix
+    # ./racket.nix
+    # ./elm.nix
     ./dhall.nix
     ./haskell
   ];

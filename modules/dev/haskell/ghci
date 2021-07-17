@@ -5,6 +5,6 @@
 :def hoogle-all \str -> return $ ":! hoogle search --color "            ++ show str
 :def doc        \str -> return $ ":! hoogle search --color --info "     ++ show str
 
-:def pointfree \str -> return $ ":! pointfree " ++ show str
-:def pf        \str -> return $ ":! pointfree " ++ show str
+-- :def pointfree \str -> return $ ":! pointfree " ++ show str
+-- :def pf        \str -> return $ ":! pointfree " ++ show str
 -- :def pointful  \str -> return $ ":! pointful " ++ show str

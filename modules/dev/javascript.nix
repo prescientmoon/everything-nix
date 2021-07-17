@@ -14,11 +14,12 @@ in {
       pnpm
       yarn
 
-      tsdx
-      mklicense
-      preact-cli
-      create-next-app
-      create-snowpack-app
-      bower
+      /* tsdx
+            mklicense
+            preact-cli
+            create-next-app
+            create-snowpack-app
+            bower
+      */
     ];
 }

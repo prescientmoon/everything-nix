@@ -15,6 +15,7 @@
 
       userName = "Matei Adriel";
       userEmail = "rafaeladriel11@gmail.com";
+      extraConfig.core.editor = "nvim";
 
       aliases = import ./aliases.nix;
 
