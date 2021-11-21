@@ -28,6 +28,7 @@
     okular
     zathura
     cmake
+    kdeconnect
 
     # editors
     # vscodium
@@ -68,5 +69,8 @@
     # zsnes
     # higan
     # fceux
+
+    # games
+    mindustry
   ];
 }

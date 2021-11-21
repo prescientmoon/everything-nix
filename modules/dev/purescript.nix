@@ -6,5 +6,7 @@
     pscid
     pulp
     zephyr
+    psa
+    purs-tidy
   ];
 }

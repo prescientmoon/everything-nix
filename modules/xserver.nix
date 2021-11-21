@@ -12,10 +12,12 @@
       # Enable touchpad support.
       enable = true;
 
-      naturalScrolling = true;
-      accelSpeed = "3.5";
+      touchpad = {
+        naturalScrolling = true;
+        accelSpeed = "3.5";
 
-      tappingDragLock = false;
+        tappingDragLock = false;
+      };
     };
   };
 

@@ -3,8 +3,8 @@ let sources = import ./nix/sources.nix;
 in {
   imports = [ "${sources.home-manager}/nixos" ./modules ];
 
+  nixpkgs.config.allowBroken = true;
   boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
 
   boot.loader = {
     efi = {
@@ -91,7 +91,7 @@ in {
   #   Install.WantedBy = [ "default.target" ];
   # };
 
-  system.stateVersion = "20.03";
+  system.stateVersion = "21.05";
 
 }
 
