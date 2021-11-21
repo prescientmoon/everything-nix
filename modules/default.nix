@@ -3,10 +3,11 @@
     ./dev
     ./applications
     ./theme
+    ./overlays
 
     ./network.nix
     ./xserver.nix
     ./users.nix
-    ./overlay.nix
+    ./nix.nix
   ];
 }

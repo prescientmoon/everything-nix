@@ -1,7 +1,7 @@
 { ... }:
 let
-  imports = import ../nix/sources.nix;
-  edoproPackage = import ./applications/edopro.nix;
+  imports = import ../../nix/sources.nix;
+  edoproPackage = import ./../applications/edopro.nix;
   unstable = import imports.nixpkgs-unstable {
     config.allowUnfree = true;
     config.allowBroken = true;
@@ -33,25 +33,8 @@ in {
         vscode = unstable.vscode;
         docker-compose = unstable.docker-compose;
         deno = unstable.deno;
-        # discord = unstable.discord;
-        discord-canary = unstable.discord-canary;
         dotnet-sdk = unstable.dotnet-sdk_5;
         elm-repl = unstable.haskellPackages.elm-repl;
       })
   ];
-
-  # allow packages with unfree licenses
-  nixpkgs.config.allowUnfree = true;
-
-  nix = {
-    trustedUsers = [ "root" "adrielus" "@wheel" ];
-    autoOptimiseStore = true;
-    gc.automatic = true;
-    optimise.automatic = true;
-    binaryCaches = [ "https://cache.nixos.org" "https://all-hies.cachix.org" ];
-    binaryCachePublicKeys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
-    ];
-  };
 }

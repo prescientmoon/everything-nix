@@ -39,7 +39,6 @@
 
     # chat apps
     discord
-    # discord-canary
     # deluge
     # slack
     # tdesktop # telegram for the desktop

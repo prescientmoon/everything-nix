@@ -91,7 +91,8 @@ in {
   #   Install.WantedBy = [ "default.target" ];
   # };
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "21.11";
 
+  nixpkgs.config.allowUnfree = true;
 }
 
