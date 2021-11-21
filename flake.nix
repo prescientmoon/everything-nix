@@ -17,8 +17,10 @@
     # easy-purescript-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-unstable, easy-purescript-nix
-    , easy-dhall-nix, ... }: {
+  outputs = { self, nixpkgs, home-manager, nixos-unstable,
+    # easy-purescript-nix,
+    # easy-dhall-nix,
+    ... }: {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

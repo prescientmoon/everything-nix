@@ -1,37 +1,5 @@
 {
   "nodes": {
-    "easy-dhall-nix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1626523404,
-        "narHash": "sha256-FLZcMqO8dKIwKi8/Szqgt3ksr5WegLGFGzCODHEMvb0=",
-        "owner": "justinwoo",
-        "repo": "easy-dhall-nix",
-        "rev": "9bd1bea0dcebe1d1d120c0fd1ba76683dc4a62e3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "justinwoo",
-        "repo": "easy-dhall-nix",
-        "type": "github"
-      }
-    },
-    "easy-purescript-nix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1637309859,
-        "narHash": "sha256-nYaVqtsz7bgPjIr2crgEP42worQT3iho62t4c+RCWGM=",
-        "owner": "justinwoo",
-        "repo": "easy-purescript-nix",
-        "rev": "82f901ce0a2d86327e2d65993a75c2ea74f229f2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "justinwoo",
-        "repo": "easy-purescript-nix",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -86,8 +54,6 @@
     },
     "root": {
       "inputs": {
-        "easy-dhall-nix": "easy-dhall-nix",
-        "easy-purescript-nix": "easy-purescript-nix",
         "home-manager": "home-manager",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs"
