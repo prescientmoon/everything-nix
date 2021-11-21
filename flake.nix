@@ -9,10 +9,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     easy-dhall-nix.url = "github:justinwoo/easy-dhall-nix";
-    easy-dhall-nix.inputs.nixpkgs.follows = "nixpkgs";
+    easy-dhall-nix.flake = false;
+    # easy-dhall-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     easy-purescript-nix.url = "github:justinwoo/easy-purescript-nix";
-    easy-purescript-nix.inputs.nixpkgs.follows = "nixpkgs";
+    easy-purescript-nix.flake = false;
+    # easy-purescript-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-unstable, easy-purescript-nix
