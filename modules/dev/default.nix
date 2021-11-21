@@ -6,7 +6,7 @@
     ./javascript.nix
     ./fsharp.nix
     ./rust.nix
-    ./idris.nix
+    # ./idris.nix
     # ./racket.nix
     # ./elm.nix
     ./dhall.nix

@@ -28,7 +28,7 @@
     okular
     zathura
     cmake
-    kdeconnect
+    # kdeconnect
 
     # editors
     # vscodium
@@ -41,9 +41,9 @@
     discord
     # discord-canary
     # deluge
-    slack
-    tdesktop # telegram for the desktop
-    zoom-us
+    # slack
+    # tdesktop # telegram for the desktop
+    # zoom-us
     # teams
 
     # browsers
@@ -60,7 +60,7 @@
     libreoffice # free office suite
     # edopro # yugioh simulator (my derivation doesn't work yet)
     # akonadi
-    obs-studio # video recorder
+    # obs-studio # video recorder
     # blueman # bluetooth manager
     # freesweep # minesweeper I can play w the keyboard.
     # multimc
@@ -71,6 +71,6 @@
     # fceux
 
     # games
-    mindustry
+    # mindustry
   ];
 }

@@ -5,8 +5,14 @@
     xkbOptions = "eurosign:e";
 
     # Enable the KDE Desktop Environment.
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+    # displayManager.sddm.enable = true;
+    # desktopManager.plasma5.enable = true;
+
+    displayManager.defaultSession = "none+xmonad";
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+    };
 
     libinput = {
       # Enable touchpad support.
@@ -22,6 +28,5 @@
   };
 
   services.fractalart.enable = true;
-
   hardware.opengl.enable = true;
 }
