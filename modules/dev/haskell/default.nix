@@ -5,7 +5,8 @@
     file.".ghci".source = ./ghci;
 
     packages = with pkgs;
-      [ ghc ghcid hlint cabal-install snack stack ]
+      [ ghc ghcid hlint cabal-install stack ]
+
       ++ (with haskellPackages; [ brittany hoogle hpack ]);
   };
 }

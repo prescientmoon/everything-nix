@@ -1,4 +1,4 @@
 { ... }: {
-  #    nixpkgs.overlays = [ import ./discord ];
-  imports = [ ./legacy.nix ];
+  nixpkgs.overlays = [ import ./discord ];
+  # imports = [ ./legacy.nix ];
 }
