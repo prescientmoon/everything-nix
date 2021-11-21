@@ -1,7 +1,5 @@
-{ pkgs, lib, ... }:
-let sources = import ./nix/sources.nix;
-in {
-  imports = [ "${sources.home-manager}/nixos" ./modules ];
+{ pkgs, lib, ... }: {
+  imports = [ ./modules ];
 
   nixpkgs.config.allowBroken = true;
   boot.loader.systemd-boot.enable = true;
