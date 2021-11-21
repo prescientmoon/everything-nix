@@ -4,6 +4,9 @@
   nixpkgs.config.allowBroken = true;
   boot.loader.systemd-boot.enable = true;
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
