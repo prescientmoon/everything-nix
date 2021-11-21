@@ -1,8 +1,8 @@
 self: super:
-
-{
-  discord = super.discord.overrideAttrs (old: rec {
-    version = "0.0.15";
+let version = "0.0.15";
+in {
+  discord = super.discord.overrideAttrs (old: {
+    inherit version;
     src = builtins.fetchurl {
       url =
         "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";

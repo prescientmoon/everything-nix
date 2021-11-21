@@ -8,12 +8,12 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    easy-dhall-nix.url = "github:justinwoo/easy-dhall-nix";
-    easy-dhall-nix.flake = false;
-    # easy-dhall-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # easy-dhall-nix.url = "github:justinwoo/easy-dhall-nix";
+    # easy-dhall-nix.flake = false;
+    # # easy-dhall-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    easy-purescript-nix.url = "github:justinwoo/easy-purescript-nix";
-    easy-purescript-nix.flake = false;
+    # easy-purescript-nix.url = "github:justinwoo/easy-purescript-nix";
+    # easy-purescript-nix.flake = false;
     # easy-purescript-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -21,16 +21,6 @@
     , easy-dhall-nix, ... }: {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        nixpkgs.overlays = [
-          (self: super: {
-            inputs = {
-              inherit nixpkgs;
-              inherit nixos-unstable;
-              inherit easy-dhall-nix;
-              inherit easy-purescript-nix;
-            };
-          })
-        ];
         modules = [
           home-manager.nixosModules.home-manager
           ./hardware/laptop.nix
