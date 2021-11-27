@@ -21,14 +21,18 @@
     ... }: {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        nixpkgs.overlays = [self: super: {
-          easy-purescript-nix = import easy-purescript-nix { inherit pgks };
-          easy-dhall-nix = import easy-dhall-nix { inherit pgks };
-        }];
         modules = [
           home-manager.nixosModules.home-manager
           ./hardware/laptop.nix
           ./configuration.nix
+
+          # Make inputs available inside the config
+          ({ pkgs, ...  }: {
+           nixpkgs.overlays = [(self: super: {
+            easy-purescript-nix = import easy-purescript-nix { inherit pkgs; };
+            easy-dhall-nix = import easy-dhall-nix { inherit pkgs; };
+           })];
+          })
         ];
       };
     };
