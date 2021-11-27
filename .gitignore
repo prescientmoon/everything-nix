@@ -1,7 +1,2 @@
 node_modules
-
 secrets.nix
-wakatime.cfg
-
-.gitsecret/keys/random_seed
-!*.secret
