@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "agnoster": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1611327971,
+        "narHash": "sha256-RVzeAYJAhItzxiD1XxEX7q4qGYU0PKO18oobPT4kaZo=",
+        "owner": "oh-my-fish",
+        "repo": "theme-agnoster",
+        "rev": "43860ce1536930bca689470e26083b0a5b7bd6ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oh-my-fish",
+        "repo": "theme-agnoster",
+        "type": "github"
+      }
+    },
     "easy-dhall-nix": {
       "flake": false,
       "locked": {
@@ -86,11 +102,29 @@
     },
     "root": {
       "inputs": {
+        "agnoster": "agnoster",
         "easy-dhall-nix": "easy-dhall-nix",
         "easy-purescript-nix": "easy-purescript-nix",
         "home-manager": "home-manager",
         "nixos-unstable": "nixos-unstable",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "z": "z"
+      }
+    },
+    "z": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1626157139,
+        "narHash": "sha256-pWkEhjbcxXduyKz1mAFo90IuQdX7R8bLCQgb0R+hXs4=",
+        "owner": "jethrokuan",
+        "repo": "z",
+        "rev": "45a9ff6d0932b0e9835cbeb60b9794ba706eef10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jethrokuan",
+        "repo": "z",
+        "type": "github"
       }
     }
   },
