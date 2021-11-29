@@ -4,14 +4,23 @@
     enable = true;
     xkbOptions = "eurosign:e";
 
-    # Enable the KDE Desktop Environment.
-    # displayManager.sddm.enable = true;
-    # desktopManager.plasma5.enable = true;
+    # Make the xmonad session the default
+    displayManager.defaultSession = "none+xmonad";
 
-    # displayManager.defaultSession = "none+xmonad";
+    # Enable xmonad
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
+    };
+
+    # Enable xfce I think?
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
     };
 
     libinput = {

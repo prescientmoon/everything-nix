@@ -13,12 +13,16 @@
 
     easy-purescript-nix.url = "github:justinwoo/easy-purescript-nix";
     easy-purescript-nix.flake = false;
+
+    z.url = "github:jethrokuan/z";
+    z.flake = false;
+
+    agnoster.url = "github:oh-my-fish/theme-agnoster";
+    agnoster.flake = false;
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-unstable,
-    easy-purescript-nix,
-    easy-dhall-nix,
-    ... }: {
+  outputs = { self, nixpkgs, home-manager, nixos-unstable, easy-purescript-nix
+    , easy-dhall-nix, z, agnoster, ... }: {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -27,11 +31,17 @@
           ./configuration.nix
 
           # Make inputs available inside the config
-          ({ pkgs, ...  }: {
-           nixpkgs.overlays = [(self: super: {
-            easy-purescript-nix = import easy-purescript-nix { inherit pkgs; };
-            easy-dhall-nix = import easy-dhall-nix { inherit pkgs; };
-           })];
+          ({ pkgs, ... }: {
+            nixpkgs.overlays = [
+              (self: super: {
+                easy-purescript-nix =
+                  import easy-purescript-nix { inherit pkgs; };
+                easy-dhall-nix = import easy-dhall-nix { inherit pkgs; };
+
+                fishPlugins.z = z;
+                fishThemes.agnoster = agnoster;
+              })
+            ];
           })
         ];
       };

@@ -7,7 +7,7 @@ with import ../secrets.nix; {
 
       extraGroups = [ "wheel" "networkmanager" "lp" "docker" ];
       isNormalUser = true;
-      # shell = pkgs.fish;
+      shell = pkgs.fish;
     };
   };
 }

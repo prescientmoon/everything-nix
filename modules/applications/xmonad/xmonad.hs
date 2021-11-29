@@ -1,13 +1,13 @@
-import           Data.Function                  ( (&) )
 import           Control.Monad                  ( join )
+import           Data.Function                  ( (&) )
 
 import           XMonad
-import           XMonad.Config.Kde
-import           XMonad.Util.EZConfig
 import           XMonad.Actions.SpawnOn
-import           XMonad.Hooks.ManageDocks
+import           XMonad.Config.Kde
 import           XMonad.Hooks.EwmhDesktops      ( fullscreenEventHook )
 import           XMonad.Hooks.EwmhDesktops      ( ewmh )
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Util.EZConfig
 
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.ThreeColumns
@@ -19,6 +19,7 @@ main =
     $                 kdeConfig
                         { modMask = mod4Mask
                         , layoutHook = myLayoutHook
+                        , startupHook = startup
                         , manageHook = manageDocks <+> myManagerHook <+> manageHook kdeConfig
                         , handleEventHook = handleEventHook kdeConfig <+> fullscreenEventHook
                         , terminal = myTerminal
@@ -66,3 +67,6 @@ main =
   myLayoutHook  = desktopLayoutModifiers $ spacingHook layouts
 
 
+  startup :: X ()
+  startup = do
+    spawn "xwallpaper --focus ./gradient.jpg"

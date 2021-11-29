@@ -1,6 +1,5 @@
 { pkgs, ... }:
 let
-  # fromNpm = import ./npm { inherit pkgs; };
   node = pkgs.nodejs-12_x;
   yarn = pkgs.yarn.override { nodejs = node; };
 in {
@@ -15,6 +14,7 @@ in {
       pnpm
       yarn
 
+      # TODO: find a good way to reinstall some of these
       /* tsdx
             mklicense
             preact-cli

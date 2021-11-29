@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   home-manager.users.adrielus = {
     xsession.windowManager.xmonad = {
       enable = true;
@@ -6,15 +6,12 @@
       config = ./xmonad.hs;
     };
 
-    home.file.".config/plasma-workspace/env/set_window_manager.sh".text =
-      "export KDEWM=/home/adrielus/.nix-profile/bin/xmonad";
-  };
+    home.packages = with pkgs; [ xwallpaper ];
 
-  # services.compton = {
-  # enable = true;
-  # activeOpacity = "0.8";
-  # inactiveOpacity = "0.8";
-  # fade = true;
-  # shadow = true;
-  # };
+    # Tell KDE to use xmonad
+    # home.file.".config/plasma-workspace/env/set_window_manager.sh".text =
+    #  "export KDEWM=/home/adrielus/.nix-profile/bin/xmonad";
+
+    services.picom = { enable = true; };
+  };
 }

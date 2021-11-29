@@ -6,6 +6,7 @@
         gource
         # Store secrets in github repos
         git-secret
+        git-crypt
         # Both of these are github clis
         gh
         hub
