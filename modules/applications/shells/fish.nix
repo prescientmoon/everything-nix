@@ -6,7 +6,7 @@ in {
   home-manager.users.adrielus.programs.fish = {
     inherit shellAliases;
     shellInit = common.shellInit;
-    plugins = [ fishPlugins.z fishThemes.agnoster ];
+    plugins = with pkgs; [ z agnoster ];
 
     enable = true;
   };

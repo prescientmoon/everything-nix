@@ -45,7 +45,8 @@
         bright = {
           black = "#5e105c";
           red = "#ec9ded";
-          green = "#b726d4";
+          green = "#2ec0f9";
+          # green = "#b726d4";
           yellow = "#fff773";
           blue = "#75d5fa";
           magenta = "#ffb3d7";

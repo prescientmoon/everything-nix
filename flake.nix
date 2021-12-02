@@ -38,8 +38,15 @@
                   import easy-purescript-nix { inherit pkgs; };
                 easy-dhall-nix = import easy-dhall-nix { inherit pkgs; };
 
-                fishPlugins.z = z;
-                fishThemes.agnoster = agnoster;
+                z = {
+                  src = z;
+                  name = "z";
+                };
+
+                agnoster = {
+                  src = agnoster;
+                  name = "agnoster";
+                };
               })
             ];
           })
