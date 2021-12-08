@@ -42,7 +42,7 @@
     # deluge
     # slack
     # tdesktop # telegram for the desktop
-    # zoom-us
+    zoom-us
     # teams
 
     # browsers
