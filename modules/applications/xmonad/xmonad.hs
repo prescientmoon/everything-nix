@@ -69,4 +69,4 @@ main =
 
   startup :: X ()
   startup = do
-    spawn "xwallpaper --focus ./gradient.jpg"
+    spawn "xwallpaper --zoom ./background.jpg"
