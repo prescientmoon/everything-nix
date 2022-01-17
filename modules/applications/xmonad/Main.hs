@@ -4,6 +4,7 @@ import Control.Monad (join)
 import Data.Function ((&))
 import XMonad
 import XMonad.Actions.SpawnOn
+import XMonad.Config (defaultConfig)
 import XMonad.Config.Kde
 import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
@@ -14,15 +15,13 @@ import XMonad.Util.EZConfig
 kdeOn :: Bool
 kdeOn = False
 
-startingConfig = if kdeOn then kdeConfig else defaultConfig
-
-a = 1 + []
+-- startingConfig = if kdeOn then kdeConfig else defaultConfig
 
 main =
   xmonad $
     ewmh $
       docks $
-        startingConfig
+        defaultConfig
           { modMask = mod4Mask,
             layoutHook = myLayoutHook,
             startupHook = startup,
@@ -45,7 +44,7 @@ main =
     manageWorkspaces =
       appWorkspaceConfig
         & fmap \(workspaceId, name) -> do
-          let workspaceName = myWorkspaces !! (workspaceId + 1)
+          let workspaceName = myWorkspaces !! (workspaceId - 1)
           className =? name --> doShift workspaceName
 
     kdeFloats =
@@ -97,6 +96,7 @@ main =
     startup :: X ()
     startup = do
       spawn "xwallpaper --zoom ./background.jpg"
-      spawn "Discord"
-      spawn "google-chrome-stable"
-      spawn "alacritty"
+
+-- spawn "Discord"
+-- spawn "google-chrome-stable"
+-- spawn "alacritty"
