@@ -3,7 +3,7 @@
     xsession.windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      config = ./xmonad.hs;
+      config = ./Main.hs;
     };
 
     home.packages = with pkgs; [ xwallpaper ];

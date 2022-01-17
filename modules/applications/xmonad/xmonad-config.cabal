@@ -1,0 +1,15 @@
+cabal-version:      2.4
+name:               xmonad-config
+version:            0.1.0.0
+author:             Matei Adriel
+maintainer:         rafaeladriel11@gmail.com
+-- The license under which the package is released.
+-- license:
+
+executable xmonad-config
+    main-is:          Main.hs
+    build-depends:    
+        , base
+        , xmonad
+        , X11
+    default-language: Haskell2010
