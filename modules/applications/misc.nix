@@ -24,7 +24,7 @@
     gnumake
     # unison-ucm    
     xorg.libX11
-    texlive.combined.scheme-full
+    texlive.combined.scheme-full # latex stuff
     okular
     zathura
     cmake
@@ -51,6 +51,7 @@
     firefox
 
     # other stuff
+    obsidian # knowedge base
     # milkytracker # music tracker thingy
     spectacle # take screenshots
     vlc # video player
@@ -70,6 +71,7 @@
     # fceux
 
     # games
+    tetrio-desktop
     # mindustry
   ];
 }

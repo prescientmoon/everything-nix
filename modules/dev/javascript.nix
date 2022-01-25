@@ -1,12 +1,10 @@
 { pkgs, ... }:
 let
-  node = pkgs.nodejs-12_x;
+  node = pkgs.nodejs-17_x;
   yarn = pkgs.yarn.override { nodejs = node; };
 in {
   home-manager.users.adrielus.home.packages = with pkgs;
-    with nodePackages;
-    # with fromNpm;
-    [
+    with nodePackages; [
       node
       deno
       node2nix
