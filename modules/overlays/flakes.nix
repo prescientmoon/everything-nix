@@ -1,3 +1,4 @@
+{ system }:
 { home-manager, nixpkgs-unstable, nixos-unstable, easy-purescript-nix
 , easy-dhall-nix, z, agnoster, ... }:
 ({ pkgs, ... }: {
@@ -5,6 +6,7 @@
     (self: super: {
       # inherit nixos-unstable;
       unstable = import nixpkgs-unstable {
+        inherit system;
         config.allowUnfree = true;
         config.allowBroken = true;
       };

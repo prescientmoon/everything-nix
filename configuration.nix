@@ -1,7 +1,6 @@
 { pkgs, lib, ... }: {
   imports = [ ./modules ];
 
-  nixpkgs.config.allowBroken = true;
   boot.loader.systemd-boot.enable = true;
 
   home-manager.useGlobalPkgs = true;
@@ -95,5 +94,6 @@
   system.stateVersion = "21.11";
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 }
 

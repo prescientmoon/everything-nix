@@ -1,4 +1,4 @@
-{ ... }: {
-  nixpkgs.overlays = [ import ./discord ];
+{ pkgs, ... }: {
+  nixpkgs.overlays = [ (import ./tweakSources.nix) ];
   # imports = [ ./legacy.nix ];
 }

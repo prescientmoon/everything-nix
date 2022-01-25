@@ -23,10 +23,14 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
-    let provideInputs = import ./modules/overlays/flakes.nix inputs;
+    let
+      system = "x86_64-linux";
+      provideInputs =
+        import ./modules/overlays/flakes.nix { inherit system; } inputs;
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
+
         modules = [
           home-manager.nixosModules.home-manager
           provideInputs
