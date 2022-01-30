@@ -25,10 +25,7 @@
         name = "agnoster";
       };
 
-      githubNvimTheme = {
-        src = githubNvimTheme;
-        name = "githubNvimTheme";
-      };
+      githubNvimTheme = githubNvimTheme;
     })
   ];
 })

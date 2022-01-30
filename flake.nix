@@ -22,7 +22,7 @@
     agnoster.flake = false;
 
     githubNvimTheme.url = "github:projekt0n/github-nvim-theme";
-    githubNvimTheme.flake = true;
+    githubNvimTheme.flake = false;
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:

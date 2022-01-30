@@ -48,6 +48,22 @@
         "type": "github"
       }
     },
+    "githubNvimTheme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642931254,
+        "narHash": "sha256-3Rp0oL+yhojQ6bIejS4IlPzyrxut7LcuobykonrpAEc=",
+        "owner": "projekt0n",
+        "repo": "github-nvim-theme",
+        "rev": "1700dfe790985ce859868e16e13dcda0ec80cb3f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "projekt0n",
+        "repo": "github-nvim-theme",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -121,6 +137,7 @@
         "agnoster": "agnoster",
         "easy-dhall-nix": "easy-dhall-nix",
         "easy-purescript-nix": "easy-purescript-nix",
+        "githubNvimTheme": "githubNvimTheme",
         "home-manager": "home-manager",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs",
