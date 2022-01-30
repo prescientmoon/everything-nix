@@ -71,7 +71,7 @@
     # fceux
 
     # games
-    tetrio-desktop
+    # tetrio-desktop
     # mindustry
   ];
 }

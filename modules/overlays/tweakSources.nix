@@ -2,6 +2,7 @@ self: super:
 with self; {
   discord = unstable.discord;
   vscode = unstable.vscode;
+  tetrio-desktop = unstable.tetrio-desktop;
 }
 # let version = "0.0.15";
 # in self

@@ -1,7 +1,8 @@
 { system }:
-{ home-manager, nixpkgs-unstable, nixos-unstable, easy-purescript-nix
-, easy-dhall-nix, z, agnoster, ... }:
+{ home-manager, nixpkgs, nixpkgs-unstable, nixos-unstable, easy-purescript-nix
+, easy-dhall-nix, z, agnoster, githubNvimTheme, ... }:
 ({ pkgs, ... }: {
+  nix.registry.nixpkgs.flake = nixpkgs;
   nixpkgs.overlays = [
     (self: super: {
       # inherit nixos-unstable;
@@ -22,6 +23,11 @@
       agnoster = {
         src = agnoster;
         name = "agnoster";
+      };
+
+      githubNvimTheme = {
+        src = githubNvimTheme;
+        name = "githubNvimTheme";
       };
     })
   ];

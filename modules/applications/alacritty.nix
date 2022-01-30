@@ -1,8 +1,15 @@
-{ ... }: {
+{ pkgs, ... }:
+
+let
+  githubAlacrittyTheme =
+    "${pkgs.githubNvimTheme}/terminal/alacritty/github_light.yml";
+in {
   home-manager.users.adrielus.programs.alacritty = {
     enable = true;
 
     settings = {
+      import = [ githubAlacrittyTheme ];
+
       window = {
         decorations = "none";
 

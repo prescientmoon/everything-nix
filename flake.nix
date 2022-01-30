@@ -20,6 +20,9 @@
 
     agnoster.url = "github:oh-my-fish/theme-agnoster";
     agnoster.flake = false;
+
+    githubNvimTheme.url = "github:projekt0n/github-nvim-theme";
+    githubNvimTheme.flake = true;
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
