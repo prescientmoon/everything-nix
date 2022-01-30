@@ -34,7 +34,7 @@
     # vscodium
     vscode
     vim
-    neovim
+    my-neovim
     # emacs
 
     # chat apps

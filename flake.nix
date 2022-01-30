@@ -23,6 +23,8 @@
 
     githubNvimTheme.url = "github:projekt0n/github-nvim-theme";
     githubNvimTheme.flake = false;
+
+    vim-extra-plugins.url = "github:m15a/nixpkgs-vim-extra-plugins";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:

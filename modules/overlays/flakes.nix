@@ -1,9 +1,10 @@
 { system }:
 { home-manager, nixpkgs, nixpkgs-unstable, nixos-unstable, easy-purescript-nix
-, easy-dhall-nix, z, agnoster, githubNvimTheme, ... }:
+, easy-dhall-nix, z, agnoster, githubNvimTheme, vim-extra-plugins, ... }:
 ({ pkgs, ... }: {
   nix.registry.nixpkgs.flake = nixpkgs;
   nixpkgs.overlays = [
+    vim-extra-plugins.overlay
     (self: super: {
       # inherit nixos-unstable;
       unstable = import nixpkgs-unstable {
