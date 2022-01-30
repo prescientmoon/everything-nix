@@ -9,3 +9,5 @@ end
 function M.setup()
     map("i", "jj", "<Esc>") -- Remap Esc to 
 end
+
+return M

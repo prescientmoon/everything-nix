@@ -15,6 +15,7 @@
     ./alacritty.nix
     ./rofi.nix
     ./postgres.nix
+    ./neovim.nix
   ];
 }
 

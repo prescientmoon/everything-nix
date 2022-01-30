@@ -1,14 +1,20 @@
-{ wrapNeovim, neovim, tree-sitter, config-nvim, vimPlugins, vimExtraPlugins }:
+{ pkgs, ... }:
+let
+  config-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "config-nvim";
+    src = ../../dotfiles/neovim;
+  };
+in {
+  home-manager.users.adrielus.programs.neovim = {
+    enable = true;
+    package = pkgs.neovim-nightly;
 
-wrapNeovim neovim {
-  configure = {
-    customRC = ''
+    extraConfig = ''
       let g:disable_paq = v:true
       luafile ${config-nvim}/init.lua
     '';
 
-    packages.default = with vimExtraPlugins; {
-      start = [ config-nvim vimExtraPlugins.github-nvim-theme ];
-    };
+    plugins = with pkgs.vimExtraPlugins; [ config-nvim github-nvim-theme ];
+
   };
 }

@@ -24,6 +24,9 @@
     githubNvimTheme.url = "github:projekt0n/github-nvim-theme";
     githubNvimTheme.flake = false;
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
     vim-extra-plugins.url = "github:m15a/nixpkgs-vim-extra-plugins";
   };
 
@@ -32,13 +35,23 @@
       system = "x86_64-linux";
       provideInputs =
         import ./modules/overlays/flakes.nix { inherit system; } inputs;
+
+      overlays = { ... }: {
+        nix.registry.nixpkgs.flake = nixpkgs;
+        nixpkgs.overlays = [
+          inputs.vim-extra-plugins.overlay
+          inputs.neovim-nightly-overlay.overlay
+          provideInputs
+        ];
+      };
     in {
+
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
 
         modules = [
           home-manager.nixosModules.home-manager
-          provideInputs
+          overlays
           ./hardware/laptop.nix
           ./configuration.nix
         ];
