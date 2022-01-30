@@ -1,1 +1,9 @@
-{ pkgs, ... }: { nixpkgs.overlays = [ (import ./tweakSources.nix) ]; }
+{ pkgs, ... }: {
+  nixpkgs.overlays = [
+    (import ./tweakSources.nix)
+
+    # I hope this works
+    (import ./edopro)
+
+  ];
+}
