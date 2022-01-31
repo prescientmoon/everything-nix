@@ -7,7 +7,7 @@ let
 in
 
 {
-	 home-manager.users.adrielus.programs.neovim = {
+  home-manager.users.adrielus.programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
 
