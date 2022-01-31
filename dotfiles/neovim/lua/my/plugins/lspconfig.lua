@@ -2,7 +2,7 @@ local M = {}
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "tsserver" "purescriptls" }
+local servers = { "tsserver", "purescriptls" }
 
 function M.map(buf, mode, lhs, rhs, opts)
   local options = { noremap=true, silent=true }

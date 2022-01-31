@@ -15,8 +15,12 @@ in {
     '';
 
     extraPackages = [
+      pkgs.fzf # Required by lua-fzf
+
+      # Language servers
       pkgs.nodePackages.typescript
       pkgs.easy-purescript-nix.purescript-language-server
+
     ];
 
     plugins = with pkgs.vimPlugins;
@@ -25,6 +29,7 @@ in {
         github-nvim-theme # github theme for neovim
         nvim-lspconfig # configures lsps for me
         nvim-autopairs # close pairs for me
+        fzf-lua # fuzzy search for say opening files
       ];
   };
 }
