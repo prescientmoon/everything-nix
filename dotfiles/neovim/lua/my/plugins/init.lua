@@ -6,6 +6,7 @@ function M.setup()
 
     -- Other unconfigured plugins
     require('nvim-autopairs').setup()
+    require('nvim_comment').setup()
 end
 
 return M
