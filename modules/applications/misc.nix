@@ -72,5 +72,6 @@
     # games
     # tetrio-desktop
     # mindustry
+    edopro
   ];
 }

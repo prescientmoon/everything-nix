@@ -33,3 +33,4 @@ require('github-theme').setup({
 
 -- Import my other files
 require('my.keymaps').setup()
+require('my.plugins').setup()

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs ? import <nixpkgs>, ... }:
 pkgs.stdenv.mkDerivation rec {
   pname = "edopro";
   version = "39.2.0";
@@ -7,6 +7,7 @@ pkgs.stdenv.mkDerivation rec {
   src = pkgs.fetchurl {
     url =
       "https://github.com/ProjectIgnis/edopro-assets/releases/download/${rev}/ProjectIgnis-EDOPro-${version}-linux.tar.gz";
+    sha256 = "OQSWTuRaTyr2XIDjSbIvrV11LJCpOmw5aOjHU2ji+kI=";
   };
 
   buildInputs = [ pkgs.mono ];
@@ -15,6 +16,8 @@ pkgs.stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    mv edopro $out/bin
+    ls
+    chmod +x ./EDOPro
+    mv ./* $out/bin/
   '';
 }
