@@ -1,26 +1,23 @@
 { pkgs, ... }:
 let
+  # config-nvim = "/etc/nixos/configuration/dotfiles/neovim";
   config-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "config-nvim";
     src = ../../dotfiles/neovim;
   };
 in
-
 {
   home-manager.users.adrielus.programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
 
     extraConfig = ''
-      let g:disable_paq = v:true
       luafile ${config-nvim}/init.lua
     '';
 
     extraPackages = with pkgs; [
-      fzf # Required by lua-fzf
-
       # Language servers
-      nodePackages.typescript # typescript
+      nodePackages.typescript-language-server # typescript
       easy-purescript-nix.purescript-language-server # purescript
       sumneko-lua-language-server # lua
       efm-langserver # auto-formatting
@@ -28,6 +25,11 @@ in
 
       # Formatters
       luaformatter # lua
+      nodePackages.prettierd # prettier but faster
+
+      # Others
+      fzf # Required by lua-fzf
+      nodePackages.typescript # typescript language
     ];
 
     plugins = with pkgs.vimPlugins;
@@ -39,7 +41,7 @@ in
         fzf-lua # fuzzy search for say opening files
         purescript-vim # purescript syntax highlighting
         nvim-comment # allows toggling line-comments
-	nvim-treesitter # use treesitter for syntax highlighting
+        nvim-treesitter # use treesitter for syntax highlighting
       ];
   };
 }

@@ -84,16 +84,29 @@ function M.setup()
         }
     end
 
+    local efmLanguages = {
+        typescript = {
+            formatCommand = 'prettierd "${INPUT}"',
+            formatStdin = true,
+            env = {string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json'))}
+        },
+        lua = {{formatCommand = formatLua, formatStdin = true}}
+    }
+
     -- Setup auto-formatting
     require"lspconfig".efm.setup {
         init_options = {documentFormatting = true},
-        filetypes = {"lua"},
-        settings = {rootMarkers = {".git/"}, languages = {lua = {{formatCommand = formatLua, formatStdin = true}}}}
+        filetypes = {"lua", "ts", "js", "tsx", "jsx"},
+        settings = {rootMarkers = {".git/"}, languages = efmLanguages}
     }
 
-    -- Auto format lua stuff
-    cmd("autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)")
-    -- cmd("autocmd BufWritePre nix vim.lsp.buf.formatting_sync(nil, 100)")
+    local autoFormatOn = {lua = 100, purs = 1000, nix = 100, js = 100, ts = 100, tsx = 100, jsx = 100}
+
+    -- Auto format
+    for extension, timeout in pairs(autoFormatOn) do
+        -- I wonder if this could be done in a single glob pattern
+        cmd("autocmd BufWritePre *." .. extension .. " lua vim.lsp.buf.formatting_sync(nil, " .. timeout .. ")")
+    end
 end
 
 return M

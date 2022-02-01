@@ -1,9 +1,0 @@
-[
-  "pnpm",
-  "tsdx",
-  "mklicense",
-  "preact-cli",
-  "create-next-app",
-  "create-snowpack-app",
-  "bower"
-]
