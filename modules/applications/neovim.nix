@@ -39,6 +39,7 @@ in
         fzf-lua # fuzzy search for say opening files
         purescript-vim # purescript syntax highlighting
         nvim-comment # allows toggling line-comments
+	nvim-treesitter # use treesitter for syntax highlighting
       ];
   };
 }
