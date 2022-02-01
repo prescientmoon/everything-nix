@@ -1,6 +1,7 @@
 self: super:
-let customPackages = pkgs.callPackage ./npm { };
-in with self; {
+let customPackages = self.callPackage ./npm { };
+in
+with self; {
   # Faster prettier for editors
-  nodePackages.prettierd = customPackages."@fsouza/prettierd";
+  prettierd = customPackages."@fsouza/prettierd";
 }

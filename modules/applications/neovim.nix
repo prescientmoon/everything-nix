@@ -25,7 +25,7 @@ in
 
       # Formatters
       luaformatter # lua
-      nodePackages.prettierd # prettier but faster
+      prettierd # prettier but faster
 
       # Others
       fzf # Required by lua-fzf
@@ -42,6 +42,7 @@ in
         purescript-vim # purescript syntax highlighting
         nvim-comment # allows toggling line-comments
         nvim-treesitter # use treesitter for syntax highlighting
+        startup-nvim # splash screen
       ];
   };
 }

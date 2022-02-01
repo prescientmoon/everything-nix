@@ -8,6 +8,7 @@ function M.setup()
     -- Other unconfigured plugins
     require('nvim-autopairs').setup()
     require('nvim_comment').setup()
+    require("startup").setup({theme = "dashboard"})
 end
 
 return M

@@ -2,7 +2,8 @@
 let
   node = pkgs.nodejs-17_x;
   yarn = pkgs.yarn.override { nodejs = node; };
-in {
+in
+{
   home-manager.users.adrielus.home.packages = with pkgs;
     with nodePackages; [
       node
@@ -14,11 +15,11 @@ in {
 
       # TODO: find a good way to reinstall some of these
       /* tsdx
-            mklicense
-            preact-cli
-            create-next-app
-            create-snowpack-app
-            bower
+        mklicense
+        preact-cli
+        create-next-app
+        create-snowpack-app
+        bower
       */
     ];
 }
