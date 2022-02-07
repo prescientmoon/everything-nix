@@ -6,6 +6,7 @@ function M.setup()
     require("my.plugins.telescope").setup()
     require("my.plugins.treesitter").setup()
     require("my.plugins.comment").setup()
+    require("my.plugins.nerdtree").setup()
 
     -- Other unconfigured plugins
     require('nvim-autopairs').setup()
