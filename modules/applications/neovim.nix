@@ -48,7 +48,7 @@ in
         nvim-web-devicons # fork of vim-devicons?
         plenary-nvim # async utility lib it seems?
         lualine-nvim # customizable status line
-        nvim-tree # file tree
+        nvim-tree-lua # file tree
       ];
   };
 }
