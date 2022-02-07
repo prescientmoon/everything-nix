@@ -2,7 +2,8 @@ local M = {}
 
 function M.setup()
     require("my.plugins.lspconfig").setup()
-    require("my.plugins.fzf-lua").setup()
+    -- require("my.plugins.fzf-lua").setup()
+    require("my.plugins.telescope").setup()
     require("my.plugins.treesitter").setup()
     require("my.plugins.comment").setup()
 

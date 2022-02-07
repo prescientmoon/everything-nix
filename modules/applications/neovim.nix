@@ -28,7 +28,8 @@ in
       prettierd # prettier but faster
 
       # Others
-      fzf # Required by lua-fzf
+      fd # file finder
+      ripgrep # grep rewrite (I think?)
       nodePackages.typescript # typescript language
     ];
 
@@ -38,11 +39,12 @@ in
         github-nvim-theme # github theme for neovim
         nvim-lspconfig # configures lsps for me
         nvim-autopairs # close pairs for me
-        fzf-lua # fuzzy search for say opening files
+        telescope-nvim # fuzzy search for say opening files
         purescript-vim # purescript syntax highlighting
         nvim-comment # allows toggling line-comments
         nvim-treesitter # use treesitter for syntax highlighting
         startup-nvim # splash screen
+        vim-devicons # nice looking icons
       ];
   };
 }
