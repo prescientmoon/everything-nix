@@ -3,7 +3,8 @@
 let
   githubAlacrittyTheme =
     "${pkgs.githubNvimTheme}/terminal/alacritty/github_light.yml";
-in {
+in
+{
   home-manager.users.adrielus.programs.alacritty = {
     enable = true;
 
@@ -22,7 +23,7 @@ in {
       };
 
       # transparent bg:)
-      background_opacity = 0.6;
+      # background_opacity = 0.6;
       fonts.normal.family = "Source Code Pro";
     };
   };

@@ -92,22 +92,17 @@ function M.setup()
     end
 
     local efmLanguages = {
-        typescript = {
-            formatCommand = 'prettierd "${INPUT}"',
-            formatStdin = true,
-            env = {string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json'))}
-        },
         lua = {{formatCommand = formatLua, formatStdin = true}}
     }
 
     -- Setup auto-formatting
     require"lspconfig".efm.setup {
         init_options = {documentFormatting = true},
-        filetypes = {"lua", "ts", "js", "tsx", "jsx"},
+        filetypes = {"lua"},
         settings = {rootMarkers = {".git/"}, languages = efmLanguages}
     }
 
-    local autoFormatOn = {lua = 100, purs = 1000, nix = 100, js = 100, ts = 100, tsx = 100, jsx = 100}
+    local autoFormatOn = {lua = 200, purs = 1000, nix = 200, js = 300, ts = 300, tsx = 300, jsx = 300}
 
     -- Auto format
     for extension, timeout in pairs(autoFormatOn) do
