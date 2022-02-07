@@ -5,8 +5,7 @@ let
     name = "config-nvim";
     src = ../../dotfiles/neovim;
   };
-in
-{
+in {
   home-manager.users.adrielus.programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -45,6 +44,7 @@ in
         nvim-treesitter # use treesitter for syntax highlighting
         startup-nvim # splash screen
         vim-devicons # nice looking icons
+        plenary-nvim # async utility lib it seems?
       ];
   };
 }

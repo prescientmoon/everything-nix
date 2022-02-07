@@ -24,7 +24,7 @@ in
 
       # transparent bg:)
       # background_opacity = 0.6;
-      fonts.normal.family = "Source Code Pro";
+      fonts.normal.family = "Nerd Font Source Code Pro";
     };
   };
 }

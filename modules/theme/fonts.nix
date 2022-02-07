@@ -10,9 +10,9 @@ in
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
-      # fira-code
-      # fira-code-symbols
-      # source-code-pro
+      fira-code
+      fira-code-symbols
+      source-code-pro
       corefonts
       nerdfonts
     ];

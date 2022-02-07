@@ -26,10 +26,10 @@ local bindings = {
 function M.setup()
     for action, keybind in pairs(bindings) do
         -- Maps the keybind to the action
-        mapSilent('n', keybind, "<cmd>lua require('telescope.builtint')." .. action .. "()<CR>")
+        mapSilent('n', keybind, "<cmd>lua require('telescope.builtin')." .. action .. "()<CR>")
     end
 
-    require("telescope").setup {defaults = {mappings = {i = {["<C-h>"] = "which-key"}}}}
+    require("telescope").setup {defaults = {mappings = {i = {["<C-h>"] = "which_key"}}}}
 end
 
 return M
