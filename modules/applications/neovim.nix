@@ -31,6 +31,7 @@ in
       fd # file finder
       ripgrep # grep rewrite (I think?)
       nodePackages.typescript # typescript language
+
       texlive.combined.scheme-full # latex stuff
       python38Packages.pygments # required for latex syntax highlighting
     ];
