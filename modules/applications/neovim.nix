@@ -32,6 +32,7 @@ in
       ripgrep # grep rewrite (I think?)
       nodePackages.typescript # typescript language
       texlive.combined.scheme-full # latex stuff
+      python38Packages.pygments # required for latex syntax highlighting
     ];
 
     plugins = with pkgs.vimPlugins;
@@ -52,11 +53,12 @@ in
         nvim-tree-lua # file tree
         vimtex # latex plugin
 
+
         # Cmp related stuff. See https://github.com/hrsh7th/nvim-cmp
         cmp-nvim-lsp
         cmp-buffer
         cmp-path
-        cmd-cmdline
+        cmp-cmdline
         nvim-cmp
       ];
   };

@@ -25,6 +25,7 @@
     # unison-ucm    
     xorg.libX11
     texlive.combined.scheme-full # latex stuff
+    python38Packages.pygments # required for latex syntax highlighting
     okular
     zathura
     cmake
