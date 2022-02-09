@@ -31,6 +31,7 @@ in
       fd # file finder
       ripgrep # grep rewrite (I think?)
       nodePackages.typescript # typescript language
+      texlive.combined.scheme-full # latex stuff
     ];
 
     plugins = with pkgs.vimPlugins;
@@ -49,6 +50,14 @@ in
         plenary-nvim # async utility lib it seems?
         lualine-nvim # customizable status line
         nvim-tree-lua # file tree
+        vimtex # latex plugin
+
+        # Cmp related stuff. See https://github.com/hrsh7th/nvim-cmp
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmd-cmdline
+        nvim-cmp
       ];
   };
 }

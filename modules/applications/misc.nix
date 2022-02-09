@@ -63,6 +63,7 @@
     # blueman # bluetooth manager
     # freesweep # minesweeper I can play w the keyboard.
     # multimc
+    sloc # line of code counter
 
     # Nes emulators and stuff
     # zsnes

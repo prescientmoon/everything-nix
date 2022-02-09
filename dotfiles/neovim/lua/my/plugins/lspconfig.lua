@@ -74,6 +74,8 @@ local servers = {
 }
 
 function M.setup()
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
     -- Setup basic language servers
     for lsp, details in pairs(servers) do
         if details.on_attach == nil then
@@ -87,13 +89,12 @@ function M.setup()
             flags = {
                 debounce_text_changes = 150 -- This will be the default in neovim 0.7+
             },
-            cmd = details.cmd
+            cmd = details.cmd,
+            capabilities = capabilities
         }
     end
 
-    local efmLanguages = {
-        lua = {{formatCommand = formatLua, formatStdin = true}}
-    }
+    local efmLanguages = {lua = {{formatCommand = formatLua, formatStdin = true}}}
 
     -- Setup auto-formatting
     require"lspconfig".efm.setup {

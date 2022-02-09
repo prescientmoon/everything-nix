@@ -10,7 +10,7 @@ local bindings = {
     live_grep = "<c-F>",
 
     -- See diagnostics with space + d
-    diagnotics = "<space>d",
+    diagnostics = "<space>d",
 
     -- Open a list with all the pickers
     builtin = "<space>t",
