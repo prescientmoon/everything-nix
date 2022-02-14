@@ -7,6 +7,6 @@
     # lines = 7;
     # fullscreen = false;
     cycle = true;
-    theme = "solarized_alternate";
+    theme = "purple";
   };
 }
