@@ -7,7 +7,7 @@
     ./xmodmap
 
     # ./wine.nix
-    ./kdeconnect
+    ./kdeconnect.nix
     ./steam.nix
     ./docker.nix
     ./misc.nix
