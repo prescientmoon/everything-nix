@@ -32,7 +32,7 @@
     # editors
     # vscodium
     vscode
-    vim
+    # vim
     # emacs
 
     # chat apps
@@ -45,8 +45,8 @@
 
     # browsers
     google-chrome
-    brave
-    firefox
+    # brave
+    # firefox
 
     # other stuff
     obsidian # knowedge base
@@ -72,6 +72,6 @@
     # games
     # tetrio-desktop
     # mindustry
-    edopro
+    # edopro
   ];
 }

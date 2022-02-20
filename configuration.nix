@@ -93,7 +93,12 @@
 
   system.stateVersion = "21.11";
 
+  # TODO: put nixpkgs stuff inside their own file
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-13.6.9"
+  ];
 }
 
