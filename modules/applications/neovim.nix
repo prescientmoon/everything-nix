@@ -37,7 +37,7 @@ in
     ];
 
     plugins = with pkgs.vimPlugins;
-      with pkgs.vimExtraPlugins; [
+      with pkgs.vimExtraPlugins; with pkgs.myVimPlugins;  [
         config-nvim # my neovim config
         github-nvim-theme # github theme for neovim
         nvim-lspconfig # configures lsps for me
@@ -53,7 +53,8 @@ in
         lualine-nvim # customizable status line
         nvim-tree-lua # file tree
         vimtex # latex plugin
-
+        null-ls-nvim # generic language server
+        telescope-file-browser-nvim # file creation/deletion using telescope
 
         # Cmp related stuff. See https://github.com/hrsh7th/nvim-cmp
         cmp-nvim-lsp

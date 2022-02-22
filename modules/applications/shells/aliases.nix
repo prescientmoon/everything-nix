@@ -1,5 +1,5 @@
 {
-  ls = "exa -l";
+  ls = "exa -la";
   sl = "sl -e";
 
   # WIfi stuff
