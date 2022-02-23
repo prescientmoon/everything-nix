@@ -26,6 +26,8 @@ opt.splitright = true -- Put new windows right of current
 opt.wrap = false -- Disable line wrap
 opt.wildmode = {'list', 'longest'} -- Command-line completion mode
 
+opt.completeopt = {"menu", "menuone", "noselect"}
+
 -- Set theme
 require('github-theme').setup({theme_style = "light", dark_float = true})
 

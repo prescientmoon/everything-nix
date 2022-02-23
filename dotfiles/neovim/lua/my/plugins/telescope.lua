@@ -13,6 +13,7 @@ local bindings = {
         -- See diagnostics with space + d
         lsp_document_diagnostics = "<space>d",
         lsp_workspace_diagnostics = "<space>wd",
+        lsp_code_actions = "<space>ca",
 
         -- Open a list with all the pickers
         builtin = "<space>t",

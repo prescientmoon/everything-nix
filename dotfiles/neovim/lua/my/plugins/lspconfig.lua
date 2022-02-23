@@ -31,7 +31,7 @@ local function on_attach(client, bufnr)
     -- Code actions
     map(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     map(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    map(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+    -- map(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
     map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 end
@@ -106,7 +106,7 @@ function M.setup()
     local autoFormatOn = {lua = 200, purs = 1000, nix = 200, ts = 200, js = 200, json = 200, scss = 200, tsx = 200, jsx = 200}
 
     -- Auto format
-    for extension, timeout in pairs(autoFormatOn) do
+    for extension, _ in pairs(autoFormatOn) do
         -- I wonder if this could be done in a single glob pattern
         cmd("autocmd BufWritePre *." .. extension .. " lua vim.lsp.buf.formatting_sync()")
     end
