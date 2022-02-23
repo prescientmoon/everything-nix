@@ -103,12 +103,12 @@ function M.setup()
         settings = {rootMarkers = {".git/"}, languages = efmLanguages}
     }
 
-    local autoFormatOn = {lua = 200, purs = 1000, nix = 200, js = 300, ts = 300, tsx = 300, jsx = 300}
+    local autoFormatOn = {lua = 200, purs = 1000, nix = 200, ts = 200, js = 200, json = 200, scss = 200, tsx = 200, jsx = 200}
 
     -- Auto format
     for extension, timeout in pairs(autoFormatOn) do
         -- I wonder if this could be done in a single glob pattern
-        cmd("autocmd BufWritePre *." .. extension .. " lua vim.lsp.buf.formatting_sync(nil, " .. timeout .. ")")
+        cmd("autocmd BufWritePre *." .. extension .. " lua vim.lsp.buf.formatting_sync()")
     end
 end
 
