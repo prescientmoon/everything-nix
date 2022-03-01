@@ -56,14 +56,16 @@ in
         null-ls-nvim # generic language server
         telescope-file-browser-nvim # file creation/deletion using telescope
         lspkind-nvim # show icons in lsp completion menus
-        symbols-outline-nvim # tree view for symbols in document
+        # symbols-outline-nvim # tree view for symbols in document
 
         # Cmp related stuff. See https://github.com/hrsh7th/nvim-cmp
         cmp-nvim-lsp
         cmp-buffer
         cmp-path
         cmp-cmdline
-        nvim-cmp
+        cmp_luasnip
+        nvim-cmp # completion engine
+        luasnip # snippet engine
       ];
   };
 }

@@ -1,13 +1,18 @@
 {
+  # Ls but looks nicer
   ls = "exa -la";
+
+  # What even is this???
   sl = "sl -e";
 
   # WIfi stuff
   wifi = "sudo nmcli con up id";
 
   # Volume controls
-  vup = "amixer set Master 8%+";
-  vdown = "amixer set Master 8%-";
+  "v up" = "amixer set Master 8%+";
+  "v down" = "amixer set Master 8%-";
+  "v min" = "amixer set Master 0%";
+  "v max" = "amixer set Master 100%";
 
   # Rebuuild nixos
   rebuild = "sudo nixos-rebuild switch --flake ~/Projects/nixos-config/";
