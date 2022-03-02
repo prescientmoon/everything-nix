@@ -9,10 +9,11 @@
   wifi = "sudo nmcli con up id";
 
   # Volume controls
-  "v up" = "amixer set Master 8%+";
-  "v down" = "amixer set Master 8%-";
-  "v min" = "amixer set Master 0%";
-  "v max" = "amixer set Master 100%";
+  "v-up" = "amixer set Master 8%+";
+  "v-down" = "amixer set Master 8%-";
+  "v-min" = "amixer set Master 0%";
+  "v-mid" = "amixer set Master 50%";
+  "v-max" = "amixer set Master 100%";
 
   # Rebuuild nixos
   rebuild = "sudo nixos-rebuild switch --flake ~/Projects/nixos-config/";
