@@ -17,6 +17,7 @@
     ./rofi.nix
     ./postgres.nix
     ./neovim.nix
+    ./tmux.nix
   ];
 }
 
