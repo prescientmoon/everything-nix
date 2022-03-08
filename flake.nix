@@ -35,6 +35,11 @@
       flake = false;
     };
 
+    fish-plugin-vi-mode = {
+      url = "github:oh-my-fish/plugin-vi-mode";
+      flake = false;
+    };
+
     agnoster = {
       url = "github:oh-my-fish/theme-agnoster";
       flake = false;

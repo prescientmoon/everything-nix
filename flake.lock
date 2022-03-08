@@ -48,6 +48,22 @@
         "type": "github"
       }
     },
+    "fish-plugin-vi-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1613331590,
+        "narHash": "sha256-kRYWbTVT+eV5t5ZvV8abL2zIUnOZMbc2Gk+hDhX6hPM=",
+        "owner": "oh-my-fish",
+        "repo": "plugin-vi-mode",
+        "rev": "2655a7253077faefd2f0a57b799dee687344d4fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oh-my-fish",
+        "repo": "plugin-vi-mode",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -261,6 +277,7 @@
         "agnoster": "agnoster",
         "easy-dhall-nix": "easy-dhall-nix",
         "easy-purescript-nix": "easy-purescript-nix",
+        "fish-plugin-vi-mode": "fish-plugin-vi-mode",
         "githubNvimTheme": "githubNvimTheme",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",

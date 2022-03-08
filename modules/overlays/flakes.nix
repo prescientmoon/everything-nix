@@ -6,6 +6,7 @@
 , easy-purescript-nix
 , easy-dhall-nix
 , z
+, fish-plugin-vi-mode
 , agnoster
 , githubNvimTheme
 , vim-extra-plugins
@@ -28,15 +29,25 @@ in
   easy-purescript-nix = self.callPackage easy-purescript-nix { };
   easy-dhall-nix = self.callPackage easy-dhall-nix { };
 
-  z = {
-    src = z;
-    name = "z";
+  myFishPlugins = {
+    z = {
+      src = z;
+      name = "z";
+    };
+    vi-mode = {
+      src = fish-plugin-vi-mode;
+      name = "vi-mode";
+    };
+
+    themes = {
+      agnoster = {
+        src = agnoster;
+        name = "agnoster";
+      };
+    };
   };
 
-  agnoster = {
-    src = agnoster;
-    name = "agnoster";
-  };
+
 
   githubNvimTheme = githubNvimTheme;
 
