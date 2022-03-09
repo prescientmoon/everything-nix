@@ -5,6 +5,7 @@
     exa # ls replacement
     mkpasswd # hash passwords
     gnupg
+    acpi # show remaining battery
     # typespeed # speed typing game
     # unixtools.xxd # to dump binary stuff into a text file (used it for a ctf)
     # youtube-dl # download from youtube

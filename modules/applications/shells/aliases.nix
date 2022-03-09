@@ -15,6 +15,9 @@
   "v-mid" = "amixer set Master 50%";
   "v-max" = "amixer set Master 100%";
 
+  # Print available battery
+  battery = "acpi";
+
   # Rebuuild nixos
   rebuild = "sudo nixos-rebuild switch --flake ~/Projects/nixos-config/";
 
