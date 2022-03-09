@@ -12,6 +12,7 @@
 , oh-my-fish
 , githubNvimTheme
 , vim-extra-plugins
+, vim-plugin-arpeggio
 , telescope-file-browser-nvim
 , ...
 }: self: super:
@@ -63,5 +64,7 @@ in
   myVimPlugins = {
     telescope-file-browser-nvim =
       plugin "file_browser" telescope-file-browser-nvim;
+
+    arpeggio = plugin "arpeggio" vim-plugin-arpeggio;
   };
 }

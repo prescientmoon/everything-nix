@@ -336,7 +336,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "oh-my-fish": "oh-my-fish",
         "telescope-file-browser-nvim": "telescope-file-browser-nvim",
-        "vim-extra-plugins": "vim-extra-plugins"
+        "vim-extra-plugins": "vim-extra-plugins",
+        "vim-plugin-arpeggio": "vim-plugin-arpeggio"
       }
     },
     "telescope-file-browser-nvim": {
@@ -372,6 +373,22 @@
       "original": {
         "owner": "m15a",
         "repo": "nixpkgs-vim-extra-plugins",
+        "type": "github"
+      }
+    },
+    "vim-plugin-arpeggio": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1597883245,
+        "narHash": "sha256-volgKWr1mNwmvOQQEw7feBztmpDVyPJG1n+OI8L1BRA=",
+        "owner": "kana",
+        "repo": "vim-arpeggio",
+        "rev": "01c8fc1a72ef58e490ee0490c65ee313b1b6e843",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kana",
+        "repo": "vim-arpeggio",
         "type": "github"
       }
     }

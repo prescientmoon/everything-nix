@@ -7,8 +7,13 @@ end
 function M.mergeTables(t1, t2)
     local t3 = {}
 
-    for k, v in pairs(t1) do t3[k] = v end
-    for k, v in pairs(t2) do t3[k] = v end
+    if t1 ~= nil then
+      for k, v in pairs(t1) do t3[k] = v end
+    end
+
+    if t2 ~= nil then
+      for k, v in pairs(t2) do t3[k] = v end
+    end
 
     return t3
 end

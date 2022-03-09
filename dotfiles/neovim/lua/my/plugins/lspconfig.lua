@@ -1,4 +1,3 @@
-local cmd = vim.cmd
 local M = {}
 
 -- Command for formatting lua code
@@ -10,9 +9,18 @@ local function map(buf, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
 end
 
-local function on_attach(client, bufnr)
+function M.on_attach(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd([[
+            augroup LspFormatting
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+            augroup END
+            ]])
+    end
 
     -- Go to declaration / definition / implementation
     map(bufnr, "n", 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
@@ -40,7 +48,7 @@ local function on_attach_typescript(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
 
-    on_attach(client, bufnr)
+    M.on_attach(client, bufnr)
 end
 
 -- General server config
@@ -80,7 +88,7 @@ function M.setup()
     for lsp, details in pairs(servers) do
         if details.on_attach == nil then
             -- Default setting for on_attach
-            details.on_attach = on_attach
+            details.on_attach = M.on_attach
         end
 
         require('lspconfig')[lsp].setup {
@@ -94,6 +102,7 @@ function M.setup()
         }
     end
 
+    -- TODO: replace this with null-ls
     local efmLanguages = {lua = {{formatCommand = formatLua, formatStdin = true}}}
 
     -- Setup auto-formatting
@@ -102,14 +111,6 @@ function M.setup()
         filetypes = {"lua"},
         settings = {rootMarkers = {".git/"}, languages = efmLanguages}
     }
-
-    local autoFormatOn = {lua = 200, purs = 1000, nix = 200, ts = 200, js = 200, json = 200, scss = 200, tsx = 200, jsx = 200}
-
-    -- Auto format
-    for extension, _ in pairs(autoFormatOn) do
-        -- I wonder if this could be done in a single glob pattern
-        cmd("autocmd BufWritePre *." .. extension .. " lua vim.lsp.buf.formatting_sync()")
-    end
 end
 
 return M

@@ -17,6 +17,12 @@
 
     vim-extra-plugins.url = "github:m15a/nixpkgs-vim-extra-plugins";
 
+    # Plugin which enables me to create chords (aka keybinds where everything must be set at the same time)
+    vim-plugin-arpeggio = {
+      url = "github:kana/vim-arpeggio";
+      flake = false;
+    };
+
     # Create / delete files within telescope
     telescope-file-browser-nvim = {
       url = "github:nvim-telescope/telescope-file-browser.nvim";
