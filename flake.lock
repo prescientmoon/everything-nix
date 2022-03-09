@@ -335,9 +335,26 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "oh-my-fish": "oh-my-fish",
+        "sddm-theme-chili": "sddm-theme-chili",
         "telescope-file-browser-nvim": "telescope-file-browser-nvim",
         "vim-extra-plugins": "vim-extra-plugins",
         "vim-plugin-arpeggio": "vim-plugin-arpeggio"
+      }
+    },
+    "sddm-theme-chili": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1535340922,
+        "narHash": "sha256-wxWsdRGC59YzDcSopDRzxg8TfjjmA3LHrdWjepTuzgw=",
+        "owner": "MarianArlt",
+        "repo": "sddm-chili",
+        "rev": "6516d50176c3b34df29003726ef9708813d06271",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MarianArlt",
+        "repo": "sddm-chili",
+        "type": "github"
       }
     },
     "telescope-file-browser-nvim": {

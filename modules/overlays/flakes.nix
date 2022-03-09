@@ -14,6 +14,7 @@
 , vim-extra-plugins
 , vim-plugin-arpeggio
 , telescope-file-browser-nvim
+, sddm-theme-chili
 , ...
 }: self: super:
 # installs a vim plugin from git with a given tag / branch
@@ -67,4 +68,6 @@ in
 
     arpeggio = plugin "arpeggio" vim-plugin-arpeggio;
   };
+
+  sddm-theme-chili = sddm-theme-chili;
 }

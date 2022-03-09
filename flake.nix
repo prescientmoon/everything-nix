@@ -9,6 +9,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+
     #### Nvim stuff
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -69,6 +70,12 @@
 
     oh-my-fish = {
       url = "github:oh-my-fish/oh-my-fish";
+      flake = false;
+    };
+
+    #### Other github stuff
+    sddm-theme-chili = {
+      url = "github:MarianArlt/sddm-chili";
       flake = false;
     };
   };
