@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "agnoster": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1641807476,
-        "narHash": "sha256-qi4G08yA21iKsTGR8qBlYp36xflW2UqNYlCjn+vRfLc=",
-        "owner": "oh-my-fish",
-        "repo": "theme-agnoster",
-        "rev": "1ffca413bfbc8941c28982eea97c1e1fa3612d57",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oh-my-fish",
-        "repo": "theme-agnoster",
-        "type": "github"
-      }
-    },
     "easy-dhall-nix": {
       "flake": false,
       "locked": {
@@ -48,19 +32,67 @@
         "type": "github"
       }
     },
-    "fish-plugin-vi-mode": {
+    "fish-plugin-z": {
       "flake": false,
       "locked": {
-        "lastModified": 1613331590,
-        "narHash": "sha256-kRYWbTVT+eV5t5ZvV8abL2zIUnOZMbc2Gk+hDhX6hPM=",
+        "lastModified": 1626157139,
+        "narHash": "sha256-pWkEhjbcxXduyKz1mAFo90IuQdX7R8bLCQgb0R+hXs4=",
+        "owner": "jethrokuan",
+        "repo": "z",
+        "rev": "45a9ff6d0932b0e9835cbeb60b9794ba706eef10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jethrokuan",
+        "repo": "z",
+        "type": "github"
+      }
+    },
+    "fish-theme-agnoster": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1641807476,
+        "narHash": "sha256-qi4G08yA21iKsTGR8qBlYp36xflW2UqNYlCjn+vRfLc=",
         "owner": "oh-my-fish",
-        "repo": "plugin-vi-mode",
-        "rev": "2655a7253077faefd2f0a57b799dee687344d4fb",
+        "repo": "theme-agnoster",
+        "rev": "1ffca413bfbc8941c28982eea97c1e1fa3612d57",
         "type": "github"
       },
       "original": {
         "owner": "oh-my-fish",
-        "repo": "plugin-vi-mode",
+        "repo": "theme-agnoster",
+        "type": "github"
+      }
+    },
+    "fish-theme-dangerous": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1547694252,
+        "narHash": "sha256-OnbS1X/FQaEyVIlgR7YOJlAUu3bgnm2UWk5vm80Cvvc=",
+        "owner": "oh-my-fish",
+        "repo": "theme-dangerous",
+        "rev": "3cdfc82060ba280b44f1f0c6616675f36a275467",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oh-my-fish",
+        "repo": "theme-dangerous",
+        "type": "github"
+      }
+    },
+    "fish-theme-harleen": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1631660209,
+        "narHash": "sha256-DHGjy7UGzy+vuzHrw49KP0nePKvx7sMMMrPj2mbGoJA=",
+        "owner": "aneveux",
+        "repo": "theme-harleen",
+        "rev": "caf53d792038e78faa7b6b6b98669abc171c5e64",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aneveux",
+        "repo": "theme-harleen",
         "type": "github"
       }
     },
@@ -272,21 +304,39 @@
         "type": "github"
       }
     },
+    "oh-my-fish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646778488,
+        "narHash": "sha256-7mBxP5F81U+V0ahrsXL0vGPivTbKMnqYE5vgG/IOBe8=",
+        "owner": "oh-my-fish",
+        "repo": "oh-my-fish",
+        "rev": "ab05441000531d0bc9aaea23b8d4db59b2828a31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oh-my-fish",
+        "repo": "oh-my-fish",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "agnoster": "agnoster",
         "easy-dhall-nix": "easy-dhall-nix",
         "easy-purescript-nix": "easy-purescript-nix",
-        "fish-plugin-vi-mode": "fish-plugin-vi-mode",
+        "fish-plugin-z": "fish-plugin-z",
+        "fish-theme-agnoster": "fish-theme-agnoster",
+        "fish-theme-dangerous": "fish-theme-dangerous",
+        "fish-theme-harleen": "fish-theme-harleen",
         "githubNvimTheme": "githubNvimTheme",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "oh-my-fish": "oh-my-fish",
         "telescope-file-browser-nvim": "telescope-file-browser-nvim",
-        "vim-extra-plugins": "vim-extra-plugins",
-        "z": "z"
+        "vim-extra-plugins": "vim-extra-plugins"
       }
     },
     "telescope-file-browser-nvim": {
@@ -322,22 +372,6 @@
       "original": {
         "owner": "m15a",
         "repo": "nixpkgs-vim-extra-plugins",
-        "type": "github"
-      }
-    },
-    "z": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1626157139,
-        "narHash": "sha256-pWkEhjbcxXduyKz1mAFo90IuQdX7R8bLCQgb0R+hXs4=",
-        "owner": "jethrokuan",
-        "repo": "z",
-        "rev": "45a9ff6d0932b0e9835cbeb60b9794ba706eef10",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jethrokuan",
-        "repo": "z",
         "type": "github"
       }
     }

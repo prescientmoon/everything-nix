@@ -9,17 +9,27 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    #### Nvim stuff
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     vim-extra-plugins.url = "github:m15a/nixpkgs-vim-extra-plugins";
 
-    # Git repo fetching
+    # Create / delete files within telescope
     telescope-file-browser-nvim = {
       url = "github:nvim-telescope/telescope-file-browser.nvim";
       flake = false;
     };
 
+    # Github inspired theme for a bunch of stuff
+    githubNvimTheme = {
+      url = "github:projekt0n/github-nvim-theme";
+      flake = false;
+    };
+
+    #### Purescript stuff
     easy-dhall-nix = {
       url = "github:justinwoo/easy-dhall-nix";
       flake = false;
@@ -30,23 +40,29 @@
       flake = false;
     };
 
-    z = {
+    #### Fish stuff
+    fish-plugin-z = {
       url = "github:jethrokuan/z";
       flake = false;
     };
 
-    fish-plugin-vi-mode = {
-      url = "github:oh-my-fish/plugin-vi-mode";
-      flake = false;
-    };
-
-    agnoster = {
+    fish-theme-agnoster = {
       url = "github:oh-my-fish/theme-agnoster";
       flake = false;
     };
 
-    githubNvimTheme = {
-      url = "github:projekt0n/github-nvim-theme";
+    fish-theme-harleen = {
+      url = "github:aneveux/theme-harleen";
+      flake = false;
+    };
+
+    fish-theme-dangerous = {
+      url = "github:oh-my-fish/theme-dangerous";
+      flake = false;
+    };
+
+    oh-my-fish = {
+      url = "github:oh-my-fish/oh-my-fish";
       flake = false;
     };
   };

@@ -5,9 +5,11 @@
 , nixos-unstable
 , easy-purescript-nix
 , easy-dhall-nix
-, z
-, fish-plugin-vi-mode
-, agnoster
+, fish-plugin-z
+, fish-theme-harleen
+, fish-theme-agnoster
+, fish-theme-dangerous
+, oh-my-fish
 , githubNvimTheme
 , vim-extra-plugins
 , telescope-file-browser-nvim
@@ -30,24 +32,30 @@ in
   easy-dhall-nix = self.callPackage easy-dhall-nix { };
 
   myFishPlugins = {
+    inherit oh-my-fish;
+
     z = {
-      src = z;
+      src = fish-plugin-z;
       name = "z";
-    };
-    vi-mode = {
-      src = fish-plugin-vi-mode;
-      name = "vi-mode";
     };
 
     themes = {
       agnoster = {
-        src = agnoster;
+        src = fish-theme-agnoster;
         name = "agnoster";
+      };
+
+      dangerous = {
+        src = fish-theme-dangerous;
+        name = "dangerous";
+      };
+
+      harleen = {
+        src = fish-theme-harleen;
+        name = "harleen";
       };
     };
   };
-
-
 
   githubNvimTheme = githubNvimTheme;
 
