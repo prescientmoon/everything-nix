@@ -17,6 +17,7 @@ function M.setup()
     require("my.plugins.nvim-tree").setup()
     require("my.plugins.vimtex").setup()
     require("my.plugins.telescope").setup()
+    require("my.plugins.vimux").setup()
 end
 
 return M

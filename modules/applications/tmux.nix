@@ -16,11 +16,11 @@
       ];
 
       extraConfig = ''
-        # load the rest of the config
-        source-file ${../../dotfiles/tmux/tmux.conf}
-
         # Use github light theme
         source-file ${pkgs.githubNvimTheme}/terminal/tmux/github_light.conf
+
+        # load the rest of the config
+        source-file ${../../dotfiles/tmux/tmux.conf}
       '';
     };
   };

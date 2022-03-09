@@ -57,6 +57,8 @@ in
         telescope-file-browser-nvim # file creation/deletion using telescope
         lspkind-nvim # show icons in lsp completion menus
         # symbols-outline-nvim # tree view for symbols in document
+        vimux # interact with tmux from within vim
+        vim-tmux-navigator # easly switch between tmux and vim panes
 
         # Cmp related stuff. See https://github.com/hrsh7th/nvim-cmp
         cmp-nvim-lsp
