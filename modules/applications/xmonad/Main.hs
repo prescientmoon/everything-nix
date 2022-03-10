@@ -1,7 +1,11 @@
 {-# LANGUAGE BlockArguments #-}
 
+import System.Environment
+import System.Process
+
 import Control.Monad (join)
 import Data.Function ((&))
+
 import XMonad
 import XMonad.Actions.SpawnOn
 import XMonad.Config (defaultConfig)
@@ -71,6 +75,9 @@ main =
             manageWorkspaces
           ]
 
+    spawnTerminal = do
+      spawn "fish -c 'alacritty --config-file ~/.config/alacritty/themes/$THEME.yml'"
+
     myTerminal = "alacritty"
     myBrowser = "google-chrome-stable"
 
@@ -78,9 +85,8 @@ main =
     keymap =
       [ ("M-p", spawn "rofi -show run"),
         ("M-g", spawn myBrowser),
-        ("M-d", spawn "Discord"),
-        ("M-s", spawn "slack"),
-        ("M-r", spawn "ksysgurad")
+        ("M-s", spawnTerminal),
+        ("M-d", spawn "Discord")
       ]
 
     uniformBorder = join $ join $ join Border
@@ -95,8 +101,9 @@ main =
 
     startup :: X ()
     startup = do
-      spawn "xwallpaper --zoom ./picutres/portal.png"
+      spawn "xwallpaper --zoom ./background.jpg"
 
 -- spawn "Discord"
 -- spawn "google-chrome-stable"
 -- spawn "alacritty"
+

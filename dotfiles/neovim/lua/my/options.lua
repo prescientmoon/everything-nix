@@ -31,9 +31,6 @@ function M.setup()
 
     -- Set leader
     helpers.global("mapleader", "<Space>")
-
-    -- Set theme
-    -- require('github-theme').setup({theme_style = "light", dark_float = true, transparent = true})
 end
 
 return M

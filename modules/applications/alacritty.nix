@@ -4,14 +4,16 @@ let
   themes = pkgs.myThemes;
 
   createTheme = (theme: {
-    xdg.configFile."alacritty/themes/${theme.name}.yml".text = builtins.toJSON
-      (lib.attrs.recursiveUpdate theme.alacritty.settings {
-        import = [ "~/.config/alacritty/alacritty.yml" ];
-      });
+    xdg.configFile."alacritty/themes/${theme.name}.yml".text =
+      builtins.toJSON
+        (lib.attrsets.recursiveUpdate theme.alacritty.settings {
+          import = theme.alacritty.settings.import ++ [ "~/.config/alacritty/alacritty.yml" ];
+        });
   });
 
   createThemeConfigs = lib.lists.foldr
-    (acc: theme: lib.attrs.recursiveUpdate acc (createTheme theme))
+    (theme: acc: lib.attrsets.recursiveUpdate acc (createTheme theme)
+    )
     { }
     themes;
 in

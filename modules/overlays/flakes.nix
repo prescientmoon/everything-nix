@@ -11,7 +11,6 @@
 , fish-theme-dangerous
 , oh-my-fish
 , githubNvimTheme
-, vim-extra-plugins
 , vim-plugin-arpeggio
 , telescope-file-browser-nvim
 , sddm-theme-chili

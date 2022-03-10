@@ -1,5 +1,5 @@
 { lib, ... }: {
-  mergeLines = (lines: lib.foldr
+  mergeLines = (lines: lib.lists.foldr
     (a: b: ''
       ${a}
       ${b}
