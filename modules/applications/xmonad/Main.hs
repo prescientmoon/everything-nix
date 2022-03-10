@@ -95,7 +95,7 @@ main =
 
     startup :: X ()
     startup = do
-      spawn "xwallpaper --zoom ./background.jpg"
+      spawn "xwallpaper --zoom ./picutres/portal.png"
 
 -- spawn "Discord"
 -- spawn "google-chrome-stable"

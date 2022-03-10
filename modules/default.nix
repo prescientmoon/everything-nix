@@ -2,7 +2,7 @@
   imports = [
     ./dev
     ./applications
-    ./theme
+    ./themes
     ./overlays
 
     ./network.nix

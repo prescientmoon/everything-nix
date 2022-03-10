@@ -59,10 +59,11 @@ in
     };
   };
 
-  githubNvimTheme = githubNvimTheme;
 
   # Vim plugins
   myVimPlugins = {
+    githubNvimTheme = githubNvimTheme;
+
     telescope-file-browser-nvim =
       plugin "file_browser" telescope-file-browser-nvim;
 

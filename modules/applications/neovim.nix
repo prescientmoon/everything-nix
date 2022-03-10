@@ -1,10 +1,30 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
+  themes = pkgs.myThemes;
+
   # config-nvim = "/etc/nixos/configuration/dotfiles/neovim";
   config-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "config-nvim";
     src = ../../dotfiles/neovim;
   };
+
+  themePlugins = lib.lists.concatMap (theme: theme.neovim.plugins) themes;
+
+  loadTheme = (theme: ''
+    if currentTheme = "${theme.name}" then
+      ${theme.neovim.theme}
+
+      vim.g.lualineTheme = ${theme.neovim.lualineTheme}
+    end
+  '');
+
+  loadThemes = ''
+    local currentTheme = os.getenv("THEME");
+
+    ${pkgs.myHelpers.mergeLines (lib.lists.forEach themes loadTheme)};
+  '';
+
+
 in
 {
   home-manager.users.adrielus.programs.neovim = {
@@ -37,9 +57,8 @@ in
     ];
 
     plugins = with pkgs.vimPlugins;
-      with pkgs.vimExtraPlugins; with pkgs.myVimPlugins;  [
+      with pkgs.vimExtraPlugins; with pkgs.myVimPlugins; themePlugins + [
         config-nvim # my neovim config
-        github-nvim-theme # github theme for neovim
         nvim-lspconfig # configures lsps for me
         nvim-autopairs # close pairs for me
         telescope-nvim # fuzzy search for say opening files

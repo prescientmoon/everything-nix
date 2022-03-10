@@ -23,4 +23,6 @@
 
   # Render git repo using gource
   "git-render" = "gource -f -s 1 -c 4 --key";
+
+  alacritty = "alacritty --config-file $XDG_CONFIG_HOME/alacritty/themes/$THEME.yml";
 }

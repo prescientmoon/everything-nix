@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
     require('lualine').setup({
-        theme = "github",
+        theme = vim.g.lualineTheme,
 
         -- Integration with other plugins
         extensions = {"nvim-tree"}

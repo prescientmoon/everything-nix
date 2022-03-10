@@ -8,6 +8,9 @@ let
 
     # Sets neovim as default editor
     EDITOR = "nvim";
+
+    # Sets the current theme used by all programs
+    THEME = "github-light";
   };
 in
 {

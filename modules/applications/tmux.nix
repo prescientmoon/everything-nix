@@ -1,4 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }:
+let
+  sourceTmuxTheme = (theme: ''
+    # Only load this theme if it's the current one
+    if '[[ "$THEME" =~ ${theme.name} ]]' 'source ${theme.tmux.path}'
+  '');
+  tmuxThemes = pkgs.myHelpers.mergeLines (lib.lists.forEach pkgs.myThemes sourceTmuxTheme);
+in
+{
   home-manager.users.adrielus.programs = {
     # Add tmux-navigator plugin to neovim
     neovim.extraPackages = [ pkgs.vimPlugins.vim-tmux-navigator ];
@@ -16,8 +24,8 @@
       ];
 
       extraConfig = ''
-        # Use github light theme
-        source-file ${pkgs.githubNvimTheme}/terminal/tmux/github_light.conf
+        # Load every theme available
+        ${tmuxThemes}
 
         # load the rest of the config
         source-file ${../../dotfiles/tmux/tmux.conf}

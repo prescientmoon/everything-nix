@@ -1,29 +1,32 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
-  githubAlacrittyTheme =
-    "${pkgs.githubNvimTheme}/terminal/alacritty/github_light.yml";
+  themes = pkgs.myThemes;
+
+  createTheme = (theme: {
+    xdg.configFile."alacritty/themes/${theme.name}.yml".text = builtins.toJSON
+      (lib.attrs.recursiveUpdate theme.alacritty.settings {
+        import = [ "~/.config/alacritty/alacritty.yml" ];
+      });
+  });
+
+  createThemeConfigs = lib.lists.foldr
+    (acc: theme: lib.attrs.recursiveUpdate acc (createTheme theme))
+    { }
+    themes;
 in
 {
+  imports = [
+    {
+      home-manager.users.adrielus = createThemeConfigs;
+    }
+  ];
+
   home-manager.users.adrielus.programs.alacritty = {
     enable = true;
 
     settings = {
-      import = [ githubAlacrittyTheme ];
-
-      window = {
-        decorations = "none";
-
-        padding = {
-          x = 8;
-          y = 8;
-        };
-
-        gtk_theme_variant = "light";
-      };
-
-      # transparent bg:)
-      # background_opacity = 0.6;
+      window.decorations = "none";
       fonts.normal.family = "Nerd Font Source Code Pro";
     };
   };
