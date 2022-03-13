@@ -53,6 +53,7 @@
     obsidian # knowedge base
     # milkytracker # music tracker thingy
     spectacle # take screenshots
+    peek # record gifs 
     vlc # video player
     gimp # image editing
     # korganizer # calendar

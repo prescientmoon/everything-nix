@@ -36,7 +36,8 @@ local function setupKeybinds(obj, path)
             setupKeybinds(keybinds, path .. "." .. name)
         else
             -- Maps the keybind to the action
-            mapSilent('n', keybinds, "<cmd>lua require('telescope" .. path .. "')." .. name .. "()<CR>")
+            mapSilent('n', keybinds, "<cmd>lua require('telescope" .. path ..
+                          "')." .. name .. "()<CR>")
         end
     end
 end
