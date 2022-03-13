@@ -9,12 +9,6 @@ let
 
     # Sets neovim as default editor
     EDITOR = "nvim";
-
-    # Sets the current theme used by all programs
-    THEME = theme;
-
-    # Common command for launching alacritty with the correct theme
-    # LAUNCH_ALACRITTY = "alacritty --config-file ~/.config/alacritty/themes/$THEME.yml";
   };
 in
 {

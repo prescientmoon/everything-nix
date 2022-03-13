@@ -75,9 +75,6 @@ main =
             manageWorkspaces
           ]
 
-    spawnTerminal = do
-      spawn "fish -c 'alacritty --config-file ~/.config/alacritty/themes/$THEME.yml'"
-
     myTerminal = "alacritty"
     myBrowser = "google-chrome-stable"
 
@@ -85,7 +82,6 @@ main =
     keymap =
       [ ("M-p", spawn "rofi -show run"),
         ("M-g", spawn myBrowser),
-        ("M-s", spawnTerminal),
         ("M-d", spawn "Discord")
       ]
 
@@ -101,9 +97,6 @@ main =
 
     startup :: X ()
     startup = do
-      spawn "xwallpaper --zoom ./background.jpg"
-
--- spawn "Discord"
--- spawn "google-chrome-stable"
--- spawn "alacritty"
+      -- The file is dynamically set in wallpaper.nix
+      spawn "xwallpaper --zoom ~/.config/wallpaper"
 

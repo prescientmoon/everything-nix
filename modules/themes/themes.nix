@@ -2,6 +2,14 @@
 let githubVariant = import ./githubVariant.nix;
 in
 lib.lists.map (theme: pkgs.callPackage theme { }) [
-  (githubVariant { variant = "light"; })
-  (githubVariant { variant = "dark"; transparency = 0.8; })
+  (githubVariant {
+    variant = "light";
+    wallpaper = ./wallpapers/wall.png;
+    transparency = 0.8;
+  })
+  (githubVariant {
+    variant = "dark";
+    wallpaper = ./wallpapers/spaceship.jpg;
+    transparency = 0.8;
+  })
 ]

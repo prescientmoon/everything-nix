@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  themes = pkgs.myThemes;
+  theme = pkgs.myThemes.current;
 
   # config-nvim = "/etc/nixos/configuration/dotfiles/neovim";
   config-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
@@ -8,23 +8,19 @@ let
     src = ../../dotfiles/neovim;
   };
 
-  themePlugins = lib.lists.concatMap (theme: theme.neovim.plugins) themes;
-
+  # Lua code for importing a theme
   loadTheme = (theme: ''
-    if currentTheme == "${theme.name}" then
-      ${theme.neovim.theme}
+    ${theme.neovim.theme}
 
-      vim.g.lualineTheme = ${theme.neovim.lualineTheme}
-    end
+    vim.g.lualineTheme = ${theme.neovim.lualineTheme}
   '');
 
-  loadThemes = ''
+  # Wrap a piece of lua code
+  lua = (code: ''
     lua << EOF
-    local currentTheme = os.getenv("THEME");
-
-    ${pkgs.myHelpers.mergeLines (lib.lists.forEach themes loadTheme)};
+    ${code}
     EOF
-  '';
+  '');
 in
 {
   home-manager.users.adrielus.programs.neovim = {
@@ -32,7 +28,7 @@ in
     package = pkgs.neovim-nightly;
 
     extraConfig = ''
-      ${loadThemes}
+      ${lua (loadTheme theme)}
       luafile ${config-nvim}/init.lua
     '';
 
@@ -58,7 +54,7 @@ in
     ];
 
     plugins = with pkgs.vimPlugins;
-      with pkgs.vimExtraPlugins; with pkgs.myVimPlugins; themePlugins ++ [
+      with pkgs.vimExtraPlugins; with pkgs.myVimPlugins; theme.neovim.plugins ++ [
         config-nvim # my neovim config
         nvim-lspconfig # configures lsps for me
         nvim-autopairs # close pairs for me

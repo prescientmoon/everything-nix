@@ -1,8 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   nixpkgs.overlays = [
     (import ./tweakSources.nix)
-    (import ./myPackages.nix)
     (import ./npm.nix)
+    ((import ./myPackages.nix) {
+      inherit lib;
+    }) # Requires lib access
 
     # I hope this works (spoiler: it did not)
     # (import ./edopro)

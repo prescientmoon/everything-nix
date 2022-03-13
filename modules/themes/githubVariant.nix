@@ -1,8 +1,10 @@
-{ variant, transparency ? 1 }: { pkgs, ... }:
+{ variant, transparency ? 1, wallpaper }: { pkgs, ... }:
 let
   githubTheme = pkgs.myVimPlugins.githubNvimTheme; # github theme for neovim
 in
 {
+  inherit wallpaper;
+
   name = "github-${variant}";
   neovim = {
     plugins = [ pkgs.vimExtraPlugins.github-nvim-theme ];

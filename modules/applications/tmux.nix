@@ -1,10 +1,6 @@
 { pkgs, lib, ... }:
 let
-  sourceTmuxTheme = (theme: ''
-    # Only load this theme if it's the current one
-    if '[[ "$THEME" =~ ${theme.name} ]]' 'source ${theme.tmux.path}'
-  '');
-  tmuxThemes = pkgs.myHelpers.mergeLines (lib.lists.forEach pkgs.myThemes sourceTmuxTheme);
+  theme = pkgs.myThemes.current;
 in
 {
   home-manager.users.adrielus.programs = {
@@ -24,11 +20,11 @@ in
       ];
 
       extraConfig = ''
-        # Load every theme available
-        ${tmuxThemes}
+        # Load current theme
+        source ${theme.tmux.path}
 
         # load the rest of the config
-        source-file ${../../dotfiles/tmux/tmux.conf}
+        source ${../../dotfiles/tmux/tmux.conf}
       '';
     };
   };

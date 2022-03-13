@@ -1,26 +1,12 @@
 { pkgs, lib, ... }:
-
 let
-  themes = pkgs.myThemes;
-
-  createTheme = (theme: {
-    xdg.configFile."alacritty/themes/${theme.name}.yml".text =
-      builtins.toJSON
-        (lib.attrsets.recursiveUpdate theme.alacritty.settings {
-          import = theme.alacritty.settings.import ++ [ "~/.config/alacritty/alacritty.yml" ];
-        });
-  });
-
-  createThemeConfigs = lib.lists.foldr
-    (theme: acc: lib.attrsets.recursiveUpdate acc (createTheme theme)
-    )
-    { }
-    themes;
+  theme = pkgs.myThemes.current;
 in
 {
   imports = [
     {
-      home-manager.users.adrielus = createThemeConfigs;
+      # Load theme
+      home-manager.users.adrielus.programs.alacritty.settings = theme.alacritty.settings;
     }
   ];
 
