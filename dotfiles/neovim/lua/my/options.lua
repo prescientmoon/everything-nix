@@ -31,6 +31,9 @@ function M.setup()
 
     -- Set leader
     helpers.global("mapleader", "<Space>")
+
+    -- Import other options
+    require("my.options.folding").setup()
 end
 
 return M

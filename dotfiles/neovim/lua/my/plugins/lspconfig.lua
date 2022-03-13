@@ -1,8 +1,5 @@
 local M = {}
 
--- Command for formatting lua code
-local formatLua = "lua-format -i --no-keep-simple-function-one-line --no-break-after-operator --column-limit=150 --break-after-table-lb"
-
 local function map(buf, mode, lhs, rhs, opts)
     local options = {noremap = true, silent = true}
     if opts then options = vim.tbl_extend('force', options, opts) end
@@ -32,9 +29,12 @@ function M.on_attach(client, bufnr)
     map(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
     -- Workspace stuff
-    map(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-    map(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-    map(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+    map(bufnr, 'n', '<space>wa',
+        '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
+    map(bufnr, 'n', '<space>wr',
+        '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
+    map(bufnr, 'n', '<space>wl',
+        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
 
     -- Code actions
     map(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
@@ -77,12 +77,23 @@ local servers = {
         },
         cmd = {"lua-language-server"}
     },
-    purescriptls = {settings = {purescript = {censorWarnings = {"UnusedName", "ShadowedName", "UserDefinedWarning"}, formatter = "purs-tidy"}}},
+    purescriptls = {
+        settings = {
+            purescript = {
+                censorWarnings = {
+                    "UnusedName", "ShadowedName", "UserDefinedWarning"
+                },
+                formatter = "purs-tidy"
+            }
+        }
+    },
     rnix = {}
 }
 
 function M.setup()
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
+                                                                         .protocol
+                                                                         .make_client_capabilities())
 
     -- Setup basic language servers
     for lsp, details in pairs(servers) do
@@ -101,16 +112,6 @@ function M.setup()
             capabilities = capabilities
         }
     end
-
-    -- TODO: replace this with null-ls
-    local efmLanguages = {lua = {{formatCommand = formatLua, formatStdin = true}}}
-
-    -- Setup auto-formatting
-    require"lspconfig".efm.setup {
-        init_options = {documentFormatting = true},
-        filetypes = {"lua"},
-        settings = {rootMarkers = {".git/"}, languages = efmLanguages}
-    }
 end
 
 return M
