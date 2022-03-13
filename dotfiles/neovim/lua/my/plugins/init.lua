@@ -4,6 +4,7 @@ function M.setup()
     -- Other unconfigured plugins
     require('nvim-autopairs').setup()
     require("startup").setup({theme = "dashboard"})
+    require("presence"):setup({})
 
     -- Plugins with their own configs:
     require("my.plugins.cmp").setup()

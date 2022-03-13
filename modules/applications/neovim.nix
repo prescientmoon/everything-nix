@@ -76,6 +76,7 @@ in
         vimux # interact with tmux from within vim
         vim-tmux-navigator # easly switch between tmux and vim panes
         arpeggio # allows me to setup chord keybinds (keybinds where all the keys are pressed at the same time)
+        presence-nvim # discord rich presence
 
         # Cmp related stuff. See https://github.com/hrsh7th/nvim-cmp
         cmp-nvim-lsp
