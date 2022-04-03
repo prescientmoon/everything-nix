@@ -25,8 +25,10 @@ function M.on_attach(client, bufnr)
     map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 
     -- Hover
+    map(bufnr, 'n', 'J',
+        "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
     map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    map(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+    map(bufnr, 'n', 'L', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
     -- Workspace stuff
     map(bufnr, 'n', '<space>wa',
@@ -88,6 +90,7 @@ local servers = {
         }
     },
     rnix = {}
+    -- agda = {}, Haven't gotten this one to work yet
 }
 
 function M.setup()

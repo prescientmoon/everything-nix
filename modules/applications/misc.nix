@@ -29,6 +29,7 @@
     zathura
     cmake
     # kdeconnect
+    sloc # line of code counter
 
     # editors
     # vscodium
@@ -64,7 +65,7 @@
     # blueman # bluetooth manager
     # freesweep # minesweeper I can play w the keyboard.
     # multimc
-    sloc # line of code counter
+    lmms # music software
 
     # Nes emulators and stuff
     # zsnes

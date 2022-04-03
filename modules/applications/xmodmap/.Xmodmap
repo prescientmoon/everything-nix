@@ -1,5 +1,8 @@
 ! Remap caps lock to control
-clear lock
-clear control
-add control = Caps_Lock Control_L Control_R
+clear Lock
+! clear control
+! add control = Caps_Lock Control_L Control_R
+! New way of hitting caps lock
 keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+keycode 0x42 = backslash
+

@@ -6,9 +6,21 @@
     nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    # keyboard layout configuration
+    kmonad = {
+      url = "github:kmonad/kmonad?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    idris2-pkgs = {
+      url = "github:claymager/idris2-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #### Nvim stuff
     neovim-nightly-overlay = {
@@ -21,6 +33,21 @@
     # Plugin which enables me to create chords (aka keybinds where everything must be set at the same time)
     vim-plugin-arpeggio = {
       url = "github:kana/vim-arpeggio";
+      flake = false;
+    };
+
+    vim-plugin-kmonad = {
+      url = "github:kmonad/kmonad-vim";
+      flake = false;
+    };
+
+    nvim-plugin-agda = {
+      url = "github:isti115/agda.nvim";
+      flake = false;
+    };
+
+    nvim-plugin-idris2 = {
+      url = "github:ShinKage/idris2-nvim";
       flake = false;
     };
 
@@ -80,7 +107,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, ... }:
     let
       system = "x86_64-linux";
       provideInputs =
@@ -91,6 +118,7 @@
         nixpkgs.overlays = [
           inputs.vim-extra-plugins.overlay
           inputs.neovim-nightly-overlay.overlay
+          inputs.idris2-pkgs.overlay
           provideInputs
         ];
       };
@@ -100,7 +128,8 @@
         inherit system;
 
         modules = [
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
+          inputs.kmonad.nixosModule
           overlays
           ./hardware/laptop.nix
           ./configuration.nix

@@ -4,7 +4,7 @@
     ./shells
     # ./wakatime
     ./xmonad
-    ./xmodmap
+    # ./xmodmap
 
     # ./wine.nix
     ./kdeconnect.nix
@@ -18,6 +18,7 @@
     ./postgres.nix
     ./neovim.nix
     ./tmux.nix
+    ./kmonad.nix
   ];
 }
 

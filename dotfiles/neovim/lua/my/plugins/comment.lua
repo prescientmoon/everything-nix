@@ -1,18 +1,26 @@
+local A = require("my.helpers.augroup")
 local M = {}
+
+local extraCommentStrings = {nix = "# %s", lean = "/- %s -/"}
 
 -- Update comments for certain languages
 local function setCommentString(extension, commentString)
-    vim.cmd('augroup set-commentstring-' .. extension)
-    vim.cmd('autocmd!')
-    vim.cmd('autocmd BufEnter *.' .. extension .. ' :lua vim.api.nvim_buf_set_option(0, "commentstring", "' .. commentString .. '")')
-    vim.cmd('autocmd BufFilePost *.' .. extension .. ' :lua vim.api.nvim_buf_set_option(0, "commentstring", "' .. commentString .. '")')
-    vim.cmd('augroup END')
+    A.augroup('set-commentstring-' .. extension, function()
+        local action =
+            ':lua vim.api.nvim_buf_set_option(0, "commentstring", "' ..
+                commentString .. '")'
+
+        A.autocmd('BufEnter', '*.' .. extension, action)
+        A.autocmd('BufFilePost', '*.' .. extension, action)
+    end)
 end
 
 function M.setup()
     require('nvim_comment').setup()
 
-    setCommentString("nix", "# %s")
+    for lang, commentString in pairs(extraCommentStrings) do
+        setCommentString(lang, commentString)
+    end
 end
 
 return M

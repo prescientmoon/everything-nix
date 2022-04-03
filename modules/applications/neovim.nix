@@ -34,10 +34,12 @@ in
 
     extraPackages = with pkgs; [
       # Language servers
+      # haskellPackages.agda-language-server # agda
       nodePackages.typescript-language-server # typescript
       easy-purescript-nix.purescript-language-server # purescript
+      idris2 # idris2 lang
+      idris2-pkgs.lsp # idris2
       sumneko-lua-language-server # lua
-      efm-langserver # auto-formatting
       rnix-lsp # nix
 
       # Formatters
@@ -77,6 +79,14 @@ in
         vim-tmux-navigator # easly switch between tmux and vim panes
         arpeggio # allows me to setup chord keybinds (keybinds where all the keys are pressed at the same time)
         presence-nvim # discord rich presence
+        agda-nvim # agda support
+        unicode-vim # better unicode support
+        nui-nvim # ui lib required by idris plugin
+        idris2-nvim # idris2 support
+        lean-nvim # lean support
+        kmonad-vim # support for the kmonad config language
+        lh-vim-lib # dependency for lh-brackets
+        lh-brackets # bracket customization
 
         # Cmp related stuff. See https://github.com/hrsh7th/nvim-cmp
         cmp-nvim-lsp

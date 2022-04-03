@@ -4,12 +4,16 @@
     ./nix.nix
     ./purescript.nix
     ./javascript.nix
-    ./fsharp.nix
     ./rust.nix
-    # ./idris.nix
-    # ./racket.nix
-    # ./elm.nix
     ./dhall.nix
     ./haskell
+    ./fsharp.nix
+    # ./racket.nix
+    # ./elm.nix
+
+    # Proof assistants
+    ./agda.nix
+    ./idris.nix
+    ./lean.nix
   ];
 }

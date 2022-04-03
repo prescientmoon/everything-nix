@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: conf -*- include "%L"
+
+<Multi_key> <a> <h>			: "ɑ"	U0251		# LATIN SMALL LETTER ALPHA
+<Multi_key> <b> <h>			: "β"	U0252		# LATIN SMALL LETTER BETA
+<Multi_key> <g> <h>			: "γ"	U0253		# LATIN SMALL LETTER GAMMA
+<Multi_key> <e> <h>			: "ϵ"	U0254		# LATIN SMALL LETTER EPSILON
+<Multi_key> <l> <h>			: "λ"	U0255		# LATIN SMALL LETTER LAMBDA
+<Multi_key> <m> <h>			: "μ"	U0256		# LATIN SMALL LETTER MU
+<Multi_key> <p> <h>			: "π"	U0257		# LATIN SMALL LETTER PI
+<Multi_key> <t> <h>			: "τ"	U0258		# LATIN SMALL LETTER TAU
+<Multi_key> <x> <h>			: "ξ"	U0259		# LATIN SMALL LETTER XI
+<Multi_key> <s> <h>			: "σ"	U0260		# LATIN SMALL LETTER SIGMA
+<Multi_key> <o> <h>			: "ω"	U0261		# LATIN SMALL LETTER OMEGA
+<Multi_key> <u> <h>			: "υ"	U0262		# LATIN SMALL LETTER UPSILON
+
+<Multi_key> <l> <p> <h> <h>             : "ϕ"   U0270		# LATIN SMALL LETTER PHI
+<Multi_key> <l> <t> <h> <h>             : "θ"   U0271		# LATIN SMALL LETTER THETA
+<Multi_key> <l> <p> <s> <h>             : "ψ"   U0272		# LATIN SMALL LETTER PSI
+
+<Multi_key> <u> <j>			: "ϒ"	U0280		# LATIN CAPITAL LETTER UPSILON
+<Multi_key> <g> <j>			: "Γ"	U0281		# LATIN CAPITAL LETTER GAMMA
+<Multi_key> <d> <j>			: "Δ"	U0282		# LATIN CAPITAL LETTER DELTA
+<Multi_key> <p> <j>			: "Π"	U0283		# LATIN CAPITAL LETTER PI
+<Multi_key> <s> <j>			: "Σ"	U0284		# LATIN CAPITAL LETTER SIGMA
+<Multi_key> <o> <j>			: "Ω"	U0285		# LATIN CAPITAL LETTER OMEGA
+<Multi_key> <x> <j>			: "Ξ"	U0286		# LATIN CAPITAL LETTER XI
+
+<Multi_key> <l> <t> <h> <j>	        : "Θ"	U0300		# LATIN CAPITAL LETTER OMEGA
+
+<Multi_key> <l> <s> <h> <r>	        : "ツ"	U0350		# SHRUG FACE
+<Multi_key> <t> <minus>	        	: "¯"	U0351		# TOP BAR
+<Multi_key> <l> <minus>	        	: "¬"	U0352		# LOGICAL NEGATION
+<Multi_key> <minus> <greater>	        : "→"	U0353		# ARROW RIGHT
+<Multi_key> <less> <minus>	        : "←"	U0354		# ARROW LEFT
+<Multi_key> <l> <v>                     : "∀"	U0355		# LOGICAL FORALL
+<Multi_key> <l> <e>                     : "∃"	U0356		# LOGICAL EXISTS
+
+<Multi_key> <f> <parenleft>             : "⟨"   U0357           # FANCY LEFT PAREN
+<Multi_key> <f> <parenright>            : "⟩"   U0358           # FANCY RIGHT PAREN
+
