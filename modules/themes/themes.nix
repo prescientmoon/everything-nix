@@ -10,7 +10,7 @@ lib.lists.map (theme: pkgs.callPackage theme { }) [
   })
   (githubVariant {
     variant = "dark";
-    wallpaper = ./wallpapers/synthwave.jpg;
+    wallpaper = ./wallpapers/spaceship.jpg;
     transparency = 0.8;
   })
 ]
