@@ -31,19 +31,19 @@ function M.on_attach(client, bufnr)
     map(bufnr, 'n', 'L', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
     -- Workspace stuff
-    map(bufnr, 'n', '<space>wa',
+    map(bufnr, 'n', '<leader>wa',
         '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-    map(bufnr, 'n', '<space>wr',
+    map(bufnr, 'n', '<leader>wr',
         '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-    map(bufnr, 'n', '<space>wl',
+    map(bufnr, 'n', '<leader>wl',
         '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
 
     -- Code actions
-    map(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    map(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    map(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+    map(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
     -- map(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    map(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 end
 
 local function on_attach_typescript(client, bufnr)

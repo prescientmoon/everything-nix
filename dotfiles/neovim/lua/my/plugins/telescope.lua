@@ -28,7 +28,9 @@ local bindings = {
     },
     ["extensions.file_browser.file_browser"] = "<Leader>p",
     extensions = {
-        unicode = {picker = {mode = "i", kind = "dropdown", key = "uu"}}
+        unicode = {
+            picker = {mode = "i", kind = "dropdown", key = "ui", chord = 1}
+        }
     }
 }
 
