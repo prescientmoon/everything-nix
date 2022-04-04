@@ -12,21 +12,21 @@ local bindings = {
         live_grep = "<c-F>",
 
         -- See diagnostics with space + d
-        lsp_document_diagnostics = "<space>d",
-        lsp_workspace_diagnostics = "<space>wd",
-        lsp_code_actions = "<space>ca",
+        lsp_document_diagnostics = "<Leader>d",
+        lsp_workspace_diagnostics = "<Leader>wd",
+        lsp_code_actions = "<Leader>ca",
 
         -- Open a list with all the pickers
-        builtin = "<space>t",
+        builtin = "<Leader>t",
 
         -- List function, var names etc
-        treesitter = "<space>s",
+        treesitter = "<Leader>s",
 
         -- Git stuff
-        git_commits = "<space>gj",
-        git_branches = "<space>gk"
+        git_commits = "<Leader>gj",
+        git_branches = "<Leader>gk"
     },
-    ["extensions.file_browser.file_browser"] = "<space>p",
+    ["extensions.file_browser.file_browser"] = "<Leader>p",
     extensions = {
         unicode = {picker = {mode = "i", kind = "dropdown", key = "uu"}}
     }

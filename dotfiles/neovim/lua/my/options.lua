@@ -30,7 +30,7 @@ function M.setup()
     opt.completeopt = {"menu", "menuone", "noselect"}
 
     -- Set leader
-    helpers.global("mapleader", "<Space>")
+    helpers.global("mapleader", " ")
 
     -- Import other options
     require("my.options.folding").setup()

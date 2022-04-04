@@ -27,8 +27,10 @@ function M.setup()
 
     if arpeggio ~= nil then
         -- Create chords
-        arpeggio.chord("i", "<Leader>k", "C-k") -- Rebind digraph insertion to leader+k
+        arpeggio.chord("i", "<Leader>k", "<C-k><cr>") -- Rebind digraph insertion to leader+k
+        arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
     end
+
 end
 
 return M
