@@ -64,6 +64,7 @@ in
         purescript-vim # purescript syntax highlighting
         nvim-comment # allows toggling line-comments
         nvim-treesitter # use treesitter for syntax highlighting
+        nvim-treesitter-textobjects # the lean plugin told me to add this
         startup-nvim # splash screen
         vim-devicons # nice looking icons
         nvim-web-devicons # fork of vim-devicons?

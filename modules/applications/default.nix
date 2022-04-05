@@ -19,6 +19,7 @@
     ./neovim.nix
     ./tmux.nix
     ./kmonad.nix
+    ./direnv.nix
   ];
 }
 

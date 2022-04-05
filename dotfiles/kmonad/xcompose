@@ -38,3 +38,8 @@
 <Multi_key> <f> <parenleft>             : "⟨"   U0357           # FANCY LEFT PAREN
 <Multi_key> <f> <parenright>            : "⟩"   U0358           # FANCY RIGHT PAREN
 
+<Multi_key> <e> <q>                     : "⟷"   U0359           # LOGICAL EQUIVALENCE
+<Multi_key> <l> <c>                     : "∧"   U0360           # LOGICAL CONJUNCTION
+<Multi_key> <l> <d>                     : "∨"   U0361           # LOGICAL DISJUNCTION
+
+

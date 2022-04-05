@@ -35,8 +35,8 @@ function M.setup()
     arpeggio.chord("inv", "mo", '<Plug>MarkersJumpOutside')
 
     for key, brackets in pairs(extraBrackets) do
-        for _, v in ipairs(brackets) do
-            A.augroup('custom-brackets' .. key, function()
+        A.augroup('custom-brackets' .. key, function()
+            for _, v in ipairs(brackets) do
                 local action = M.createBracketCommand(v[1], v[2], 0, v[3] or "")
                 local glob = '*.' .. key
 
@@ -46,8 +46,8 @@ function M.setup()
                 end
 
                 A.autocmd('BufEnter', glob, action)
-            end)
-        end
+            end
+        end)
     end
 end
 

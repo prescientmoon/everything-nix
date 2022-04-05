@@ -11,5 +11,6 @@ function fish_user_key_bindings
 
   # Use jj to exit insert mode
   bind -e -M insert \e # unbinds esc
-  bind -M insert -m default jj 'commandline -f repaint'
+  bind -M insert -m default jk 'commandline -f repaint'
+  bind -M insert -m default kj 'commandline -f repaint'
 end

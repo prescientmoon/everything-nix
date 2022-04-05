@@ -11,7 +11,7 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 | ---------------- | ------------------------------------------- | ------------------ |
 | vv               | Create vertical split                       |                    |
 | \<Space>\<Space> | Save                                        |                    |
-| jj               | Exit insert mode                            |                    |
+| _jk_             | Exit insert mode                            |                    |
 | _\<leader>k_     | Insert digraph                              |                    |
 | _\<leader>a_     | Swap last 2 used buffers                    |                    |
 | C-n              | Open tree                                   | nvim-tree          |

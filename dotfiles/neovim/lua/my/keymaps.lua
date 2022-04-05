@@ -21,16 +21,15 @@ function M.mapSilent(mode, lhs, rhs, opts)
 end
 
 function M.setup()
-    M.map("i", "jj", "<Esc>") -- Remap Esc to jj
-    M.map("n", "<Space><Space>", ":w<cr>") -- Double space to sace
     M.map("n", "vv", "<C-w>v") -- Create vertical split
 
     if arpeggio ~= nil then
         -- Create chords
+        arpeggio.chord("n", "jl", ":w<cr>") -- Double space to sace
+        arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
         arpeggio.chord("i", "<Leader>k", "<C-k><cr>") -- Rebind digraph insertion to leader+k
         arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
     end
-
 end
 
 return M

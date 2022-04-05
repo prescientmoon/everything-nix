@@ -9,5 +9,6 @@
     ./xserver.nix
     ./users.nix
     ./nix.nix
+    ./bluetooth.nix
   ];
 }

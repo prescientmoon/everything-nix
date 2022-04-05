@@ -7,6 +7,7 @@ let
   themePackage = builtins.getAttr theme pkgs.myFishPlugins.themes; # Dynamically pick the theme path
 in
 {
+  users.defaultUserShell = pkgs.fish;
   home-manager.users.adrielus = {
     # Source every file in the theme 
     xdg.configFile."fish/conf.d/plugin-${theme}.fish".text = lib.mkAfter ''
