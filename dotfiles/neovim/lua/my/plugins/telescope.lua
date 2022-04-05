@@ -26,7 +26,7 @@ local bindings = {
         git_commits = "<Leader>gj",
         git_branches = "<Leader>gk"
     },
-    ["extensions.file_browser.file_browser"] = "<Leader>p",
+    ["extensions.file_browser.file_browser"] = {chord = 1, key = "jp"},
     extensions = {
         unicode = {
             picker = {mode = "i", kind = "dropdown", key = "ui", chord = 1}

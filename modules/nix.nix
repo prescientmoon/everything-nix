@@ -1,13 +1,19 @@
 { pkgs, ... }: {
   nix = {
-    trustedUsers = [ "root" "adrielus" "@wheel" ];
-    autoOptimiseStore = true;
-    optimise.automatic = true;
-    gc.automatic = false;
-
     # Emanble nix flakes
     package = pkgs.nixFlakes;
+
+    trustedUsers = [ "root" "adrielus" "@wheel" ];
+
+    autoOptimiseStore = true;
+    optimise.automatic = true;
+    gc.automatic = true;
+
+    # Protect nix-shell from garbage collection
+    # TODO: look into whether this is still needed when using nix flakes
     extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
       experimental-features = nix-command flakes
     '';
 
