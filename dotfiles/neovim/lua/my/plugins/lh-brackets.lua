@@ -28,11 +28,11 @@ function M.setup()
 
     vim.g.marker_define_jump_mappings = 0 -- disable automatic binding of marker jumping (conflicts with tmux-vim-navigator)
 
-    arpeggio.chord("inv", "sj", '<Plug>MarkersJumpF')
-    arpeggio.chord("inv", "sk", '<Plug>MarkersJumpB')
-    arpeggio.chord("inv", "mi", '<Plug>MarkersMark')
-    arpeggio.chord("inv", "ml", '<Plug>MarkersCloseAllAndJumpToLast')
-    arpeggio.chord("inv", "mo", '<Plug>MarkersJumpOutside')
+    arpeggio.chord("nv", "sj", '<Plug>MarkersJumpF')
+    arpeggio.chord("nv", "sk", '<Plug>MarkersJumpB')
+    arpeggio.chord("nv", "mi", '<Plug>MarkersMark')
+    arpeggio.chord("nv", "ml", '<Plug>MarkersCloseAllAndJumpToLast')
+    arpeggio.chord("nv", "mo", '<Plug>MarkersJumpOutside')
 
     for key, brackets in pairs(extraBrackets) do
         A.augroup('custom-brackets' .. key, function()

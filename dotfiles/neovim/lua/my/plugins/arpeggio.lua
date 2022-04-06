@@ -11,7 +11,7 @@ function M.chord(mode, lhs, rhs, opts)
         end
     else
         local options = helpers.mergeTables(opts, {noremap = true})
-        local settings = ""
+        local settings = options.settings or ""
 
         if options.silent then settings = settings .. "s" end
 

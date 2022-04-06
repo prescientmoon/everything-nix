@@ -25,7 +25,7 @@ function M.setup()
 
     if arpeggio ~= nil then
         -- Create chords
-        arpeggio.chord("n", "jl", ":w<cr>") -- Double space to sace
+        arpeggio.chord("n", "ji", ":w<cr>") -- Saving
         arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
         arpeggio.chord("i", "<Leader>k", "<C-k><cr>") -- Rebind digraph insertion to leader+k
         arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a

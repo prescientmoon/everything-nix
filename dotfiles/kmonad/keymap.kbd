@@ -5,7 +5,7 @@
   output (uinput-sink "My KMonad output"
     ;; To understand the importance of the following line, see the section on
     ;; Compose-key sequences at the near-bottom of this file.
-    "/run/current-system/sw/bin/sleep 1 && /run/current-system/sw/bin/setxkbmap" -option compose:ralt")
+    "/run/current-system/sw/bin/sleep 1 && /run/current-system/sw/bin/setxkbmap -option compose:ralt")
   cmp-seq ralt    ;; Set the compose key to `RightAlt'
   cmp-seq-delay 5 ;; 5ms delay between each compose-key sequence press
 
@@ -73,6 +73,7 @@
 (defalias
   mth  (layer-toggle math)
   Mth  (layer-toggle capital-math)
+  mov  (layer-toggle movement)
   mathExtra (layer-toggle math-extra)
 )
 
@@ -81,7 +82,6 @@
   shr   #(@topBar \ \_ \_ \( @shrugFace \) \_ / @topBar) ;; ¯\_(ツ)_/¯
 
   ml    (tap-hold-next-release 200 @gl @mathExtra)
-  mll   l
 )
 
 (defsrc
@@ -99,7 +99,16 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @mth a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lsgt lmet lalt           spc            ralt rctl
+  @mov lsgt lmet lalt           spc            ralt rctl
+)
+
+(deflayer movement
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _    _    _    _    _    _    lft  down up   rght _    _    _ 
+  _    _    _    _    _    _    _    _    _    _    _    _   
+  _    _    _    _              _              _    _ 
 )
 
 (deflayer math
@@ -128,4 +137,3 @@
   _    _    @Gx  _    _    _    _    _    _    _    _    _   
   _    _    _    _              _              _    _ 
 )
-
