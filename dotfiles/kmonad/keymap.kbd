@@ -75,13 +75,14 @@
   Mth  (layer-toggle capital-math)
   mov  (layer-toggle movement)
   mathExtra (layer-toggle math-extra)
+  sft (tap-macro lsft (layer-toggle shiftedQwerty)) ;; make this work differently based on the next key pressed
 )
 
 ;; more "special" stuff
 (defalias
   shr   #(@topBar \ \_ \_ \( @shrugFace \) \_ / @topBar) ;; ¯\_(ツ)_/¯
 
-  ml    (tap-hold-next-release 200 @gl @mathExtra)
+  ml    @gl
 )
 
 (defsrc
@@ -98,8 +99,17 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @mth a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  @sft z    x    c    v    b    n    m    ,    .    /    rsft
   @mov lsgt lmet lalt           spc            ralt rctl
+)
+
+(deflayer shiftedQwerty
+  _     _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _     !    @    #    $    %    ^    &    8    \(   \)   _    +    S-bspc
+  S-tab Q    W    E    R    T    Y    U    I    O    P    {    }    |
+  @Mth  A    S    D    F    G    H    J    K    L    :    "    S-ret
+  XX    Z    X    C    V    B    N    M    <    >    ?    _
+  _     _    _    _              S-spc          S-ralt S-rctl
 )
 
 (deflayer movement
@@ -111,15 +121,6 @@
   _    _    _    _              _              _    _ 
 )
 
-(deflayer math
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _    
-  _    _    _    @ex  _    _    _    _    _    @alp @arp @neg _    _    
-  _    @shr @go  @ge  _    @gt  _    @gu  _    @go  @gp  _    _    _    
-  _    @ga  @gs  _    _    @gg  @gth @gps @gph @ml  _    _    _ 
-  @Mth _    @gx  _    @fal @gb  _    @gm  @lar @rar _    _   
-  _    _    _    _              @mathExtra          _    _ 
-)
-
 (deflayer math-extra
   _    _    _    _    _    _    _    _    _    _    _    _    _    _    
   _    _    _    _    _    _    _    _    _    _    _    _    _    _    
@@ -127,6 +128,15 @@
   _    @and _    _    _    _    _    _    _    _    _    _    _ 
   _    _    _    _    _    _    _    _    _    _    _    _   
   _    _    _    _              _              _    _ 
+)
+
+(deflayer math
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _    _    _    @ex  _    _    _    _    _    @alp @arp @neg _    _    
+  _    @shr @go  @ge  _    @gt  _    @gu  _    @go  @gp  _    _    _    
+  _    @ga  @gs  _    _    @gg  @gth @gps @gph @ml  _    _    _ 
+  @Mth _    @gx  _    @fal @gb  _    @gm  @lar @rar _    _   
+  _    _    _    _              @mathExtra          _    _ 
 )
 
 (deflayer capital-math

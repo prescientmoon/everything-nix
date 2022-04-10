@@ -15,6 +15,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
+import XMonad.Operations
 
 kdeOn :: Bool
 kdeOn = False
@@ -80,9 +81,11 @@ main =
 
     -- TODO: find a way to bind all the program-opening-keybindings to a single sub-map
     keymap =
-      [ ("M-p", spawn "rofi -show run"),
-        ("M-g", spawn myBrowser),
-        ("M-d", spawn "Discord")
+      [ ("M-p", spawn "rofi -show run")
+      , ("M-g", spawn myBrowser)
+      , ("M-d", spawn "Discord")
+      , ("M-v", spawn "alacritty -e vimclip")
+      , ("M-c", kill)
       ]
 
     uniformBorder = join $ join $ join Border

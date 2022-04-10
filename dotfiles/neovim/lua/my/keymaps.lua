@@ -22,6 +22,7 @@ end
 
 function M.setup()
     M.map("n", "vv", "<C-w>v") -- Create vertical split
+    M.map("n", "qq", ":wq<cr>") -- Create vertical split
 
     if arpeggio ~= nil then
         -- Create chords

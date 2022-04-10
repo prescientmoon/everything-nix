@@ -5,6 +5,7 @@
     ((import ./myPackages.nix) {
       inherit lib;
     }) # Requires lib access
+    (import ./vimclip)
 
     # I hope this works (spoiler: it did not)
     # (import ./edopro)

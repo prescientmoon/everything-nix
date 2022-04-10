@@ -1,4 +1,4 @@
-# -*- coding: utf-8; mode: conf -*- include "%L"
+#  -*- coding: utf-8; mode: conf -*- include "%L"
 
 <Multi_key> <a> <h>			: "ɑ"	U0251		# LATIN SMALL LETTER ALPHA
 <Multi_key> <b> <h>			: "β"	U0252		# LATIN SMALL LETTER BETA

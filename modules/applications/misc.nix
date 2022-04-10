@@ -36,6 +36,7 @@
     vscode
     # vim
     # emacs
+    vimclip # use neovim anywhere
 
     # chat apps
     discord
