@@ -34,6 +34,7 @@ function M.setup()
 
     -- Import other options
     require("my.options.folding").setup()
+    require("my.options.files").setup()
 end
 
 return M

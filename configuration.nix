@@ -7,6 +7,13 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
+
+  hardware = {
+    pulseaudio = {
+      enable = true;
+    };
+  };
+
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;

@@ -41,9 +41,11 @@ in
       idris2-pkgs.lsp # idris2
       sumneko-lua-language-server # lua
       rnix-lsp # nix
+      haskell-language-server # haskell
 
       # Formatters
       luaformatter # lua
+      ormolu # haskell
       prettierd # prettier but faster
 
       # Others

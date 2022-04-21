@@ -89,7 +89,13 @@ local servers = {
             }
         }
     },
-    rnix = {}
+    rnix = {},
+    hls = {
+        haskell = {
+            -- set formatter
+            formattingProvider = "ormolu"
+        }
+    }
     -- agda = {}, Haven't gotten this one to work yet
 }
 
