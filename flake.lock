@@ -80,38 +80,6 @@
         "type": "github"
       }
     },
-    "easy-dhall-nix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1645736928,
-        "narHash": "sha256-jjEqfh+M73+t2Iq/IKjAGr2d2kGUeo9A7Wu7V0IxdzI=",
-        "owner": "justinwoo",
-        "repo": "easy-dhall-nix",
-        "rev": "dce9acbb99776a7f1344db4751d6080380f76f57",
-        "type": "github"
-      },
-      "original": {
-        "owner": "justinwoo",
-        "repo": "easy-dhall-nix",
-        "type": "github"
-      }
-    },
-    "easy-purescript-nix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1646209831,
-        "narHash": "sha256-or8Z6aMWdrqcmFA0hhjjb6FIiW14C0ruwXAqy+zYZ8g=",
-        "owner": "justinwoo",
-        "repo": "easy-purescript-nix",
-        "rev": "aa72388ca0fb72ed64467f59a121db1f104897db",
-        "type": "github"
-      },
-      "original": {
-        "owner": "justinwoo",
-        "repo": "easy-purescript-nix",
-        "type": "github"
-      }
-    },
     "effect": {
       "flake": false,
       "locked": {
@@ -141,70 +109,6 @@
       "original": {
         "owner": "stefan-hoeck",
         "repo": "idris2-elab-util",
-        "type": "github"
-      }
-    },
-    "fish-plugin-z": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1626157139,
-        "narHash": "sha256-pWkEhjbcxXduyKz1mAFo90IuQdX7R8bLCQgb0R+hXs4=",
-        "owner": "jethrokuan",
-        "repo": "z",
-        "rev": "45a9ff6d0932b0e9835cbeb60b9794ba706eef10",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jethrokuan",
-        "repo": "z",
-        "type": "github"
-      }
-    },
-    "fish-theme-agnoster": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1641807476,
-        "narHash": "sha256-qi4G08yA21iKsTGR8qBlYp36xflW2UqNYlCjn+vRfLc=",
-        "owner": "oh-my-fish",
-        "repo": "theme-agnoster",
-        "rev": "1ffca413bfbc8941c28982eea97c1e1fa3612d57",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oh-my-fish",
-        "repo": "theme-agnoster",
-        "type": "github"
-      }
-    },
-    "fish-theme-dangerous": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1547694252,
-        "narHash": "sha256-OnbS1X/FQaEyVIlgR7YOJlAUu3bgnm2UWk5vm80Cvvc=",
-        "owner": "oh-my-fish",
-        "repo": "theme-dangerous",
-        "rev": "3cdfc82060ba280b44f1f0c6616675f36a275467",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oh-my-fish",
-        "repo": "theme-dangerous",
-        "type": "github"
-      }
-    },
-    "fish-theme-harleen": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1631660209,
-        "narHash": "sha256-DHGjy7UGzy+vuzHrw49KP0nePKvx7sMMMrPj2mbGoJA=",
-        "owner": "aneveux",
-        "repo": "theme-harleen",
-        "rev": "caf53d792038e78faa7b6b6b98669abc171c5e64",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aneveux",
-        "repo": "theme-harleen",
         "type": "github"
       }
     },
@@ -329,22 +233,6 @@
       "original": {
         "owner": "mattpolzin",
         "repo": "idris-fvect",
-        "type": "github"
-      }
-    },
-    "githubNvimTheme": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1645953701,
-        "narHash": "sha256-FZGmcsc0GWW32gEvcBkJh+oFPjRamsFTRJd8VTAf5QY=",
-        "owner": "projekt0n",
-        "repo": "github-nvim-theme",
-        "rev": "4ad832edd70be94af43fd3f21065e73987b4176e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "projekt0n",
-        "repo": "github-nvim-theme",
         "type": "github"
       }
     },
@@ -729,38 +617,6 @@
         "type": "github"
       }
     },
-    "nvim-plugin-agda": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1642289590,
-        "narHash": "sha256-c7UjrVbfaagIJS7iGdjWiFlpLUDHGc0I3ZGoUPECL00=",
-        "owner": "isti115",
-        "repo": "agda.nvim",
-        "rev": "c7da627547e978b4ac3780af1b8f418c8b12ff98",
-        "type": "github"
-      },
-      "original": {
-        "owner": "isti115",
-        "repo": "agda.nvim",
-        "type": "github"
-      }
-    },
-    "nvim-plugin-idris2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1645883550,
-        "narHash": "sha256-paIQIUdEOHkJaKWf7TS523VFBmRtmnguM0+gM7Sm9vg=",
-        "owner": "ShinKage",
-        "repo": "idris2-nvim",
-        "rev": "011b932079cd10e674821020b36e717998c1d3d3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ShinKage",
-        "repo": "idris2-nvim",
-        "type": "github"
-      }
-    },
     "odf": {
       "flake": false,
       "locked": {
@@ -774,22 +630,6 @@
       "original": {
         "owner": "madman-bob",
         "repo": "idris2-odf",
-        "type": "github"
-      }
-    },
-    "oh-my-fish": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1646778488,
-        "narHash": "sha256-7mBxP5F81U+V0ahrsXL0vGPivTbKMnqYE5vgG/IOBe8=",
-        "owner": "oh-my-fish",
-        "repo": "oh-my-fish",
-        "rev": "ab05441000531d0bc9aaea23b8d4db59b2828a31",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oh-my-fish",
-        "repo": "oh-my-fish",
         "type": "github"
       }
     },
@@ -859,13 +699,6 @@
     },
     "root": {
       "inputs": {
-        "easy-dhall-nix": "easy-dhall-nix",
-        "easy-purescript-nix": "easy-purescript-nix",
-        "fish-plugin-z": "fish-plugin-z",
-        "fish-theme-agnoster": "fish-theme-agnoster",
-        "fish-theme-dangerous": "fish-theme-dangerous",
-        "fish-theme-harleen": "fish-theme-harleen",
-        "githubNvimTheme": "githubNvimTheme",
         "home-manager": "home-manager",
         "idris2-pkgs": "idris2-pkgs",
         "kmonad": "kmonad",
@@ -873,30 +706,7 @@
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "nvim-plugin-agda": "nvim-plugin-agda",
-        "nvim-plugin-idris2": "nvim-plugin-idris2",
-        "oh-my-fish": "oh-my-fish",
-        "sddm-theme-chili": "sddm-theme-chili",
-        "telescope-file-browser-nvim": "telescope-file-browser-nvim",
-        "vim-extra-plugins": "vim-extra-plugins",
-        "vim-plugin-arpeggio": "vim-plugin-arpeggio",
-        "vim-plugin-kmonad": "vim-plugin-kmonad"
-      }
-    },
-    "sddm-theme-chili": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1535340922,
-        "narHash": "sha256-wxWsdRGC59YzDcSopDRzxg8TfjjmA3LHrdWjepTuzgw=",
-        "owner": "MarianArlt",
-        "repo": "sddm-chili",
-        "rev": "6516d50176c3b34df29003726ef9708813d06271",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MarianArlt",
-        "repo": "sddm-chili",
-        "type": "github"
+        "vim-extra-plugins": "vim-extra-plugins"
       }
     },
     "snocvect": {
@@ -947,22 +757,6 @@
         "type": "github"
       }
     },
-    "telescope-file-browser-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1645182018,
-        "narHash": "sha256-MFKjdmO0KnZWodUeaXrJExM+j6kplDl9HzHwNfJabOc=",
-        "owner": "nvim-telescope",
-        "repo": "telescope-file-browser.nvim",
-        "rev": "d06fe1d4ade68ba17739025e55e941f9e977d37c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-telescope",
-        "repo": "telescope-file-browser.nvim",
-        "type": "github"
-      }
-    },
     "vim-extra-plugins": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -980,38 +774,6 @@
       "original": {
         "owner": "m15a",
         "repo": "nixpkgs-vim-extra-plugins",
-        "type": "github"
-      }
-    },
-    "vim-plugin-arpeggio": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1597883245,
-        "narHash": "sha256-volgKWr1mNwmvOQQEw7feBztmpDVyPJG1n+OI8L1BRA=",
-        "owner": "kana",
-        "repo": "vim-arpeggio",
-        "rev": "01c8fc1a72ef58e490ee0490c65ee313b1b6e843",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kana",
-        "repo": "vim-arpeggio",
-        "type": "github"
-      }
-    },
-    "vim-plugin-kmonad": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1647812451,
-        "narHash": "sha256-7PKVOsb3jvuGEnP/LsrDr96wFSQMou2dgnV+hRaI444=",
-        "owner": "kmonad",
-        "repo": "kmonad-vim",
-        "rev": "37978445197ab00edeb5b731e9ca90c2b141723f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kmonad",
-        "repo": "kmonad-vim",
         "type": "github"
       }
     },

@@ -88,7 +88,7 @@ in
         nui-nvim # ui lib required by idris plugin
         idris2-nvim # idris2 support
         lean-nvim # lean support
-        kmonad-vim # support for the kmonad config language
+        kmonad # support for the kmonad config language
         lh-vim-lib # dependency for lh-brackets
         lh-brackets # bracket customization
 

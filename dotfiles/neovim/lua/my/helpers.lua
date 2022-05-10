@@ -13,9 +13,9 @@ function M.mergeTables(t1, t2)
 end
 
 function M.saveCursor(callback)
-    local cursor = vim.api.nvim_win_get_cursor()
+    local cursor = vim.api.nvim_win_get_cursor(0)
     callback()
-    vim.api.nvim_win_set_cursor(cursor)
+    vim.api.nvim_win_set_cursor(0, cursor)
 end
 
 return M

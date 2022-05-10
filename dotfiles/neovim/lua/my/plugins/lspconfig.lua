@@ -55,10 +55,12 @@ local function on_attach_typescript(client, bufnr)
     M.on_attach(client, bufnr)
 end
 
-local function on_attach_lua()
+local function on_attach_nix(c, b)
     A.chordSilent("n", "ug",
-                  ":lua require('my.helpers.update-nix-fetchgit').update()",
+                  ":lua require('my.helpers.update-nix-fetchgit').update()<CR>",
                   {settings = "b"})
+
+    M.on_attach(c, b)
 end
 
 -- General server config
@@ -97,7 +99,7 @@ local servers = {
             }
         }
     },
-    rnix = {on_attach = on_attach_lua},
+    rnix = {on_attach = on_attach_nix},
     hls = {
         haskell = {
             -- set formatter

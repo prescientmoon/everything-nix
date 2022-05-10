@@ -1,41 +1,19 @@
 { system }:
 { home-manager
-
   # nixos stuff
 , nixpkgs
 , nixpkgs-unstable
 , nixos-unstable
-
-  # easy-*
-, easy-purescript-nix
-, easy-dhall-nix
-
-  # fish plugins
-, fish-plugin-z
-, fish-theme-harleen
-, fish-theme-agnoster
-, fish-theme-dangerous
-
-, oh-my-fish
-, githubNvimTheme
-
-  # vim plugins
-, vim-plugin-arpeggio
-, vim-plugin-kmonad
-
-  # nvim plugins
-, nvim-plugin-agda
-, nvim-plugin-idris2
-
-, telescope-file-browser-nvim # TODO: rename this one
-, sddm-theme-chili
 , ...
 }: self: super:
-# installs a vim plugin from git with a given tag / branch
-let plugin = name: src: self.vimUtils.buildVimPluginFrom2Nix {
-  inherit name;
-  inherit src;
-};
+let
+  foreign = self.callPackage (import ../foreign.nix) { };
+
+  # installs a vim plugin from git with a given tag / branch
+  plugin = name: src: self.vimUtils.buildVimPluginFrom2Nix {
+    inherit name;
+    inherit src;
+  };
 in
 {
   unstable = import nixpkgs-unstable {
@@ -44,30 +22,30 @@ in
     config.allowBroken = true;
   };
 
-  easy-purescript-nix = self.callPackage easy-purescript-nix { };
-  easy-dhall-nix = self.callPackage easy-dhall-nix { };
+  easy-purescript-nix = self.callPackage foreign.easy-purescript-nix { };
+  easy-dhall-nix = self.callPackage foreign.easy-dhall-nix { };
 
   myFishPlugins = {
-    inherit oh-my-fish;
+    oh-my-fish = foreign.fishPlugins.oh-my-fish;
 
     z = {
-      src = fish-plugin-z;
+      src = foreign.fishPlugins.z;
       name = "z";
     };
 
     themes = {
       agnoster = {
-        src = fish-theme-agnoster;
+        src = foreign.fishPlugins.themes.agnoster;
         name = "agnoster";
       };
 
       dangerous = {
-        src = fish-theme-dangerous;
+        src = foreign.fishPlugins.themes.dangerous;
         name = "dangerous";
       };
 
       harleen = {
-        src = fish-theme-harleen;
+        src = foreign.fishPlugins.themes.harleen;
         name = "harleen";
       };
     };
@@ -76,21 +54,19 @@ in
 
   # Vim plugins
   myVimPlugins = {
-    githubNvimTheme = githubNvimTheme;
+    githubNvimTheme = foreign.githubNvimTheme;
 
-    telescope-file-browser-nvim = plugin "file_browser" telescope-file-browser-nvim;
-    agda-nvim = plugin "agda" nvim-plugin-agda;
-    idris2-nvim = plugin "idris" nvim-plugin-idris2;
-    arpeggio = plugin "arpeggio" vim-plugin-arpeggio;
-    kmonad-vim = plugin "kmonad-vim" vim-plugin-kmonad;
+    telescope-file-browser-nvim = plugin "file_browser"
+      foreign.vimPlugins.telescope-file-browser-nvim;
+    agda-nvim = plugin "agda"
+      foreign.vimPlugins.agda-nvim;
+    idris2-nvim = plugin "idris"
+      foreign.vimPlugins.idris2-nvim;
+    arpeggio = plugin "arpeggio"
+      foreign.vimPlugins.arpeggio;
+    kmonad = plugin "kmonad-vim"
+      foreign.vimPlugins.kmonad;
   };
 
-  # a = fetchFromGitHub {
-  #   repo = "kmonad-vim";
-  #   owner = "kmonad";
-  #   rev = "";
-  #   sha256 = "";
-  # };
-
-  sddm-theme-chili = sddm-theme-chili;
+  sddm-theme-chili = foreign.sddm-theme-chili;
 }
