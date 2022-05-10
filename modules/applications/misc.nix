@@ -30,6 +30,7 @@
     cmake
     # kdeconnect
     sloc # line of code counter
+    update-nix-fetchgit
 
     # editors
     # vscodium

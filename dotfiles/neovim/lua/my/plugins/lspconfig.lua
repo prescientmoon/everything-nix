@@ -1,3 +1,5 @@
+local A = require("my.plugins.arpeggio")
+
 local M = {}
 
 local function map(buf, mode, lhs, rhs, opts)
@@ -53,6 +55,12 @@ local function on_attach_typescript(client, bufnr)
     M.on_attach(client, bufnr)
 end
 
+local function on_attach_lua()
+    A.chordSilent("n", "ug",
+                  ":lua require('my.helpers.update-nix-fetchgit').update()",
+                  {settings = "b"})
+end
+
 -- General server config
 local servers = {
     tsserver = {on_attach = on_attach_typescript},
@@ -89,7 +97,7 @@ local servers = {
             }
         }
     },
-    rnix = {},
+    rnix = {on_attach = on_attach_lua},
     hls = {
         haskell = {
             -- set formatter

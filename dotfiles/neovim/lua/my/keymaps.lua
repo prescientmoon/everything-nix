@@ -1,5 +1,6 @@
 local helpers = require("my.helpers")
 local arpeggio = require("my.plugins.arpeggio")
+local au = require("my.helpers.augroup")
 
 local M = {}
 
@@ -31,6 +32,8 @@ function M.setup()
         arpeggio.chord("i", "<Leader>k", "<C-k><cr>") -- Rebind digraph insertion to leader+k
         arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
     end
+
+    return M
 end
 
 return M

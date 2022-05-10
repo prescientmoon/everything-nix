@@ -85,5 +85,12 @@ in
     kmonad-vim = plugin "kmonad-vim" vim-plugin-kmonad;
   };
 
+  # a = fetchFromGitHub {
+  #   repo = "kmonad-vim";
+  #   owner = "kmonad";
+  #   rev = "";
+  #   sha256 = "";
+  # };
+
   sddm-theme-chili = sddm-theme-chili;
 }

@@ -40,6 +40,8 @@
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
+      theme = pkgs.nixos-grub2-theme;
+
       version = 2;
     };
   };

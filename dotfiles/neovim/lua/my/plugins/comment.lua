@@ -1,7 +1,7 @@
 local A = require("my.helpers.augroup")
 local M = {}
 
-local extraCommentStrings = {nix = "# %s", lean = "/- %s -/"}
+local extraCommentStrings = {nix = "# %s", lean = "/- %s -/", bkf = "-- %s"}
 
 -- Update comments for certain languages
 local function setCommentString(extension, commentString)

@@ -14,3 +14,7 @@ function fish_user_key_bindings
   bind -M insert -m default jk 'commandline -f repaint'
   bind -M insert -m default kj 'commandline -f repaint'
 end
+
+# direnv hook, aparently
+# https://direnv.net/docs/hook.html
+direnv hook fish | source

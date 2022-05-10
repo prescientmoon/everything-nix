@@ -2,7 +2,7 @@
 self: super:
 let
   allThemes = self.callPackage (import ../themes/themes.nix) { };
-  currentTheme = "github-dark";
+  currentTheme = "github-light";
 in
 with self; {
   myHelpers = self.callPackage (import ../helpers.nix) { };
