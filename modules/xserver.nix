@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  theme = pkgs.myThemes.current;
+in
+{
   environment.systemPackages = with pkgs; [
     # Required for the sddm theme
     libsForQt5.qt5.qtquickcontrols
@@ -17,7 +21,7 @@
       defaultSession = "none+xmonad";
       sddm = {
         enable = true;
-        theme = "${pkgs.sddm-theme-chili}";
+        theme = theme.sddm.path;
       };
 
       autoLogin = {

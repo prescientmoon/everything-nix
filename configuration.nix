@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+let
+  theme = pkgs.myThemes.current;
+in
+{
   imports = [ ./modules ];
 
   boot.loader.systemd-boot.enable = true;
@@ -6,7 +10,6 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-
 
   hardware = {
     pulseaudio = {
@@ -40,7 +43,7 @@
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
-      theme = pkgs.nixos-grub2-theme;
+      theme = theme.grub.path;
 
       version = 2;
     };

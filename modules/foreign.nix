@@ -10,8 +10,8 @@
     arpeggio = fetchFromGitHub {
       owner = "kana";
       repo = "vim-arpeggio";
-      rev = "37978445197ab00edeb5b731e9ca90c2b141723f";
-      sha256 = "13p3i0b8azkmhafyv8hc4hav1pmgqg52xzvk2a3gp3ppqqx9bwpc";
+      rev = "01c8fc1a72ef58e490ee0490c65ee313b1b6e843";
+      sha256 = "0405yp1273kzsr3g5j6mj2dfs73qvw716474phkdr67md8ln12dy";
     };
 
     agda-nvim = fetchFromGitHub {

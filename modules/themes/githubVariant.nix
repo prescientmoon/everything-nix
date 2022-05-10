@@ -16,6 +16,14 @@ in
     lualineTheme = "github";
   };
   tmux.path = "${githubTheme}/terminal/tmux/github_${variant}.conf";
+  sddm.path = "${pkgs.sddm-theme-chili}"; # TODO: don't expose this globally
+  grub.path = pkgs.nixos-grub2-theme;
+  gtk.path = null;
+  xresources = "";
+  rofi = {
+    theme = "purple";
+    config = { };
+  };
   alacritty.settings = {
     import = [ "${githubTheme}/terminal/alacritty/github_${variant}.yml" ];
     window = {
