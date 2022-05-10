@@ -1,11 +1,9 @@
 {-# LANGUAGE BlockArguments #-}
 
-import System.Environment
-import System.Process
-
 import Control.Monad (join)
 import Data.Function ((&))
-
+import System.Environment
+import System.Process
 import XMonad
 import XMonad.Actions.SpawnOn
 import XMonad.Config (defaultConfig)
@@ -14,8 +12,8 @@ import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
-import XMonad.Util.EZConfig
 import XMonad.Operations
+import XMonad.Util.EZConfig
 
 kdeOn :: Bool
 kdeOn = False
@@ -81,11 +79,11 @@ main =
 
     -- TODO: find a way to bind all the program-opening-keybindings to a single sub-map
     keymap =
-      [ ("M-p", spawn "rofi -show run")
-      , ("M-g", spawn myBrowser)
-      , ("M-d", spawn "Discord")
-      , ("M-v", spawn "alacritty -e vimclip")
-      , ("M-c", kill)
+      [ ("M-p", spawn "rofi -show run"),
+        ("M-g", spawn myBrowser),
+        ("M-d", spawn "Discord"),
+        ("M-v", spawn "alacritty -e vimclip"),
+        ("M-c", kill)
       ]
 
     uniformBorder = join $ join $ join Border
@@ -102,4 +100,3 @@ main =
     startup = do
       -- The file is dynamically set in wallpaper.nix
       spawn "xwallpaper --zoom ~/.config/wallpaper"
-

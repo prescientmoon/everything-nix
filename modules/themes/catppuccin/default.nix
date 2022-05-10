@@ -5,7 +5,7 @@ let
   foreign = pkgs.callPackage (import ./foreign.nix) { };
 in
 {
-  wallpaper = "${foreign.wallpapers}/${wallpaper}";
+  wallpaper = wallpaper.foreign or "${foreign.wallpapers}/${wallpaper}";
 
   name = "catppuccin";
   neovim = {
@@ -35,8 +35,10 @@ in
     import = [ "${foreign.alacritty}/catppuccin.yml" ];
     window = {
       padding = {
-        x = 8;
-        y = 8;
+        x = 0;
+        y = 0;
+        # x = 8;
+        # y = 8;
       };
 
       gtk_theme_variant = "dark";
