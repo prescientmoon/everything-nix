@@ -20,6 +20,8 @@
     ./tmux.nix
     ./kmonad.nix
     ./direnv.nix
+    ./chromium.nix
+    ./vieb.nix
   ];
 }
 

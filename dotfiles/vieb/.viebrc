@@ -1,0 +1,26 @@
+" Options
+set adblocker=update
+set downloadmethod=confirm
+set mintabwidth=250
+set redirecttohttp
+set tabreopenposition=previous
+set windowtitle=title
+set search=https://google.com/search?q=
+set searchwords=w~https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s
+
+" Mappings
+nmap d <action.scrollPageDownHalf>
+nmap u <action.scrollPageUpHalf>
+nmap yy <action.pageToClipboard>
+nmap yf <pointer.start><action.startFollowCurrentTab>
+nmap v <pointer.start><pointer.startVisualSelect>
+nmap O <action.openNewTab><action.toExploreMode>
+nmap T <action.toCommandMode>buffer<Space>
+nmap x <action.closeTab>
+nmap X <action.reopenTab>
+nmap yt <action.openNewTabWithCurrentUrl><CR>
+nmap ? <:help>
+
+vmap c <Esc><pointer.start>
+
+" extensions

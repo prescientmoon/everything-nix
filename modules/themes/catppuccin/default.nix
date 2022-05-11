@@ -1,8 +1,8 @@
-{ transparency ? 1, wallpaper }: { pkgs, ... }:
+{ transparency ? 1, wallpaper, variant }: { pkgs, ... }:
 let
   githubTheme = pkgs.myVimPlugins.githubNvimTheme; # github theme for neovim
-  variant = "dark";
   foreign = pkgs.callPackage (import ./foreign.nix) { };
+  v = (a: b: if variant == "light" then a else b);
 in
 {
   wallpaper = wallpaper.foreign or "${foreign.wallpapers}/${wallpaper}";
@@ -33,6 +33,12 @@ in
       @import "${foreign.rofi}/.config/rofi/config.rasi"
       @import "${./rofi.rasi}"'';
   };
+  chromium.extensions = [
+    # https://github.com/catppuccin/chrome
+    (v
+      "cmpdlhmnmjhihmcfnigoememnffkimlk"
+      "bkkmolkhemgaeaeggcmfbghljjjoofoh")
+  ];
   alacritty.settings = {
     import = [ "${foreign.alacritty}/catppuccin.yml" ];
     window = {

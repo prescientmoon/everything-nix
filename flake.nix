@@ -51,6 +51,10 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
 
+        specialArgs = {
+          paths = import ./paths.nix;
+        };
+
         modules = [
           inputs.home-manager.nixosModules.home-manager
           inputs.kmonad.nixosModule
