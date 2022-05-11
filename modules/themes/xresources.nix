@@ -4,6 +4,6 @@ let
 in
 {
   home-manager.users.adrielus.xresources = {
-    extraConfig = theme.xresources;
+    extraConfig = theme.xresources or "";
   };
 }

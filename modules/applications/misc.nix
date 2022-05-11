@@ -43,7 +43,7 @@
     discord
     # deluge
     # slack
-    # tdesktop # telegram for the desktop
+    tdesktop # telegram for the desktop
     zoom-us
     # teams
 

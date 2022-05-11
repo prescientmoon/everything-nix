@@ -22,6 +22,12 @@ in
     config.allowBroken = true;
   };
 
+  nixos-unstable = import nixos-unstable {
+    inherit system;
+    config.allowUnfree = true;
+    config.allowBroken = true;
+  };
+
   easy-purescript-nix = self.callPackage foreign.easy-purescript-nix { };
   easy-dhall-nix = self.callPackage foreign.easy-dhall-nix { };
 

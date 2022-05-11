@@ -14,7 +14,9 @@ local idrisChords = {
 }
 
 function M.setup()
-    require("idris2").setup({
+    local idris2 = require("idris2")
+
+    idris2.setup({
         server = {
             on_attach = function(client, bufnr)
                 lspconfig.on_attach(client, bufnr)

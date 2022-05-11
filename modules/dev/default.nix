@@ -13,7 +13,7 @@
 
     # Proof assistants
     ./agda.nix
-    ./idris.nix
+    # ./idris.nix
     ./lean.nix
   ];
 }

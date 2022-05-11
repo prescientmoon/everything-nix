@@ -1,8 +1,9 @@
 { lib, ... }: {
-  mergeLines = (lines: lib.lists.foldr
+  mergeLines = lib.lists.foldr
     (a: b: ''
       ${a}
       ${b}
-    '') ""
-    lines);
+    '') "";
+
+  unwords = lib.lists.foldr (a: b: ''${a} ${b}'') "";
 }

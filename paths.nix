@@ -1,4 +1,4 @@
 rec {
-  root = "~/Projects/nixos-config/";
+  root = "/home/adrielus/Projects/nixos-config";
   dotfiles = "${root}/dotfiles";
 }

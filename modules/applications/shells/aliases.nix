@@ -19,7 +19,7 @@
   battery = "acpi";
 
   # Rebuuild nixos
-  rebuild = "sudo nixos-rebuild switch --flake ~/Projects/nixos-config/";
+  rebuild = "sudo -u adrielus nixos-rebuild switch --flake ~/Projects/nixos-config/";
 
   # Render git repo using gource
   "git-render" = "gource -f -s 1 -c 4 --key";

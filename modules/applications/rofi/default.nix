@@ -13,11 +13,11 @@ in
 {
   home-manager.users.adrielus = {
     home.packages = [ rofi ];
-    home.file.".local/share/rofi/themes/${theme.name}.rasi".text = builtins.readFile theme.rofi.theme;
+    home.file.".local/share/rofi/themes/${theme.name}.rasi".text = theme.rofi.theme or "";
 
     xdg.configFile."rofi/config.rasi".text = ''
       @import "${./pre.rasi}"
-      ${theme.rofi.config}
+      ${theme.rofi.config or ""}
     '';
   };
 }

@@ -37,8 +37,6 @@ in
       # haskellPackages.agda-language-server # agda
       nodePackages.typescript-language-server # typescript
       easy-purescript-nix.purescript-language-server # purescript
-      idris2 # idris2 lang
-      idris2-pkgs.lsp # idris2
       sumneko-lua-language-server # lua
       rnix-lsp # nix
       haskell-language-server # haskell
@@ -85,8 +83,6 @@ in
         presence-nvim # discord rich presence
         agda-nvim # agda support
         unicode-vim # better unicode support
-        nui-nvim # ui lib required by idris plugin
-        idris2-nvim # idris2 support
         lean-nvim # lean support
         kmonad # support for the kmonad config language
         lh-vim-lib # dependency for lh-brackets
