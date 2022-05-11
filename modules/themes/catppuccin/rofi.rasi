@@ -1,0 +1,12 @@
+window {
+  height: 50%;
+  width: 50%;
+}
+
+listview {
+  columns: 1;
+}
+
+element selected {
+  background-color: #373759; 
+}

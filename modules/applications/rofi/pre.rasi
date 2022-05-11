@@ -1,0 +1,5 @@
+configuration {
+  location: 0;
+  cycle: true;
+  font: "Source Code Pro 16";
+}

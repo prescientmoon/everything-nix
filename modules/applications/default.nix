@@ -4,6 +4,7 @@
     ./shells
     # ./wakatime
     ./xmonad
+    ./rofi
     # ./xmodmap
 
     # ./wine.nix
@@ -14,7 +15,6 @@
     ./locale.nix
     # ./memes.nix
     ./alacritty.nix
-    ./rofi.nix
     ./postgres.nix
     ./neovim.nix
     ./tmux.nix

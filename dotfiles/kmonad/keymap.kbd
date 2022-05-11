@@ -77,6 +77,7 @@
   mov  (layer-toggle movement)
   mathExtra (layer-toggle math-extra)
   sft (tap-macro lsft (layer-toggle shiftedQwerty)) ;; make this work differently based on the next key pressed
+  j (tap-macro 7 lsft)
 )
 
 ;; more "special" stuff
@@ -97,7 +98,7 @@
 
 (deflayer qwerty
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  grv  1    2    3    4    5    6    @j   8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @mth a    s    d    f    g    h    j    k    l    ;    '    ret
   @sft z    x    c    v    b    n    m    ,    .    /    rsft

@@ -28,8 +28,10 @@ in
   gtk.path = null;
   xresources = builtins.readFile "${foreign.xresources}/Xresources";
   rofi = {
-    theme = "purple";
-    config = { };
+    theme = "${foreign.rofi}/.local/share/rofi/themes/catppuccin.rasi";
+    config = ''
+      @import "${foreign.rofi}/.config/rofi/config.rasi"
+      @import "${./rofi.rasi}"'';
   };
   alacritty.settings = {
     import = [ "${foreign.alacritty}/catppuccin.yml" ];
@@ -37,8 +39,6 @@ in
       padding = {
         x = 0;
         y = 0;
-        # x = 8;
-        # y = 8;
       };
 
       gtk_theme_variant = "dark";

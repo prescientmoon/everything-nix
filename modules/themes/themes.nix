@@ -10,9 +10,9 @@ lib.lists.map (theme: pkgs.callPackage theme { }) [
     # wallpaper = "os/nix-black-4k.png";
     # wallpaper = "landscapes/forrest.png";
     # wallpaper = "landscapes/salty_mountains.png";
-    # wallpaper = "misc/rainbow.png";
-    wallpaper.foreign = ./wallpapers/eye.png;
-    transparency = 0.8;
+    wallpaper = "misc/rainbow.png";
+    # wallpaper.foreign = ./wallpapers/eye.png;
+    transparency = 0.93;
   })
   (githubVariant {
     variant = "light";

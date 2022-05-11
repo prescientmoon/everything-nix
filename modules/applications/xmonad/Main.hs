@@ -79,7 +79,8 @@ main =
 
     -- TODO: find a way to bind all the program-opening-keybindings to a single sub-map
     keymap =
-      [ ("M-p", spawn "rofi -show run"),
+      [ ("M-p", spawn "rofi -show drun"),
+        ("M-w", spawn "rofi -show window"),
         ("M-g", spawn myBrowser),
         ("M-d", spawn "Discord"),
         ("M-v", spawn "alacritty -e vimclip"),
