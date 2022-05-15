@@ -4,6 +4,7 @@
     ./applications
     ./themes
     ./overlays
+    ./meta
 
     ./network.nix
     ./xserver.nix

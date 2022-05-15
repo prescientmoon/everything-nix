@@ -10,7 +10,6 @@ function M.setup()
                        "setf " .. syntax)
         end
     end)
-
 end
 
 return M

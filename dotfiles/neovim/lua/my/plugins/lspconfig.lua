@@ -3,6 +3,7 @@ local A = require("my.plugins.arpeggio")
 local M = {}
 
 local function map(buf, mode, lhs, rhs, opts)
+
     local options = {noremap = true, silent = true}
     if opts then options = vim.tbl_extend('force', options, opts) end
     vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
@@ -12,7 +13,8 @@ function M.on_attach(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
+        print("Initializing formatter...")
         vim.cmd([[
             augroup LspFormatting
                 autocmd! * <buffer>
@@ -21,36 +23,39 @@ function M.on_attach(client, bufnr)
             ]])
     end
 
+    print("Setting up keybinds...")
     -- Go to declaration / definition / implementation
     map(bufnr, "n", 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
     map(bufnr, "n", 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
     map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 
     -- Hover
-    map(bufnr, 'n', 'J',
-        "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    map(bufnr, 'n', 'J', "<cmd>lua vim.diagnostic.open_float()<CR>")
     map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
     map(bufnr, 'n', 'L', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
     -- Workspace stuff
-    map(bufnr, 'n', '<leader>wa',
-        '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-    map(bufnr, 'n', '<leader>wr',
-        '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-    map(bufnr, 'n', '<leader>wl',
-        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+    -- map(bufnr, 'n', '<leader>wa',
+    --     '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
+    -- map(bufnr, 'n', '<leader>wr',
+    --     '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
+    -- map(bufnr, 'n', '<leader>wl',
+    --     '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
 
     -- Code actions
     map(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     map(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    -- map(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+    map(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    map(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    map(bufnr, 'n', '<leader>f',
+        '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
+
+    print("Initialized language server!")
 end
 
 local function on_attach_typescript(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    -- We handle formatting using null-ls and prettierd
+    client.server_capabilities.documentFormattingProvider = false
 
     M.on_attach(client, bufnr)
 end

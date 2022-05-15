@@ -1,10 +1,4 @@
 { fetchFromGitHub, ... }: {
-  nvim = fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "nvim";
-    sha256 = "1w96rvpbm7lk9lcc5i13d6dyb5b10vkjh1902xmklqvpzy1wya19";
-    rev = "8a67df6da476cba68ecf26a519a5279686edbd2e";
-  };
   tmux = fetchFromGitHub {
     owner = "catppuccin";
     repo = "tmux";

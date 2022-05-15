@@ -12,9 +12,7 @@ local bindings = {
         live_grep = "<c-F>",
 
         -- See diagnostics with space + d
-        lsp_document_diagnostics = "<Leader>d",
-        lsp_workspace_diagnostics = "<Leader>wd",
-        lsp_code_actions = "<Leader>ca",
+        diagnostics = "<Leader>d",
 
         -- Open a list with all the pickers
         builtin = "<Leader>t",

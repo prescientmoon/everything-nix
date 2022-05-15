@@ -9,16 +9,8 @@ in
   wallpaper = wallpaper.foreign or "${foreign.wallpapers}/${wallpaper}";
 
   neovim = {
-    theme = builtins.readFile ./nvim.lua;
+    theme = ./nvim.lua;
     lualineTheme = "catppuccin";
-    plugins = [
-      (
-        pkgs.vimUtils.buildVimPluginFrom2Nix {
-          name = "catppuccin";
-          src = foreign.nvim;
-        }
-      )
-    ];
   };
 
   # grub.path = "${foreign.grub}/catppuccin-grub-theme/theme.txt";
