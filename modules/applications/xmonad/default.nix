@@ -12,6 +12,18 @@
     # home.file.".config/plasma-workspace/env/set_window_manager.sh".text =
     #  "export KDEWM=/home/adrielus/.nix-profile/bin/xmonad";
 
-    services.picom = { enable = true; };
+    services.picom = {
+      enable = true;
+      blur = true;
+      shadow = true;
+      extraOptions = ''
+        blur:
+        {
+          method = "gaussian";
+          size = 10;
+          deviation = 5.0;
+        };
+      '';
+    };
   };
 }

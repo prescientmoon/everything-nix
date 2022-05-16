@@ -52,7 +52,6 @@ let
           --prefix PATH : ${lib.makeBinPath extraPackages}
       '';
     };
-
 in
 {
   home-manager.users.adrielus =

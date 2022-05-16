@@ -42,7 +42,7 @@
     # chat apps
     discord
     # deluge
-    # slack
+    slack
     tdesktop # telegram for the desktop
     zoom-us
     # teams

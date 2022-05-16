@@ -53,8 +53,8 @@ in
     import = [ "${foreign.alacritty}/catppuccin.yml" ];
     window = {
       padding = {
-        x = 0;
-        y = 0;
+        x = 4;
+        y = 4;
       };
 
       gtk_theme_variant = "dark";

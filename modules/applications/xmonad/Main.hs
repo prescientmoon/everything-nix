@@ -14,6 +14,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Operations
 import XMonad.Util.EZConfig
+import XMonad.Layout.NoBorders
 
 kdeOn :: Bool
 kdeOn = False
@@ -31,7 +32,8 @@ main =
             manageHook = manageDocks <+> myManagerHook <+> manageHook kdeConfig,
             handleEventHook = handleEventHook kdeConfig <+> fullscreenEventHook,
             terminal = myTerminal,
-            workspaces = myWorkspaces
+            workspaces = myWorkspaces,
+	    borderWidth = 0
           }
           `additionalKeysP` keymap
   where

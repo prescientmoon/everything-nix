@@ -12,6 +12,3 @@ My flake based nixos configuration. To use this, just rebuild your system using 
   - automatically save/restore state using continuum
   - customize status bar
 - clean out the mess I made for installing fish themes
-- customize picom
-- vim:
-  - configure lualine more
