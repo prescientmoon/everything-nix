@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   theme = pkgs.myThemes.current;
 in
@@ -59,6 +59,10 @@ in
       };
     };
   };
+
+  services.xserver.displayManager.sessionCommands = ''
+    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+  '';
 
   services.fractalart.enable = true;
   hardware.opengl.enable = true;

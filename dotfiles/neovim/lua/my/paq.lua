@@ -35,7 +35,8 @@ function M.setup()
         "hrsh7th/cmp-cmdline", -- cmdline completion perhaps?
         "hrsh7th/nvim-cmp", -- completion engine
         "L3MON4D3/LuaSnip", -- snippeting engine
-        "saadparwaiz1/cmp_luasnip" -- snippet support for cmp
+        "saadparwaiz1/cmp_luasnip", -- snippet support for cmp
+        "wakatime/vim-wakatime" -- track time usage
     }
 
     for _, v in ipairs(themePackages) do

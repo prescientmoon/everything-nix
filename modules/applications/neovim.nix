@@ -24,6 +24,7 @@ let
     prettierd # prettier but faster
 
     # Others
+    wakatime # time tracking
     fd # file finder
     ripgrep # grep rewrite (I think?)
     nodePackages.typescript # typescript language
@@ -37,7 +38,6 @@ let
   myConfig = ''
     vim.g.lualineTheme = ${theme.neovim.lualineTheme}
     vim.opt.runtimepath:append("${paths.dotfiles}/neovim")
-    -- dofile("${paths.dotfiles}/neovim/my/init.lua").setup()
     require("my.init").setup()
   '';
 
@@ -59,7 +59,11 @@ in
       home.file.".local/share/nvim/site/pack/paqs/start/paq-nvim".source = paq;
       xdg.configFile."nvim/init.lua".text = myConfig;
       xdg.configFile."nvim/lua/my/theme.lua".source = theme.neovim.theme;
-      home.packages = [ neovim ];
+      home.packages = [
+        neovim
+        # idk why I need to install this here
+        vscode-langservers-extracted # css and shit
+      ];
 
       programs.neovim = {
         enable = false;

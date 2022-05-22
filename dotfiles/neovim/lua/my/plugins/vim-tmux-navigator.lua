@@ -1,4 +1,4 @@
-local map = require("my.keymaps").mapSilent
+local map = require("my.keymaps").map
 
 local M = {}
 
@@ -6,10 +6,10 @@ local M = {}
 function M.setup()
     vim.g.tmux_navigator_no_mappings = 1
 
-    map("inv", "<C-h>", ":TmuxNavigateLeft<cr>")
-    map("inv", "<C-j>", ":TmuxNavigateDown<cr>")
-    map("inv", "<C-k>", ":TmuxNavigateUp<cr>")
-    map("inv", "<C-l>", ":TmuxNavigateRight<cr>")
+    map("n", "<leader>h", ":TmuxNavigateLeft<cr>")
+    map("n", "<leader>j", ":TmuxNavigateDown<cr>")
+    map("n", "<leader>k", ":TmuxNavigateUp<cr>")
+    map("n", "<leader>l", ":TmuxNavigateRight<cr>")
 end
 
 return M

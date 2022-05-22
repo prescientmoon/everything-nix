@@ -11,6 +11,8 @@ in
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
+  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+
   hardware = {
     pulseaudio = {
       enable = true;

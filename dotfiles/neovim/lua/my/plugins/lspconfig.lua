@@ -110,7 +110,8 @@ local servers = {
             -- set formatter
             formattingProvider = "ormolu"
         }
-    }
+    },
+    cssls = {}
     -- agda = {}, Haven't gotten this one to work yet
 }
 
