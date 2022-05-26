@@ -1,5 +1,5 @@
 self: super:
-let customPackages = self.callPackage ./npm { };
+let customPackages = (import ./npm) { nodejs = self.nodejs-17_x; pkgs = self; };
 in
 with self; {
   # Faster prettier for editors

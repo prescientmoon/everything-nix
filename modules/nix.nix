@@ -1,4 +1,15 @@
 { pkgs, ... }: {
+  #  Idk why tf I need to add this here
+  nixpkgs.config.permittedInsecurePackages = [
+    "nodejs-12.22.12"
+  ];
+
+  home-manager.users.adrielus = {
+    nixpkgs.config.permittedInsecurePackages = [
+      "nodejs-12.22.12"
+    ];
+  };
+
   nix = {
     # Emanble nix flakes
     package = pkgs.nixFlakes;

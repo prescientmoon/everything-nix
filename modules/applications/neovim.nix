@@ -17,6 +17,7 @@ let
     sumneko-lua-language-server # lua
     rnix-lsp # nix
     haskell-language-server # haskell
+    vscode-langservers-extracted # css and shit
 
     # Formatters
     luaformatter # lua
@@ -62,7 +63,6 @@ in
       home.packages = [
         neovim
         # idk why I need to install this here
-        vscode-langservers-extracted # css and shit
       ];
 
       programs.neovim = {

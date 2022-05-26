@@ -10,8 +10,10 @@ function M.setup()
         sync_install = false,
         indent = {enable = true},
         highlight = {
-            enable = true,
-            disable = {"lua"}, -- WHY TF DOES THIS NOT WORK
+            enable = false,
+            disable = {
+                "lua", "json", "yaml", "bash", "scss", "html", "javascript"
+            }, -- WHY TF
 
             -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
             -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
