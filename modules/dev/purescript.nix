@@ -1,12 +1,12 @@
 { pkgs, ... }: {
-  home-manager.users.adrielus.home.packages = with pkgs.easy-purescript-nix; [
+  home-manager.users.adrielus.home.packages = with pkgs.unstable; [
     purescript
     spago
-    purty
-    pscid
-    pulp
-    zephyr
-    psa
-    purs-tidy
+    # haskellPackages.zephyr
+    # purty # purescript formatter
+    # purs-tidy # purescript formatter
+    # pscid
+    # pulp
+    # psa
   ];
 }

@@ -2,11 +2,15 @@
 let
   githubTheme = pkgs.myVimPlugins.githubNvimTheme; # github theme for neovim
   foreign = pkgs.callPackage (import ./foreign.nix) { };
-  v = (a: b: if variant == "light" then a else b);
+  v = (a: b: if variant == "latte" then a else b);
 in
 {
   name = "catppuccin";
   wallpaper = wallpaper.foreign or "${foreign.wallpapers}/${wallpaper}";
+
+  env = {
+    CATPPUCCIN_FLAVOUR = variant;
+  };
 
   neovim = {
     theme = ./nvim.lua;
@@ -57,7 +61,7 @@ in
         y = 4;
       };
 
-      gtk_theme_variant = "dark";
+      gtk_theme_variant = v "light" "dark";
     };
 
     background_opacity = transparency;

@@ -48,9 +48,9 @@
     # teams
 
     # browsers
-    google-chrome
+    unstable.google-chrome
     # brave
-    # firefox
+    firefox
 
     # other stuff
     obsidian # knowedge base
@@ -75,7 +75,8 @@
     # fceux
 
     # games
-    tetrio-desktop
+    # tetrio-desktop
+    vassal
     # mindustry
     # edopro
   ];

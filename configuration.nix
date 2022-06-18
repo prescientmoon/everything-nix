@@ -5,13 +5,15 @@ in
 {
   imports = [ ./modules ];
 
-  boot.loader.systemd-boot.enable = true;
   boot.tmpOnTmpfs = true;
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
-  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+  services.xserver.videoDrivers = [
+    # "displaylink"
+    "modesetting"
+  ];
 
   hardware = {
     pulseaudio = {
@@ -20,6 +22,7 @@ in
   };
 
   boot.loader = {
+    # systemd-boot.enable = true;
     efi = {
       canTouchEfiVariables = true;
       # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
@@ -62,7 +65,7 @@ in
   };
 
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 
   # TODO: put nixpkgs stuff inside their own file
   nixpkgs.config.allowUnfree = true;

@@ -37,7 +37,7 @@ let
   ];
 
   myConfig = ''
-    vim.g.lualineTheme = ${theme.neovim.lualineTheme}
+    vim.g.lualineTheme = "${theme.neovim.lualineTheme}"
     vim.opt.runtimepath:append("${paths.dotfiles}/neovim")
     require("my.init").setup()
   '';
@@ -60,9 +60,9 @@ in
       home.file.".local/share/nvim/site/pack/paqs/start/paq-nvim".source = paq;
       xdg.configFile."nvim/init.lua".text = myConfig;
       xdg.configFile."nvim/lua/my/theme.lua".source = theme.neovim.theme;
+
       home.packages = [
         neovim
-        # idk why I need to install this here
       ];
 
       programs.neovim = {

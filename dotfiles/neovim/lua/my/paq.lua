@@ -26,8 +26,8 @@ function M.setup()
         {"andweeb/presence.nvim", run = ":DownloadUnicode"}, -- discord rich presence
         "Julian/lean.nvim", -- lean support
         "kmonad/kmonad-vim", -- kmonad config support
-        "LucHermitte/lh-vim-lib", -- dependency for lh-brackets
-        "LucHermitte/lh-brackets", -- kinda useless bruh
+        -- "LucHermitte/lh-vim-lib", -- dependency for lh-brackets
+        -- "LucHermitte/lh-brackets", -- kinda useless bruh, should find something better
         -- Cmp related stuff
         "hrsh7th/cmp-nvim-lsp", -- lsp completion
         "hrsh7th/cmp-buffer", -- idr what this is

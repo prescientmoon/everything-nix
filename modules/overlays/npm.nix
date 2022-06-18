@@ -1,7 +1,12 @@
 self: super:
-let customPackages = (import ./npm) { nodejs = self.nodejs-17_x; pkgs = self; };
+
+let
+  node = self.nodejs-18_x;
+  customPackages = (import ./npm) { nodejs = node; pkgs = self; };
 in
-with self; {
+with self;  {
+  nodejs = node;
+
   # Faster prettier for editors
   prettierd = customPackages."@fsouza/prettierd";
 

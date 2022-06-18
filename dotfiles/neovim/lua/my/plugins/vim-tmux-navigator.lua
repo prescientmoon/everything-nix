@@ -6,10 +6,10 @@ local M = {}
 function M.setup()
     vim.g.tmux_navigator_no_mappings = 1
 
-    map("n", "<leader>h", ":TmuxNavigateLeft<cr>")
-    map("n", "<leader>j", ":TmuxNavigateDown<cr>")
-    map("n", "<leader>k", ":TmuxNavigateUp<cr>")
-    map("n", "<leader>l", ":TmuxNavigateRight<cr>")
+    map("n", "C-h", ":TmuxNavigateLeft<cr>")
+    map("n", "C-j", ":TmuxNavigateDown<cr>")
+    map("n", "C-k", ":TmuxNavigateUp<cr>")
+    map("n", "C-l", ":TmuxNavigateRight<cr>")
 end
 
 return M

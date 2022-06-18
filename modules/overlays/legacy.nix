@@ -6,7 +6,8 @@ let
     config.allowUnfree = true;
     config.allowBroken = true;
   };
-in {
+in
+{
   nixpkgs.overlays = [
     (self: super:
       with self; rec {

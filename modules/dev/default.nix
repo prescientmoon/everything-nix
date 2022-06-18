@@ -12,7 +12,7 @@
     # ./elm.nix
 
     # Proof assistants
-    ./agda.nix
+    # ./agda.nix
     # ./idris.nix
     ./lean.nix
   ];

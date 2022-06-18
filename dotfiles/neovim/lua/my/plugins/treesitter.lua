@@ -11,9 +11,6 @@ function M.setup()
         indent = {enable = true},
         highlight = {
             enable = false,
-            disable = {
-                "lua", "json", "yaml", "bash", "scss", "html", "javascript"
-            }, -- WHY TF
 
             -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
             -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).

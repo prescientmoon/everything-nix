@@ -4,22 +4,22 @@
 
 let
   sources = {
-    "core-js-3.22.5" = {
+    "core-js-3.23.1" = {
       name = "core-js";
       packageName = "core-js";
-      version = "3.22.5";
+      version = "3.23.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/core-js/-/core-js-3.22.5.tgz";
-        sha512 = "VP/xYuvJ0MJWRAobcmQ8F2H6Bsn+s7zqAAjFaHGBMc5AQm7zaelhD1LGduFn2EehEcQcU+br6t+fwbpQ5d1ZWA==";
+        url = "https://registry.npmjs.org/core-js/-/core-js-3.23.1.tgz";
+        sha512 = "wfMYHWi1WQjpgZNC9kAlN4ut04TM9fUTdi7CqIoTVM7yaiOUQTklOzfb+oWH3r9edQcT3F887swuVmxrV+CC8w==";
       };
     };
-    "core_d-4.0.0" = {
+    "core_d-5.0.1" = {
       name = "core_d";
       packageName = "core_d";
-      version = "4.0.0";
+      version = "5.0.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/core_d/-/core_d-4.0.0.tgz";
-        sha512 = "dBxd0Ocxj3D3K+rJxutTAZ9LQHkuMZoc9HPWYwYRYK7swou5wuIRXxgJ39YLNDvFHfHyV3JbxVYluF/AOhcRnw==";
+        url = "https://registry.npmjs.org/core_d/-/core_d-5.0.1.tgz";
+        sha512 = "37lZyhJY1hzgFbfU4LzY4zL09QPwPfV2W/3YBOtN7mkdvVaeP1OVnDZI6zxggtlPwG/BuE5wIr0xptlVJk5EPA==";
       };
     };
     "has-flag-4.0.0" = {
@@ -49,13 +49,13 @@ let
         sha512 = "GyQkE8M32pULhQk7Sko5raoIbPalAk90ICG+An4fq6fCsFHsP6fB2K46WGXVdoJpy4SGMnZ/EKbo123fZJomWg==";
       };
     };
-    "prettier-2.6.2" = {
+    "prettier-2.7.1" = {
       name = "prettier";
       packageName = "prettier";
-      version = "2.6.2";
+      version = "2.7.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/prettier/-/prettier-2.6.2.tgz";
-        sha512 = "PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==";
+        url = "https://registry.npmjs.org/prettier/-/prettier-2.7.1.tgz";
+        sha512 = "ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==";
       };
     };
     "regenerator-runtime-0.13.9" = {
@@ -85,13 +85,13 @@ let
         sha512 = "MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==";
       };
     };
-    "typescript-4.6.4" = {
+    "typescript-4.7.4" = {
       name = "typescript";
       packageName = "typescript";
-      version = "4.6.4";
+      version = "4.7.4";
       src = fetchurl {
-        url = "https://registry.npmjs.org/typescript/-/typescript-4.6.4.tgz";
-        sha512 = "9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==";
+        url = "https://registry.npmjs.org/typescript/-/typescript-4.7.4.tgz";
+        sha512 = "C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==";
       };
     };
     "vscode-css-languageservice-5.4.2" = {
@@ -148,13 +148,13 @@ let
         sha512 = "BNlAYgQoYwlSgDLJhSG+DeA8G1JyECqRzM2YO6tMmMji3Ad9Mw6AW7vnZMti90qlAKb0LqAlJfSVGEdqMMNzKg==";
       };
     };
-    "vscode-languageserver-textdocument-1.0.4" = {
+    "vscode-languageserver-textdocument-1.0.5" = {
       name = "vscode-languageserver-textdocument";
       packageName = "vscode-languageserver-textdocument";
-      version = "1.0.4";
+      version = "1.0.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.4.tgz";
-        sha512 = "/xhqXP/2A2RSs+J8JNXpiiNVvvNM0oTosNVmQnunlKvq9o4mupHOBAnnzH0lwIPKazXKvAKsVp1kr+H/K4lgoQ==";
+        url = "https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.5.tgz";
+        sha512 = "1ah7zyQjKBudnMiHbZmxz5bYNM9KKZYz+5VQLj+yr8l+9w3g+WAhCkUkWbhMEdC5u0ub4Ndiye/fDyS8ghIKQg==";
       };
     };
     "vscode-languageserver-types-3.17.1" = {
@@ -190,16 +190,16 @@ in
   "@fsouza/prettierd" = nodeEnv.buildNodePackage {
     name = "_at_fsouza_slash_prettierd";
     packageName = "@fsouza/prettierd";
-    version = "0.20.0";
+    version = "0.21.1";
     src = fetchurl {
-      url = "https://registry.npmjs.org/@fsouza/prettierd/-/prettierd-0.20.0.tgz";
-      sha512 = "FQ2WX17r2RErbsheFTg6ZjdP1FTZ02Urc9uORAxc3OXPRJaVmx1AzYgTY0w3LmPZs4YyiH0IZO+BrstobhjCjA==";
+      url = "https://registry.npmjs.org/@fsouza/prettierd/-/prettierd-0.21.1.tgz";
+      sha512 = "xLGvk2csfCqTT3MZfXC7uGxdAy0HkMiYoVz2vCQbxNHCLSLBEoejNcbNh+MPWulRPSVBYN8jJJge6yychCU5KA==";
     };
     dependencies = [
-      sources."core_d-4.0.0"
+      sources."core_d-5.0.1"
       sources."has-flag-4.0.0"
       sources."nanolru-1.0.0"
-      sources."prettier-2.6.2"
+      sources."prettier-2.7.1"
       sources."supports-color-8.1.1"
     ];
     buildInputs = globalBuildInputs;
@@ -209,7 +209,7 @@ in
       license = "ISC";
     };
     production = true;
-    bypassCache = true;
+    bypassCache = false;
     reconstructLock = true;
   };
   vscode-langservers-extracted = nodeEnv.buildNodePackage {
@@ -221,18 +221,18 @@ in
       sha512 = "Un7gzQgvACjGtsT0Yll5QqHgL65a4mTK5ChgMnO4dgTZ3tuwJCaP84oztBqvuFZzN9QxA3C07J4QEQvf1xjcgQ==";
     };
     dependencies = [
-      sources."core-js-3.22.5"
+      sources."core-js-3.23.1"
       sources."jsonc-parser-3.0.0"
       sources."regenerator-runtime-0.13.9"
       sources."request-light-0.5.8"
-      sources."typescript-4.6.4"
+      sources."typescript-4.7.4"
       sources."vscode-css-languageservice-5.4.2"
       sources."vscode-html-languageservice-4.2.5"
       sources."vscode-json-languageservice-4.2.1"
       sources."vscode-jsonrpc-8.0.1"
       sources."vscode-languageserver-8.0.1"
       sources."vscode-languageserver-protocol-3.17.1"
-      sources."vscode-languageserver-textdocument-1.0.4"
+      sources."vscode-languageserver-textdocument-1.0.5"
       sources."vscode-languageserver-types-3.17.1"
       sources."vscode-nls-5.0.1"
       sources."vscode-uri-3.0.3"
@@ -244,7 +244,7 @@ in
       license = "MIT";
     };
     production = true;
-    bypassCache = true;
+    bypassCache = false;
     reconstructLock = true;
   };
 }

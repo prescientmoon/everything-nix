@@ -13,7 +13,7 @@ lib.lists.map (theme: pkgs.callPackage theme { }) [
     wallpaper = "misc/rainbow.png";
     # wallpaper.foreign = ./wallpapers/eye.png;
     transparency = 0.93;
-    variant = "light";
+    variant = "latte";
   })
   (githubVariant {
     variant = "light";

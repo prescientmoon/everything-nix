@@ -31,6 +31,7 @@ function M.setup()
         arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
         arpeggio.chord("i", "<Leader>k", "<C-k><cr>") -- Rebind digraph insertion to leader+k
         arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
+        arpeggio.chord("nv", "cp", "\"+") -- Press cp to use the global clipboard
     end
 
     return M

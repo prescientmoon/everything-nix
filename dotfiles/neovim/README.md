@@ -1,5 +1,10 @@
 # Neovim config
 
+## Articles
+
+- [Textobjects](https://blog.carbonfive.com/vim-text-objects-the-definitive-guide/)
+- [Registers](https://www.brianstorti.com/vim-registers/)
+
 ## Keybinds
 
 Table of my own keybinds. Here as documentation for myself. I am yet to include any of the keybinds for cmp here.
@@ -7,28 +12,25 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 > Things written using italics are chords
 > (aka all the keys need to be pressed at the same time)
 
-| Keybind      | Description                                 | Plugins            |
-| ------------ | ------------------------------------------- | ------------------ |
-| vv           | Create vertical split                       |                    |
-| _jl_         | Save                                        |                    |
-| _jk_         | Exit insert mode                            |                    |
-| _\<leader>k_ | Insert digraph                              |                    |
-| _\<leader>a_ | Swap last 2 used buffers                    |                    |
-| C-n          | Open tree                                   | nvim-tree          |
-| _vp_         | Run command in another tmux pane            | vimux              |
-| _sk_         | Move to previous lh-bracket marker          | lh-brackets        |
-| _sj_         | Move to next lh-bracket marker              | lh-brackets        |
-| _mo_         | Move outside the current brackets           | lh-brackets        |
-| _ml_         | Remove all markers and move to the last one | lh-brackets        |
-| C-hjkl       | Navigation between vim & tmux panes         | vim-tmux-navigator |
-| J            | Show line diagnostics                       | lspconfig          |
-| K            | Show hover info                             | lspconfig          |
-| L            | Signature help (?)                          | lspconfig          |
-| gD           | Go to declaration                           | lspconfig          |
-| gd           | Go to definition                            | lspconfig          |
-| gi           | Go to implementation                        | lspconfig          |
-| \<leader>rn  | Rename                                      | lspconfig          |
-| \<leader>f   | format                                      | lspconfig          |
+| Keybind      | Description                         | Plugins            |
+| ------------ | ----------------------------------- | ------------------ |
+| vv           | Create vertical split               |                    |
+| _cp_         | Use system clipboard                |                    |
+| _jl_         | Save                                |                    |
+| _jk_         | Exit insert mode                    |                    |
+| _\<leader>k_ | Insert digraph                      |                    |
+| _\<leader>a_ | Swap last 2 used buffers            |                    |
+| C-n          | Open tree                           | nvim-tree          |
+| _vp_         | Run command in another tmux pane    | vimux              |
+| C-hjkl       | Navigation between vim & tmux panes | vim-tmux-navigator |
+| J            | Show line diagnostics               | lspconfig          |
+| K            | Show hover info                     | lspconfig          |
+| L            | Signature help (?)                  | lspconfig          |
+| gD           | Go to declaration                   | lspconfig          |
+| gd           | Go to definition                    | lspconfig          |
+| gi           | Go to implementation                | lspconfig          |
+| \<leader>rn  | Rename                              | lspconfig          |
+| \<leader>f   | format                              | lspconfig          |
 
 ### Lh-brackets
 
@@ -41,7 +43,6 @@ The default brackets I load in each buffer are (), [], "", '', {} and \`\`. Diff
 | Ctrl-P      | Find files                     |                        |
 | Ctrl-F      | Grep in project                |                        |
 | \<leader>d  | Diagnostics                    | lspconfig              |
-| \<leader>wd | Workspace diagnostics          | lspconfig              |
 | \<leader>ca | Code actions                   | lspconfig              |
 | \<leader>t  | Show builtin pickers           |                        |
 | \<leader>s  | Show symbols using tree-sitter |                        |

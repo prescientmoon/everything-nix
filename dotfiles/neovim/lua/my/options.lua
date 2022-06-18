@@ -12,6 +12,9 @@ function M.setup()
     opt.number = true -- Show line numbers
     opt.relativenumber = true -- Relative line numbers
 
+    -- TODO: only do this for specific filestypes
+    opt.expandtab = true -- Use spaces for the tab char
+
     opt.scrolloff = 4 -- Lines of context
     opt.shiftround = true -- Round indent
     opt.shiftwidth = 2 -- Size of an indent

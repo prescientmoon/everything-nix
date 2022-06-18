@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  node = pkgs.nodejs-17_x;
+  node = pkgs.nodejs;
   yarn = pkgs.yarn.override { nodejs = node; };
 in
 {

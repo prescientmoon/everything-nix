@@ -19,7 +19,18 @@ local unicodeChars = {
     arrow = "→",
     compose = "∘",
     inverse = "⁻¹",
-    dots = "…"
+    dots = "…",
+    alpha = "ɑ",
+    beta = "β",
+    pi = "π",
+    Pi = 'Π',
+    sigma = "σ",
+    Sigma = "Σ",
+    tau = "τ",
+    theta = "θ",
+    gamma = "γ",
+    Gamma = "Γ",
+    context = "Γ"
 }
 
 -- our picker function for unicode chars
@@ -52,7 +63,7 @@ function M.picker(opts)
                 local selection = action_state.get_selected_entry()
 
                 if selection == nil then
-                    utils.__warn_no_selection "builtin.planets"
+                    utils.__warn_no_selection "my.abbreviations"
                     return
                 end
 
@@ -64,7 +75,8 @@ function M.picker(opts)
     }):find()
 end
 
-function M.setupAbbreviations(ending)
+function M.setupAbbreviations(prefix, ending)
+    prefix = prefix or ""
     ending = ending or ""
 
     if not add_abbreviations then return end
@@ -73,7 +85,7 @@ function M.setupAbbreviations(ending)
 
     for key, value in pairs(unicodeChars) do
         -- By default abbreviations are triggered using "_"
-        abbreviate(key .. ending, value)
+        abbreviate(prefix .. key .. ending, value)
     end
 end
 
