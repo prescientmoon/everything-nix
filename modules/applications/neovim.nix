@@ -43,6 +43,7 @@ let
   '';
 
   base = pkgs.neovim-nightly;
+  # base = pkgs.neovim;
   neovim =
     pkgs.symlinkJoin {
       inherit (base) name meta;

@@ -1,15 +1,5 @@
 { pkgs, ... }:
 with import ../secrets.nix; {
-  # options = {
-  #   myUser = {
-  #     type = lib.types.string;
-  #     default = "";
-  #   };
-  # };
-
-  # config = {
-  # myUser = "adrielus";
-
   # Disable asking for password for sudo
   security.sudo.extraRules = [
     {
