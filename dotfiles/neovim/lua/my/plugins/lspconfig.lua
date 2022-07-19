@@ -71,6 +71,7 @@ end
 -- General server config
 local servers = {
     tsserver = {on_attach = on_attach_typescript},
+    dhall_lsp_server = {},
     sumneko_lua = {
         settings = {
             Lua = {

@@ -1,5 +1,5 @@
 { pkgs, ... }:
-with import ../secrets.nix; {
+{
   # Disable asking for password for sudo
   security.sudo.extraRules = [
     {
@@ -14,8 +14,7 @@ with import ../secrets.nix; {
   users = {
     mutableUsers = false;
     users.adrielus = {
-      inherit hashedPassword;
-
+      passwordFile = "~/water/pass";
       extraGroups = [ "wheel" "networkmanager" "lp" "docker" ];
       isNormalUser = true;
       shell = pkgs.fish;

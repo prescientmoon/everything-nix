@@ -4,6 +4,7 @@
 
 - [Textobjects](https://blog.carbonfive.com/vim-text-objects-the-definitive-guide/)
 - [Registers](https://www.brianstorti.com/vim-registers/)
+- [Markers](https://vim.fandom.com/wiki/Using_marks)
 
 ## Keybinds
 
@@ -14,13 +15,15 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 
 | Keybind      | Description                         | Plugins            |
 | ------------ | ----------------------------------- | ------------------ |
-| vv           | Create vertical split               |                    |
+| _vs_         | Create vertical split               |                    |
 | _cp_         | Use system clipboard                |                    |
 | _jl_         | Save                                |                    |
 | _jk_         | Exit insert mode                    |                    |
 | _\<leader>k_ | Insert digraph                      |                    |
 | _\<leader>a_ | Swap last 2 used buffers            |                    |
 | C-n          | Open tree                           | nvim-tree          |
+| _vc_         | Clear vimux window                  | vimux              |
+| _vl_         | Rerun last vimux command            | vimux              |
 | _vp_         | Run command in another tmux pane    | vimux              |
 | C-hjkl       | Navigation between vim & tmux panes | vim-tmux-navigator |
 | J            | Show line diagnostics               | lspconfig          |
@@ -64,6 +67,13 @@ The default brackets I load in each buffer are (), [], "", '', {} and \`\`. Diff
 | _gd_    | Generate definition |
 | _rh_    | Refine hole         |
 | _ac_    | Add clause          |
+
+### Purescript
+
+| Keybind | Description                                 |
+| ------- | ------------------------------------------- |
+| _vb_    | Make tmux run spago build in sepearate pane |
+| _vt_    | Make tmux run spago test in separate pane   |
 
 ### Lean
 

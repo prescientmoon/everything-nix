@@ -1,7 +1,7 @@
 local au = require("my.helpers.augroup")
 local M = {}
 
-local syntaxFiles = {bkf = "bkf"}
+local syntaxFiles = {hkf = "hkf"}
 
 function M.setup()
     au.augroup("myfiledetection", function()

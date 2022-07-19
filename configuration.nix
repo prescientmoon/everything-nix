@@ -65,7 +65,7 @@ in
   };
 
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "19.03";
 
   # TODO: put nixpkgs stuff inside their own file
   nixpkgs.config.allowUnfree = true;

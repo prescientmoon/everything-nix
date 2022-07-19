@@ -5,6 +5,7 @@ function M.setup()
     require('nvim-autopairs').setup()
     require("startup").setup()
     require("presence"):setup({}) -- wtf does the : do here?
+    -- require("which-key").setup()
 
     -- Plugins with their own configs:
     require("my.plugins.vim-tmux-navigator").setup()

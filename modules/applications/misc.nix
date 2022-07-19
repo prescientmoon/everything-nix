@@ -34,7 +34,7 @@
 
     # editors
     # vscodium
-    vscode
+    # vscode
     # vim
     # emacs
     vimclip # use neovim anywhere
@@ -50,7 +50,7 @@
     # browsers
     unstable.google-chrome
     # brave
-    firefox
+    # firefox
 
     # other stuff
     obsidian # knowedge base
@@ -67,7 +67,7 @@
     # blueman # bluetooth manager
     # freesweep # minesweeper I can play w the keyboard.
     # multimc
-    lmms # music software
+    # lmms # music software
 
     # Nes emulators and stuff
     # zsnes
@@ -75,9 +75,9 @@
     # fceux
 
     # games
-    # tetrio-desktop
-    vassal
-    # mindustry
-    # edopro
+    # tetrio-desktop # competitive tetris
+    # vassal # wargame engine
+    # mindustry # factory building game
+    # edopro # yugioh sim
   ];
 }

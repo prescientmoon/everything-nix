@@ -22,11 +22,11 @@ function M.mapSilent(mode, lhs, rhs, opts)
 end
 
 function M.setup()
-    M.map("n", "vv", "<C-w>v") -- Create vertical split
     M.map("n", "qq", ":wq<cr>") -- Create vertical split
 
+    -- Create chords
     if arpeggio ~= nil then
-        -- Create chords
+        arpeggio.chord("n", "vs", "<C-w>v") -- Create vertical split
         arpeggio.chord("n", "ji", ":w<cr>") -- Saving
         arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
         arpeggio.chord("i", "<Leader>k", "<C-k><cr>") -- Rebind digraph insertion to leader+k

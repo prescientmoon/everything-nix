@@ -14,7 +14,7 @@ function M.setup()
     local luasnip = require("luasnip")
 
     local options = {
-        formatting = {format = lspkind.cmp_format()},
+        formatting = {format = lspkind.cmp_format({mode = "symbol"})},
         snippet = {
             -- REQUIRED - you must specify a snippet engine
             expand = function(args)

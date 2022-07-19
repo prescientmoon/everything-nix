@@ -36,7 +36,9 @@ function M.setup()
         "hrsh7th/nvim-cmp", -- completion engine
         "L3MON4D3/LuaSnip", -- snippeting engine
         "saadparwaiz1/cmp_luasnip", -- snippet support for cmp
-        "wakatime/vim-wakatime" -- track time usage
+        "wakatime/vim-wakatime", -- track time usage
+        "vmchale/dhall-vim", -- dhall syntax highlighting
+        "folke/which-key.nvim"
     }
 
     for _, v in ipairs(themePackages) do
