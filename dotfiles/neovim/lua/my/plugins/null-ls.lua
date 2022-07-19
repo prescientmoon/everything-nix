@@ -7,7 +7,7 @@ function M.setup()
 
     local sources = {
         null_ls.builtins.formatting.prettierd.with({extra_filetypes = {}}), -- format ts files
-        null_ls.builtins.formatting.lua_format -- format lua code
+        -- null_ls.builtins.formatting.lua_format -- format lua code
     }
 
     null_ls.setup({sources = sources, on_attach = lspconfig.on_attach})

@@ -7,13 +7,13 @@ lib.lists.map (theme: pkgs.callPackage theme { }) [
   (catppuccin {
     # wallpaper = "os/nix-magenta-pink-1920x1080.png";
     # wallpaper = "minimalistic/tetris.png";
-    # wallpaper = "os/nix-black-4k.png";
+    wallpaper = "os/nix-black-4k.png";
     # wallpaper = "landscapes/forrest.png";
     # wallpaper = "landscapes/salty_mountains.png";
-    wallpaper = "misc/rainbow.png";
+    # wallpaper = "misc/rainbow.png";
     # wallpaper.foreign = ./wallpapers/eye.png;
     transparency = 0.93;
-    variant = "latte";
+    variant = "frappe";
   })
   (githubVariant {
     variant = "light";

@@ -19,6 +19,7 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 | _cp_         | Use system clipboard                |                    |
 | _jl_         | Save                                |                    |
 | _jk_         | Exit insert mode                    |                    |
+| _rw_         | Rename word under cursor            |                    |
 | _\<leader>k_ | Insert digraph                      |                    |
 | _\<leader>a_ | Swap last 2 used buffers            |                    |
 | C-n          | Open tree                           | nvim-tree          |
@@ -34,10 +35,6 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 | gi           | Go to implementation                | lspconfig          |
 | \<leader>rn  | Rename                              | lspconfig          |
 | \<leader>f   | format                              | lspconfig          |
-
-### Lh-brackets
-
-The default brackets I load in each buffer are (), [], "", '', {} and \`\`. Different brackets are added in different filetypes.
 
 ### Telescope
 
@@ -60,13 +57,13 @@ The default brackets I load in each buffer are (), [], "", '', {} and \`\`. Diff
 
 | Keybind | Description         |
 | ------- | ------------------- |
-| _sc_    | Case split          |
-| _mc_    | Make case           |
-| _ml_    | Make lemma          |
-| _es_    | Expression search   |
-| _gd_    | Generate definition |
-| _rh_    | Refine hole         |
-| _ac_    | Add clause          |
+| _isc_   | Case split          |
+| _imc_   | Make case           |
+| _iml_   | Make lemma          |
+| _ies_   | Expression search   |
+| _igd_   | Generate definition |
+| _irh_   | Refine hole         |
+| _iac_   | Add clause          |
 
 ### Purescript
 
@@ -74,6 +71,12 @@ The default brackets I load in each buffer are (), [], "", '', {} and \`\`. Diff
 | ------- | ------------------------------------------- |
 | _vb_    | Make tmux run spago build in sepearate pane |
 | _vt_    | Make tmux run spago test in separate pane   |
+
+### Nix
+
+| Keybind | Description                                 |
+| ------- | ------------------------------------------- |
+| _ug_    | Run nix-fetchgit on the current file |
 
 ### Lean
 

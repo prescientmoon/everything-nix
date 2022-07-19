@@ -40,10 +40,11 @@
     vimclip # use neovim anywhere
 
     # chat apps
-    discord
-    # deluge
+    unstable.discord
     slack
+    signal-desktop
     tdesktop # telegram for the desktop
+    # deluge
     # zoom-us
     # teams
 

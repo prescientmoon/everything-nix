@@ -17,12 +17,13 @@ let
     sumneko-lua-language-server # lua
     rnix-lsp # nix
     haskell-language-server # haskell
-    vscode-langservers-extracted # css and shit
+    # vscode-langservers-extracted # css and shit
 
     # Formatters
     luaformatter # lua
     ormolu # haskell
-    prettierd # prettier but faster
+    easy-purescript-nix.purs-tidy
+    # prettierd # prettier but faster
 
     # Others
     wakatime # time tracking
@@ -31,6 +32,7 @@ let
     nodePackages.typescript # typescript language
     update-nix-fetchgit # useful for nix stuff
     tree-sitter # syntax highlighting
+    libstdcxx5 # required by treesitter aparently
 
     texlive.combined.scheme-full # latex stuff
     python38Packages.pygments # required for latex syntax highlighting
@@ -54,20 +56,20 @@ let
           --prefix PATH : ${lib.makeBinPath extraPackages}
       '';
     };
+  nvim-treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars);
 in
 {
   home-manager.users.adrielus =
     {
       home.file.".local/share/nvim/site/pack/paqs/start/paq-nvim".source = paq;
+      home.file.".local/share/nvim/site/pack/treesitter/start/nvim-treesitter".source = nvim-treesitter;
       xdg.configFile."nvim/init.lua".text = myConfig;
       xdg.configFile."nvim/lua/my/theme.lua".source = theme.neovim.theme;
+
+      programs.neovim.enable = false;
 
       home.packages = [
         neovim
       ];
-
-      programs.neovim = {
-        enable = false;
-      };
     };
 }

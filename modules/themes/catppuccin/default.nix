@@ -22,7 +22,7 @@ in
   sddm.path = "${foreign.sddm}";
   grub.path = pkgs.nixos-grub2-theme;
 
-  xresources = builtins.readFile "${foreign.xresources}/Xresources";
+  xresources = builtins.readFile "${foreign.xresources}/${variant}.Xresources";
 
   rofi = {
     theme = builtins.readFile "${foreign.rofi}/.local/share/rofi/themes/catppuccin.rasi";
@@ -55,15 +55,17 @@ in
 
   alacritty.settings = {
     import = [ "${foreign.alacritty}/catppuccin.yml" ];
+    # colors = variant;
     window = {
       padding = {
         x = 4;
         y = 4;
       };
 
+      opacity = transparency;
+
       gtk_theme_variant = v "light" "dark";
     };
 
-    background_opacity = transparency;
   };
 }

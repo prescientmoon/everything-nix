@@ -14,5 +14,5 @@ in
     home-manager.users.adrielus.home.sessionVariables = theme.env or { };
   }];
 
-  home-manager.users.adrielus = { home.sessionVariables = variables; };
+  home-manager.users.adrielus.home.sessionVariables = variables;
 }
