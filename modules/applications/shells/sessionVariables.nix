@@ -7,6 +7,8 @@ let
 
     # Sets neovim as default editor
     EDITOR = "nvim";
+
+    PNPM_HOME = "~/.PNPM_HOME";
   };
 in
 {

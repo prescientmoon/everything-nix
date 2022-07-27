@@ -3,8 +3,7 @@ local M = {}
 function M.setup()
   local paq = require("paq")
   local themePackages = require("my.theme").deps
-  local base = {
-    "neovim/nvim-lspconfig", -- configures lsps for me
+  local base = { "neovim/nvim-lspconfig", -- configures lsps for me
     "windwp/nvim-autopairs", -- closes pairs for me (should look for a better one)
     "nvim-lua/plenary.nvim", -- async utility lib it seems?
     "nvim-telescope/telescope.nvim", -- fuzzy search for say opening files
@@ -40,7 +39,10 @@ function M.setup()
     "saadparwaiz1/cmp_luasnip", -- snippet support for cmp
     "wakatime/vim-wakatime", -- track time usage
     "vmchale/dhall-vim", -- dhall syntax highlighting
-    "folke/which-key.nvim"
+    "folke/which-key.nvim", -- shows what other keys I can press to finish a command
+    "psliwka/vim-smoothie", -- smooth scrolling
+    "easymotion/vim-easymotion", -- removes the need for spamming w or e
+    "tpope/vim-surround" -- work with brackets, quotes, tags, etc
   }
 
   for _, v in ipairs(themePackages) do

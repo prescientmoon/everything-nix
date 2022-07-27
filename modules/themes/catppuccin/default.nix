@@ -55,7 +55,7 @@ in
 
   alacritty.settings = {
     import = [ "${foreign.alacritty}/catppuccin.yml" ];
-    # colors = variant;
+    # colors = "*${variant}";
     window = {
       padding = {
         x = 4;

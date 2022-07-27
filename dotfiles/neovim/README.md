@@ -35,6 +35,7 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 | gi           | Go to implementation                | lspconfig          |
 | \<leader>rn  | Rename                              | lspconfig          |
 | \<leader>f   | format                              | lspconfig          |
+| \<leader>ca  | code actions                        | lspconfig          |
 
 ### Telescope
 
@@ -74,8 +75,8 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 
 ### Nix
 
-| Keybind | Description                                 |
-| ------- | ------------------------------------------- |
+| Keybind | Description                          |
+| ------- | ------------------------------------ |
 | _ug_    | Run nix-fetchgit on the current file |
 
 ### Lean

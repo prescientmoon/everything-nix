@@ -18,3 +18,6 @@ end
 # direnv hook, aparently
 # https://direnv.net/docs/hook.html
 direnv hook fish | source
+
+# allow using packages installed by pnpm
+fish_add_path $HOME/.PNPM_HOME

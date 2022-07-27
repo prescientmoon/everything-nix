@@ -26,6 +26,7 @@ let
     # prettierd # prettier but faster
 
     # Others
+    nodePackages.typescript # typescript
     wakatime # time tracking
     fd # file finder
     ripgrep # grep rewrite (I think?)

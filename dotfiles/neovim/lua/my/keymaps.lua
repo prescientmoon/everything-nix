@@ -1,6 +1,5 @@
 local helpers = require("my.helpers")
 local arpeggio = require("my.plugins.arpeggio")
-local au = require("my.helpers.augroup")
 
 local M = {}
 
@@ -22,18 +21,16 @@ function M.mapSilent(mode, lhs, rhs, opts)
 end
 
 function M.setup()
-  M.map("n", "qq", ":wq<cr>") -- Create vertical split
+  M.map("n", "qq", ":wq<cr>") -- Save and quit
 
   -- Create chords
   if arpeggio ~= nil then
     arpeggio.chord("n", "vs", "<C-w>v") -- Create vertical split
     arpeggio.chord("n", "ji", ":w<cr>") -- Saving
     arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
-    arpeggio.chord("i", "<Leader>k", "<C-k><cr>") -- Rebind digraph insertion to leader+k
-    arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
     arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
     arpeggio.chord("nv", "cp", "\"+") -- Press cp to use the global clipboard
-    arpeggio.chord("n", "rw", ":%s/<C-r><C-w>/") -- Press rt to rename word under cursor
+    arpeggio.chord("n", "rw", ":%s/<C-r><C-w>/") -- Press rw to rename word under cursor
   end
 
   return M
