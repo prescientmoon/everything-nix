@@ -42,6 +42,7 @@ let
   myConfig = ''
     vim.g.lualineTheme = "${theme.neovim.lualineTheme}"
     vim.opt.runtimepath:append("${paths.dotfiles}/neovim")
+    vim.opt.runtimepath:append("${paths.dotfiles}/vscode-snippets")
     require("my.init").setup()
   '';
 

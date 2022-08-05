@@ -34,7 +34,7 @@
 
     # editors
     # vscodium
-    # vscode
+    vscode
     # vim
     # emacs
     vimclip # use neovim anywhere
@@ -45,7 +45,7 @@
     signal-desktop
     tdesktop # telegram for the desktop
     # deluge
-    # zoom-us
+    zoom-us
     # teams
 
     # browsers

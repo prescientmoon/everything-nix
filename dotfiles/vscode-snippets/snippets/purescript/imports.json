@@ -1,0 +1,37 @@
+{
+  "Tuple constructors": {
+    "prefix": "imptuple",
+    "description": "Import tuple constructors",
+    "body": "import Data.Tuple.Nested (type (/\\), (/\\))"
+  },
+  "Map": {
+    "prefix": "impmap",
+    "description": "Import Map module",
+    "body": "import Data.Map as Map"
+  },
+  "HashMap": {
+    "prefix": "imphashmap",
+    "description": "Import HashMap module",
+    "body": "import Data.HashMap as HashMap"
+  },
+  "FRP Event": {
+    "prefix": "impevent",
+    "description": "Import FRP.Event module",
+    "body": "import FRP.Event as E"
+  },
+  "List": {
+    "prefix": "implist",
+    "description": "Import List module",
+    "body": "import Data.List as List"
+  },
+  "Array": {
+    "prefix": "imparray",
+    "description": "import Array module",
+    "body": "import Data.Array as Array"
+  },
+  "AVar": {
+    "prefix": "impavar",
+    "description": "import AVar module",
+    "body": "import Effect.Aff.AVar as AV"
+  }
+}
