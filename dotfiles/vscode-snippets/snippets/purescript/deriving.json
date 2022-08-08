@@ -1,6 +1,6 @@
 {
   "Derive newtype instance": {
-    "prefix": "nderive",
+    "prefix": "gnderive",
     "description": "Use newtype deriving on any typeclass",
     "body": "derive newtype instance $0 $3 $2"
   },
@@ -13,7 +13,7 @@
     ]
   },
   "Generic": {
-    "prefix": "generic",
+    "prefix": "dgeneric",
     "description": "Generate the generic instance for a type",
     "body": "derive instance Generic $1 _"
   },
@@ -52,8 +52,26 @@
     ]
   },
   "Functor": {
-    "prefix": "functor",
+    "prefix": "dfunctor",
     "description": "Derive a Functor instance",
     "body": "derive instance Functor $1$0"
+  },
+  "Eq": {
+    "prefix": "deq",
+    "description": "Derive an Eq instance",
+    "body": "derive instance Eq $1$0"
+  },
+  "Ord": {
+    "prefix": "dord",
+    "description": "Derive an Ord instance",
+    "body": "derive instance Ord $1$0"
+  },
+  "Eq & Ord": {
+    "prefix": "deqord",
+    "description": "Derive an Eq and an Ord instance",
+    "body": [
+      "derive instance Eq $1",
+      "derive instance Ord $1$0"
+    ]
   }
 }

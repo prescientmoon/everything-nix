@@ -60,5 +60,15 @@
       "-- | $0",
       "-- | ```"
     ]
+  }, 
+  "Section": {
+    "prefix": "section",
+    "description": "Delimit a section using 10 dashes",
+    "body" : "---------- $0"
+  },
+  "Typeclass instances": {
+    "prefix": "sinstances",
+    "description": "Delimit a section which declares typeclass instances",
+    "body" : ["---------- Typeclass instances", "$0"]
   }
 }

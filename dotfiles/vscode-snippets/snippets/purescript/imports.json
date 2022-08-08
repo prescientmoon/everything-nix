@@ -33,5 +33,20 @@
     "prefix": "impavar",
     "description": "import AVar module",
     "body": "import Effect.Aff.AVar as AV"
+  },
+  "Object": {
+    "prefix": "impobject",
+    "description": "import Foreign.Object module",
+    "body": "import Foreign.Object as Object"
+  },
+  "STObject": {
+    "prefix": "impstobject",
+    "description": "import STObject module",
+    "body": "import Foreign.Object.ST as STObject"
+  },
+  "Ref": {
+    "prefix": "impref",
+    "description": "import Effect.Ref module",
+    "body": "import Effect.Ref as Ref"
   }
 }

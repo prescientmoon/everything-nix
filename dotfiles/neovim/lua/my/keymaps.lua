@@ -26,6 +26,7 @@ function M.setup()
   -- Create chords
   if arpeggio ~= nil then
     arpeggio.chord("n", "vs", "<C-w>v") -- Create vertical split
+    arpeggio.chord("n", "vs", "<C-w>v") -- Create vertical split
     arpeggio.chord("n", "ji", ":w<cr>") -- Saving
     arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
     arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
