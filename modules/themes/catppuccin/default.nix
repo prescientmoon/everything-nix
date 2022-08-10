@@ -5,7 +5,7 @@ let
   v = (a: b: if variant == "latte" then a else b);
 in
 {
-  name = "catppuccin";
+  name = "catppuccin-${variant}";
   wallpaper = wallpaper.foreign or "${foreign.wallpapers}/${wallpaper}";
 
   env = {

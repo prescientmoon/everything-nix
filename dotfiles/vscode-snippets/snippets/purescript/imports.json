@@ -48,5 +48,15 @@
     "prefix": "impref",
     "description": "import Effect.Ref module",
     "body": "import Effect.Ref as Ref"
+  },
+  "Int": {
+    "prefix": "impint",
+    "description": "import Data.Int module",
+    "body": "import Data.Int as Int"
+  },
+  "Number": {
+    "prefix": "impnumber",
+    "description": "import Data.Number module",
+    "body": "import Data.Number as Number"
   }
 }
