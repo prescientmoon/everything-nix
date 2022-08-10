@@ -13,7 +13,7 @@ in
 {
   home-manager.users.adrielus = {
     home.packages = [ rofi ];
-    home.file.".local/share/rofi/themes/${theme.name}.rasi".text = theme.rofi.theme or "";
+    home.file.".local/share/rofi/themes".source = theme.rofi.themes or "/home/adrielus/.temp-empty-rofi-themes-directory";
 
     xdg.configFile."rofi/config.rasi".text = ''
       @import "${./pre.rasi}"

@@ -8,8 +8,8 @@
   sddm = fetchFromGitHub {
     owner = "catppuccin";
     repo = "sddm";
-    sha256 = "065g331issjw8jh0hjqfhc98sqhb4i77mwx7y9v5wdy32pmym9i1";
-    rev = "cfe861c1ea9c92e4b4cd5acb3627021e1d2f5e6c";
+    sha256 = "1rkmrr2fvczjz5wgcdfi7hyhp0s2lnn1jhan0qq896kvc1pmwqid";
+    rev = "e2a0dc15f63ba7429cef79cf08db8d3f2a3018c1";
   };
   grub = fetchFromGitHub {
     owner = "catppuccin";
@@ -20,26 +20,26 @@
   gtk = fetchFromGitHub {
     owner = "catppuccin";
     repo = "gtk";
-    sha256 = "1l8xr651mh4lf26s5d7jfk7vv1jxh9qld0w5hgcnqsa13lncsd5h";
-    rev = "7bfea1f0d569010998302c8242bb857ed8a83058";
+    sha256 = "1q9iq0agdk5rm5cfnpr1b1bzy6fdx67pvkakx478j1dlyr1d78bl";
+    rev = "87a79fd2bf07accc694455df30a32a82b1b31f4f";
   };
   rofi = fetchFromGitHub {
     owner = "catppuccin";
     repo = "rofi";
-    sha256 = "076xkxxmwhffns35n3cnbn6lz9i4w6hvma1g4mdw0zmayvy5rmpj";
-    rev = "2e14344b789d70d42853ffe2abe79b3b85b16e24";
+    sha256 = "1bs7l5mpqryjl7dz6pi419n1p9c68362vnczj0lcpbxnfpw0af24";
+    rev = "39fc2a0b51d594e559cb03bf9d4e743cb96f7b01";
   };
   alacritty = fetchFromGitHub {
     owner = "catppuccin";
     repo = "alacritty";
-    sha256 = "0ka3a79i4iv2ahkc3hy41b4s220z8ydkrma52fvcqmphw1y3h7ml";
-    rev = "c2d27714b43984e47347c6d81216b7670a3fe07f";
+    sha256 = "1l7fa4gncx08j48mjd1zwz7j1j4vm08rbs1vx53cdj3yp3s4j50m";
+    rev = "0f0247693730de64d50a9d915c3306b234c6f11b";
   };
   wallpapers = fetchFromGitHub {
     owner = "catppuccin";
     repo = "wallpapers";
-    sha256 = "0p1xfr6hv4w0zw04jpbylwiy3n2w9zpxfq041ql8j3jh4inn0w1g";
-    rev = "72f67e1e198cf07bdfd30f70c074a946e5dc64b4";
+    sha256 = "0d68di2nn9as7y2rxq1v4b5d0s89y53m8v2ls8nfm1rrggny1iqx";
+    rev = "72b8b3e1749300fbaf6f8e736a65a4f41ac7d48d";
   };
   xresources = fetchFromGitHub {
     owner = "catppuccin";

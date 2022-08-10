@@ -25,10 +25,12 @@ in
   xresources = builtins.readFile "${foreign.xresources}/${variant}.Xresources";
 
   rofi = {
-    theme = builtins.readFile "${foreign.rofi}/.local/share/rofi/themes/catppuccin.rasi";
+    themes = "${foreign.rofi}/.local/share/rofi/themes/";
     config = ''
       @import "${foreign.rofi}/.config/rofi/config.rasi"
-      @import "${./rofi.rasi}"'';
+      @theme "catppuccin-${variant}"
+      @import "${./rofi.rasi}"
+    '';
   };
 
   chromium.extensions = [
