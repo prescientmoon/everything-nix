@@ -40,7 +40,6 @@
     vimclip # use neovim anywhere
 
     # chat apps
-    unstable.discord
     slack
     signal-desktop
     tdesktop # telegram for the desktop

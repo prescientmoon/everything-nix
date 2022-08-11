@@ -42,7 +42,9 @@ function M.setup()
     "folke/which-key.nvim", -- shows what other keys I can press to finish a command
     "psliwka/vim-smoothie", -- smooth scrolling
     "easymotion/vim-easymotion", -- removes the need for spamming w or e
-    "tpope/vim-surround" -- work with brackets, quotes, tags, etc
+    "tpope/vim-surround", -- work with brackets, quotes, tags, etc
+    "MunifTanjim/nui.nvim", -- ui stuff required by idris2
+    "ShinKage/idris2-nvim" -- idris2 support
   }
 
   for _, v in ipairs(themePackages) do

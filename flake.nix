@@ -27,8 +27,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    vim-extra-plugins.url = "github:m15a/nixpkgs-vim-extra-plugins";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
@@ -40,7 +38,6 @@
       overlays = { ... }: {
         nix.registry.nixpkgs.flake = nixpkgs;
         nixpkgs.overlays = [
-          inputs.vim-extra-plugins.overlay
           inputs.neovim-nightly-overlay.overlay
           inputs.idris2-pkgs.overlay
           provideInputs

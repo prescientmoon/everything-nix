@@ -12,6 +12,7 @@
     ./steam.nix
     ./docker.nix
     ./misc.nix
+    ./discord.nix
     ./locale.nix
     # ./memes.nix
     ./alacritty.nix
