@@ -48,7 +48,7 @@ in
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
-      theme = theme.grub.path;
+      # theme = theme.grub.path;
 
       version = 2;
     };
@@ -60,19 +60,10 @@ in
   # Enable sound.
   sound.enable = true;
 
-  home-manager.users.adrielus = {
-    manual.manpages.enable = false;
-  };
-
-
   system.stateVersion = "19.03";
 
   # TODO: put nixpkgs stuff inside their own file
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-13.6.9"
-  ];
 }
 

@@ -11,6 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     # keyboard layout configuration
     kmonad = {
       url = "github:kmonad/kmonad?dir=nix";
@@ -29,7 +35,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }:
+  outputs = inputs@{ self, stylix, nixpkgs, ... }:
     let
       system = "x86_64-linux";
       provideInputs =
@@ -55,6 +61,7 @@
         modules = [
           inputs.home-manager.nixosModules.home-manager
           inputs.kmonad.nixosModule
+          stylix.nixosModules.stylix
           overlays
           ./hardware/laptop.nix
           ./configuration.nix

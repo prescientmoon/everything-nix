@@ -10,11 +10,11 @@ import XMonad.Config (defaultConfig)
 import XMonad.Config.Kde
 import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Operations
 import XMonad.Util.EZConfig
-import XMonad.Layout.NoBorders
 
 kdeOn :: Bool
 kdeOn = False
@@ -33,7 +33,7 @@ main =
             handleEventHook = handleEventHook kdeConfig <+> fullscreenEventHook,
             terminal = myTerminal,
             workspaces = myWorkspaces,
-	    borderWidth = 0
+            borderWidth = 0
           }
           `additionalKeysP` keymap
   where
