@@ -102,7 +102,8 @@ local servers = {
     }
   },
   rnix = {},
-  cssls = {}
+  cssls = {},
+  kotlin_language_server = {}
   -- agda = {}, Haven't gotten this one to work yet
 }
 

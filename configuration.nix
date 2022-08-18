@@ -5,7 +5,7 @@ in
 {
   imports = [ ./modules ];
 
-  boot.tmpOnTmpfs = true;
+  boot.tmpOnTmpfs = false;
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

@@ -6,7 +6,7 @@ import System.Environment
 import System.Process
 import XMonad
 import XMonad.Actions.SpawnOn
-import XMonad.Config (defaultConfig)
+import XMonad.Config
 import XMonad.Config.Kde
 import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
@@ -25,7 +25,7 @@ main =
   xmonad $
     ewmh $
       docks $
-        defaultConfig
+        def
           { modMask = mod4Mask,
             layoutHook = myLayoutHook,
             startupHook = startup,

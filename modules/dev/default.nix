@@ -8,6 +8,7 @@
     ./dhall.nix
     ./haskell
     ./fsharp.nix
+    ./kotlin.nix
     # ./racket.nix
     # ./elm.nix
 

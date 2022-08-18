@@ -17,6 +17,7 @@ let
     sumneko-lua-language-server # lua
     rnix-lsp # nix
     haskell-language-server # haskell
+    kotlin-language-server # kotlin
     # vscode-langservers-extracted # css and shit
 
     # Formatters
