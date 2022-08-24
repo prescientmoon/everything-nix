@@ -3,7 +3,8 @@ local M = {}
 function M.setup()
   local paq = require("paq")
   local themePackages = require("my.theme").deps
-  local base = { "neovim/nvim-lspconfig", -- configures lsps for me
+  local base = {
+    "neovim/nvim-lspconfig", -- configures lsps for me
     "windwp/nvim-autopairs", -- closes pairs for me (should look for a better one)
     "nvim-lua/plenary.nvim", -- async utility lib it seems?
     "nvim-telescope/telescope.nvim", -- fuzzy search for say opening files
@@ -46,6 +47,8 @@ function M.setup()
     "MunifTanjim/nui.nvim", -- ui stuff required by idris2
     "ShinKage/idris2-nvim", -- idris2 support
     "udalov/kotlin-vim", -- kotlin support
+    "haringsrob/nvim_context_vt", -- show context on closing parenthesis
+    "vuki656/package-info.nvim", -- shows latest versions in package.json
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
     "TimUntersberger/neogit" -- magit clone
