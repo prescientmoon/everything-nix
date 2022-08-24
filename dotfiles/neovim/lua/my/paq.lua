@@ -47,6 +47,8 @@ function M.setup()
     "ShinKage/idris2-nvim" -- idris2 support
   }
 
+  table.insert(base, "nvim-treesitter/nvim-treesitter")
+
   for _, v in ipairs(themePackages) do
     -- append package in the base list
     table.insert(base, v)
