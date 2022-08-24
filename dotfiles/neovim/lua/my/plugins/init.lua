@@ -4,7 +4,6 @@ local M = {}
 function M.setup()
   require('nvim-autopairs').setup()
   require "gitlinker".setup()
-  require('neogit').setup()
 
 
   vscode.unless(function()
@@ -21,8 +20,8 @@ function M.setup()
     require("my.plugins.vimux").setup()
   end)
 
-
   require("my.plugins.vim-tmux-navigator").setup()
+  require("my.plugins.neogit").setup()
   require("my.plugins.comment").setup()
   require("my.plugins.telescope").setup()
 
