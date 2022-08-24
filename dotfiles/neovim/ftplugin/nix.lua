@@ -1,5 +1,4 @@
 local A = require("my.plugins.arpeggio")
-local C = require("my.plugins.comment")
 
 print("Initializing nix keybinds...")
 
@@ -9,4 +8,4 @@ A.chordSilent("n", "ug",
   { settings = "b" })
 
 -- Idk why this isn't here by default
-C.setCommentString("nix", "# %s")
+vim.api.nvim_buf_set_option(0, "commentstring", "# %s")

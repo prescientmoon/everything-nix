@@ -52,6 +52,7 @@ in
   };
 
 
+
   # Vim plugins
   myVimPlugins = {
     githubNvimTheme = foreign.githubNvimTheme;

@@ -3,6 +3,8 @@
     home.packages = with pkgs; [
       kotlin
       gradle
+      jdk
+      android-studio
     ];
   };
 }

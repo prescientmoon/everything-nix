@@ -3,7 +3,9 @@ local M = {}
 
 function M.setup()
   require('nvim-autopairs').setup()
-  --
+  require "gitlinker".setup()
+  require('nvim_comment').setup()
+
   vscode.unless(function()
     require("presence"):setup({})
     require("my.plugins.dashboard").setup()
@@ -14,13 +16,12 @@ function M.setup()
     require("my.plugins.nvim-tree").setup()
     require("my.plugins.vimtex").setup()
     require("my.plugins.lean").setup()
+    require("my.plugins.lualine").setup()
+    require("my.plugins.vimux").setup()
   end)
 
-  require("my.plugins.vim-tmux-navigator").setup()
-  require("my.plugins.lualine").setup()
-  require("my.plugins.comment").setup()
+  require("my.plugins.neogit").setup()
   require("my.plugins.telescope").setup()
-  require("my.plugins.vimux").setup()
 
   -- require("my.plugins.idris").setup()
   -- require("which-key").setup()

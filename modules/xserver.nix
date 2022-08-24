@@ -56,6 +56,7 @@ in
         accelSpeed = "3.5";
 
         tappingDragLock = false;
+        disableWhileTyping = true;
       };
     };
   };
