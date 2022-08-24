@@ -5,7 +5,6 @@ function M.setup()
   require('nvim-autopairs').setup()
   require "gitlinker".setup()
 
-
   vscode.unless(function()
     require("presence"):setup({})
     require("my.plugins.dashboard").setup()
@@ -20,7 +19,6 @@ function M.setup()
     require("my.plugins.vimux").setup()
   end)
 
-  require("my.plugins.vim-tmux-navigator").setup()
   require("my.plugins.neogit").setup()
   require("my.plugins.comment").setup()
   require("my.plugins.telescope").setup()
