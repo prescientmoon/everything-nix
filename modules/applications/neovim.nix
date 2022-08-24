@@ -3,8 +3,8 @@ let
   paq = pkgs.fetchFromGitHub {
     owner = "savq";
     repo = "paq-nvim";
-    rev = "cbbb8a550e35b1e6c9ddf7b098b25e6c2d8b1e86";
-    sha256 = "0fsbww2kqwayi1azhglsjal6mwh68n03ylxxqzq17v7sar17vx4c";
+    rev = "bc5950b990729464f2493b1eaab5a7721bd40bf5";
+    sha256 = "0rsv3j5rxfv7ys9zvq775f63vy6w880b0xhyr164y8fcadhpypb3";
   };
 
   theme = pkgs.myThemes.current;

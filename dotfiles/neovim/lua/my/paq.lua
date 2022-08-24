@@ -44,7 +44,11 @@ function M.setup()
     "easymotion/vim-easymotion", -- removes the need for spamming w or e
     "tpope/vim-surround", -- work with brackets, quotes, tags, etc
     "MunifTanjim/nui.nvim", -- ui stuff required by idris2
-    "ShinKage/idris2-nvim" -- idris2 support
+    "ShinKage/idris2-nvim", -- idris2 support
+    "udalov/kotlin-vim", -- kotlin support
+    -- Git stuff
+    "ruifm/gitlinker.nvim", -- generate permalinks for code
+    "TimUntersberger/neogit" -- magit clone
   }
 
   for _, v in ipairs(themePackages) do
