@@ -1,7 +1,6 @@
 local M = {}
 
 local function map(buf, mode, lhs, rhs, opts)
-
   local options = { noremap = true, silent = true }
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
@@ -11,14 +10,14 @@ function M.on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+
   if client.server_capabilities.documentFormattingProvider then
     print("Initializing formatter...")
-    vim.cmd([[
-            augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-            augroup END
-            ]])
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("LspFormatting", {}),
+      callback = vim.lsp.buf.formatting_sync
+    })
   end
 
   print("Setting up keybinds...")

@@ -4,6 +4,7 @@ local M = {}
 function M.setup()
   require('nvim-autopairs').setup()
   require "gitlinker".setup()
+  require('nvim_comment').setup()
 
   vscode.unless(function()
     require("presence"):setup({})
@@ -20,7 +21,6 @@ function M.setup()
   end)
 
   require("my.plugins.neogit").setup()
-  require("my.plugins.comment").setup()
   require("my.plugins.telescope").setup()
 
   -- require("my.plugins.idris").setup()
