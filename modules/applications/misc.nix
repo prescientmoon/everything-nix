@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   home-manager.users.adrielus.home.packages = with pkgs; [
     # cmd stuff
-    tree # print a file structure
+    tree # print a directory structure
     exa # ls replacement
     mkpasswd # hash passwords
-    gnupg
+    gnupg # forgot what this was
     acpi # show remaining battery
     # typespeed # speed typing game
     # unixtools.xxd # to dump binary stuff into a text file (used it for a ctf)
@@ -12,37 +12,38 @@
     neofetch # display system information
     xclip # copy paste stuff
     # feh # image viewer
-    unzip # for working with .zip files
     speedtest-cli # test the internet speed and stuff
     # openssl
     # pkgconfig
     # ngrok
     # hugo
-    unrar
+    unzip # for working with .zip files
+    unrar # for extracting shit from rars
     # jdk11o
     # jdk8
     # gtk3
     gnumake
-    # unison-ucm    
-    xorg.libX11
-    okular
-    zathura
     cmake
-    # kdeconnect
+    # unison-ucm    
+    xorg.libX11 # wtf is this
+    okular # forgot what this does
+    zathura # pdf thing?
+    spotify-tui # spotify terminal ui
+    # kdeconnect # connect with your phone
     sloc # line of code counter
-    update-nix-fetchgit
+    update-nix-fetchgit # for updating fetchgit calls in nix files
 
     # editors
     # vscodium
-    vscode
+    # vscode
     # vim
     # emacs
     vimclip # use neovim anywhere
 
     # chat apps
-    slack
+    # slack
     signal-desktop
-    tdesktop # telegram for the desktop
+    # tdesktop # telegram for the desktop
     # deluge
     zoom-us
     # teams
