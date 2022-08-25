@@ -49,6 +49,7 @@ function M.setup()
     "udalov/kotlin-vim", -- kotlin support
     "haringsrob/nvim_context_vt", -- show context on closing parenthesis
     "vuki656/package-info.nvim", -- shows latest versions in package.json
+    "j-hui/fidget.nvim", -- show progress for lsp stuff
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
     "TimUntersberger/neogit" -- magit clone

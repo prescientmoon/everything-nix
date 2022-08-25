@@ -5,6 +5,7 @@ function M.setup()
   require('nvim-autopairs').setup()
   require "gitlinker".setup()
   require('nvim_comment').setup()
+  require('fidget').setup()
 
   vscode.unless(function()
     require("presence"):setup({})
