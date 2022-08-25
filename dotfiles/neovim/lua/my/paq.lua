@@ -48,6 +48,7 @@ function M.setup()
     "haringsrob/nvim_context_vt", -- show context on closing parenthesis
     "vuki656/package-info.nvim", -- shows latest versions in package.json
     "stevearc/dressing.nvim", -- better ui I guess
+    "rktjmp/paperplanes.nvim", -- export to pastebin like services
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code

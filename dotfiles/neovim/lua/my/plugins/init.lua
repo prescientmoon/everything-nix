@@ -21,6 +21,7 @@ function M.setup()
     require("my.plugins.vimux").setup()
   end)
 
+  require("my.plugins.paperplanes").setup()
   require("my.plugins.neogit").setup()
   require("my.plugins.telescope").setup()
 
