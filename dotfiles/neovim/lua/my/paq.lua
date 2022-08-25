@@ -1,5 +1,6 @@
 local M = {}
 
+
 function M.setup()
   local paq = require("paq")
   local themePackages = require("my.theme").deps
@@ -49,6 +50,8 @@ function M.setup()
     "vuki656/package-info.nvim", -- shows latest versions in package.json
     "stevearc/dressing.nvim", -- better ui I guess
     "rktjmp/paperplanes.nvim", -- export to pastebin like services
+    "anuvyklack/hydra.nvim", -- keybinds where you only hit the head once
+    "jbyuki/venn.nvim", -- draw ascii diagrams
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
