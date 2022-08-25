@@ -6,6 +6,7 @@ function M.setup()
   require "gitlinker".setup()
   require('nvim_comment').setup()
   require('fidget').setup()
+  require('dressing').setup()
 
   vscode.unless(function()
     require("presence"):setup({})
@@ -21,8 +22,10 @@ function M.setup()
     require("my.plugins.vimux").setup()
   end)
 
+  require("my.plugins.paperplanes").setup()
   require("my.plugins.neogit").setup()
   require("my.plugins.telescope").setup()
+  require("my.plugins.venn").setup()
 
   -- require("my.plugins.idris").setup()
   -- require("which-key").setup()

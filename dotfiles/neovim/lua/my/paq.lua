@@ -1,17 +1,16 @@
 local M = {}
 
+
 function M.setup()
   local paq = require("paq")
   local themePackages = require("my.theme").deps
   local base = {
+    "nvim-lua/plenary.nvim", -- async utility lib it seems?
     "neovim/nvim-lspconfig", -- configures lsps for me
     "windwp/nvim-autopairs", -- closes pairs for me (should look for a better one)
-    "nvim-lua/plenary.nvim", -- async utility lib it seems?
     "nvim-telescope/telescope.nvim", -- fuzzy search for say opening files
     "purescript-contrib/purescript-vim", -- purescript support
     "terrortylor/nvim-comment", -- allows toggling line comments
-    -- This gets installed by nix now!
-    -- {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}, -- use treesitter for syntax highlighting
     "nvim-treesitter/nvim-treesitter-textobjects", -- the lean plugin wants me to install this, lol
     -- "startup-nvim/startup.nvim", -- splash screen
     "glepnir/dashboard-nvim", -- similar to startup.nvim
@@ -50,10 +49,20 @@ function M.setup()
     "haringsrob/nvim_context_vt", -- show context on closing parenthesis
     "vuki656/package-info.nvim", -- shows latest versions in package.json
     "j-hui/fidget.nvim", -- show progress for lsp stuff
+    "stevearc/dressing.nvim", -- better ui I guess
+    "rktjmp/paperplanes.nvim", -- export to pastebin like services
+    "anuvyklack/hydra.nvim", -- keybinds where you only hit the head once
+    "jbyuki/venn.nvim", -- draw ascii diagrams
+
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
     "TimUntersberger/neogit" -- magit clone
   }
+
+  -- This might get installed by nix!
+  if os.getenv("NVIM_INSTALL_TREESITTER") then
+    table.insert(base, 2, { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+  end
 
   for _, v in ipairs(themePackages) do
     -- append package in the base list
