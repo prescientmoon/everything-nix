@@ -15,7 +15,7 @@
     services.picom = {
       enable = true;
       blur = true;
-      shadow = true;
+      shadow = false;
       extraOptions = ''
         blur:
         {

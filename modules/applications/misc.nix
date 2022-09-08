@@ -27,11 +27,12 @@
     # unison-ucm    
     xorg.libX11 # wtf is this
     okular # forgot what this does
-    zathura # pdf thing?
     spotify-tui # spotify terminal ui
     # kdeconnect # connect with your phone
     sloc # line of code counter
     update-nix-fetchgit # for updating fetchgit calls in nix files
+    pamixer # set pipewire volume
+    pulseaudio # pactl and stuff (same thing as above)
 
     # editors
     # vscodium

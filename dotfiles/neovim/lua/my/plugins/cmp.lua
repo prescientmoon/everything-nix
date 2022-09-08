@@ -24,10 +24,15 @@ function M.setup()
     formatting = {
       fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
-        local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+        local kind = lspkind.cmp_format({ mode = "symbol", maxwidth = 50
+          , symbol_map = {
+            Text = "."
+          }
+        })(entry, vim_item)
         local strings = vim.split(kind.kind, "%s", { trimempty = true })
+
         kind.kind = " " .. strings[1] .. " "
-        kind.menu = "    (" .. strings[2] .. ")"
+        kind.menu = ""
 
         return kind
       end,
@@ -63,7 +68,8 @@ function M.setup()
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' }, -- lsp completion
-      { name = 'luasnip' } -- snippets
+      { name = 'luasnip' }, -- snippets
+      { name = 'omni' } -- omnifunc
     }, { { name = 'buffer' } })
   }
 

@@ -102,6 +102,19 @@ local servers = {
   },
   rnix = {},
   cssls = {},
+  -- texlab = {
+  --   build = {
+  --     executable = "tectonic",
+  --     args = {
+  --       "-X",
+  --       "compile",
+  --       "%f",
+  --       "--synctex",
+  --       "--keep-logs",
+  --       "--keep-intermediates"
+  --     }
+  --   }
+  -- },
   kotlin_language_server = {}
   -- agda = {}, Haven't gotten this one to work yet
 }

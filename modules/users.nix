@@ -15,7 +15,7 @@
     mutableUsers = false;
     users.adrielus = {
       passwordFile = "~/water/pass";
-      extraGroups = [ "wheel" "networkmanager" "lp" "docker" ];
+      extraGroups = [ "wheel" "networkmanager" "lp" "docker" "audio" "sound" "video" "input" "tty" ];
       isNormalUser = true;
       shell = pkgs.fish;
     };

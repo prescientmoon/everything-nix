@@ -2,8 +2,8 @@
   tmux = fetchFromGitHub {
     owner = "catppuccin";
     repo = "tmux";
-    sha256 = "1vz6srk4zfgsjpwb7xa7n9mg5kfb3x7aq963mwqnl8m4zvmcy8vz";
-    rev = "1c87a9e1d2fac21815497ed7f599a1c1208d40cd";
+    sha256 = "1x95db3wjjbaljk30db3iqjddxfp1gg2m9f0318vnincsdfllmz1";
+    rev = "317159f824eeb4d170ecad34e0457281b13244d2";
   };
   sddm = fetchFromGitHub {
     owner = "catppuccin";
@@ -14,20 +14,20 @@
   grub = fetchFromGitHub {
     owner = "catppuccin";
     repo = "grub";
-    sha256 = "0ra1psb37wsgdag5swfwwzcgy73014j34c9njnvxz1jdv0k56qlc";
-    rev = "b2919a93ef37ea1b220bab90fa0a5fa3a26eec0b";
+    sha256 = "0d9vbq63bilikgnyzk9gfrzddvbvxi55k22cw8k0mdavfy24m1q4";
+    rev = "fc5fba2896db095aee7b0d6442307c3035a24fa7";
   };
   gtk = fetchFromGitHub {
     owner = "catppuccin";
     repo = "gtk";
-    sha256 = "1q9iq0agdk5rm5cfnpr1b1bzy6fdx67pvkakx478j1dlyr1d78bl";
-    rev = "87a79fd2bf07accc694455df30a32a82b1b31f4f";
+    sha256 = "1fzc7yzj9b9pc48qqaygbyskqjanb771x0i4ssn40hpbhj17n2ny";
+    rev = "fc336313a84e0d7ec1a3499047fb1e73eef8a005";
   };
   rofi = fetchFromGitHub {
     owner = "catppuccin";
     repo = "rofi";
-    sha256 = "1bs7l5mpqryjl7dz6pi419n1p9c68362vnczj0lcpbxnfpw0af24";
-    rev = "39fc2a0b51d594e559cb03bf9d4e743cb96f7b01";
+    sha256 = "00p1pnnas281hdszzs8jki4l48vs76r0b5b5j5yas3vh3h352m99";
+    rev = "5de33131d5904d4d96f4f218b1a54b9c79634965";
   };
   alacritty = fetchFromGitHub {
     owner = "catppuccin";
@@ -44,7 +44,13 @@
   xresources = fetchFromGitHub {
     owner = "catppuccin";
     repo = "xresources";
-    sha256 = "1ffx73l6s0pkf4d4g5lp2d0cfxjrbczsr5fy45i0503sa279fan7";
-    rev = "a9cd582faeef2f7410eb7d4b5a83d026e3f2b865";
+    sha256 = "08dh1av7kb921fdzkqhcp2yd2q848ay0kqgyf3zbnnvs0j92ap0q";
+    rev = "046c2f9c3027af1b7aaca14377dda5ea19b61593";
+  };
+  zathura = fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "zathura";
+    sha256 = "17q2jn8bx712c0789vc00y9jb2vng7g7mnmqm8ypivrl616igzli";
+    rev = "b9553c7e398c1a157e5543ea52d20e570f730dd6";
   };
 }

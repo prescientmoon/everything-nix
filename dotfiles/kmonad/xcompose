@@ -12,6 +12,7 @@
 <Multi_key> <s> <h>			: "σ"	U0260		# LATIN SMALL LETTER SIGMA
 <Multi_key> <o> <h>			: "ω"	U0261		# LATIN SMALL LETTER OMEGA
 <Multi_key> <u> <h>			: "υ"	U0262		# LATIN SMALL LETTER UPSILON
+<Multi_key> <d> <h>			: "δ"	U0263		# LATIN SMALL LETTER DELTA
 
 <Multi_key> <l> <p> <h> <h>             : "ϕ"   U0270		# LATIN SMALL LETTER PHI
 <Multi_key> <l> <t> <h> <h>             : "θ"   U0271		# LATIN SMALL LETTER THETA

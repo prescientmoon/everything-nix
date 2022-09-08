@@ -41,6 +41,7 @@
   gs    #(ralt s h) ;; sigma
   go    #(ralt o h) ;; omega
   gu    #(ralt u h) ;; uspilon
+  gd    #(ralt d h) ;; delta
 
   gph   #(ralt l p h h) ;; phi
   gth   #(ralt l t h h) ;; theta
@@ -136,7 +137,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _    
   _    _    _    @ex  _    _    _    _    _    @alp @arp @neg _    _    
   _    @shr @go  @ge  _    @gt  _    @gu  _    @go  @gp  _    _    _    
-  _    @ga  @gs  _    _    @gg  @gth @gps @gph @ml  _    _    _ 
+  _    @ga  @gs  @gd  _    @gg  @gth @gps @gph @ml  _    _    _ 
   @Mth _    @gx  _    @fal @gb  _    @gm  @lar @rar _    _   
   _    _    _    _              @mathExtra          _    _ 
 )

@@ -10,9 +10,9 @@ function M.setup()
     sync_install = false,
     indent = { enable = true },
     highlight = {
-      enable = true,
+      enable = false,
 
-      disable = { "kotlin" },
+      disable = { "kotlin", "tex" },
 
       -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).

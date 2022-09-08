@@ -9,16 +9,23 @@ in
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.xserver.videoDrivers = [
     # "displaylink"
     "modesetting"
   ];
 
-  hardware = {
-    pulseaudio = {
-      enable = true;
-    };
+  hardware.pulseaudio.enable = lib.mkForce false;
+
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
   boot.loader = {

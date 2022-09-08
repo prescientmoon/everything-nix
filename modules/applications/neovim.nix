@@ -18,6 +18,8 @@ let
     rnix-lsp # nix
     haskell-language-server # haskell
     kotlin-language-server # kotlin
+    tectonic # also latex something?
+    texlab # latex
     # vscode-langservers-extracted # css and shit
 
     # Formatters

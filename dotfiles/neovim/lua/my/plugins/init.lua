@@ -2,7 +2,6 @@ local vscode = require("my.helpers.vscode")
 local M = {}
 
 function M.setup()
-  require('nvim-autopairs').setup()
   require "gitlinker".setup()
   require('nvim_comment').setup()
   require('fidget').setup()
@@ -22,6 +21,7 @@ function M.setup()
     require("my.plugins.vimux").setup()
   end)
 
+  require("my.plugins.autopairs").setup()
   require("my.plugins.paperplanes").setup()
   require("my.plugins.neogit").setup()
   require("my.plugins.telescope").setup()

@@ -28,7 +28,7 @@ function M.setup()
     arpeggio.chord("n", "vs", "<C-w>v") -- Create vertical split
     arpeggio.chord("n", "ji", ":w<cr>") -- Saving
     arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
-    arpeggio.chord("inv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
+    arpeggio.chord("nv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
     arpeggio.chord("nv", "cp", "\"+") -- Press cp to use the global clipboard
     arpeggio.chord("n", "rw", ":%s/<C-r><C-w>/") -- Press rw to rename word under cursor
   end

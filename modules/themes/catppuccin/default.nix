@@ -3,6 +3,8 @@ let
   githubTheme = pkgs.myVimPlugins.githubNvimTheme; # github theme for neovim
   foreign = pkgs.callPackage (import ./foreign.nix) { };
   v = (a: b: if variant == "latte" then a else b);
+  rofi-variant = "basic";
+  # rofi-variant = "deathemonic";
 in
 {
   name = "catppuccin-${variant}";
@@ -18,16 +20,16 @@ in
   };
 
   # grub.path = "${foreign.grub}/catppuccin-grub-theme/theme.txt";
-  tmux.path = "${foreign.tmux}/catppuccin.conf";
+  tmux.path = "${foreign.tmux}/catppuccin-${variant}.conf";
   sddm.path = "${foreign.sddm}";
   grub.path = pkgs.nixos-grub2-theme;
 
   xresources = builtins.readFile "${foreign.xresources}/${variant}.Xresources";
 
   rofi = {
-    themes = "${foreign.rofi}/.local/share/rofi/themes/";
+    themes = "${foreign.rofi}/${rofi-variant}/.local/share/rofi/themes/";
     config = ''
-      @import "${foreign.rofi}/.config/rofi/config.rasi"
+      @import "${foreign.rofi}/${rofi-variant}/.config/rofi/config.rasi"
       @theme "catppuccin-${variant}"
       @import "${./rofi.rasi}"
     '';
@@ -55,13 +57,19 @@ in
       "89DCEB"
     ];
 
+  zathura = {
+    enable = true;
+    theme = "${foreign.zathura}/src/catppuccin-${variant}";
+    name = "catppuccin-${variant}";
+  };
+
   alacritty.settings = {
     import = [ "${foreign.alacritty}/catppuccin.yml" ];
     # colors = "*${variant}";
     window = {
       padding = {
-        x = 4;
-        y = 4;
+        x = 0;
+        y = 0;
       };
 
       opacity = transparency;

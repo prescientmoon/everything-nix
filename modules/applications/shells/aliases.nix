@@ -9,11 +9,16 @@
   wifi = "sudo nmcli con up id";
 
   # Volume controls
-  "v-up" = "amixer set Master 8%+";
-  "v-down" = "amixer set Master 8%-";
-  "v-min" = "amixer set Master 0%";
-  "v-mid" = "amixer set Master 50%";
-  "v-max" = "amixer set Master 100%";
+  "v-up" = "pactl set-sink-volume @DEFAULT_SINK@ +5%";
+  "v-down" = "pactl set-sink-volume @DEFAULT_SINK@ +5%";
+  "v-min" = "pactl set-sink-volume @DEFAULT_SINK@ 0%";
+  "v-mid" = "pactl set-sink-volume @DEFAULT_SINK@ 50%";
+  "v-max" = "pactl set-sink-volume @DEFAULT_SINK@ 100%";
+  # "v-up" = "amixer set Master 8%+";
+  # "v-down" = "amixer set Master 8%-";
+  # "v-min" = "amixer set Master 0%";
+  # "v-mid" = "amixer set Master 50%";
+  # "v-max" = "amixer set Master 100%";
 
   # Print available battery
   battery = "acpi";

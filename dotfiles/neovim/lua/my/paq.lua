@@ -53,6 +53,7 @@ function M.setup()
     "rktjmp/paperplanes.nvim", -- export to pastebin like services
     "anuvyklack/hydra.nvim", -- keybinds where you only hit the head once
     "jbyuki/venn.nvim", -- draw ascii diagrams
+    "hrsh7th/cmp-omni", -- omnifunc source for cmp
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code

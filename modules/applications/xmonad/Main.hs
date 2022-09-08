@@ -90,8 +90,8 @@ main =
       ]
 
     uniformBorder = join $ join $ join Border
-    border = uniformBorder 4
-    spacingHook = spacingRaw True border True border True
+    border = uniformBorder 0
+    spacingHook = spacingRaw False border False border True
 
     tall = Tall 1 (3 / 100) (1 / 2)
     threeCols = ThreeCol 1 (3 / 100) (1 / 2)
