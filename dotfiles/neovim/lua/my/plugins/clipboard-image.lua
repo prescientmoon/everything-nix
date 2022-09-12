@@ -13,7 +13,6 @@ end
 
 function M.setup()
   require 'clipboard-image'.setup {
-
     default = {
       img_name = img_name
     },

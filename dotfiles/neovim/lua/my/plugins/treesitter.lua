@@ -10,7 +10,7 @@ function M.setup()
     sync_install = false,
     indent = { enable = true },
     highlight = {
-      enable = false,
+      enable = true,
 
       disable = { "kotlin", "tex" },
 

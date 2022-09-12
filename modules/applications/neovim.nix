@@ -67,7 +67,7 @@ in
   home-manager.users.adrielus =
     {
       home.file.".local/share/nvim/site/pack/paqs/start/paq-nvim".source = paq;
-      home.file.".local/share/nvim/site/pack/treesitter/start/nvim-treesitter".source = nvim-treesitter;
+      # home.file.".local/share/nvim/site/pack/treesitter/start/nvim-treesitter".source = nvim-treesitter;
       xdg.configFile."nvim/init.lua".text = myConfig;
       xdg.configFile."nvim/lua/my/theme.lua".source = theme.neovim.theme;
 

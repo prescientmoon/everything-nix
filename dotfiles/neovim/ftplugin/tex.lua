@@ -1,5 +1,7 @@
 local A = require("my.abbreviations")
 
+require("my.helpers.wrapMovement").setup()
+
 vim.opt.conceallevel = 1
 vim.opt.wrap = true
 
@@ -9,6 +11,7 @@ local abbreviations = {
   -- Greek chars
   { "eps", "\\epsilon" },
   { "delta", "\\delta" },
+  { "nuls", "\\varnothing" },
 
   -- Exponents
   { "en1", "^{-1}" },
@@ -18,6 +21,8 @@ local abbreviations = {
   { "e3", "^{3}" },
   { "e4", "^{4}" },
   { "en", "^{n}" },
+  { "enn", "^{-}" },
+  { "epp", "^{+}" },
 
   -- Subscripts
   { "s0", "_{0}" },
@@ -35,10 +40,13 @@ local abbreviations = {
 
   -- Basic commands
   { "leq", "\\leq" },
+  { "sst", "\\subset" },
+  { "sseq", "\\subseteq" },
   { "neq", "\\neq" },
   { "nin", "\\not\\in" },
   { "iin", "\\in" },
   { "tto", "\\to" },
+  { "iip", "\\implies" },
   { "iff", "\\iff" },
   { "land", "\\land" },
   { "lor", "\\lor" },

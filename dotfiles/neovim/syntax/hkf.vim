@@ -2,8 +2,6 @@ if exists("b:current_syntax")
     finish
 endif
 
-echom "Our syntax highlighting code will go here."
-
 syntax keyword kfKeyword alias template layer using path name input output assume fun as import exporting module unsafe def
 syntax keyword kfFunction LayerTemplate Sequence Chord Keycode Layer Broken
 
@@ -31,4 +29,4 @@ highlight link kfComment Comment
 highlight link kfOperator Operator
 highlight link kfString String
 
-let b:current_syntax = "kf" 
+let b:current_syntax = "hkf" 

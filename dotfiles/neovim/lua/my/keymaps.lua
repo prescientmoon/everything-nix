@@ -20,8 +20,17 @@ function M.mapSilent(mode, lhs, rhs, opts)
   map(mode, lhs, rhs, options)
 end
 
+-- Performs a basic move operation
+function M.move(from, to)
+  vim.keymap.set("n", to, from)
+  vim.keymap.set("n", from, "<Nop>")
+end
+
 function M.setup()
-  vim.keymap.set("n", "qq", ":wq<cr>") -- Save and quit
+  M.move("q", "yq")
+  M.move("Q", "yQ")
+
+  vim.keymap.set("n", "Q", ":wqa<cr>") -- Save and quit
 
   -- Create chords
   if arpeggio ~= nil then

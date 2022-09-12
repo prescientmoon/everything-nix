@@ -48,6 +48,11 @@
     "description": "Subscript",
     "body": "_{$1}$0"
   },
+  "Exponent": {
+    "prefix": "ee",
+    "description": "Exponent",
+    "body": "^{$1}$0"
+  },
   "Section": {
     "prefix": "section",
     "description": "Add section",

@@ -16,7 +16,7 @@ function M.on_attach(client, bufnr)
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("LspFormatting", {}),
-      callback = vim.lsp.buf.formatting_sync
+      callback = vim.lsp.buf.format
     })
   end
 

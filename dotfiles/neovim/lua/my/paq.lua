@@ -54,6 +54,7 @@ function M.setup()
     "anuvyklack/hydra.nvim", -- keybinds where you only hit the head once
     "jbyuki/venn.nvim", -- draw ascii diagrams
     "hrsh7th/cmp-omni", -- omnifunc source for cmp
+    "ekickx/clipboard-image.nvim", -- paste images from clipbaord
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
@@ -64,6 +65,7 @@ function M.setup()
   if os.getenv("NVIM_INSTALL_TREESITTER") then
     table.insert(base, 2, { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   end
+  table.insert(base, 2, { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
   for _, v in ipairs(themePackages) do
     -- append package in the base list

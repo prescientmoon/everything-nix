@@ -21,11 +21,13 @@ function M.setup()
     require("my.plugins.vimux").setup()
   end)
 
+  require("my.plugins.easymotion").setup()
   require("my.plugins.autopairs").setup()
   require("my.plugins.paperplanes").setup()
   require("my.plugins.neogit").setup()
   require("my.plugins.telescope").setup()
   require("my.plugins.venn").setup()
+  require("my.plugins.clipboard-image").setup()
 
   -- require("my.plugins.idris").setup()
   -- require("which-key").setup()

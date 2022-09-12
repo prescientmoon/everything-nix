@@ -87,8 +87,42 @@ Table of my own keybinds. Here as documentation for myself. I am yet to include 
 
 Documentation for myself
 
-| Keybind | Description             | Plugins      |
-| ------- | ----------------------- | ------------ |
-| zz      | Center the current line |              |
-| gcc     | Comment line            | nvim-comment |
-| gc      | Comment selection       | nvim-comment |
+| Keybind | Description             | Plugins |
+| ------- | ----------------------- | ------- |
+| zz      | Center the current line |         |
+
+## Important plugins I use the default mappins of
+
+- paperplanes
+
+| Keybind | Description               |
+| ------- | ------------------------- |
+| :PP     | Create pastebin-like link |
+
+- nvim-comment
+
+| Keybind | Description       |
+| ------- | ----------------- |
+| gcc     | Comment line      |
+| gc      | Comment selection |
+
+- neogit
+
+| Keybind | Description |
+| ------- | ----------- |
+| C-g     | Open neogit |
+
+- gitlinker
+
+| Keybind    | Description        |
+| ---------- | ------------------ |
+| <leader>gy | Create remote link |
+
+- nvim-surround
+
+| Keybind  | Description                         | Mode |
+| -------- | ----------------------------------- | ---- |
+| cs[a][b] | Change surrounding pair from a to b | n    |
+| ds[a]    | Delete surrounding pair of a        | n    |
+| ys[m][a] | Surround the motion m with a        | n    |
+| S[a]     | Surround selected code with a       | v    |
