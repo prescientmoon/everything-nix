@@ -24,7 +24,7 @@ in
         fonts.normal.family = "Nerd Font Source Code Pro";
 
         env = { TERM = "xterm-256color"; };
-        working_directory = "~/Projects";
+        working_directory = "/home/adrielus/Projects/";
       };
     };
   };

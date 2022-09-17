@@ -8,5 +8,5 @@ listview {
 }
 
 element selected {
-  background-color: #373759; 
+  /* background-color: #373759;  */
 }
