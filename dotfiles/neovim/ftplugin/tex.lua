@@ -11,18 +11,19 @@ local abbreviations = {
   -- Greek chars
   { "eps", "\\epsilon" },
   { "delta", "\\delta" },
+  { "pi", "\\pi" },
   { "nuls", "\\varnothing" },
 
   -- Exponents
-  { "en1", "^{-1}" },
-  { "e1", "^{0}" },
+  { "ei", "^{-1}" },
+  { "e0", "^{0}" },
   { "e1", "^{1}" },
   { "e2", "^{2}" },
   { "e3", "^{3}" },
   { "e4", "^{4}" },
   { "en", "^{n}" },
-  { "enn", "^{-}" },
-  { "epp", "^{+}" },
+  { "etn", "^{-}" },
+  { "etp", "^{+}" },
 
   -- Subscripts
   { "s0", "_{0}" },
@@ -37,9 +38,18 @@ local abbreviations = {
   { "gx", "g(x)" },
   { "hx", "h(x)" },
   { "Px", "P(x)" },
+  { "Pn", "P(n)" },
+  { "foa", "f(a)" },
+  { "goa", "g(a)" },
+  { "hoa", "h(a)" },
+  { "dfx", "f'(x)" },
+  { "dgx", "g'(x)" },
+  { "dhx", "h'(x)" },
 
   -- Basic commands
   { "leq", "\\leq" },
+  { "geq", "\\geq" },
+  { "sdiff", "\\setminus" },
   { "sst", "\\subset" },
   { "sseq", "\\subseteq" },
   { "neq", "\\neq" },
@@ -52,6 +62,17 @@ local abbreviations = {
   { "lor", "\\lor" },
   { "frl", "\\forall" },
   { "exs", "\\exists" },
+  { "iinf", "\\infty" },
+  { "ninf", "-\\infty" },
+  { "nlnl", "\\pm" }, -- had this as npnp first but it was hard-ish to type
+  { "ccup", "\\cup" },
+  { "ccap", "\\cap" },
+  { "nope", "\\bot" },
+  { "yee", "\\top" },
+  { "mul", "\\cdot" },
+  { "smul", "\\times" },
+  { "texpl", "&& \\text{}" },
+  { "card", "\\#" }
 }
 
 A.manyLocalAbbr(abbreviations)

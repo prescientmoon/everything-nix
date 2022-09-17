@@ -10,14 +10,22 @@ in
     }
   ];
 
-  home-manager.users.adrielus.programs.alacritty = {
-    enable = true;
 
-    settings = {
-      window.decorations = "none";
-      fonts.normal.family = "Nerd Font Source Code Pro";
 
-      env = { TERM = "xterm-256color"; };
+  home-manager.users.adrielus = {
+    xdg.configFile."alacritty/extraConfig.yml".text = theme.alacritty.extraConfig or "";
+    programs.alacritty = {
+      enable = true;
+
+      settings = {
+        import = [ "~/.config/alacritty/extraConfig.yml" ];
+
+        window.decorations = "none";
+        fonts.normal.family = "Nerd Font Source Code Pro";
+
+        env = { TERM = "xterm-256color"; };
+        working_directory = "~/Projects";
+      };
     };
   };
 }

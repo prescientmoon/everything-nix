@@ -24,6 +24,7 @@
     ./direnv.nix
     # ./chromium.nix
     ./vieb.nix
+    ./polybar.nix
   ];
 }
 

@@ -13,8 +13,21 @@ lib.lists.map (theme: pkgs.callPackage theme { }) [
     # wallpaper = "landscapes/salty_mountains.png";
     # wallpaper = "misc/rainbow.png";
     # wallpaper.foreign = ./wallpapers/eye.png;
+    # wallpaper.foreign = ./wallpapers/mountain.png;
     transparency = 0.93;
     variant = "macchiato";
+  })
+  (catppuccin {
+    # wallpaper = "os/nix-magenta-pink-1920x1080.png";
+    # wallpaper = "minimalistic/tetris.png";
+    # wallpaper = "misc/comfy-home.png";
+    # wallpaper = "landscapes/forrest.png";
+    # wallpaper = "landscapes/salty_mountains.png";
+    # wallpaper = "misc/rainbow.png";
+    # wallpaper.foreign = ./wallpapers/eye.png;
+    wallpaper.foreign = ./wallpapers/mountain.png;
+    transparency = 1;
+    variant = "latte";
   })
   (githubVariant {
     variant = "light";

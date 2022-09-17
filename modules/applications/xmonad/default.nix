@@ -13,7 +13,7 @@
     #  "export KDEWM=/home/adrielus/.nix-profile/bin/xmonad";
 
     services.picom = {
-      enable = true;
+      enable = false;
       blur = true;
       shadow = false;
       extraOptions = ''

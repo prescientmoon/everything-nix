@@ -33,12 +33,14 @@ main =
             handleEventHook = handleEventHook kdeConfig <+> fullscreenEventHook,
             terminal = myTerminal,
             workspaces = myWorkspaces,
-            borderWidth = 0
+            borderWidth = 5,
+            focusedBorderColor = "#4c4f69",
+            normalBorderColor = "#4c4f69"
           }
           `additionalKeysP` keymap
   where
     myWorkspaces =
-      ["1:dev", "2:browser", "3:chat", "4:terminal", "5", "6", "7", "8", "9", "0"]
+      ["1:dev", "2:browser", "3:chat", "4:reading", "5", "6"]
 
     appWorkspaceConfig =
       [ (3, "Discord"),
@@ -100,6 +102,4 @@ main =
     myLayoutHook = desktopLayoutModifiers $ spacingHook layouts
 
     startup :: X ()
-    startup = do
-      -- The file is dynamically set in wallpaper.nix
-      spawn "xwallpaper --zoom ~/.config/wallpaper"
+    startup = pure ()

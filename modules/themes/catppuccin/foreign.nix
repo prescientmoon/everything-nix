@@ -53,4 +53,10 @@
     sha256 = "17q2jn8bx712c0789vc00y9jb2vng7g7mnmqm8ypivrl616igzli";
     rev = "b9553c7e398c1a157e5543ea52d20e570f730dd6";
   };
+  polybar = fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "polybar";
+    sha256 = "0842kqxgq1sm17rm29qglj2wwb3zvy0apfx39y7cvl4248jxhzgj";
+    rev = "94ffe6ed93ff5c54fe938c60dc2babde89046083";
+  };
 }

@@ -108,6 +108,16 @@
     "description": "Create a limit",
     "body": "\\lim _{$1 \\to $2}$0"
   },
+  "Limit to infinity": {
+    "prefix": "ilim",
+    "description": "Create a limit as a variable goes to infinity",
+    "body": "\\lim _{$1 \\to \\infty}$0"
+  },
+  "Limit to negative infinity": {
+    "prefix": "nlim",
+    "description": "Create a limit as a variable goes to negative infinity",
+    "body": "\\lim _{$1 \\to -\\infty}$0"
+  },
   "Sqrt": {
     "prefix": "sqrt",
     "description": "Create a sqrt",
@@ -147,6 +157,21 @@
     "prefix": "aligned",
     "description": "Create an aligned environment",
     "body": ["\\begin{aligned}", "\t$0", "\\end{aligned}"]
+  },
+  "Explanation in math mode": {
+    "prefix": "texpl",
+    "description": "Explain a step in math mode",
+    "body": "&& \\text{$1}$0"
+  },
+  "Let": {
+    "prefix": "let",
+    "description": "Let something equal something else",
+    "body": "Let $$1 = $2$. $0"
+  },
+  "Force newline": {
+    "prefix": "cr",
+    "description": "Force newline in math mode",
+    "body": "{\\ \\\\}"
   },
   "Aligned display math": {
     "prefix": "maligned",
