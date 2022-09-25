@@ -18,7 +18,7 @@ function M.setup()
     },
     tex = {
       img_dir = { "%:p:h", "img" },
-      affix = "\\includegraphics[]{%s}",
+      affix = "\\includegraphics[width=\\textwidth]{%s}",
     },
   }
 

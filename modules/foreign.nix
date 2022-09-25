@@ -7,33 +7,6 @@
       sha256 = "13p3i0b8azkmhafyv8hc4hav1pmgqg52xzvk2a3gp3ppqqx9bwpc";
     };
 
-    arpeggio = fetchFromGitHub {
-      owner = "kana";
-      repo = "vim-arpeggio";
-      rev = "01c8fc1a72ef58e490ee0490c65ee313b1b6e843";
-      sha256 = "0405yp1273kzsr3g5j6mj2dfs73qvw716474phkdr67md8ln12dy";
-    };
-
-    agda-nvim = fetchFromGitHub {
-      owner = "Isti115";
-      repo = "agda.nvim";
-      rev = "c7da627547e978b4ac3780af1b8f418c8b12ff98";
-      sha256 = "0k9g0bqm1a4ivl4cs6f780nnjnc8svc1kqif4l4ahsfzasnj7dbk";
-    };
-
-    idris2-nvim = fetchFromGitHub {
-      owner = "ShinKage";
-      repo = "idris2-nvim";
-      rev = "fdc47ba6f0e9d15c2754ee98b6455acad0fa7c95";
-      sha256 = "1kzbgmxpywpinrjdrb4crxwlk3jlck3yia2wbl0rq7xwfga663g4";
-    };
-
-    telescope-file-browser-nvim = fetchFromGitHub {
-      owner = "nvim-telescope";
-      repo = "telescope-file-browser.nvim";
-      rev = "ee355b83e00475e11dec82e3ea166f846a392018";
-      sha256 = "1s39si5fifv6bvjk8kzs2zy18ap5q22pfqg68wn5icnp588498hz";
-    };
   };
   fishPlugins = {
     z = fetchFromGitHub {
@@ -47,8 +20,8 @@
       agnoster = fetchFromGitHub {
         owner = "oh-my-fish";
         repo = "theme-agnoster";
-        rev = "1ffca413bfbc8941c28982eea97c1e1fa3612d57";
-        sha256 = "1dvws7mrz8shca6lmnanz72zm7b2cnhg549in655inw0rk9hcbma";
+        rev = "c142e802983bd1b34b4d91efac2126fc5913126d";
+        sha256 = "060yydkxmvmlzq2236pjqfmpgvm3g1085c5yzilq0nl1dvmz3wnh";
       };
 
       harleen = fetchFromGitHub {
@@ -91,14 +64,14 @@
   easy-purescript-nix = fetchFromGitHub {
     owner = "justinwoo";
     repo = "easy-purescript-nix";
-    rev = "0ad5775c1e80cdd952527db2da969982e39ff592";
-    sha256 = "0x53ads5v8zqsk4r1mfpzf5913byifdpv5shnvxpgw634ifyj1kg";
+    rev = "3d8b602e80c0fa7d97d7f03cb8e2f8b06967d509";
+    sha256 = "0kvnsc4j0h8qvv69613781i2qy51rcbmv5ga8j21nsqzy3l8fd9w";
   };
 
   githubNvimTheme = fetchFromGitHub {
     owner = "projekt0n";
     repo = "github-nvim-theme";
-    rev = "eeac2e7b2832d8de9a21cfa8627835304c96bb44";
-    sha256 = "1rfxif39y42amkz772976l14dnsa9ybi2dpkaqbdz7zvwgwm545m";
+    rev = "b3f15193d1733cc4e9c9fe65fbfec329af4bdc2a";
+    sha256 = "0vnizbmzf42h3idm35nrcv4g2aigvgmgb80qk5s4xq1513bzrdf0";
   };
 }

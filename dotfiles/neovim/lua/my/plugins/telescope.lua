@@ -1,83 +1,46 @@
-local mapSilent = require("my.keymaps").mapSilent
 local arpeggio = require("my.plugins.arpeggio")
 
 local M = {}
 
-local bindings = {
-  builtin = {
-    -- Open files with control + P
-    find_files = "<c-P>",
+local function find_files_by_extension(extension)
+  return "find_files find_command=rg,--files,--glob=**/*." .. extension
+end
 
-    -- Search through files with control + F
-    live_grep = "<c-F>",
-
-    -- See diagnostics with space + d
-    diagnostics = "<Leader>d",
-    lsp_document_symbols = { chord = 1, key = "lds" },
-
-    -- Open a list with all the pickers
-    builtin = "<Leader>t",
-
-    -- List function, var names etc
-    treesitter = "<Leader>s",
-
-    -- Git stuff
-    git_commits = "<Leader>gj",
-    git_branches = "<Leader>gk"
-  },
-  ["extensions.file_browser.file_browser"] = { chord = 1, key = "jp" },
-  extensions = {
-    unicode = {
-      picker = { mode = "i", kind = "dropdown", key = "ui", chord = 1 }
-    }
-  }
+local keybinds = {
+  { "<C-P>", "find_files" },
+  { "<Leader>ft", find_files_by_extension("tex") },
+  { "<Leader>fl", find_files_by_extension("lua") },
+  { "<C-F>", "live_grep" },
+  { "<Leader>t", "builtin" },
 }
 
-local function setupKeybinds(obj, path)
-  if path == nil then path = "" end
-  for name, keybinds in pairs(obj) do
-    if (type(keybinds) == "table") and keybinds.key == nil then
-      -- This means we found a table of keybinds, so we go deeper
-      setupKeybinds(keybinds, path .. "." .. name)
-    else
-      local config = keybinds
-      local pickerArgument = ""
-      local key = config
-      local mode = "n"
-      local bind = mapSilent
+local chords = {
+  { "jp", "file_browser" }
+}
 
-      if type(config) == "table" then
-        key = config.key
-        if config.mode ~= nil then mode = config.mode end
-        if config.kind ~= nil then
-          pickerArgument = "require('telescope.themes').get_" ..
-              config.kind .. "({})"
-        end
-        if config.chord then
-          --  Useful for insert mode bindings
-          bind = arpeggio.chordSilent
-        end
-      end
+local function mkAction(action)
+  return ":Telescope " .. action .. "<cr>"
+end
 
-      -- Maps the keybind to the action
-      bind(mode, key,
-        "<cmd>lua require('telescope" .. path .. "')." .. name .. "(" ..
-        pickerArgument .. ")<CR>")
-    end
+local function setupKeybinds()
+  for _, mapping in pairs(keybinds) do
+    vim.keymap.set("n", mapping[1], mkAction(mapping[2]))
+  end
+
+  for _, mapping in pairs(chords) do
+    arpeggio.chord("n", mapping[1], mkAction(mapping[2]))
   end
 end
 
 function M.setup()
-  setupKeybinds(bindings)
+  setupKeybinds()
 
   local settings = {
     defaults = { mappings = { i = { ["<C-h>"] = "which_key" } } },
     pickers = { find_files = { hidden = true } },
     extensions = {
       file_browser = {
-        mappings = {
-          -- Comment so this does not get collapsed
-        }
+        path = "%:p:h"
       }
     }
   }

@@ -19,6 +19,16 @@
     "description": "Create a lemma",
     "body": ["\\begin{lemma}[$1] \\label{lem:$1}", "\t$0", "\\end{lemma}"]
   },
+  "Example*": {
+    "prefix": "example*",
+    "description": "Create an example*",
+    "body": ["\\begin{example*}", "\t$0", "\\end{example*}"]
+  },
+  "Example": {
+    "prefix": "example",
+    "description": "Create an example",
+    "body": ["\\begin{example}[$1] \\label{exp:$1}", "\t$0", "\\end{example}"]
+  },
   "Theorem": {
     "prefix": "theorem",
     "description": "Create a theorem",
@@ -53,6 +63,11 @@
     "description": "Exponent",
     "body": "^{$1}$0"
   },
+  "Nth derivative": {
+    "prefix": "dd",
+    "description": "Nth derivative",
+    "body": "^{($1)}$0"
+  },
   "Section": {
     "prefix": "section",
     "description": "Add section",
@@ -81,7 +96,12 @@
   "Itemize": {
     "prefix": "item",
     "body": ["\\\\begin{itemize}", "\t\\item $0", "\\\\end{itemize}"],
-    "description": "Itemize"
+    "description": "Itemize env"
+  },
+  "Enumerate": {
+    "prefix": "enum",
+    "body": ["\\\\begin{enumerate}", "\t\\item $0", "\\\\end{enumerate}"],
+    "description": "Enumerate env"
   },
   "Reference definition": {
     "prefix": "rdef",
@@ -98,10 +118,25 @@
     "description": "Reference a theorem",
     "body": "\\ref{thm:$1}$0"
   },
+  "Sigma sum": {
+    "prefix": "bsum",
+    "description": "Create a sum using sigma notation",
+    "body": "\\sum_{$1 = $2}^{$3}$0"
+  },
+  "Pi product": {
+    "prefix": "bproduct",
+    "description": "Create a produt using pi notation",
+    "body": "\\product_{$1 = $2}^{$3}$0"
+  },
   "Fraction": {
     "prefix": "frac",
     "description": "Create a fraction",
     "body": "\\frac{$1}{$2}$0"
+  },
+  "Choose": {
+    "prefix": "binom",
+    "description": "Create a (n choose k) thingy",
+    "body": "\\binom{$1}{$2}$0"
   },
   "Limit": {
     "prefix": "lim",
@@ -122,6 +157,21 @@
     "prefix": "sqrt",
     "description": "Create a sqrt",
     "body": "\\sqrt[$1]{$2}$0"
+  },
+  "Sin": {
+    "prefix": "sin",
+    "description": "Create a sin call",
+    "body": "\\sin($1)$0"
+  },
+  "Cos": {
+    "prefix": "cos",
+    "description": "Create a cos call",
+    "body": "\\cos($1)$0"
+  },
+  "Ln": {
+    "prefix": "ln",
+    "description": "Create a ln call",
+    "body": "\\ln($1)$0"
   },
   "Real numbers": {
     "prefix": "reals",
@@ -171,7 +221,7 @@
   "Force newline": {
     "prefix": "cr",
     "description": "Force newline in math mode",
-    "body": "{\\ \\\\}"
+    "body": "{\\ \\\\\\\\}"
   },
   "Aligned display math": {
     "prefix": "maligned",

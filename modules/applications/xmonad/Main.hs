@@ -88,6 +88,9 @@ main =
         ("M-g", spawn myBrowser),
         ("M-d", spawn "Discord"),
         ("M-v", spawn "alacritty -e vimclip"),
+        ("M-s", spawn "spectacle -rcb"),
+        ("M-S-s", spawn "spectacle -mcb"),
+        ("M-C-s", spawn "spectacle -ucb"),
         ("M-c", kill)
       ]
 

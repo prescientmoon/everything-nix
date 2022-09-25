@@ -12,6 +12,11 @@ local abbreviations = {
   { "eps", "\\epsilon" },
   { "delta", "\\delta" },
   { "pi", "\\pi" },
+  { "psi", "\\psi" },
+  { "psi", "\\psi" },
+  { "alpha", "\\alpha" },
+  { "beta", "\\beta" },
+  { "gamma", "\\gamma" },
   { "nuls", "\\varnothing" },
 
   -- Exponents
@@ -23,6 +28,7 @@ local abbreviations = {
   { "e4", "^{4}" },
   { "en", "^{n}" },
   { "etn", "^{-}" },
+  { "ett", "^{t}" },
   { "etp", "^{+}" },
 
   -- Subscripts
@@ -60,6 +66,9 @@ local abbreviations = {
   { "iff", "\\iff" },
   { "land", "\\land" },
   { "lor", "\\lor" },
+  { "ssin", "\\sin" },
+  { "ccos", "\\cos" },
+  { "lln", "\\ln" },
   { "frl", "\\forall" },
   { "exs", "\\exists" },
   { "iinf", "\\infty" },
@@ -69,6 +78,7 @@ local abbreviations = {
   { "ccap", "\\cap" },
   { "nope", "\\bot" },
   { "yee", "\\top" },
+  { "ccan", "\\cancel" },
   { "mul", "\\cdot" },
   { "smul", "\\times" },
   { "texpl", "&& \\text{}" },
