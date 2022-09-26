@@ -53,6 +53,8 @@ local abbreviations = {
   { "dhx", "h'(x)" },
 
   -- Basic commands
+  { "creq", "\\\\&=" },
+  { "aeq", "&=" },
   { "leq", "\\leq" },
   { "geq", "\\geq" },
   { "sdiff", "\\setminus" },

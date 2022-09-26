@@ -153,6 +153,11 @@
     "description": "Create a limit as a variable goes to negative infinity",
     "body": "\\lim _{$1 \\to -\\infty}$0"
   },
+  "Limit to zero": {
+    "prefix": "zlim",
+    "description": "Create a limit as a variable goes to 0",
+    "body": "\\lim _{$1 \\to 0}$0"
+  },
   "Sqrt": {
     "prefix": "sqrt",
     "description": "Create a sqrt",
@@ -227,5 +232,21 @@
     "prefix": "maligned",
     "description": "Create an aligned display math environment",
     "body": ["\\[", "\t\\begin{aligned}", "\t\t$0", "\t\\end{aligned}", "\\]"]
+  },
+  "System of equations": {
+    "prefix": "eqsystem",
+    "description": "Create a system of equations",
+    "body": [
+      "\\left\\{",
+      "\t\\begin{array}{rl}",
+      "\t\t$0",
+      "\t\\end{array}",
+      "\\right\\\\\\}"
+    ]
+  },
+  "Aligned equation": {
+    "prefix": "aleq",
+    "description": "Aligned equation",
+    "body": ["\\\\\\ $1 &= $2", "$0"]
   }
 }
