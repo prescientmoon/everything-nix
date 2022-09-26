@@ -2,20 +2,24 @@ local A = require("my.abbreviations")
 
 require("my.helpers.wrapMovement").setup()
 
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 0
 vim.opt.wrap = true
 
 vim.g.tex_conceal = "abdmg"
+-- vim.g.vimtex_syntax_conceal = 1
+vim.g.vimtex_imaps_enabled = 0
 
 local abbreviations = {
   -- Greek chars
   { "eps", "\\epsilon" },
   { "delta", "\\delta" },
+  { "Delta", "\\Delta" },
   { "pi", "\\pi" },
   { "psi", "\\psi" },
   { "psi", "\\psi" },
   { "alpha", "\\alpha" },
   { "beta", "\\beta" },
+  { "theta", "\\theta" },
   { "gamma", "\\gamma" },
   { "nuls", "\\varnothing" },
 
@@ -53,6 +57,8 @@ local abbreviations = {
   { "dhx", "h'(x)" },
 
   -- Basic commands
+  { "mangle", "\\measuredangle" },
+  { "aangle", "\\angle" },
   { "creq", "\\\\&=" },
   { "aeq", "&=" },
   { "leq", "\\leq" },
