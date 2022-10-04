@@ -248,5 +248,47 @@
     "prefix": "aleq",
     "description": "Aligned equation",
     "body": ["\\\\\\ $1 &= $2", "$0"]
+  },
+  "2x2 matrices": {
+    "prefix": "mat22",
+    "description": "Create a 2x2 matrix",
+    "body": [
+      "\\begin{bmatrix}",
+      "   ${1:1} & ${2:0}",
+      "\\\\\\ ${3:0} & ${4:1}",
+      "\\end{bmatrix}$0"
+    ]
+  },
+  "3x3 matrices": {
+    "prefix": "mat33",
+    "description": "Create a 3x3 matrix",
+    "body": [
+      "\\begin{bmatrix}",
+      "   ${1:1} & ${2:0} & ${3:0}",
+      "\\\\\\ ${4:0} & ${5:1} & ${6:0}",
+      "\\\\\\ ${7:0} & ${8:0} & ${9:1}",
+      "\\end{bmatrix}$0"
+    ]
+  },
+  "3x3 determinants": {
+    "prefix": "det33",
+    "description": "Create a 3x3 determinant",
+    "body": [
+      "\\begin{vmatrix}",
+      "   $1 & $2 & $3",
+      "\\\\\\ $4 & $5 & $6",
+      "\\\\\\ $7 & $8 & $9",
+      "\\end{vmatrix}$0"
+    ]
+  },
+  "2x2 determinants": {
+    "prefix": "det22",
+    "description": "Create a 2x2 determinant",
+    "body": [
+      "\\begin{vmatrix}",
+      "   $1 & $2",
+      "\\\\\\ $3 & $4",
+      "\\end{vmatrix}$0"
+    ]
   }
 }

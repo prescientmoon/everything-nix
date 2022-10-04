@@ -33,6 +33,7 @@ local abbreviations = {
   { "en", "^{n}" },
   { "etn", "^{-}" },
   { "ett", "^{t}" },
+  { "tmat", "^{T}" }, -- Tranpose of a matrix
   { "etp", "^{+}" },
 
   -- Subscripts
@@ -87,10 +88,14 @@ local abbreviations = {
   { "nope", "\\bot" },
   { "yee", "\\top" },
   { "ccan", "\\cancel" },
+  { "comp", "\\circ" },
   { "mul", "\\cdot" },
   { "smul", "\\times" },
   { "texpl", "&& \\text{}" },
-  { "card", "\\#" }
+  { "card", "\\#" },
+
+  -- words
+  { "rref", "reduced row echalon form" }
 }
 
 A.manyLocalAbbr(abbreviations)

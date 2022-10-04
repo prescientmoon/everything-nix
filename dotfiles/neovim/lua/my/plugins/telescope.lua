@@ -10,6 +10,7 @@ local keybinds = {
   { "<C-P>", "find_files" },
   { "<Leader>ft", find_files_by_extension("tex") },
   { "<Leader>fl", find_files_by_extension("lua") },
+  { "<Leader>d", "diagnostics" },
   { "<C-F>", "live_grep" },
   { "<Leader>t", "builtin" },
 }
