@@ -1,11 +1,5 @@
 local M = {}
 
-local function map(buf, mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
-end
-
 function M.on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -16,38 +10,34 @@ function M.on_attach(client, bufnr)
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("LspFormatting", {}),
-      callback = function() 
-        vim.lsp.buf.format({async = false})
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({ async = false })
       end
     })
   end
 
   print("Setting up keybinds...")
+
+  local opts = function(desc)
+    return { noremap = true, silent = true, desc = desc }
+  end
+
   -- Go to declaration / definition / implementation
-  map(bufnr, "n", 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-  map(bufnr, "n", 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-  map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts("Go to references"))
 
   -- Hover
-  map(bufnr, 'n', 'J', "<cmd>lua vim.diagnostic.open_float()<CR>")
-  map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-  map(bufnr, 'n', 'L', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-
-  -- Workspace stuff
-  -- map(bufnr, 'n', '<leader>wa',
-  --     '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-  -- map(bufnr, 'n', '<leader>wr',
-  --     '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-  -- map(bufnr, 'n', '<leader>wl',
-  --     '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+  vim.keymap.set("n", "J", vim.diagnostic.open_float, opts("Show diagnostic"))
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Hover"))
+  vim.keymap.set("n", "L", vim.lsp.buf.signature_help, opts("Signature help"))
 
   -- Code actions
-  map(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  map(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  map(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-  map(bufnr, 'n', '<leader>f',
-    '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename"))
+  vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, opts("Code actions"))
+  vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts("Format"))
 
   print("Initialized language server!")
 end

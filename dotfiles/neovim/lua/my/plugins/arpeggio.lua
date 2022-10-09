@@ -10,17 +10,17 @@ function M.chord(mode, lhs, rhs, opts)
       M.chord(c, lhs, rhs, opts)
     end
   else
-    local options = helpers.mergeTables(opts, { noremap = true })
+    local options = helpers.mergeTables(opts or {}, { noremap = true })
     local settings = options.settings or ""
 
     if options.silent then settings = settings .. "s" end
 
-    arpeggio(mode, settings, options.noremap, lhs, rhs)
+    arpeggio(mode, settings, not options.noremap, lhs, rhs)
   end
 end
 
 function M.chordSilent(mode, lhs, rhs, opts)
-  local options = helpers.mergeTables(opts, { silent = true })
+  local options = helpers.mergeTables(opts or {}, { silent = true })
   M.chord(mode, lhs, rhs, options)
 end
 

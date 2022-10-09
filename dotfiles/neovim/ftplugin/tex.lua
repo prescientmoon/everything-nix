@@ -1,4 +1,5 @@
 local A = require("my.abbreviations")
+local AB = require("my.plugins.abolish")
 
 require("my.helpers.wrapMovement").setup()
 
@@ -21,6 +22,7 @@ local abbreviations = {
   { "beta", "\\beta" },
   { "theta", "\\theta" },
   { "gamma", "\\gamma" },
+  { "lam", "\\lambda" },
   { "nuls", "\\varnothing" },
 
   -- Exponents
@@ -35,6 +37,7 @@ local abbreviations = {
   { "ett", "^{t}" },
   { "tmat", "^{T}" }, -- Tranpose of a matrix
   { "etp", "^{+}" },
+
 
   -- Subscripts
   { "s0", "_{0}" },
@@ -97,5 +100,12 @@ local abbreviations = {
   -- words
   { "rref", "reduced row echalon form" }
 }
+
+local abolishAbbreviations = {
+  { "egv{a,e}{,s}", "eigenv{alue,ector}{}" }
+}
+
+AB.abolishMany(abolishAbbreviations)
+
 
 A.manyLocalAbbr(abbreviations)

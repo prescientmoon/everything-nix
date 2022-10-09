@@ -22,7 +22,7 @@ function M.setup()
     },
   }
 
-  vim.keymap.set("n", "<leader>p", ":PasteImg<cr>")
+  vim.keymap.set("n", "<leader>p", ":PasteImg<cr>", { desc = "Paste image from clipboard" })
 end
 
 return M

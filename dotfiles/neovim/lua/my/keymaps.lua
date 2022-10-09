@@ -21,25 +21,48 @@ function M.mapSilent(mode, lhs, rhs, opts)
 end
 
 -- Performs a basic move operation
-function M.move(from, to)
-  vim.keymap.set("n", to, from)
+function M.move(from, to, opts)
+  vim.keymap.set("n", to, from, opts)
   vim.keymap.set("n", from, "<Nop>")
 end
 
 function M.setup()
-  M.move("q", "yq")
+  M.move("q", "yq", { desc = "Record macro" })
   M.move("Q", "yQ")
+  M.move("<C-^>", "<Leader>a", { desc = "Go to previous file" })
 
-  vim.keymap.set("n", "Q", ":wqa<cr>") -- Save and quit
+  vim.keymap.set("n", "Q", ":wqa<cr>", { desc = "Save all files and quit" })
+  vim.keymap.set("n", "<leader>rw", ":%s/<C-r><C-w>/", {
+    desc = "Replace word in file"
+  })
 
   -- Create chords
   if arpeggio ~= nil then
-    arpeggio.chord("n", "vs", "<C-w>v") -- Create vertical split
-    arpeggio.chord("n", "ji", ":w<cr>") -- Saving
+    arpeggio.chordSilent("n", "ji", ":silent :write<cr>") -- Saving
     arpeggio.chord("i", "jk", "<Esc>") -- Remap Esc to jk
-    arpeggio.chord("nv", "<Leader>a", "<C-6><cr>") -- Rebind switching to the last pane using leader+a
     arpeggio.chord("nv", "cp", "\"+") -- Press cp to use the global clipboard
-    arpeggio.chord("n", "rw", ":%s/<C-r><C-w>/") -- Press rw to rename word under cursor
+  end
+
+  local status, wk = pcall(require, "which-key")
+
+  if status then
+    wk.register({
+      ["<leader>"] = {
+        f = {
+          name = "Files"
+        },
+        g = {
+          name = "Go to"
+        },
+        r = {
+          name = "Rename / Replace"
+        },
+        ["<leader>"] = {
+          name = "Easymotion"
+        },
+        v = "which_key_ignore"
+      }
+    })
   end
 
   return M

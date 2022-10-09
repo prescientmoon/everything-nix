@@ -47,7 +47,7 @@ function M.setup()
     "ShinKage/idris2-nvim", -- idris2 support
     "udalov/kotlin-vim", -- kotlin support
     "haringsrob/nvim_context_vt", -- show context on closing parenthesis
-    "vuki656/package-info.nvim", -- shows latest versions in package.json
+    -- "vuki656/package-info.nvim", -- shows latest versions in package.json
     "j-hui/fidget.nvim", -- show progress for lsp stuff
     "stevearc/dressing.nvim", -- better ui I guess
     "rktjmp/paperplanes.nvim", -- export to pastebin like services
@@ -55,16 +55,16 @@ function M.setup()
     "jbyuki/venn.nvim", -- draw ascii diagrams
     "hrsh7th/cmp-omni", -- omnifunc source for cmp
     "ekickx/clipboard-image.nvim", -- paste images from clipbaord
+    "glacambre/firenvim", -- vim inside chrome
+    "lewis6991/impatient.nvim", -- faster startup times
+    "tpope/vim-abolish", -- abbreviations on steroids
+    "mrjones2014/smart-splits.nvim", -- the name says it all
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
-    "TimUntersberger/neogit" -- magit clone
+    -- "TimUntersberger/neogit" -- magit clone
   }
 
-  -- This might get installed by nix!
-  if os.getenv("NVIM_INSTALL_TREESITTER") then
-    table.insert(base, 2, { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-  end
   table.insert(base, 2, { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
   for _, v in ipairs(themePackages) do

@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
   -- Import my other files
+  require("impatient") -- should make startups take less
   require("my.paq").setup()
   require("my.theme").setup()
   require("my.options").setup()
