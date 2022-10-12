@@ -59,10 +59,13 @@ function M.setup()
     "lewis6991/impatient.nvim", -- faster startup times
     "tpope/vim-abolish", -- abbreviations on steroids
     "mrjones2014/smart-splits.nvim", -- the name says it all
+    "phaazon/mind.nvim", -- Organize shit as trees
+    "bfredl/nvim-luadev", -- lua repl thingy
+    "akinsho/toggleterm.nvim", -- cool terminal thingy
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
-    -- "TimUntersberger/neogit" -- magit clone
+    { "TimUntersberger/neogit", opt = true } -- magit clone
   }
 
   table.insert(base, 2, { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })

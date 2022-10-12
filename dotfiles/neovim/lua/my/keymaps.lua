@@ -26,6 +26,13 @@ function M.move(from, to, opts)
   vim.keymap.set("n", from, "<Nop>")
 end
 
+function M.delimitedTextobject(from, to, name, perhapsOpts)
+  local opts = helpers.mergeTables(perhapsOpts or {}, { desc = name })
+
+  vim.keymap.set({ "v", "o" }, "i" .. from, "i" .. to, opts)
+  vim.keymap.set({ "v", "o" }, "a" .. from, "a" .. to, opts)
+end
+
 function M.setup()
   M.move("q", "yq", { desc = "Record macro" })
   M.move("Q", "yQ")
@@ -35,6 +42,10 @@ function M.setup()
   vim.keymap.set("n", "<leader>rw", ":%s/<C-r><C-w>/", {
     desc = "Replace word in file"
   })
+
+  M.delimitedTextobject("q", '"', "quotes")
+  M.delimitedTextobject("a", "'", "'")
+  M.delimitedTextobject("r", "[", "square brackets")
 
   -- Create chords
   if arpeggio ~= nil then

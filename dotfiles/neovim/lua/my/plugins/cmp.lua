@@ -11,7 +11,7 @@ end
 function M.setup()
   local cmp = require("cmp")
   local lspkind = require('lspkind')
-  local luasnip = require("luasnip")
+  -- local luasnip = require("luasnip")
 
   local options = {
     window = {
@@ -44,22 +44,18 @@ function M.setup()
       end
     },
     mapping = {
-      ["<Tab>"] = cmp.mapping(function(fallback)
+      ["<C-d>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
         elseif has_words_before() then
           cmp.complete()
         else
           fallback()
         end
       end, { "i", "s" }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
+      ["<C-s>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
         else
           fallback()
         end
@@ -72,8 +68,6 @@ function M.setup()
       { name = 'omni' } -- omnifunc
     }, { { name = 'buffer' } })
   }
-
-  cmp.setup(options)
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {

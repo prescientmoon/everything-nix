@@ -13,11 +13,15 @@ function M.setup()
       require("my.plugins.lualine").setup()
       require("my.plugins.vimux").setup()
       require("my.plugins.whichkey").setup()
+      require("toggleterm").setup()
+
+      require("my.plugins.neogit").setup()
     end)
 
     require("my.plugins.dashboard").setup()
     require("my.plugins.treesitter").setup()
     require("my.plugins.cmp").setup()
+    require("my.plugins.luasnip").setup()
     require("my.plugins.lspconfig").setup()
     require("my.plugins.null-ls").setup()
     require("my.plugins.vimtex").setup()
@@ -28,16 +32,22 @@ function M.setup()
     require("my.plugins.firevim").setup()
   else
     require("gitlinker").setup()
-    -- require("my.plugins.neogit").setup()
     require("my.plugins.paperplanes").setup()
   end
 
   require("my.plugins.easymotion").setup()
   require("my.plugins.autopairs").setup()
   require("my.plugins.telescope").setup()
+  require("my.plugins.surround").setup()
 
   require("my.plugins.hydra").setup()
   require("my.plugins.clipboard-image").setup()
+  require("mind").setup({
+    persistence = {
+      state_path = "~/Mind/mind.json",
+      data_dir = "~/Mind/data"
+    }
+  })
 
   -- require("my.plugins.slam").setup()
 end

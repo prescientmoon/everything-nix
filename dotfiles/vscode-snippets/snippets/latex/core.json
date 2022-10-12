@@ -178,36 +178,6 @@
     "description": "Create a ln call",
     "body": "\\ln($1)$0"
   },
-  "Real numbers": {
-    "prefix": "reals",
-    "description": "ℝ",
-    "body": "\\mathbb{R}"
-  },
-  "Complex numbers": {
-    "prefix": "complex",
-    "description": "Fancy C symbol",
-    "body": "\\mathbb{C}"
-  },
-  "Natural numbers": {
-    "prefix": "nats",
-    "description": "ℕ",
-    "body": "\\mathbb{N}"
-  },
-  "Integers": {
-    "prefix": "ints",
-    "description": "ℤ",
-    "body": "\\mathbb{Z}"
-  },
-  "Rationals": {
-    "prefix": "rats",
-    "description": "ℚ",
-    "body": "\\mathbb{Q}"
-  },
-  "Fields": {
-    "prefix": "fields",
-    "description": "Fanch F symbol",
-    "body": "\\mathbb{F}"
-  },
   "Aligned": {
     "prefix": "aligned",
     "description": "Create an aligned environment",
@@ -290,5 +260,15 @@
       "\\\\\\ $3 & $4",
       "\\end{vmatrix}$0"
     ]
+  },
+  "Definite integral": {
+    "prefix": "dintegral",
+    "description": "Definite integral",
+    "body": "\\int_{$1}^{$2} $3 d${4:x}$0"
+  },
+  "Indefinite integral": {
+    "prefix": "integral",
+    "description": "Integral",
+    "body": "\\int $1 d${2:x}$0"
   }
 }

@@ -25,6 +25,14 @@ local abbreviations = {
   { "lam", "\\lambda" },
   { "nuls", "\\varnothing" },
 
+  -- Other fancy symvols
+  { "ints", "\\mathbb{I}" },
+  { "nats", "\\mathbb{N}" },
+  { "rats", "\\mathbb{Q}" },
+  { "rreal", "\\mathbb{R}" },
+  { "ffield", "\\mathbb{F}" },
+  { "ccom", "\\mathbb{C}" },
+
   -- Exponents
   { "ei", "^{-1}" },
   { "e0", "^{0}" },
@@ -37,7 +45,6 @@ local abbreviations = {
   { "ett", "^{t}" },
   { "tmat", "^{T}" }, -- Tranpose of a matrix
   { "etp", "^{+}" },
-
 
   -- Subscripts
   { "s0", "_{0}" },
@@ -80,6 +87,8 @@ local abbreviations = {
   { "lor", "\\lor" },
   { "ssin", "\\sin" },
   { "ccos", "\\cos" },
+  { "ttan", "\\ttan" },
+  { "ssec", "\\sec" },
   { "lln", "\\ln" },
   { "frl", "\\forall" },
   { "exs", "\\exists" },
@@ -96,13 +105,16 @@ local abbreviations = {
   { "smul", "\\times" },
   { "texpl", "&& \\text{}" },
   { "card", "\\#" },
+  { "div", "|" },
+  { "ndiv", "\\not|\\:" },
 
   -- words
   { "rref", "reduced row echalon form" }
 }
 
 local abolishAbbreviations = {
-  { "egv{a,e}{,s}", "eigenv{alue,ector}{}" }
+  { "egv{a,e}{,s}", "eigenv{alue,ector}{}" },
+  { "ib{p,s}", "integration by {parts,substitution}" }
 }
 
 AB.abolishMany(abolishAbbreviations)
