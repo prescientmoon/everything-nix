@@ -17,7 +17,6 @@ local abbreviations = {
   { "Delta", "\\Delta" },
   { "pi", "\\pi" },
   { "psi", "\\psi" },
-  { "psi", "\\psi" },
   { "alpha", "\\alpha" },
   { "beta", "\\beta" },
   { "theta", "\\theta" },
@@ -105,8 +104,9 @@ local abbreviations = {
   { "smul", "\\times" },
   { "texpl", "&& \\text{}" },
   { "card", "\\#" },
-  { "div", "|" },
-  { "ndiv", "\\not|\\:" },
+  { "div", "\\|" },
+  { "ndiv", "\\not\\|\\:" },
+
 
   -- words
   { "rref", "reduced row echalon form" }
@@ -117,7 +117,5 @@ local abolishAbbreviations = {
   { "ib{p,s}", "integration by {parts,substitution}" }
 }
 
-AB.abolishMany(abolishAbbreviations)
-
-
 A.manyLocalAbbr(abbreviations)
+AB.abolishMany(abolishAbbreviations)

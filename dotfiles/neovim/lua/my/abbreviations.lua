@@ -2,7 +2,7 @@ local M = {}
 
 function M.localAbbr(lhs, rhs)
   -- Create abbreviation
-  vim.cmd(":iabbrev <buffer>" .. lhs .. " " .. rhs)
+  vim.cmd(":iabbrev <buffer> " .. lhs .. " " .. rhs)
 end
 
 function M.manyLocalAbbr(abbreviations)
