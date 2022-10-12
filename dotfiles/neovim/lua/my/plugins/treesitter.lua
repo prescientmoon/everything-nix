@@ -7,7 +7,6 @@ function M.setup()
       "elixir", "fish", "html", "json", "latex", "python", "rust", "scss",
       "toml", "tsx", "vim", "yaml", "nix", "kotlin"
     },
-    disable = { "tex", "latex" },
     sync_install = false,
     indent = { enable = true },
     highlight = {
