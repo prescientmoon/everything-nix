@@ -7,8 +7,8 @@ vim.opt.conceallevel = 0
 vim.opt.wrap = true
 
 vim.g.tex_conceal = "abdmg"
--- vim.g.vimtex_syntax_conceal = 1
 vim.g.vimtex_imaps_enabled = 0
+-- vim.g.vimtex_syntax_conceal = 1
 
 local abbreviations = {
   -- Greek chars
@@ -28,8 +28,9 @@ local abbreviations = {
   { "ints", "\\mathbb{I}" },
   { "nats", "\\mathbb{N}" },
   { "rats", "\\mathbb{Q}" },
-  { "rreal", "\\mathbb{R}" },
-  { "ffield", "\\mathbb{F}" },
+  { "rrea", "\\mathbb{R}" },
+  { "ppri", "\\mathbb{P}" },
+  { "ffie", "\\mathbb{F}" },
   { "ccom", "\\mathbb{C}" },
 
   -- Exponents
@@ -109,13 +110,17 @@ local abbreviations = {
 
 
   -- words
-  { "rref", "reduced row echalon form" }
+  { "rref", "reduced row echalon form" },
+  { "thrf", "therefore" }
 }
 
 local abolishAbbreviations = {
-  { "egv{a,e}{,s}", "eigenv{alue,ector}{}" },
-  { "ib{p,s}", "integration by {parts,substitution}" }
+  { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },
+  { "ib{p,s}", "integration by {parts,substitution}" },
+  { "mx{,s}", "matri{x,ces}" }
 }
 
 A.manyLocalAbbr(abbreviations)
 AB.abolishMany(abolishAbbreviations)
+
+vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<cr>", { desc = "Compile current buffer using vimtex" })

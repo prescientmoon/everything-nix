@@ -1,8 +1,16 @@
+local wk = require("which-key")
+
 local M = {}
 
 function M.setup()
-  require("which-key").setup({
+  wk.setup({
     triggers = { "<leader>", "d", "y", "q", "z", "g", "c" }
+  })
+
+  wk.register({
+    ["<leader>l"] = {
+      name = "Local commands"
+    }
   })
 end
 

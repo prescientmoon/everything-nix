@@ -23,12 +23,3 @@ vim.keymap.set("n", "<leader>ls", function()
   end
 end, opts("Run .setup() in current file"))
 
-local status, wk = pcall(require, "which-key")
-
-if status then
-  wk.register({
-    ["<leader>l"] = {
-      name = "Local commands"
-    }
-  })
-end

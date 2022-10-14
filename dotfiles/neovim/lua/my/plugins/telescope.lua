@@ -16,6 +16,7 @@ local keybinds = {
   { "<C-P>", "find_files", "Find files" },
   { "<Leader>ft", find_files_by_extension("tex"), "Find tex files" },
   { "<Leader>fl", find_files_by_extension("lua"), "Find lua files" },
+  { "<Leader>fp", find_files_by_extension("purs"), "Find purescript files" },
   { "<Leader>d", "diagnostics", "Diagnostics" },
   { "<C-F>", "live_grep", "Search in project" },
   { "<Leader>t", "builtin", "Show builtin pickers" },

@@ -1,0 +1,15 @@
+{
+  "Lua setup-module": {
+    "prefix": "msetup",
+    "description": "Create lua module with setup function inside",
+    "body": [
+      "local M = {}",
+      "",
+      "function M.setup()",
+      "  $0",
+      "end",
+      "",
+      "return M"
+    ]
+  }
+}

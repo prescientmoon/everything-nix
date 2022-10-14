@@ -38,6 +38,17 @@ function M.setup()
   M.move("Q", "yQ")
   M.move("<C-^>", "<Leader>a", { desc = "Go to previous file" })
 
+  vim.keymap.set({ "n", "v" }, "qn", function()
+    local buf = vim.api.nvim_win_get_buf(0)
+
+    -- Only save if file is writable
+    if vim.bo[buf].modifiable and not vim.bo[buf].readonly then
+      vim.cmd [[write]]
+    end
+
+    vim.cmd "q"
+  end, { desc = "Quit current buffer" })
+
   vim.keymap.set("n", "Q", ":wqa<cr>", { desc = "Save all files and quit" })
   vim.keymap.set("n", "<leader>rw", ":%s/<C-r><C-w>/", {
     desc = "Replace word in file"

@@ -42,12 +42,7 @@ function M.setup()
 
   require("my.plugins.hydra").setup()
   require("my.plugins.clipboard-image").setup()
-  require("mind").setup({
-    persistence = {
-      state_path = "~/Mind/mind.json",
-      data_dir = "~/Mind/data"
-    }
-  })
+  require("my.plugins.mind").setup()
 
   -- require("my.plugins.slam").setup()
 end
