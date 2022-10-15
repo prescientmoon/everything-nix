@@ -12,7 +12,10 @@
   "Absolute value": {
     "prefix": "abs",
     "description": "Absolute values",
-    "body": "|$1|$0"
+    "body": "|$1|$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Lemma": {
     "prefix": "lemma",
@@ -56,17 +59,26 @@
   "Subscript": {
     "prefix": "ss",
     "description": "Subscript",
-    "body": "_{$1}$0"
+    "body": "_{$1}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Exponent": {
     "prefix": "ee",
     "description": "Exponent",
-    "body": "^{$1}$0"
+    "body": "^{$1}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Nth derivative": {
     "prefix": "dd",
     "description": "Nth derivative",
-    "body": "^{($1)}$0"
+    "body": "^{($1)}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Section": {
     "prefix": "section",
@@ -121,47 +133,74 @@
   "Sigma sum": {
     "prefix": "bsum",
     "description": "Create a sum using sigma notation",
-    "body": "\\sum_{$1 = $2}^{$3}$0"
+    "body": "\\sum_{$1 = $2}^{$3}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Pi product": {
     "prefix": "bproduct",
     "description": "Create a produt using pi notation",
-    "body": "\\product_{$1 = $2}^{$3}$0"
+    "body": "\\prod_{$1 = $2}^{$3}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Fraction": {
     "prefix": "frac",
     "description": "Create a fraction",
-    "body": "\\frac{$1}{$2}$0"
+    "body": "\\frac{$1}{$2}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Choose": {
     "prefix": "binom",
     "description": "Create a (n choose k) thingy",
-    "body": "\\binom{$1}{$2}$0"
+    "body": "\\binom{$1}{$2}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Limit": {
     "prefix": "lim",
     "description": "Create a limit",
-    "body": "\\lim _{$1 \\to $2}$0"
+    "body": "\\lim _{$1 \\to $2}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Limit to infinity": {
     "prefix": "ilim",
     "description": "Create a limit as a variable goes to infinity",
-    "body": "\\lim _{$1 \\to \\infty}$0"
+    "body": "\\lim _{$1 \\to \\infty}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Limit to negative infinity": {
     "prefix": "nlim",
     "description": "Create a limit as a variable goes to negative infinity",
-    "body": "\\lim _{$1 \\to -\\infty}$0"
+    "body": "\\lim _{$1 \\to -\\infty}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Limit to zero": {
     "prefix": "zlim",
     "description": "Create a limit as a variable goes to 0",
-    "body": "\\lim _{$1 \\to 0}$0"
+    "body": "\\lim _{$1 \\to 0}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Sqrt": {
     "prefix": "sqrt",
     "description": "Create a sqrt",
-    "body": "\\sqrt[$1]{$2}$0"
+    "body": "\\sqrt[$1]{$2}$0",
+    "luasnip": {
+      "autotrigger": true
+    }
   },
   "Sin": {
     "prefix": "sin",
@@ -183,10 +222,15 @@
     "description": "Create an aligned environment",
     "body": ["\\begin{aligned}", "\t$0", "\\end{aligned}"]
   },
-  "Explanation in math mode": {
+  "Text explanation in math mode": {
     "prefix": "texpl",
+    "description": "Explain a step using text in math mode",
+    "body": "&& \\text{($1)}$0"
+  },
+  "Explanation in math mode": {
+    "prefix": "expl",
     "description": "Explain a step in math mode",
-    "body": "&& \\text{$1}$0"
+    "body": "&& ($1) $0"
   },
   "Let": {
     "prefix": "let",
