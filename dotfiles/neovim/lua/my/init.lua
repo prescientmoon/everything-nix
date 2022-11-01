@@ -7,7 +7,6 @@ function M.setup()
   require("my.theme").setup()
   require("my.options").setup()
   require('my.keymaps').setup()
-  require('my.snippets').setup()
   require('my.plugins').setup()
   require("telescope.extensions.unicode").setupAbbreviations()
 end

@@ -25,7 +25,7 @@ local abbreviations = {
   { "nuls", "\\varnothing" },
 
   -- Other fancy symvols
-  { "ints", "\\mathbb{I}" },
+  { "ints", "\\mathbb{Z}" },
   { "nats", "\\mathbb{N}" },
   { "rats", "\\mathbb{Q}" },
   { "rrea", "\\mathbb{R}" },
@@ -44,6 +44,7 @@ local abbreviations = {
   { "etn", "^{-}" },
   { "ett", "^{t}" },
   { "tmat", "^{T}" }, -- Tranpose of a matrix
+  { "cmat", "^{*}" }, -- Conjugate of a matrix
   { "etp", "^{+}" },
 
   -- Subscripts
@@ -108,19 +109,21 @@ local abbreviations = {
   { "div", "\\|" },
   { "ndiv", "\\not\\|\\:" },
 
-
   -- words
   { "rref", "reduced row echalon form" },
-  { "thrf", "therefore" }
 }
 
 local abolishAbbreviations = {
   { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },
   { "ib{p,s}", "integration by {parts,substitution}" },
-  { "mx{,s}", "matri{x,ces}" }
+  { "mx{,s}", "matri{x,ces}" },
+  { "thrf", "therefore" }
 }
 
 A.manyLocalAbbr(abbreviations)
 AB.abolishMany(abolishAbbreviations)
 
-vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<cr>", { desc = "Compile current buffer using vimtex" })
+vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<cr>", {
+  desc = "Compile current buffer using vimtex",
+  buffer = true
+})

@@ -25,6 +25,7 @@
     # ./chromium.nix
     ./vieb.nix
     ./polybar.nix
+    ./hamachi.nix
   ];
 }
 

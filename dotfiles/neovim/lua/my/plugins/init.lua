@@ -6,6 +6,11 @@ function M.setup()
   require('fidget').setup()
   require('dressing').setup()
 
+  require("my.plugins.easymotion").setup()
+  require("my.plugins.autopairs").setup()
+  require("my.plugins.telescope").setup()
+  require("my.plugins.surround").setup()
+
   env.vscode.unless(function()
     env.firevim.unless(function()
       require("presence"):setup({})
@@ -35,10 +40,6 @@ function M.setup()
     require("my.plugins.paperplanes").setup()
   end
 
-  require("my.plugins.easymotion").setup()
-  require("my.plugins.autopairs").setup()
-  require("my.plugins.telescope").setup()
-  require("my.plugins.surround").setup()
 
   require("my.plugins.hydra").setup()
   require("my.plugins.clipboard-image").setup()

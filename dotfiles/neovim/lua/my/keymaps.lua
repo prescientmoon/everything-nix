@@ -77,7 +77,7 @@ function M.setup()
           name = "Go to"
         },
         r = {
-          name = "Rename / Replace"
+          name = "Rename / Replace / Reload"
         },
         ["<leader>"] = {
           name = "Easymotion"
