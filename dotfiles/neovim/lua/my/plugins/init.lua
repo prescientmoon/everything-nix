@@ -21,6 +21,7 @@ function M.setup()
       require("toggleterm").setup()
 
       require("my.plugins.neogit").setup()
+      require("my.plugins.noice").setup()
     end)
 
     require("my.plugins.dashboard").setup()
@@ -31,6 +32,7 @@ function M.setup()
     require("my.plugins.null-ls").setup()
     require("my.plugins.vimtex").setup()
     require("my.plugins.lean").setup()
+    require("my.plugins.notify").setup()
   end)
 
   if env.firevim.active() then
@@ -39,7 +41,6 @@ function M.setup()
     require("gitlinker").setup()
     require("my.plugins.paperplanes").setup()
   end
-
 
   require("my.plugins.hydra").setup()
   require("my.plugins.clipboard-image").setup()

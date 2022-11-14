@@ -8,8 +8,6 @@ function M.setup()
       }
     }
   }
-
-  print("Initialized firenvim")
 end
 
 return M

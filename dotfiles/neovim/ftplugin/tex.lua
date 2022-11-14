@@ -10,6 +10,26 @@ vim.g.tex_conceal = "abdmg"
 vim.g.vimtex_imaps_enabled = 0
 -- vim.g.vimtex_syntax_conceal = 1
 
+vim.keymap.set("n", "<leader>lg", function()
+  if not pcall(function()
+    local a = tonumber(vim.fn.input("A: "))
+    local b = tonumber(vim.fn.input("B: "))
+
+    local g, x, y = require("my.helpers.math.mod").gcd(a, b)
+
+    vim.fn.input("Result: " .. g .. " " .. x .. " " .. y)
+  end) then vim.fn.input("No results exist") end
+end, { buffer = true, desc = "Gcd calculator" })
+
+vim.keymap.set("n", "<leader>li", function()
+  if not pcall(function()
+    local class = tonumber(vim.fn.input("Mod class: "))
+    local num = tonumber(vim.fn.input("Number: "))
+
+    vim.fn.input("Result: " .. require("my.helpers.math.mod").modinverse(num, class))
+  end) then vim.fn.input("No results exist") end
+end, { buffer = true, desc = "Mod inverse calculator" })
+
 local abbreviations = {
   -- Greek chars
   { "eps", "\\epsilon" },
@@ -22,18 +42,14 @@ local abbreviations = {
   { "theta", "\\theta" },
   { "gamma", "\\gamma" },
   { "lam", "\\lambda" },
-  { "nuls", "\\varnothing" },
-
-  -- Other fancy symvols
+  { "nuls", "\\varnothing" }, -- Other fancy symvols
   { "ints", "\\mathbb{Z}" },
   { "nats", "\\mathbb{N}" },
   { "rats", "\\mathbb{Q}" },
   { "rrea", "\\mathbb{R}" },
   { "ppri", "\\mathbb{P}" },
   { "ffie", "\\mathbb{F}" },
-  { "ccom", "\\mathbb{C}" },
-
-  -- Exponents
+  { "ccom", "\\mathbb{C}" }, -- Exponents
   { "ei", "^{-1}" },
   { "e0", "^{0}" },
   { "e1", "^{1}" },
@@ -45,17 +61,14 @@ local abbreviations = {
   { "ett", "^{t}" },
   { "tmat", "^{T}" }, -- Tranpose of a matrix
   { "cmat", "^{*}" }, -- Conjugate of a matrix
-  { "etp", "^{+}" },
-
-  -- Subscripts
+  {"ortco", "^{\\bot}"}, -- Orthogonal complement
+  { "etp", "^{+}" }, -- Subscripts
   { "s0", "_{0}" },
   { "s1", "_{1}" },
   { "s2", "_{2}" },
   { "s3", "_{3}" },
   { "s4", "_{4}" },
-  { "sn", "_{n}" },
-
-  -- Function calls
+  { "sn", "_{n}" }, -- Function calls
   { "fx", "f(x)" },
   { "gx", "g(x)" },
   { "hx", "h(x)" },
@@ -66,9 +79,7 @@ local abbreviations = {
   { "hoa", "h(a)" },
   { "dfx", "f'(x)" },
   { "dgx", "g'(x)" },
-  { "dhx", "h'(x)" },
-
-  -- Basic commands
+  { "dhx", "h'(x)" }, -- Basic commands
   { "mangle", "\\measuredangle" },
   { "aangle", "\\angle" },
   { "creq", "\\\\&=" },
@@ -110,20 +121,24 @@ local abbreviations = {
   { "ndiv", "\\not\\|\\:" },
 
   -- words
-  { "rref", "reduced row echalon form" },
+  { "rref", "reduced row echalon form" }
 }
 
+-- Todo: convert exponents and subscripts
+-- to use this more concise notation.
 local abolishAbbreviations = {
   { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },
   { "ib{p,s}", "integration by {parts,substitution}" },
   { "mx{,s}", "matri{x,ces}" },
-  { "thrf", "therefore" }
+  { "thrf", "therefore" },
+  { "dete{,s}", "determinant{}" },
+  { "bcla", "by contradiction let's assume" },
+  { "ort{n,g}", "orto{normal,gonal}" },
+  { "l{in,de}", "linearly {independent,dependent}" }
 }
 
 A.manyLocalAbbr(abbreviations)
 AB.abolishMany(abolishAbbreviations)
 
-vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<cr>", {
-  desc = "Compile current buffer using vimtex",
-  buffer = true
-})
+vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<cr>",
+               { desc = "Compile current buffer using vimtex", buffer = true })

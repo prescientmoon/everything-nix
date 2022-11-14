@@ -1,8 +1,6 @@
 local arpeggio = require("my.plugins.arpeggio")
 local A = require("my.abbreviations")
 
--- print("Initializing purescript keybinds...")
-
 -- Use vt to test
 arpeggio.chordSilent("n", "vt", ":VimuxRunCommand \"clear && spago test\"<CR>",
   { settings = "b" })

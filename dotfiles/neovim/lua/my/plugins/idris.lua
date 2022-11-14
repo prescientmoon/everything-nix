@@ -23,8 +23,8 @@ function M.setup()
 
         for key, value in pairs(idrisChords) do
           arpeggio.chord("n", "i" .. key,
-            ":lua require('idris2.code_action')." ..
-            value .. "()<CR>", { settings = "b" })
+                         ":lua require('idris2.code_action')." .. value .. "()<CR>",
+                         { settings = "b" })
         end
       end
     },

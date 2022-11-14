@@ -4,10 +4,7 @@ function M.on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-
   if client.server_capabilities.documentFormattingProvider then
-    print("Initializing formatter...")
-
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("LspFormatting", {}),
       buffer = bufnr,
@@ -16,8 +13,6 @@ function M.on_attach(client, bufnr)
       end
     })
   end
-
-  print("Setting up keybinds...")
 
   local opts = function(desc)
     return { noremap = true, silent = true, desc = desc }
@@ -38,20 +33,17 @@ function M.on_attach(client, bufnr)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename"))
   vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, opts("Code actions"))
   vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts("Format"))
-
-  print("Initialized language server!")
-end
-
-local function on_attach_typescript(client, bufnr)
-  -- We handle formatting using null-ls and prettierd
-  client.server_capabilities.documentFormattingProvider = false
-
-  M.on_attach(client, bufnr)
 end
 
 -- General server config
 local servers = {
-  tsserver = { on_attach = on_attach_typescript },
+  tsserver = {
+    on_attach = function(client, bufnr)
+      -- We handle formatting using null-ls and prettierd
+      client.server_capabilities.documentFormattingProvider = false
+      M.on_attach(client, bufnr)
+    end
+  },
   dhall_lsp_server = {},
   sumneko_lua = {
     settings = {
@@ -79,9 +71,7 @@ local servers = {
   purescriptls = {
     settings = {
       purescript = {
-        censorWarnings = {
-          "UnusedName", "ShadowedName", "UserDefinedWarning"
-        },
+        censorWarnings = { "UnusedName", "ShadowedName", "UserDefinedWarning" },
         formatter = "purs-tidy"
       }
     }
@@ -112,9 +102,7 @@ local servers = {
 }
 
 function M.setup()
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
-    .protocol
-    .make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   -- Setup basic language servers
   for lsp, details in pairs(servers) do

@@ -1,6 +1,5 @@
 local M = {}
 
-
 function M.setup()
   local paq = require("paq")
   local themePackages = require("my.theme").deps
@@ -62,6 +61,8 @@ function M.setup()
     "phaazon/mind.nvim", -- Organize shit as trees
     "bfredl/nvim-luadev", -- lua repl thingy
     "akinsho/toggleterm.nvim", -- cool terminal thingy
+    "folke/noice.nvim", -- better ui for cmd line and other stuff
+    "rcarriga/nvim-notify", -- better notifiaction ui
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code
