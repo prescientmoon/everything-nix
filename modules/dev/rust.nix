@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  home-manager.users.adrielus.home.packages = with pkgs; [ rustup ];
+  home-manager.users.adrielus.home.packages = with pkgs; [ rustup rust-analyzer ];
 }

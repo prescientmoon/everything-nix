@@ -1,6 +1,6 @@
 {-# LANGUAGE BlockArguments #-}
 
-import Control.Monad (join)
+import Control.Monad (forM_, join)
 import Data.Function ((&))
 import System.Environment
 import System.Process
@@ -29,7 +29,7 @@ main =
           { modMask = mod4Mask,
             layoutHook = myLayoutHook,
             startupHook = startup,
-            manageHook = manageDocks <+> myManagerHook <+> manageHook kdeConfig,
+            manageHook = manageDocks <+> manageSpawn <+> myManagerHook <+> manageHook kdeConfig,
             handleEventHook = handleEventHook kdeConfig <+> fullscreenEventHook,
             terminal = myTerminal,
             workspaces = myWorkspaces,
@@ -104,5 +104,13 @@ main =
     layouts = tall ||| threeCols ||| Full
     myLayoutHook = desktopLayoutModifiers $ spacingHook layouts
 
+    startupApps =
+      [ (0, "alacritty"),
+        (1, "google-chrome-stable"),
+        (2, "Discord")
+      ]
+
     startup :: X ()
-    startup = pure ()
+    startup = do
+      forM_ startupApps \(index, app) -> do
+        spawnOn (myWorkspaces !! index) app

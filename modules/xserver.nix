@@ -35,7 +35,11 @@ in
 
 
     # Enable xmonad
-    windowManager.xmonad.enable = true;
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      config = ./applications/xmonad/Main.hs;
+    };
 
     libinput = {
       # Enable touchpad support.

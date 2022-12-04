@@ -1,18 +1,36 @@
 local M = {}
 
 function M.setup()
-  require 'nvim-treesitter.configs'.setup {
+  require'nvim-treesitter.configs'.setup {
     ensure_installed = {
-      "bash", "javascript", "typescript", "c", "cpp", "css", "dockerfile",
-      "elixir", "fish", "html", "json", "latex", "python", "rust", "scss",
-      "toml", "tsx", "vim", "yaml", "nix", "kotlin"
+      "bash",
+      "javascript",
+      "typescript",
+      "c",
+      "cpp",
+      "css",
+      "dockerfile",
+      "elixir",
+      "fish",
+      "html",
+      "json",
+      "latex",
+      "python",
+      "rust",
+      "scss",
+      "toml",
+      "tsx",
+      "vim",
+      "yaml",
+      "nix",
+      "kotlin"
     },
     sync_install = false,
     indent = { enable = true },
     highlight = {
       enable = true,
 
-      disable = { "kotlin", "tex", "latex" },
+      disable = { "kotlin", "tex", "latex", "lean" },
 
       -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).

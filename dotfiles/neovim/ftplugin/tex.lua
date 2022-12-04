@@ -46,6 +46,7 @@ local abbreviations = {
   { "ints", "\\mathbb{Z}" },
   { "nats", "\\mathbb{N}" },
   { "rats", "\\mathbb{Q}" },
+  { "irats", "\\mathbb{I}" },
   { "rrea", "\\mathbb{R}" },
   { "ppri", "\\mathbb{P}" },
   { "ffie", "\\mathbb{F}" },
@@ -61,7 +62,7 @@ local abbreviations = {
   { "ett", "^{t}" },
   { "tmat", "^{T}" }, -- Tranpose of a matrix
   { "cmat", "^{*}" }, -- Conjugate of a matrix
-  {"ortco", "^{\\bot}"}, -- Orthogonal complement
+  { "ortco", "^{\\bot}" }, -- Orthogonal complement
   { "etp", "^{+}" }, -- Subscripts
   { "s0", "_{0}" },
   { "s1", "_{1}" },

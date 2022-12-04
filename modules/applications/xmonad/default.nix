@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   home-manager.users.adrielus = {
-    xsession.windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-      config = ./Main.hs;
-    };
+    # xsession.windowManager.xmonad = {
+    #   enable = true;
+    #   enableContribAndExtras = true;
+    #   config = ./Main.hs;
+    # };
 
     home.packages = with pkgs; [ xwallpaper ];
 

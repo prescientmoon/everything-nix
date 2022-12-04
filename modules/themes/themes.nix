@@ -25,7 +25,8 @@ lib.lists.map (theme: pkgs.callPackage theme { }) [
     # wallpaper = "landscapes/salty_mountains.png";
     # wallpaper = "misc/rainbow.png";
     # wallpaper.foreign = ./wallpapers/eye.png;
-    wallpaper.foreign = ./wallpapers/mountain.png;
+    # wallpaper.foreign = ./wallpapers/mountain.png;
+    wallpaper.foreign = ./wallpapers/rw_tower.png;
     transparency = 1;
     variant = "latte";
   })

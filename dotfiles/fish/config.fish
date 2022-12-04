@@ -1,3 +1,8 @@
+if status is-interactive
+and not set -q TMUX
+    exec tmux attach -t Welcome || tmux
+end
+
 set fish_cursor_default block # Set the normal and visual mode cursors to a block
 set fish_cursor_insert line # Set the insert mode cursor to a line
 set fish_cursor_replace_one underscore # Set the replace mode cursor to an underscore

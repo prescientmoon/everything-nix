@@ -17,11 +17,11 @@ function M.setup()
       require("my.plugins.nvim-tree").setup()
       require("my.plugins.lualine").setup()
       require("my.plugins.vimux").setup()
-      require("my.plugins.whichkey").setup()
+      -- require("my.plugins.whichkey").setup()
       require("toggleterm").setup()
 
       require("my.plugins.neogit").setup()
-      require("my.plugins.noice").setup()
+      -- require("my.plugins.noice").setup()
     end)
 
     require("my.plugins.dashboard").setup()
@@ -32,7 +32,7 @@ function M.setup()
     require("my.plugins.null-ls").setup()
     require("my.plugins.vimtex").setup()
     require("my.plugins.lean").setup()
-    require("my.plugins.notify").setup()
+    -- require("my.plugins.notify").setup()
   end)
 
   if env.firevim.active() then

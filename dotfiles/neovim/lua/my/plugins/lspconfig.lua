@@ -84,6 +84,7 @@ local servers = {
   },
   rnix = {},
   cssls = {},
+  rust_analyzer = {},
   -- texlab = {
   --   build = {
   --     executable = "tectonic",
@@ -101,8 +102,9 @@ local servers = {
   -- agda = {}, Haven't gotten this one to work yet
 }
 
+M.capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 function M.setup()
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   -- Setup basic language servers
   for lsp, details in pairs(servers) do
@@ -118,7 +120,7 @@ function M.setup()
         debounce_text_changes = 150 -- This will be the default in neovim 0.7+
       },
       cmd = details.cmd,
-      capabilities = capabilities
+      capabilities = M.capabilities
     }
   end
 end

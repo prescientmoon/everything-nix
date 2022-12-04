@@ -5,15 +5,30 @@ let
   fastcopy = pkgs.tmuxPlugins.mkTmuxPlugin
     {
       pluginName = "fastcopy";
-      version = "unstable-2022-04-18";
+      version = "unstable-2022-11-16";
       src = pkgs.fetchFromGitHub
         {
           owner = "abhinav";
           repo = "tmux-fastcopy";
-          sha256 = "0d2xdch5w35mw3kpw1y6jy8wk4zj43pjx73jlx83ciqddl3975x6";
-          rev = "4b9bc8e9e71c5b6eeb44a02f608baec07e12ea3d";
+          sha256 = "1ald4ycgwj1fhk82yvsy951kgnn5im53fhsscz20hvjsqql7j4j3";
+          rev = "41f4c1c9fae7eb05c85ee2e248719f004dcfc90e";
         };
     };
+
+  cowboy = pkgs.tmuxPlugins.mkTmuxPlugin
+    {
+      pluginName = "cowboy";
+      version = "unstable-2021-05-11";
+      src = pkgs.fetchFromGitHub
+        {
+          owner = "tmux-plugins";
+          repo = "tmux-cowboy";
+          sha256 = "16wqwfaqy7nhiy1ijkng1x4baqq7s9if0m3ffcrnakza69s6r4r8";
+          rev = "75702b6d0a866769dd14f3896e9d19f7e0acd4f2";
+        };
+    };
+
+  muxile = pkgs.callPackage ./tmux/muxile.nix { };
 in
 {
   home-manager.users.adrielus.programs = {
@@ -33,6 +48,15 @@ in
         sessionist # Nicer workflow for switching around between session
         # fastcopy # Easy copying of stuff
         resurrect # Save / restore tmux sessions
+        # muxile # Track tmux sessions on my phone
+        # cowboy # kill all hanging processes inside pane
+        {
+          plugin = continuum; # start tmux on boot & more
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+            set -g @continuum-boot 'on'
+          '';
+        }
       ];
 
       extraConfig = ''
@@ -45,3 +69,4 @@ in
     };
   };
 }
+
