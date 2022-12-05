@@ -5,14 +5,14 @@
     exa # ls replacement
     mkpasswd # hash passwords
     gnupg # forgot what this was
-    acpi # show remaining battery
+    # acpi # show remaining battery
     # typespeed # speed typing game
     # unixtools.xxd # to dump binary stuff into a text file (used it for a ctf)
     # youtube-dl # download from youtube
     neofetch # display system information
     xclip # copy paste stuff
     # feh # image viewer
-    speedtest-cli # test the internet speed and stuff
+    # speedtest-cli # test the internet speed and stuff
     # openssl
     # pkgconfig
     # ngrok
@@ -40,6 +40,7 @@
     # vim
     # emacs
     vimclip # use neovim anywhere
+    neovide # neovim ui!
 
     # chat apps
     # slack

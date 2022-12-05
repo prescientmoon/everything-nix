@@ -28,4 +28,8 @@
 
   # Render git repo using gource
   "git-render" = "gource -f -s 1 -c 4 --key";
+
+  # Neovide multigrid by default
+  neovide = "neovide --multigrid";
 }
+

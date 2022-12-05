@@ -56,6 +56,7 @@
 
         specialArgs = {
           paths = import ./paths.nix;
+          inherit inputs;
         };
 
         modules = [

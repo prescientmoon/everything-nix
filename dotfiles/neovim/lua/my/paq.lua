@@ -39,7 +39,7 @@ function M.setup()
     "wakatime/vim-wakatime", -- track time usage
     "vmchale/dhall-vim", -- dhall syntax highlighting
     -- "folke/which-key.nvim", -- shows what other keys I can press to finish a command
-    "psliwka/vim-smoothie", -- smooth scrolling
+    { "psliwka/vim-smoothie", opt = true }, -- smooth scrolling
     "easymotion/vim-easymotion", -- removes the need for spamming w or e
     "tpope/vim-surround", -- work with brackets, quotes, tags, etc
     "MunifTanjim/nui.nvim", -- ui stuff required by idris2

@@ -35,6 +35,13 @@ function M.setup()
     -- require("my.plugins.notify").setup()
   end)
 
+  if env.neovide.active() then
+    require("my.plugins.neovide").setup()
+  else
+    -- Neovide already provides this functionality!
+    vim.cmd [[packadd! vim-smoothie]]
+  end
+
   if env.firevim.active() then
     require("my.plugins.firevim").setup()
   else

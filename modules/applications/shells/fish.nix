@@ -13,6 +13,9 @@ in
 {
   users.defaultUserShell = pkgs.fish;
   home-manager.users.adrielus = {
+    programs.command-not-found.enable = false;
+    programs.nix-index.enable = true;
+
     # Source every file in the theme 
     xdg.configFile."fish/conf.d/plugin-${theme}.fish".text = lib.mkAfter ''
       for f in $plugin_dir/*.fish
