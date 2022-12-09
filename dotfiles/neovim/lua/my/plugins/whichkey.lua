@@ -4,7 +4,8 @@ local M = {}
 
 function M.setup()
   wk.setup({
-    triggers = { "<leader>", "d", "y", "q", "z", "g", "c" },
+    -- triggers = { "<leader>", "d", "y", "q", "z", "g", "c" },
+    triggers = {},
     show_help = false,
     show_keys = false
   })

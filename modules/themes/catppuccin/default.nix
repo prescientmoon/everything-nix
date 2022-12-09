@@ -85,8 +85,6 @@ in
         };
 
         opacity = transparency;
-
-        gtk_theme_variant = v "light" "dark";
       };
     };
   };

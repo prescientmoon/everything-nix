@@ -38,9 +38,10 @@ function M.setup()
     "saadparwaiz1/cmp_luasnip", -- snippet support for cmp
     "wakatime/vim-wakatime", -- track time usage
     "vmchale/dhall-vim", -- dhall syntax highlighting
-    -- "folke/which-key.nvim", -- shows what other keys I can press to finish a command
+    "folke/which-key.nvim", -- shows what other keys I can press to finish a command
     { "psliwka/vim-smoothie", opt = true }, -- smooth scrolling
-    "easymotion/vim-easymotion", -- removes the need for spamming w or e
+    -- "easymotion/vim-easymotion", -- removes the need for spamming w or e
+    "ggandor/leap.nvim", -- removes the need for spamming w or e
     "tpope/vim-surround", -- work with brackets, quotes, tags, etc
     "MunifTanjim/nui.nvim", -- ui stuff required by idris2
     "ShinKage/idris2-nvim", -- idris2 support

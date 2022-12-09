@@ -83,14 +83,10 @@ local abbreviations = {
   { "dhx", "h'(x)" }, -- Basic commands
   { "mangle", "\\measuredangle" },
   { "aangle", "\\angle" },
-  { "creq", "\\\\&=" },
-  { "aeq", "&=" },
-  { "leq", "\\leq" },
-  { "geq", "\\geq" },
+
   { "sdiff", "\\setminus" },
   { "sst", "\\subset" },
   { "sseq", "\\subseteq" },
-  { "neq", "\\neq" },
   { "nin", "\\not\\in" },
   { "iin", "\\in" },
   { "tto", "\\to" },
@@ -135,7 +131,15 @@ local abolishAbbreviations = {
   { "dete{,s}", "determinant{}" },
   { "bcla", "by contradiction let's assume" },
   { "ort{n,g}", "orto{normal,gonal}" },
-  { "l{in,de}", "linearly {independent,dependent}" }
+  { "l{in,de}", "linearly {independent,dependent}" },
+  { "wlg", "without loss of generality" },
+
+  -- My own operator syntax:
+  --   - Any operator can be prefixed with "a" to
+  --     align in aligned mode
+  --   - Any operator can be prefixed with cr to
+  --     start a new line and align in aligned mode
+  { "{cr,a,}{eq,neq,leq,geq,lt,gt}", "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>}" }
 }
 
 A.manyLocalAbbr(abbreviations)

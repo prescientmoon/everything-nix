@@ -32,9 +32,6 @@ let
 in
 {
   home-manager.users.adrielus.programs = {
-    # Add tmux-navigator plugin to neovim
-    # neovim.extraPackages = [ pkgs.vimPlugins.vim-tmux-navigator ];
-
     tmux = {
       enable = true;
 

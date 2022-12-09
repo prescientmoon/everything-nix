@@ -1,6 +1,6 @@
 if status is-interactive
 and not set -q TMUX
-    exec tmux attach -t Welcome || tmux
+    exec tmux attach -t Welcome || tmux || echo "Something went wrong trying to start tmux"
 end
 
 set fish_cursor_default block # Set the normal and visual mode cursors to a block

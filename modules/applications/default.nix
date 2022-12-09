@@ -3,7 +3,6 @@
     ./git
     ./shells
     # ./wakatime
-    ./xmonad
     ./rofi
     # ./xmodmap
 
@@ -17,7 +16,7 @@
     ./locale.nix
     # ./memes.nix
     ./alacritty.nix
-    ./postgres.nix
+    # ./postgres.nix
     ./neovim.nix
     ./tmux.nix
     ./kmonad.nix

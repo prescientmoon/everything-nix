@@ -34,25 +34,27 @@ function M.delimitedTextobject(from, to, name, perhapsOpts)
 end
 
 function M.setup()
+  -- I rarely use macro stuff
   M.move("q", "yq", { desc = "Record macro" })
   M.move("Q", "yQ")
+
+  -- Free these up for easymotion-style plugins
+  -- vim.keymap.set("n", "s", "<Nop>")
+  -- vim.keymap.set("n", "S", "<Nop>")
+
   M.move("<C-^>", "<Leader>a", { desc = "Go to previous file" })
 
-  vim.keymap.set({ "n", "v" }, "qn", function()
+  vim.keymap.set({ "n", "v" }, "<leader>q", function()
     local buf = vim.api.nvim_win_get_buf(0)
 
     -- Only save if file is writable
-    if vim.bo[buf].modifiable and not vim.bo[buf].readonly then
-      vim.cmd [[write]]
-    end
+    if vim.bo[buf].modifiable and not vim.bo[buf].readonly then vim.cmd [[write]] end
 
     vim.cmd "q"
   end, { desc = "Quit current buffer" })
 
   vim.keymap.set("n", "Q", ":wqa<cr>", { desc = "Save all files and quit" })
-  vim.keymap.set("n", "<leader>rw", ":%s/<C-r><C-w>/", {
-    desc = "Replace word in file"
-  })
+  vim.keymap.set("n", "<leader>rw", ":%s/<C-r><C-w>/", { desc = "Replace word in file" })
 
   M.delimitedTextobject("q", '"', "quotes")
   M.delimitedTextobject("a", "'", "'")
@@ -70,18 +72,10 @@ function M.setup()
   if status then
     wk.register({
       ["<leader>"] = {
-        f = {
-          name = "Files"
-        },
-        g = {
-          name = "Go to"
-        },
-        r = {
-          name = "Rename / Replace / Reload"
-        },
-        ["<leader>"] = {
-          name = "Easymotion"
-        },
+        f = { name = "Files" },
+        g = { name = "Go to" },
+        r = { name = "Rename / Replace / Reload" },
+        l = { name = "Local" },
         v = "which_key_ignore"
       }
     })
