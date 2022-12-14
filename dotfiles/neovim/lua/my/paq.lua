@@ -5,7 +5,9 @@ function M.setup()
   local themePackages = require("my.theme").deps
   local base = {
     "nvim-lua/plenary.nvim", -- async utility lib it seems?
+    "folke/neoconf.nvim", -- per project neovim configuration
     "neovim/nvim-lspconfig", -- configures lsps for me
+    "folke/neodev.nvim", -- lua support
     "windwp/nvim-autopairs", -- closes pairs for me (should look for a better one)
     "nvim-telescope/telescope.nvim", -- fuzzy search for say opening files
     "purescript-contrib/purescript-vim", -- purescript support

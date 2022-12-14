@@ -11,13 +11,11 @@ let
 
   extraPackages = with pkgs; [
     # Language servers
-    # haskellPackages.agda-language-server # agda
     nodePackages.typescript-language-server # typescript
     easy-purescript-nix.purescript-language-server # purescript
     sumneko-lua-language-server # lua
     rnix-lsp # nix
     haskell-language-server # haskell
-    kotlin-language-server # kotlin
     tectonic # also latex something?
     texlab # latex
     # vscode-langservers-extracted # css and shit
@@ -33,24 +31,20 @@ let
     wakatime # time tracking
     fd # file finder
     ripgrep # grep rewrite (I think?)
-    nodePackages.typescript # typescript language
     update-nix-fetchgit # useful for nix stuff
     tree-sitter # syntax highlighting
     libstdcxx5 # required by treesitter aparently
+    zathura # pdf reader
+    xdotool # for zathura reverse search or whatever it's called
 
     texlive.combined.scheme-full # latex stuff
     python38Packages.pygments # required for latex syntax highlighting
   ];
 
-  myConfig = ''
-    vim.g.lualineTheme = "${theme.neovim.lualineTheme}"
-    vim.opt.runtimepath:append("${paths.dotfiles}/neovim")
-    vim.opt.runtimepath:append("${paths.dotfiles}/vscode-snippets")
-    require("my.init").setup()
-  '';
 
   base = pkgs.neovim-nightly;
   # base = pkgs.neovim;
+
   neovim =
     pkgs.symlinkJoin {
       inherit (base) name meta;
@@ -61,15 +55,17 @@ let
           --prefix PATH : ${lib.makeBinPath extraPackages}
       '';
     };
-  nvim-treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars);
+
+  nixPlugins = ".local/share/nvim/site/pack/nix";
 in
 {
-  home-manager.users.adrielus =
+  home-manager.users.adrielus = { config, ... }:
+    let simlink = config.lib.file.mkOutOfStoreSymlink; in
     {
       home.file.".local/share/nvim/site/pack/paqs/start/paq-nvim".source = paq;
-      # home.file.".local/share/nvim/site/pack/treesitter/start/nvim-treesitter".source = nvim-treesitter;
-      xdg.configFile."nvim/init.lua".text = myConfig;
-      xdg.configFile."nvim/lua/my/theme.lua".source = theme.neovim.theme;
+      home.file."${nixPlugins}/start/theming/lua/my/theme.lua".source = theme.neovim.theme;
+      home.file."${nixPlugins}/start/snippets".source = simlink "${paths.dotfiles}/vscode-snippets";
+      home.file.".config/nvim".source = simlink "${paths.dotfiles}/neovim";
 
       programs.neovim.enable = false;
 

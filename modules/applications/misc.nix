@@ -71,6 +71,7 @@
     # freesweep # minesweeper I can play w the keyboard.
     # multimc
     # lmms # music software
+    libsForQt5.dolphin
 
     # Nes emulators and stuff
     # zsnes

@@ -5,6 +5,7 @@ M.deps = { { "catppuccin/nvim", as = "catppuccin" } }
 function M.setup()
   local catppuccin = require("catppuccin")
   vim.g.catppuccin_flavour = os.getenv("CATPPUCCIN_FLAVOUR")
+  vim.g.lualineTheme = "catppuccin";
 
   catppuccin.setup({ transparent_background = false, integrations = { nvimtree = true } })
 
