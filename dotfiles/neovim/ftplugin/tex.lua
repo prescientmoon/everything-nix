@@ -1,5 +1,5 @@
 local A = require("my.abbreviations")
-local AB = require("my.plugins.abolish")
+local scrap = require("scrap")
 
 require("my.helpers.wrapMovement").setup()
 
@@ -42,44 +42,13 @@ local abbreviations = {
   { "gamma", "\\gamma" },
   { "lam", "\\lambda" },
   { "nuls", "\\varnothing" }, -- Other fancy symvols
-  { "ints", "\\mathbb{Z}" },
-  { "nats", "\\mathbb{N}" },
-  { "rats", "\\mathbb{Q}" },
-  { "irats", "\\mathbb{I}" },
-  { "rrea", "\\mathbb{R}" },
-  { "ppri", "\\mathbb{P}" },
-  { "ffie", "\\mathbb{F}" },
-  { "ccom", "\\mathbb{C}" }, -- Exponents
-  { "ei", "^{-1}" },
-  { "e0", "^{0}" },
-  { "e1", "^{1}" },
-  { "e2", "^{2}" },
-  { "e3", "^{3}" },
-  { "e4", "^{4}" },
-  { "en", "^{n}" },
-  { "etn", "^{-}" },
-  { "ett", "^{t}" },
-  { "tmat", "^{T}" }, -- Tranpose of a matrix
-  { "cmat", "^{*}" }, -- Conjugate of a matrix
+
+  { "tmat", "^T" }, -- Tranpose of a matrix
+  { "cmat", "^*" }, -- Conjugate of a matrix
   { "ortco", "^{\\bot}" }, -- Orthogonal complement
-  { "etp", "^{+}" }, -- Subscripts
-  { "s0", "_{0}" },
-  { "s1", "_{1}" },
-  { "s2", "_{2}" },
-  { "s3", "_{3}" },
-  { "s4", "_{4}" },
-  { "sn", "_{n}" }, -- Function calls
-  { "fx", "f(x)" },
-  { "gx", "g(x)" },
-  { "hx", "h(x)" },
-  { "Px", "P(x)" },
-  { "Pn", "P(n)" },
-  { "foa", "f(a)" },
-  { "goa", "g(a)" },
-  { "hoa", "h(a)" },
-  { "dfx", "f'(x)" },
-  { "dgx", "g'(x)" },
-  { "dhx", "h'(x)" }, -- Basic commands
+  { "sinter", "^{\\circ}" }, -- Interior of a set
+
+  -- Basic commands
   { "mangle", "\\measuredangle" },
   { "aangle", "\\angle" },
 
@@ -111,7 +80,6 @@ local abbreviations = {
   { "comp", "\\circ" },
   { "mul", "\\cdot" },
   { "smul", "\\times" },
-  { "texpl", "&& \\text{}" },
   { "card", "\\#" },
   { "div", "\\|" },
   { "ndiv", "\\not\\|\\:" },
@@ -120,29 +88,86 @@ local abbreviations = {
   { "rref", "reduced row echalon form" }
 }
 
+---@type ExpansionOptions
+local no_capitalization = { capitalized = false }
+
 -- Todo: convert exponents and subscripts
 -- to use this more concise notation.
+---@type ExpansionInput[]
 local abolishAbbreviations = {
-  { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },
-  { "ib{p,s}", "integration by {parts,substitution}" },
-  { "mx{,s}", "matri{x,ces}" },
+  -- General phrases
   { "thrf", "therefore" },
-  { "dete{,s}", "determinant{}" },
   { "bcla", "by contradiction let's assume" },
+  { "wlg", "without loss of generality" },
+
+  -- Calculus
+  { "ib{p,s}", "integration by {parts,substitution}" },
+
+  -- Linear algebra
+  { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },
+  { "mx{,s}", "matri{x,ces}" },
+  { "dete{,s}", "determinant{}" },
   { "ort{n,g}", "orto{normal,gonal}" },
   { "l{in,de}", "linearly {independent,dependent}" },
-  { "wlg", "without loss of generality" },
 
   -- My own operator syntax:
   --   - Any operator can be prefixed with "a" to
   --     align in aligned mode
   --   - Any operator can be prefixed with cr to
   --     start a new line and align in aligned mode
-  { "{cr,a,}{eq,neq,leq,geq,lt,gt}", "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>}" }
+  {
+    "{cr,a,}{eq,neq,leq,geq,lt,gt}",
+    "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>}",
+    options = no_capitalization
+  },
+
+  -- Exponents and subscripts:
+  --   {operation}{argument}
+  --   - operation = e (exponent) | s (subscript)
+  --   - argument = t{special} | {basic}
+  --   - basic = 0-9|n|i|t|k
+  --   - special =
+  --     - "p" => +
+  --     - "m" => -
+  --     - "i" => -1
+  {
+    "{e,s}{{0,1,2,3,4,5,6,7,8,9,n,i,t,k},t{i,m,p}}",
+    "{^,_}{{},{\\{-1\\},-,+}}",
+    options = no_capitalization
+  },
+
+  -- Set symbols
+  --   - nats => naturals
+  --   - ints => integers
+  --   - rats => rationals
+  --   - irats => irationals
+  --   - rrea => reals
+  --   - comp => complex
+  --   - ppri => primes
+  --   - ffie => fields
+  {
+    "{nats,ints,rats,irats,rrea,comp,ppri,ffie}",
+    "\\mathbb\\{{N,Z,Q,I,R,C,P,F}\\}",
+    options = no_capitalization
+  },
+
+  -- Function calls:
+  --   {function-name}{modifier?}{argument}
+  --
+  --   - function-name = f/g/h/P
+  --   - modifier:
+  --     - d => derivative
+  --     - 2 => squared
+  --     - 3 => cubed
+  --     - i => inverse
+  --   - argument = x/a/t/i/n/k
+  { "{f,g,h,P}{d,2,3,i,}{x,a,t,i,n,k}", "{}{',^2,^3,^\\{-1\\},}({})" }
 }
 
+local expanded = scrap.expand_many(abolishAbbreviations)
+
 A.manyLocalAbbr(abbreviations)
-AB.abolishMany(abolishAbbreviations)
+A.manyLocalAbbr(expanded)
 
 vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<cr>",
                { desc = "Compile current buffer using vimtex", buffer = true })

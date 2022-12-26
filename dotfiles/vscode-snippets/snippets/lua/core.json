@@ -11,5 +11,23 @@
       "",
       "return M"
     ]
+  },
+  "Busted describe": {
+    "prefix": "describe",
+    "description": "Create a describe call for a busted test",
+    "body": [
+      "describe(\"$1\", function ()",
+      "\t$0",
+      "end)"
+    ]
+  },
+  "Busted it": {
+    "prefix": "it",
+    "description": "Create an it call for a busted test",
+    "body": [
+      "it(\"$1\", function ()",
+      "\t$0",
+      "end)"
+    ]
   }
 }

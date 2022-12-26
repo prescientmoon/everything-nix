@@ -1,41 +1,68 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("LspFormatting", {}),
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format({ async = false })
-      end
-    })
+  -- {{{ Auto format
+  local function format()
+    vim.lsp.buf.format({ async = false, bufnr = bufnr })
   end
 
+  if false and client.supports_method("textDocument/formatting") then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
+      buffer = bufnr,
+      callback = format,
+    })
+  end
+  -- }}}
+  -- {{{ Keymap helpers
   local opts = function(desc)
     return { noremap = true, silent = true, desc = desc }
   end
 
-  -- Go to declaration / definition / implementation
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts("Go to references"))
+  local nmap = function(from, to, desc)
+    vim.keymap.set("n", from, to, opts(desc))
+  end
+  -- }}}
+  -- {{{ Go to declaration / definition / implementation
+  nmap("gd", vim.lsp.buf.definition, "[G]o to [d]efinition")
+  nmap("gi", vim.lsp.buf.implementation, "[G]o to [i]mplementation")
+  nmap("gr", vim.lsp.buf.references, "[G]o to [r]eferences")
+  -- }}}
+  -- {{{ Hover
+  -- Note: diagnostics are already covered in keymaps.lua
+  nmap("K", vim.lsp.buf.hover, "Hover")
+  nmap("L", vim.lsp.buf.signature_help, "Signature help")
+  -- }}}
+  -- {{{ Code actions
+  nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+  nmap("<leader>f", format, "[F]ormat")
+  nmap("<leader>c", vim.lsp.buf.code_action, "[C]ode actions")
 
-  -- Hover
-  vim.keymap.set("n", "J", vim.diagnostic.open_float, opts("Show diagnostic"))
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Hover"))
-  vim.keymap.set("n", "L", vim.lsp.buf.signature_help, opts("Signature help"))
-
-  -- Code actions
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename"))
-  vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, opts("Code actions"))
-  vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts("Format"))
+  vim.keymap.set(
+    "v",
+    "<leader>c",
+    ":'<,'> lua vim.lsp.buf.range_code_action()",
+    opts("[C]ode actions")
+  )
+  -- }}}
+  -- {{{ Workspace stuff
+  nmap(
+    "<leader>wa",
+    vim.lsp.buf.add_workspace_folder,
+    "[W]orkspace [A]dd Folder"
+  )
+  nmap(
+    "<leader>wr",
+    vim.lsp.buf.remove_workspace_folder,
+    "[W]orkspace [R]emove Folder"
+  )
+  nmap("<leader>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, "[W]orkspace [L]ist Folders")
+  -- }}}
 end
 
--- General server config
+-- {{{ General server config
 ---@type lspconfig.options
 local servers = {
   tsserver = {
@@ -43,39 +70,51 @@ local servers = {
       -- We handle formatting using null-ls and prettierd
       client.server_capabilities.documentFormattingProvider = false
       M.on_attach(client, bufnr)
-    end
+    end,
   },
   dhall_lsp_server = {},
   purescriptls = {
     settings = {
       purescript = {
         censorWarnings = { "UnusedName", "ShadowedName", "UserDefinedWarning" },
-        formatter = "purs-tidy"
-      }
-    }
+        formatter = "purs-tidy",
+      },
+    },
   },
   hls = {
     haskell = {
       -- set formatter
-      formattingProvider = "ormolu"
-    }
+      formattingProvider = "ormolu",
+    },
   },
   rnix = {},
   cssls = {},
   jsonls = {},
   rust_analyzer = {},
+  -- teal_ls = {},
   sumneko_lua = {
-    cmd = { "lua-language-server", "--logpath=/home/adrielus/.local/share/lua-language-server/log" }
-  }
+    cmd = {
+      "lua-language-server",
+      "--logpath=/home/adrielus/.local/share/lua-language-server/log",
+    },
+  },
 }
+-- }}}
 
-M.capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- {{{ Capabilities
+M.capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- Add folding capabilities
+M.capabilities.textDocument.foldingRange =
+  { dynamicRegistration = false, lineFoldingOnly = true }
+-- }}}
 
 function M.setup()
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover,
-                                                        { border = "single" })
+  -- {{{ Change on-hover borders
+  vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
   vim.lsp.handlers["textDocument/signatureHelp"] =
-      vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+    vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+  -- }}}
 
   -- Setup basic language servers
   for lsp, details in pairs(servers) do
@@ -84,15 +123,15 @@ function M.setup()
       details.on_attach = M.on_attach
     end
 
-    require('lspconfig')[lsp].setup {
+    require("lspconfig")[lsp].setup({
       on_attach = details.on_attach,
       settings = details.settings, -- Specific per-language settings
       flags = {
-        debounce_text_changes = 150 -- This will be the default in neovim 0.7+
+        debounce_text_changes = 150, -- This will be the default in neovim 0.7+
       },
       cmd = details.cmd,
-      capabilities = M.capabilities
-    }
+      capabilities = M.capabilities,
+    })
   end
 end
 

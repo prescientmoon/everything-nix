@@ -10,7 +10,7 @@
     "library": {
       "enabled": true,
       "types": true,
-      "plugins": true,
+      "plugins": false,
       "runtime": true
     }
   }

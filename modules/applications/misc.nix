@@ -40,7 +40,6 @@
     # vim
     # emacs
     vimclip # use neovim anywhere
-    neovide # neovim ui!
 
     # chat apps
     # slack

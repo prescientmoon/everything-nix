@@ -66,6 +66,18 @@ function M.setup()
     "akinsho/toggleterm.nvim", -- cool terminal thingy
     "folke/noice.nvim", -- better ui for cmd line and other stuff
     "rcarriga/nvim-notify", -- better notifiaction ui
+    "hkupty/iron.nvim", -- repl support
+    "0styx0/abbremand.nvim", -- dependency for the next thing
+    "0styx0/abbreinder.nvim", -- reminds you of abbreviations
+    "ellisonleao/glow.nvim", -- md preview (in terminal)
+    "frabjous/knap", -- md preview
+    "tpope/vim-sleuth", -- automatically set options based on current file
+    "mateiadrielrafael/scrap.nvim", -- vim-abolish rewrite
+    "kevinhwang91/promise-async", -- required by nvim-ufo
+    "kevinhwang91/nvim-ufo", -- better folds and stuff
+    "ThePrimeagen/refactoring.nvim", -- refactoring
+    "gpanders/nvim-moonwalk", -- configure nvim in any language which compiles to lua
+    "teal-language/vim-teal", -- teal language support
 
     -- Git stuff
     "ruifm/gitlinker.nvim", -- generate permalinks for code

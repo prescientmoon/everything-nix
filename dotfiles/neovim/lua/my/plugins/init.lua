@@ -2,9 +2,12 @@ local env = require("my.helpers.env")
 local M = {}
 
 function M.setup()
+  require("my.plugins.moonwalk").setup()
+  require("my.plugins.chunk")
   require('nvim_comment').setup()
   require('fidget').setup()
   require('dressing').setup()
+  require('abbreinder').setup()
 
   require("my.plugins.autopairs").setup()
   require("my.plugins.telescope").setup()
@@ -34,7 +37,8 @@ function M.setup()
     require("my.plugins.null-ls").setup()
     require("my.plugins.vimtex").setup()
     -- require("my.plugins.lean").setup()
-    -- require("my.plugins.notify").setup()
+    require("my.plugins.notify").setup()
+    require("my.plugins.iron").setup()
   end)
 
   if env.neovide.active() then
@@ -55,6 +59,7 @@ function M.setup()
   require("my.plugins.hydra").setup()
   require("my.plugins.clipboard-image").setup()
   require("my.plugins.mind").setup()
+  require("my.plugins.ufo").setup()
 
   -- require("my.plugins.slam").setup()
 end
