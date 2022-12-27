@@ -86,7 +86,7 @@ return {
   {
     -- easly switch between tmux and vim panes
     "christoomey/vim-tmux-navigator",
-    keys = { "C-h", "C-j", "C-k", "C-l" },
+    keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
     cond = env.vscode.not_active()
       and env.neovide.not_active()
       and env.firenvim.not_active(),
@@ -102,7 +102,8 @@ return {
   {
     -- smooth scrolling
     "psliwka/vim-smoothie",
-    enabled = env.neovide.not_active(),
+    -- enabled = env.neovide.not_active(),
+    enabled = false,
     event = "VeryLazy",
   },
 

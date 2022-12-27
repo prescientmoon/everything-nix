@@ -22,7 +22,7 @@ return {
     return vim.g.vscode ~= nil
   end),
   neovide = makeEnv(function()
-    return vim.g.neovide ~= nil or os.getenv("INSIDE_NEOVIDE") ~= nil
+    return vim.g.neovide ~= nil or os.getenv("INSIDE_NEOVIDE") == "1"
   end),
   firenvim = makeEnv(function()
     return vim.g.started_by_firenvim ~= nil

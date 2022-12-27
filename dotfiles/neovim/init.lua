@@ -15,4 +15,3 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("my.init").setup()
-
