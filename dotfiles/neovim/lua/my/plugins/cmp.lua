@@ -1,4 +1,19 @@
-local M = {}
+local env = require("my.helpers.env")
+
+local M = {
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+  dependencies = {
+    "onsails/lspkind.nvim", -- show icons in lsp completion menus
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-emoji",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-path",
+    "saadparwaiz1/cmp_luasnip",
+  },
+  cond = env.vscode.not_active()
+}
 
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -8,10 +23,11 @@ local function has_words_before()
       :match('%s') == nil
 end
 
-function M.setup()
+function M.config()
+  vim.o.completeopt = "menuone,noselect"
+
   local cmp = require("cmp")
   local lspkind = require('lspkind')
-  -- local luasnip = require("luasnip")
 
   local options = {
     window = {
@@ -19,6 +35,7 @@ function M.setup()
         winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
         col_offset = -3,
         side_padding = 0,
+        completeopt = "menu,menuone,noinsert",
       },
     },
     formatting = {
@@ -63,15 +80,18 @@ function M.setup()
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' }, -- lsp completion
-      { name = 'luasnip' }, -- snippets
-      { name = 'omni' } -- omnifunc
-    }, { { name = 'buffer' } })
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'buffers' },
+      { name = 'emoji' },
+      { name = 'path' },
+   -- { name = 'omni' },
+    })
   }
 
   cmp.setup(options)
 
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  -- Use buffer source for `/`
   cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -79,12 +99,11 @@ function M.setup()
     }
   })
 
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  -- Use cmdline & path source for ':'
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
+      { name = 'path' },
       { name = 'cmdline' }
     })
   })

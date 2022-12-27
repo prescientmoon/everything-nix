@@ -1,8 +1,14 @@
+local env = require("my.helpers.env")
 local lspconfig = require("my.plugins.lspconfig")
 
-local M = {}
+local M = {
+  "ShinKage/idris2-nvim",
+  dependencies = {"nui.nvim", "nvim-lspconfig"},
+  ft = { "idris2", "lidris2", "ipkg" },
+  cond = env.vscode.not_active(),
+}
 
-function M.setup()
+function M.config()
   local idris2 = require("idris2")
 
   idris2.setup({

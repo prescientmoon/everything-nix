@@ -6,9 +6,6 @@ require("my.helpers.wrapMovement").setup()
 vim.opt.conceallevel = 0
 vim.opt.wrap = true
 
-vim.g.vimtex_imaps_enabled = 0
-vim.g.vimtex_syntax_conceal_disable = 1
-
 vim.keymap.set("n", "<leader>lg", function()
   if not pcall(function()
     local a = tonumber(vim.fn.input("A: "))

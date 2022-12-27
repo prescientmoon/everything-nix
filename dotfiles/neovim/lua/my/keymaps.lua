@@ -58,7 +58,7 @@ function M.setup()
     end
 
     vim.cmd("q")
-  end, { desc = "[q]uit current buffer" })
+  end, { desc = "[Q]uit current buffer" })
 
   M.nmap("Q", ":wqa<cr>", "Save all files and [q]uit")
   -- }}}
@@ -74,40 +74,23 @@ function M.setup()
   M.nmap("[d", vim.diagnostic.goto_prev, "Goto previous [d]iagnostic")
   M.nmap("]d", vim.diagnostic.goto_next, "Goto next [d]iagnostic")
   M.nmap("J", vim.diagnostic.open_float, "Open current diagnostic")
-  M.nmap("<leader>D", vim.diagnostic.setloclist, "[S]iagnostic loclist")
+  M.nmap("<leader>D", vim.diagnostic.setloclist, "[D]iagnostic loclist")
   -- }}}
   -- {{{ Chords (exit insert mode, save, clipboard)
   -- }}}
-  -- {{{ Set up which-key structure
-  local status, wk = pcall(require, "which-key")
-
-  if status then
-    wk.register({
-      ["<leader>"] = {
-        f = { name = "[F]iles" },
-        g = { name = "[G]o to" },
-        r = { name = "[R]ename / [R]eplace / [R]eload" },
-        l = { name = "[L]ocal" },
-        w = { name = "[W]orkspace" },
-        v = "which_key_ignore",
-      },
-    })
-  end
+  -- {{{ Allow quiting basic buffers with "q"
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "help" },
+    callback = function(event)
+      vim.keymap.set(
+        "n",
+        "q",
+        "<cmd>close<cr>",
+        { buffer = event.buf, silent = true, desc = "[q]uit current buffer" }
+      )
+    end,
+  })
   -- }}}
-
-
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = {
-    "help",
-    "man",
-    "notify",
-    "lspinfo"
-  },
-  callback = function(event)
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true, desc = "[q]uit current buffer" })
-  end,
-})
 
   return M
 end

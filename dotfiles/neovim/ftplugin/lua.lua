@@ -2,7 +2,7 @@ local opts = function(desc)
   return { desc = desc, buffer = true }
 end
 
-vim.keymap.set("n", "<leader>lf", ":source %<cr>", opts("Run current lua file"))
+vim.keymap.set("n", "<leader>lf", ":source %<cr>", opts("Run [l]ua [f]ile "))
 vim.keymap.set("n", "<leader>ls", function()
   local path = vim.api.nvim_buf_get_name(0)
   local status, M = pcall(dofile, path)

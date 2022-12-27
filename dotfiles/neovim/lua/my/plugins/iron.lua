@@ -1,15 +1,41 @@
-local M = {}
+local env = require("my.helpers.env")
 
-function M.setup()
+local M = {
+  "hkupty/iron.nvim", -- repl support
+  cond = env.vscode.not_active(),
+  cmd = "IronRepl",
+}
+
+function M.init()
+  -- iron also has a list of commands, see :h iron-commands for all available commands
+  vim.keymap.set("n", "<space>iss", "<cmd>IronRepl<cr>")
+  vim.keymap.set("n", "<space>ir", "<cmd>IronRestart<cr>")
+  vim.keymap.set("n", "<space>if", "<cmd>IronFocus<cr>")
+  vim.keymap.set("n", "<space>ih", "<cmd>IronHide<cr>")
+
+  local status, wk = pcall(require, "which-key")
+
+  if status then
+    wk.register({
+      ["<leader>i"] = {
+        name = "[I]ron repl",
+        s = { name = "[s]end" },
+        m = "[m]ark",
+      },
+    })
+  end
+end
+
+function M.config()
   local iron = require("iron.core")
 
-  iron.setup {
+  iron.setup({
     config = {
       -- Your repl definitions come here
       repl_definition = {},
       -- How the repl window will be displayed
       -- See below for more information
-      repl_open_cmd = require('iron.view').right(40)
+      repl_open_cmd = require("iron.view").right(40),
     },
     -- Iron doesn't set keymaps by default anymore.
     -- You can set them here or manually add keymaps to the functions in iron.core
@@ -25,23 +51,13 @@ function M.setup()
       cr = "<space>is<cr>",
       interrupt = "<space>is<space>",
       exit = "<space>isq",
-      clear = "<space>isr"
+      clear = "<space>isr",
     },
     -- If the highlight is on, you can change how it looks
     -- For the available options, check nvim_set_hl
     highlight = { italic = true },
-    ignore_blank_lines = true -- ignore blank lines when sending visual select lines
-  }
-
-  -- iron also has a list of commands, see :h iron-commands for all available commands
-  vim.keymap.set('n', '<space>iss', '<cmd>IronRepl<cr>')
-  vim.keymap.set('n', '<space>ir', '<cmd>IronRestart<cr>')
-  vim.keymap.set('n', '<space>if', '<cmd>IronFocus<cr>')
-  vim.keymap.set('n', '<space>ih', '<cmd>IronHide<cr>')
-
-  local status, wk = pcall(require, "which-key")
-
-  if status then wk.register({ ["<leader>i"] = { name = "[I]ron repl commands", s = {name = "[s]end"}, m = "[m]ark" } }) end
+    ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+  })
 end
 
 return M

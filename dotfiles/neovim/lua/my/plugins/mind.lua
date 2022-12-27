@@ -1,18 +1,12 @@
-local mind = require("mind")
-local M = {}
+local M = {
+  "phaazon/mind.nvim", -- Organize shit as trees
+  keys = "<leader>m",
+}
 
-function M.setup()
-  mind.setup({
-    persistence = {
-      state_path = "~/Mind/mind.json",
-      data_dir = "~/Mind/data"
-    },
-    ui = {
-      width = 50
-    }
-  })
-
+function M.init()
   vim.keymap.set("n", "<leader>m", function()
+    local mind = require("mind")
+
     local buffers = vim.api.nvim_list_bufs()
     local should_open = true
 
@@ -26,7 +20,21 @@ function M.setup()
     if should_open then
       mind.open_main()
     end
-  end, { desc = "Toggle mind panel" })
+  end, { desc = "[M]ind panel" })
+end
+
+function M.config()
+  local mind = require("mind")
+
+  mind.setup({
+    persistence = {
+      state_path = "~/Mind/mind.json",
+      data_dir = "~/Mind/data",
+    },
+    ui = {
+      width = 50,
+    },
+  })
 end
 
 return M

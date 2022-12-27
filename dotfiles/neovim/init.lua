@@ -1,9 +1,18 @@
-local lazy_path = os.getenv("LAZY_NVIM_PATH")
+-- bootstrap from github
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if lazy_path == nil then
-  error("Lazy.nvim not installed!")
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "git@github.com:folke/lazy.nvim.git",
+    lazypath,
+  })
 end
 
-vim.opt.runtimepath:prepend(lazy_path)
+vim.opt.runtimepath:prepend(lazypath)
 
 require("my.init").setup()
+

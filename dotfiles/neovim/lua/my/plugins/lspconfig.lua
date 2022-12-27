@@ -1,4 +1,34 @@
-local M = {}
+local helpers = require("my.helpers")
+local env = require("my.helpers.env")
+
+local lspconfig = {
+  "neovim/nvim-lspconfig",
+  event = "BufReadPre",
+  dependencies = {
+    "folke/neoconf.nvim",
+    {
+      "folke/neodev.nvim",
+      config = true,
+    },
+    "hrsh7th/cmp-nvim-lsp",
+  },
+  cond = env.vscode.not_active(),
+}
+
+local M = {
+  lspconfig,
+  {
+    "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
+    config = {
+      input_buffer_type = "dressing",
+    },
+    dependencies = {
+      "dressing.nvim",
+    },
+    cond = env.vscode.not_active(),
+  },
+}
 
 function M.on_attach(client, bufnr)
   -- {{{ Auto format
@@ -16,7 +46,7 @@ function M.on_attach(client, bufnr)
   -- }}}
   -- {{{ Keymap helpers
   local opts = function(desc)
-    return { noremap = true, silent = true, desc = desc, buffer = true }
+    return { noremap = true, silent = true, desc = desc, buffer = bufnr }
   end
 
   local nmap = function(from, to, desc)
@@ -34,9 +64,13 @@ function M.on_attach(client, bufnr)
   nmap("L", vim.lsp.buf.signature_help, "Signature help")
   -- }}}
   -- {{{ Code actions
-  nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-  nmap("<leader>f", format, "[F]ormat")
   nmap("<leader>c", vim.lsp.buf.code_action, "[C]ode actions")
+  nmap("<leader>F", format, "[F]ormat")
+  nmap("<leader>li", "<cmd>LspInfo<cr>", "[L]sp [i]nfo")
+
+  vim.keymap.set("n", "<leader>rn", function()
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end, helpers.mergeTables(opts("[R]e[n]ame"), { expr = true }))
 
   vim.keymap.set(
     "v",
@@ -100,15 +134,31 @@ local servers = {
   },
 }
 -- }}}
-
 -- {{{ Capabilities
-M.capabilities = require("cmp_nvim_lsp").default_capabilities()
--- Add folding capabilities
-M.capabilities.textDocument.foldingRange =
-  { dynamicRegistration = false, lineFoldingOnly = true }
+M.capabilities = function()
+  -- require("lazy").load({ plugins = "hrsh7th/cmp-nvim-lsp" })
+  local c = require("cmp_nvim_lsp").default_capabilities()
+  -- Add folding capabilities
+  c.textDocument.foldingRange =
+    { dynamicRegistration = false, lineFoldingOnly = true }
+  return c
+end
 -- }}}
+-- {{{ Nice diagnostic icons
+-- See https://github.com/folke/dot/blob/master/config/nvim/lua/config/plugins/lsp/diagnostics.lua
+local function diagnostics_icons()
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
-function M.setup()
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  end
+end
+
+--}}}
+-- {{{ Main config function
+function lspconfig.config()
+  diagnostics_icons()
   -- {{{ Change on-hover borders
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
@@ -116,6 +166,7 @@ function M.setup()
     vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
   -- }}}
 
+  local capabilities = M.capabilities()
   -- Setup basic language servers
   for lsp, details in pairs(servers) do
     if details.on_attach == nil then
@@ -130,9 +181,11 @@ function M.setup()
         debounce_text_changes = 150, -- This will be the default in neovim 0.7+
       },
       cmd = details.cmd,
-      capabilities = M.capabilities,
+      capabilities = capabilities,
     })
   end
 end
+
+--}}}
 
 return M

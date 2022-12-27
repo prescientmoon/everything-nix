@@ -1,7 +1,10 @@
 local helpers = require("my.helpers")
-local arpeggio = vim.fn["arpeggio#map"]
 
-local M = {}
+local M = {
+  -- chord support, let"s fucking goooo
+  "kana/vim-arpeggio",
+  event = "VeryLazy",
+}
 
 ---Create an arpeggio mapping
 ---@param mode string
@@ -9,6 +12,8 @@ local M = {}
 ---@param rhs string
 ---@param opts table|nil
 local function chord(mode, lhs, rhs, opts)
+  local arpeggio = vim.fn["arpeggio#map"]
+
   if string.len(mode) > 1 then
     for i = 1, #mode do
       local c = mode:sub(i, i)
@@ -36,7 +41,7 @@ local function chordSilent(mode, lhs, rhs, opts)
   chord(mode, lhs, rhs, options)
 end
 
-function M.setup()
+function M.config()
   chordSilent("n", "ji", ":silent :write<cr>") -- Saving
   chord("i", "jk", "<Esc>") -- Remap Esc to jk
   chord("nv", "cp", '"+') -- Press cp to use the global clipboard

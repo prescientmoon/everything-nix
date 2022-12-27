@@ -1,17 +1,20 @@
-local lspconfig = require("my.plugins.lspconfig")
+local env = require("my.helpers.env")
 
-local M = {}
+local M = {
+  "jose-elias-alvarez/null-ls.nvim", -- generic language server
+  event = "BufReadPre",
+  dependencies = "neovim/nvim-lspconfig",
+  cond = env.vscode.not_active(),
+}
 
-function M.setup()
+function M.config()
+  local lspconfig = require("my.plugins.lspconfig")
   local null_ls = require("null-ls")
-  -- require("refactoring").setup({})
 
   local sources = {
-    -- null_ls.builtins.formatting.prettier.with({ extra_filetypes = {} }), -- format ts files
     null_ls.builtins.formatting.prettierd.with({ extra_filetypes = {} }), -- format ts files
-    -- null_ls.builtins.formatting.lua_format.with({}), -- format lua code
     null_ls.builtins.formatting.stylua.with({}), -- format lua code
-    -- null_ls.builtins.code_actions.refactoring.with({}), -- refactor stuff
+    -- null_ls.builtins.formatting.lua_format.with({}), -- format lua code
   }
 
   null_ls.setup({
