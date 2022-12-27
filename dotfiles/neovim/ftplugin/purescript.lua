@@ -1,13 +1,20 @@
-local arpeggio = require("my.plugins.arpeggio")
 local A = require("my.abbreviations")
 
 -- Use vt to test
-arpeggio.chordSilent("n", "vt", ":VimuxRunCommand \"clear && spago test\"<CR>",
-  { settings = "b" })
+vim.keymap.set(
+  "n",
+  "<leader>vt",
+  ':VimuxRunCommand "clear && spago test"<CR>',
+  { desc = "[V]imtex run [t]ests", buffer = true }
+)
 
 -- Use vb to build
-arpeggio.chordSilent("n", "vb", ":VimuxRunCommand \"clear && spago build\"<CR>",
-  { settings = "b" })
+vim.keymap.set(
+  "n",
+  "<leader>vb",
+  ':VimuxRunCommand "clear && spago build"<CR>',
+  { desc = "[V]imtex [b]uild", buffer = true }
+)
 
 vim.opt.expandtab = true -- Use spaces for the tab char
 
@@ -17,7 +24,7 @@ local abbreviations = {
   { "tto", "->" },
   { "iip", "=>" },
   { "frl", "forall" },
-  { "ott", "<-" } -- opposite of tto
+  { "ott", "<-" }, -- opposite of tto
 }
 
 A.manyLocalAbbr(abbreviations)

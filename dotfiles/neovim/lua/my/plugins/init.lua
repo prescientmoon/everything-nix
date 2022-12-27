@@ -38,7 +38,6 @@ function M.setup()
     require("my.plugins.vimtex").setup()
     -- require("my.plugins.lean").setup()
     require("my.plugins.notify").setup()
-    require("my.plugins.iron").setup()
   end)
 
   if env.neovide.active() then
@@ -59,7 +58,8 @@ function M.setup()
   require("my.plugins.hydra").setup()
   require("my.plugins.clipboard-image").setup()
   require("my.plugins.mind").setup()
-  require("my.plugins.ufo").setup()
+  -- require("my.plugins.ufo").setup()
+  require("my.plugins.arpeggio").setup()
 
   -- require("my.plugins.slam").setup()
 end

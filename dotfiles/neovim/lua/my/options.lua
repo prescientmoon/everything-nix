@@ -1,5 +1,3 @@
-local helpers = require("my.helpers")
-
 local M = {}
 
 function M.setup()
@@ -39,8 +37,8 @@ function M.setup()
   -- Set leader
   vim.g.mapleader = " "
 
-  -- Import other options
-  require("my.options.folding").setup()
+  -- Folding
+  vim.o.foldmethod = "marker"
 end
 
 return M

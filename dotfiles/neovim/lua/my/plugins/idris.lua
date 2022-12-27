@@ -1,17 +1,6 @@
-local arpeggio = require("my.plugins.arpeggio")
 local lspconfig = require("my.plugins.lspconfig")
 
 local M = {}
-
-local idrisChords = {
-  sc = "case_split",
-  mc = "make_case",
-  ml = "make_lemma",
-  es = "expr_search",
-  gd = "generate_def",
-  rh = "refine_hole",
-  ac = "add_clause"
-}
 
 function M.setup()
   local idris2 = require("idris2")
@@ -21,14 +10,28 @@ function M.setup()
       on_attach = function(client, bufnr)
         lspconfig.on_attach(client, bufnr)
 
-        for key, value in pairs(idrisChords) do
-          arpeggio.chord("n", "i" .. key,
-                         ":lua require('idris2.code_action')." .. value .. "()<CR>",
-                         { settings = "b" })
+        local function nmap(from, to, desc)
+          vim.keymap.set("n", "<leader>I" .. from, function()
+            require("idris2.code_action")[to]()
+          end, { desc = desc, bufnr = true })
         end
-      end
+
+        nmap("C", "make_case", "Make [c]plit")
+        nmap("L", "make_lemma", "Make [l]emma")
+        nmap("c", "add_clause", "Add [c]lause")
+        nmap("s", "expr_search", "Expression [s]earch")
+        nmap("d", "generate_def", "Generate [d]efinition")
+        nmap("s", "case_split", "Case [s]plit")
+        nmap("h", "refine_hole", "Refine [h]ole")
+
+        local status, wk = pcall(require, "which-key")
+
+        if status then
+          wk.register({ ["<leader>I"] = { name = "[I]dris", buffer = bufnr } })
+        end
+      end,
     },
-    client = { hover = { use_split = true } }
+    client = { hover = { use_split = true } },
   })
 end
 

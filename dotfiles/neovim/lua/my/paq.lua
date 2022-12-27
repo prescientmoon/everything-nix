@@ -5,6 +5,7 @@ function M.setup()
   local themePackages = require("my.theme").deps
   local base = {
     "nvim-lua/plenary.nvim", -- async utility lib it seems?
+    --------------------------------- Unuported
     "folke/neoconf.nvim", -- per project neovim configuration
     "neovim/nvim-lspconfig", -- configures lsps for me
     "folke/neodev.nvim", -- lua support

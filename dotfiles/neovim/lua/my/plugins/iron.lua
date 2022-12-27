@@ -41,7 +41,7 @@ function M.setup()
 
   local status, wk = pcall(require, "which-key")
 
-  if status then wk.register({ ["<leader>i"] = { name = "Iron repl commands" } }) end
+  if status then wk.register({ ["<leader>i"] = { name = "[I]ron repl commands", s = {name = "[s]end"}, m = "[m]ark" } }) end
 end
 
 return M

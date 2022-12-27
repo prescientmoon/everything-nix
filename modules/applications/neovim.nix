@@ -87,7 +87,8 @@ in
       home.file."${nixPlugins}/start/theming/lua/my/theme.lua".source = theme.neovim.theme;
       home.file."${nixPlugins}/start/teal/lua".source = teal; # teal (typed lua)
       home.file."${nixPlugins}/start/snippets".source = simlink "${paths.dotfiles}/vscode-snippets";
-      home.file.".config/nvim".source = simlink "${paths.dotfiles}/neovim";
+      # home.file.".config/nvim".source = simlink "${paths.dotfiles}/neovim";
+      home.file.".config/nvim".source = ../../dotfiles/neovim;
 
       programs.neovim.enable = false;
 

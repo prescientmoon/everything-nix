@@ -16,7 +16,7 @@ function M.on_attach(client, bufnr)
   -- }}}
   -- {{{ Keymap helpers
   local opts = function(desc)
-    return { noremap = true, silent = true, desc = desc }
+    return { noremap = true, silent = true, desc = desc, buffer = true }
   end
 
   local nmap = function(from, to, desc)
