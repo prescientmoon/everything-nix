@@ -1,72 +1,70 @@
 {
-  description = "NixOS configuration";
+  description = "Satellite";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-22.11";
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    # keyboard layout configuration
-    kmonad = {
-      url = "github:kmonad/kmonad?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    idris2-pkgs = {
-      url = "github:claymager/idris2-pkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    #### Nvim stuff
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, stylix, nixpkgs, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
-      provideInputs =
-        import ./modules/overlays/flakes.nix { inherit system; } inputs;
-
-      overlays = { ... }: {
-        nix.registry.nixpkgs.flake = nixpkgs;
-        nixpkgs.overlays = [
-          inputs.neovim-nightly-overlay.overlay
-          inputs.idris2-pkgs.overlay
-          provideInputs
-        ];
-      };
+      inherit (self) outputs;
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
     in
-    {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
+    rec {
+      # Acessible through 'nix build', 'nix shell', etc
+      packages = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./pkgs { inherit pkgs; }
+      );
 
-        specialArgs = {
-          paths = import ./paths.nix;
-          inherit inputs;
+      # Devshell for bootstrapping
+      # Acessible through 'nix develop'
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./shell.nix { inherit pkgs; }
+      );
+
+      # Custom packages and modifications, exported as overlays
+      overlays = import ./overlays;
+
+      # Reusable nixos modules
+      nixosModules = import ./modules/nixos;
+
+      # Reusable home-manager modules
+      homeManagerModules = import ./modules/home-manager;
+
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#...
+      nixosConfigurations = {
+        tethys = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/tethys
+          ];
         };
+      };
 
-        modules = [
-          inputs.home-manager.nixosModules.home-manager
-          inputs.kmonad.nixosModule
-          stylix.nixosModules.stylix
-          overlays
-          ./hardware/laptop.nix
-          ./configuration.nix
-        ];
+      # Standalone home-manager configuration entrypoint
+      # Available through 'home-manager --flake .#...
+      homeConfigurations = {
+        "adrielus@tethys" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home/adrielus/tethys.nix
+          ];
+        };
       };
     };
 }
