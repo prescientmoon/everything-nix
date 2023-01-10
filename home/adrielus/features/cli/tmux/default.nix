@@ -27,10 +27,11 @@ in
     ];
 
     extraConfig = ''
+      # Main config
       source ${./tmux.conf}
 
       # Theme
-      ${builtins.readFile (config.scheme base16-tmux)}
+      source ${config.scheme base16-tmux}
     '';
   };
 }

@@ -3,26 +3,29 @@ let
   base16-polybar = pkgs.fetchFromGitHub {
     owner = "tinted-theming";
     repo = "base16-polybar";
-    sha256 = "142fmqm324gy3qsv48vijm5k81v6mw85ym9mmhnvyv2q2ndg5rix";
-    rev = "2f6dd973a9075dabccd26f1cded09508180bf5fe";
+    sha256 = "1jcr9mmy6y2g06w1b8211lc1y419hqg55v3ly0a27cjgvg89774c";
+    rev = "47b7cc1cde79df5dc5e3cf8f9be607283eb5eb6e";
   };
+
+  script = ''
+    polybar main &
+  '';
 in
 {
   services.polybar = {
+    inherit script;
     enable = true;
     extraConfig = ''
       ; Generated theme
-      ${builtins.readFile (config.scheme base16-polybar)}
+      include-file = ${config.scheme base16-polybar}
 
       ; Actual config
-      include-file = ${paths.dotfiles}/polybar/config.ini
+      include-file = ${./polybar.ini}
     '';
   };
 
   xsession = {
     enable = true;
-    initExtra = ''
-      polybar main &
-    '';
+    initExtra = script;
   };
 }

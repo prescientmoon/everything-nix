@@ -1,4 +1,4 @@
-{ config,  pkgs, ... }:
+{ config, pkgs, ... }:
 let
   base16-fish = pkgs.fetchFromGitHub {
     owner = "tomyun";
@@ -26,15 +26,15 @@ in
 
     plugins = with pkgs.fishPlugins; [
       # Jump to directories by typing "z <directory-name>"
- {
-      name = "z";
-      src = pkgs.fetchFromGitHub {
-        owner = "jethrokuan";
-        repo = "z";
-        rev = "85f863f20f24faf675827fb00f3a4e15c7838d76";
-        sha256 = "1kaa0k9d535jnvy8vnyxd869jgs0ky6yg55ac1mxcxm8n0rh2mgq";
-      };
-    }
+      {
+        name = "z";
+        src = pkgs.fetchFromGitHub {
+          owner = "jethrokuan";
+          repo = "z";
+          rev = "85f863f20f24faf675827fb00f3a4e15c7838d76";
+          sha256 = "1kaa0k9d535jnvy8vnyxd869jgs0ky6yg55ac1mxcxm8n0rh2mgq";
+        };
+      }
     ];
 
     interactiveShellInit =
@@ -51,7 +51,7 @@ in
         set fish_cursor_insert line # Set the insert mode cursor to a line
         set fish_cursor_replace_one underscore # Set the replace mode cursor to an underscore
 
-        # Force fish to skip some checks (I think)
+        # Force fish to skip some checks (I think?)
         set fish_vi_force_cursor 
       '' +
       # Use vim-style keybinds
@@ -64,12 +64,10 @@ in
           bind -M insert -m default -k f10 'commandline -f repaint' # Exit insert mode with <f10>
         end
       '' +
-      # Starship hook
-      ''
-        starship init fish | source
-      '' +
       # Theming 
-      (builtins.readFile (config.scheme base16-fish))
+      ''
+        source ${config.scheme base16-fish}
+      ''
     ;
   };
 }

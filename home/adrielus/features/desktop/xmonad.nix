@@ -1,3 +1,3 @@
 {
-  imports = [ ./common/rofi ];
+  imports = [ ./common/rofi ./common/polybar];
 }
