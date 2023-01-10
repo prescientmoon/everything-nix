@@ -1,0 +1,26 @@
+{ pkgs, ... }: {
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+
+    aliases = {
+      graph = "log --decorate --oneline --graph";
+    };
+
+    userName = "Matei Adriel";
+    userEmail = "rafaeladriel11@gmail.com";
+
+    extraConfig = {
+      github.user = "Mateiadrielrafael";
+      hub.protocol = "ssh";
+      core.editor = "nvim";
+      rebase.autoStash = true;
+    };
+  };
+
+  home.packages = with pkgs; [
+    # Two github clis
+    gh
+    hub
+  ];
+}

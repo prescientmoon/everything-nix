@@ -8,6 +8,25 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Agenix
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Base16-nix
+    base16.url = github:SenchoPens/base16.nix;
+    base16.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Catpuccin base16 color schemes
+    catppuccin-base16.url = github:catppuccin/base16;
+    catppuccin-base16.flake = false;
+
+    # Impermanence 
+    impermanence.url = "github:nix-community/impermanence";
+
+    # Neovim nightly
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -20,6 +39,11 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
+
+      specialArgs = {
+        inherit inputs outputs;
+        paths.dotfiles = "~/Projects/satellite/dotfiles";
+      };
     in
     rec {
       # Acessible through 'nix build', 'nix shell', etc
@@ -48,9 +72,16 @@
       # Available through 'nixos-rebuild --flake .#...
       nixosConfigurations = {
         tethys = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          inherit specialArgs;
+
           modules = [
-            ./hosts/tethys
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.users.adrielus = import ./home/adrielus/tethys.nix;
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.useUserPackages = true;
+            }
+            ./hosts/nixos/tethys
           ];
         };
       };
@@ -60,7 +91,7 @@
       homeConfigurations = {
         "adrielus@tethys" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = specialArgs;
           modules = [
             ./home/adrielus/tethys.nix
           ];

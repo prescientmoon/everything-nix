@@ -1,0 +1,98 @@
+configuration {
+  location: 0;
+  cycle: true;
+  font: "Source Code Pro 16";
+
+  modi: "run,drun,window";
+  icon-theme: "Oranchelo";
+  show-icons: true;
+  terminal: "alacritty";
+  drun-display-format: "{icon} {name}";
+  disable-history: false;
+  hide-scrollbar: true;
+  display-drun: "   Apps ";
+  display-run: "   Run ";
+  display-window: " 﩯  Window";
+  display-Network: " 󰤨  Network";
+  sidebar-mode: true;
+}
+
+listview {
+  columns: 1;
+}
+
+* {
+  width: 600;
+  font: "JetBrainsMono Nerd Font 14";
+}
+
+element-text, element-icon , mode-switcher {
+  background-color: inherit;
+  text-color:       inherit;
+}
+
+window {
+  border: 3px;
+
+  height: 50%;
+  width: 50%;
+}
+
+inputbar {
+  children: [prompt,entry];
+  border-radius: 5px;
+  padding: 2px;
+}
+
+prompt {
+  padding: 6px;
+  border-radius: 3px;
+  margin: 20px 0px 0px 20px;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+}
+
+entry {
+  padding: 6px;
+  margin: 20px 0px 0px 10px;
+}
+
+listview {
+  border: 0px 0px 0px;
+  padding: 6px 0px 0px;
+  margin: 10px 0px 0px 20px;
+  columns: 2;
+  lines: 5;
+}
+
+element {
+  padding: 5px;
+}
+
+element-icon {
+  size: 25px;
+}
+
+mode-switcher {
+  spacing: 0;
+}
+
+button {
+  padding: 10px;
+  vertical-align: 0.5; 
+  horizontal-align: 0.5;
+}
+
+message {
+  margin: 2px;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+textbox {
+  padding: 6px;
+  margin: 20px 0px 0px 20px;
+}

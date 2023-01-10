@@ -1,0 +1,77 @@
+{
+  "Text explanation in math mode": {
+    "prefix": "texpl",
+    "description": "Explain a step using text in math mode",
+    "body": "&& \\text{($1)}$0"
+  },
+  "Explanation in math mode": {
+    "prefix": "expl",
+    "description": "Explain a step in math mode",
+    "body": "&& ($1) $0"
+  },
+  "Explain division": {
+    "prefix": "exdiv",
+    "description": "Explain a division inside an equation",
+    "body": "&& \\left(\\frac{\\square}{$1}\\right)$0"
+  },
+  "Explain fraction": {
+    "prefix": "exfract",
+    "description": "Explain a step which wraps both sides of an equation by a fraction",
+    "body": "&& \\left(\\frac{$1}{$2} \\right)$0"
+  },
+  "Explain right multiplication": {
+    "prefix": "exmul",
+    "description": "Explain a right multiplication inside an equation",
+    "body": "&& \\left(\\square \\cdot $1 \\right)$0"
+  },
+  "Explain left multiplication": {
+    "prefix": "exlmul",
+    "description": "Explain a left multiplication inside an equation",
+    "body": "&& \\left($1 \\cdot \\square\\right)$0"
+  },
+  "Explain differentiation": {
+    "prefix": "exdiff",
+    "description": "Explain a step which differentiates both sides of an equation",
+    "body": "&& \\left( \\frac{d \\square} {d $1} \\right)$0"
+  },
+  "Explain  integration": {
+    "prefix": "exint",
+    "description": "Explain a step which integrates both sides of an equation",
+    "body": "&& \\left(\\int \\square d$1 \\right)$0"
+  },
+  "Explain definite integration": {
+    "prefix": "exdint",
+    "description": "Explain a step which applies a definite integral to both sides of an equation",
+    "body": "&& \\left(\\int _{$1} ^{$2} \\square d$3 \\right)$0"
+  },
+  "Explain addition": {
+    "prefix": "exadd",
+    "description": "Explain a step which adds to both sides of an equation",
+    "body": "&& \\left( \\square + $1 \\right)$0"
+  },
+  "Explain subtraction": {
+    "prefix": "exsub",
+    "description": "Explain a step which subtracts from both sides of an equation",
+    "body": "&& \\left( \\square - $1 \\right)$0"
+  },
+  "Explain negation": {
+    "prefix": "exneg",
+    "description": "Explain a step which negates both sides of an equation",
+    "body": "&& (- \\square )$0"
+  },
+  "Explain power": {
+    "prefix": "expow",
+    "description": "Explain a step which raises both sides of an equation to a given power",
+    "body": "&& \\left( \\square ^{$1} \\right)$0"
+  },
+  "Explain exponentiation": {
+    "prefix": "exexp",
+    "description": "Explain a step which raises a given value to both sides of an equation",
+    "body": "&& \\left(  $1 ^{\\square} \\right)$0"
+  },
+  "Explain natural logarithm": {
+    "prefix": "exln",
+    "description": "Explain a step which applies the ln function to both sides of an equation",
+    "body": "&& \\left(  \\ln $1 \\right)$0"
+  }
+}

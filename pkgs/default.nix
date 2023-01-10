@@ -2,5 +2,5 @@
 # You can build them using 'nix build .#example' or (legacy) 'nix-build -A example'
 
 { pkgs ? (import ../nixpkgs.nix) { } }: {
-  # example = pkgs.callPackage ./example { };
+  # example = pkgs.callPackage (import ./example.nix) {};
 }
