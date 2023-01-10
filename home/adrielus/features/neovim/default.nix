@@ -39,11 +39,11 @@ let
   ];
 in
 let
-  simlink = config.lib.file.mkOutOfStoreSymlink;
+  symlink = config.lib.file.mkOutOfStoreSymlink;
 
   extraRuntime = [
     (if devMode
-      then simlink "${paths.dotfiles}/vscode-snippets"
+      then symlink "${paths.dotfiles}/vscode-snippets"
       else ../../../../dotfiles/vscode-snippets)
   ];
 
@@ -79,7 +79,7 @@ in
 
   home.file.".config/nvim".source =
     if devMode then
-      simlink "${paths.dotfiles}/neovim" else
+      symlink "${paths.dotfiles}/neovim" else
       ../../../../dotfiles/neovim;
 
   home.packages = [

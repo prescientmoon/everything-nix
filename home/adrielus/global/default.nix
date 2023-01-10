@@ -3,6 +3,7 @@ let
   # Extra modules to import
   imports = [
     inputs.base16.homeManagerModule
+    inputs.homeage.homeManagerModules.homeage
     # inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../features/cli
@@ -16,7 +17,7 @@ let
 in
 {
   # Import all modules defined in modules/home-manager
-  moduleImports = builtins.attrValues outputs.homeManagerModules ++ imports;
+  imports = builtins.attrValues outputs.homeManagerModules ++ imports;
 
   nixpkgs = {
     # Add all overlays defined in the overlays directory
@@ -47,4 +48,7 @@ in
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "22.11";
   };
+
+  # Where homeage should look for our ssh key
+  homeage.identityPaths = [ "~/.ssh/id_ed25519" ];
 }

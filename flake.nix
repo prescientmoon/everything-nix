@@ -13,6 +13,10 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
+# Homeage
+ homeage.url = "github:jordanisaacs/homeage";
+      homeage.inputs.nixpkgs.follows = "nixpkgs";
+
     # Base16-nix
     base16.url = github:SenchoPens/base16.nix;
     base16.inputs.nixpkgs.follows = "nixpkgs";

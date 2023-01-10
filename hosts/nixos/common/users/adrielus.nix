@@ -1,4 +1,11 @@
 { pkgs, config, ... }:
+let
+  # Record containing all the hosts
+  hosts = outputs.nixosConfigurations;
+
+  # Function from hostname to relative path to public ssh key
+  idKey = host: ../../${host}/id_ed25519.pub;
+in
 {
   # Password file stored through agenix
   age.secrets.adrielusPassword.file = ./adrielus_password.age;
@@ -31,5 +38,11 @@
       # Adds me to some default groups, and creates the home dir 
       isNormalUser = true;
     };
+
+    openssh.authorizedKeys.keyFiles =
+      builtins.attrValues # attrsetof path -> path[]
+        (builtins.mapAttrs # ... -> attrsetof host -> attrsetof path
+          (name: _: idKey name) # string -> host -> path
+          hosts);
   };
 }

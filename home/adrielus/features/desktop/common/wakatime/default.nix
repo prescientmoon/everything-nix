@@ -1,8 +1,10 @@
-{ pkgs, ... }: {
-  age.secrets.wakatime.file = ./wakatime_config.age;
-
-  home = {
-    file.".wakatime.cfg".source = config.age.secrets.wakatime.path;
-    packages = with pkgs; [ wakatime ];
+{ pkgs, config, ... }: {
+  homeage.file.wakatime = {
+    source = ./wakatime_config.age;
+    symlinks = [
+      "${config.home.homeDirectory}/.wakatime.cfg"
+    ];
   };
+
+  home.packages = with pkgs; [ wakatime ];
 }

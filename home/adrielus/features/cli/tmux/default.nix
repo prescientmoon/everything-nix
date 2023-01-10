@@ -1,5 +1,5 @@
 { pkgs, config, ... }:
-let base17-tmux = pkgs.fetchFromGitHub {
+let base16-tmux = pkgs.fetchFromGitHub {
   owner = "tinted-theming";
   repo = "base16-tmux";
   sha256 = "1p6czpd9f0sbibdsph1hdw4ljp6zzjij2159bks16wbfbg3p1hhx";
