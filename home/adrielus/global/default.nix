@@ -1,25 +1,26 @@
 { inputs, lib, pkgs, config, outputs, ... }:
 let
+  # Extra modules to import
   imports = [
-    # inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.base16.homeManagerModule
+    # inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../features/cli
     ../features/neovim
   ];
 
-  # Import all modules defined in modules/home-manager
-  moduleImports = builtins.attrValues outputs.homeManagerModules;
+  # Extra overlays to add
+  overlays = [
+    inputs.neovim-nightly-overlay.overlay
+  ];
 in
 {
-  imports = imports ++ moduleImports;
+  # Import all modules defined in modules/home-manager
+  moduleImports = builtins.attrValues outputs.homeManagerModules ++ imports;
 
   nixpkgs = {
     # Add all overlays defined in the overlays directory
-    overlays = builtins.attrValues outputs.overlays ++ 
-    [
-  inputs.neovim-nightly-overlay.overlay
-    ];
+    overlays = builtins.attrValues outputs.overlays ++ overlays;
 
     # Allow unfree packages
     config = {
@@ -37,6 +38,7 @@ in
     git.enable = true;
   };
 
+  # Set default theme
   scheme = lib.mkDefault "${inputs.catppuccin-base16}/base16/latte.yaml";
 
   # Set reasonable defaults for some settings

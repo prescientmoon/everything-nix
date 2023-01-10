@@ -1,8 +1,6 @@
 configuration {
   location: 0;
   cycle: true;
-  font: "Source Code Pro 16";
-
   modi: "run,drun,window";
   icon-theme: "Oranchelo";
   show-icons: true;
@@ -23,7 +21,6 @@ listview {
 
 * {
   width: 600;
-  font: "JetBrainsMono Nerd Font 14";
 }
 
 element-text, element-icon , mode-switcher {

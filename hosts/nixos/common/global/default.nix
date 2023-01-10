@@ -8,7 +8,7 @@
     ./openssh.nix
     ./fish.nix
     ./locale.nix
-    ./wireless.nix
+    ./wireless
   ];
 
   nixpkgs = {

@@ -1,11 +1,10 @@
 { config, pkgs, ... }:
-let
-  base16-fish = pkgs.fetchFromGitHub {
-    owner = "tomyun";
-    repo = "base16-fish";
-    sha256 = "142fmqm324gy3qsv48vijm5k81v6mw85ym9mmhnvyv2q2ndg5rix";
-    rev = "2f6dd973a9075dabccd26f1cded09508180bf5fe";
-  };
+let base16-fish = pkgs.fetchFromGitHub {
+  owner = "tomyun";
+  repo = "base16-fish";
+  sha256 = "142fmqm324gy3qsv48vijm5k81v6mw85ym9mmhnvyv2q2ndg5rix";
+  rev = "2f6dd973a9075dabccd26f1cded09508180bf5fe";
+};
 in
 {
   programs.fish = {

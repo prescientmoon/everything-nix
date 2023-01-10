@@ -2,5 +2,7 @@
   imports = [
     ./global
     ./features/desktop/xmonad.nix
+    ./features/desktop/common/discord.nix
+    ./features/desktop/common/zathura.nix
   ];
 }

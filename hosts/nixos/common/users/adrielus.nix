@@ -1,9 +1,7 @@
 { pkgs, config, ... }:
 {
   # Password file stored through agenix
-  age.secrets.adrielusPassword = {
-    file = ../../../../secrets/adrielus_password.age;
-  };
+  age.secrets.adrielusPassword.file = ./adrielus_password.age;
 
   users = {
     # Configure users through nix only

@@ -19,6 +19,11 @@ in
       ; Generated theme
       include-file = ${config.scheme base16-polybar}
 
+      ; Consistent fonts
+      [fonts]
+      regular = ${config.fontProfiles.regular.family}
+      monospace = ${config.fontProfiles.monospace.family}
+
       ; Actual config
       include-file = ${./polybar.ini}
     '';

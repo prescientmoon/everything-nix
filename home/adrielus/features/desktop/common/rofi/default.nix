@@ -14,6 +14,11 @@ in
     // Manual config
     ${builtins.readFile ./config.rasi}
 
+    // Inject font
+    configuration {
+      font = ${config.fontProfiles.monospace.family};
+    }
+
     // Theme
     ${builtins.readFile (config.scheme base16-rofi)}
   '';

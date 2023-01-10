@@ -1,8 +1,6 @@
 { config, lib, ... }: {
   # Wireless secrets stored through agenix
-  age.secrets.wireless = {
-    file = ../../../../secrets/wifi_passwords.age;
-  };
+  age.secrets.wireless.file = ./wifi_passwords.age;
 
   networking.wireless = {
     enable = true;
