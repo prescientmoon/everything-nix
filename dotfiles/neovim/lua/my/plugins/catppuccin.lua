@@ -5,7 +5,7 @@ local M = {
 
 function M.config()
   local catppuccin = require("catppuccin")
-  vim.g.catppuccin_flavour = os.getenv("CATPPUCCIN_FLAVOUR")
+  vim.g.catppuccin_flavour = os.getenv("CATPPUCCIN_FLAVOUR") or "latte"
 
   catppuccin.setup({ transparent_background = false, integrations = { nvimtree = true } })
 

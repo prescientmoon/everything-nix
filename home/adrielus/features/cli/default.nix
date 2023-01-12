@@ -23,5 +23,6 @@
     neofetch # Display system information
     unzip # For working with .zip files
     unrar # For extracting shit from rars
+    sloc # Useless but fun line of code counter
   ];
 }

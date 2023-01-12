@@ -44,7 +44,7 @@ main =
         ("M-w", spawn "rofi -show window"),
         ("M-g", spawn myBrowser),
         ("M-d", spawn "Discord"),
-        ("M-v", spawn "alacritty -e vimclip"),
+        ("M-v", spawn "alacritty -e 'vimclip'"),
         ("M-s", spawn "spectacle -rcb"),
         ("M-S-s", spawn "spectacle -mcb"),
         ("M-C-s", spawn "spectacle -ucb"),
@@ -61,11 +61,11 @@ main =
     layouts = tall ||| Full
     myLayoutHook = spacingHook layouts
 
-    startupApps =
-      [ (0, "alacritty"),
-        (1, "google-chrome-stable"),
-        (2, "Discord")
-      ]
+    startupApps = []
+    -- [ (0, "alacritty"),
+    --   (1, "google-chrome-stable"),
+    --   (2, "Discord")
+    -- ]
 
     startup :: X ()
     startup = do

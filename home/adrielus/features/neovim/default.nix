@@ -43,8 +43,8 @@ let
 
   extraRuntime = [
     (if devMode
-      then symlink "${paths.dotfiles}/vscode-snippets"
-      else ../../../../dotfiles/vscode-snippets)
+    then symlink "${paths.dotfiles}/vscode-snippets"
+    else ../../../../dotfiles/vscode-snippets)
   ];
 
   # Wraps a neovim client, providing the dependencies
@@ -57,7 +57,7 @@ let
   # - NVIM_EXTRA_RUNTIME provides extra directories to add to the runtimepath. 
   #   I cannot just install those dirs using the builtin package support because 
   #   my package manager (lazy.nvim) disables those.
-  wrapClient = { base, name }:
+  wrapClient = { base, name, extraArgs ? "" }:
     pkgs.symlinkJoin {
       inherit (base) name meta;
       paths = [ base ];
@@ -66,12 +66,17 @@ let
         wrapProgram $out/bin/${name} \
           --prefix PATH : ${lib.makeBinPath extraPackages} \
           --set INSIDE_NEOVIDE ${if name == "neovide" then "1" else "0"} \
-          --set NVIM_EXTRA_RUNTIME ${lib.strings.concatStringsSep "," extraRuntime}
+          --set NVIM_EXTRA_RUNTIME ${lib.strings.concatStringsSep "," extraRuntime} \
+          ${extraArgs}
       '';
     };
 
   neovim = wrapClient { base = pkgs.neovim-nightly; name = "nvim"; };
-  neovide = wrapClient { base = pkgs.neovide; name = "neovide"; };
+  neovide = wrapClient {
+    base = pkgs.neovide;
+    name = "neovide";
+    extraArgs = "--set NEOVIDE_MULTIGRID true";
+  };
 in
 {
   # Do not manage neovim via nix
@@ -81,6 +86,8 @@ in
     if devMode then
       symlink "${paths.dotfiles}/neovim" else
       ../../../../dotfiles/neovim;
+
+  home.sessionVariables.EDITOR = "nvim";
 
   home.packages = [
     neovim

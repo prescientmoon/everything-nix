@@ -40,20 +40,6 @@
       # TODO: what is a trusted user?
       trusted-users = [ "root" "@wheel" ];
 
-      # {{{ Caching and whatnot
-      substituters = [
-        "https://cache.nixos.org" # Default nixos cache
-        "https://nix-community.cachix.org" # I think I need this for neovim-nightly?
-        "https://cm-idris2-pkgs.cachix.org" # Idris packages
-        "https://danth.cachix.org" # stylix
-      ];
-
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "cm-idris2-pkgs.cachix.org-1:YB2oJSEsD5oMJjAESxolC2GQtE6B5I6jkWhte2gtXjk="
-        "danth.cachix.org-1:wpodfSL7suXRc/rJDZZUptMa1t4MJ795hemRN0q84vI="
-      ];
-      # }}}
     };
   };
 }

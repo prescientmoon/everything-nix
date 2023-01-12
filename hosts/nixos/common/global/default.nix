@@ -11,6 +11,10 @@
     ./wireless
   ];
 
+  age.identityPaths = [
+    "/etc/ssh/ssh_host_ed25519_key"
+  ];
+
   nixpkgs = {
     # Add all overlays defined in the overlays directory
     overlays = builtins.attrValues outputs.overlays ++ [

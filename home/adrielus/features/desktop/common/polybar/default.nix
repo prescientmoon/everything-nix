@@ -17,15 +17,15 @@ in
     enable = true;
     extraConfig = ''
       ; Generated theme
-      include-file = ${config.scheme base16-polybar}
+      ${builtins.readFile (config.scheme base16-polybar)}
 
       ; Consistent fonts
       [fonts]
-      regular = ${config.fontProfiles.regular.family}
-      monospace = ${config.fontProfiles.monospace.family}
+      regular = "${config.fontProfiles.regular.family}"
+      monospace = "${config.fontProfiles.monospace.family}"
 
       ; Actual config
-      include-file = ${./polybar.ini}
+      ${builtins.readFile ./polybar.ini}
     '';
   };
 

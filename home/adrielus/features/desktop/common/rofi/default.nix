@@ -16,7 +16,7 @@ in
 
     // Inject font
     configuration {
-      font = ${config.fontProfiles.monospace.family};
+      font: "${config.fontProfiles.monospace.family}";
     }
 
     // Theme

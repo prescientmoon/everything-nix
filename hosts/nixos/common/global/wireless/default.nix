@@ -19,18 +19,10 @@
       enable = true;
       group = "network";
     };
-
-    # TODO: look into what this does
-    extraConfig = ''
-      update_config=1
-    '';
   };
 
   # Ensure group exists
   users.groups.network = { };
-
-  # Convenient alias for connecting to wifi
-  environment.shellAliases.wifi = "sudo nmcli con up id";
 
   # Persist imperative config
   # environment.persistence = {

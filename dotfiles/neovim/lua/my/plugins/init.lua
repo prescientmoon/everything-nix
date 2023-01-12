@@ -13,6 +13,12 @@ return {
   },
 
   {
+    "Fymyte/rasi.vim",
+    ft = "rasi",
+    cond = env.vscode.not_active(),
+  },
+
+  {
     "teal-language/vim-teal",
     ft = "teal",
     cond = env.vscode.not_active(),

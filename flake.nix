@@ -85,6 +85,7 @@
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.useUserPackages = true;
             }
+
             ./hosts/nixos/tethys
           ];
         };
@@ -102,4 +103,16 @@
         };
       };
     };
+
+  # {{{ Caching and whatnot
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org" # I think I need this for neovim-nightly?
+    ];
+
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+  # }}}
 }
