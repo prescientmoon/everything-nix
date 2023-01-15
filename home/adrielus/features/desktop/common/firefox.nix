@@ -104,4 +104,11 @@ in
       };
     };
   };
+
+  firefox.apps.asana = {
+    url = "https://app.asana.com/";
+    icon = ./icons/asana.png;
+    displayName = "Asana";
+    id = 1;
+  };
 }
