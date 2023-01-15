@@ -1,6 +1,6 @@
 {
   programs.direnv.enable = true;
-  programs.nix-direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
   home.sessionVariables = {
     # No more long command warnings
