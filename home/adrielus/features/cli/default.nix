@@ -1,12 +1,8 @@
 { pkgs, ... }: {
-  imports = [ ./bat.nix ./ssh.nix ./fish.nix ./tmux ./git.nix ./starship.nix ];
+  imports = [ ./bat.nix ./ssh.nix ./fish.nix ./tmux ./git.nix ./starship.nix ./direnv.nix ];
 
   # Enable bash
   programs.bash.enable = true;
-
-  # Enable direnv
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
 
   # Install clis
   home.packages = with pkgs; [
