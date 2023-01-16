@@ -31,7 +31,7 @@ Here's some things you might want to check out:
 
 ### Links to everything used here:
 
-> Well, this does not include links to every plugin I used for every proram here, you can see more details in the respective configurations
+> Well, this does not include links to every plugin I used for every program here, you can see more details in the respective configurations
 
 - [nixos](http://nixos.org/) - nix based operating system
 - [home-manager](https://github.com/nix-community/home-manager) - manager user configuration using nix
@@ -51,3 +51,4 @@ Here's some things you might want to check out:
   - [Starship](https://starship.rs/) - shell prompt
 - [Zathura](https://pwmt.org/projects/zathura/) - pdf viewer
 - [Ranger](https://github.com/ranger/ranger) - file manager
+- [Firefox](https://www.mozilla.org/en-US/firefox/) - web browser
