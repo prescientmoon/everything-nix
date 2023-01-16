@@ -34,7 +34,7 @@ Here's some things you might want to check out:
 > Well, this does not include links to every plugin I used for every program here, you can see more details in the respective configurations
 
 - [nixos](http://nixos.org/) - nix based operating system
-- [home-manager](https://github.com/nix-community/home-manager) - manager user configuration using nix
+- [home-manager](https://github.com/nix-community/home-manager) - manage user configuration using nix
 - [base16-nix](https://github.com/SenchoPens/base16.nix) - base16 module for nix
     - [Base16 templates](https://github.com/chriskempson/base16-templates-source) - list of base16 template themes
     - [Catpuccin](https://github.com/catppuccin/catppuccin) - base16 theme I use
