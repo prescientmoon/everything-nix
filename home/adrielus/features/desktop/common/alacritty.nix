@@ -21,7 +21,7 @@ in
 
       fonts.normal.family = config.fontProfiles.monospace.family;
 
-      env = { TERM = "xterm-256color"; };
+      env = { TERM = "tmux-256color"; };
       working_directory = "${config.home.homeDirectory}/Projects/";
     };
   };

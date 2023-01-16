@@ -37,7 +37,7 @@ main =
       ["1:dev", "2:browser", "3:chat", "4:terminal", "5:reading", "6:gaming"]
 
     myTerminal = "alacritty"
-    myBrowser = "google-chrome-stable"
+    myBrowser = "firefox"
 
     keymap =
       [ ("M-p", spawn "rofi -show drun"),
