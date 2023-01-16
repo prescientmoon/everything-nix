@@ -36,14 +36,14 @@ Here's some things you might want to check out:
 - [nixos](http://nixos.org/) - nix based operating system
 - [home-manager](https://github.com/nix-community/home-manager) - manage user configuration using nix
 - [base16-nix](https://github.com/SenchoPens/base16.nix) - base16 module for nix
-    - [Base16 templates](https://github.com/chriskempson/base16-templates-source) - list of base16 template themes
+    - [Base16 templates](https://github.com/chriskempson/base16-templates-source) - list of base16 theme templates
     - [Catpuccin](https://github.com/catppuccin/catppuccin) - base16 theme I use
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) - secret management
 - [Xmonad](https://xmonad.org/) - window manager
     - [Polybar](https://github.com/polybar/polybar) - desktop bar
     - [Rofi](https://github.com/davatorium/rofi) - program launcher
 - [Neovim](https://neovim.io/) - my editor
-  - [Neovide](https://neovide.dev/index.html) - neovide gui client
+  - [Neovide](https://neovide.dev/index.html) - neovim gui client
   - [Vimclip](https://github.com/hrantzsch/vimclip) - vim anywhere!
 - [Tmux](https://github.com/tmux/tmux/wiki) - terminal multiplexer
 - [Alacritty](https://github.com/alacritty/alacritty) - terminal emulator
