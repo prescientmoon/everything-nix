@@ -1,6 +1,6 @@
 { pkgs, lib, config, paths, ... }:
 let
-  devMode = false;
+  devMode = true;
   extraPackages = with pkgs; [
     # Language servers
     nodePackages.typescript-language-server # typescript
@@ -41,18 +41,31 @@ in
 let
   symlink = config.lib.file.mkOutOfStoreSymlink;
 
-  extraRuntime = [
+  extraRuntime = env: [
+    # Snippets
     (if devMode
     then symlink "${paths.dotfiles}/vscode-snippets"
     else ../../../../dotfiles/vscode-snippets)
+
+    # Base16 theme
+    (pkgs.writeTextDir
+      "lua/nix/theme.lua"
+      ''
+        return {
+          name = "${config.scheme.scheme}"
+        }
+      '')
+
+    # Provide hints as to what app we are in
+    # (Useful because neovide does not provide the info itself right away)
+    (pkgs.writeTextDir
+      "lua/nix/env.lua"
+      "return '${env}'"
+    )
   ];
 
   # Wraps a neovim client, providing the dependencies
   # and setting some flags:
-  #
-  #   TODO: change this to a more general thing like "NVIM_CLIENT_NAME"
-  # - INSIDE_NEOVIDE is used to detect when running inside neovide, 
-  #   before the in-client flag gets set (this was causing me problems in the past)
   #
   # - NVIM_EXTRA_RUNTIME provides extra directories to add to the runtimepath. 
   #   I cannot just install those dirs using the builtin package support because 
@@ -65,8 +78,7 @@ let
       postBuild = ''
         wrapProgram $out/bin/${name} \
           --prefix PATH : ${lib.makeBinPath extraPackages} \
-          --set INSIDE_NEOVIDE ${if name == "neovide" then "1" else "0"} \
-          --set NVIM_EXTRA_RUNTIME ${lib.strings.concatStringsSep "," extraRuntime} \
+          --set NVIM_EXTRA_RUNTIME ${lib.strings.concatStringsSep "," (extraRuntime name)} \
           ${extraArgs}
       '';
     };

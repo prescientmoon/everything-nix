@@ -11,7 +11,7 @@ function M.config()
     options = {
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-      theme = "catppuccin",
+      theme = "auto",
     },
     sections = {
       lualine_a = { "branch" },

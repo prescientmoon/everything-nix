@@ -25,6 +25,10 @@
     catppuccin-base16.url = github:catppuccin/base16;
     catppuccin-base16.flake = false;
 
+    # Rosepine base16 color schemes
+    rosepine-base16.url = github:edunfelt/base16-rose-pine-scheme;
+    rosepine-base16.flake = false;
+
     # Impermanence 
     impermanence.url = "github:nix-community/impermanence";
 
@@ -46,7 +50,7 @@
 
       specialArgs = {
         inherit inputs outputs;
-        paths.dotfiles = "~/Projects/satellite/dotfiles";
+        paths.dotfiles = "/home/adrielus/Projects/satellite/dotfiles";
       };
     in
     rec {

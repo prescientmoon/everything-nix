@@ -1,6 +1,6 @@
 # This file contains arcane configurations copied from a random old wiki entry
 # One day I shall revisit this and see what's needed and what isn't 
-{...}: {
+{
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;

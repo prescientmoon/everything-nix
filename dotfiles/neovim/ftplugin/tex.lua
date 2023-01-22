@@ -86,7 +86,7 @@ local abbreviations = {
   { "ndiv", "\\not\\|\\:" },
 
   -- words
-  { "rref", "reduced row echalon form" }
+  { "rref", "reduced row echalon form" },
 }
 
 ---@type ExpansionOptions
@@ -100,7 +100,13 @@ local abolishAbbreviations = {
   { "thrf", "therefore" },
   { "bcla", "by contradiction let's assume" },
   { "wlg", "without loss of generality" },
+  { "tits", "that is to say," },
+  { "wpbd", "we will prove the statement in both directions." },
   { "stam{,s}", "statement{}" },
+  { "nb{,h}{,s}", "neighbour{,hood}{}" },
+  { "{ww,tt}{m,i}", "{which,this} {means,implies}" },
+  { "cex{,s}", "counterexample{}" },
+  { "er{t,s,r}", "{transitivity,symmetry,reflexivity}" },
 
   -- Calculus
   { "ib{p,s}", "integration by {parts,substitution}" },
@@ -112,6 +118,37 @@ local abolishAbbreviations = {
   { "ort{n,g}", "orto{normal,gonal}" },
   { "l{in,de}", "linearly {independent,dependent}" },
 
+  -- Graph theory
+  { "vx{,s}", "vert{ex,ices}" },
+  { "eg{,s}", "edge{}" },
+
+  -- Graph theory function syntax:
+  --   gt[function]{graph}{modifier}
+  --   - function:
+  --     - basic functions: e/E/v/G/L
+  --     - k => connectivity
+  --     - a => size of the biggest stable set
+  --     - w => size of the biggest clique
+  --     - d => biggest degree
+  --     - c{target}{kind} => {target} {kind} chromatic number
+  --       - target:
+  --         - vertices by default
+  --         - e => edges
+  --       - kind:
+  --         - normal by default
+  --         - l => list
+  --   - graph:
+  --     - G by default
+  --     - s/x/y/h => S/X/Y/H
+  --   - modifier:
+  --     - a => '
+  --     - 1/2 => _k
+  {
+    "gt{{e,E,v,V,L},k,a,w,d,md{,e},c{,e}{,l}}{,s,h,x,y}{,a,1,2}",
+    "{{},\\kappa,\\alpha,\\omega,\\Delta,\\delta{,'},\\chi{,'}{,_l}}({G,S,H,X,Y}{,',_1,_2})",
+    options = no_capitalization,
+  },
+
   -- My own operator syntax:
   --   - Any operator can be prefixed with "a" to
   --     align in aligned mode
@@ -120,7 +157,7 @@ local abolishAbbreviations = {
   {
     "{cr,a,}{eq,neq,leq,geq,lt,gt}",
     "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>}",
-    options = no_capitalization
+    options = no_capitalization,
   },
 
   -- Exponents and subscripts:
@@ -135,7 +172,7 @@ local abolishAbbreviations = {
   {
     "{e,s}{{0,1,2,3,4,5,6,7,8,9,n,i,t,k},t{i,m,p}}",
     "{^,_}{{},{\\{-1\\},-,+}}",
-    options = no_capitalization
+    options = no_capitalization,
   },
 
   -- Set symbols
@@ -150,7 +187,7 @@ local abolishAbbreviations = {
   {
     "{nats,ints,rats,irats,rrea,comp,ppri,ffie}",
     "\\mathbb\\{{N,Z,Q,I,R,C,P,F}\\}",
-    options = no_capitalization
+    options = no_capitalization,
   },
 
   -- Function calls:
@@ -165,7 +202,10 @@ local abolishAbbreviations = {
   --   - argument = x/y/z/a/t/i/n/k
   --   - argument-modifier:
   --     - n => subscript n
-  { "{f,g,h,P}{d,2,3,i,}{x,y,z,a,t,i,n,k}{n,}", "{}{',^2,^3,^\\{-1\\},}({}{_n,})" },
+  {
+    "{f,g,h,P}{d,2,3,i,}{x,y,z,a,t,i,n,k}{n,}",
+    "{}{',^2,^3,^\\{-1\\},}({}{_n,})",
+  },
 }
 
 local expanded = scrap.expand_many(abolishAbbreviations)
@@ -174,5 +214,11 @@ local expanded = scrap.expand_many(abolishAbbreviations)
 A.manyLocalAbbr(abbreviations)
 A.manyLocalAbbr(expanded)
 
-vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<cr>",
-               { desc = "Compile current buffer using vimtex", buffer = true })
+print(#expanded .. " abbreviations")
+
+vim.keymap.set(
+  "n",
+  "<leader>lc",
+  "<cmd>VimtexCompile<cr>",
+  { desc = "Compile current buffer using vimtex", buffer = true }
+)

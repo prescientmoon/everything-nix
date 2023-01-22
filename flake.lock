@@ -214,7 +214,24 @@
         "homeage": "homeage",
         "impermanence": "impermanence",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rosepine-base16": "rosepine-base16"
+      }
+    },
+    "rosepine-base16": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669049843,
+        "narHash": "sha256-4+U8llaqsztHrmR7OYBplz2Ez7Txbi8z/r9AQjKJEBk=",
+        "owner": "edunfelt",
+        "repo": "base16-rose-pine-scheme",
+        "rev": "424c0327b8251e4662e6cbc62518273c8800f507",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edunfelt",
+        "repo": "base16-rose-pine-scheme",
+        "type": "github"
       }
     },
     "utils": {
