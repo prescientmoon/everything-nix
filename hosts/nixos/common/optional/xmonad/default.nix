@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.xserver = {
     enable = true;
@@ -7,9 +7,11 @@
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      config = ./Main.hs;
-    };
 
+      config = builtins.readFile (config.scheme {
+        template = builtins.readFile ./Main.hs;
+      });
+    };
 
     # Proper wallpaper zooming
     desktopManager.wallpaper.mode = "fill";

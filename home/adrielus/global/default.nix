@@ -40,8 +40,8 @@ in
   };
 
   # Set default theme
-  # scheme = lib.mkDefault "${inputs.catppuccin-base16}/base16/latte.yaml";
-  scheme = lib.mkDefault "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
+  scheme = lib.mkDefault "${inputs.catppuccin-base16}/base16/frappe.yaml";
+  # scheme = lib.mkDefault "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
 
   # Set reasonable defaults for some settings
   home = {
