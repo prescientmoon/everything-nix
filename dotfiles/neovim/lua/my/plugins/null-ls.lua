@@ -12,7 +12,8 @@ function M.config()
   local null_ls = require("null-ls")
 
   local sources = {
-    null_ls.builtins.formatting.prettierd.with({ extra_filetypes = {} }), -- format ts files
+    null_ls.builtins.formatting.prettier.with({ extra_filetypes = {} }), -- format ts files
+    -- null_ls.builtins.formatting.prettierd.with({ extra_filetypes = {} }), -- format ts files
     null_ls.builtins.formatting.stylua.with({}), -- format lua code
     -- null_ls.builtins.formatting.lua_format.with({}), -- format lua code
   }

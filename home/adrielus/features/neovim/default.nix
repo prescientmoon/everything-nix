@@ -17,6 +17,7 @@ let
     stylua # Lua
     ormolu # Haskell
     nodePackages_latest.purs-tidy # Purescript
+    nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
 
     # Others
