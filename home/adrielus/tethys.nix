@@ -19,4 +19,6 @@
     # obs-studio # video recorder
     # lmms # music software
   ];
+
+  satellite-dev.enable = true;
 }

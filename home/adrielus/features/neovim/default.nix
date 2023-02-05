@@ -1,6 +1,5 @@
 { pkgs, lib, config, paths, ... }:
 let
-  devMode = true;
   extraPackages = with pkgs; [
     # Language servers
     nodePackages.typescript-language-server # typescript
@@ -40,13 +39,9 @@ let
   ];
 in
 let
-  symlink = config.lib.file.mkOutOfStoreSymlink;
-
   extraRuntime = env: [
     # Snippets
-    (if devMode
-    then symlink "${paths.dotfiles}/vscode-snippets"
-    else ../../../../dotfiles/vscode-snippets)
+    (config.satellite-dev.path "dotfiles/vscode-snippets")
 
     # Base16 theme
     (pkgs.writeTextDir
@@ -95,11 +90,7 @@ in
   # Do not manage neovim via nix
   programs.neovim.enable = false;
 
-  home.file.".config/nvim".source =
-    if devMode then
-      symlink "${paths.dotfiles}/neovim" else
-      ../../../../dotfiles/neovim;
-
+  home.file.".config/nvim".source = config.satellite-dev.path "dotfiles/neovim";
   home.sessionVariables.EDITOR = "nvim";
 
   home.packages = [

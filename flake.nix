@@ -50,7 +50,6 @@
 
       specialArgs = {
         inherit inputs outputs;
-        paths.dotfiles = "/home/adrielus/Projects/satellite/dotfiles";
       };
     in
     rec {

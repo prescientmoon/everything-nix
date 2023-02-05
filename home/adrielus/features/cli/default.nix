@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./bat.nix ./ssh.nix ./fish.nix ./tmux ./git.nix ./starship.nix ./direnv.nix ];
+  imports = [ ./exa.nix ./bat.nix ./ssh.nix ./fish.nix ./tmux ./git.nix ./starship.nix ./direnv.nix ];
 
   # Enable bash
   programs.bash.enable = true;
@@ -11,7 +11,6 @@
     comma # Intstall and run programs by sticking a , before them
     bc # Calculator
     ncdu # TUI disk usage
-    exa # Better ls
     ripgrep # Better grep
     fd # Better find
     httpie # Better curl

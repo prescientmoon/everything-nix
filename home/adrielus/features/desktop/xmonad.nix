@@ -2,6 +2,7 @@
   imports = [
     ./common/rofi
     ./common/polybar
+    ./common/eww
     ./common/fonts.nix
     ./common/xresources.nix
     ./common/xwallpaper.nix

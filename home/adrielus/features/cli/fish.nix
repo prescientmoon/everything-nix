@@ -4,7 +4,6 @@
     enable = true;
 
     shellAbbrs = {
-      ls = "exa -la";
       cat = "bat";
     };
 
