@@ -13,6 +13,12 @@ return {
   },
 
   {
+    "elkowar/yuck.vim",
+    ft = "yuck",
+    cond = env.vscode.not_active(),
+  },
+
+  {
     "Fymyte/rasi.vim",
     ft = "rasi",
     cond = env.vscode.not_active(),
@@ -177,7 +183,7 @@ return {
     "ruifm/gitlinker.nvim", -- generate permalinks for code
     -- dependencies = { "plenary.nvim" },
     config = {
-      mappings = "<leader>yg"
+      mappings = "<leader>yg",
     },
     init = function()
       local status, wk = pcall(require, "which-key")

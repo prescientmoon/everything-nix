@@ -1,0 +1,12 @@
+(defwindow dashboard
+  :stacking "bg"
+  ; :windowtype "normal"
+  :wm-ignore false
+  :reserve (struts :distance "40px" :side "left")
+  :geometry (geometry
+              :width "40px"
+              :height "100%")
+  (dashboard_layout))
+
+(defwidget dashboard_layout [] 
+  (label :text "A"))

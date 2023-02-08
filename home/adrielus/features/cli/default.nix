@@ -6,7 +6,6 @@
 
   # Install clis
   home.packages = with pkgs; [
-    tree # Print directory structure
     ranger # Terminal file explorer
     comma # Intstall and run programs by sticking a , before them
     bc # Calculator

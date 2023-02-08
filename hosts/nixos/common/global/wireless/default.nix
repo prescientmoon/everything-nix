@@ -12,6 +12,7 @@
       "Neptune".psk = "@PHONE_HOTSPOT_PASS@";
       "TP-Link_522C".psk = "@TG_HOME_PASS@";
       "Sailhorse".psk = "@NL_SAILHORSE_PASS@";
+      "FOSDEM-Dualstack" = {};
     };
 
     # Imperative

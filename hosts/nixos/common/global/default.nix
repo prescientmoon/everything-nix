@@ -16,7 +16,7 @@
     "/etc/ssh/ssh_host_ed25519_key"
   ];
 
-  scheme = lib.mkDefault "${inputs.catppuccin-base16}/base16/frappe.yaml";
+  scheme = lib.mkDefault "${inputs.catppuccin-base16}/base16/latte.yaml";
 
   nixpkgs = {
     # Add all overlays defined in the overlays directory
