@@ -54,7 +54,7 @@ in
         # Purescript packages
         "Pursuit" = mkBasicSearchEngine {
           url = "https://pursuit.purescript.org/search";
-          param = "s";
+          param = "q";
           aliases = [ "@ps" "@pursuit" ];
         };
 

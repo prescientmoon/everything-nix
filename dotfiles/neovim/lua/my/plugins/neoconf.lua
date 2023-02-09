@@ -1,7 +1,7 @@
 return {
   "folke/neoconf.nvim",
   cmd = "Neoconf",
-  config = {
+  opts = {
     -- import existing settings from other plugins
     import = {
       vscode = true, -- local .vscode/settings.json

@@ -6,7 +6,7 @@ local M = {
   cond = env.firenvim.active(),
 }
 
-function M.setup()
+function M.config()
   vim.g.firenvim_config = {
     localSettings = {
       [".*"] = {

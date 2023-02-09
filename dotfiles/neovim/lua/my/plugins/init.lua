@@ -93,7 +93,7 @@ return {
   },
 
   -- nice looking icons
-  "kyazdani42/nvim-web-devicons",
+  "nvim-tree/nvim-web-devicons",
 
   {
     -- easly switch between tmux and vim panes
@@ -138,7 +138,7 @@ return {
   {
     -- export to pastebin like services
     "rktjmp/paperplanes.nvim",
-    config = {
+    opts = {
       provider = "paste.rs",
     },
     keys = { "PP" },
@@ -182,7 +182,7 @@ return {
   {
     "ruifm/gitlinker.nvim", -- generate permalinks for code
     -- dependencies = { "plenary.nvim" },
-    config = {
+    opts = {
       mappings = "<leader>yg",
     },
     init = function()

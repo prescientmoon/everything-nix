@@ -18,7 +18,7 @@
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
 
-      # Sign everythin gby default
+      # Sign everything by default
       commit.gpgsign = true;
       tag.gpgsign = true;
     };

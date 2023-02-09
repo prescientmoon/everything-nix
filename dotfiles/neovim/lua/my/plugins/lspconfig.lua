@@ -20,7 +20,7 @@ local M = {
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
-    config = {
+    opts = {
       input_buffer_type = "dressing",
     },
     dependencies = {
