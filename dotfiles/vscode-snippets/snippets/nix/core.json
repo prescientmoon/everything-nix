@@ -1,0 +1,14 @@
+{
+  "Fetch from GitHub": {
+    "prefix": "fetchFromGitHub",
+    "description": "Fetch a repo from github",
+    "body": [
+      "pkgs.fetchFromGitHub {",
+      "\towner = \"$1\";",
+      "\trepo = \"$2\";",
+      "\trev = \"\";",
+      "\tsha256 = \"\";",
+      "}$0"
+    ]
+  }
+}

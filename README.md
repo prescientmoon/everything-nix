@@ -51,4 +51,4 @@ Here's some things you might want to check out:
   - [Starship](https://starship.rs/) - shell prompt
 - [Zathura](https://pwmt.org/projects/zathura/) - pdf viewer
 - [Ranger](https://github.com/ranger/ranger) - file manager
-- [Firefox](https://www.mozilla.org/en-US/firefox/) - web browser
+- [Firefox](https://www.mozilla.org/en-US/firefox/) - web browserreadme

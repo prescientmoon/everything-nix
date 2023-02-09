@@ -31,4 +31,6 @@
       version = 2;
     };
   };
+
+  boot.loader.grub.base16.enable = true;
 }

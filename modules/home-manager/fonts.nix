@@ -25,9 +25,4 @@ in {
     monospace = mkFontOption "monospace";
     regular = mkFontOption "regular";
   };
-
-  config = lib.mkIf cfg.enable {
-    fonts.fontconfig.enable = true;
-    home.packages = [ cfg.monospace.package cfg.regular.package ];
-  };
 }

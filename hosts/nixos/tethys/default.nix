@@ -6,6 +6,7 @@
     ../common/optional/pipewire.nix
     ../common/optional/touchpad.nix
     ../common/optional/xserver.nix
+    ../common/optional/gdm.nix
     ../common/optional/xmonad
 
     ./hardware-configuration.nix

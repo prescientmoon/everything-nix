@@ -43,6 +43,12 @@
           "lua"
         ],
         "path": "./snippets/lua/core.json"
+      },
+      {
+        "language": [
+          "nix"
+        ],
+        "path": "./snippets/nix/core.json"
       }
     ]
   }

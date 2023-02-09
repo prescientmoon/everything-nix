@@ -1,5 +1,6 @@
 # Configuration pieces included on all (nixos) hosts
-{ inputs, outputs, lib, colorscheme, ... }: {
+{ inputs, outputs, lib, colorscheme, ... }:
+let
   imports = [
     inputs.agenix.nixosModule
     inputs.base16.nixosModule
@@ -11,6 +12,10 @@
     ./locale.nix
     ./wireless
   ];
+in
+{
+  # Import all modules defined in modules/nixos
+  imports = builtins.attrValues outputs.nixosModules ++ imports;
 
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
