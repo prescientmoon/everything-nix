@@ -1,5 +1,7 @@
 { pkgs, ... }: {
-  imports = [ ./exa.nix ./bat.nix ./ssh.nix ./fish.nix ./tmux ./git.nix ./starship.nix ./direnv.nix ];
+  imports = [ ./exa.nix ./bat.nix ./ssh.nix
+./git.nix ./starship.nix ./direnv.nix
+  ./fish ./tmux  ];
 
   # Enable bash
   programs.bash.enable = true;
