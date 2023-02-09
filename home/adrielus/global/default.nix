@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, config, outputs, ... }:
+{ inputs, lib, pkgs, config, outputs, colorscheme, ... }:
 let
   # Extra modules to import
   imports = [
@@ -40,8 +40,7 @@ in
   };
 
   # Set default theme
-  scheme = lib.mkDefault "${inputs.catppuccin-base16}/base16/latte.yaml";
-  # scheme = lib.mkDefault "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
+  scheme = lib.mkDefault colorscheme;
 
   # Set reasonable defaults for some settings
   home = {

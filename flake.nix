@@ -50,6 +50,9 @@
 
       specialArgs = {
         inherit inputs outputs;
+
+        # colorscheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
+        colorscheme = "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
       };
     in
     rec {

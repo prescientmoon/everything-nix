@@ -1,5 +1,5 @@
 # Configuration pieces included on all (nixos) hosts
-{ inputs, outputs, lib, ... }: {
+{ inputs, outputs, lib, colorscheme, ... }: {
   imports = [
     inputs.agenix.nixosModule
     inputs.base16.nixosModule
@@ -16,7 +16,7 @@
     "/etc/ssh/ssh_host_ed25519_key"
   ];
 
-  scheme = lib.mkDefault "${inputs.catppuccin-base16}/base16/latte.yaml";
+  scheme = lib.mkDefault colorscheme;
 
   nixpkgs = {
     # Add all overlays defined in the overlays directory
