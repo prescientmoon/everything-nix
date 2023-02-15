@@ -193,16 +193,6 @@
     "description": "Create an aligned environment",
     "body": ["\\begin{aligned}", "\t$0", "\\end{aligned}"]
   },
-  "Text explanation in math mode": {
-    "prefix": "texpl",
-    "description": "Explain a step using text in math mode",
-    "body": "&& \\text{($1)}$0"
-  },
-  "Explanation in math mode": {
-    "prefix": "expl",
-    "description": "Explain a step in math mode",
-    "body": "&& ($1) $0"
-  },
   "Let": {
     "prefix": "let",
     "description": "Let something equal something else",
@@ -216,7 +206,7 @@
   "Aligned display math": {
     "prefix": "maligned",
     "description": "Create an aligned display math environment",
-    "body": ["\\[", "\t\\begin{aligned}", "\t\t$0", "\t\\end{aligned}", "\\]"]
+    "body": ["\\begin{align}", "\t$0", "\\end{align}"]
   },
   "System of equations": {
     "prefix": "eqsystem",

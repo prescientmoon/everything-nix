@@ -18,6 +18,7 @@
   # A few ad-hoc settings
   hardware.opengl.enable = true;
   programs.kdeconnect.enable = true;
+  # i18n.inputMethod.enabled = "uim";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
