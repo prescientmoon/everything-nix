@@ -258,14 +258,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1676842959,
-        "narHash": "sha256-GulJ8tlS1g+LSxqhTxrao6Tf2nU/cqnLb7ilCbNyznE=",
-        "path": "/home/adrielus/Projects/python-keyboard-fuckery",
-        "type": "path"
+        "lastModified": 1676844861,
+        "narHash": "sha256-mG65gA3WJjtFPKj0ZJTQ663/DT5IlefLF4XMTlNK5H0=",
+        "owner": "Mateiadrielrafael",
+        "repo": "slambda",
+        "rev": "3c1315ee102e7ae45e560446aa7d41b7f5063c9d",
+        "type": "github"
       },
       "original": {
-        "path": "/home/adrielus/Projects/python-keyboard-fuckery",
-        "type": "path"
+        "owner": "Mateiadrielrafael",
+        "repo": "slambda",
+        "type": "github"
       }
     },
     "utils": {

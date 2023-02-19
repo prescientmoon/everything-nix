@@ -12,7 +12,9 @@ let
     (chord [ "n" "l" ] [ "leftmeta" ])
     (unmap [ "leftmeta" ])
     (unmap [ "leftshift" ])
+    (unmap [ "rightshift" ])
     (unmap [ "leftctrl" ])
+    (unmap [ "rightctrl" ])
     # }}}
     # {{{ Other special keys
     (chord [ "g" "h" ] [ "backspace" ])
@@ -27,8 +29,8 @@ let
     (unmap [ "backslash" ])
     # }}}
     # {{{ Tmux
-    (chord [ "a" "n" "k" "l" ] [ "rightshift" "a" "n" ]) # Next tab in tmux
-    (chord [ "a" "j" "l" ] [ "rightshift" "a" ]) # Tmux leader
+    (chord [ "a" "n" "k" "l" ] [ "leftctrl" "a" "n" ]) # Next tab in tmux
+    (chord [ "a" "j" "l" ] [ "leftctrl" "a" ]) # Tmux leader
     # }}}
     # {{{ WM keybinds
     (chord [ "n" "l" "q" ] [ "leftmeta" "1" ])

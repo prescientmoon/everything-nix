@@ -33,7 +33,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # Slambda
-    slambda.url = "path:/home/adrielus/Projects/python-keyboard-fuckery";
+    slambda.url = "github:Mateiadrielrafael/slambda";
     slambda.inputs.nixpkgs.follows = "nixpkgs";
 
     # Neovim nightly
