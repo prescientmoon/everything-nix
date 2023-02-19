@@ -14,6 +14,9 @@ function M.config()
       },
     },
   }
+
+  -- Disable status line
+  vim.opt.laststatus = 0
 end
 
 return M

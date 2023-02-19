@@ -36,6 +36,10 @@ let
 
     texlive.combined.scheme-full # Latex stuff
     python38Packages.pygments # required for latex syntax highlighting
+
+    # Required by magma-nvim:
+    # python310Packages.pynvim
+    # python310Packages.jupyter
   ];
 in
 let

@@ -16,4 +16,15 @@ function M.abbr(lhs, rhs)
   vim.cmd(":iabbrev " .. lhs .. " " .. rhs)
 end
 
+function M.manyGlobalAbbr(abbreviations)
+  for _, value in pairs(abbreviations) do
+    M.abbr(value[1], value[2])
+  end
+end
+
+
+function M.setup()
+  require("my.abbreviations.global").setup()
+end
+
 return M

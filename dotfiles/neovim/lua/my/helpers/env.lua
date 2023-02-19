@@ -1,6 +1,9 @@
 local function makeEnv(cond)
   return {
-    active = cond,
+    -- I am doing this to get type hints!
+    active = function()
+      return cond
+    end,
     not_active = function()
       return not cond()
     end,
@@ -36,5 +39,5 @@ return {
     return makeEnv(function()
       return a.active() or b.active()
     end)
-  end
+  end,
 }

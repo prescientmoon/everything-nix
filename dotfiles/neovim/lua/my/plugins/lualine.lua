@@ -3,7 +3,7 @@ local env = require("my.helpers.env")
 local M = {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  cond = env.vscode.not_active(),
+  cond = env.vscode.not_active() and env.firenvim.not_active(),
 }
 
 function M.config()

@@ -60,6 +60,7 @@ local abbreviations = {
   { "iin", "\\in" },
   { "tto", "\\to" },
   { "iip", "\\implies" },
+  { "iib", "\\impliedby" },
   { "iff", "\\iff" },
   { "land", "\\land" },
   { "lor", "\\lor" },
@@ -117,6 +118,9 @@ local abolishAbbreviations = {
   { "dete{,s}", "determinant{}" },
   { "ort{n,g}", "orto{normal,gonal}" },
   { "l{in,de}", "linearly {independent,dependent}" },
+  { "lcon{,s}", "linear combination{}" },
+  { "vsm", "\\vecspace" }, -- math vector space
+  { "vst{,s}", "vector space{,s}" }, -- text vector space
 
   -- Graph theory
   { "vx{,s}", "vert{ex,ices}" },
@@ -210,11 +214,8 @@ local abolishAbbreviations = {
 
 local expanded = scrap.expand_many(abolishAbbreviations)
 
--- print("Expanded")
 A.manyLocalAbbr(abbreviations)
 A.manyLocalAbbr(expanded)
-
-print(#expanded .. " abbreviations")
 
 vim.keymap.set(
   "n",
