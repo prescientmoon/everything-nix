@@ -32,6 +32,10 @@
     # Impermanence 
     impermanence.url = "github:nix-community/impermanence";
 
+    # Slambda
+    slambda.url = "path:/home/adrielus/Projects/python-keyboard-fuckery";
+    slambda.inputs.nixpkgs.follows = "nixpkgs";
+
     # Neovim nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";

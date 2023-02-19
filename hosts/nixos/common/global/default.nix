@@ -4,6 +4,7 @@ let
   imports = [
     inputs.agenix.nixosModule
     inputs.base16.nixosModule
+    inputs.slambda.nixosModule
     # inputs.impermanence.nixosModule
 
     ./nix.nix
