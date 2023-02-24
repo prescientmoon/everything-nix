@@ -6,6 +6,7 @@ M.symols = {
   -- Unicode:
   { "iin", "∈" }, -- [I]ncluded [i][n]
   { "mfrl", "∀" }, -- [M]ath [f]o[r]al[l]
+  { "eps", "ε" }, -- Epsilon
 
   -- Ascii stuff:
   { "tto", "->" }, -- [t]o

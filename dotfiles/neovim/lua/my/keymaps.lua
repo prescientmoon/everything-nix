@@ -79,7 +79,7 @@ function M.setup()
   -- {{{ Chords (save, clipboard)
   -- Different chords get mapped to f keys by a custom script of mine.
   -- In the future, I might get this on my keyboard firmware.
-  vim.keymap.set({ "i", "v" }, "<f10>", '<Esc>', { desc = "Exit insert mode" }) -- Exit inset mode using *jk*
+  vim.keymap.set({ "i", "v" }, "<f10>", "<Esc>", { desc = "Exit insert mode" }) -- Exit inset mode using *jk*
   vim.keymap.set({ "n", "v" }, "<f11>", '"+', { desc = "Use global clipboard" }) -- Use global clipboard with *cp*
   M.nmap("<f12>", ":silent write<cr>", "Save current file") -- Save using *ji*
   -- }}}
@@ -95,6 +95,12 @@ function M.setup()
       )
     end,
   })
+  -- }}}
+  -- {{{ Shift-Enter for not continuing the current comment
+  -- This does not preserve intendation. Not sure what a better solution would look like.
+  vim.keymap.set("i", "<S-CR>", function()
+    vim.paste({ "", "" }, -1)
+  end, { desc = "Insert newline without continuing the current comment" })
   -- }}}
 
   return M
