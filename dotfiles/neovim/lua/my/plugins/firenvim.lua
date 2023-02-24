@@ -16,16 +16,20 @@ function M.config()
     },
   }
 
-  K.nmap("<C-e>", function()
-    vim.opt.lines = 100
+  -- {{{ Ctrl-z to expand window
+  K.nmap("<C-z>", function()
+    vim.opt.lines = 25
   end, "Expand the neovim window!")
-
+  -- }}}
+  -- {{{ Filetype detection
   vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "firenvim_localhost_notebooks*.txt" },
+    group = vim.api.nvim_create_augroup("JupyterMarkdownFiletype", {}),
     callback = function()
       vim.opt.filetype = "markdown"
     end,
   })
+  -- }}}
 
   -- Disable status line
   vim.opt.laststatus = 0

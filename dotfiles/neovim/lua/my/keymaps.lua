@@ -86,6 +86,7 @@ function M.setup()
   -- {{{ Allow quiting basic buffers with "q"
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "help" },
+    group = vim.api.nvim_create_augroup("BasicBufferQuitting", {}),
     callback = function(event)
       vim.keymap.set(
         "n",
