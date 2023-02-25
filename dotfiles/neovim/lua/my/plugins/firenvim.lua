@@ -30,9 +30,13 @@ function M.config()
     end,
   })
   -- }}}
-
-  -- Disable status line
+  -- {{{ Disable status line
   vim.opt.laststatus = 0
+  -- }}}
+  -- {{{ Enable wrapping
+  vim.opt.wrap = true
+  require("my.helpers.wrapMovement").setup()
+  -- }}}
 end
 
 return M

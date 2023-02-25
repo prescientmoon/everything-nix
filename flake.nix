@@ -56,6 +56,7 @@
         inherit inputs outputs;
 
         # colorscheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
+        # colorscheme = "${inputs.catppuccin-base16}/base16/frappe.yaml";
         colorscheme = "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
       };
     in
