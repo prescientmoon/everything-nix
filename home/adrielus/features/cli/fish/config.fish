@@ -16,12 +16,22 @@ set fish_vi_force_cursor
 # {{{ Disable greeting
 set fish_greeting
 # }}}
-# {{{ Use vim-style keybinds
+# {{{ Keybinds
 function fish_user_key_bindings
+  # {{{ Use vim-style keybinds
   # Use the vim keybinds
   fish_vi_key_bindings
 
   bind -e -M insert -k f10 # unbinds f10
   bind -M insert -m default -k f10 'commandline -f repaint' # Exit insert mode with <f10>
+  # }}}
+  # {{{ C-x to clear screen
+  bind -M default \cx "clear && commandline -f repaint"
+  bind -M insert  \cx "clear && commandline -f repaint"
+  # }}}
+  # {{{ C-g to open neogit
+  bind -M default \cg "nvim +Neogit"
+  bind -M insert  \cg "nvim +Neogit"
+  # }}}
 end
 # }}}

@@ -1,20 +1,25 @@
+{ lib, ... }:
 let
   chord = from: to: { inherit from to; };
   unmap = from: chord from [ ];
   commonChords = [
     # {{{ Modifiers
     (chord [ "s" "d" ] [ "leftshift" ])
-    (chord [ "k" "l" ] [ "rightshift" ])
     (chord [ "s" "f" ] [ "leftctrl" ])
-    (chord [ "j" "l" ] [ "rightctrl" ])
+    (chord [ "s" "a" ] [ "leftalt" ])
+    (chord [ "l" "k" ] [ "rightshift" ])
+    (chord [ "l" "j" ] [ "rightctrl" ])
+    (chord [ "l" "semicolon" ] [ "rightalt" ])
+    (chord [ "l" "n" ] [ "rightmeta" ])
     (chord [ "j" "k" "l" ] [ "rightctrl" "rightshift" ])
     (chord [ "s" "d" "f" ] [ "leftctrl" "leftshift" ])
-    (chord [ "n" "l" ] [ "leftmeta" ])
-    (unmap [ "leftmeta" ])
+    (unmap [ "leftalt" ])
     (unmap [ "leftshift" ])
-    (unmap [ "rightshift" ])
     (unmap [ "leftctrl" ])
+    (unmap [ "rightshift" ])
     (unmap [ "rightctrl" ])
+    (unmap [ "rightalt" ])
+    (unmap [ "rightmeta" ])
     # }}}
     # {{{ Other special keys
     (chord [ "g" "h" ] [ "backspace" ])
