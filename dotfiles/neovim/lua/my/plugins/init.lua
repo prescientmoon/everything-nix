@@ -201,23 +201,6 @@ return {
   },
 
   {
-    -- magit clone
-    "TimUntersberger/neogit",
-    -- dependencies = { "plenary.nvim" },
-    cmd = "Neogit",
-    enabled = env.firenvim.not_active() and env.vscode.not_active(),
-    init = function()
-      vim.keymap.set(
-        "n",
-        "<C-g>",
-        "<cmd>Neogit<cr>",
-        { desc = "Open neo[g]it" }
-      )
-    end,
-    config = true,
-  },
-
-  {
     -- discord rich presence
     "andweeb/presence.nvim",
     cond = env.vscode.not_active() and env.firenvim.not_active(),
