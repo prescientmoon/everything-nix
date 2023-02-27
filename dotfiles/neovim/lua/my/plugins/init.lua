@@ -141,7 +141,7 @@ return {
     opts = {
       provider = "paste.rs",
     },
-    keys = { "PP" },
+    cmd = "PP",
   },
 
   {
