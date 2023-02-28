@@ -15,10 +15,11 @@
     vlc # Video player
     gimp # Image editing
     libreoffice # Free office suite
+    lmms # music software
 
     # obs-studio # video recorder
-    # lmms # music software
   ];
 
-  satellite-dev.enable = true;
+  home.sessionVariables.QT_SCREEN_SCALE_FACTOR = 1.4; # Bigger text in qt apps
+  satellite-dev.enable = true; # Simlink some stuff outside the store
 }
