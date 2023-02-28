@@ -206,7 +206,7 @@
   "Aligned display math": {
     "prefix": "maligned",
     "description": "Create an aligned display math environment",
-    "body": ["\\begin{align}", "\t$0", "\\end{align}"]
+    "body": ["\\begin{align*}", "\t$0", "\\end{align*}"]
   },
   "System of equations": {
     "prefix": "eqsystem",

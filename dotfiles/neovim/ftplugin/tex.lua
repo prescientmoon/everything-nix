@@ -85,6 +85,8 @@ local abbreviations = {
   { "card", "\\#" },
   { "div", "\\|" },
   { "ndiv", "\\not\\|\\:" },
+  { "perp", "\\perp" },
+  { "iprod", "\\iprod" }, -- custom inner product command
 
   -- words
   { "rref", "reduced row echalon form" },
