@@ -2,6 +2,7 @@
   # Wireless secrets stored through agenix
   age.secrets.wireless.file = ./wifi_passwords.age;
 
+  # https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/services/networking/wpa_supplicant.nix
   networking.wireless = {
     enable = true;
     fallbackToWPA2 = false;
@@ -12,7 +13,23 @@
       "Neptune".psk = "@PHONE_HOTSPOT_PASS@";
       "TP-Link_522C".psk = "@TG_HOME_PASS@";
       "Sailhorse".psk = "@NL_SAILHORSE_PASS@";
-      "FOSDEM-Dualstack" = {};
+
+      "FOSDEM-Dualstack" = { };
+
+      # [Working solution](https://bbs.archlinux.org/viewtopic.php?id=271336)
+      # [Other interesting link](https://help.itc.rwth-aachen.de/en/service/b3d9a2c8ae5345b8b8f5128143ef4e3c/article/eaf6d69389a74a5a839c1f383c508df7/)
+      # [Uni link](https://lwpwiki.webhosting.rug.nl/index.php/Configure_your_wifi_for_Eduroam)
+      "eduroam" = {
+        authProtocols = [ "WPA-EAP" ];
+        auth = ''
+          eap=PEAP
+          identity="s5260329@rug.nl"
+          password="@EDUROAM_PASS@"
+        '';
+        extraConfig = ''
+          phase2="auth=MSCHAPV2"
+        '';
+      };
     };
 
     # Imperative

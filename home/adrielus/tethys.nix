@@ -16,6 +16,7 @@
     gimp # Image editing
     libreoffice # Free office suite
     lmms # music software
+    agenix # secret encryption
 
     # obs-studio # video recorder
   ];
