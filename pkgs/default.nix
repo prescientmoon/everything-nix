@@ -4,6 +4,7 @@
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   # example = pkgs.callPackage (import ./example.nix) {};
   vimclip = pkgs.callPackage (import ./vimclip.nix) {};
+  sherlock = pkgs.callPackage (import ./sherlock.nix) {};
 
   plymouthThemes = pkgs.callPackage (import ./plymouth-themes.nix) {};
 }
