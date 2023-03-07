@@ -2,7 +2,7 @@
 {
   boot.plymouth = {
     enable = true;
-    themePackages = [ pkgs.plymouthThemes.cuts_alt ];
+    themePackages = [ pkgs.plymouthThemeCutsAlt ];
     theme = "cuts_alt";
   };
 

@@ -4,7 +4,6 @@ local scrap = require("scrap")
 require("my.helpers.wrapMovement").setup()
 
 vim.opt.conceallevel = 0
-vim.opt.wrap = true
 
 -- vim.opt.foldcolumn = "1"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

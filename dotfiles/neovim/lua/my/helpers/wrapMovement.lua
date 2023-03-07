@@ -6,6 +6,8 @@ local function swap(key)
 end
 
 function M.setup()
+  vim.opt.wrap = true
+
   swap("j")
   swap("k")
   swap("0")

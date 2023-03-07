@@ -5,6 +5,7 @@ let
     inputs.agenix.nixosModule
     inputs.base16.nixosModule
     inputs.slambda.nixosModule
+    inputs.nur.nixosModules.nur
     # inputs.impermanence.nixosModule
 
     ./nix.nix

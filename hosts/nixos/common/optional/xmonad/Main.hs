@@ -34,7 +34,7 @@ main =
           `additionalKeysP` keymap
   where
     myWorkspaces =
-      ["1:dev", "2:browser", "3:chat", "4:terminal", "5:reading", "6:gaming"]
+      ["1:dev", "2:browser", "3:chat", "4:terminal", "5:reading", "6:music", "7:gaming"]
 
     myTerminal = "alacritty"
     myBrowser = "firefox"

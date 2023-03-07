@@ -4,6 +4,7 @@ let
   imports = [
     inputs.base16.homeManagerModule
     inputs.homeage.homeManagerModules.homeage
+    inputs.nur.nixosModules.nur
     # inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../features/cli

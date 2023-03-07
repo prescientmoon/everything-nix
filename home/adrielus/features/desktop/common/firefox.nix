@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   mkBasicSearchEngine = { aliases, url, param }: {
     urls = [{
@@ -38,6 +38,24 @@ in
 
       # Set default search engine
       search.default = "Google";
+
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        bypass-paywalls-clean
+        clearurls # removes ugly args from urls
+        firenvim # summon a nvim instance inside the browser
+        gesturefy # mouse gestures
+        localcdn # caches libraries locally
+        lovely-forks # displays forks on github
+        octolinker # github import to link thingy
+        octotree # github file tree
+        privacy-badger # blocks some trackers
+        privacy-pass # captcha stuff
+        return-youtube-dislikes
+        ublock-origin # ad blocker
+        vimium-c # vim keybinds
+        sponsorblock # skip youtube sponsors
+        translate-web-pages
+      ];
 
       # Specify custom search engines
       search.engines = {
@@ -111,4 +129,5 @@ in
     displayName = "Asana";
     id = 1;
   };
+
 }
