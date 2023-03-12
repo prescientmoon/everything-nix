@@ -8,7 +8,7 @@
       enable = true;
       enableContribAndExtras = true;
 
-      config = builtins.readFile (config.scheme {
+      config = builtins.readFile (config.lib.stylix.colors {
         template = builtins.readFile ./Main.hs;
       });
     };
@@ -18,6 +18,11 @@
 
     # Make xmonad session the default
     displayManager.defaultSession = "none+xmonad";
+  };
+
+  # Enable ad-hoc stylix targets:
+  stylix.targets = {
+    gtk.enable = true;
   };
 }
 

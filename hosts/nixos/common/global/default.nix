@@ -1,9 +1,9 @@
 # Configuration pieces included on all (nixos) hosts
-{ inputs, outputs, lib, colorscheme, ... }:
+{ inputs, outputs, lib, ... }:
 let
   imports = [
     inputs.agenix.nixosModule
-    inputs.base16.nixosModule
+    inputs.stylix.nixosModules.stylix
     inputs.slambda.nixosModule
     inputs.nur.nixosModules.nur
     # inputs.impermanence.nixosModule
@@ -13,6 +13,7 @@ let
     ./fish.nix
     ./locale.nix
     ./wireless
+    ../../../../common
   ];
 in
 {
@@ -22,8 +23,6 @@ in
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
   ];
-
-  scheme = lib.mkDefault colorscheme;
 
   nixpkgs = {
     # Add all overlays defined in the overlays directory

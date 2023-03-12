@@ -25,8 +25,11 @@
     homeage.inputs.nixpkgs.follows = "nixpkgs";
 
     # Base16-nix
-    base16.url = github:SenchoPens/base16.nix;
-    base16.inputs.nixpkgs.follows = "nixpkgs";
+    # base16.url = github:SenchoPens/base16.nix;
+    # base16.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Stylix
+    stylix.url = "github:danth/stylix";
 
     # Catpuccin base16 color schemes
     catppuccin-base16.url = github:catppuccin/base16;
@@ -64,7 +67,6 @@
 
         # colorscheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
         # colorscheme = "${inputs.catppuccin-base16}/base16/frappe.yaml";
-        colorscheme = "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
       };
     in
     rec {
@@ -102,6 +104,8 @@
               home-manager.users.adrielus = import ./home/adrielus/tethys.nix;
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.useUserPackages = true;
+              stylix.homeManagerIntegration.followSystem = false;
+              stylix.homeManagerIntegration.autoImport = false;
             }
 
             ./hosts/nixos/tethys

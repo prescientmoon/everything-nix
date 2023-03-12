@@ -121,13 +121,31 @@ in
         "Google".metaData.alias = "@g";
       };
     };
-  };
 
-  firefox.apps.asana = {
-    url = "https://app.asana.com/";
-    icon = ./icons/asana.png;
-    displayName = "Asana";
-    id = 1;
-  };
+    apps = {
+      # {{{ Job stuff
+      asana = {
+        url = "https://app.asana.com/";
+        icon = ./icons/asana.png;
+        displayName = "Asana";
+        id = 1;
+      };
 
+      clockodo = {
+        url = "https://my.clockodo.com/en/";
+        icon = ./icons/clockodo.png;
+        displayName = "Clockodo";
+        id = 2;
+      };
+
+      # }}}
+
+      gitlab = {
+        url = "https://gitlab.com";
+        icon = ./icons/gitlab.png;
+        displayName = "Gitlab";
+        id = 3;
+      };
+    };
+  };
 }

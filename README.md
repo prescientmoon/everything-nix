@@ -4,7 +4,7 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 
 ### Features this repository include:
 
-- Consistent base16 theming using [base16-nix](https://github.com/SenchoPens/base16.nix)
+- Consistent base16 theming using [stylix](https://github.com/danth/stylix)
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) based secret management 
 - Sets up all the apps I use, including git, neovim, fish, tmux, starship, xmonad, rofi, polybar, discord, zathura, alacritty & more. 
 
@@ -35,7 +35,7 @@ Here's some things you might want to check out:
 
 - [nixos](http://nixos.org/) - nix based operating system
 - [home-manager](https://github.com/nix-community/home-manager) - manage user configuration using nix
-- [base16-nix](https://github.com/SenchoPens/base16.nix) - base16 module for nix
+- [stylix](https://github.com/danth/stylix) - base16 module for nix
     - [Base16 templates](https://github.com/chriskempson/base16-templates-source) - list of base16 theme templates
     - [Catpuccin](https://github.com/catppuccin/catppuccin) - base16 theme I use
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) - secret management

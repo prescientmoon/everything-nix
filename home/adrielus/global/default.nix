@@ -1,14 +1,15 @@
-{ inputs, lib, pkgs, config, outputs, colorscheme, ... }:
+{ inputs, lib, pkgs, config, outputs, ... }:
 let
   # Extra modules to import
   imports = [
-    inputs.base16.homeManagerModule
+    inputs.stylix.homeManagerModules.stylix
     inputs.homeage.homeManagerModules.homeage
     inputs.nur.nixosModules.nur
     # inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../features/cli
     ../features/neovim
+    ../../../common
   ];
 
   # Extra overlays to add
@@ -40,9 +41,6 @@ in
     home-manager.enable = true;
     git.enable = true;
   };
-
-  # Set default theme
-  scheme = lib.mkDefault colorscheme;
 
   # Set reasonable defaults for some settings
   home = {

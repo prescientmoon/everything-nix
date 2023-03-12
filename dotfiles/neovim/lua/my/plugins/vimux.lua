@@ -6,7 +6,7 @@ local M = {
   cmd = { "VimuxPromptCommand", "VimuxRunCommand", "VimuxRunLastCommand" },
   -- TODO: only enable when actually inside tmux
   cond = env.vscode.not_active()
-    and env.neovide.not_active()
+    -- and env.neovide.not_active()
     and env.firenvim.not_active(),
 }
 

@@ -1,9 +1,11 @@
 { pkgs, config, ... }:
-let base16-tmux = pkgs.fetchFromGitHub {
-  owner = "tinted-theming";
-  repo = "base16-tmux";
-  sha256 = "1p6czpd9f0sbibdsph1hdw4ljp6zzjij2159bks16wbfbg3p1hhx";
-  rev = "3312bb2cbb26db7eeb2d2235ae17d4ffaef5e59b";
+let base16-tmux = config.lib.stylix.colors {
+  templateRepo = pkgs.fetchFromGitHub {
+    owner = "tinted-theming";
+    repo = "base16-tmux";
+    sha256 = "1p6czpd9f0sbibdsph1hdw4ljp6zzjij2159bks16wbfbg3p1hhx";
+    rev = "3312bb2cbb26db7eeb2d2235ae17d4ffaef5e59b";
+  };
 };
 in
 {
@@ -30,7 +32,7 @@ in
       source ${./tmux.conf}
 
       # Theme
-      source ${config.scheme base16-tmux}
+      source ${base16-tmux}
     '';
   };
 }

@@ -1,8 +1,8 @@
 { lib, pkgs, config, ... }:
-let cfg = config.firefox.apps;
+let cfg = config.programs.firefox.apps;
 in
 {
-  options.firefox.apps = lib.mkOption {
+  options.programs.firefox.apps = lib.mkOption {
     type = lib.types.attrsOf
       (lib.types.submodule ({ name, ... }: {
         options = {

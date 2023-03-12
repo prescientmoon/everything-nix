@@ -1,6 +1,6 @@
 { pkgs, lib, paths, config, ... }:
 let
-  base16-polybar = {
+  base16-polybar = config.lib.stylix.colors {
     template = builtins.readFile ./template.mustache;
   };
 
@@ -14,12 +14,12 @@ in
     enable = true;
     extraConfig = ''
       ; Generated theme
-      ${builtins.readFile (config.scheme base16-polybar)}
+      ${builtins.readFile base16-polybar}
 
       ; Consistent fonts
       [fonts]
-      regular = "${config.fontProfiles.regular.family}"
-      monospace = "${config.fontProfiles.monospace.family}"
+      regular = "${config.stylix.fonts.sansSerif.name}"
+      monospace = "${config.stylix.fonts.monospace.name}"
 
       ; Actual config
       ${builtins.readFile ./polybar.ini}

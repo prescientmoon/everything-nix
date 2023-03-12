@@ -32,5 +32,5 @@
     };
   };
 
-  boot.loader.grub.base16.enable = true;
+stylix.targets.grub.enable = true;
 }

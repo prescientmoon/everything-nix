@@ -3,10 +3,8 @@
     ./common/rofi
     ./common/polybar
     ./common/eww
-    ./common/fonts.nix
-    ./common/xresources.nix
-    ./common/xwallpaper.nix
     ./common/alacritty.nix
+    ./common/feh.nix
   ];
 
   # Other packages I want to install:
@@ -15,4 +13,9 @@
     xclip # Clipboard stuff
     spectacle # Take screenshots
   ];
+
+  stylix.targets = {
+    xresources.enable = true;
+    gtk.enable = true;
+  };
 }

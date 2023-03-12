@@ -1,10 +1,12 @@
 { pkgs, config, ... }:
 let
-  base16-rofi = pkgs.fetchFromGitHub {
-    owner = "tinted-theming";
-    repo = "base16-rofi";
-    sha256 = "03y4ydnd6sijscrrp4qdvckrckscd39r8gyhpzffs60a1w4n76j5";
-    rev = "3f64a9f8d8cb7db796557b516682b255172c4ab4";
+  base16-rofi = config.lib.stylix.colors {
+    templateRepo = pkgs.fetchFromGitHub {
+      owner = "tinted-theming";
+      repo = "base16-rofi";
+      sha256 = "03y4ydnd6sijscrrp4qdvckrckscd39r8gyhpzffs60a1w4n76j5";
+      rev = "3f64a9f8d8cb7db796557b516682b255172c4ab4";
+    };
   };
 in
 {
@@ -16,10 +18,10 @@ in
 
     // Inject font
     configuration {
-      font: "${config.fontProfiles.monospace.family}";
+      font: "${config.stylix.fonts.monospace.name}";
     }
 
     // Theme
-    ${builtins.readFile (config.scheme base16-rofi)}
+    ${builtins.readFile base16-rofi}
   '';
 }

@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  base16-eww = {
+  base16-eww = config.lib.stylix.colors {
     template = builtins.readFile ./template.yuck;
   };
 
@@ -10,7 +10,7 @@ in
   home.packages = [ pkgs.eww ];
   xdg.configFile."eww/eww.yuck".text = ''
     # Color scheme
-    (include ${config.scheme base16-eww})
+    (include ${base16-eww})
 
     # My widgets
     (include ${widgets}/dashboard)

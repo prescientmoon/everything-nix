@@ -85,6 +85,8 @@ local abbreviations = {
   { "div", "\\|" },
   { "ndiv", "\\not\\|\\:" },
   { "perp", "\\perp" },
+  { "abs", "\\abs" }, -- custom abs command
+  { "norm", "\\norm" }, -- custom norm command
   { "iprod", "\\iprod" }, -- custom inner product command
 
   -- words

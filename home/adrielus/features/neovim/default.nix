@@ -52,7 +52,7 @@ let
       "lua/nix/theme.lua"
       ''
         return {
-          name = "${config.scheme.scheme}"
+          name = "${config.lib.stylix.scheme.scheme}"
         }
       '')
 

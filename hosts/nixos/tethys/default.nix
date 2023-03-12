@@ -6,7 +6,7 @@
     ../common/optional/pipewire.nix
     ../common/optional/touchpad.nix
     ../common/optional/xserver.nix
-    ../common/optional/gdm.nix
+    ../common/optional/lightdm.nix
     ../common/optional/xmonad
     ../common/optional/slambda.nix
 
@@ -14,6 +14,7 @@
     ./boot.nix
   ];
 
+  # Set the name of this machine!
   networking.hostName = "tethys";
 
   # A few ad-hoc settings
