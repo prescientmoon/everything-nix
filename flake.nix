@@ -24,9 +24,9 @@
     homeage.url = "github:jordanisaacs/homeage";
     homeage.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Base16-nix
-    # base16.url = github:SenchoPens/base16.nix;
-    # base16.inputs.nixpkgs.follows = "nixpkgs";
+    # Grub2 themes
+    grub2-themes.url = "github:vinceliuice/grub2-themes";
+    grub2-themes.inputs.nixpkgs.follows = "nixpkgs";
 
     # Stylix
     stylix.url = "github:danth/stylix";

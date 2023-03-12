@@ -164,6 +164,26 @@
         "type": "github"
       }
     },
+    "grub2-themes": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1674015718,
+        "narHash": "sha256-cBgjWD/mR1tiPyVky9Bl5kUrDX6RnARJ+0cEJ4VhbRg=",
+        "owner": "vinceliuice",
+        "repo": "grub2-themes",
+        "rev": "7c0d8eb7849cd5a4cf6a26c8750dcf71c26f2b0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vinceliuice",
+        "repo": "grub2-themes",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -340,6 +360,7 @@
         "agenix": "agenix",
         "catppuccin-base16": "catppuccin-base16",
         "firefox-addons": "firefox-addons",
+        "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
         "homeage": "homeage",
         "impermanence": "impermanence",

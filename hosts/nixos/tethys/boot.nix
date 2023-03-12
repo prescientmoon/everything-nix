@@ -1,6 +1,12 @@
-# This file contains arcane configurations copied from a random old wiki entry
-# One day I shall revisit this and see what's needed and what isn't 
-{
+{ inputs, ... }: {
+  imports = [ inputs.grub2-themes.nixosModules.default ];
+
+  # Defined [here](https://github.com/vinceliuice/grub2-themes/blob/master/flake.nix#L11)
+  boot.loader.grub2-theme = {
+    enable = true;
+  };
+
+  # See [the wiki page](https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows)
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -27,10 +33,7 @@
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
-
       version = 2;
     };
   };
-
-stylix.targets.grub.enable = true;
 }
