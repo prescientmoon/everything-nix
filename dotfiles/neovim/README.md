@@ -179,7 +179,6 @@ Idris keybinds live in the `<leader>I` namespace.
 | v         | Split vertically                         |
 | o         | Close all other                          |
 | q         | Close window                             |
-| w/Esc     | Exit window mode                         |
 
 #### Venn mode
 

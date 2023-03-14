@@ -105,22 +105,10 @@ function M.config()
         end,
       },
       { "=", "<C-w>=", { desc = "equalize" } },
-
       { "s", pcmd("split", "E36") },
-      { "<C-s>", pcmd("split", "E36"), { desc = false } },
       { "v", pcmd("vsplit", "E36") },
-      { "<C-v>", pcmd("vsplit", "E36"), { desc = false } },
-
-      { "w", "<C-w>w", { exit = true, desc = false } },
-      { "<C-w>", "<C-w>w", { exit = true, desc = false } },
-
       { "o", "<C-w>o", { exit = true, desc = "remain only" } },
-      { "<C-o>", "<C-w>o", { exit = true, desc = false } },
-
       { "q", pcmd("close", "E444"), { desc = "close window" } },
-      { "<C-q>", pcmd("close", "E444"), { desc = false } },
-
-      { "<Esc>", nil, { exit = true, desc = false } },
     },
   })
 end
