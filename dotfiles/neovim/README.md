@@ -213,6 +213,7 @@ The following keybinds are available only when running inside firenvim:
 | gs          | Initialize other window [s]earch    | leap                 |
 | C-n         | Open filetree                       | nvim-tree            |
 | \<leader>p  | [P]aste imge from clipboard         | clipboard-image.nvim |
+| \<leader>L  | [L]azy ui                           | lazy.nvim            |
 | C-h/j/k/l   | Navigate panes                      | vim-tmux-navigator   |
 
 ### Undocumented
