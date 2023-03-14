@@ -18,6 +18,7 @@
     gimp # Image editing
     libreoffice # Free office suite
     lmms # Music software
+    kicad # PCB editing
     # obs-studio # video recorder
 
     # Clis

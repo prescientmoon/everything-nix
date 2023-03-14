@@ -10,7 +10,9 @@
     "library": {
       "enabled": true,
       "types": true,
-      "plugins": false,
+      "plugins": [
+        "scrap"
+      ],
       "runtime": true
     }
   }

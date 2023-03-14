@@ -6,6 +6,7 @@ local M = {
     "mrjones2014/smart-splits.nvim", -- the name says it all
   },
   keys = { "<C-w>", "<leader>v" },
+  event = "VeryLazy",
 }
 
 local venn_hint = [[

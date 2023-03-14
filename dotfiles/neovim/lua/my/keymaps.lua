@@ -48,18 +48,7 @@ function M.setup()
   -- {{{ Easier access to <C-^>
   M.move("<C-^>", "<Leader>a", { desc = "[A]lternate file" })
   -- }}}
-  -- {{{ Quit current buffer / all buffers
-  vim.keymap.set({ "n", "v" }, "<leader>q", function()
-    local buf = vim.api.nvim_win_get_buf(0)
-
-    -- Only save if file is writable
-    if vim.bo[buf].modifiable and not vim.bo[buf].readonly then
-      vim.cmd([[write]])
-    end
-
-    vim.cmd("q")
-  end, { desc = "[Q]uit current buffer" })
-
+  -- {{{ Quit all buffers
   M.nmap("Q", ":wqa<cr>", "Save all files and [q]uit")
   -- }}}
   -- {{{ Replace word in file
@@ -73,6 +62,7 @@ function M.setup()
   -- {{{Diagnostic keymaps
   M.nmap("[d", vim.diagnostic.goto_prev, "Goto previous [d]iagnostic")
   M.nmap("]d", vim.diagnostic.goto_next, "Goto next [d]iagnostic")
+  M.move("J", "qj")
   M.nmap("J", vim.diagnostic.open_float, "Open current diagnostic")
   M.nmap("<leader>D", vim.diagnostic.setloclist, "[D]iagnostic loclist")
   -- }}}
@@ -82,6 +72,12 @@ function M.setup()
   vim.keymap.set({ "i", "v" }, "<f10>", "<Esc>", { desc = "Exit insert mode" }) -- Exit inset mode using *jk*
   vim.keymap.set({ "n", "v" }, "<f11>", '"+', { desc = "Use global clipboard" }) -- Use global clipboard with *cp*
   M.nmap("<f12>", ":silent write<cr>", "Save current file") -- Save using *ji*
+  -- }}}
+  -- {{{ Shift-Enter for not continuing the current comment
+  -- This does not preserve intendation. Not sure what a better solution would look like.
+  vim.keymap.set("i", "<S-CR>", function()
+    vim.paste({ "", "" }, -1)
+  end, { desc = "Insert newline without continuing the current comment" })
   -- }}}
   -- {{{ Allow quiting basic buffers with "q"
   vim.api.nvim_create_autocmd("FileType", {
@@ -96,12 +92,6 @@ function M.setup()
       )
     end,
   })
-  -- }}}
-  -- {{{ Shift-Enter for not continuing the current comment
-  -- This does not preserve intendation. Not sure what a better solution would look like.
-  vim.keymap.set("i", "<S-CR>", function()
-    vim.paste({ "", "" }, -1)
-  end, { desc = "Insert newline without continuing the current comment" })
   -- }}}
 
   return M

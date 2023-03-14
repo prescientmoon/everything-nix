@@ -15,3 +15,5 @@ vim.keymap.set(
 )
 
 vim.opt.expandtab = true -- Use spaces for the tab char
+
+require("my.abbreviations.fp")

@@ -22,10 +22,10 @@ function M.config()
           end, { desc = desc, bufnr = true })
         end
 
-        nmap("C", "make_case", "Make [c]plit")
+        nmap("C", "make_case", "Make [c]ase")
         nmap("L", "make_lemma", "Make [l]emma")
         nmap("c", "add_clause", "Add [c]lause")
-        nmap("s", "expr_search", "Expression [s]earch")
+        nmap("e", "expr_search", "[E]xpression search")
         nmap("d", "generate_def", "Generate [d]efinition")
         nmap("s", "case_split", "Case [s]plit")
         nmap("h", "refine_hole", "Refine [h]ole")

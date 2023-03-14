@@ -8,121 +8,219 @@
 
 ## Keybinds
 
-Table of my own keybinds. Here as documentation for myself. I am yet to include any of the keybinds for cmp here.
+I feel like macro recording is a rare thing, so I moved it to `yq/yQ`. This frees up `q` as a "namespace" of sorts for other default vim keybinds I want to move out. For example, I use `J` for diagnostics, so I moved the default action from `J` to `qj`.
 
 > Things written using italics are chords
 > (aka all the keys need to be pressed at the same time)
 
-| Keybind      | Description                         | Plugins            |
-| ------------ | ----------------------------------- | ------------------ |
-| _vs_         | Create vertical split               |                    |
-| _cp_         | Use system clipboard                |                    |
-| _jl_         | Save                                |                    |
-| _jk_         | Exit insert mode                    |                    |
-| _rw_         | Rename word under cursor            |                    |
-| _\<leader>k_ | Insert digraph                      |                    |
-| _\<leader>a_ | Swap last 2 used buffers            |                    |
-| C-n          | Open tree                           | nvim-tree          |
-| _vc_         | Clear vimux window                  | vimux              |
-| _vl_         | Rerun last vimux command            | vimux              |
-| _vp_         | Run command in another tmux pane    | vimux              |
-| C-hjkl       | Navigation between vim & tmux panes | vim-tmux-navigator |
-| J            | Show line diagnostics               | lspconfig          |
-| K            | Show hover info                     | lspconfig          |
-| L            | Signature help (?)                  | lspconfig          |
-| gD           | Go to declaration                   | lspconfig          |
-| gd           | Go to definition                    | lspconfig          |
-| gi           | Go to implementation                | lspconfig          |
-| \<leader>rn  | Rename                              | lspconfig          |
-| \<leader>f   | format                              | lspconfig          |
-| \<leader>ca  | code actions                        | lspconfig          |
+### Base
+
+| Keybind     | Description                                      | Plugins |
+| ----------- | ------------------------------------------------ | ------- |
+| \<leader>a  | [A]lternate file                                 |         |
+| \<leader>rw | [R]eplace [w]ord under cursor in the entire file |         |
+| Q           | [Q]uit all buffers                               |         |
+| [d          | Previous [d]iagnostic                            |         |
+| d]          | Next [d]iagnostic                                |         |
+| J           | Hover over diagnostic                            |         |
+| qJ          | Merge with next line                             |         |
+| \<leader>D  | [D]iagnostic loclist                             |         |
+| _jk_        | Exit insert mode                                 |         |
+| _jo_        | Save file                                        |         |
+| S-Enter     | Newline without continuing comment               |         |
+
+### Textobjects
+
+| Keybinds | Description                | Plugins |
+| -------- | -------------------------- | ------- |
+| aq       | [A]round [q]uotes          |         |
+| iq       | [I]nside [q]uotes          |         |
+| aa       | [A]round [a]phostrophes    |         |
+| ia       | [I]nside [a]phostrophes    |         |
+| ar       | [A]round squa[r]e brackets |         |
+| ir       | [I]nside squa[r]e brackets |         |
+
+### Treesitter
+
+| Keybinds | Description                     |
+| -------- | ------------------------------- |
+| ]f       | Go to next [f]unction start     |
+| ]F       | Go to next [f]unction end       |
+| [f       | Go to previous [f]unction start |
+| [F       | Go to previous [f]unction end   |
+| ]c       | Go to next [c]lass start        |
+| ]C       | Go to next [c]lass end          |
+| [c       | Go to previous [c]lass start    |
+| [C       | Go to previous [c]lass end      |
+
+#### Textobjects
+
+| Keybinds | Description         |
+| -------- | ------------------- |
+| af       | [A]round [f]unction |
+| if       | [I]nside [f]unction |
+| ac       | [A]round [c]lass    |
+| ic       | [I]nside [c]lass    |
 
 ### Telescope
 
-| Keybind     | Description                    | Plugins                |
-| ----------- | ------------------------------ | ---------------------- |
-| Ctrl-P      | Find files                     |                        |
-| Ctrl-F      | Grep in project                |                        |
-| \<leader>d  | Diagnostics                    | lspconfig              |
-| \<leader>ca | Code actions                   | lspconfig              |
-| \<leader>t  | Show builtin pickers           |                        |
-| \<leader>s  | Show symbols using tree-sitter |                        |
-| \<leader>gj | List git commits               |                        |
-| \<leader>gk | List git branches              |                        |
-| _jp_        | Interactive file broswer       | telescope-file-browser |
-| _ui_        | Insert unicode char            |                        |
+The `<leader>f` workspace contains keybinds which search for a specific filetype.
 
-### Idris
+| Keybind     | Description              | Plugins                |
+| ----------- | ------------------------ | ---------------------- |
+| C-p         | Find files               |                        |
+| C-f         | Grep in project          |                        |
+| C-F         | Interactive file broswer | telescope-file-browser |
+| \<leader>d  | Diagnostics              | lspconfig              |
+| \<leader>t  | Show builtin pickers     |                        |
+| \<leader>ft | Typescript Files         |                        |
+| \<leader>fl | Latex Files              |                        |
+| \<leader>fp | Purescript Files         |                        |
 
-> The idris and arpeggio plugins are implicit here
+### Cmp
 
-| Keybind | Description         |
-| ------- | ------------------- |
-| _isc_   | Case split          |
-| _imc_   | Make case           |
-| _iml_   | Make lemma          |
-| _ies_   | Expression search   |
-| _igd_   | Generate definition |
-| _irh_   | Refine hole         |
-| _iac_   | Add clause          |
+| Keybind | Description              |
+| ------- | ------------------------ |
+| C-d     | Scroll completion up     |
+| C-s     | Scroll completion down   |
+| Enter   | Accept current competion |
 
-### Purescript
+### Lsp
 
-| Keybind | Description                                 |
-| ------- | ------------------------------------------- |
-| _vb_    | Make tmux run spago build in sepearate pane |
-| _vt_    | Make tmux run spago test in separate pane   |
+The lsp configuration introduces the namespace `<leader>w` used for workspace manipulation.
 
-### Nix
+| Keybind     | Description                 |
+| ----------- | --------------------------- |
+| gd          | [G]o to [d]efinition        |
+| gr          | [G]o to [r]eferences        |
+| gi          | [G]o to [i]mplementation    |
+| K           | Hover                       |
+| L           | Signature help              |
+| \<leader>c  | [C]ode actions              |
+| \<leader>F  | [F]ormat file               |
+| \<leader>li | [l]sp [i]nfo                |
+| \<leader>rn | [R]e[n]ame                  |
+| \<leader>wa | [W]orkspace [a]dd folder    |
+| \<leader>wr | [W]orkspace [r]emove folder |
+| \<leader>wl | [W]orkspace [l]ist folders  |
 
-| Keybind | Description                          |
-| ------- | ------------------------------------ |
-| _ug_    | Run nix-fetchgit on the current file |
+### Vimux
 
-### Lean
+Vimux keybinds live in the `<leader>v` namespace. Most vimux keybinds are filetype specific.
 
-- Extra brackets: ⟨⟩
+| Keybind     | Description                |
+| ----------- | -------------------------- |
+| \<leader>vc | [V]imux clear              |
+| \<leader>vl | [V]imux rerun last         |
+| \<leader>vp | [V]imux prompt for command |
 
-## Some cool vim keybinds I sometimes forget about
+### Luasnip
 
-Documentation for myself
+| Keybind     | Description                  |
+| ----------- | ---------------------------- |
+| Tab         | Jump to next placeholder     |
+| S-Tab       | Jump to previous placeholder |
+| \<leader>rs | [R]eload [s]nippets          |
 
-| Keybind | Description             | Plugins |
-| ------- | ----------------------- | ------- |
-| zz      | Center the current line |         |
+### Filetypes
 
-## Important plugins I use the default mappins of
+General filetype local keybinds reside inside the `<leader>l` namespace.
 
-- paperplanes
+#### Purescript
 
-| Keybind | Description               |
-| ------- | ------------------------- |
-| :PP     | Create pastebin-like link |
+| Keybind     | Description               |
+| ----------- | ------------------------- |
+| \<leader>vb | [V]imux run spago [b]uild |
+| \<leader>vt | [V]imux run spago [t]est  |
 
-- nvim-comment
+#### Nix
 
-| Keybind | Description       |
-| ------- | ----------------- |
-| gcc     | Comment line      |
-| gc      | Comment selection |
+| Keybind     | Description              |
+| ----------- | ------------------------ |
+| \<leader>lg | Update [g]it fetch calls |
 
-- neogit
+#### Idris
 
-| Keybind | Description |
-| ------- | ----------- |
-| C-g     | Open neogit |
+Idris keybinds live in the `<leader>I` namespace.
 
-- gitlinker
+| Keybind     | Description         |
+| ----------- | ------------------- |
+| \<leader>IC | Make [c]ase         |
+| \<leader>IL | Make [l]emma        |
+| \<leader>Ic | Add [c]lause        |
+| \<leader>Ie | [E]xpression search |
+| \<leader>Id | Generate [d]ef      |
+| \<leader>Is | [S]plit case        |
+| \<leader>Ih | Refine [h]ole       |
 
-| Keybind    | Description        |
-| ---------- | ------------------ |
-| <leader>gy | Create remote link |
+#### Lua
 
-- nvim-surround
+| Keybind     | Description                       |
+| ----------- | --------------------------------- |
+| \<leader>lf | Run [f]ile                        |
+| \<leader>ls | Import [f]ile and call .[s]etup() |
 
-| Keybind  | Description                         | Mode |
-| -------- | ----------------------------------- | ---- |
-| cs[a][b] | Change surrounding pair from a to b | n    |
-| ds[a]    | Delete surrounding pair of a        | n    |
-| ys[m][a] | Surround the motion m with a        | n    |
-| S[a]     | Surround selected code with a       | v    |
+### Hydra
+
+| Keybind    | Description         |
+| ---------- | ------------------- |
+| C-w        | Enter [w]indow mode |
+| \<leader>v | Enter [v]enn mode   |
+
+#### Window mode
+
+| Keybind   | Description                              |
+| --------- | ---------------------------------------- |
+| h/j/k/l   | Move cursor by window in given direction |
+| H/J/K/L   | Move window in given direction           |
+| C-h/j/k/l | Resize window in given direction         |
+| =         | Equalize                                 |
+| s         | Split horizontally                       |
+| v         | Split vertically                         |
+| o         | Close all other                          |
+| q         | Close window                             |
+| w/Esc     | Exit window mode                         |
+
+#### Venn mode
+
+| Keybind | Description                       |
+| ------- | --------------------------------- |
+| H/J/K/L | Continue arrow in given direction |
+| f       | Surround selected region with box |
+
+### Firenvim
+
+The following keybinds are available only when running inside firenvim:
+
+| Keybind | Description   |
+| ------- | ------------- |
+| C-z     | Expand window |
+
+### Small plugin keybinds
+
+| Keybind     | Description                         | Plugins              |
+| ----------- | ----------------------------------- | -------------------- |
+| gcc         | Comment line                        | nvim-comment         |
+| gc          | Comment selection                   | nvim-comment         |
+| C-g         | Open neo[g]it                       | neogit               |
+| \<leader>yg | [Y]ank remote [g]it url             | gitlinker            |
+| cs[a][b]    | Change surrounding pair from a to b | vim-surround         |
+| ds[a]       | Delete surrounding pair of a        | vim-surround         |
+| ys[m][a]    | Surround the motion m with a        | vim-surround         |
+| S[a]        | Surround selected code with a       | vim-surround         |
+| s           | Initialize forward [s]earch         | leap                 |
+| S           | Initialize backwards [s]earch       | leap                 |
+| gs          | Initialize other window [s]earch    | leap                 |
+| C-n         | Open filetree                       | nvim-tree            |
+| \<leader>p  | [P]aste imge from clipboard         | clipboard-image.nvim |
+| C-h/j/k/l   | Navigate panes                      | vim-tmux-navigator   |
+
+### Undocumented
+
+#### Iron.nvim
+
+Iron.nvim commands rest in the `<leader>i` namespace. There is a lot of them, and I rarely use this plugin, so I won't document them here just yet.
+
+#### Magma
+
+Magma commands live under the namespace `<leader>M`. I barely use this plugin, so I won't document my keybinds just yet.

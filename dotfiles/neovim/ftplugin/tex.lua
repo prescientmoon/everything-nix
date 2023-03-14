@@ -93,12 +93,8 @@ local abbreviations = {
   { "rref", "reduced row echalon form" },
 }
 
----@type ExpansionOptions
-local no_capitalization = { capitalized = false }
-
 -- Todo: convert exponents and subscripts
 -- to use this more concise notation.
----@type ExpansionInput[]
 local abolishAbbreviations = {
   -- General phrases
   { "thrf", "therefore" },
@@ -153,7 +149,7 @@ local abolishAbbreviations = {
   {
     "gt{{e,E,v,V,L},k,a,w,d,md{,e},c{,e}{,l}}{,s,h,x,y}{,a,1,2}",
     "{{},\\kappa,\\alpha,\\omega,\\Delta,\\delta{,'},\\chi{,'}{,_l}}({G,S,H,X,Y}{,',_1,_2})",
-    options = no_capitalization,
+    options = A.no_capitalization,
   },
 
   -- My own operator syntax:
@@ -164,7 +160,7 @@ local abolishAbbreviations = {
   {
     "{cr,a,}{eq,neq,leq,geq,lt,gt}",
     "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>}",
-    options = no_capitalization,
+    options = A.no_capitalization,
   },
 
   -- Exponents and subscripts:
@@ -179,7 +175,7 @@ local abolishAbbreviations = {
   {
     "{e,s}{{0,1,2,3,4,5,6,7,8,9,n,i,t,k},t{i,m,p}}",
     "{^,_}{{},{\\{-1\\},-,+}}",
-    options = no_capitalization,
+    options = A.no_capitalization,
   },
 
   -- Set symbols
@@ -194,7 +190,7 @@ local abolishAbbreviations = {
   {
     "{nats,ints,rats,irats,rrea,comp,ppri,ffie}",
     "\\mathbb\\{{N,Z,Q,I,R,C,P,F}\\}",
-    options = no_capitalization,
+    options = A.no_capitalization,
   },
 
   -- Function calls:

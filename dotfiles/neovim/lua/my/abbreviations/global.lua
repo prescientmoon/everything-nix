@@ -6,7 +6,7 @@ M.symols = {
   -- Unicode:
   { "iin", "∈" }, -- [I]ncluded [i][n]
   { "mfrl", "∀" }, -- [M]ath [f]o[r]al[l]
-  { "eps", "ε" }, -- Epsilon
+  { "eps", "ε" }, -- [E]psilon
 
   -- Ascii stuff:
   { "tto", "->" }, -- [t]o
@@ -16,7 +16,7 @@ M.symols = {
 
   { "leq", "<=" }, -- [l]ess than or [e][q]ual
   { "geq", ">=" }, -- [g]reater than or [e][q]ual
-  { "eq", "=" }, -- [e][q]ual
+  { "seq", "=" }, -- [s]ingle [e][q]ual
   { "deq", "==" }, -- [d]ouble [e][q]ual
   { "land", "/\\" }, -- [l]ogial [a][n][d]
   { "lor", "\\/" }, -- [l]ogial [o][r]

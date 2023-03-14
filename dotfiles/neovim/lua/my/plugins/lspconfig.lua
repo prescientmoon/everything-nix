@@ -53,7 +53,7 @@ function M.on_attach(client, bufnr)
     vim.keymap.set("n", from, to, opts(desc))
   end
   -- }}}
-  -- {{{ Go to declaration / definition / implementation
+  -- {{{ Go to declaration / references / implementation
   nmap("gd", vim.lsp.buf.definition, "[G]o to [d]efinition")
   nmap("gi", vim.lsp.buf.implementation, "[G]o to [i]mplementation")
   nmap("gr", vim.lsp.buf.references, "[G]o to [r]eferences")

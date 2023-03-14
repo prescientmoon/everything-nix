@@ -40,21 +40,31 @@ in
       search.default = "Google";
 
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        buster-captcha-solver
         bypass-paywalls-clean
         clearurls # removes ugly args from urls
+        don-t-fuck-with-paste # disallows certain websites from disabling pasting
         firenvim # summon a nvim instance inside the browser
         gesturefy # mouse gestures
+        i-dont-care-about-cookies
         localcdn # caches libraries locally
         lovely-forks # displays forks on github
         octolinker # github import to link thingy
         octotree # github file tree
         privacy-badger # blocks some trackers
         privacy-pass # captcha stuff
+        refined-github # a bunch of github modifications
         return-youtube-dislikes
-        ublock-origin # ad blocker
-        vimium-c # vim keybinds
+        steam-database # adds info from steamdb on storepages
         sponsorblock # skip youtube sponsors
+        skip-redirect # attempts to skip to the final reddirect for certain urls
+        terms-of-service-didnt-read
         translate-web-pages
+        ublock-origin
+        unpaywall
+        user-agent-string-switcher
+        vimium-c # vim keybinds
+        youtube-shorts-block
       ];
 
       # Specify custom search engines

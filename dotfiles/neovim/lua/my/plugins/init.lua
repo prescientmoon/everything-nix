@@ -120,14 +120,6 @@ return {
   },
 
   {
-    -- show context on closing parenthesis
-    -- TODO: move this to treesitter file
-    "haringsrob/nvim_context_vt",
-    event = "BufReadPost",
-    cond = env.vscode.not_active(),
-  },
-
-  {
     -- show progress for lsp stuff
     "j-hui/fidget.nvim",
     event = "BufReadPre",

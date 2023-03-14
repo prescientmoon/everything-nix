@@ -1,5 +1,7 @@
 local M = {}
 
+M.no_capitalization = { capitalized = false }
+
 function M.localAbbr(lhs, rhs)
   -- Create abbreviation
   vim.cmd(":iabbrev <buffer> " .. lhs .. " " .. rhs)
