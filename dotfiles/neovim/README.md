@@ -64,7 +64,7 @@ I feel like macro recording is a rare thing, so I moved it to `yq/yQ`. This free
 
 ### Telescope
 
-The `<leader>f` workspace contains keybinds which search for a specific filetype.
+The `<leader>f` namespace contains keybinds which search for a specific filetype.
 
 | Keybind     | Description              | Plugins                |
 | ----------- | ------------------------ | ---------------------- |
