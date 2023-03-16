@@ -55,8 +55,6 @@ function M.config()
     },
   })
 
-  vim.keymap.set("n", "<C-w>", "<Nop>")
-
   Hydra({
     name = "Windows",
     hint = window_hint,
@@ -68,7 +66,7 @@ function M.config()
       },
     },
     mode = "n",
-    body = "<C-w>",
+    body = "<C-S-w>",
     heads = {
       { "h", "<C-w>h" },
       { "j", "<C-w>j" },

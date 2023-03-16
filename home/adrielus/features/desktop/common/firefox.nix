@@ -130,6 +130,11 @@ in
 
         "Google".metaData.alias = "@g";
       };
+
+      settings = {
+        # Required for figma to be able to export to svg
+        "dom.events.asyncClipboard.clipboardItem" = true;
+      };
     };
 
     apps = {

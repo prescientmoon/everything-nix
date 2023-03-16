@@ -164,7 +164,7 @@ Idris keybinds live in the `<leader>I` namespace.
 
 | Keybind    | Description         |
 | ---------- | ------------------- |
-| C-w        | Enter [w]indow mode |
+| C-W        | Enter [w]indow mode |
 | \<leader>v | Enter [v]enn mode   |
 
 #### Window mode
