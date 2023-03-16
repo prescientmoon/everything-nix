@@ -28,7 +28,7 @@ return {
     return vim.g.neovide ~= nil or require("nix.env") == "neovide"
   end),
   firenvim = makeEnv(function()
-    return vim.g.started_by_firenvim ~= nil
+    return vim.g.started_by_firenvim ~= nil or require("nix.env") == "firenvim"
   end),
   _and = function(a, b)
     return makeEnv(function()

@@ -1,5 +1,6 @@
 { pkgs, lib, config, paths, ... }:
 let
+  # {{{ extraPackages
   extraPackages = with pkgs; [
     # Language servers
     nodePackages.typescript-language-server # typescript
@@ -41,8 +42,8 @@ let
     # python310Packages.pynvim
     # python310Packages.jupyter
   ];
-in
-let
+  # }}}
+  # {{{ extraRuntime
   extraRuntime = env: [
     # Snippets
     (config.satellite-dev.path "dotfiles/vscode-snippets")
@@ -63,34 +64,46 @@ let
       "return '${env}'"
     )
   ];
-
+  # }}}
+  # {{{ Client wrapper
   # Wraps a neovim client, providing the dependencies
   # and setting some flags:
   #
   # - NVIM_EXTRA_RUNTIME provides extra directories to add to the runtimepath. 
   #   I cannot just install those dirs using the builtin package support because 
   #   my package manager (lazy.nvim) disables those.
-  wrapClient = { base, name, extraArgs ? "" }:
+  wrapClient = { base, name, binName ? name, extraArgs ? "" }:
     pkgs.symlinkJoin {
       inherit (base) name meta;
       paths = [ base ];
       nativeBuildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
-        wrapProgram $out/bin/${name} \
+        wrapProgram $out/bin/${binName} \
           --prefix PATH : ${lib.makeBinPath extraPackages} \
           --set NVIM_EXTRA_RUNTIME ${lib.strings.concatStringsSep "," (extraRuntime name)} \
           ${extraArgs}
       '';
     };
-
+  # }}}
+  # {{{ Clients
   neovim = wrapClient { base = pkgs.neovim-nightly; name = "nvim"; };
+
   neovide = wrapClient {
     base = pkgs.neovide;
     name = "neovide";
     extraArgs = "--set NEOVIDE_MULTIGRID true";
   };
+
+  firenvim = wrapClient {
+    base = pkgs.neovim-nightly;
+    name = "firenvim";
+    binName = "nvim";
+    extraArgs = "--set GIT_DISCOVERY_ACROSS_FILESYSTEM 1";
+  };
+  # }}}
 in
 {
+  # {{{ Basic config
   # Do not manage neovim via nix
   programs.neovim.enable = false;
 
@@ -101,4 +114,51 @@ in
     neovim
     neovide
   ];
+  # }}}
+  # {{{ Firenvim
+  home.file.".mozilla/native-messaging-hosts/firenvim.json".text =
+    let
+      # God knows what this does
+      # https://github.com/glacambre/firenvim/blob/87c9f70d3e6aa2790982aafef3c696dbe962d35b/autoload/firenvim.vim#L592
+      firenvim_init = pkgs.writeText "firenvim_init.vim" ''
+        let g:firenvim_i=[]
+        let g:firenvim_o=[]
+        let g:Firenvim_oi={i,d,e->add(g:firenvim_i,d)}
+        let g:Firenvim_oo={t->[chansend(2,t)]+add(g:firenvim_o,t)}
+        let g:firenvim_c=stdioopen({'on_stdin':{i,d,e->g:Firenvim_oi(i,d,e)},'on_print':{t->g:Firenvim_oo(t)}})
+        let g:started_by_firenvim = v:true
+      '';
+
+      firenvim_file_loaded = pkgs.writeText "firenvim_file_loaded.vim"
+        ''
+          try
+            call firenvim#run()
+          catch /Unknown function/
+            call chansend(g:firenvim_c,["f\n\n\n"..json_encode({"messages":["Your plugin manager did not load the Firenvim plugin for neovim."],"version":"0.0.0"})])
+            call chansend(2,["Firenvim not in runtime path. &rtp="..&rtp])
+            qall!
+          catch
+            call chansend(g:firenvim_c,["l\n\n\n"..json_encode({"messages": ["Something went wrong when running firenvim. See troubleshooting guide."],"version":"0.0.0"})])
+            call chansend(2,[v:exception])
+            qall!
+          endtry
+        '';
+    in
+    builtins.toJSON
+      {
+        name = "firenvim";
+        description = "Turn your browser into a Neovim GUI.";
+        type = "stdio";
+        allowed_extensions = [ "firenvim@lacamb.re" ];
+        path = pkgs.writeShellScript "firenvim.sh" ''
+          mkdir -p /run/user/$UID/firenvim
+          chmod 700 /run/user/$UID/firenvim
+          cd /run/user/$UID/firenvim
+
+          exec '${firenvim}/bin/nvim' --headless \
+            --cmd 'source "${firenvim_init}"' \
+            -S    '${firenvim_file_loaded}'
+        '';
+      };
+  # }}}
 }
