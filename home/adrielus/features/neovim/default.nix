@@ -86,7 +86,7 @@ let
     };
   # }}}
   # {{{ Clients
-  neovim = wrapClient { base = pkgs.neovim-nightly; name = "nvim"; };
+  neovim = wrapClient { base = pkgs.neovim; name = "nvim"; };
 
   neovide = wrapClient {
     base = pkgs.neovide;
@@ -95,7 +95,7 @@ let
   };
 
   firenvim = wrapClient {
-    base = pkgs.neovim-nightly;
+    base = pkgs.neovim;
     name = "firenvim";
     binName = "nvim";
     extraArgs = "--set GIT_DISCOVERY_ACROSS_FILESYSTEM 1";

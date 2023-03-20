@@ -161,6 +161,13 @@ in
         displayName = "Gitlab";
         id = 3;
       };
+
+      desmos = {
+        url = "https://www.desmos.com/calculator";
+        icon = ./icons/desmos.png;
+        displayName = "Desmos";
+        id = 4;
+      };
     };
   };
 }
