@@ -200,5 +200,5 @@ return {
       require("presence"):setup()
     end,
     lazy = false,
-  },
+  }
 }

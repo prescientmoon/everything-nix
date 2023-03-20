@@ -44,6 +44,7 @@ function M.config()
   blacklist("web\\.whatsapp\\.com")
   blacklist("twitter\\.com")
   blacklist("desmos\\.com\\/calculator")
+  blacklist("geogebra\\.org\\/calculator")
   -- }}}
   -- {{{ Comitting our config changes
   vim.g.firenvim_config = { localSettings = M.localSettings }
