@@ -127,10 +127,18 @@ local servers = {
   },
   -- }}}
   -- {{{ Lua
-  sumneko_lua = {
+  lua_ls = {
     cmd = {
       "lua-language-server",
       "--logpath=/home/adrielus/.local/share/lua-language-server/log",
+    },
+    settings = {
+      Lua = {
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      },
     },
   },
   -- }}}
@@ -161,6 +169,8 @@ local servers = {
   jsonls = {},
   rust_analyzer = {},
   dhall_lsp_server = {},
+  -- pylsp = {},
+  -- pyright = {},
 }
 -- }}}
 -- {{{ Capabilities

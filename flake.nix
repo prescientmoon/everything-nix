@@ -5,6 +5,9 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
 
+    # Nixpkgs-unstable
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     # NUR
     nur.url = "github:nix-community/NUR";
 
@@ -64,9 +67,6 @@
 
       specialArgs = {
         inherit inputs outputs;
-
-        # colorscheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
-        # colorscheme = "${inputs.catppuccin-base16}/base16/frappe.yaml";
       };
     in
     rec {

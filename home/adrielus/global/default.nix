@@ -14,7 +14,7 @@ let
 
   # Extra overlays to add
   overlays = [
-    inputs.neovim-nightly-overlay.overlay
+    # inputs.neovim-nightly-overlay.overlay
     inputs.agenix.overlay
   ];
 in

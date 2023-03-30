@@ -1,42 +1,61 @@
-{ pkgs, lib, config, paths, ... }:
+{ pkgs, lib, config, paths, inputs, ... }:
 let
   # {{{ extraPackages
   extraPackages = with pkgs; [
     # Language servers
     nodePackages.typescript-language-server # typescript
     nodePackages_latest.purescript-language-server # purescript
-    sumneko-lua-language-server # lua
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.lua-language-server # lua
     rnix-lsp # nix
     haskell-language-server # haskell
     tectonic # something related to latex (?)
     texlab # latex
-    nodePackages_latest.vscode-langservers-extracted
+    nodePackages_latest.vscode-langservers-extracted # Web stuff
+    python310Packages.python-lsp-server # Python
+    pyright # Python
 
     # Formatters
     luaformatter # Lua
     stylua # Lua
     ormolu # Haskell
+    black # Python
+    yapf # Python
+    isort # Reorder python imports
     nodePackages_latest.purs-tidy # Purescript
     nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
 
-    # Others
+    # Linters
+    ruff # Python linter
+    mypy # Python typechecking
+
+    # Languages
     nodePackages.typescript # typescript
+    lua # For repls and whatnot
     wakatime # time tracking
+
+    # Others
     fd # file finder
     ripgrep # Grep rewrite
     update-nix-fetchgit # Useful for nix stuff
     tree-sitter # Syntax highlighting
     libstdcxx5 # Required by treesitter aparently
+    python310Packages.jupytext # Convert between jupyter notebooks and python files
+
+    # Preview
     zathura # Pdf reader
     xdotool # For zathura reverse search or whatever it's called
-    lua # For repls and whatnot
     glow #Mmd preview in terminal
     pandoc # Md processing
     libsForQt5.falkon # Aparently needed for md preview
 
     texlive.combined.scheme-full # Latex stuff
     python38Packages.pygments # required for latex syntax highlighting
+
+    # required for the telescope fzf extension
+    gnumake
+    cmake
+    gcc
 
     # Required by magma-nvim:
     # python310Packages.pynvim

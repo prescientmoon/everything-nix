@@ -33,6 +33,7 @@ local M = {
           "vim",
           "yaml",
           "nix",
+          "lua"
         },
         sync_install = false,
         --}}}

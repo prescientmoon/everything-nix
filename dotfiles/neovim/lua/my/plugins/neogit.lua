@@ -6,7 +6,7 @@ local M = {
   -- dependencies = { "plenary.nvim" },
 
   cmd = "Neogit",
-  enabled = env.firenvim.not_active() and env.vscode.not_active(),
+  cond = env.firenvim.not_active() and env.vscode.not_active(),
   init = function()
     vim.keymap.set("n", "<C-g>", "<cmd>Neogit<cr>", { desc = "Open neo[g]it" })
   end,

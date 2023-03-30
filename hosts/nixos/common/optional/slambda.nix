@@ -60,13 +60,13 @@ in
     enable = true;
 
     keyboards.keychronK6 = {
-      delay = 25;
+      delay = 30;
       device = "/dev/input/by-id/usb-Keychron_Keychron_K6-event-kbd";
       chords = commonChords;
     };
 
     keyboards.tethysLaptop = {
-      delay = 25;
+      delay = 30;
       device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
       chords = commonChords;
     };

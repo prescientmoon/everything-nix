@@ -79,14 +79,14 @@ function M.setup()
     vim.paste({ "", "" }, -1)
   end, { desc = "Insert newline without continuing the current comment" })
   -- }}}
-  -- {{{ Allow quiting basic buffers with "q"
+  -- {{{ Allow quiting basic buffers with "qq"
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "help" },
     group = vim.api.nvim_create_augroup("BasicBufferQuitting", {}),
     callback = function(event)
       vim.keymap.set(
         "n",
-        "q",
+        "qq",
         "<cmd>close<cr>",
         { buffer = event.buf, silent = true, desc = "[q]uit current buffer" }
       )

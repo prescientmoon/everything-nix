@@ -23,7 +23,7 @@ I feel like macro recording is a rare thing, so I moved it to `yq/yQ`. This free
 | [d          | Previous [d]iagnostic                            |         |
 | d]          | Next [d]iagnostic                                |         |
 | J           | Hover over diagnostic                            |         |
-| qJ          | Merge with next line                             |         |
+| yq          | Merge with next line                             |         |
 | \<leader>D  | [D]iagnostic loclist                             |         |
 | _jk_        | Exit insert mode                                 |         |
 | _jo_        | Save file                                        |         |

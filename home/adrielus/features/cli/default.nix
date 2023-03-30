@@ -24,7 +24,8 @@
     httpie # Better curl
     mkpasswd # Hash passwords
     neofetch # Display system information
-    unzip # For working with .zip files
+    zip # Zipping files
+    unzip # Unzipping files
     unrar # For extracting shit from rars
     sloc # Useless but fun line of code counter
   ];
