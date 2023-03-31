@@ -13,6 +13,7 @@
       hub.protocol = "ssh";
       core.editor = "nvim";
       rebase.autoStash = true;
+      init.defaultBranch = "main";
 
       # Sign commits using ssh
       gpg.format = "ssh";
