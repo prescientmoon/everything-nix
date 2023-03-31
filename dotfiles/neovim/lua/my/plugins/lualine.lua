@@ -12,6 +12,9 @@ function M.config()
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       theme = "auto",
+      disabled_filetypes = {
+        "undotree"
+      }
     },
     sections = {
       lualine_a = { "branch" },

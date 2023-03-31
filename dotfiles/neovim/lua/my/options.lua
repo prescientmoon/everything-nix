@@ -35,6 +35,8 @@ function M.setup()
   vim.opt.wildmode = { "list", "longest" } -- Command-line completion mode
   vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
+  vim.opt.undofile = true -- persist undos!!
+
   -- Set leader
   vim.g.mapleader = " "
 
