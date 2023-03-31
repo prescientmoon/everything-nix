@@ -197,23 +197,26 @@ The following keybinds are available only when running inside firenvim:
 
 ### Small plugin keybinds
 
-| Keybind     | Description                         | Plugins              |
-| ----------- | ----------------------------------- | -------------------- |
-| gcc         | Comment line                        | nvim-comment         |
-| gc          | Comment selection                   | nvim-comment         |
-| C-g         | Open neo[g]it                       | neogit               |
-| \<leader>yg | [Y]ank remote [g]it url             | gitlinker            |
-| cs[a][b]    | Change surrounding pair from a to b | vim-surround         |
-| ds[a]       | Delete surrounding pair of a        | vim-surround         |
-| ys[m][a]    | Surround the motion m with a        | vim-surround         |
-| S[a]        | Surround selected code with a       | vim-surround         |
-| s           | Initialize forward [s]earch         | leap                 |
-| S           | Initialize backwards [s]earch       | leap                 |
-| gs          | Initialize other window [s]earch    | leap                 |
-| C-n         | Open filetree                       | nvim-tree            |
-| \<leader>p  | [P]aste imge from clipboard         | clipboard-image.nvim |
-| \<leader>L  | [L]azy ui                           | lazy.nvim            |
-| C-h/j/k/l   | Navigate panes                      | vim-tmux-navigator   |
+| Keybind               | Description                         | Plugins              |
+| --------------------- | ----------------------------------- | -------------------- |
+| gcc                   | Comment line                        | nvim-comment         |
+| gc                    | Comment selection                   | nvim-comment         |
+| C-g                   | Open neo[g]it                       | neogit               |
+| \<leader>yg           | [Y]ank remote [g]it url             | gitlinker            |
+| cs[a][b]              | Change surrounding pair from a to b | vim-surround         |
+| ds[a]                 | Delete surrounding pair of a        | vim-surround         |
+| ys[m][a]              | Surround the motion m with a        | vim-surround         |
+| S[a]                  | Surround selected code with a       | vim-surround         |
+| s                     | Initialize forward [s]earch         | leap                 |
+| S                     | Initialize backwards [s]earch       | leap                 |
+| gs                    | Initialize other window [s]earch    | leap                 |
+| C-n                   | Open filetree                       | nvim-tree            |
+| \<leader>p            | [P]aste imge from clipboard         | clipboard-image.nvim |
+| \<leader>L            | [L]azy ui                           | lazy.nvim            |
+| C-h/j/k/l             | Navigate panes                      | vim-tmux-navigator   |
+| \<leader\>h           | Add file to harpoon                 | harpoon              |
+| C-a                   | Harpoon quick menu                  | harpoon              |
+| C-s q/w/e/r/a/s/d/f/z | Open harpoon file with index 0-9    | harpoon              |
 
 ### Undocumented
 
