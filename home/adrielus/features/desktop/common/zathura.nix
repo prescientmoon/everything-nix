@@ -13,7 +13,7 @@ in
     enable = true;
     extraConfig = ''
       # Generated theme
-      ${builtins.readFile base16-zathura}
+      include ${base16-zathura}
 
       # Open document in fit-width mode by default
       set adjust-open "best-fit"

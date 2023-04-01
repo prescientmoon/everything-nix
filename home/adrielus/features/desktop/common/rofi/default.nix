@@ -12,6 +12,7 @@ in
 {
   home.packages = with pkgs; [ rofi ];
 
+  xdg.configFile."rofi/base16.rasi".source = base16-rofi;
   xdg.configFile."rofi/config.rasi".text = ''
     // Manual config
     ${builtins.readFile ./config.rasi}
@@ -22,6 +23,6 @@ in
     }
 
     // Theme
-    ${builtins.readFile base16-rofi}
+    @import "base16"
   '';
 }

@@ -1,6 +1,7 @@
 # {{{ Start tmux if not already inside tmux
 if status is-interactive
 and not set -q TMUX
+and not set -q NO_TMUX
     exec tmux attach -t Welcome || tmux || echo "Something went wrong trying to start tmux"
 end
 # }}}

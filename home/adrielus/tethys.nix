@@ -27,5 +27,5 @@
   ];
 
   home.sessionVariables.QT_SCREEN_SCALE_FACTOR = 1.4; # Bigger text in qt apps
-  satellite-dev.enable = true; # Simlink some stuff outside the store
+  satellite.dev.enable = true; # Simlink some stuff outside the store
 }

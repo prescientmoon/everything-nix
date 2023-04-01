@@ -65,16 +65,13 @@ let
   # {{{ extraRuntime
   extraRuntime = env: [
     # Snippets
-    (config.satellite-dev.path "dotfiles/vscode-snippets")
+    (config.satellite.dev.path "dotfiles/vscode-snippets")
 
     # Base16 theme
     (pkgs.writeTextDir
       "lua/nix/theme.lua"
-      ''
-        return {
-          name = "${config.lib.stylix.scheme.scheme}"
-        }
-      '')
+      config.satellite.colorscheme.lua
+    )
 
     # Provide hints as to what app we are in
     # (Useful because neovide does not provide the info itself right away)
@@ -126,7 +123,7 @@ in
   # Do not manage neovim via nix
   programs.neovim.enable = false;
 
-  home.file.".config/nvim".source = config.satellite-dev.path "dotfiles/neovim";
+  xdg.configFile.nvim.source = config.satellite.dev.path "dotfiles/neovim";
   home.sessionVariables.EDITOR = "nvim";
 
   home.packages = [

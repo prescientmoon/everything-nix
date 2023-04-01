@@ -14,7 +14,7 @@ in
     enable = true;
     extraConfig = ''
       ; Generated theme
-      ${builtins.readFile base16-polybar}
+      include-file = ${base16-polybar}
 
       ; Consistent fonts
       [fonts]

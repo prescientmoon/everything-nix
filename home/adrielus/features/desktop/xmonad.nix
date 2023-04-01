@@ -3,6 +3,7 @@
     ./common/rofi
     ./common/polybar
     ./common/eww
+    ./common/wezterm
     ./common/alacritty.nix
     ./common/feh.nix
   ];

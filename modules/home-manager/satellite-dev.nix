@@ -1,5 +1,5 @@
 { lib, config, ... }: {
-  options.satellite-dev = {
+  options.satellite.dev = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -18,8 +18,8 @@
     };
   };
 
-  config.satellite-dev.path = path:
-    if config.satellite-dev.enable then
-      config.lib.file.mkOutOfStoreSymlink "${config.satellite-dev.root}/${path}"
+  config.satellite.dev.path = path:
+    if config.satellite.dev.enable then
+      config.lib.file.mkOutOfStoreSymlink "${config.satellite.dev.root}/${path}"
     else "${../..}/${path}";
 }

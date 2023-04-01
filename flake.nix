@@ -87,10 +87,10 @@
       overlays = import ./overlays;
 
       # Reusable nixos modules
-      nixosModules = import ./modules/nixos;
+      nixosModules = import ./modules/nixos // import ./modules/common;
 
       # Reusable home-manager modules
-      homeManagerModules = import ./modules/home-manager;
+      homeManagerModules = import ./modules/home-manager // import ./modules/common;
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#...
