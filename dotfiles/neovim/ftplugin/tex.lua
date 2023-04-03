@@ -60,7 +60,6 @@ local abbreviations = {
   { "tto", "\\to" },
   { "iip", "\\implies" },
   { "iib", "\\impliedby" },
-  { "iff", "\\iff" },
   { "land", "\\land" },
   { "lor", "\\lor" },
   { "ssin", "\\sin" },
@@ -120,6 +119,11 @@ local abolishAbbreviations = {
   { "lcon{,s}", "linear combination{}" },
   { "vsm", "\\vecspace" }, -- math vector space
   { "vst{,s}", "vector space{,s}" }, -- text vector space
+  {
+    "rizz", -- ok please ignore this one 💀
+    "Riesz vector",
+    options = A.no_capitalization,
+  },
 
   -- Graph theory
   { "vx{,s}", "vert{ex,ices}" },
@@ -158,8 +162,8 @@ local abolishAbbreviations = {
   --   - Any operator can be prefixed with cr to
   --     start a new line and align in aligned mode
   {
-    "{cr,a,}{eq,neq,leq,geq,lt,gt}",
-    "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>}",
+    "{cr,a,}{eq,neq,leq,geq,lt,gt,iff}",
+    "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>,\\iff}",
     options = A.no_capitalization,
   },
 
