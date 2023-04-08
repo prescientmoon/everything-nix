@@ -13,6 +13,7 @@ let
     nodePackages_latest.vscode-langservers-extracted # Web stuff
     python310Packages.python-lsp-server # Python
     pyright # Python
+    rust-analyzer # rust
 
     # Formatters
     luaformatter # Lua
@@ -33,6 +34,7 @@ let
     nodePackages.typescript # typescript
     lua # For repls and whatnot
     wakatime # time tracking
+    rustfmt
 
     # Others
     fd # file finder

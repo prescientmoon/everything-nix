@@ -53,7 +53,11 @@ function M.config()
         })(entry, vim_item)
         local strings = vim.split(kind.kind, "%s", { trimempty = true })
 
-        kind.kind = " " .. strings[1] .. " "
+        -- Rust analyzer sometimes has this be nil when working with lifetime arguments.
+        if strings[1] ~= nil then
+          kind.kind = " " .. strings[1] .. " "
+        end
+
         kind.menu = ""
 
         return kind
