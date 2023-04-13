@@ -11,7 +11,7 @@
     environmentFile = config.age.secrets.wireless.path;
     networks = {
       "Neptune".psk = "@PHONE_HOTSPOT_PASS@";
-      "TP-Link_522C".psk = "@TG_HOME_PASS@";
+      "Familia-Matei".psk = "@TG_HOME_PASS@";
       "Sailhorse".psk = "@NL_SAILHORSE_PASS@";
 
       "FOSDEM-Dualstack" = { };

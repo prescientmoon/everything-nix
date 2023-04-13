@@ -23,9 +23,6 @@ local M = {
     opts = {
       input_buffer_type = "dressing",
     },
-    dependencies = {
-      "dressing.nvim",
-    },
     cond = env.vscode.not_active(),
   },
 }
@@ -165,6 +162,7 @@ local servers = {
   },
   -- }}}
   rnix = {},
+  nil_ls = {},
   cssls = {},
   jsonls = {},
   rust_analyzer = {},

@@ -7,7 +7,9 @@ let
     nodePackages_latest.purescript-language-server # purescript
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.lua-language-server # lua
     rnix-lsp # nix
+    nil # nix
     haskell-language-server # haskell
+    dhall-lsp-server # dhall
     tectonic # something related to latex (?)
     texlab # latex
     nodePackages_latest.vscode-langservers-extracted # Web stuff
