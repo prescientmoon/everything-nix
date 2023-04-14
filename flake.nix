@@ -78,10 +78,17 @@
 
       # Devshell for bootstrapping
       # Acessible through 'nix develop'
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./shell.nix { inherit pkgs; }
-      );
+      devShells = forAllSystems
+        (system:
+          let
+            pkgs = nixpkgs.legacyPackages.${system};
+            default = import ./shell.nix { inherit pkgs; };
+            devshells = import ./devshells
+            {
+              inherit pkgs; inherit inputs;
+            };
+          in
+          devshells // { inherit default; });
 
       # Custom packages and modifications, exported as overlays
       overlays = import ./overlays;
