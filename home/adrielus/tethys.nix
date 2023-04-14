@@ -19,6 +19,7 @@
     libreoffice # Free office suite
     lmms # Music software
     kicad # PCB editing
+    google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder
 
     # Clis
