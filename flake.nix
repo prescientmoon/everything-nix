@@ -84,9 +84,9 @@
             pkgs = nixpkgs.legacyPackages.${system};
             default = import ./shell.nix { inherit pkgs; };
             devshells = import ./devshells
-            {
-              inherit pkgs; inherit inputs;
-            };
+              {
+                inherit pkgs; inherit inputs;
+              };
           in
           devshells // { inherit default; });
 
