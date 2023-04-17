@@ -10,7 +10,13 @@ local M = {
       },
     })
 
-    K.nmap("<leader>lc", "<cmd>RustOpenCargo<cr>", "Open [c]argo.toml", true, true)
+    K.nmap(
+      "<leader>lc",
+      "<cmd>RustOpenCargo<cr>",
+      "Open [c]argo.toml",
+      true,
+      true
+    )
   end,
 }
 
