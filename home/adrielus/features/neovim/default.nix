@@ -45,6 +45,7 @@ let
     tree-sitter # Syntax highlighting
     libstdcxx5 # Required by treesitter aparently
     python310Packages.jupytext # Convert between jupyter notebooks and python files
+    graphviz # For rust crate graph
 
     # Preview
     zathura # Pdf reader

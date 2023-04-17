@@ -10,7 +10,7 @@ local lspconfig = {
       "folke/neodev.nvim",
       config = true,
     },
-    "hrsh7th/cmp-nvim-lsp",
+    "simrat39/rust-tools.nvim",
   },
   cond = env.vscode.not_active(),
 }
@@ -28,19 +28,6 @@ local M = {
 }
 
 function M.on_attach(client, bufnr)
-  -- {{{ Auto format
-  local function format()
-    vim.lsp.buf.format({ async = false, bufnr = bufnr })
-  end
-
-  if false and client.supports_method("textDocument/formatting") then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
-      buffer = bufnr,
-      callback = format,
-    })
-  end
-  -- }}}
   -- {{{ Keymap helpers
   local opts = function(desc)
     return { noremap = true, silent = true, desc = desc, buffer = bufnr }
@@ -50,6 +37,20 @@ function M.on_attach(client, bufnr)
     vim.keymap.set("n", from, to, opts(desc))
   end
   -- }}}
+  -- {{{ Auto format
+  local function format()
+    vim.lsp.buf.format({ async = false, bufnr = bufnr })
+  end
+
+  if client.supports_method("textDocument/formatting") then
+    nmap("<leader>F", format, "[F]ormat")
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
+    --   buffer = bufnr,
+    --   callback = format,
+    -- })
+  end
+  -- }}}
   -- {{{ Go to declaration / references / implementation
   nmap("gd", vim.lsp.buf.definition, "[G]o to [d]efinition")
   nmap("gi", vim.lsp.buf.implementation, "[G]o to [i]mplementation")
@@ -57,12 +58,13 @@ function M.on_attach(client, bufnr)
   -- }}}
   -- {{{ Hover
   -- Note: diagnostics are already covered in keymaps.lua
-  nmap("K", vim.lsp.buf.hover, "Hover")
+  if client.supports_method("textDocument/hover") then
+    nmap("K", vim.lsp.buf.hover, "Hover")
+  end
   nmap("L", vim.lsp.buf.signature_help, "Signature help")
   -- }}}
   -- {{{ Code actions
   nmap("<leader>c", vim.lsp.buf.code_action, "[C]ode actions")
-  nmap("<leader>F", format, "[F]ormat")
   nmap("<leader>li", "<cmd>LspInfo<cr>", "[L]sp [i]nfo")
 
   vim.keymap.set("n", "<leader>rn", function()
@@ -165,7 +167,6 @@ local servers = {
   nil_ls = {},
   cssls = {},
   jsonls = {},
-  rust_analyzer = {},
   dhall_lsp_server = {},
   -- pylsp = {},
   -- pyright = {},

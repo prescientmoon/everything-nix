@@ -31,11 +31,17 @@ end
 ---@param to string|function
 ---@param desc string
 ---@param silent boolean|nil
-function M.nmap(from, to, desc, silent)
+---@param isLocal boolean|nil
+function M.nmap(from, to, desc, silent, isLocal)
   if silent == nil then
     silent = true
   end
-  vim.keymap.set("n", from, to, { desc = desc })
+
+  if isLocal == nil then
+    isLocal = false
+  end
+
+  vim.keymap.set("n", from, to, { desc = desc, silent = silent, buffer = isLocal })
 end
 
 -- }}}

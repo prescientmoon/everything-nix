@@ -3,7 +3,7 @@ local env = require("my.helpers.env")
 local M = {
   "TimUntersberger/neogit",
 
-  -- dependencies = { "plenary.nvim" },
+  dependencies = { "nvim-lua/plenary.nvim" },
 
   cmd = "Neogit",
   cond = env.firenvim.not_active() and env.vscode.not_active(),

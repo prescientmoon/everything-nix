@@ -173,7 +173,7 @@ return {
 
   {
     "ruifm/gitlinker.nvim", -- generate permalinks for code
-    -- dependencies = { "plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       mappings = "<leader>yg",
     },
