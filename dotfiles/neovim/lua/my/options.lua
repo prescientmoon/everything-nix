@@ -19,6 +19,7 @@ function M.setup()
 
   vim.opt.expandtab = true -- Use spaces for the tab char
   vim.opt.shiftwidth = 2 -- Size of an indent
+  vim.opt.tabstop = 2 -- Size of tab character
   vim.opt.shiftround = true -- When using < or >, rounds to closest multiple of shiftwidth
   vim.opt.smartindent = true -- Insert indents automatically
 

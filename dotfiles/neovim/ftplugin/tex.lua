@@ -129,6 +129,10 @@ local abolishAbbreviations = {
   { "vx{,s}", "vert{ex,ices}" },
   { "eg{,s}", "edge{}" },
 
+  -- Linear systems
+  -- Note: we must add the space inside the {} in order for capitalization to work!
+  { "{{s,o,l},}deq{s,}", "{{scalar,ordinary,linear} ,}differential equation{}" },
+
   -- Graph theory function syntax:
   --   gt[function]{graph}{modifier}
   --   - function:
@@ -226,3 +230,5 @@ vim.keymap.set(
   "<cmd>VimtexCompile<cr>",
   { desc = "Compile current buffer using vimtex", buffer = true }
 )
+
+vim.opt_local.list = false # The lsp usese tabs for formatting
