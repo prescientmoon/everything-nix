@@ -65,11 +65,12 @@
         "x86_64-darwin"
       ];
 
-      specialArgs = {
+      specialArgs = system: {
         inherit inputs outputs;
+        upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       };
     in
-    rec {
+    {
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
@@ -83,10 +84,8 @@
           let
             pkgs = nixpkgs.legacyPackages.${system};
             default = import ./shell.nix { inherit pkgs; };
-            devshells = import ./devshells
-              {
-                inherit pkgs; inherit inputs;
-              };
+            args = { inherit pkgs; } // specialArgs system;
+            devshells = import ./devshells args;
           in
           devshells // { inherit default; });
 
@@ -102,34 +101,36 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#...
       nixosConfigurations = {
-        tethys = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
+        tethys = let system = "x86_64-linux"; in
+          nixpkgs.lib.nixosSystem {
+            specialArgs = specialArgs system;
 
-          modules = [
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.adrielus = import ./home/adrielus/tethys.nix;
-              home-manager.extraSpecialArgs = specialArgs;
-              home-manager.useUserPackages = true;
-              stylix.homeManagerIntegration.followSystem = false;
-              stylix.homeManagerIntegration.autoImport = false;
-            }
+            modules = [
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.users.adrielus = import ./home/adrielus/tethys.nix;
+                home-manager.extraSpecialArgs = specialArgs system;
+                home-manager.useUserPackages = true;
+                stylix.homeManagerIntegration.followSystem = false;
+                stylix.homeManagerIntegration.autoImport = false;
+              }
 
-            ./hosts/nixos/tethys
-          ];
-        };
+              ./hosts/nixos/tethys
+            ];
+          };
       };
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#...
       homeConfigurations = {
-        "adrielus@tethys" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = specialArgs;
-          modules = [
-            ./home/adrielus/tethys.nix
-          ];
-        };
+        "adrielus@tethys" = let system = "x86_64-linux"; in
+          home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.${system};
+            extraSpecialArgs = specialArgs system;
+            modules = [
+              ./home/adrielus/tethys.nix
+            ];
+          };
       };
     };
 

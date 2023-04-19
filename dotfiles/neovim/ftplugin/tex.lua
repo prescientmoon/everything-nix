@@ -231,4 +231,4 @@ vim.keymap.set(
   { desc = "Compile current buffer using vimtex", buffer = true }
 )
 
-vim.opt_local.list = false # The lsp usese tabs for formatting
+vim.opt_local.list = false -- The lsp usese tabs for formatting

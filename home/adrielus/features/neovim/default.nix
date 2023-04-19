@@ -1,11 +1,12 @@
-{ pkgs, lib, config, paths, inputs, ... }:
+{ pkgs, upkgs, lib, config, paths, inputs, ... }:
 let
   # {{{ extraPackages
   extraPackages = with pkgs; [
     # Language servers
     nodePackages.typescript-language-server # typescript
     nodePackages_latest.purescript-language-server # purescript
-    inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.lua-language-server # lua
+    # REASON: not in stable
+    upkgs.lua-language-server # lua
     rnix-lsp # nix
     nil # nix
     haskell-language-server # haskell
@@ -107,10 +108,15 @@ let
     };
   # }}}
   # {{{ Clients
-  neovim = wrapClient { base = pkgs.neovim; name = "nvim"; };
+  neovim = wrapClient {
+    # REASON: nvim 9.0
+    base = upkgs.neovim;
+    name = "nvim";
+  };
 
   neovide = wrapClient {
-    base = pkgs.neovide;
+    # REASON: neovide 10.0.4
+    base = upkgs.neovide;
     name = "neovide";
     extraArgs = "--set NEOVIDE_MULTIGRID true";
   };

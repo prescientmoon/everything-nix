@@ -7,7 +7,7 @@ local M = {
     require("neorg").setup({
       load = {
         ["core.defaults"] = {}, -- Loads default behaviour
-        ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+        ["core.concealer"] = {}, -- Adds pretty icons to your documents
         ["core.integrations.telescope"] = {},
         -- {{{ Completions
         ["core.norg.completion"] = {
