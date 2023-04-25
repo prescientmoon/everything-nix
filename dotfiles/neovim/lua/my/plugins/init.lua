@@ -47,6 +47,12 @@ return {
     ft = "dhall",
     cond = env.vscode.not_active(),
   },
+
+  {
+    "yasuhiroki/github-actions-yaml.vim",
+    ft = { "yml", "yaml" },
+    cond = env.vscode.not_active(),
+  },
   --}}}
 
   {

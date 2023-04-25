@@ -1,3 +1,4 @@
+# TODO(imperanence): handle persistence
 { pkgs, inputs, ... }:
 let
   mkBasicSearchEngine = { aliases, url, param }: {

@@ -2,7 +2,11 @@
   "Begin": {
     "prefix": "begin",
     "description": "Begin anything",
-    "body": ["\\begin{$1}", "\t$0", "\\end{$1}"]
+    "body": [
+      "\\begin{$1}",
+      "\t$0",
+      "\\end{$1}"
+    ]
   },
   "Set": {
     "prefix": "set",
@@ -27,33 +31,53 @@
   "Lemma": {
     "prefix": "lemma",
     "description": "Create a lemma",
-    "body": ["\\begin{lemma}[$1] \\label{lem:$1}", "\t$0", "\\end{lemma}"]
+    "body": [
+      "\\begin{lemma}[$1]\\label{lem:$1}",
+      "\t$0",
+      "\\end{lemma}"
+    ]
   },
   "Example*": {
     "prefix": "example*",
     "description": "Create an example*",
-    "body": ["\\begin{example*}", "\t$0", "\\end{example*}"]
+    "body": [
+      "\\begin{example*}",
+      "\t$0",
+      "\\end{example*}"
+    ]
   },
   "Example": {
     "prefix": "example",
     "description": "Create an example",
-    "body": ["\\begin{example}[$1] \\label{exp:$1}", "\t$0", "\\end{example}"]
+    "body": [
+      "\\begin{example}[$1]\\label{exp:$1}",
+      "\t$0",
+      "\\end{example}"
+    ]
   },
   "Theorem": {
     "prefix": "theorem",
     "description": "Create a theorem",
-    "body": ["\\begin{theorem}[$1] \\label{thm:$1}", "\t$0", "\\end{theorem}"]
+    "body": [
+      "\\begin{theorem}[$1]\\label{thm:$1}",
+      "\t$0",
+      "\\end{theorem}"
+    ]
   },
   "Exercise": {
     "prefix": "exercise",
     "description": "Create a exercise",
-    "body": ["\\begin{exercise}[$1] \\label{exe:$1}", "\t$0", "\\end{exercise}"]
+    "body": [
+      "\\begin{exercise}[$1]\\label{exe:$1}",
+      "\t$0",
+      "\\end{exercise}"
+    ]
   },
   "Definition": {
     "prefix": "definition",
     "description": "Create a definition",
     "body": [
-      "\\begin{definition}[$1] \\label{def:$1}",
+      "\\begin{definition}[$1]\\label{def:$1}",
       "\t$0",
       "\\end{definition}"
     ]
@@ -61,7 +85,11 @@
   "Display math": {
     "prefix": "dm",
     "description": "Display math section",
-    "body": ["\\[", "$0", "\\]"]
+    "body": [
+      "\\[",
+      "$0",
+      "\\]"
+    ]
   },
   "Subscript": {
     "prefix": "ss",
@@ -91,36 +119,60 @@
   "Section": {
     "prefix": "section",
     "description": "Add section",
-    "body": ["\\section{$1}", "$0"]
+    "body": [
+      "\\section{$1}",
+      "$0"
+    ]
   },
   "Subsection": {
     "prefix": "subsection",
     "description": "Add subsection",
-    "body": ["\\subsection{$1}", "$0"]
+    "body": [
+      "\\subsection{$1}",
+      "$0"
+    ]
   },
   "Subsubsection": {
     "prefix": "subsubsection",
     "description": "Add subsubsection",
-    "body": ["\\subsubsection{$1}", "$0"]
+    "body": [
+      "\\subsubsection{$1}",
+      "$0"
+    ]
   },
   "Chapter": {
     "prefix": "chapter",
     "description": "Add chapter",
-    "body": ["\\chapter{$1}", "$0"]
+    "body": [
+      "\\chapter{$1}",
+      "$0"
+    ]
   },
   "Proof": {
     "prefix": "proof",
     "description": "Create proof",
-    "body": ["\\begin{proof}", "\t$0", "\\end{proof}"]
+    "body": [
+      "\\begin{proof}",
+      "\t$0",
+      "\\end{proof}"
+    ]
   },
   "Itemize": {
     "prefix": "item",
-    "body": ["\\\\begin{itemize}", "\t\\item $0", "\\\\end{itemize}"],
+    "body": [
+      "\\\\begin{itemize}",
+      "\t\\item $0",
+      "\\\\end{itemize}"
+    ],
     "description": "Itemize env"
   },
   "Enumerate": {
     "prefix": "enum",
-    "body": ["\\\\begin{enumerate}", "\t\\item $0", "\\\\end{enumerate}"],
+    "body": [
+      "\\\\begin{enumerate}",
+      "\t\\item $0",
+      "\\\\end{enumerate}"
+    ],
     "description": "Enumerate env"
   },
   "Reference definition": {
@@ -201,7 +253,11 @@
   "Aligned": {
     "prefix": "aligned",
     "description": "Create an aligned environment",
-    "body": ["\\begin{aligned}", "\t$0", "\\end{aligned}"]
+    "body": [
+      "\\begin{aligned}",
+      "\t$0",
+      "\\end{aligned}"
+    ]
   },
   "Let": {
     "prefix": "let",
@@ -216,7 +272,11 @@
   "Aligned display math": {
     "prefix": "maligned",
     "description": "Create an aligned display math environment",
-    "body": ["\\begin{align*}", "\t$0", "\\end{align*}"]
+    "body": [
+      "\\begin{align*}",
+      "\t$0",
+      "\\end{align*}"
+    ]
   },
   "System of equations": {
     "prefix": "eqsystem",
@@ -232,7 +292,10 @@
   "Aligned equation": {
     "prefix": "aleq",
     "description": "Aligned equation",
-    "body": ["\\\\\\ $1 &= $2", "$0"]
+    "body": [
+      "\\\\\\ $1 &= $2",
+      "$0"
+    ]
   },
   "2x2 matrices": {
     "prefix": "mat22",
@@ -296,5 +359,10 @@
       "\\end{enumerate}",
       "$0"
     ]
+  },
+  "quote": {
+    "prefix": "quote",
+    "description": "Quote a bunch of text",
+    "body": "``$1''$0"
   }
 }

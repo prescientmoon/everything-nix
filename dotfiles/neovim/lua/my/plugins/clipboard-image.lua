@@ -1,6 +1,5 @@
 local M = {
-  -- paste images from clipbaord
-  "ekickx/clipboard-image.nvim",
+  "postfen/clipboard-image.nvim",
   cmd = "PasteImg",
 }
 

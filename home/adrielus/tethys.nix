@@ -3,8 +3,10 @@
     ./global
     ./features/desktop/xmonad.nix
     ./features/desktop/common/discord.nix
+    ./features/desktop/common/qbittorrent.nix
     ./features/desktop/common/zathura.nix
     ./features/desktop/common/firefox.nix
+    ./features/desktop/common/games
   ];
 
   # Arbitrary extra packages

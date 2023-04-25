@@ -1,3 +1,4 @@
+# TODO(imperanence): handle persistence of things like harpoon, lazy, etc
 { pkgs, upkgs, lib, config, paths, inputs, ... }:
 let
   # {{{ extraPackages
@@ -57,6 +58,8 @@ let
 
     texlive.combined.scheme-full # Latex stuff
     python38Packages.pygments # required for latex syntax highlighting
+    sage
+    sagetex # sage in latex
 
     # required for the telescope fzf extension
     gnumake

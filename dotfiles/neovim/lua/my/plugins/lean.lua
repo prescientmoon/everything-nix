@@ -3,7 +3,11 @@ local lspconfig = require("my.plugins.lspconfig")
 
 local M = {
   "Julian/lean.nvim", -- lean support
-  dependencies = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" },
+  dependencies = {
+    "neovim/nvim-lspconfig",
+    "nvim-lua/plenary.nvim",
+    "hrsh7th/nvim-cmp",
+  },
   ft = "lean",
   config = function()
     require("lean").setup({
@@ -19,4 +23,4 @@ local M = {
   cond = env.vscode.not_active(),
 }
 
-return {}
+return M

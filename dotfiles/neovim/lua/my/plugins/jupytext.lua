@@ -2,7 +2,7 @@ local env = require("my.helpers.env")
 
 local M = {
   "goerz/jupytext.vim",
-  lazy = false, -- Otherwise I can't get this to work with nvim *.ipynb
+  ft = "ipynb",
   cond = env.vscode.not_active(),
 }
 

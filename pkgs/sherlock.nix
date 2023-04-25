@@ -15,7 +15,7 @@ let
     pandas
   ]);
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "sherlock";
   version = "unstable-2023-02-27";
 

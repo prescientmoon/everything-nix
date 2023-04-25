@@ -1,3 +1,4 @@
+# TODO(imperanence): handle persistence
 {
   programs.discord = {
     enable = true;

@@ -159,6 +159,10 @@ local servers = {
           forwardSearchAfter = true,
           onSave = true,
         },
+        chktex = {
+          onOpenAndSave = true,
+          onEdit = true,
+        },
       },
     },
   },
