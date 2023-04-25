@@ -1,3 +1,3 @@
 {
-    imports = [./wine.nix ./lutris.nix];
-  }
+  imports = [ ./wine.nix ./lutris.nix ];
+}

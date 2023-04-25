@@ -29,6 +29,6 @@
     sherlock # Search for usernames across different websites
   ];
 
-  home.sessionVariables.QT_SCREEN_SCALE_FACTOR = 1.4; # Bigger text in qt apps
+  home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4; # Bigger text in qt apps
   satellite.dev.enable = true; # Simlink some stuff outside the store
 }

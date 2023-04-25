@@ -1,4 +1,3 @@
--- TODO(imperanence): handle persistence
 local M = {}
 
 function M.setup()
