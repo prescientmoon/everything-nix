@@ -43,10 +43,9 @@
   # Ensure group exists
   users.groups.network = { };
 
+  # TODO: figure out why this does not work!
   # Persist imperative config
-  # environment.persistence = {
-  #   "/persist".files = [
-  #     "/etc/wpa_supplicant.conf"
-  #   ];
-  # };
+  # environment.persistence."/persist".files = [
+  #   "/etc/wpa_supplicant.conf"
+  # ];
 }

@@ -30,10 +30,13 @@ in
     gatewayPorts = "clientspecified";
 
     # Generate ssh key
-    hostKeys = [{
-      path = "/persist/etc/ssh/ssh_host_ed25519_key";
-      type = "ed25519";
-    }];
+    hostKeys =
+      let mkKey = type: path: extra: { inherit type path; } // extra;
+      in
+      [
+        (mkKey "ed25519" "/persist/etc/ssh/ssh_host_ed25519_key" { })
+        (mkKey "rsa" "/persist/etc/ssh/ssh_host_rsa_key" { bits = 4096; })
+      ];
   };
 
   # Passwordless sudo when SSH'ing with keys

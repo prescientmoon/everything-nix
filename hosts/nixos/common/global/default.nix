@@ -6,7 +6,7 @@ let
     inputs.stylix.nixosModules.stylix
     inputs.slambda.nixosModule
     inputs.nur.nixosModules.nur
-    # inputs.impermanence.nixosModule
+    inputs.impermanence.nixosModule
 
     ./nix.nix
     ./openssh.nix
@@ -20,9 +20,9 @@ in
   # Import all modules defined in modules/nixos
   imports = builtins.attrValues outputs.nixosModules ++ imports;
 
-  age.identityPaths = [
-    "/etc/ssh/ssh_host_ed25519_key"
-  ];
+  # Allow non root users to specify the "allowOther" option.
+  # See [the imperanence readme](https://github.com/nix-community/impermanence#home-manager)
+  programs.fuse.userAllowOther = true;
 
   nixpkgs = {
     # Add all overlays defined in the overlays directory

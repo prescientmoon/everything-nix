@@ -9,6 +9,7 @@
     ../common/optional/lightdm.nix
     ../common/optional/steam.nix
     ../common/optional/slambda.nix
+    ../common/optional/xdg-portal.nix
     ../common/optional/xmonad
 
     ./hardware-configuration.nix

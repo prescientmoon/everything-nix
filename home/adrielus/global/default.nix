@@ -5,7 +5,7 @@ let
     inputs.stylix.homeManagerModules.stylix
     inputs.homeage.homeManagerModules.homeage
     inputs.nur.nixosModules.nur
-    # inputs.impermanence.nixosModules.home-manager.impermanence
+    inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../features/cli
     ../features/neovim
@@ -51,4 +51,10 @@ in
 
   # Where homeage should look for our ssh key
   homeage.identityPaths = [ "~/.ssh/id_ed25519" ];
+
+  # Allow root to read persistent files from this user.
+  home.persistence."/persist/home/adrielus".allowOther = true;
+
+  # Set the xdg env vars
+  xdg.enable = true;
 }

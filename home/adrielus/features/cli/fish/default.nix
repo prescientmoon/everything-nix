@@ -5,10 +5,17 @@
 
     shellAbbrs = {
       battery = "acpi";
-      cat = "bat";
     };
 
-    plugins = with pkgs.fishPlugins; [
+    shellAliases = {
+      cat = "bat";
+      df = "df -h";
+      du = "du -h";
+      duh = "du -hd 1"; # short for du here
+    };
+
+    # with pkgs.fishPlugins;
+    plugins = [
       # Jump to directories by typing "z <directory-name>"
       {
         name = "z";

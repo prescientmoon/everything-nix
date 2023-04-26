@@ -3,17 +3,18 @@
     ./global
     ./features/desktop/xmonad.nix
     ./features/desktop/common/discord.nix
+    ./features/desktop/common/signal.nix
     ./features/desktop/common/qbittorrent.nix
     ./features/desktop/common/zathura.nix
     ./features/desktop/common/firefox.nix
-    ./features/desktop/common/games
+    ./features/games
   ];
 
   # Arbitrary extra packages
   home.packages = with pkgs; [
     # Desktop apps
-    signal-desktop # Signal client
     zoom-us # Zoom client 🤮
+    element-desktop # Matrix client
     obsidian # Notes
     peek # GIF recorder
     vlc # Video player
@@ -21,7 +22,7 @@
     libreoffice # Free office suite
     lmms # Music software
     kicad # PCB editing
-    google-chrome # Not my primary browser, but sometimes needed in webdev
+    # google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder
 
     # Clis

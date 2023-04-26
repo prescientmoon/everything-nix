@@ -3,9 +3,9 @@
     pkgs.qbittorrent
   ];
 
-  # home.persistence."/persist".directories = [
-  #   "${config.xdg.configHome}/qBittorrent" # Config options
-  #   # TODO: investigate which subdirectories/files I actually want to keep
-  #   "${config.xdg.dataHome}/qBittorrent" # Torrent files, logs, etc 
-  # ];
+  home.persistence."/persist/home/adrielus".directories = [
+    ".config/qBittorrent" # Config options
+    # TODO: investigate which subdirectories/files I actually want to keep
+    ".local/share/qBittorrent" # Torrent files, logs, etc 
+  ];
 }
