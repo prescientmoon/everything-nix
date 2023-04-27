@@ -19,14 +19,16 @@
     comma # Intstall and run programs by sticking a , before them
     bc # Calculator
     ncdu # TUI disk usage
+    du-dust # Similar to du and ncdu in purpose.
     ripgrep # Better grep
     fd # Better find
+    sd # Better sed
     httpie # Better curl
     mkpasswd # Hash passwords
     neofetch # Display system information
     zip # Zipping files
     unzip # Unzipping files
     unrar # For extracting shit from rars
-    sloc # Useless but fun line of code counter
+    tokei # Useless but fun line of code counter (sloc alternative)
   ];
 }

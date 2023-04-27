@@ -184,12 +184,12 @@
 
   # {{{ Make firefox the default
   # Use firefox as the default browser to open stuff.
-  # xdg.mimeApps.defaultApplications = {
-  #   "text/html" = [ "firefox.desktop" ];
-  #   "text/xml" = [ "firefox.desktop" ];
-  #   "x-scheme-handler/http" = [ "firefox.desktop" ];
-  #   "x-scheme-handler/https" = [ "firefox.desktop" ];
-  # };
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "firefox.desktop" ];
+    "text/xml" = [ "firefox.desktop" ];
+    "x-scheme-handler/http" = [ "firefox.desktop" ];
+    "x-scheme-handler/https" = [ "firefox.desktop" ];
+  };
 
   # Tell apps firefox is the default browser using an env var.
   home.sessionVariables.BROWSER = "firefox";
