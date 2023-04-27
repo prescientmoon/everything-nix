@@ -1,12 +1,12 @@
 # Welcome to *the Satellite*
 
-In case you are not familiar with nix/nixos, this is a collection of configuration files which build my entire system in a declarative manner. The tool used to configure the global system is called [nixos](https://nixos.org/), and the tool used to configure the individual users is called [home-manager](https://github.com/nix-community/home-manager). 
+In case you are not familiar with nix/nixos, this is a collection of configuration files which build my entire system in a declarative manner. The tool used to configure the global system is called [nixos](https://nixos.org/), and the one used to configure the individual users is called [home-manager](https://github.com/nix-community/home-manager). 
 
-### Features this repository include:
+### Features this repository includes:
 
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) based secret management 
-- Sets up all the apps I use, including git, neovim, fish, tmux, starship, xmonad, rofi, polybar, discord, zathura, alacritty & more. 
+- Sets up all the apps I use — including git, neovim, fish, tmux, starship, xmonad, rofi, polybar, discord, zathura, alacritty & more. 
 
 ### In the future I might start using any of the other cool nix-based tools, like:
 
@@ -38,6 +38,7 @@ Here's some things you might want to check out:
 - [stylix](https://github.com/danth/stylix) - base16 module for nix
     - [Base16 templates](https://github.com/chriskempson/base16-templates-source) - list of base16 theme templates
     - [Catpuccin](https://github.com/catppuccin/catppuccin) - base16 theme I use
+    - [Rosepine](https://rosepinetheme.com/) - another theme I use
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) - secret management
 - [Xmonad](https://xmonad.org/) - window manager
     - [Polybar](https://github.com/polybar/polybar) - desktop bar
@@ -45,10 +46,11 @@ Here's some things you might want to check out:
 - [Neovim](https://neovim.io/) - my editor
   - [Neovide](https://neovide.dev/index.html) - neovim gui client
   - [Vimclip](https://github.com/hrantzsch/vimclip) - vim anywhere!
+  - [Firenvim](https://github.com/glacambre/firenvim) - embed neovim in web browsers
 - [Tmux](https://github.com/tmux/tmux/wiki) - terminal multiplexer
 - [Alacritty](https://github.com/alacritty/alacritty) - terminal emulator
 - [Fish](https://fishshell.com/) - user friendly shell
   - [Starship](https://starship.rs/) - shell prompt
 - [Zathura](https://pwmt.org/projects/zathura/) - pdf viewer
 - [Ranger](https://github.com/ranger/ranger) - file manager
-- [Firefox](https://www.mozilla.org/en-US/firefox/) - web browserreadme
+- [Firefox](https://www.mozilla.org/en-US/firefox/) - web browser
