@@ -1,5 +1,6 @@
 node_modules
 ./secrets.nix
 result
-*.qcow2
 README.html
+*.qcow2
+*.log
