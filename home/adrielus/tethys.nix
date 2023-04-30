@@ -31,10 +31,29 @@
   ];
 
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4; # Bigger text in qt apps
-  satellite.dev.enable = true; # Simlink some stuff outside the store
+
+  satellite = {
+    # Simlink some commonly modified dotfiles outside the store
+    dev.enable = true;
+
+    # Set up my custom imperanence wrapper
+    persistence = {
+      enable = true;
+
+      # Actual data/media (eg: projects, images, videos, etc)
+      at.data.path = "/persist/data";
+
+      # App state I want to keep
+      at.state.path = "/persist/state";
+
+      # App state which I should be able to delete at any point
+      at.cache.path = "/persist/cache";
+    };
+  };
+
 
   # Temp stuff
- xsession.initExtra = ''
+  xsession.initExtra = ''
     command -v dbus-update-activation-environment >/dev/null 2>&1 && dbus-update-activation-environment --systemd XDG_SESSION_CLASS XDG_CONFIG_DIRS XDG_DATA_DIRS XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DCONF_PROFILE XDG_DESKTOP_PORTAL_DIR DISPLAY WAYLAND_DISPLAY SWAYSOCK XMODIFIERS XCURSOR_SIZE XCURSOR_THEME GDK_PIXBUF_MODULE_FILE GIO_EXTRA_MODULES GTK_IM_MODULE QT_PLUGIN_PATH QT_QPA_PLATFORMTHEME QT_STYLE_OVERRIDE QT_IM_MODULE NIXOS_OZONE_WL || systemctl --user import-environment XDG_SESSION_CLASS XDG_CONFIG_DIRS XDG_DATA_DIRS XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DCONF_PROFILE XDG_DESKTOP_PORTAL_DIR DISPLAY WAYLAND_DISPLAY SWAYSOCK XMODIFIERS XCURSOR_SIZE XCURSOR_THEME GDK_PIXBUF_MODULE_FILE GIO_EXTRA_MODULES GTK_IM_MODULE QT_PLUGIN_PATH QT_QPA_PLATFORMTHEME QT_STYLE_OVERRIDE QT_IM_MODULE NIXOS_OZONE_WL
   '';
 }

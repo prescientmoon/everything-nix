@@ -1,10 +1,11 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   home.packages = [
     pkgs.lutris
   ];
 
   home.persistence."/persist/home/adrielus".directories = [
-    ".config/lutris" # General config data
+    ("Lutris/.config/lutris") # General config data
     ".cache/lutris/banners" # Game banners
     ".cache/lutris/coverart" # Game cover art
 
