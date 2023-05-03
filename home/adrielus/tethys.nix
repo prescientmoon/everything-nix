@@ -6,7 +6,7 @@
     ./features/desktop/common/signal.nix
     ./features/desktop/common/qbittorrent.nix
     ./features/desktop/common/zathura.nix
-    ./features/desktop/common/firefox.nix
+    ./features/desktop/common/firefox
     ./features/games
   ];
 

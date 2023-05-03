@@ -15,6 +15,9 @@
 
       # Set default search engine
       search.default = "Google";
+
+      # Set styles applied to every website
+      userContent = builtins.readFile ./userContent.css;
       # }}}
       # {{{ Extensions
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
@@ -142,6 +145,12 @@
       settings = {
         # Required for figma to be able to export to svg
         "dom.events.asyncClipboard.clipboardItem" = true;
+
+        # Customize css
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+        # Set language to english
+        "general.useragent.locale" = "en-GB";
       };
       # }}}
     };
