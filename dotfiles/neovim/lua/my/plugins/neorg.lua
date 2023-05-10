@@ -10,14 +10,14 @@ local M = {
         ["core.concealer"] = {}, -- Adds pretty icons to your documents
         ["core.integrations.telescope"] = {},
         -- {{{ Completions
-        ["core.norg.completion"] = {
+        ["core.completion"] = {
           config = {
             engine = "nvim-cmp",
           },
         },
         -- }}}
         -- {{{ Dirman
-        ["core.norg.dirman"] = { -- Manages Neorg workspaces
+        ["core.dirman"] = { -- Manages Neorg workspaces
           config = {
             workspaces = {
               notes = "~/Neorg",
