@@ -1,43 +1,58 @@
+# Allows installing web apps as desktop apps
 { lib, pkgs, config, ... }:
 let cfg = config.programs.firefox.apps;
 in
 {
-  options.programs.firefox.apps = lib.mkOption {
-    type = lib.types.attrsOf
-      (lib.types.submodule ({ name, ... }: {
-        options = {
-          name = lib.mkOption {
-            type = lib.types.str;
-            description = "The name of the app";
-            default = name;
-          };
+  options.programs.firefox.apps = {
+    extensions = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      description = "Extensions to install for all apps";
+      default = [ ];
+    };
 
-          id = lib.mkOption {
-            type = lib.types.int;
-            description = "The id of the firefox profile for the app";
-            example = 3;
-          };
+    app = lib.mkOption {
+      type = lib.types.attrsOf
+        (lib.types.submodule ({ name, ... }: {
+          options = {
+            name = lib.mkOption {
+              type = lib.types.str;
+              description = "The name of the app";
+              default = name;
+            };
 
-          displayName = lib.mkOption {
-            type = lib.types.str;
-            description = "The name of the app in stuff like menus";
-            default = name;
-          };
+            id = lib.mkOption {
+              type = lib.types.int;
+              description = "The id of the firefox profile for the app";
+              example = 3;
+            };
 
-          url = lib.mkOption {
-            type = lib.types.str;
-            description = "The url the app should point to";
-            example = "https://example.com";
-          };
+            displayName = lib.mkOption {
+              type = lib.types.str;
+              description = "The name of the app in stuff like menus";
+              default = name;
+            };
 
-          icon = lib.mkOption {
-            type = lib.types.path;
-            description = "The icon to use for the app";
-          };
-        };
-      }));
+            url = lib.mkOption {
+              type = lib.types.str;
+              description = "The url the app should point to";
+              example = "https://example.com";
+            };
 
-    description = "Attr set of firefox web apps to install as desktop apps";
+            icon = lib.mkOption {
+              type = lib.types.path;
+              description = "The icon to use for the app";
+            };
+
+            extensions = lib.mkOption {
+              type = lib.types.listOf lib.types.package;
+              description = "Extensions to install for this app";
+              default = [ ];
+            };
+          };
+        }));
+
+      description = "Attr set of firefox web apps to install as desktop apps";
+    };
   };
 
   config =
@@ -52,7 +67,7 @@ in
         };
 
         userChrome = builtins.readFile ./theme.css;
-
+        extensions = cfg.extensions ++ app.extensions;
         isDefault = false;
         id = app.id;
       };
@@ -66,7 +81,7 @@ in
       };
     in
     {
-      programs.firefox.profiles = lib.mapAttrs (_: mkProfile) cfg;
-      xdg.desktopEntries = lib.mapAttrs (_: mkDesktopEntry) cfg;
+      programs.firefox.profiles = lib.mapAttrs (_: mkProfile) cfg.app;
+      xdg.desktopEntries = lib.mapAttrs (_: mkDesktopEntry) cfg.app;
     };
 }

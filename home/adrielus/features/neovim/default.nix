@@ -14,10 +14,11 @@ let
     dhall-lsp-server # dhall
     tectonic # something related to latex (?)
     texlab # latex
-    nodePackages_latest.vscode-langservers-extracted # Web stuff
-    python310Packages.python-lsp-server # Python
-    pyright # Python
+    nodePackages_latest.vscode-langservers-extracted # web stuff
+    python310Packages.python-lsp-server # python
+    pyright # python
     rust-analyzer # rust
+    upkgs.typst-lsp # typst
 
     # Formatters
     luaformatter # Lua
@@ -29,6 +30,7 @@ let
     nodePackages_latest.purs-tidy # Purescript
     nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
+    upkgs.typst-fmt # Typst
 
     # Linters
     ruff # Python linter
@@ -52,10 +54,11 @@ let
     # Preview
     zathura # Pdf reader
     xdotool # For zathura reverse search or whatever it's called
-    glow #Mmd preview in terminal
+    glow # Md preview in terminal
     pandoc # Md processing
-    libsForQt5.falkon # Aparently needed for md preview
+    libsForQt5.falkon # Needed for one of the md preview plugins I tried
 
+    # Latex setup
     texlive.combined.scheme-full # Latex stuff
     python38Packages.pygments # required for latex syntax highlighting
     sage

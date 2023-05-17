@@ -6,17 +6,19 @@ local M = {
   config = function()
     require("rust-tools").setup({
       server = {
-        on_attach = lspconfig.on_attach,
+        on_attach = function(client, bufnr)
+          K.nmap(
+            "<leader>lc",
+            "<cmd>RustOpenCargo<cr>",
+            "Open [c]argo.toml",
+            true,
+            true
+          )
+
+          lspconfig.on_attach(client, bufnr)
+        end,
       },
     })
-
-    K.nmap(
-      "<leader>lc",
-      "<cmd>RustOpenCargo<cr>",
-      "Open [c]argo.toml",
-      true,
-      true
-    )
   end,
 }
 

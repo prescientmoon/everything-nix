@@ -42,7 +42,7 @@
     rosepine-base16.url = github:edunfelt/base16-rose-pine-scheme;
     rosepine-base16.flake = false;
 
-    # Impermanence 
+    # Impermanence
     impermanence.url = "github:nix-community/impermanence";
 
     # Slambda

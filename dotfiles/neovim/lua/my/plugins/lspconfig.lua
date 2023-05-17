@@ -172,6 +172,7 @@ local servers = {
   cssls = {},
   jsonls = {},
   dhall_lsp_server = {},
+  typst_lsp = {},
   -- pylsp = {},
   -- pyright = {},
 }
@@ -182,7 +183,7 @@ M.capabilities = function()
   local c = require("cmp_nvim_lsp").default_capabilities()
   -- Add folding capabilities
   c.textDocument.foldingRange =
-    { dynamicRegistration = false, lineFoldingOnly = true }
+  { dynamicRegistration = false, lineFoldingOnly = true }
   return c
 end
 -- }}}
@@ -218,7 +219,7 @@ function lspconfig.config()
 
     require("lspconfig")[lsp].setup({
       on_attach = details.on_attach,
-      settings = details.settings, -- Specific per-language settings
+      settings = details.settings,   -- Specific per-language settings
       flags = {
         debounce_text_changes = 150, -- This will be the default in neovim 0.7+
       },

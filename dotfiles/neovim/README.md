@@ -217,6 +217,7 @@ The following keybinds are available only when running inside firenvim:
 | \<leader\>h           | Add file to harpoon                 | harpoon              |
 | C-a                   | Harpoon quick menu                  | harpoon              |
 | C-s q/w/e/r/a/s/d/f/z | Open harpoon file with index 0-9    | harpoon              |
+| <leader>lc            | Open [l]ocal [c]argo.toml           | rust-tools           |
 
 ### Undocumented
 

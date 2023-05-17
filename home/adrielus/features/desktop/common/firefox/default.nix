@@ -1,7 +1,29 @@
 { pkgs, inputs, ... }:
+let
+  # {{{ Global extensions
+  extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+    buster-captcha-solver
+    bypass-paywalls-clean
+    clearurls # removes ugly args from urls
+    don-t-fuck-with-paste # disallows certain websites from disabling pasting
+    gesturefy # mouse gestures
+    i-dont-care-about-cookies
+    localcdn # caches libraries locally
+    privacy-badger # blocks some trackers
+    privacy-pass # captcha stuff
+    skip-redirect # attempts to skip to the final reddirect for certain urls
+    terms-of-service-didnt-read
+    translate-web-pages
+    ublock-origin
+    unpaywall
+    user-agent-string-switcher
+  ];
+  # }}}
+in
 {
   programs.firefox = {
     enable = true;
+
     profiles.adrielus = {
       # {{{ High level user settings
       # Unique user id
@@ -20,30 +42,15 @@
       userContent = builtins.readFile ./userContent.css;
       # }}}
       # {{{ Extensions
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-        buster-captcha-solver
-        bypass-paywalls-clean
-        clearurls # removes ugly args from urls
-        don-t-fuck-with-paste # disallows certain websites from disabling pasting
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; extensions ++ [
         firenvim # summon a nvim instance inside the browser
-        gesturefy # mouse gestures
-        i-dont-care-about-cookies
-        localcdn # caches libraries locally
         lovely-forks # displays forks on github
         octolinker # github import to link thingy
         octotree # github file tree
-        privacy-badger # blocks some trackers
-        privacy-pass # captcha stuff
         refined-github # a bunch of github modifications
         return-youtube-dislikes
         steam-database # adds info from steamdb on storepages
         sponsorblock # skip youtube sponsors
-        skip-redirect # attempts to skip to the final reddirect for certain urls
-        terms-of-service-didnt-read
-        translate-web-pages
-        ublock-origin
-        unpaywall
-        user-agent-string-switcher
         vimium-c # vim keybinds
         youtube-shorts-block
       ];
@@ -156,7 +163,8 @@
     };
 
     # {{{ Standalone "apps" which actually run inside a browser.
-    apps = {
+    apps.extensions = extensions;
+    apps.app = {
       # {{{ Job stuff
       asana = {
         url = "https://app.asana.com/";
@@ -171,7 +179,6 @@
         displayName = "Clockodo";
         id = 2;
       };
-
       # }}}
 
       gitlab = {
@@ -186,6 +193,13 @@
         icon = ./icons/desmos.png;
         displayName = "Desmos";
         id = 4;
+      };
+
+      monkey-type = {
+        url = "https://monkeytype.com/";
+        icon = ./icons/monkeytype.png;
+        displayName = "Monkeytype";
+        id = 5;
       };
     };
     # }}}
@@ -203,6 +217,7 @@
   # Tell apps firefox is the default browser using an env var.
   home.sessionVariables.BROWSER = "firefox";
   # }}}
+
   # {{{ Persistence
   home.persistence."/persist/home/adrielus".directories = [
     ".cache/mozilla/firefox" # Non important cache

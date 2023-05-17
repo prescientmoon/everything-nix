@@ -57,6 +57,11 @@ config.adjust_window_size_when_changing_font_size = false -- Makes it work with 
 config.automatically_reload_config = true
 config.font_size = font_size
 config.use_fancy_tab_bar = false
+config.disable_default_key_bindings = true
+-- config.enable_kitty_keyboard = true -- Let's apps recognise more distinct keys
+config.enable_csi_u_key_encoding = true -- For some reason I need this for all keybinds to work inside neovim.
+-- }}}
+-- {{{ Keybinds
 -- }}}
 
 -- and finally, return the configuration to wezterm
