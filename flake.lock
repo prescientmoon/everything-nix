@@ -412,11 +412,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1677359238,
-        "narHash": "sha256-krU7FB0I6LkB/2E+cQ8zFa73E1qaPVXLsoKaA9xNS+w=",
+        "lastModified": 1684383189,
+        "narHash": "sha256-UdJaqAJz7mkZ5za02xX4qhfVyXR0jUOA+ygAS6Pa6qk=",
         "owner": "Mateiadrielrafael",
         "repo": "slambda",
-        "rev": "5074bacd0a9e3d91fde5190c66aa85a0275516ec",
+        "rev": "ebf29f1421232bd328f0dd8a52f5278622c36344",
         "type": "github"
       },
       "original": {
