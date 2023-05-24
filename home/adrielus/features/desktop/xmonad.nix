@@ -1,22 +1,16 @@
 { pkgs, ... }: {
   imports = [
-    ./common/rofi
-    ./common/polybar
-    ./common/eww
     ./common/wezterm
     ./common/alacritty.nix
-    ./common/feh.nix
   ];
 
   # Other packages I want to install:
   home.packages = with pkgs; [
     vimclip # Vim anywhere!
-    xclip # Clipboard stuff
-    spectacle # Take screenshots
   ];
 
-  stylix.targets = {
-    xresources.enable = true;
-    gtk.enable = true;
-  };
+  stylix.targets.gtk.enable = true;
+
+  # Command required to get the xdg stuff to work. Suggested by @lily on discord.
+  xsession.initExtra = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all";
 }

@@ -1,6 +1,7 @@
 { config, ... }: {
   programs.discord = {
     enable = true;
+    enableOpenASAR = false;
     disableUpdateCheck = true;
     enableDevtools = true;
   };

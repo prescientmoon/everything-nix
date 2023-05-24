@@ -7,7 +7,7 @@
       # How fast we should scroll I think
       accelSpeed = "3.5";
 
-      # TODO: I forgor what this did
+      # Inverts axis
       naturalScrolling = true;
 
       # Dsiable the touchpad while typing 

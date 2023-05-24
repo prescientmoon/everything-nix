@@ -1,4 +1,5 @@
 { pkgs, lib, ... }: {
+  services.dbus.enable = true;
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -7,6 +8,5 @@
 
   # HACK: copied from @lily on discord.
   systemd.user.services.xdg-desktop-portal.path = lib.mkAfter [ "/run/current-system/sw" ];
-
-  services.gnome.at-spi2-core.enable = true;
+  # services.gnome.at-spi2-core.enable = true;
 }

@@ -56,7 +56,13 @@ return {
 
   {
     "kaarmu/typst.vim",
-    ft = { "typst" },
+    ft = "typst",
+    cond = env.vscode.not_active(),
+  },
+
+  {
+    "theRealCarneiro/hyprland-vim-syntax",
+    ft = "hypr",
     cond = env.vscode.not_active(),
   },
   --}}}

@@ -10,6 +10,7 @@
     ../common/optional/steam.nix
     ../common/optional/slambda.nix
     ../common/optional/xdg-portal.nix
+    ../common/optional/hyprland.nix
     ../common/optional/xmonad
 
     ./hardware-configuration.nix
@@ -27,26 +28,26 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
 
-  # Temp stuff:
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_15;
-    enableTCPIP = true;
-    authentication = pkgs.lib.mkOverride 10 ''
-      local all all trust
-      host all all 127.0.0.1/32 trust
-      host all all ::1/128 trust
-    '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE adrielus WITH
-             LOGIN
-             SUPERUSER
-             INHERIT
-             CREATEDB
-             CREATEROLE
-             REPLICATION;
-      CREATE DATABASE lunarbox;
-      GRANT ALL PRIVILEGES ON DATABASE lunarbox TO adrielus;
-    '';
-  };
+  # Temp stuff: enable when running lunarbox
+  # services.postgresql = {
+  #   enable = true;
+  #   package = pkgs.postgresql_15;
+  #   enableTCPIP = true;
+  #   authentication = pkgs.lib.mkOverride 10 ''
+  #     local all all trust
+  #     host all all 127.0.0.1/32 trust
+  #     host all all ::1/128 trust
+  #   '';
+  #   initialScript = pkgs.writeText "backend-initScript" ''
+  #     CREATE ROLE adrielus WITH
+  #            LOGIN
+  #            SUPERUSER
+  #            INHERIT
+  #            CREATEDB
+  #            CREATEROLE
+  #            REPLICATION;
+  #     CREATE DATABASE lunarbox;
+  #     GRANT ALL PRIVILEGES ON DATABASE lunarbox TO adrielus;
+  #   '';
+  # };
 }

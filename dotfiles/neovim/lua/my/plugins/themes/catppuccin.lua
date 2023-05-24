@@ -4,14 +4,12 @@ local M = {
   "catppuccin/nvim",
   name = "catppuccin",
   lazy = false,
-  -- enabled = H.theme_contains("Catppuccin"),
-  enabled = true,
+  enabled = H.theme_contains("Catppuccin"),
 }
 
 function M.config()
   local catppuccin = require("catppuccin")
-  -- vim.g.catppuccin_flavour = H.variant("Catppuccin")
-  vim.g.catppuccin_flavour = "latte"
+  vim.g.catppuccin_flavour = H.variant("Catppuccin")
 
   catppuccin.setup({
     transparent_background = false,

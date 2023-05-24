@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   stylix.targets.alacritty.enable = true;
 
@@ -6,7 +6,7 @@
     enable = true;
 
     settings = {
-      window.decorations = "none";
+      window.opacity = lib.mkForce 0.5; # Conflicts with stylix
       window.padding = {
         x = 4;
         y = 4;

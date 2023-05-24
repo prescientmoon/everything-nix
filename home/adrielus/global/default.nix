@@ -6,6 +6,7 @@ let
     inputs.homeage.homeManagerModules.homeage
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModules.home-manager.impermanence
+    inputs.hyprland.homeManagerModules.default
 
     ../features/cli
     ../features/neovim
@@ -57,4 +58,11 @@ in
 
   # Set the xdg env vars
   xdg.enable = true;
+
+  # Create xdg user directories
+  xdg.userDirs = {
+    enable = lib.mkDefault true;
+    createDirectories = lib.mkDefault true;
+    extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+  };
 }

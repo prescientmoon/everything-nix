@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  stylix.fonts = rec {
+  stylix.fonts = {
     monospace = {
       name = "FiraCode Nerd Font";
       package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
@@ -11,6 +11,7 @@
     };
 
     # Why would you not want sansSerif
-    serif = sansSerif;
+    # (that's what I used to think, but I somewhat changed my mind)
+    # serif = sansSerif;
   };
 }

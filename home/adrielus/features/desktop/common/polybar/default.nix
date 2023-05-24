@@ -10,8 +10,8 @@ let
 in
 {
   services.polybar = {
-    inherit script;
     enable = true;
+    script = ""; # Otherwise this tries starting on wayland
     extraConfig = ''
       ; Generated theme
       include-file = ${base16-polybar}

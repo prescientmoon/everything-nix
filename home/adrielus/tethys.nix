@@ -1,12 +1,14 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
     ./global
-    ./features/desktop/xmonad.nix
     ./features/desktop/common/discord.nix
     ./features/desktop/common/signal.nix
     ./features/desktop/common/qbittorrent.nix
     ./features/desktop/common/zathura.nix
     ./features/desktop/common/firefox
+    ./features/desktop/xmonad.nix
+    ./features/desktop/hyprland
+    ./features/desktop
     ./features/games
   ];
 
@@ -50,13 +52,4 @@
       at.cache.path = "/persist/cache";
     };
   };
-
-
-  # Temp stuff
-  # systemd.servinces.dbus-update-activation-environment = {
-  #   script = lib.escapeShellArgs "${pkgs.dbu}/bin/dbus-update-activation-environment --systemd --all";
-  #   serviceConfig.Restart = "no";
-  #   serviceConfig.User = config.home.user;
-  # };
-  xsession.initExtra = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all";
 }

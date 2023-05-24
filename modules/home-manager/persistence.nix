@@ -4,7 +4,7 @@ let cfg = config.satellite.persistence;
 in
 {
   options.satellite.persistence = {
-    enable = lib.mkEnableOption (lib.mkDoc "satellite persitence");
+    enable = lib.mkEnableOption "satellite persitence";
 
     at = lib.mkOption {
       default = { };

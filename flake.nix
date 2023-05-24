@@ -35,11 +35,11 @@
     stylix.url = "github:danth/stylix";
 
     # Catpuccin base16 color schemes
-    catppuccin-base16.url = github:catppuccin/base16;
+    catppuccin-base16.url = "github:catppuccin/base16";
     catppuccin-base16.flake = false;
 
     # Rosepine base16 color schemes
-    rosepine-base16.url = github:edunfelt/base16-rose-pine-scheme;
+    rosepine-base16.url = "github:edunfelt/base16-rose-pine-scheme";
     rosepine-base16.flake = false;
 
     # Impermanence
@@ -52,6 +52,14 @@
     # Neovim nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Hyprland (available in nix unstable only atm)
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # Hyprland (available in nix unstable only atm)
+    hyprland-contrib.url = "github:hyprwm/contrib";
+    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

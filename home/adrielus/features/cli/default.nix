@@ -30,5 +30,6 @@
     unzip # Unzipping files
     unrar # For extracting shit from rars
     tokei # Useless but fun line of code counter (sloc alternative)
+    bottom # System monitor
   ];
 }

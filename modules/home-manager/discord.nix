@@ -1,30 +1,27 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.programs.discord;
+let cfg = config.programs.discord;
 in
 {
   options.programs.discord = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "Discord";
+    enableOpenASAR = lib.mkEnableOption "openASAR";
+    disableUpdateCheck = lib.mkEnableOption "update skipping";
+    enableDevtools = lib.mkEnableOption "devtools";
 
-    disableUpdateCheck = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-
-    enableDevtools = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.discord;
+      description = "The discord package to install";
     };
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.discord
-    ];
-
+    home.packages =
+      [
+        (if cfg.enableOpenASAR
+        then cfg.package.override { withOpenASAR = true; }
+        else cfg.package)
+      ];
 
     xdg.configFile."discord/settings.json".text =
       builtins.toJSON

@@ -6,4 +6,5 @@
   firefox = import ./firefox;
   satellite-dev = import ./satellite-dev.nix;
   satellite-persistence = import ./persistence.nix;
+  wofi = import ./wofi.nix;
 }

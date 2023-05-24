@@ -158,6 +158,16 @@ in
 
         # Set language to english
         "general.useragent.locale" = "en-GB";
+
+        # Do not restore sessions after what looks like a "crash"
+        "browser.sessionstore.resume_from_crash" = false;
+
+        # Tell firefox to make multiple requests at once
+        # See [this random page](https://doorsanchar.com/how-to-make-mozilla-firefox-30-times-faster/)
+        # "network.http.pipelining" = true;
+        # "network.http.proxy.pipelining" = true;
+        # "network.http.pipelining.maxrequests" = 30; # Allow 30 requests at once
+        # "nglayout.initialpaint.delay" = 0;
       };
       # }}}
     };
@@ -225,3 +235,4 @@ in
   ];
   # }}}
 }
+

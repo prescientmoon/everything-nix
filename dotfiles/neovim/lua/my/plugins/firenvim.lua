@@ -45,6 +45,8 @@ function M.config()
   blacklist("twitter\\.com")
   blacklist("desmos\\.com\\/calculator")
   blacklist("geogebra\\.org\\/calculator")
+  blacklist("google\\.com\\/search")
+  blacklist("github\\.com\\/.*\\/blob")
   -- }}}
   -- {{{ Comitting our config changes
   vim.g.firenvim_config = { localSettings = M.localSettings }

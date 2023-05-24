@@ -7,6 +7,7 @@ let
     inputs.slambda.nixosModule
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModule
+    inputs.hyprland.nixosModules.default
 
     ./nix.nix
     ./openssh.nix
