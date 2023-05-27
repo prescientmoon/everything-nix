@@ -1,6 +1,7 @@
 # Common wayland stuff
 { lib, pkgs, upkgs, ... }: {
   imports = [ ../common/wofi.nix ];
+
   # Makes some stuff run on wayland (?)
   # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)
   # TODO: ask author what those do
@@ -11,6 +12,8 @@
   # };
 
   # TODO: set up
+  # - wallpaper
+  # - notification daemon
   # - screen recording
   # - volume/backlight controls
   # - eww bar
@@ -18,13 +21,12 @@
   # - look into swaylock or whatever people use
   # - look into greetd or something
   # - multiple keyboard layouts
-  # - wallpaper
-  # - notification daemon
 
   home.packages =
     let
       _ = lib.getExe;
 
+      # TODO: put this in it's own file perhaps?
       # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)
       wl-ocr = pkgs.writeShellScriptBin "wl-ocr" ''
         ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - \
