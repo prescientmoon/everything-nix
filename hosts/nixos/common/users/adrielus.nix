@@ -10,14 +10,6 @@ in
   # Password file stored through agenix
   age.secrets.adrielusPassword.file = ./adrielus_password.age;
 
-  # Temporary stuff until I package my keyboard script
-  users.groups.uinput = { };
-  services.udev.extraRules =
-    ''
-      # Access to /dev/uinput
-      KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-    '';
-
   users = {
     # Configure users through nix only
     mutableUsers = false;

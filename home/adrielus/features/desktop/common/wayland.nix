@@ -1,6 +1,6 @@
 # Common wayland stuff
 { lib, pkgs, upkgs, ... }: {
-  imports = [ ../common/wofi.nix ];
+  imports = [ ./wofi.nix ./dunst.nix ];
 
   # Makes some stuff run on wayland (?)
   # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)
@@ -26,23 +26,29 @@
     let
       _ = lib.getExe;
 
+      wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+      wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+
       # TODO: put this in it's own file perhaps?
       # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)
       wl-ocr = pkgs.writeShellScriptBin "wl-ocr" ''
         ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - \
           | ${_ pkgs.tesseract5} - - \
-          | ${pkgs.wl-clipboard}/bin/wl-copy
+          | ${wl-copy}
+        ${_ pkgs.libnotify} "Run ocr on area with output \"$(${wl-paste})\""
       '';
     in
     with pkgs; [
-      # utils
+      # Utils
+      libnotify # Send notifications
       wl-ocr # Custom ocr script
       wl-clipboard # Clipboard manager
       wlogout # Nice logout script
+
       # REASON: not available on stable yet
       upkgs.hyprpicker # Color picker
 
-      # screenshot related tools
+      # Screenshot related tools
       grim # Take screenshot
       slurp # Area selector
     ];
