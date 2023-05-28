@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
   imports = [
     ../common/global
     ../common/users/adrielus.nix

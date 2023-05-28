@@ -1,14 +1,15 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./global
-    ./features/desktop/common/discord.nix
-    ./features/desktop/common/signal.nix
-    ./features/desktop/common/qbittorrent.nix
-    ./features/desktop/common/zathura.nix
-    ./features/desktop/common/firefox
-    ./features/desktop/xmonad.nix
-    ./features/desktop/hyprland
-    ./features/desktop
+
+    ./features/desktop/discord.nix
+    ./features/desktop/signal.nix
+    ./features/desktop/qbittorrent.nix
+    ./features/desktop/zathura.nix
+    ./features/desktop/firefox
+
+    ./features/xorg/xmonad.nix
+    ./features/wayland/hyprland
     ./features/games
   ];
 

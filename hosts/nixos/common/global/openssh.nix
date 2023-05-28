@@ -44,11 +44,19 @@ in
 
   # Add each host in this repo to the knownHosts list
   programs.ssh = {
-    knownHosts = builtins.mapAttrs
-      (name: _: {
-        publicKeyFile = pubKey name;
-        extraHostNames = lib.optional (name == hostname) "localhost";
-      })
-      hosts;
+    knownHosts = lib.pipe hosts [
+      # attrsetof host -> attrsetof { ... }
+      (builtins.mapAttrs
+        # string -> host -> { ... }
+        (name: _: {
+          publicKeyFile = pubKey name;
+          extraHostNames = lib.optional (name == hostname) "localhost";
+        }))
+
+      # attrsetof { ... } -> attrsetof { ... }
+      (lib.attrset.filterAttrs
+        # string -> { ... } -> bool
+        (_: { publicKeyFile, ... }: builtins.pathExists publicKeyFile))
+    ];
   };
 }

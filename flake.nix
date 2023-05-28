@@ -1,6 +1,7 @@
 {
   description = "Satellite";
 
+  # {{{ Inputs
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
@@ -61,9 +62,11 @@
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
+  # }}}
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
+      # {{{ Common helpers 
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
         "aarch64-linux"
@@ -75,17 +78,20 @@
 
       specialArgs = system: {
         inherit inputs outputs;
+        # This is used so often it makes sense to have it as it's own thing
         upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       };
+      # }}}
     in
     {
+      # {{{ Packages
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
         in import ./pkgs { inherit pkgs; }
       );
-
-      # Devshell for bootstrapping
+      # }}}
+      # {{{ Bootstrapping and other pinned devshells
       # Acessible through 'nix develop'
       devShells = forAllSystems
         (system:
@@ -96,7 +102,8 @@
             devshells = import ./devshells args;
           in
           devshells // { inherit default; });
-
+      # }}}
+      # {{{ Overlays and modules
       # Custom packages and modifications, exported as overlays
       overlays = import ./overlays;
 
@@ -105,41 +112,65 @@
 
       # Reusable home-manager modules
       homeManagerModules = import ./modules/home-manager // import ./modules/common;
-
+      # }}}
+      # {{{ Nixos
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#...
-      nixosConfigurations = {
-        tethys = let system = "x86_64-linux"; in
-          nixpkgs.lib.nixosSystem {
+      nixosConfigurations =
+        let
+          nixos = { system, hostname }: nixpkgs.lib.nixosSystem {
             specialArgs = specialArgs system;
 
             modules = [
               home-manager.nixosModules.home-manager
               {
-                home-manager.users.adrielus = import ./home/adrielus/tethys.nix;
+                home-manager.users.adrielus = import ./home/tethys.nix;
                 home-manager.extraSpecialArgs = specialArgs system;
                 home-manager.useUserPackages = true;
                 stylix.homeManagerIntegration.followSystem = false;
                 stylix.homeManagerIntegration.autoImport = false;
               }
 
-              ./hosts/nixos/tethys
+              ./hosts/nixos/${hostname}
             ];
           };
-      };
-
+        in
+        {
+          tethys = nixos {
+            system = "x86_64-linux";
+            hostname = "tethys";
+          };
+          euporie = nixos {
+            system = "x86_64-linux";
+            hostname = "euporie";
+          };
+        };
+      # }}}
+      # {{{ Home manager
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#...
-      homeConfigurations = {
-        "adrielus@tethys" = let system = "x86_64-linux"; in
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.${system};
-            extraSpecialArgs = specialArgs system;
-            modules = [
-              ./home/adrielus/tethys.nix
-            ];
+      homeConfigurations =
+        let
+          mkHomeConfig = { system, hostname }:
+            home-manager.lib.homeManagerConfiguration {
+              pkgs = nixpkgs.legacyPackages.${system};
+              extraSpecialArgs = specialArgs system;
+              modules = [
+                ./home/${hostname}.nix
+              ];
+            };
+        in
+        {
+          "adrielus@tethys" = mkHomeConfig {
+            system = "x86_64-linux";
+            hostname = "tethys";
           };
-      };
+          "guest@euporie" = mkHomeConfig {
+            system = "x86_64-linux";
+            hostname = "euporie";
+          };
+        };
+      # }}}
     };
 
   # {{{ Caching and whatnot

@@ -1,4 +1,4 @@
-{ pkgs, outputs, config, ... }:
+{ pkgs, outputs, config, lib, ... }:
 let
   # Record containing all the hosts
   hosts = outputs.nixosConfigurations;
@@ -16,37 +16,36 @@ in
 
     # Create an user named adrielus
     users.adrielus = {
-      # Make fish the default shell
-      shell = pkgs.fish;
+      # Adds me to some default groups, and creates the home dir 
+      isNormalUser = true;
 
       # File containing my password, managed by agenix
       passwordFile = config.age.secrets.adrielusPassword.path;
 
+      # Set default shell
+      shell = pkgs.fish;
+
       # Add user to the following groups
       extraGroups = [
-        "wheel" # access to sudo
-        "network" # for wireless stuff
-        "networkmanager" # I assume this let's me access network stuff?
-        "lp" # Allows me to use printers
-        "docker" # Allows me to use docker (?)
-        "audio" # Allows me to use audio devices
-        "video" # Allows me to use a webcam
-        "uinput" # I think this let's me write to virtual devices
-        "input" # Does this let me use evdev (?)
-
-        # TODO: find out why I added these here a long time ago
-        "sound"
-        "tty"
+        "wheel" # Access to sudo
+        "lp" # Printers
+        "audio" # Audio devices
+        "video" # Webcam and the like
+        "network" # for wireless stuff (???)
       ];
 
-      # Adds me to some default groups, and creates the home dir 
-      isNormalUser = true;
-
       openssh.authorizedKeys.keyFiles =
-        builtins.attrValues # attrsetof path -> path[]
-          (builtins.mapAttrs # ... -> attrsetof host -> attrsetof path
-            (name: _: idKey name) # string -> host -> path
-            hosts);
+        lib.pipe hosts [
+          # attrsetof host -> attrsetof path
+          (builtins.mapAttrs
+            (name: _: idKey name)) # string -> host -> path
+
+          # attrsetof path -> path[]
+          builtins.attrValues
+
+          # path[] -> path[]
+          (builtins.filter builtins.pathExists)
+        ];
     };
   };
 }

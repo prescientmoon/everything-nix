@@ -1,6 +1,11 @@
 # Common wayland stuff
 { lib, pkgs, upkgs, ... }: {
-  imports = [ ./wofi.nix ./dunst.nix ];
+
+  imports = [
+    ./wofi.nix
+    ./dunst.nix
+    ../desktop/wezterm # Default hyprland terminal
+  ];
 
   # Makes some stuff run on wayland (?)
   # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)

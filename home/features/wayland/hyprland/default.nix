@@ -1,5 +1,5 @@
 { pkgs, inputs, ... }: {
-  imports = [ ../common/wayland.nix ];
+  imports = [ ../default.nix ];
 
   home.packages = [ inputs.hyprland-contrib.packages.${pkgs.system}.grimblast ];
 

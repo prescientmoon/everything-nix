@@ -1,6 +1,6 @@
 { inputs, lib, pkgs, config, outputs, ... }:
 let
-  # Extra modules to import
+  # {{{ Imports
   imports = [
     inputs.stylix.homeManagerModules.stylix
     inputs.homeage.homeManagerModules.homeage
@@ -12,17 +12,19 @@ let
     ../features/neovim
     ../../../common
   ];
-
-  # Extra overlays to add
+  # }}} 
+  # {{{ Overlays
   overlays = [
     # inputs.neovim-nightly-overlay.overlay
     inputs.agenix.overlay
   ];
+  # }}}
 in
 {
   # Import all modules defined in modules/home-manager
   imports = builtins.attrValues outputs.homeManagerModules ++ imports;
 
+  # {{{ Nixpkgs
   nixpkgs = {
     # Add all overlays defined in the overlays directory
     overlays = builtins.attrValues outputs.overlays ++ overlays;
@@ -33,6 +35,7 @@ in
       allowUnfreePredicate = (_: true);
     };
   };
+  # }}}
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
@@ -59,10 +62,16 @@ in
   # Set the xdg env vars
   xdg.enable = true;
 
-  # Create xdg user directories
+  # {{{ Create xdg user directories
   xdg.userDirs = {
     enable = lib.mkDefault true;
     createDirectories = lib.mkDefault true;
     extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
   };
+  # }}}
+  # {{{ Ad-hoc stylix targets
+  stylix.targets.gtk.enable = true;
+  # TODO: is this useful outside xorg?
+  stylix.targets.xresources.enable = true;
+  # }}}
 }

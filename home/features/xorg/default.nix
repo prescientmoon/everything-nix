@@ -1,16 +1,15 @@
 { pkgs, ... }: {
   imports = [
-    ./common/rofi
-    ./common/polybar
-    ./common/eww
-    ./common/feh.nix
+    ../desktop/eww
+    ./rofi
+    ./polybar
+    ./feh.nix
   ];
 
   # Other packages I want to install:
   home.packages = with pkgs; [
     xclip # Clipboard stuff
     spectacle # Take screenshots
+    vimclip # Vim anywhere!
   ];
-
-  stylix.targets.xresources.enable = true;
 }
