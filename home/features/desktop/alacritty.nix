@@ -12,7 +12,11 @@
         y = 4;
       };
 
-      env = { TERM = "tmux-256color"; };
+      env = {
+        TERM = "tmux-256color";
+        ALWAYS_TMUX = 1;
+      };
+
       working_directory = "${config.home.homeDirectory}/Projects/";
     };
   };

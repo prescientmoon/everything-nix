@@ -2,6 +2,7 @@
 if status is-interactive
 and not set -q TMUX
 and not set -q NO_TMUX
+and set -q ALWAYS_TMUX
     exec tmux attach -t Welcome || tmux || echo "Something went wrong trying to start tmux"
 end
 # }}}

@@ -35,5 +35,4 @@ in
       allowUnfree = true;
     };
   };
-
 }

@@ -1,11 +1,4 @@
 { pkgs, outputs, config, lib, ... }:
-let
-  # Record containing all the hosts
-  hosts = outputs.nixosConfigurations;
-
-  # Function from hostname to relative path to public ssh key
-  idKey = host: ../../${host}/id_ed25519.pub;
-in
 {
   # Password file stored through agenix
   age.secrets.adrielusPassword.file = ./adrielus_password.age;
@@ -35,17 +28,7 @@ in
       ];
 
       openssh.authorizedKeys.keyFiles =
-        lib.pipe hosts [
-          # attrsetof host -> attrsetof path
-          (builtins.mapAttrs
-            (name: _: idKey name)) # string -> host -> path
-
-          # attrsetof path -> path[]
-          builtins.attrValues
-
-          # path[] -> path[]
-          (builtins.filter builtins.pathExists)
-        ];
+        (import ./common.nix).authorizedKeys { inherit outputs lib; };
     };
   };
 }

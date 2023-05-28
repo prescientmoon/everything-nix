@@ -2,6 +2,7 @@
 let greeter = "enso";
 in
 {
+  services.xserver.enable = true;
   services.xserver.displayManager.lightdm = {
     enable = true;
 
@@ -16,6 +17,9 @@ in
       blur = true;
     };
   };
+
+  # Set default display manager
+  services.xserver.displayManager.defaultSession = lib.mkDefault "hyprland";
 
   stylix.targets.lightdm.enable = true;
 }

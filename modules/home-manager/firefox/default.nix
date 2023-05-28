@@ -11,6 +11,8 @@ in
     };
 
     app = lib.mkOption {
+      default = { };
+      description = "Attr set of firefox web apps to install as desktop apps";
       type = lib.types.attrsOf
         (lib.types.submodule ({ name, ... }: {
           options = {
@@ -50,8 +52,6 @@ in
             };
           };
         }));
-
-      description = "Attr set of firefox web apps to install as desktop apps";
     };
   };
 

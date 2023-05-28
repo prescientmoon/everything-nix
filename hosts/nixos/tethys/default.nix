@@ -25,10 +25,14 @@
 
   # {{{ A few ad-hoc hardware settings
   hardware.opengl.enable = true;
-  hardware.opentabletdrivers.enable = true;
+  hardware.opentabletdriver.enable = true;
   # }}}
   # {{{ A few ad-hoc programs
   programs.kdeconnect.enable = true;
   programs.extra-container.enable = true;
+  # }}}
+  # {{{ Ad-hoc stylix targets
+  # TODO: include this on all gui hosts
+  stylix.targets.gtk.enable = true;
   # }}}
 }

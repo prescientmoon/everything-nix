@@ -8,5 +8,5 @@ in
   "./hosts/nixos/common/users/adrielus_password.age".publicKeys = [ adrielus tethys ];
 
   # Scoped for the user
-  "./home/adrielus/features/desktop/common/wakatime/wakatime_config.age".publicKeys = [ adrielus ];
+  "./home/features/desktop/wakatime/wakatime_config.age".publicKeys = [ adrielus ];
 }

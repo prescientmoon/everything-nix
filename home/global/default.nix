@@ -10,7 +10,7 @@ let
 
     ../features/cli
     ../features/neovim
-    ../../../common
+    ../../common
   ];
   # }}} 
   # {{{ Overlays

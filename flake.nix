@@ -118,13 +118,13 @@
       # Available through 'nixos-rebuild --flake .#...
       nixosConfigurations =
         let
-          nixos = { system, hostname }: nixpkgs.lib.nixosSystem {
+          nixos = { system, hostname, user }: nixpkgs.lib.nixosSystem {
             specialArgs = specialArgs system;
 
             modules = [
               home-manager.nixosModules.home-manager
               {
-                home-manager.users.adrielus = import ./home/tethys.nix;
+                home-manager.users.${user} = import ./home/${hostname}.nix;
                 home-manager.extraSpecialArgs = specialArgs system;
                 home-manager.useUserPackages = true;
                 stylix.homeManagerIntegration.followSystem = false;
@@ -139,10 +139,13 @@
           tethys = nixos {
             system = "x86_64-linux";
             hostname = "tethys";
+            user = "adrielus";
           };
+
           euporie = nixos {
             system = "x86_64-linux";
             hostname = "euporie";
+            user = "guest";
           };
         };
       # }}}

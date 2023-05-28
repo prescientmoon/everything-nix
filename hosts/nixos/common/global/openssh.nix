@@ -54,7 +54,7 @@ in
         }))
 
       # attrsetof { ... } -> attrsetof { ... }
-      (lib.attrset.filterAttrs
+      (lib.attrsets.filterAttrs
         # string -> { ... } -> bool
         (_: { publicKeyFile, ... }: builtins.pathExists publicKeyFile))
     ];
