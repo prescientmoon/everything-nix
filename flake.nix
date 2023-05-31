@@ -181,6 +181,7 @@
     };
 
   # {{{ Caching and whatnot
+  # TODO: persist trusted substituters file
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org" # I think I need this for neovim-nightly?
