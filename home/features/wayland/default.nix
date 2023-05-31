@@ -1,9 +1,10 @@
 # Common wayland stuff
-{ lib, pkgs, upkgs, ... }: {
+{ lib, pkgs, upkgs, inputs, ... }: {
 
   imports = [
     ./wofi.nix
     ./dunst.nix
+    ./wlsunset.nix
     ../desktop/wezterm # Default hyprland terminal
   ];
 
@@ -49,6 +50,7 @@
       wl-ocr # Custom ocr script
       wl-clipboard # Clipboard manager
       wlogout # Nice logout script
+      wlsunset # Day/night gamma display adjustments
 
       # REASON: not available on stable yet
       upkgs.hyprpicker # Color picker

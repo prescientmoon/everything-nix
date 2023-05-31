@@ -61,6 +61,10 @@
     # Hyprland (available in nix unstable only atm)
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # Contains a bunch of wayland stuff not on nixpkgs
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
   # }}}
 
@@ -180,10 +184,12 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org" # I think I need this for neovim-nightly?
+      "https://nixpkgs-wayland.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
     ];
   };
   # }}}
