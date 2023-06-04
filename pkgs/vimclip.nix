@@ -1,13 +1,13 @@
 { pkgs, lib, ... }:
 let vimclip = pkgs.stdenv.mkDerivation rec {
   name = "vimclip";
-  rev = "7f53433";
+  rev = "52003cc31e6e1d20550cdf6b7d3bf1a019a34fa0";
 
   src = pkgs.fetchFromGitHub {
     inherit rev;
     owner = "hrantzsch";
     repo = "vimclip";
-    sha256 = "cl5y7Lli5frwx823hoN17B2aQLNY7+njmKEDdIbhc4Y=";
+    sha256 = "1ifsiiafvby8z9gp1x6fpfwklr6k9mg5vrajw9di06yixmrxzw7g";
   };
 
   installPhase = ''
