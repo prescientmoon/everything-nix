@@ -6,9 +6,8 @@ local M = {
   opts = {
     theme = "hyper",
     config = {
-      week_header = {
-        enable = true,
-      },
+      week_header = { enable = true },
+      project = { enable = false },
       -- TODO: actually customize these
       shortcut = {
         {

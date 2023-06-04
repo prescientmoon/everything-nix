@@ -10,6 +10,5 @@
   home.packages = with pkgs; [
     xclip # Clipboard stuff
     spectacle # Take screenshots
-    vimclip # Vim anywhere!
   ];
 }

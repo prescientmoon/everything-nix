@@ -146,6 +146,7 @@ in
   home.packages = [
     neovim
     neovide
+    pkgs.vimclip
   ];
   # }}}
   # {{{ Firenvim

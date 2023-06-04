@@ -10,4 +10,7 @@
     # ...
     # });
   };
+
+  # Wayland version of plover
+  plover = import ./plover.nix;
 }

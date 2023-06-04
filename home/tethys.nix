@@ -27,6 +27,7 @@
     kicad # PCB editing
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder
+    plover.dev # steno engine
 
     # Clis
     agenix # Secret encryption
