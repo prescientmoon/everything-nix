@@ -8,11 +8,6 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) based secret management
 - Sets up all the apps I use — including git, neovim, fish, tmux, starship, xmonad, rofi, polybar, discord, zathura, alacritty & more.
 
-### In the future I might start using any of the other cool nix-based tools, like:
-
-- [nix-darwin](https://github.com/LnL7/nix-darwin) - like nixos but for macs
-- [disko](https://github.com/nix-community/disko) - format disks using nix
-
 The current state of this repo is a refactor of my old, messy nixos config, based on the structure of [this template](https://github.com/Misterio77/nix-starter-configs).
 
 ### Hosts
@@ -20,6 +15,7 @@ The current state of this repo is a refactor of my old, messy nixos config, base
 This repo's structure is based on the concept of hosts - individual machines configured by me. I'm naming each host based on things in space/mythology (_they are the same picture_). The hosts I have right now are:
 
 - [tethys](./hosts/nixos) - my personal laptop
+- [euporie](./hosts/euporie) - barebones host for testing things insdie a VM
 
 ### File structure
 
@@ -60,9 +56,14 @@ Here's some things you might want to check out:
 - [Xmonad](https://xmonad.org/) - xorg window manager
   - [Polybar](https://github.com/polybar/polybar) - desktop bar
   - [Rofi](https://github.com/davatorium/rofi) - program launcher
+  - [Spectacle](https://apps.kde.org/spectacle/) - screenshot tool
 - [Hyprland](https://hyprland.org/) - wayland compositor
   - [Wlogout](https://github.com/ArtsyMacaw/wlogout) - wayland logout menu
   - [Wofi](https://sr.ht/~scoopta/wofi/) - program launcher
+  - [Hyprpicker](https://github.com/hyprwm/hyprpicker) - hyprland color picker
+  - [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) - screenshot tool
+  - [Dunst](https://dunst-project.org/) - notification daemon
+  - [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) - day/night screen gamma adjustements
 - [Neovim](https://neovim.io/) - my editor
   - [Neovide](https://neovide.dev/index.html) - neovim gui client
   - [Vimclip](https://github.com/hrantzsch/vimclip) - vim anywhere!
@@ -75,3 +76,17 @@ Here's some things you might want to check out:
 - [Zathura](https://pwmt.org/projects/zathura/) - pdf viewer
 - [Ranger](https://github.com/ranger/ranger) - file manager
 - [Firefox](https://www.mozilla.org/en-US/firefox/) - web browser
+- [Tesseract](https://github.com/tesseract-ocr/tesseract) - OCR engine
+- [Slambda](https://github.com/Mateiadrielrafael/slambda) - custom keyboard chording utility
+
+### Hall of fame
+
+Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here.
+
+### Future
+
+Tooling I might use in the future:
+- [nix-darwin](https://github.com/LnL7/nix-darwin) - like nixos but for macs
+- [disko](https://github.com/nix-community/disko) - format disks using nix
+- [zfs](https://openzfs.org/wiki/Main_Page) - filesystem
+- [eww](https://github.com/elkowar/eww) - widget framework
