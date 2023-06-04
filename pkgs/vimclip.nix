@@ -17,7 +17,7 @@ let vimclip = pkgs.stdenv.mkDerivation rec {
   '';
 }; in
 pkgs.writeShellScriptBin "vimclip" ''
-  if ["wayland" = $XDG_SESSION_TYPE]
+  if [ "wayland" = $XDG_SESSION_TYPE ]
   then
     export VIMCLIP_CLIPBOARD_COMMAND=${pkgs.wl-clipboard}/bin/wl-copy
   else
