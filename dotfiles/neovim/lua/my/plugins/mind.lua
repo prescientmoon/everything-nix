@@ -17,7 +17,7 @@ function M.config()
 
   mind.setup({
     persistence = {
-      state_path = "~/Mind/mind.json",
+      state_path = "~/Projects/Mind/mind.json",
       data_dir = "~/Mind/data",
     },
     ui = {

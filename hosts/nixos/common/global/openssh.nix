@@ -34,8 +34,8 @@ in
       let mkKey = type: path: extra: { inherit type path; } // extra;
       in
       [
-        (mkKey "ed25519" "/persist/etc/ssh/ssh_host_ed25519_key" { })
-        (mkKey "rsa" "/persist/etc/ssh/ssh_host_rsa_key" { bits = 4096; })
+        (mkKey "ed25519" "/persist/state/etc/ssh/ssh_host_ed25519_key" { })
+        (mkKey "rsa" "/persist/state/etc/ssh/ssh_host_rsa_key" { bits = 4096; })
       ];
   };
 

@@ -3,14 +3,11 @@
     ./global
 
     ./features/desktop/discord.nix
-    ./features/desktop/signal.nix
-    ./features/desktop/qbittorrent.nix
     ./features/desktop/zathura.nix
     ./features/desktop/firefox
 
     ./features/xorg/xmonad.nix
     ./features/wayland/hyprland
-    ./features/games
   ];
 
   # Arbitrary extra packages
@@ -25,9 +22,13 @@
     libreoffice # Free office suite
     lmms # Music software
     kicad # PCB editing
+    plover.dev # steno engine
+    qbittorrent # Torrent client
+    signal-desktop # Signal client
+    wine # Windows compat layer or whatever
+    lutris # Game launcher
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder
-    plover.dev # steno engine
 
     # Clis
     agenix # Secret encryption
@@ -46,12 +47,19 @@
 
       # Actual data/media (eg: projects, images, videos, etc)
       at.data.path = "/persist/data";
+      at.data.prefixDirectories = false;
 
       # App state I want to keep
       at.state.path = "/persist/state";
 
       # App state which I should be able to delete at any point
-      at.cache.path = "/persist/cache";
+      at.cache.path = "/persist/local/cache";
     };
   };
+
+  monitors = [{
+    name = "eDP-1";
+    width = 1920;
+    height = 1080;
+  }];
 }

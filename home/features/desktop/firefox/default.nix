@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   # {{{ Global extensions
   extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
@@ -227,11 +227,13 @@ in
   # Tell apps firefox is the default browser using an env var.
   home.sessionVariables.BROWSER = "firefox";
   # }}}
-
   # {{{ Persistence
-  home.persistence."/persist/home/adrielus".directories = [
-    ".cache/mozilla/firefox" # Non important cache
+  satellite.persistence.at.state.apps.Firefox.directories = [
     ".mozilla/firefox" # More important stuff
+  ];
+
+  satellite.persistence.at.cache.apps.Firefox.directories = [
+    "${config.xdg.cacheHome}/mozilla/firefox" # Non important cache
   ];
   # }}}
 }

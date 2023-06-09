@@ -10,6 +10,7 @@ let
 
     ../features/cli
     ../features/neovim
+    ../features/persistence.nix
     ../../common
   ];
   # }}} 
@@ -62,10 +63,10 @@ in
   # Set the xdg env vars
   xdg.enable = true;
 
-  # {{{ Create xdg user directories
+  # {{{ Xdg user directories
   xdg.userDirs = {
     enable = lib.mkDefault true;
-    createDirectories = lib.mkDefault true;
+    createDirectories = lib.mkDefault false;
     extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
   };
   # }}}

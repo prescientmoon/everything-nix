@@ -25,7 +25,6 @@
 
   # {{{ A few ad-hoc hardware settings
   hardware.opengl.enable = true;
-  # TODO: persistence of config 
   hardware.opentabletdriver.enable = true;
   # }}}
   # {{{ A few ad-hoc programs

@@ -33,19 +33,19 @@
     };
 
     # Imperative
-    allowAuxiliaryImperativeNetworks = true;
-    userControlled = {
-      enable = true;
-      group = "network";
-    };
+    # allowAuxiliaryImperativeNetworks = true;
+    # userControlled = {
+    #   enable = true;
+    #   group = "network";
+    # };
   };
 
   # Ensure group exists
   users.groups.network = { };
 
-  # TODO: figure out why this does not work!
   # Persist imperative config
-  # environment.persistence."/persist".files = [
-  #   "/etc/wpa_supplicant.conf"
-  # ];
+  environment.persistence."/persist/state".files = [
+    # TODO: investigate why this doesn't work
+    # "/etc/wpa_supplicant.conf"
+  ];
 }
