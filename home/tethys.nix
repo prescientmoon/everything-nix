@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     ./global
 
@@ -31,7 +31,7 @@
     # obs-studio # video recorder
 
     # Clis
-    agenix # Secret encryption
+    inputs.agenix.packages.${pkgs.system}.agenix # Secret encryption
     sherlock # Search for usernames across different websites
   ];
 

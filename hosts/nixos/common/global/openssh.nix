@@ -14,20 +14,19 @@ in
   services.openssh = {
     enable = true;
 
-    # Forbid root login through SSH.
-    permitRootLogin = "no";
 
-    # Use keys only. Remove if you want to SSH using password (not recommended)
-    passwordAuthentication = false;
+    settings = {
+      # Forbid root login through SSH.
+      PermitRootLogin = "no";
+
+      # Use keys only. Remove if you want to SSH using password (not recommended)
+      PasswordAuthentication = false;
+    };
 
     # Automatically remove stale sockets
     extraConfig = ''
       StreamLocalBindUnlink yes
     '';
-
-    # TODO: look into what this does
-    # Allow forwarding ports to everywhere
-    gatewayPorts = "clientspecified";
 
     # Generate ssh key
     hostKeys =

@@ -6,6 +6,7 @@
     ./dunst.nix
     ./wlsunset.nix
     ../desktop/wezterm # Default hyprland terminal
+    ../desktop/batsignal.nix
   ];
 
   # Makes some stuff run on wayland (?)

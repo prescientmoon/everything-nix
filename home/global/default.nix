@@ -17,7 +17,6 @@ let
   # {{{ Overlays
   overlays = [
     # inputs.neovim-nightly-overlay.overlay
-    inputs.agenix.overlay
   ];
   # }}}
 in
@@ -51,7 +50,7 @@ in
   home = {
     username = lib.mkDefault "adrielus";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "22.11";
+    stateVersion = lib.mkDefault "23.05";
   };
 
   # Where homeage should look for our ssh key

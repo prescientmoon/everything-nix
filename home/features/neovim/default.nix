@@ -10,6 +10,7 @@ let
     upkgs.lua-language-server # lua
     rnix-lsp # nix
     nil # nix
+    inputs.nixd.packages.${system}.nixd # nix
     haskell-language-server # haskell
     dhall-lsp-server # dhall
     tectonic # something related to latex (?)

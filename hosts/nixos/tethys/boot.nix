@@ -33,7 +33,6 @@
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
-      version = 2;
     };
   };
 }

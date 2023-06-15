@@ -5,14 +5,11 @@
 
   # Personal things
   firefox = import ./firefox;
+  monitors = import ./monitors.nix;
   satellite-dev = import ./satellite-dev.nix;
   satellite-persistence = import ./persistence.nix;
-  monitors = import ./monitors.nix;
 
   # Should upstream
   discord = import ./discord.nix;
   hyprpaper = import ./hyprpaper.nix;
-
-  # Temporary
-  wofi = import ./wofi.nix;
 }

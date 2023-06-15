@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ../desktop/eww
+    ../desktop/batsignal.nix
     ./rofi
     ./polybar
     ./feh.nix

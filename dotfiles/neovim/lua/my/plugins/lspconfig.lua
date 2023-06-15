@@ -167,23 +167,30 @@ local servers = {
     },
   },
   -- }}}
+  -- {{{ Nix
   rnix = {},
   nil_ls = {},
+  nixd = {},
+  -- }}}
   cssls = {},
   jsonls = {},
   dhall_lsp_server = {},
   typst_lsp = {},
+  -- {{{ Inactive
   -- pylsp = {},
   -- pyright = {},
+  -- }}}
 }
 -- }}}
 -- {{{ Capabilities
 M.capabilities = function()
-  -- require("lazy").load({ plugins = "hrsh7th/cmp-nvim-lsp" })
   local c = require("cmp_nvim_lsp").default_capabilities()
   -- Add folding capabilities
-  c.textDocument.foldingRange =
-  { dynamicRegistration = false, lineFoldingOnly = true }
+  c.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+
   return c
 end
 -- }}}

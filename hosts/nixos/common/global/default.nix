@@ -2,12 +2,12 @@
 { inputs, outputs, lib, ... }:
 let
   imports = [
-    inputs.agenix.nixosModule
+    inputs.hyprland.nixosModules.default
+    inputs.agenix.nixosModules.default
     inputs.stylix.nixosModules.stylix
-    inputs.slambda.nixosModule
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModule
-    inputs.hyprland.nixosModules.default
+    inputs.slambda.nixosModule
 
     ./nix.nix
     ./openssh.nix

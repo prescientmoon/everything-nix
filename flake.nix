@@ -4,10 +4,14 @@
   # {{{ Inputs
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
 
     # Nixpkgs-unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # NUR
     nur.url = "github:nix-community/NUR";
@@ -15,10 +19,6 @@
     # Firefox addons
     firefox-addons.url = "git+https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Agenix
     agenix.url = "github:ryantm/agenix";
@@ -34,6 +34,8 @@
 
     # Stylix
     stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.inputs.home-manager.follows = "home-manager";
 
     # Catpuccin base16 color schemes
     catppuccin-base16.url = "github:catppuccin/base16";
@@ -65,6 +67,11 @@
     # Contains a bunch of wayland stuff not on nixpkgs
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # Nix language server
+    # [the docs](https://github.com/nix-community/nixd/blob/main/docs/user-guide.md#installation)
+    # tell me not to override the nixpkgs input.
+    nixd.url = "github:nix-community/nixd";
   };
   # }}}
 
