@@ -1,0 +1,3 @@
+{
+  services.keepassx.enable = true;
+}

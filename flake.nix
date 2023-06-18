@@ -72,6 +72,10 @@
     # [the docs](https://github.com/nix-community/nixd/blob/main/docs/user-guide.md#installation)
     # tell me not to override the nixpkgs input.
     nixd.url = "github:nix-community/nixd";
+
+    # Spotify client
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
   # }}}
 

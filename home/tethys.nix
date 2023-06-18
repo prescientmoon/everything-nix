@@ -2,9 +2,10 @@
   imports = [
     ./global
 
-    ./features/desktop/discord.nix
     ./features/desktop/zathura.nix
+    ./features/desktop/spotify.nix
     ./features/desktop/firefox
+    ./features/desktop/discord
 
     ./features/xorg/xmonad.nix
     ./features/wayland/hyprland

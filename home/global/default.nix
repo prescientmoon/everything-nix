@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, config, outputs, ... }:
+{ inputs, lib, config, outputs, ... }:
 let
   # {{{ Imports
   imports = [
@@ -7,6 +7,7 @@ let
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.hyprland.homeManagerModules.default
+    inputs.spicetify-nix.homeManagerModules.spicetify
 
     ../features/cli
     ../features/neovim

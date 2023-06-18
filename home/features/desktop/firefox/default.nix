@@ -95,7 +95,6 @@ in
             type = "options";
           };
 
-          # Purescript packages
           "Pursuit" = mkBasicSearchEngine {
             url = "https://pursuit.purescript.org/search";
             param = "q";
@@ -130,6 +129,12 @@ in
             url = "https://rainworld.miraheze.org/w/index.php";
             param = "search";
             aliases = [ "@rw" "@rain-world" ];
+          };
+
+          "Arch wiki" = mkBasicSearchEngine {
+            url = "https://wiki.archlinux.org/index.php";
+            param = "search";
+            aliases = [ "@aw" "@arch-wiki" ];
           };
 
           "Factorio wiki" = mkBasicSearchEngine {

@@ -9,4 +9,5 @@ in
 
   # Scoped for the user
   "./home/features/desktop/wakatime/wakatime_config.age".publicKeys = [ adrielus ];
+  "./home/features/desktop/spotifyd/password.age".publicKeys = [ adrielus ];
 }

@@ -11,17 +11,17 @@
     # });
 
     # {{{ Wezterm
-    # REASON: https://github.com/wez/wezterm/issues/3529 doesn't seem to be fixed on stable
-    wezterm = prev.wezterm.overrideAttrs (_: {
-      version = "unstable-2023-06-12";
-      src = prev.fetchFromGitHub {
-        owner = "wez";
-        repo = "wezterm";
-        rev = "baf9d970816e015bee41ed5eb9186ef7f71c454c";
-        hash = "sha256-0pqfpn12963hfwdhgdwx9fwjngv6j2i6w9d20hcp1saxfd7q5l7m";
-        fetchSubmodules = true;
-      };
-    });
+    # # REASON: https://github.com/wez/wezterm/issues/3529 doesn't seem to be fixed on stable
+    # wezterm = prev.wezterm.overrideAttrs (_: {
+    #   version = "unstable-2023-06-12";
+    #   src = prev.fetchFromGitHub {
+    #     owner = "wez";
+    #     repo = "wezterm";
+    #     rev = "baf9d970816e015bee41ed5eb9186ef7f71c454c";
+    #     sha256 = "0pqfpn12963hfwdhgdwx9fwjngv6j2i6w9d20hcp1saxfd7q5l7m";
+    #     fetchSubmodules = true;
+    #   };
+    # });
     # }}}
   };
 
