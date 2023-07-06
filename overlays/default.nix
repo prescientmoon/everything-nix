@@ -23,6 +23,17 @@
     #   };
     # });
     # }}}
+    # {{{ Discordchatexporter
+    discordchatexporter-cli = prev.discordchatexporter-cli.overrideAttrs (_: rec {
+      version = "unstable-2023-06-21";
+      src = prev.fetchFromGitHub {
+        owner = "tyrrrz";
+        repo = "discordchatexporter";
+        rev = "bd4cfcdaf6abe0bd8863d5a4b3f2df2da838aea4";
+        sha256 = "05j6y033852nm0fxhyv4mr4hnqc87nnkk85bw6sgf9gryjpxdcrq";
+      };
+    });
+    # }}}
   };
 
   # Wayland version of plover

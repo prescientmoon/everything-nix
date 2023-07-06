@@ -12,6 +12,7 @@
     networks = {
       "Neptune".psk = "@PHONE_HOTSPOT_PASS@";
       "Familia-Matei".psk = "@TG_HOME_PASS@";
+      "Familia-Matei-PRO".psk = "@TG_HOME_PASS@";
       "Sailhorse".psk = "@NL_SAILHORSE_PASS@";
 
       "FOSDEM-Dualstack" = { };
@@ -33,11 +34,11 @@
     };
 
     # Imperative
-    # allowAuxiliaryImperativeNetworks = true;
-    # userControlled = {
-    #   enable = true;
-    #   group = "network";
-    # };
+    allowAuxiliaryImperativeNetworks = true;
+    userControlled = {
+      enable = true;
+      group = "network";
+    };
   };
 
   # Ensure group exists

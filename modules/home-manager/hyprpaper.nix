@@ -25,9 +25,9 @@ in
       '';
     };
 
+    # TODO: what should the default value be for this?
     systemdTarget = mkOption {
       type = types.str;
-      default = "graphical-session.target";
       description = ''
         Systemd target to bind to.
       '';
@@ -90,8 +90,8 @@ in
 
     systemd.user.services.hyprpaper = {
       Unit = {
-        Description = "Wayland wallpaper service";
-        PartOf = [ "graphical-session.target" ];
+        Description = "Hyprland wallpaper daemon";
+        Requires = [ "graphical-session.target" ];
       };
 
       Service = {

@@ -1,0 +1,20 @@
+scheme: Purplepink Light
+
+author: OpenAI
+
+base00: "#f9f7ff"  # Background
+base01: "#f2e9ff"  # Current line
+base02: "#d9c7eb"  # Selection
+base03: "#b8a4d8"  # Comment
+base04: "#6e579f"  # Foreground
+base05: "#564c74"  # Light Foreground
+base06: "#45385b"  # Dark Foreground
+base07: "#331f33"  # Contrast Foreground
+base08: "#ee8ae5"  # Primary Accent (Pink)
+base09: "#d670c9"  # Secondary Accent (Purple)
+base0A: "#9f70c9"  # Tertiary Accent (Deep Purple)
+base0B: "#61d6cf"  # Bright Aqua
+base0C: "#9fd2e5"  # Light Blue
+base0D: "#4a8ee0"  # Bright Blue
+base0E: "#ed6e61"  # Coral
+base0F: "#e58f79"  # Salmon

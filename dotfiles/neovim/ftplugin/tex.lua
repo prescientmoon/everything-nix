@@ -9,6 +9,7 @@ vim.opt.conceallevel = 0
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldmethod = "expr"
 
+-- {{{ Older functions for calculating things inside vim
 -- vim.keymap.set("n", "<leader>lg", function()
 --   if not pcall(function()
 --     local a = tonumber(vim.fn.input("A: "))
@@ -28,6 +29,7 @@ vim.opt.foldmethod = "expr"
 --     vim.fn.input("Result: " .. require("my.helpers.math.mod").modinverse(num, class))
 --   end) then vim.fn.input("No results exist") end
 -- end, { buffer = true, desc = "Mod inverse calculator" })
+-- }}}
 
 local abbreviations = {
   -- Greek chars
@@ -41,10 +43,14 @@ local abbreviations = {
   { "theta", "\\theta" },
   { "gamma", "\\gamma" },
   { "lam", "\\lambda" },
+  { "lambda", "\\lambda" },
+  { "omega", "\\omega" },
+  { "Omega", "\\Omega" },
   { "nuls", "\\varnothing" }, -- Other fancy symvols
 
   { "tmat", "^T" }, -- Tranpose of a matrix
   { "cmat", "^*" }, -- Conjugate of a matrix
+  { "sneg", "^C" }, -- Set complement
   { "ortco", "^{\\bot}" }, -- Orthogonal complement
   { "sinter", "^{\\circ}" }, -- Interior of a set
 
@@ -87,9 +93,8 @@ local abbreviations = {
   { "abs", "\\abs" }, -- custom abs command
   { "norm", "\\norm" }, -- custom norm command
   { "iprod", "\\iprod" }, -- custom inner product command
-
-  -- words
-  { "rref", "reduced row echalon form" },
+  { "diprod", "\\dprod" }, -- custom self inner product command
+  { "prob", "\\prob" }, -- custom probability function
 }
 
 -- Todo: convert exponents and subscripts
@@ -102,15 +107,16 @@ local abolishAbbreviations = {
   { "tits", "that is to say," },
   { "wpbd", "we will prove the statement in both directions." },
   { "stam{,s}", "statement{}" },
-  { "nb{,h}{,s}", "neighbour{,hood}{}" },
   { "{ww,tt}{m,i}", "{which,this} {means,implies}" },
   { "cex{,s}", "counterexample{}" },
   { "er{t,s,r}", "{transitivity,symmetry,reflexivity}" },
 
-  -- Calculus
+  -- Calculus & analysis
   { "ib{p,s}", "integration by {parts,substitution}" },
+  { "nb{,h}{,s}", "neighbour{,hood}{}" },
 
   -- Linear algebra
+  { "rref", "reduced row echalon form" },
   { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },
   { "mx{,s}", "matri{x,ces}" },
   { "dete{,s}", "determinant{}" },
@@ -127,7 +133,7 @@ local abolishAbbreviations = {
 
   -- Graph theory
   { "vx{,s}", "vert{ex,ices}" },
-  { "eg{,s}", "edge{}" },
+  { "edg{,s}", "edge{}" },
 
   -- Linear systems
   -- Note: we must add the space inside the {} in order for capitalization to work!
@@ -219,7 +225,11 @@ local abolishAbbreviations = {
   },
 }
 
+
 local expanded = scrap.expand_many(abolishAbbreviations)
+
+-- Last I checked this contained 1166 abbreviations
+-- print(#abbreviations + #expanded)
 
 A.manyLocalAbbr(abbreviations)
 A.manyLocalAbbr(expanded)

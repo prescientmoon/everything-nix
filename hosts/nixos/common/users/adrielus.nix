@@ -24,7 +24,7 @@
         "lp" # Printers
         "audio" # Audio devices
         "video" # Webcam and the like
-        "network" # for wireless stuff (???)
+        "network" # wpa_supplicant
       ];
 
       openssh.authorizedKeys.keyFiles =

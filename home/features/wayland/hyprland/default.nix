@@ -23,12 +23,13 @@ in
 
   services.hyprpaper = {
     enable = true;
+    systemdTarget = "hyprland-session.target";
+
     preload = [ config.stylix.image ];
-    wallpapers = [
-      { image = config.stylix.image; }
-    ] ++ lib.forEach enabledMonitors ({ name, ... }: {
-      monitor = name;
-      image = config.stylix.image;
-    });
+    wallpapers = [{ inherit (config.stylix) image; }] ++
+      lib.forEach enabledMonitors ({ name, ... }: {
+        monitor = name;
+        image = config.stylix.image;
+      });
   };
 }

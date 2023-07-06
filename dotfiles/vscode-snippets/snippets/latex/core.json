@@ -23,10 +23,20 @@
     "description": "Norm of a vector",
     "body": "\\norm{$1}$0"
   },
+  "Probability function": {
+    "prefix": "prob",
+    "description": "Probability function applied to some set",
+    "body": "\\prob{$1}$0"
+  },
   "Inner product": {
     "prefix": "iprod",
     "description": "Inner product of two vectors",
     "body": "\\iprod{$1}{$2}$0"
+  },
+  "Self inner product": {
+    "prefix": "diprod",
+    "description": "Inner product of a vector with itself",
+    "body": "\\dprod{$1}{$1}$0"
   },
   "Lemma": {
     "prefix": "lemma",

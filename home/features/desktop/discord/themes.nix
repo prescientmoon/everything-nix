@@ -16,5 +16,6 @@ lib.fix (self: {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-macchiato.theme.css";
     sha256 = "1wnphnzgv90r5zgxrr5w36pm1wa5qmkyb72gylj4j1wrk3h7vfvc";
   };
-  default = self."Catppuccin Macchiato";
+  default.dark = self."Catppuccin Macchiato";
+  default.light = self."Catppuccin Latte";
 })
