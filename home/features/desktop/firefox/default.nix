@@ -181,13 +181,15 @@ in
     apps.extensions = extensions;
     apps.app = {
       # {{{ Job stuff
+      # {{{ Asana
       asana = {
         url = "https://app.asana.com/";
         icon = ./icons/asana.png;
         displayName = "Asana";
         id = 1;
       };
-
+      # }}}
+      # {{{ Clockodo
       clockodo = {
         url = "https://my.clockodo.com/en/";
         icon = ./icons/clockodo.png;
@@ -195,27 +197,39 @@ in
         id = 2;
       };
       # }}}
-
+      # }}}
+      # {{{ Gitlab
       gitlab = {
         url = "https://gitlab.com";
         icon = ./icons/gitlab.png;
         displayName = "Gitlab";
         id = 3;
       };
-
+      # }}}
+      # {{{ Desmos
       desmos = {
         url = "https://www.desmos.com/calculator";
         icon = ./icons/desmos.png;
         displayName = "Desmos";
         id = 4;
       };
-
+      # }}}
+      # {{{ Monkey type
       monkey-type = {
         url = "https://monkeytype.com/";
         icon = ./icons/monkeytype.png;
         displayName = "Monkeytype";
         id = 5;
       };
+      # }}}
+      # {{{ Syncthing
+      syncthing = {
+        url = "http://localhost:8384/";
+        icon = ./icons/syncthing.png;
+        displayName = "Syncthing";
+        id = 6;
+      };
+      # }}}
     };
     # }}}
   };

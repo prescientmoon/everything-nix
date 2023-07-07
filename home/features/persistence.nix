@@ -41,12 +41,12 @@
   # }}}
   # {{{ Neovim
   satellite.persistence.at.cache.apps.Neovim.directories = [
-  #  "${config.xdg.dataHome}/nvim"
+    #  "${config.xdg.dataHome}/nvim"
   ];
   # }}}
   # {{{ SSH
   satellite.persistence.at.state.apps.Ssh.directories = [
-  #  ".ssh"
+    #  ".ssh"
   ];
   # }}}
   # {{{ QBittorrent
@@ -94,5 +94,10 @@
   # }}}
   # {{{ Wine
   satellite.persistence.at.state.apps.Wine.directories = [ ".wine" ];
+  # }}}
+  # {{{ Syncthing
+  satellite.persistence.at.state.apps.Syncthing.directories = [
+    "${config.xdg.configHome}/syncthing" # Syncthing config data
+  ];
   # }}}
 }

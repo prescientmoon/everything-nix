@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -7,6 +7,12 @@
 
     userName = "Matei Adriel";
     userEmail = "rafaeladriel11@gmail.com";
+
+    ignores = [
+      # Syncthing
+      ".stfolder"
+      ".stversions"
+    ];
 
     extraConfig = {
       github.user = "Mateiadrielrafael";
