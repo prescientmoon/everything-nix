@@ -12,6 +12,7 @@
     ../common/optional/xdg-portal.nix
     ../common/optional/hyprland.nix
     ../common/optional/syncthing.nix
+    ../common/optional/gitea.nix
     ../common/optional/xmonad
 
     ./hardware-configuration.nix
