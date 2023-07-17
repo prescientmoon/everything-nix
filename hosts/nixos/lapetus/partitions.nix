@@ -2,7 +2,7 @@
   disko.devices = {
     # {{{ Disks
     disk = {
-      vdb = {
+      x = {
         type = "disk";
         device = builtins.elemAt disks 0;
         content = {
@@ -11,7 +11,7 @@
           partitions = [
             {
               name = "ESP";
-              start = "0MiB";
+              start = "0";
               end = "64MiB";
               fs-type = "fat32";
               bootable = true;
