@@ -10,7 +10,6 @@ let
     inputs.spicetify-nix.homeManagerModules.spicetify
 
     ../features/cli
-    ../features/neovim
     ../features/persistence.nix
     ../../common
   ];
