@@ -19,7 +19,6 @@ in
   networking.hostName = "lapetus";
 
   # ID required by zfs.
-  # Generated with `head -c 8 /etc/machine-id`.
   networking.hostId = "08357db3";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -29,6 +28,7 @@ in
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "zroot" ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelParams = [ "nohibernate" ];
 
   # We use non-legacy mountpoints
   # See [this wiki link](https://nixos.wiki/wiki/ZFS)
@@ -49,17 +49,10 @@ in
       "/persist/data" = zfs;
       "/persist/state" = zfs;
       "/persist/local/cache" = zfs;
-      "/boot" = {
-        neededForBoot = true;
-        options = [ "zfsutil" "X-mount.mkdir" ];
-      };
+      "/boot".neededForBoot = true;
     };
   # }}}
 
   # Boot
-  boot.loader.grub = {
-    inherit device;
-    enable = true;
-    version = 2;
-  };
+  boot.loader.systemd-boot.enable = true;
 }

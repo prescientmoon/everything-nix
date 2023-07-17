@@ -11,20 +11,19 @@
           partitions = [
             {
               name = "ESP";
-              start = "1MiB";
-              end = "100MiB";
+              start = "0MiB";
+              end = "128Mib";
               bootable = true;
               content = {
                 type = "filesystem";
-                format = "vfat";
+                format = "fat32";
                 mountpoint = "/boot";
-                mountOptions = [ "defaults" ];
               };
             }
             {
-              start = "100MiB";
+              name = "zfs";
+              start = "128MiB";
               end = "100%";
-              name = "primary";
               content = {
                 type = "zfs";
                 pool = "zroot";
