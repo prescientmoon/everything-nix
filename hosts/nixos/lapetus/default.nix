@@ -39,6 +39,23 @@ in
   #   zfs rollback -r zroot@blank
   # '';
 
+  # {{{ Filesystems
+  filesystems =
+    let zfs = { neededForBoot = true; options = [ "zfsutil" ]; };
+    in
+    {
+      "/" = zfs;
+      "/nix" = zfs;
+      "/persist/data" = zfs;
+      "/persist/state" = zfs;
+      "/persist/local/cache" = zfs;
+      "/boot" = {
+        neededForBoot = true;
+        options = [ "zfsutil" "X-mount.mkdir" ];
+      };
+    };
+  # }}}
+
   # Boot
   boot.loader.grub = {
     inherit device;
