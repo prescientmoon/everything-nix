@@ -18,6 +18,10 @@ in
   # Set the name of this machine!
   networking.hostName = "lapetus";
 
+  # ID required by zfs.
+  # Generated with `head -c 8 /etc/machine-id`.
+  networking.hostId = "08357db3";
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 
