@@ -81,6 +81,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1689324677,
+        "narHash": "sha256-83DCDJwBkulQFQESe37+tG0qUb8JkQLJHJ3Qn7iGx7Q=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "7eb09408393faa5b8f3b3524c39cb93d938e8d04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -818,6 +838,7 @@
       "inputs": {
         "agenix": "agenix",
         "catppuccin-base16": "catppuccin-base16",
+        "disko": "disko",
         "firefox-addons": "firefox-addons",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager_2",

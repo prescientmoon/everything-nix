@@ -1,5 +1,5 @@
 # TODO(imperanence): handle persistence of things like harpoon, lazy, etc
-{ pkgs, upkgs, lib, config, paths, inputs, ... }:
+{ pkgs, upkgs, lib, config, inputs, ... }:
 let
   # {{{ extraPackages
   extraPackages = with pkgs; [

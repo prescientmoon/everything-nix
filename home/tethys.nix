@@ -6,6 +6,7 @@
     ./features/desktop/spotify.nix
     ./features/desktop/firefox
     ./features/desktop/discord
+    ./features/cli/khal.nix
 
     ./features/xorg/xmonad.nix
     ./features/wayland/hyprland
