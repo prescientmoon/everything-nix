@@ -1,6 +1,9 @@
 { config, ... }:
 let
   device = "/dev/sda";
+  disko = import ./partitions.nix {
+    devices = [ device ];
+  };
 in
 {
   imports = [
@@ -9,6 +12,7 @@ in
     ../common/optional/slambda.nix
 
     ./hardware-configuration.nix
+    disko
   ];
 
   # Set the name of this machine!
@@ -30,10 +34,6 @@ in
   # boot.initrd.postDeviceCommands = lib.mkAfter ''
   #   zfs rollback -r zroot@blank
   # '';
-
-  disko.devices = import ./partitions.nix {
-    devices = [ device ];
-  };
 
   # Boot
   boot.loader.grub = {

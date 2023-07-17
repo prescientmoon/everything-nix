@@ -39,6 +39,7 @@
     zpool = {
       zroot = {
         type = "zpool";
+        mountpoint = "/";
 
         postCreateHook = ''
           zfs snapshot zroot@blank
