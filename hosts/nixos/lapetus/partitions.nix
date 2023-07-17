@@ -1,4 +1,4 @@
-{ disks ? [ "/dev/vdb" "/dev/vdc" ], ... }: {
+{ disks ? [ "/dev/vdb" ] }: {
   disko.devices = {
     # {{{ Disks
     disk = {
@@ -18,9 +18,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                ];
+                mountOptions = [ "defaults" ];
               };
             }
             {
