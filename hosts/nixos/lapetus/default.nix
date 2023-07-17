@@ -39,8 +39,8 @@ in
   #   zfs rollback -r zroot@blank
   # '';
 
-  # {{{ Filesystems
-  filesystems =
+  # {{{ FileSystems
+  fileSystems =
     let zfs = { neededForBoot = true; options = [ "zfsutil" ]; };
     in
     {
