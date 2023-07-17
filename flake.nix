@@ -162,6 +162,12 @@
             hostname = "euporie";
             user = "guest";
           };
+
+          lapetus = nixos {
+            system = "x86_64-linux";
+            hostname = "lapetus";
+            user = "adrielus";
+          };
         };
       # }}}
       # {{{ Home manager
@@ -186,6 +192,10 @@
           "guest@euporie" = mkHomeConfig {
             system = "x86_64-linux";
             hostname = "euporie";
+          };
+          "adrielus@lapetus" = mkHomeConfig {
+            system = "x86_64-linux";
+            hostname = "lapetus";
           };
         };
       # }}}

@@ -7,20 +7,18 @@
     inputs.agenix.packages.${pkgs.system}.agenix # Secret encryption
   ];
 
-  satellite = {
-    # Set up my custom imperanence wrapper
-    persistence = {
-      enable = true;
+  # Set up my custom imperanence wrapper
+  satellite.persistence = {
+    enable = true;
 
-      # Actual data/media (eg: projects, images, videos, etc)
-      at.data.path = "/persist/data";
-      at.data.prefixDirectories = false;
+    # Actual data/media (eg: projects, images, videos, etc)
+    at.data.path = "/persist/data";
+    at.data.prefixDirectories = false;
 
-      # App state I want to keep
-      at.state.path = "/persist/state";
+    # App state I want to keep
+    at.state.path = "/persist/state";
 
-      # App state which I should be able to delete at any point
-      at.cache.path = "/persist/local/cache";
-    };
+    # App state which I should be able to delete at any point
+    at.cache.path = "/persist/local/cache";
   };
 }

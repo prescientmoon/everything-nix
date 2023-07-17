@@ -39,10 +39,12 @@
     zpool = {
       zroot = {
         type = "zpool";
+
         postCreateHook = ''
           zfs snapshot zroot@blank
           zfs set keylocation="prompt" "zroot";
         '';
+
         rootFsOptions = {
           compression = "lz4";
           "com.sun:auto-snapshot" = "false";
