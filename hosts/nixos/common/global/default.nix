@@ -3,6 +3,7 @@
 let
   imports = [
     inputs.hyprland.nixosModules.default
+    inputs.disko.nixosModules.default
     inputs.agenix.nixosModules.default
     inputs.stylix.nixosModules.stylix
     inputs.nur.nixosModules.nur

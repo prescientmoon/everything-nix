@@ -28,9 +28,14 @@
   #   zfs rollback -r zroot@blank
   # '';
 
+  disko.devices = import ./partitions.nix {
+    devices = [ "/dev/sda" ];
+  };
+
   # Boot
   boot.loader.grub = {
     enable = true;
+    version = 2;
     device = "/dev/sda";
   };
 }

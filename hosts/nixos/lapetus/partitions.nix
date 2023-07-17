@@ -56,15 +56,21 @@
         # {{{ Datasets
         datasets = {
           "root/persist/data" = {
+            type = "zfs_fs";
             mountpoint = "/persist/data";
             options."com.sun:auto-snapshot" = "true";
           };
           "root/persist/state" = {
+            type = "zfs_fs";
             mountpoint = "/persist/state";
             options."com.sun:auto-snapshot" = "true";
           };
-          "root/local/nix" = { mountpoint = "/nix"; };
+          "root/local/nix" = {
+            type = "zfs_fs";
+            mountpoint = "/nix";
+          };
           "root/local/cache" = {
+            type = "zfs_fs";
             mountpoint = "/persist/local/cache";
           };
         };

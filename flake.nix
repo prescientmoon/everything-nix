@@ -76,6 +76,10 @@
     # Spotify client
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # Disko
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
   # }}}
 
