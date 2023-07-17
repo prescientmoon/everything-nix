@@ -12,11 +12,12 @@
             {
               name = "ESP";
               start = "0MiB";
-              end = "128Mib";
+              end = "64MiB";
+              fs-type = "fat32";
               bootable = true;
               content = {
                 type = "filesystem";
-                format = "fat32";
+                format = "vfat";
                 mountpoint = "/boot";
               };
             }
