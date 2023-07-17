@@ -4,7 +4,6 @@
     ../common/users/adrielus.nix
 
     ../common/optional/pipewire.nix
-    ../common/optional/touchpad.nix
     ../common/optional/xserver.nix
     ../common/optional/lightdm.nix
     ../common/optional/steam.nix

@@ -95,9 +95,9 @@
   # {{{ Wine
   satellite.persistence.at.state.apps.Wine.directories = [ ".wine" ];
   # }}}
-  # {{{ Syncthing
-  satellite.persistence.at.state.apps.Syncthing.directories = [
-    "${config.xdg.configHome}/syncthing" # Syncthing config data
-  ];
-  # }}}
+  # # {{{ Syncthing
+  # satellite.persistence.at.state.apps.Syncthing.directories = [
+  #   "${config.xdg.configHome}/syncthing" # Syncthing config data
+  # ];
+  # # }}}
 }

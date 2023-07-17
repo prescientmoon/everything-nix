@@ -8,7 +8,7 @@ let
     };
 
     catppuccin-latte = {
-      image = ./wallpapers/auto/catppuccin-latte-city.png;
+      image = ./wallpapers/eye.png;
       base16Scheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
       polarity = "light";
     };

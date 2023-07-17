@@ -4,7 +4,6 @@
     ../common/users/guest.nix
 
     ../common/optional/pipewire.nix
-    ../common/optional/touchpad.nix
     ../common/optional/lightdm.nix
     ../common/optional/xdg-portal.nix
     ../common/optional/hyprland.nix

@@ -76,6 +76,7 @@ The `<leader>f` namespace contains keybinds which search for a specific filetype
 | \<leader>ft | Typescript Files         |                        |
 | \<leader>fl | Latex Files              |                        |
 | \<leader>fp | Purescript Files         |                        |
+| \<leader>fn | Nix Files                |                        |
 
 ### Cmp
 

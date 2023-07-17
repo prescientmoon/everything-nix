@@ -16,6 +16,7 @@ in
 {
   services.wlsunset = {
     enable = true;
+    systemdTarget = "hyprland-session.target";
 
     # Random Netherlands coordinates
     latitude = "53.2";

@@ -1,5 +1,5 @@
 # Configuration pieces included on all (nixos) hosts
-{ inputs, outputs, lib, ... }:
+{ inputs, outputs, ... }:
 let
   imports = [
     inputs.hyprland.nixosModules.default
@@ -9,6 +9,7 @@ let
     inputs.impermanence.nixosModule
     inputs.slambda.nixosModule
 
+    ./persistence.nix
     ./nix.nix
     ./openssh.nix
     ./fish.nix

@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+{ config, ... }: {
   # Wireless secrets stored through agenix
   age.secrets.wireless.file = ./wifi_passwords.age;
 
@@ -10,10 +10,10 @@
     # Declarative
     environmentFile = config.age.secrets.wireless.path;
     networks = {
-      "Neptune".psk = "@PHONE_HOTSPOT_PASS@";
+      "Neptune".psk = "@ENCELADUS_HOTSPOT_PASS@";
       "Familia-Matei".psk = "@TG_HOME_PASS@";
       "Familia-Matei-PRO".psk = "@TG_HOME_PASS@";
-      "Sailhorse".psk = "@NL_SAILHORSE_PASS@";
+      "Sailhorse".psk = "@NL_PLACE_0_PASS@";
 
       "FOSDEM-Dualstack" = { };
 

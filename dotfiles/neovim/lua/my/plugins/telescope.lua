@@ -29,6 +29,7 @@ local keybinds = {
   { "<C-P>", "find_files", "Find files" },
   { "<Leader>ft", find_files_by_extension("tex"), "[F]ind [t]ex files" },
   { "<Leader>fl", find_files_by_extension("lua"), "[F]ind [l]ua files" },
+  { "<Leader>fn", find_files_by_extension("nix"), "[F]ind [n]ix files" },
   {
     "<Leader>fp",
     find_files_by_extension("purs"),

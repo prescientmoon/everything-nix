@@ -31,5 +31,6 @@
     unrar # For extracting shit from rars
     tokei # Useless but fun line of code counter (sloc alternative)
     bottom # System monitor
+    tldr # Example based cli docs
   ];
 }
