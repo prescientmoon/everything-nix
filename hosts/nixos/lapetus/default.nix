@@ -1,18 +1,21 @@
-{ config, ... }: {
+{ config, ... }:
+let
+  device = "/dev/sda";
+in
+{
   imports = [
     ../common/global
     ../common/users/adrielus.nix
     ../common/optional/slambda.nix
 
     ./hardware-configuration.nix
-    ./boot.nix
   ];
 
   # Set the name of this machine!
   networking.hostName = "lapetus";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 
   # Configure ZFS
   boot.supportedFilesystems = [ "zfs" ];
@@ -29,13 +32,13 @@
   # '';
 
   disko.devices = import ./partitions.nix {
-    devices = [ "/dev/sda" ];
+    devices = [ device ];
   };
 
   # Boot
   boot.loader.grub = {
+    inherit device;
     enable = true;
     version = 2;
-    device = "/dev/sda";
   };
 }
