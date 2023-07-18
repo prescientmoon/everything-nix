@@ -21,6 +21,9 @@ in
   # ID required by zfs.
   networking.hostId = "08357db3";
 
+  # Set machine id for log continuity
+  environment.etc.machine-id.text = "d9571439c8a34e34b89727b73bad3587";
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 
