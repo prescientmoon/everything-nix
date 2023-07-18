@@ -11,7 +11,6 @@ in
 
     configDir = "/persist/state/home/adrielus/Syncthing/.config/syncthing";
     dataDir = "/persist/data/syncthing";
-    # guiAddress = "0.0.0.0:8384"; # TODO: put this behind nginx
 
     overrideDevices = true;
     overrideFolders = true;
