@@ -1,5 +1,6 @@
-{ pkgs, config, ... }: {
-  home.packages = [ pkgs.wezterm ];
+{ upkgs, config, ... }: {
+  # REASON: newer version
+  home.packages = [ upkgs.wezterm ];
 
   # Create link to config
   xdg.configFile."wezterm/colorscheme.lua".text = config.satellite.colorscheme.lua;
