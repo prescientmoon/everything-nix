@@ -8,7 +8,7 @@ let
   ''));
 in
 {
-  imports = [ ../default.nix ];
+  imports = [ ../default.nix ../../desktop ];
 
   home.packages = [ inputs.hyprland-contrib.packages.${pkgs.system}.grimblast pkgs.hyprpaper ];
 

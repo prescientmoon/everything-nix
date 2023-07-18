@@ -70,7 +70,6 @@ in
   };
   # }}}
   # {{{ Ad-hoc stylix targets
-  stylix.targets.gtk.enable = true;
   # TODO: is this useful outside xorg?
   stylix.targets.xresources.enable = true;
   # }}}

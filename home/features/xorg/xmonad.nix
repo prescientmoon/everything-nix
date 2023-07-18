@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./default.nix
+    ../desktop
     ../desktop/alacritty.nix # Default xmonad terminal
   ];
 
