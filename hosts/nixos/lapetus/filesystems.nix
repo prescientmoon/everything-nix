@@ -1,13 +1,7 @@
+# Mark a bunch of paths as needed for boot
+{ lib, ... }:
 {
-  fileSystems =
-    let zfs = { neededForBoot = true; options = [ "zfsutil" ]; };
-    in
-    {
-      "/" = zfs;
-      "/nix" = zfs;
-      "/persist/data" = zfs;
-      "/persist/state" = zfs;
-      "/persist/local/cache" = zfs;
-      "/boot".neededForBoot = true;
-    };
+  fileSystems = lib.attrsets.genAttrs
+    [ "/" "/nix" "/persist/data" "/persist/state" "/persist/local/cache" "/boot" ]
+    (_: { neededForBoot = true; });
 }

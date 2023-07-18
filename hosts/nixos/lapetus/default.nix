@@ -6,6 +6,7 @@
 
     ./services/syncthing.nix
     ./hardware-configuration.nix
+    ./filesystems.nix
     ./zfs.nix
 
     (import ./partitions.nix {
