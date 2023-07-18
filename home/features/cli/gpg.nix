@@ -12,19 +12,10 @@ in
 {
   home.packages = pinentry.packages;
 
-  # TODO: consider ssh support
   services.gpg-agent = {
     enable = true;
     pinentryFlavor = pinentry.name;
   };
 
-  programs.gpg = {
-    enable = true;
-    settings = {
-      trust-model = "tofu+pgp";
-    };
-    # publicKeys = [{
-    #   trust = 5;
-    # }];
-  };
+  programs.gpg.enable = true;
 }
