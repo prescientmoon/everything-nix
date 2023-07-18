@@ -1,4 +1,5 @@
 # This setups a SSH server. 
+# TODO: persistence
 { outputs, config, lib, ... }:
 let
   # Record containing all the hosts
@@ -39,6 +40,9 @@ in
 
   # Passwordless sudo when SSH'ing with keys
   security.pam.enableSSHAgentAuth = true;
+
+  # SSH on slow connections
+  programs.mosh.enable = true;
 
   # Add each host in this repo to the knownHosts list
   programs.ssh = {
