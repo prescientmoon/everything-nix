@@ -2,7 +2,7 @@
 let
   device = "/dev/sda";
   disko = import ./partitions.nix {
-    devices = [ device ];
+    disks = [ device ];
   };
 in
 {
