@@ -10,18 +10,16 @@
     ../common/optional/slambda.nix
     ../common/optional/xdg-portal.nix
     ../common/optional/hyprland.nix
-    ../common/optional/syncthing.nix
     ../common/optional/gitea.nix
     ../common/optional/xmonad
 
+    ./services/syncthing.nix
     ./hardware-configuration.nix
     ./boot.nix
   ];
 
-  # Set the name of this machine!
+  # Machine ids
   networking.hostName = "tethys";
-
-  # Set machine id for log continuity
   environment.etc.machine-id.text = "08357db3540c4cd2b76d4bb7f825ec88";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -37,6 +35,7 @@
   # }}}
   # {{{ Ad-hoc stylix targets
   # TODO: include this on all gui hosts
+  # TODO: is this useful outside of home-manager?
   stylix.targets.gtk.enable = true;
   # }}}
 }
