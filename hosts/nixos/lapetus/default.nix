@@ -24,4 +24,7 @@
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
+
+  # Do not suspend on lid closing
+  services.logind.lidSwitch = "ignore";
 }
