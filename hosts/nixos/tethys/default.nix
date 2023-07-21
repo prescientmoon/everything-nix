@@ -4,14 +4,11 @@
     ../common/users/adrielus.nix
 
     ../common/optional/pipewire.nix
-    ../common/optional/xserver.nix
     ../common/optional/lightdm.nix
     ../common/optional/steam.nix
     ../common/optional/slambda.nix
     ../common/optional/xdg-portal.nix
     ../common/optional/hyprland.nix
-    ../common/optional/gitea.nix
-    ../common/optional/xmonad
 
     ./services/syncthing.nix
     ./hardware-configuration.nix
