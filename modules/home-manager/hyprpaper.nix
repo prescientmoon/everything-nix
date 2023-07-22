@@ -86,6 +86,7 @@ in
     xdg.configFile."hypr/hyprpaper.conf".text = ''
       ${lib.concatStringsSep "\n" (lib.forEach cfg.preload (image: "preload=${image}"))}
       ${lib.concatStringsSep "\n" (lib.forEach cfg.wallpapers mkWallpaper)}
+      splash=true
     '';
 
     systemd.user.services.hyprpaper = {

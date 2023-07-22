@@ -27,6 +27,9 @@ in
   # See [the imperanence readme](https://github.com/nix-community/impermanence#home-manager)
   programs.fuse.userAllowOther = true;
 
+  # Customize tty colors
+  stylix.targets.console.enable = true;
+
   nixpkgs = {
     # Add all overlays defined in the overlays directory
     overlays = builtins.attrValues outputs.overlays ++ [

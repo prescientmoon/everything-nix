@@ -4,7 +4,7 @@
     ../common/users/adrielus.nix
 
     ../common/optional/pipewire.nix
-    ../common/optional/lightdm.nix
+    ../common/optional/greetd.nix
     ../common/optional/steam.nix
     ../common/optional/slambda.nix
     ../common/optional/xdg-portal.nix
