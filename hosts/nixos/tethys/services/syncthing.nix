@@ -2,6 +2,10 @@
   imports = [ ../../common/optional/syncthing.nix ];
 
   services.syncthing.folders = {
+    "mythical-vault" = {
+      path = "/home/adrielus/.password-store";
+      devices = [ "enceladus" "lapetus" ];
+    };
     "stellar-sanctum" = {
       path = "/home/adrielus/Projects/stellar-sanctum/";
       devices = [ "enceladus" "lapetus" ];

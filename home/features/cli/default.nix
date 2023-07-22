@@ -8,7 +8,6 @@
     ./starship.nix
     ./direnv.nix
     ./fish
-    ./tmux
   ];
 
   # Enable bash

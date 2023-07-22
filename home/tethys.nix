@@ -7,6 +7,7 @@
     ./features/desktop/firefox
     ./features/desktop/discord
     ./features/cli/khal.nix
+    ./features/cli/pass.nix
     ./features/neovim
 
     ./features/xorg/xmonad.nix
