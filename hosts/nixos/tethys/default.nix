@@ -5,6 +5,8 @@
 
     ../common/optional/pipewire.nix
     ../common/optional/greetd.nix
+    # ../common/optional/xmonad
+    # ../common/optional/lightdm.nix
     ../common/optional/steam.nix
     ../common/optional/slambda.nix
     ../common/optional/xdg-portal.nix
@@ -34,5 +36,11 @@
   # TODO: include this on all gui hosts
   # TODO: is this useful outside of home-manager?
   stylix.targets.gtk.enable = true;
+  # }}}
+  # {{{ Some ad-hoc site blocking
+  networking.extraHosts = ''
+    127.0.0.1 twitter.com
+    127.0.0.1 www.reddit.com
+  '';
   # }}}
 }

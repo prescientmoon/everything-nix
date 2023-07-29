@@ -19,6 +19,7 @@
       "R15-5365".psk = "@TG_WIFI_HOME_PASS@";
 
       "Sailhorse".psk = "@NL_PLACE_0_PASS@";
+      "InfoEdu12".psk = "@INFOEDU_PASS@";
 
       # [Working solution](https://bbs.archlinux.org/viewtopic.php?id=271336)
       # [Other interesting link](https://help.itc.rwth-aachen.de/en/service/b3d9a2c8ae5345b8b8f5128143ef4e3c/article/eaf6d69389a74a5a839c1f383c508df7/)

@@ -17,6 +17,7 @@ let
     ublock-origin
     unpaywall
     user-agent-string-switcher
+    browserpass # Password store support
   ];
   # }}}
 in

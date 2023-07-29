@@ -10,7 +10,7 @@
     ./features/cli/pass.nix
     ./features/neovim
 
-    ./features/xorg/xmonad.nix
+    # ./features/xorg/xmonad.nix
     ./features/wayland/hyprland
   ];
 

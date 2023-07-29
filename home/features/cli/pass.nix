@@ -5,7 +5,6 @@ in
   programs.password-store = {
     enable = true;
     settings.PASSWORD_STORE_DIR = storePath;
-    package = pkgs.pass;
   };
 
   services.pass-secret-service = {
@@ -17,5 +16,6 @@ in
     pkgs.wofi-pass
   ];
 
+  programs.browserpass.enable = config.programs.firefox.enable;
   satellite.persistence.at.data.apps.pass.directories = [ storePath ];
 }

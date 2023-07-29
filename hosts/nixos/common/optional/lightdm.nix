@@ -19,7 +19,8 @@ in
   };
 
   # Set default display manager
-  services.xserver.displayManager.defaultSession = lib.mkDefault "hyprland";
+  # services.xserver.displayManager.defaultSession = lib.mkDefault "hyprland";
+  services.xserver.displayManager.defaultSession = lib.mkDefault "none+xmonad";
 
   stylix.targets.lightdm.enable = true;
 }
