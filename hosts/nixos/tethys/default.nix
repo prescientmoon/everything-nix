@@ -40,7 +40,7 @@
   # {{{ Some ad-hoc site blocking
   networking.extraHosts = ''
     127.0.0.1 twitter.com
-    127.0.0.1 www.reddit.com
   '';
+  # 127.0.0.1 www.reddit.com
   # }}}
 }

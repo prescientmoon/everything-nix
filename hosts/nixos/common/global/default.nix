@@ -16,6 +16,7 @@ let
     ./fish.nix
     ./locale.nix
     ./wireless
+    ./tailscale.nix
     ../../../../common
   ];
 in
