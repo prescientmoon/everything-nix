@@ -1,6 +1,8 @@
 { inputs, ... }: {
   imports = [ inputs.grub2-themes.nixosModules.default ];
 
+  boot.initrd.systemd.enable = true;
+
   # Defined [here](https://github.com/vinceliuice/grub2-themes/blob/master/flake.nix#L11)
   boot.loader.grub2-theme = {
     enable = true;

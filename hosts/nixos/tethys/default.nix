@@ -11,6 +11,7 @@
     ../common/optional/slambda.nix
     ../common/optional/xdg-portal.nix
     ../common/optional/hyprland.nix
+    ../common/optional/quietboot.nix
 
     ./services/syncthing.nix
     ./hardware-configuration.nix
