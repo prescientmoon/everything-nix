@@ -12,7 +12,7 @@ function M.config()
   vim.g.catppuccin_flavour = H.variant("Catppuccin")
 
   catppuccin.setup({
-    transparent_background = false,
+    transparent_background = true,
     integrations = { nvimtree = true },
   })
 

@@ -51,6 +51,9 @@ config.colors.tab_bar = {
   },
 }
 -- }}}
+-- {{{ Other visual things 
+config.window_background_opacity = 0.6;
+-- }}}
 -- }}}
 -- {{{ Main config options
 config.adjust_window_size_when_changing_font_size = false -- Makes it work with fixed window sizes.

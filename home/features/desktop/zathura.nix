@@ -6,6 +6,10 @@ let base16-zathura = config.lib.stylix.colors {
     sha256 = "1zcrzll13d4lmyzibwdqkkdssyhr3c9s4yxhqigg3azsizk8adb4";
     rev = "2caef8fff6a5412e05950c6105c5020a6f16ead2";
   };
+
+  # REASON: fails otherwise :/
+  # See [the troubleshooting section](https://github.com/SenchoPens/base16.nix/tree/main#%EF%B8%8F-troubleshooting).
+  check-parsed-config-yaml = false;
 };
 in
 {

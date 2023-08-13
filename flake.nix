@@ -80,6 +80,14 @@
     # Disko
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # Deploy-rs
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Nixinate
+    nixinate.url = "github:matthewcroughan/nixinate";
+    nixinate.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
   # }}}
 
@@ -88,8 +96,7 @@
       # {{{ Common helpers 
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
-        "aarch64-linux"
-        "i686-linux"
+        # "aarch64-linux" TODO: purescript doesn't work on this one
         "x86_64-linux"
         "aarch64-darwin"
         "x86_64-darwin"
@@ -136,23 +143,28 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#...
       nixosConfigurations =
-        let
-          nixos = { system, hostname, user }: nixpkgs.lib.nixosSystem {
-            specialArgs = specialArgs system;
+        let nixos = { system, hostname, user }: nixpkgs.lib.nixosSystem {
+          system = system;
+          specialArgs = specialArgs system;
 
-            modules = [
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.users.${user} = import ./home/${hostname}.nix;
-                home-manager.extraSpecialArgs = specialArgs system;
-                home-manager.useUserPackages = true;
-                stylix.homeManagerIntegration.followSystem = false;
-                stylix.homeManagerIntegration.autoImport = false;
-              }
+          modules = [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.users.${user} = import ./home/${hostname}.nix;
+              home-manager.extraSpecialArgs = specialArgs system;
+              home-manager.useUserPackages = true;
+              stylix.homeManagerIntegration.followSystem = false;
+              stylix.homeManagerIntegration.autoImport = false;
+              _module.args.nixinate = {
+                host = hostname;
+                sshUser = "adrielus";
+                buildOn = "remote";
+              };
+            }
 
-              ./hosts/nixos/${hostname}
-            ];
-          };
+            ./hosts/nixos/${hostname}
+          ];
+        };
         in
         {
           tethys = nixos {
@@ -161,17 +173,21 @@
             user = "adrielus";
           };
 
-          euporie = nixos {
-            system = "x86_64-linux";
-            hostname = "euporie";
-            user = "guest";
-          };
-
           lapetus = nixos {
             system = "x86_64-linux";
             hostname = "lapetus";
             user = "adrielus";
           };
+
+          # Disabled because `flake check` complains about filesystems and bootloader
+          # options not being set. This is not an issue in practice, as this config is
+          # supposed to be used inside a VM, but there's not much I can do about it.
+          # euporie = nixos {
+          #   system = "x86_64-linux";
+          #   hostname = "euporie";
+          #   user = "guest";
+          # };
+
         };
       # }}}
       # {{{ Home manager
@@ -202,6 +218,27 @@
             hostname = "lapetus";
           };
         };
+      # }}}
+      # {{{ Deploy-rs nodes
+      deploy.nodes =
+        let deployNixos = hostname: {
+          user = "root";
+          path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${hostname};
+        };
+        in
+        {
+          lapetus.hostname = "lapetus";
+          lapetus.sshOpts = [ "-t" ];
+          lapetus.profiles.system = deployNixos "lapetus";
+        };
+      # }}}
+      # {{{ Checks
+      # This is highly advised, and will prevent many possible mistakes
+      # Taken from [the deploy-rs docs](https://github.com/serokell/deploy-rs).
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
+      # }}}
+      # {{{ Apps
+      apps.x86_64-linux = (inputs.nixinate.nixinate.x86_64-linux self);
       # }}}
     };
 

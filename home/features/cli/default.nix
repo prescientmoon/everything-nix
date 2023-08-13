@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     ./exa.nix
     ./bat.nix
@@ -32,5 +32,7 @@
     tokei # Useless but fun line of code counter (sloc alternative)
     bottom # System monitor
     tldr # Example based cli docs
+    inputs.agenix.packages.${pkgs.system}.agenix # Secret encryption
+    inputs.deploy-rs.packages.${pkgs.system}.default # Deployment
   ];
 }

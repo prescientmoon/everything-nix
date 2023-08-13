@@ -10,19 +10,6 @@
     # ...
     # });
 
-    # {{{ Wezterm
-    # # REASON: https://github.com/wez/wezterm/issues/3529 doesn't seem to be fixed on stable
-    # wezterm = prev.wezterm.overrideAttrs (_: {
-    #   version = "unstable-2023-06-12";
-    #   src = prev.fetchFromGitHub {
-    #     owner = "wez";
-    #     repo = "wezterm";
-    #     rev = "baf9d970816e015bee41ed5eb9186ef7f71c454c";
-    #     sha256 = "0pqfpn12963hfwdhgdwx9fwjngv6j2i6w9d20hcp1saxfd7q5l7m";
-    #     fetchSubmodules = true;
-    #   };
-    # });
-    # }}}
     # {{{ Discordchatexporter
     discordchatexporter-cli = prev.discordchatexporter-cli.overrideAttrs (_: rec {
       version = "unstable-2023-06-21";
@@ -33,6 +20,22 @@
         sha256 = "05j6y033852nm0fxhyv4mr4hnqc87nnkk85bw6sgf9gryjpxdcrq";
       };
     });
+    # }}}
+    # {{{ Discord
+    discord =
+      let
+        enableWayland = drv: bin: drv.overrideAttrs (
+          old: {
+            nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.makeWrapper ];
+            postFixup = (old.postFixup or "") + ''
+              wrapProgram $out/bin/${bin} \
+                --add-flags "--enable-features=UseOzonePlatform" \
+                --add-flags "--ozone-platform=wayland"
+            '';
+          }
+        );
+      in
+      enableWayland prev.discord "discord";
     # }}}
   };
 

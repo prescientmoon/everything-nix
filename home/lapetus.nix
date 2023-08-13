@@ -1,11 +1,8 @@
-{ pkgs, inputs, ... }: {
+{
   imports = [ ./global ];
 
   # Arbitrary extra packages
-  home.packages = [
-    # Clis
-    inputs.agenix.packages.${pkgs.system}.agenix # Secret encryption
-  ];
+  home.packages = [ ];
 
   # Set up my custom imperanence wrapper
   satellite.persistence = {
