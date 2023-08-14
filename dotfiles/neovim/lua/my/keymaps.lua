@@ -41,7 +41,12 @@ function M.nmap(from, to, desc, silent, isLocal)
     isLocal = false
   end
 
-  vim.keymap.set("n", from, to, { desc = desc, silent = silent, buffer = isLocal })
+  vim.keymap.set(
+    "n",
+    from,
+    to,
+    { desc = desc, silent = silent, buffer = isLocal }
+  )
 end
 
 -- }}}
@@ -96,6 +101,16 @@ function M.setup()
         "<cmd>close<cr>",
         { buffer = event.buf, silent = true, desc = "[q]uit current buffer" }
       )
+    end,
+  })
+  -- }}}
+
+  -- {{{ Winblend
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "Telescope*" },
+    group = vim.api.nvim_create_augroup("WinblendSettings", {}),
+    callback = function()
+      vim.opt.winblend = 0
     end,
   })
   -- }}}

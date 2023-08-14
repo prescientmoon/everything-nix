@@ -3,4 +3,5 @@
 {
   # example = import ./example.nix;
   lua-colorscheme = import ./lua-colorscheme.nix;
+  theming = import ./theming.nix;
 }

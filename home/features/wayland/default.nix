@@ -1,12 +1,13 @@
 # Common wayland stuff
-{ lib, pkgs, upkgs, inputs, ... }: {
-
+{ lib, pkgs, upkgs, ... }: {
   imports = [
     ./wofi.nix
     ./dunst.nix
     ./wlsunset.nix
+    ./wlogout.nix
     ../desktop/wezterm # Default hyprland terminal
     ../desktop/batsignal.nix
+    ../desktop/eww
   ];
 
   # Makes some stuff run on wayland (?)

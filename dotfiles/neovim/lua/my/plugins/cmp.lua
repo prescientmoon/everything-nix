@@ -34,12 +34,13 @@ function M.config()
 
   local options = {
     window = {
-      completion = {
+      documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered({
         winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
         col_offset = -3,
         side_padding = 0,
         completeopt = "menu,menuone,noinsert",
-      },
+      }),
     },
     formatting = {
       fields = { "kind", "abbr", "menu" },
@@ -116,6 +117,7 @@ function M.config()
       { name = "cmdline" },
     }),
   })
+
 end
 
 return M

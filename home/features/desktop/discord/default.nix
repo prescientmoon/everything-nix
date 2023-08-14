@@ -11,10 +11,7 @@ in
   };
 
   home.packages = [ pkgs.discocss ];
-
-  xdg.configFile."discocss/custom.css".source =
-    themeMap.${config.lib.stylix.scheme.scheme}
-      or themeMap.default.${config.stylix.polarity};
+  xdg.configFile."discocss/custom.css".source = config.satellite.theming.get themeMap;
 
   satellite.persistence.at.state.apps.Discord.directories = [
     "${config.xdg.configHome}/discord" # Why tf does discord store it's state here 💀

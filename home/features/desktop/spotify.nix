@@ -16,8 +16,7 @@ in
   programs.spicetify = {
     enable = true;
 
-    theme = themeMap.${config.lib.stylix.scheme.scheme}
-      or themeMap.default.${config.stylix.polarity};
+    theme = config.satellite.theming.get themeMap;
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplayMod

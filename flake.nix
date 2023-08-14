@@ -237,9 +237,9 @@
       # Taken from [the deploy-rs docs](https://github.com/serokell/deploy-rs).
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
       # }}}
-      # {{{ Apps
-      apps.x86_64-linux = (inputs.nixinate.nixinate.x86_64-linux self);
-      # }}}
+      # # {{{ Apps
+      # apps.x86_64-linux = (inputs.nixinate.nixinate.x86_64-linux self);
+      # # }}}
     };
 
   # {{{ Caching and whatnot

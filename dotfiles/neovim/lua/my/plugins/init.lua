@@ -140,6 +140,7 @@ return {
   {
     -- show progress for lsp stuff
     "j-hui/fidget.nvim",
+    tag = "legacy",
     event = "BufReadPre",
     cond = env.vscode.not_active(),
     config = true,

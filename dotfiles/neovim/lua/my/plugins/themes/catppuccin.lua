@@ -13,7 +13,7 @@ function M.config()
 
   catppuccin.setup({
     transparent_background = true,
-    integrations = { nvimtree = true },
+    integrations = { nvimtree = true, telescope = true },
   })
 
   vim.cmd([[highlight NotifyINFOIcon guifg=#d6b20f]])
