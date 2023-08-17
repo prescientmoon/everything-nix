@@ -119,9 +119,11 @@ local servers = {
   -- }}}
   -- {{{ Haskell
   hls = {
-    haskell = {
-      -- set formatter
-      formattingProvider = "ormolu",
+    settings = {
+      haskell = {
+        -- set formatter
+        formattingProvider = "fourmolu",
+      },
     },
   },
   -- }}}
@@ -226,7 +228,7 @@ function lspconfig.config()
 
     require("lspconfig")[lsp].setup({
       on_attach = details.on_attach,
-      settings = details.settings,   -- Specific per-language settings
+      settings = details.settings, -- Specific per-language settings
       flags = {
         debounce_text_changes = 150, -- This will be the default in neovim 0.7+
       },

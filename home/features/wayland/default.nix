@@ -1,10 +1,11 @@
 # Common wayland stuff
 { lib, pkgs, upkgs, ... }: {
   imports = [
-    ./wofi.nix
     ./dunst.nix
     ./wlsunset.nix
     ./wlogout.nix
+    ./wofi
+    ./anyrun
     ../desktop/wezterm # Default hyprland terminal
     ../desktop/batsignal.nix
     ../desktop/eww

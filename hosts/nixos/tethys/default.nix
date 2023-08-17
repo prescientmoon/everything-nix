@@ -13,8 +13,8 @@
     ../common/optional/hyprland.nix
     ../common/optional/quietboot.nix
 
+    ./hardware
     ./services/syncthing.nix
-    ./hardware-configuration.nix
     ./boot.nix
   ];
 

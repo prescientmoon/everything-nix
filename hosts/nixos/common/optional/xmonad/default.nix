@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  import = [ ../touchpad.nix ];
+  imports = [ ../touchpad.nix ];
   services.xserver = {
     enable = true;
 

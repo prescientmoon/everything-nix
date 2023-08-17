@@ -9,7 +9,7 @@ let
   hostname = config.networking.hostName;
 
   # Function from hostname to relative path to public ssh key
-  pubKey = host: ../../${host}/ssh_host_ed25519_key.pub;
+  pubKey = host: ../../${host}/keys/ssh_host_ed25519_key.pub;
 in
 {
   services.openssh = {

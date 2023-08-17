@@ -8,6 +8,7 @@ let
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.hyprland.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModules.spicetify
+    inputs.anyrun.homeManagerModules.default
 
     ../features/cli
     ../features/persistence.nix

@@ -22,20 +22,20 @@
     });
     # }}}
     # {{{ Discord
-    discord =
-      let
-        enableWayland = drv: bin: drv.overrideAttrs (
-          old: {
-            nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.makeWrapper ];
-            postFixup = (old.postFixup or "") + ''
-              wrapProgram $out/bin/${bin} \
-                --add-flags "--enable-features=UseOzonePlatform" \
-                --add-flags "--ozone-platform=wayland"
-            '';
-          }
-        );
-      in
-      enableWayland prev.discord "discord";
+    # discord =
+    #   let
+    #     enableWayland = drv: bin: drv.overrideAttrs (
+    #       old: {
+    #         nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.makeWrapper ];
+    #         postFixup = (old.postFixup or "") + ''
+    #           wrapProgram $out/bin/${bin} \
+    #             --add-flags "--enable-features=UseOzonePlatform" \
+    #             --add-flags "--ozone-platform=wayland"
+    #         '';
+    #       }
+    #     );
+    #   in
+    #   enableWayland prev.discord "discord";
     # }}}
   };
 

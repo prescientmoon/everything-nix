@@ -12,6 +12,8 @@
       # Syncthing
       ".stfolder"
       ".stversions"
+      # Direnv
+      ".direnv"
     ];
 
     extraConfig = {

@@ -66,12 +66,8 @@
   # }}}
   # {{{ Steam
   satellite.persistence.at.state.apps.Steam = {
-    files = [
-      ".steam/registry.vdf" # It seems like auto-login does not work without this
-    ];
-
     directories = [
-      ".factorio" # TODO: perhaps this should leave in it's own file?
+      ".factorio" # TODO: perhaps this should have it's own file?
 
       # A couple of games don't play well with bindfs
       {

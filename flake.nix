@@ -88,6 +88,13 @@
     # Nixinate
     nixinate.url = "github:matthewcroughan/nixinate";
     nixinate.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # Anyrun
+    anyrun.url = "github:Kirottu/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Nixos hardware
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
   # }}}
 
@@ -248,11 +255,13 @@
     extra-substituters = [
       "https://nix-community.cachix.org" # I think I need this for neovim-nightly?
       "https://nixpkgs-wayland.cachix.org"
+      "https://anyrun.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
   };
   # }}}

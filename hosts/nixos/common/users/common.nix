@@ -5,7 +5,7 @@
       hosts = outputs.nixosConfigurations;
 
       # Function from hostname to relative path to public ssh key
-      idKey = host: ../../${host}/id_ed25519.pub;
+      idKey = host: ../../${host}/keys/id_ed25519.pub;
     in
     lib.pipe hosts [
       # attrsetof host -> attrsetof path

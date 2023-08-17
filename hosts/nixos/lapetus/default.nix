@@ -5,13 +5,8 @@
     ../common/optional/slambda.nix
 
     ./services/syncthing.nix
-    ./hardware-configuration.nix
-    ./filesystems.nix
-    ./zfs.nix
-
-    (import ./partitions.nix {
-      disks = [ "/dev/sda" ];
-    })
+    ./filesystems
+    ./hardware
   ];
 
   # Machine ids
@@ -24,7 +19,4 @@
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
-
-  # Do not suspend on lid closing
-  services.logind.lidSwitch = "ignore";
 }
