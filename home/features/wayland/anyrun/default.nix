@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, config, ... }: {
   programs.anyrun = {
     enable = true;
     config = {
@@ -25,7 +25,63 @@
       maxEntries = 7;
     };
 
-    extraCss = null;
+    extraCss = ''
+      /* {{{ Global overrides */
+      #window,
+      #entry,
+      #main,
+      #plugin,
+      #match {
+        background: transparent;
+      }
+
+      * {
+        font-size: 2rem;
+        outline: none;
+      }
+      /* }}} */
+      /* {{{ Transparent & raised surfaces */
+      #entry,
+      list#main,
+      row#match:selected {
+        box-shadow: 0.5px 0.5px 1.5px 1.5px rgba(0, 0, 0, 0.5);
+        border-radius: ${config.theming.rounding.radius}px;
+      }
+
+      #entry,
+      list#main {
+        margin: 1rem;
+        background: rgba(${config.theming.colors.rgba "base00"});
+        min-height: 1rem;
+      }
+      /* }}} */
+      /* {{{ Input */
+      #entry {
+        font-size: 2rem;
+        padding: 1rem;
+        border: none;
+      }
+      /* }}} */
+      /* {{{ Matches */
+      row#match {
+        margin: 0.7rem;
+        margin-bottom: 0.3rem;
+        color: ${config.lib.stylix.scheme.withHashtag.base05};
+        padding: 0.5rem;
+        transition: none;
+      }
+
+      row#match:last-child {
+        margin-bottom: 0.7rem;
+      }
+
+      #match:selected {
+        padding: 0.5rem;
+        color: ${config.lib.stylix.scheme.withHashtag.base05};
+        background: rgba(${config.satellite.theming.colors.rgb "base03"}, 0.2);
+      }
+      /* }}} */
+    '';
   };
 
   # # See [the readme](https://github.com/n3oney/anyrun-nixos-options) for anyrun-nixos-options.
@@ -34,9 +90,4 @@
   #     options_path: "${config.system.build.manual.optionsJSON}/share/doc/nixos/options.json"
   #   )
   # '';
-
-  # home.packages =
-  #   let anyrunScript = name: plugin: pkgs.writeShellScriptBin "anyrun-${plugin}";
-  #   in
-  #   [ (anyrunScript "launch" "applications") ];
 }

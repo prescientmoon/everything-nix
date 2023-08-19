@@ -4,7 +4,6 @@
     ./dunst.nix
     ./wlsunset.nix
     ./wlogout.nix
-    ./wofi
     ./anyrun
     ../desktop/wezterm # Default hyprland terminal
     ../desktop/batsignal.nix

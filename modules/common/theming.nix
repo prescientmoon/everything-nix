@@ -8,10 +8,22 @@ in
       enable = lib.mkEnableOption "transparency for desktop apps";
       value = lib.mkOption {
         description = "How transparent windows should be by default";
+        default = 1.0;
         example = 0.6;
         type = lib.types.float;
       };
     };
+
+    rounding = {
+      enable = lib.mkEnableOption "rounded corners for desktop apps";
+      radius = lib.mkOption {
+        description = "How much to round corners by deafault";
+        default = 0;
+        example = 10;
+        type = lib.types.float;
+      };
+    };
+
 
     get = lib.mkOption {
       # No generics:(
@@ -43,6 +55,7 @@ in
 
   config.satellite.theming = {
     transparency.enable = cfg.transparency.value < 1.0;
+    rounding.enable = cfg.rounding.radius > 0.0;
 
     get = themeMap:
       themeMap.${config.lib.stylix.scheme.scheme}

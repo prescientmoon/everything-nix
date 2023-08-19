@@ -8,9 +8,7 @@ let
         base16Scheme = "${inputs.catppuccin-base16}/base16/mocha.yaml";
         polarity = "dark";
       };
-      satellite = {
-        transparency.value = 1.0;
-      };
+      satellite = { };
     };
 
     catppuccin-latte = {
@@ -22,6 +20,7 @@ let
       };
       satellite = {
         transparency.value = 0.6;
+        rounding.radius = 8;
       };
     };
     # }}}
@@ -32,9 +31,7 @@ let
         base16Scheme = "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
         polarity = "light";
       };
-      satellite = {
-        transparency.value = 1.0;
-      };
+      satellite = { };
     };
     # }}}
     # {{{ Experiment: AI generated themes
@@ -45,9 +42,7 @@ let
           base16Scheme = ./gpt-themes/monopurple-light.yaml;
           polarity = "light";
         };
-        satellite = {
-          transparency.value = 1.0;
-        };
+        satellite = { };
       };
 
       purplepink-light = {
@@ -56,9 +51,7 @@ let
           base16Scheme = ./gpt-themes/purplepink-light.yaml;
           polarity = "light";
         };
-        satellite = {
-          transparency.value = 1.0;
-        };
+        satellite = { };
       };
     };
     # }}}

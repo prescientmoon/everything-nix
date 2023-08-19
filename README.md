@@ -64,11 +64,11 @@ Here's some things you might want to check out:
   - [Rosepine](https://rosepinetheme.com/) — another theme I use
 - [Hyprland](https://hyprland.org/) — wayland compositor
   - [Wlogout](https://github.com/ArtsyMacaw/wlogout) — wayland logout menu
-  - [Wofi](https://sr.ht/~scoopta/wofi/) — program launcher
   - [Hyprpicker](https://github.com/hyprwm/hyprpicker) — hyprland color picker
   - [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) — screenshot tool
   - [Dunst](https://dunst-project.org/) — notification daemon
   - [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustements
+  - [Anyrun](https://github.com/Kirottu/anyrun) — program launcher
 - [Wezterm](https://wezfurlong.org/wezterm/) — terminal emulator
 - [Zathura](https://pwmt.org/projects/zathura/) — pdf viewer
 - [Firefox](https://www.mozilla.org/en-US/firefox/) — web browser
@@ -97,6 +97,7 @@ Here's some things you might want to check out:
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here.
 
+- [Wofi](https://sr.ht/~scoopta/wofi/) — program launcher
 - [Alacritty](https://github.com/alacritty/alacritty) — terminal emulator
 - [Xmonad](https://xmonad.org/) — xorg window manager
   - [Polybar](https://github.com/polybar/polybar) — desktop bar
