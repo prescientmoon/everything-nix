@@ -33,7 +33,7 @@ local M = {
           "vim",
           "yaml",
           "nix",
-          "lua"
+          "lua",
         },
         sync_install = false,
         --}}}
@@ -90,6 +90,13 @@ local M = {
     "haringsrob/nvim_context_vt",
     event = "BufReadPost",
     cond = env.vscode.not_active(),
+  },
+  {
+    -- show context at top of file
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufReadPost",
+    cond = env.vscode.not_active(),
+    opts = { enable = true },
   },
 }
 

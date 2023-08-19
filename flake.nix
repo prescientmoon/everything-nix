@@ -93,6 +93,10 @@
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Anyrun nixos options
+    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
+    anyrun-nixos-options.inputs.nixpkgs.follows = "nixpkgs";
+
     # Nixos hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
@@ -151,7 +155,7 @@
       # Available through 'nixos-rebuild --flake .#...
       nixosConfigurations =
         let nixos = { system, hostname, user }: nixpkgs.lib.nixosSystem {
-          system = system;
+          inherit system;
           specialArgs = specialArgs system;
 
           modules = [
@@ -160,8 +164,10 @@
               home-manager.users.${user} = import ./home/${hostname}.nix;
               home-manager.extraSpecialArgs = specialArgs system;
               home-manager.useUserPackages = true;
+
               stylix.homeManagerIntegration.followSystem = false;
               stylix.homeManagerIntegration.autoImport = false;
+
               _module.args.nixinate = {
                 host = hostname;
                 sshUser = "adrielus";
@@ -204,6 +210,7 @@
         let
           mkHomeConfig = { system, hostname }:
             home-manager.lib.homeManagerConfiguration {
+              inherit system;
               pkgs = nixpkgs.legacyPackages.${system};
               extraSpecialArgs = specialArgs system;
               modules = [

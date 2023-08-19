@@ -44,11 +44,11 @@ function M.on_attach(client, bufnr)
 
   if client.supports_method("textDocument/formatting") then
     nmap("<leader>F", format, "[F]ormat")
-    -- vim.api.nvim_create_autocmd("BufWritePre", {
-    --   group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
-    --   buffer = bufnr,
-    --   callback = format,
-    -- })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
+      buffer = bufnr,
+      callback = format,
+    })
   end
   -- }}}
   -- {{{ Go to declaration / references / implementation
@@ -178,6 +178,7 @@ local servers = {
   jsonls = {},
   dhall_lsp_server = {},
   typst_lsp = {},
+  elmls = {},
   -- {{{ Inactive
   -- pylsp = {},
   -- pyright = {},
