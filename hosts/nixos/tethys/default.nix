@@ -1,4 +1,4 @@
-{
+{ lib, ... }: {
   imports = [
     ../common/global
     ../common/users/adrielus.nix
@@ -39,9 +39,13 @@
   stylix.targets.gtk.enable = true;
   # }}}
   # {{{ Some ad-hoc site blocking
-  networking.extraHosts = ''
-    127.0.0.1 twitter.com
-  '';
-  # 127.0.0.1 www.reddit.com
+  networking.extraHosts =
+    let
+      blacklisted = [ "twitter.com" "minesweeper.online" ];
+      blacklist = lib.concatStringsSep "\n" (lib.forEach blacklisted (host: "127.0.0.1 ${host}"));
+    in
+    blacklist;
   # }}}
+
+
 }

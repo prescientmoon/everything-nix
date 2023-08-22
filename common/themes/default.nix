@@ -20,7 +20,7 @@ let
       };
       satellite = {
         transparency.value = 0.6;
-        rounding.radius = 8;
+        rounding.radius = 8.0;
       };
     };
     # }}}

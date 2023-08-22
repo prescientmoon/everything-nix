@@ -45,13 +45,13 @@
       list#main,
       row#match:selected {
         box-shadow: 0.5px 0.5px 1.5px 1.5px rgba(0, 0, 0, 0.5);
-        border-radius: ${config.theming.rounding.radius}px;
+        border-radius: ${toString config.satellite.theming.rounding.radius}px;
       }
 
       #entry,
       list#main {
         margin: 1rem;
-        background: rgba(${config.theming.colors.rgba "base00"});
+        background: rgba(${config.satellite.theming.colors.rgba "base00"});
         min-height: 1rem;
       }
       /* }}} */

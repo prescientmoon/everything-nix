@@ -60,7 +60,7 @@ in
       search.engines =
         let
           # {{{ Search engine creation helpers
-          mkBasicSearchEngine = { aliases, url, param }: {
+          mkBasicSearchEngine = { aliases, url, param, icon ? null }: {
             urls = [{
               template = url;
               params = [
@@ -69,19 +69,16 @@ in
             }];
 
             definedAliases = aliases;
-          };
+          } // (if icon == null then { } else { inherit icon; });
 
           mkNixPackagesEngine = { aliases, type }:
-            let basicEngine = mkBasicSearchEngine
+            mkBasicSearchEngine
               {
                 aliases = aliases;
                 url = "https://search.nixos.org/${type}";
                 param = "query";
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               };
-            in
-            basicEngine // {
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            };
           # }}}
         in
         # {{{ Engine declarations
@@ -100,6 +97,13 @@ in
             url = "https://pursuit.purescript.org/search";
             param = "q";
             aliases = [ "@ps" "@pursuit" ];
+          };
+
+          "Hoogle" = mkBasicSearchEngine {
+            url = "https://hoogle.haskell.org";
+            param = "hoogle";
+            aliases = [ "@hg" "@hoogle" ];
+
           };
 
           "Wikipedia" = mkBasicSearchEngine {
