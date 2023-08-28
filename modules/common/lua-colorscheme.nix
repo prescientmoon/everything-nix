@@ -29,6 +29,14 @@
       fonts = {
         normal = "${config.stylix.fonts.sansSerif.name}",
         monospace = "${config.stylix.fonts.monospace.name}"
+      },
+      transparency = {
+        enable = ${toString config.satellite.theming.transparency.enable} == 1,
+        value = ${toString config.satellite.theming.transparency.alpha},
+      },
+      rounding = {
+        enable = ${toString config.satellite.theming.rounding.enable} == 1,
+        radius = ${toString config.satellite.theming.rounding.radius},
       }
     }
   '';

@@ -105,15 +105,15 @@ function M.setup()
   })
   -- }}}
 
-  -- {{{ Winblend
+  -- -- {{{ Winblend
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "Telescope*" },
+    pattern = { "*" },
     group = vim.api.nvim_create_augroup("WinblendSettings", {}),
     callback = function()
       vim.opt.winblend = 0
     end,
   })
-  -- }}}
+  -- -- }}}
 
   return M
 end

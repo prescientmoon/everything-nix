@@ -13,13 +13,24 @@ let
 
     catppuccin-latte = {
       stylix = {
-        # image = ./wallpapers/eye.png;
-        image = ./wallpapers/watercag.png;
+        image = ./wallpapers/needygirloverdose.jpg;
         base16Scheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
         polarity = "light";
       };
       satellite = {
-        transparency.value = 0.6;
+        transparency.alpha = 0.6;
+        rounding.radius = 8.0;
+      };
+    };
+
+    catppuccin-macchiato = {
+      stylix = {
+        image = ./wallpapers/spaceship.jpg;
+        base16Scheme = "${inputs.catppuccin-base16}/base16/macchiato.yaml";
+        polarity = "dark";
+      };
+      satellite = {
+        transparency.alpha = 0.7;
         rounding.radius = 8.0;
       };
     };
@@ -34,12 +45,25 @@ let
       satellite = { };
     };
     # }}}
+    # {{{ Bluloco variants
+    bluloco-light = {
+      stylix = {
+        image = ./wallpapers/watercag.png;
+        base16Scheme = ./schemes/bluloco-light.yaml;
+        polarity = "light";
+      };
+      satellite = {
+        transparency.alpha = 0.6;
+        rounding.radius = 8.0;
+      };
+    };
+    # }}}
     # {{{ Experiment: AI generated themes
     gpt = {
       monopurple-light = {
         stylix = {
           image = ./wallpapers/auto/catppuccin-latte-city.png;
-          base16Scheme = ./gpt-themes/monopurple-light.yaml;
+          base16Scheme = ./schemes/gpt-themes/monopurple-light.yaml;
           polarity = "light";
         };
         satellite = { };
@@ -47,18 +71,21 @@ let
 
       purplepink-light = {
         stylix = {
-          image = ./wallpapers/auto/catppuccin-latte-city.png;
-          base16Scheme = ./gpt-themes/purplepink-light.yaml;
+          image = ./wallpapers/needygirloverdose.jpg;
+          base16Scheme = ./schemes/gpt-themes/purplepink-light.yaml;
           polarity = "light";
         };
-        satellite = { };
+        satellite = {
+          transparency.alpha = 0.6;
+          rounding.radius = 8.0;
+        };
       };
     };
     # }}}
   };
 
   # Select your current theme here!
-  currentTheme = themes.catppuccin-latte;
+  currentTheme = themes.catppuccin-macchiato;
 in
 {
   # We apply the current theme here.

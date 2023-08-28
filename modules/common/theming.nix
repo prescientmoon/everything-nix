@@ -6,7 +6,7 @@ in
   options.satellite.theming = {
     transparency = {
       enable = lib.mkEnableOption "transparency for desktop apps";
-      value = lib.mkOption {
+      alpha = lib.mkOption {
         description = "How transparent windows should be by default";
         default = 1.0;
         example = 0.6;
@@ -18,7 +18,7 @@ in
       enable = lib.mkEnableOption "rounded corners for desktop apps";
       radius = lib.mkOption {
         description = "How much to round corners by deafault";
-        default = 0;
+        default = 0.0;
         example = 10;
         type = lib.types.float;
       };
@@ -54,7 +54,7 @@ in
   };
 
   config.satellite.theming = {
-    transparency.enable = cfg.transparency.value < 1.0;
+    transparency.enable = cfg.transparency.alpha < 1.0;
     rounding.enable = cfg.rounding.radius > 0.0;
 
     get = themeMap:
@@ -69,6 +69,6 @@ in
       config.lib.stylix.scheme."${color}-rgb-b"
     ];
 
-    colors.rgba = color: "${cfg.colors.rgb color},${toString cfg.transparency.value}";
+    colors.rgba = color: "${cfg.colors.rgb color},${toString cfg.transparency.alpha}";
   };
 }

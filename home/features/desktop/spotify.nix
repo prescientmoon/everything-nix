@@ -1,16 +1,15 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, config, lib, ... }:
 let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-  themeMap = {
-    # TODO: add rosepine themes here
+  themeMap = lib.fix (self: {
     "Catppuccin Mocha" = spicePkgs.themes.catppuccin-mocha;
     "Catppuccin Latte" = spicePkgs.themes.catppuccin-latte;
     "Catppuccin Frappe" = spicePkgs.themes.catppuccin-frappe;
     "Catppuccin Macchiato" = spicePkgs.themes.catppuccin-macchiato;
 
-    default.light = spicePkgs.themes.catppuccin-mocha;
-    default.dark = spicePkgs.themes.catppuccin-latte;
-  };
+    default.light = self."Catppuccin Latte";
+    default.dark = self."Catppuccin Macchiato";
+  });
 in
 {
   programs.spicetify = {

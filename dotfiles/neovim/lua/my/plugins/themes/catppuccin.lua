@@ -1,4 +1,5 @@
 local H = require("my.plugins.themes.helpers")
+local T = require("nix.theme")
 
 local M = {
   "catppuccin/nvim",
@@ -12,7 +13,7 @@ function M.config()
   vim.g.catppuccin_flavour = H.variant("Catppuccin")
 
   catppuccin.setup({
-    transparent_background = true,
+    transparent_background = T.transparency.enable,
     integrations = { nvimtree = true, telescope = true },
   })
 
@@ -20,6 +21,10 @@ function M.config()
   vim.cmd([[highlight NotifyINFOTitle guifg=#d6b20f]])
 
   vim.cmd("colorscheme catppuccin")
+
+  if T.transparency.enable then
+    vim.cmd([[highlight FloatBorder blend=0]])
+  end
 end
 
 return M

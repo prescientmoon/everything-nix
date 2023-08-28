@@ -28,6 +28,7 @@
   # {{{ A few ad-hoc hardware settings
   hardware.opengl.enable = true;
   hardware.opentabletdriver.enable = true;
+  hardware.keyboard.qmk.enable = true;
   # }}}
   # {{{ A few ad-hoc programs
   programs.kdeconnect.enable = true;
@@ -46,6 +47,4 @@
     in
     blacklist;
   # }}}
-
-
 }
