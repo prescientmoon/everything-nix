@@ -1,12 +1,43 @@
 local M = {
-  -- work with brackets, quotes, tags, etc
-  "tpope/vim-surround",
+  "echasnovski/mini.surround",
+  version = "main",
   event = "VeryLazy",
 }
 
 function M.config()
-  vim.g.surround_113 = '"\r"'
-  vim.g.surround_97 = "'\r'"
+  require("mini.surround").setup({
+    mappings = {
+      add = "<tab>s", -- Add surrounding in Normal and Visul modes
+      delete = "<tab>d", -- Delete surrounding
+      find = "<tab>f", -- Find surrounding (to the right)
+      find_left = "<tab>F", -- Find surrounding (to the left)
+      highlight = "<tab>h", -- Highlight surrounding
+      replace = "<tab>r", -- Replace surrounding
+      update_n_lines = "", -- Update `n_lines`
+    },
+    custom_surroundings = {
+      ["b"] = {
+        input = { "%b()", "^.%s*().-()%s*.$" },
+        output = { left = "(", right = ")" },
+      },
+      ["B"] = {
+        input = { "%b{}", "^.%s*().-()%s*.$" },
+        output = { left = "{", right = "}" },
+      },
+      ["r"] = {
+        input = { "%b[]", "^.%s*().-()%s*.$" },
+        output = { left = "[", right = "]" },
+      },
+      ["q"] = {
+        input = { '".-"', "^.().*().$" },
+        output = { left = '"', right = '"' },
+      },
+      ["a"] = {
+        input = { "'.-'", "^.().*().$" },
+        output = { left = "'", right = "'" },
+      },
+    },
+  })
 end
 
 return M

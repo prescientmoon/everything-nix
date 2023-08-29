@@ -5,8 +5,7 @@ local telescope = {
   cmd = "Telescope",
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    "nvim-telescope/telescope-file-browser.nvim",
-    "nvim-lua/plenary.nvim"
+    "nvim-lua/plenary.nvim",
   },
   version = "0.1.x",
   cond = env.vscode.not_active(),
@@ -36,7 +35,6 @@ local keybinds = {
   },
   { "<Leader>d", "diagnostics", "[D]iagnostics" },
   { "<C-F>", "live_grep", "[F]ind in project" },
-  { "<C-S-F>", "file_browser", "[F]ile browser" },
   { "<Leader>t", "builtin", "[T]elescope pickers" },
 }
 
@@ -63,7 +61,6 @@ function telescope.config()
     defaults = { mappings = { i = { ["<C-h>"] = "which_key" } } },
     pickers = { find_files = { hidden = true } },
     extensions = {
-      file_browser = { path = "%:p:h" },
       fzf = {
         fuzzy = true,
         override_generic_sorter = true,
@@ -74,7 +71,6 @@ function telescope.config()
 
   require("telescope").setup(settings)
   require("telescope").load_extension("fzf")
-  require("telescope").load_extension("file_browser")
 end
 
 return M

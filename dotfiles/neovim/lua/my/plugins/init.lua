@@ -118,8 +118,8 @@ return {
     "christoomey/vim-tmux-navigator",
     keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
     cond = env.vscode.not_active()
-        and env.neovide.not_active()
-        and env.firenvim.not_active(),
+      and env.neovide.not_active()
+      and env.firenvim.not_active(),
   },
 
   {
@@ -159,6 +159,7 @@ return {
     -- case switching + the subvert command
     "tpope/vim-abolish",
     event = "VeryLazy",
+    enabled = false,
   },
 
   {

@@ -15,8 +15,15 @@ end
 
 local M = {
   "folke/flash.nvim",
+  event = "VeryLazy",
   ---@type Flash.Config
-  opts = {},
+  opts = {
+    modes = {
+      char = {
+        enabled = false,
+      },
+    },
+  },
   keys = {
     keybind("s", "jump", "Flash"),
     keybind("S", "treesitter", "Flash Treesitter"),
