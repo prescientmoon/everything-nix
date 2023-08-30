@@ -207,6 +207,10 @@ The following keybinds are available only when running inside firenvim:
 | <tab>d[a]             | Delete surrounding pair of a        | mini.surround        |
 | <tab>s[m][a]          | Surround the motion m with a        | mini.surround        |
 | <tab>s[a]             | Surround selected code with a       | mini.surround        |
+| g=                    | Evaluate text                       | mini.operators       |
+| gm                    | Duplicate text                      | mini.operators       |
+| gr                    | Replace text with register          | mini.operators       |
+| gx                    | Exchange text                       | mini.operators       |
 | C-F                   | Interactive file broswer            | mini.files           |
 | s                     | Flash [s]earch                      | flash                |
 | S                     | Flash treesitter [s]elect           | flash                |
