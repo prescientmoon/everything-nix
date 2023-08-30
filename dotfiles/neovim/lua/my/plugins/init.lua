@@ -96,11 +96,10 @@ return {
   },
 
   -- Helper libs
-  {
-    "nvim-lua/plenary.nvim",
-  },
-
+  "nvim-lua/plenary.nvim",
   "MunifTanjim/nui.nvim",
+  "nvim-tree/nvim-web-devicons", -- nice looking icons
+  "mateiadrielrafael/scrap.nvim", -- vim-abolish rewrite
 
   {
     "terrortylor/nvim-comment",
@@ -109,9 +108,6 @@ return {
       require("nvim_comment").setup()
     end,
   },
-
-  -- nice looking icons
-  "nvim-tree/nvim-web-devicons",
 
   {
     -- easly switch between tmux and vim panes
@@ -127,14 +123,6 @@ return {
     "wakatime/vim-wakatime",
     event = "VeryLazy",
     cond = env.vscode.not_active() and env.firenvim.not_active(),
-  },
-
-  {
-    -- smooth scrolling
-    "psliwka/vim-smoothie",
-    -- enabled = env.neovide.not_active(),
-    enabled = false,
-    event = "VeryLazy",
   },
 
   {
@@ -163,40 +151,17 @@ return {
   },
 
   {
-    -- reminds you of abbreviations
-    "0styx0/abbreinder.nvim",
-    dependencies = "0styx0/abbremand.nvim",
-    event = "InsertEnter",
-  },
-
-  {
-    -- md preview (in terminal)
-    "ellisonleao/glow.nvim",
-    cmd = "Glow",
-    cond = env.vscode.not_active(),
-  },
-
-  {
-    "frabjous/knap", -- md preview
-    cond = env.vscode.not_active(),
-  },
-
-  {
     -- automatically set options based on current file
     "tpope/vim-sleuth",
     event = "BufRead",
     cond = env.vscode.not_active(),
   },
 
-  -- vim-abolish rewrite
-  "mateiadrielrafael/scrap.nvim",
-
   {
-    "ruifm/gitlinker.nvim", -- generate permalinks for code
+    -- generate permalinks for code
+    "ruifm/gitlinker.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      mappings = "<leader>yg",
-    },
+    opts = { mappings = "<leader>yg" },
     init = function()
       local status, wk = pcall(require, "which-key")
 
@@ -225,15 +190,16 @@ return {
   -- Live command preview for stuff like :norm
   {
     "smjonas/live-command.nvim",
-    opts = {
-      commands = {
-        Norm = { cmd = "norm" },
-      },
-    },
+    config = function()
+      require("live-command").setup({
+        commands = {
+          Norm = { cmd = "norm" },
+        },
+      })
+    end,
     event = "VeryLazy",
     cond = false,
   },
-
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",

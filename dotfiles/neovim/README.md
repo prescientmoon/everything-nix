@@ -66,17 +66,16 @@ I feel like macro recording is a rare thing, so I moved it to `yq/yQ`. This free
 
 The `<leader>f` namespace contains keybinds which search for a specific filetype.
 
-| Keybind     | Description              | Plugins                |
-| ----------- | ------------------------ | ---------------------- |
-| C-p         | Find files               |                        |
-| C-f         | Grep in project          |                        |
-| C-F         | Interactive file broswer | telescope-file-browser |
-| \<leader>d  | Diagnostics              | lspconfig              |
-| \<leader>t  | Show builtin pickers     |                        |
-| \<leader>ft | Typescript Files         |                        |
-| \<leader>fl | Latex Files              |                        |
-| \<leader>fp | Purescript Files         |                        |
-| \<leader>fn | Nix Files                |                        |
+| Keybind     | Description          | Plugins   |
+| ----------- | -------------------- | --------- |
+| C-p         | Find files           |           |
+| C-f         | Grep in project      |           |
+| \<leader>d  | Diagnostics          | lspconfig |
+| \<leader>t  | Show builtin pickers |           |
+| \<leader>ft | Typescript Files     |           |
+| \<leader>fl | Latex Files          |           |
+| \<leader>fp | Purescript Files     |           |
+| \<leader>fn | Nix Files            |           |
 
 ### Cmp
 
@@ -204,13 +203,16 @@ The following keybinds are available only when running inside firenvim:
 | gc                    | Comment selection                   | nvim-comment         |
 | C-g                   | Open neo[g]it                       | neogit               |
 | \<leader>yg           | [Y]ank remote [g]it url             | gitlinker            |
-| cs[a][b]              | Change surrounding pair from a to b | vim-surround         |
-| ds[a]                 | Delete surrounding pair of a        | vim-surround         |
-| ys[m][a]              | Surround the motion m with a        | vim-surround         |
-| S[a]                  | Surround selected code with a       | vim-surround         |
-| s                     | Initialize forward [s]earch         | leap                 |
-| S                     | Initialize backwards [s]earch       | leap                 |
-| gs                    | Initialize other window [s]earch    | leap                 |
+| <tab>r[a][b]          | Change surrounding pair from a to b | mini.surround        |
+| <tab>d[a]             | Delete surrounding pair of a        | mini.surround        |
+| <tab>s[m][a]          | Surround the motion m with a        | mini.surround        |
+| <tab>s[a]             | Surround selected code with a       | mini.surround        |
+| C-F                   | Interactive file broswer            | mini.files           |
+| s                     | Flash [s]earch                      | flash                |
+| S                     | Flash treesitter [s]elect           | flash                |
+| r                     | remote [f]lash                      | flash                |
+| R                     | remote treesitter [f]lash           | flash                |
+| C-s                   | Toggle flash [s]earch               | flash                |
 | C-n                   | Open filetree                       | nvim-tree            |
 | \<leader>p            | [P]aste imge from clipboard         | clipboard-image.nvim |
 | \<leader>L            | [L]azy ui                           | lazy.nvim            |

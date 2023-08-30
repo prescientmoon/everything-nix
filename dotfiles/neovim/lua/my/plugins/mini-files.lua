@@ -1,9 +1,11 @@
 local K = require("my.keymaps")
+local env = require("my.helpers.env")
 
 local M = {
   "echasnovski/mini.files",
   version = "main",
-  keys = { "<C-S-F>" },
+  event = "VeryLazy",
+  cond = env.vscode.not_active() and env.firenvim.not_active(),
 }
 
 function M.config()
@@ -11,11 +13,9 @@ function M.config()
 
   files.setup({
     windows = {
-      preview = true,
+      preview = false,
     },
-    mappings = {
-      reveal_cwd = "R",
-    },
+    mappings = {},
   })
 
   K.nmap("<C-S-F>", function()
