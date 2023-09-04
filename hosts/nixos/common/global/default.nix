@@ -1,6 +1,7 @@
 # Configuration pieces included on all (nixos) hosts
 { inputs, outputs, ... }:
 let
+  # {{{ Imports
   imports = [
     inputs.hyprland.nixosModules.default
     inputs.disko.nixosModules.default
@@ -9,6 +10,12 @@ let
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModule
     inputs.slambda.nixosModule
+
+    # NOTE: using `pkgs.system` before `module.options` is evaluated
+    # leads to infinite recursion!
+    inputs.intray.nixosModules.x86_64-linux.default
+    inputs.smos.nixosModules.x86_64-linux.default
+    inputs.tickler.nixosModules.x86_64-linux.default
 
     ./persistence.nix
     ./nix.nix
@@ -19,6 +26,7 @@ let
     ./tailscale.nix
     ../../../../common
   ];
+  # }}}
 in
 {
   # Import all modules defined in modules/nixos

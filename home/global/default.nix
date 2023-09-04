@@ -10,6 +10,11 @@ let
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.anyrun.homeManagerModules.default
 
+    # NOTE: using `pkgs.system` before `module.options` is evaluated
+    # leads to infinite recursion!
+    inputs.intray.homeManagerModules.x86_64-linux.default
+    inputs.smos.homeManagerModules.x86_64-linux.default
+
     ../features/cli
     ../features/persistence.nix
     ../../common
@@ -39,7 +44,7 @@ in
   # }}}
 
   # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  systemd.user.startServices = lib.mkForce "sd-switch";
 
   # Enable the home-manager and git clis
   programs = {

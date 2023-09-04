@@ -99,6 +99,24 @@
 
     # Nixos hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+
+    # {{{ Self management
+    # Smos
+    smos.url = "github:NorfairKing/smos";
+    # smos.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # smos.inputs.home-manager.follows = "home-manager";
+
+    # Intray
+    intray.url = "github:NorfairKing/intray";
+    # intray.inputs.nixpkgs.follows = "nixpkgs";
+    # intray.inputs.home-manager.follows = "home-manager";
+
+    # Tickler
+    tickler.url = "github:NorfairKing/tickler";
+    tickler.inputs.nixpkgs.follows = "nixpkgs";
+    tickler.inputs.intray.follows = "intray";
+    # }}}
   };
   # }}}
 
@@ -263,12 +281,16 @@
       "https://nix-community.cachix.org" # I think I need this for neovim-nightly?
       "https://nixpkgs-wayland.cachix.org"
       "https://anyrun.cachix.org"
+      "https://smos.cachix.org"
+      "https://intray.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
+      "intray.cachix.org-1:qD7I/NQLia2iy6cbzZvFuvn09iuL4AkTmHvjxrQlccQ="
     ];
   };
   # }}}

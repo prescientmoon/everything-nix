@@ -13,8 +13,8 @@ function M.config()
       section_separators = { left = "", right = "" },
       theme = "auto",
       disabled_filetypes = {
-        "undotree"
-      }
+        "undotree",
+      },
     },
     sections = {
       lualine_a = { "branch" },

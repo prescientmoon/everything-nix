@@ -5,12 +5,11 @@ local M = {
     "jbyuki/venn.nvim", -- draw ascii diagrams
     "mrjones2014/smart-splits.nvim", -- the name says it all
   },
-  keys = { "<C-w>", "<leader>v" },
-  event = "VeryLazy",
+  keys = { "<C-S-w>", "<leader>V" },
 }
 
 local venn_hint = [[
- Arrow^^^^^^   Select region with <C-v> 
+ Arrow^^^^^^   Select region with <C-v>
  ^ ^ _K_ ^ ^   _f_: surround it with box
  _H_ ^ ^ _L_
  ^ ^ _J_ ^ ^                      _<Esc>_
@@ -19,7 +18,7 @@ local venn_hint = [[
 local window_hint = [[
  ^^^^^^^^^^^^     Move      ^^    Size   ^^   ^^     Split
  ^^^^^^^^^^^^-------------  ^^-----------^^   ^^---------------
- ^ ^ _k_ ^ ^  ^ ^ _K_ ^ ^   ^   _<C-k>_   ^   _s_: horizontally 
+ ^ ^ _k_ ^ ^  ^ ^ _K_ ^ ^   ^   _<C-k>_   ^   _s_: horizontally
  _h_ ^ ^ _l_  _H_ ^ ^ _L_   _<C-h>_ _<C-l>_   _v_: vertically
  ^ ^ _j_ ^ ^  ^ ^ _J_ ^ ^   ^   _<C-j>_   ^   _q_: close
  focus^^^^^^  window^^^^^^  ^_=_: equalize^   _o_: close remaining
@@ -30,11 +29,11 @@ function M.config()
   local pcmd = require("hydra.keymap-util").pcmd
   local splits = require("smart-splits")
 
+  -- {{{ Diagrams
   Hydra({
     name = "Draw Diagram",
     hint = venn_hint,
     config = {
-      color = "pink",
       invoke_on_body = true,
       hint = {
         border = "rounded",
@@ -44,7 +43,7 @@ function M.config()
       end,
     },
     mode = "n",
-    body = "<leader>v",
+    body = "<leader>V",
     heads = {
       { "H", "<C-v>h:VBox<CR>" },
       { "J", "<C-v>j:VBox<CR>" },
@@ -54,6 +53,13 @@ function M.config()
       { "<Esc>", nil, { exit = true } },
     },
   })
+  -- }}}
+  -- {{{ Windows
+  local resize = function(direction)
+    return function()
+      splits["resize_" .. direction](2)
+    end
+  end
 
   Hydra({
     name = "Windows",
@@ -62,7 +68,7 @@ function M.config()
       invoke_on_body = true,
       hint = {
         border = "rounded",
-        offset = -1,
+        offset = -1, -- vertical offset (larger => higher up)
       },
     },
     mode = "n",
@@ -78,30 +84,10 @@ function M.config()
       { "K", "<C-w>K" },
       { "L", "<C-w>L" },
 
-      {
-        "<C-h>",
-        function()
-          splits.resize_left(2)
-        end,
-      },
-      {
-        "<C-j>",
-        function()
-          splits.resize_down(2)
-        end,
-      },
-      {
-        "<C-k>",
-        function()
-          splits.resize_up(2)
-        end,
-      },
-      {
-        "<C-l>",
-        function()
-          splits.resize_right(2)
-        end,
-      },
+      { "<C-h>", resize("left") },
+      { "<C-j>", resize("down") },
+      { "<C-k>", resize("up") },
+      { "<C-l>", resize("right") },
       { "=", "<C-w>=", { desc = "equalize" } },
       { "s", pcmd("split", "E36") },
       { "v", pcmd("vsplit", "E36") },
@@ -109,6 +95,7 @@ function M.config()
       { "q", pcmd("close", "E444"), { desc = "close window" } },
     },
   })
+  -- }}}
 end
 
 return M

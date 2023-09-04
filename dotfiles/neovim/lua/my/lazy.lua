@@ -3,16 +3,6 @@ local M = {}
 function M.setup()
   require("lazy").setup("my.plugins", {
     defaults = { lazy = true },
-    disabled_plugins = {
-      "gzip",
-      "matchit",
-      "matchparen",
-      "netrwPlugin",
-      "tarPlugin",
-      "tohtml",
-      "tutor",
-      "zipPlugin",
-    },
     install = {
       -- install missing plugins on startup. This doesn't increase startup time.
       missing = true,
@@ -28,6 +18,16 @@ function M.setup()
         paths = {
           -- Extra runtime path specified by nix
           os.getenv("NVIM_EXTRA_RUNTIME") or "",
+        },
+        disabled_plugins = {
+          "gzip",
+          "matchit",
+          "matchparen",
+          "netrwPlugin",
+          "tarPlugin",
+          "tohtml",
+          "tutor",
+          "zipPlugin",
         },
       },
     },

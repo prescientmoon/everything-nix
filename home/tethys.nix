@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./global
 
@@ -6,6 +6,7 @@
     ./features/desktop/spotify.nix
     ./features/desktop/firefox
     ./features/desktop/discord
+    ./features/cli/productivity
     ./features/cli/khal.nix
     ./features/cli/pass.nix
     ./features/neovim
