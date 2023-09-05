@@ -1,3 +1,6 @@
+-- enable experimental lua loader
+vim.loader.enable()
+
 -- bootstrap from github
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

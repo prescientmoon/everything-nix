@@ -13,6 +13,7 @@ in
   "./hosts/nixos/common/users/adrielus_password.age".publicKeys = all_hosts ++ [ adrielus_tethys ];
 
   # Scoped for the user
-  # TODO: move this into `pass`.
+  # TODO: perhaps move this into `pass`?.
   "./home/features/desktop/wakatime/wakatime_config.age".publicKeys = [ adrielus_tethys ];
+  "./home/features/cli/productivity/smos/smos_github_oauth.age".publicKeys = [ adrielus_tethys ];
 }

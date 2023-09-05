@@ -198,7 +198,7 @@ return {
       })
     end,
     event = "VeryLazy",
-    cond = false,
+    -- cond = false,
   },
   {
     "mbbill/undotree",

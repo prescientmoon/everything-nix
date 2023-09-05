@@ -42,7 +42,7 @@ in
   nixpkgs = {
     # Add all overlays defined in the overlays directory
     overlays = builtins.attrValues outputs.overlays ++ [
-      inputs.neovim-nightly-overlay.overlay
+      # inputs.neovim-nightly-overlay.overlay
     ];
 
     config = {

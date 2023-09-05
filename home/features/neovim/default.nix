@@ -116,14 +116,12 @@ let
   # }}}
   # {{{ Clients
   neovim = wrapClient {
-    # REASON: nvim 9.0
-    base = upkgs.neovim;
+    base = pkgs.neovim;
     name = "nvim";
   };
 
   neovide = wrapClient {
-    # REASON: neovide 10.0.4
-    base = upkgs.neovide;
+    base = pkgs.neovide;
     name = "neovide";
     extraArgs = "--set NEOVIDE_MULTIGRID true";
   };
