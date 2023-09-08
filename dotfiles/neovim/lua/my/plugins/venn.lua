@@ -6,12 +6,25 @@ local M = {
   keys = { "<leader>V" },
 }
 
-local venn_hint = [[
+local venn_hint_old = [[
  ^^^Arrow^^^   Select region with <C-v>
  ^ ^ _K_ ^ ^   _f_: surround it with box
  _H_ ^ ^ _L_
  ^ ^ _J_ ^ ^                      _<Esc>_
 ]]
+
+local H = require("my.plugins.hydra").hint
+
+local venn_hint = H.concat_many_h({
+  H.add_title("Arrow", H.directional("H", "J", "K", "L", 3)),
+  H.add_title(
+    "Actions",
+    H.concat_many_w({
+      H.concat_h("<C-v>", ": select region"),
+      H.concat_h(H.pad_right(H.highlight("f"), 5), ": surround with box"),
+    }, { justify = "left" })
+  ),
+}, 3).value
 
 function M.config()
   local Hydra = require("hydra")

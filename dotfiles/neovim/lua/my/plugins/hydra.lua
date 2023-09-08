@@ -370,7 +370,7 @@ function M.config()
     config = {
       invoke_on_body = true,
       hint = {
-        border = "rounded",
+        border = "single",
         offset = -1, -- vertical offset (larger => higher up)
       },
     },
