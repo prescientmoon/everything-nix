@@ -5,6 +5,7 @@ local M = {
   event = "BufReadPre",
   dependencies = "neovim/nvim-lspconfig",
   cond = env.vscode.not_active(),
+  enable = false,
 }
 
 function M.config()

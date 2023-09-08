@@ -23,9 +23,17 @@ M.functions = {
 }
 
 function M.setup()
-  A.manyGlobalAbbr(scrap.expand_many(M.types, A.no_capitalization))
-  A.manyGlobalAbbr(scrap.expand_many(M.symols, A.no_capitalization))
-  A.manyGlobalAbbr(scrap.expand_many(M.functions, A.no_capitalization))
+  scrap.many_local_abbreviations(
+    scrap.expand_many(M.types, A.no_capitalization)
+  )
+
+  scrap.many_local_abbreviations(
+    scrap.expand_many(M.symols, A.no_capitalization)
+  )
+
+  scrap.many_local_abbreviations(
+    scrap.expand_many(M.functions, A.no_capitalization)
+  )
 end
 
 return M

@@ -13,6 +13,15 @@ function M.setup()
       enabled = false,
       notify = false,
     },
+    dev = {
+      -- Fallback to git when local plugin doesn't exist
+      fallback = true,
+
+      -- Directory where I store my local plugin projects
+      path = "~/Projects",
+
+      patterns = { "Mateiadrielrafael" },
+    },
     performance = {
       rtp = {
         paths = {

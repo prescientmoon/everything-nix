@@ -4,3 +4,4 @@ result
 README.html
 *.qcow2
 *.log
+.luarc.json

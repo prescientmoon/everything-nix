@@ -96,10 +96,20 @@ return {
   },
 
   -- Helper libs
-  "nvim-lua/plenary.nvim",
+  {
+    "nvim-lua/plenary.nvim",
+    -- Autoload when running tests
+    cmd = { "PlenaryBustedDirectory", "PlenaryBustedFile" },
+  },
   "MunifTanjim/nui.nvim",
   "nvim-tree/nvim-web-devicons", -- nice looking icons
-  "mateiadrielrafael/scrap.nvim", -- vim-abolish rewrite
+  {
+    "mateiadrielrafael/scrap.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("my.abbreviations").setup()
+    end,
+  }, -- vim-abolish rewrite
 
   {
     "terrortylor/nvim-comment",

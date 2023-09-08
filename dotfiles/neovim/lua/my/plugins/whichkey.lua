@@ -1,4 +1,3 @@
-local env = require("my.helpers.env")
 local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
@@ -7,15 +6,11 @@ local M = {
 function M.config()
   local wk = require("which-key")
 
-  local winblend = 0
-
-  if env.neovide.active() then
-    winblend = 30
-  end
-
   wk.setup({
     window = {
-      winblend = winblend,
+      winblend = 0,
+      pumblend = 0,
+      border = "single",
     },
     layout = { align = "center" },
   })
@@ -28,7 +23,6 @@ function M.config()
       l = { name = "[L]ocal" },
       w = { name = "[W]orkspace" },
       y = { name = "[Y]ank" },
-      v = "which_key_ignore",
     },
   })
 end
