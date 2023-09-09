@@ -350,8 +350,6 @@ local window_hint = H.concat_many_h({
   ),
 }, 3).value
 
-print(window_hint)
-
 function M.config()
   local Hydra = require("hydra")
   local pcmd = require("hydra.keymap-util").pcmd
