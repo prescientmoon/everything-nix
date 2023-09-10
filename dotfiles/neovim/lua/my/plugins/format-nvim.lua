@@ -11,7 +11,7 @@ function M.config()
   local any = require("formatter.filetypes.any")
   local formatters = {
     markdown = {
-      require("formatter.filetypes.markdown").prettierd,
+      require("formatter.filetypes.markdown").prettier,
     },
     lua = {
       require("formatter.filetypes.lua").stylua,

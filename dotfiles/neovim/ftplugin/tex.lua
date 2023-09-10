@@ -137,7 +137,10 @@ local abolishAbbreviations = {
 
   -- Linear systems
   -- Note: we must add the space inside the {} in order for capitalization to work!
-  { "{{s,o,l},}deq{s,}", "{{scalar,ordinary,linear} ,}differential equation{}" },
+  {
+    "{{s,o,l},}deq{s,}",
+    "{{scalar,ordinary,linear} ,}differential equation{}",
+  },
 
   -- Graph theory function syntax:
   --   gt[function]{graph}{modifier}
@@ -224,7 +227,6 @@ local abolishAbbreviations = {
     "{}{',^2,^3,^\\{-1\\},}({}{_n,})",
   },
 }
-
 
 local expanded = scrap.expand_many(abolishAbbreviations)
 

@@ -88,6 +88,9 @@ Here's some things you might want to check out:
   - [Starship](https://starship.rs/) — shell prompt
 - [Ranger](https://github.com/ranger/ranger) — file manager
 - [GPG](https://gnupg.org/) + [pass](https://www.passwordstore.org/)
+- Self management:
+  - [Smos](https://github.com/NorfairKing/smos) — A comprehensive self-management System.
+  - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
 
 ### Services
 
@@ -95,15 +98,17 @@ Here's some things you might want to check out:
 
 ## Hall of fame
 
-Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here.
+Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
-- [Wofi](https://sr.ht/~scoopta/wofi/) — program launcher
+- [Mind.nvim](https://github.com/phaazon/mind.nvim) — self management tree editor. The project got archived, so I switched to [Smos](https://github.com/NorfairKing/smos).
+- [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) — general purpose neovim LSP. The project got archived, so I switched to [formatter.nvim](https://github.com/mhartington/formatter.nvim).
+- [Wofi](https://sr.ht/~scoopta/wofi/) — program launcher. I switched to [Anyrun](https://github.com/Kirottu/anyrun).
 - [Alacritty](https://github.com/alacritty/alacritty) — terminal emulator
-- [Xmonad](https://xmonad.org/) — xorg window manager
+- [Xmonad](https://xmonad.org/) — xorg window manager. I switched to [Hyprland](https://hyprland.org/).
   - [Polybar](https://github.com/polybar/polybar) — desktop bar
-  - [Rofi](https://github.com/davatorium/rofi) — program launcher
-  - [Spectacle](https://apps.kde.org/spectacle/) — screenshot tool
-- [Chrome](https://www.google.com/chrome/) — web browser
+  - [Rofi](https://github.com/davatorium/rofi) — program launcher. I switched to [Wofi](https://sr.ht/~scoopta/wofi/).
+  - [Spectacle](https://apps.kde.org/spectacle/) — screenshot tool. I switched to [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast).
+- [Chrome](https://www.google.com/chrome/) — web browser. I switched to `firefox` because it offers a better HM module.
 
 ## Future
 
