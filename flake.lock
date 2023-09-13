@@ -433,11 +433,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1686838518,
-        "narHash": "sha256-MqwA95DbSSCmk1mgL12TEdc1rQ7uyqxUDGLikrfj9yw=",
+        "lastModified": 1694585600,
+        "narHash": "sha256-X+3lxErOk5DNuyJZM7dNAaIpxadv8wMjj6pYxwpjPkc=",
         "ref": "refs/heads/master",
-        "rev": "c063e239e617477b89a320349bfbf6c1a243c642",
-        "revCount": 2928,
+        "rev": "1d028825099440cd83f934967dd20cf1f0a453f5",
+        "revCount": 3084,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons"
       },

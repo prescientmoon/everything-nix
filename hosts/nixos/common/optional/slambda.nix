@@ -1,4 +1,3 @@
-{ lib, ... }:
 let
   chord = from: to: { inherit from to; };
   unmap = from: chord from [ ];
@@ -46,7 +45,8 @@ let
     (chord [ "n" "l" "s" ] [ "leftmeta" "6" ])
     (chord [ "n" "l" "d" ] [ "leftmeta" "7" ])
     (chord [ "n" "l" "f" ] [ "leftmeta" "8" ])
-    (chord [ "n" "k" "l" ] [ "leftmeta" "p" ])
+    (chord [ "n" "l" "z" ] [ "leftmeta" "9" ])
+    (chord [ "n" "l" "x" ] [ "leftmeta" "0" ])
     # }}}
     # {{{ Handled by vim
     (chord [ "j" "k" ] [ "f10" ])

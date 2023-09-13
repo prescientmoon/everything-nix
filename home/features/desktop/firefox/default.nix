@@ -3,9 +3,12 @@ let
   # {{{ Global extensions
   extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
     buster-captcha-solver
-    bypass-paywalls-clean
+    # REASON: returns 404 for now
+    # bypass-paywalls-clean
     clearurls # removes ugly args from urls
+    cliget # Generates curl commands for downloading account-protected things
     don-t-fuck-with-paste # disallows certain websites from disabling pasting
+    decentraleyes # Serves local copies of a bunch of things instead of reaching a CDN
     gesturefy # mouse gestures
     i-dont-care-about-cookies
     localcdn # caches libraries locally
@@ -44,6 +47,9 @@ in
       # }}}
       # {{{ Extensions
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; extensions ++ [
+        augmented-steam # Adds more info to steam
+        blocktube # Lets you block youtube channels
+        dearrow # Crowdsourced clickbait remover 💀
         firenvim # summon a nvim instance inside the browser
         lovely-forks # displays forks on github
         octolinker # github import to link thingy

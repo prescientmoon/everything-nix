@@ -83,7 +83,7 @@ local abbreviations = {
   { "nope", "\\bot" },
   { "yee", "\\top" },
   { "ccan", "\\cancel" },
-  { "comp", "\\circ" },
+  { "com", "\\circ" },
   { "mul", "\\cdot" },
   { "smul", "\\times" },
   { "card", "\\#" },

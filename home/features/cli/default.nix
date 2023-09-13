@@ -24,11 +24,9 @@
     fd # Better find
     sd # Better sed
     httpie # Better curl
+    ouch # Unified compression / decompression tool
     mkpasswd # Hash passwords
     neofetch # Display system information
-    zip # Zipping files
-    unzip # Unzipping files
-    unrar # For extracting shit from rars
     tokei # Useless but fun line of code counter (sloc alternative)
     bottom # System monitor
     tldr # Example based cli docs
