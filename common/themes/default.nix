@@ -25,7 +25,7 @@ let
 
     catppuccin-macchiato = {
       stylix = {
-        image = ./wallpapers/spaceship.jpg;
+        image = ./wallpapers/nix-catppuccin.png;
         base16Scheme = "${inputs.catppuccin-base16}/base16/macchiato.yaml";
         polarity = "dark";
       };

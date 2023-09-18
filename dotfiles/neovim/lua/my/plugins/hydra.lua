@@ -216,9 +216,11 @@ function H.pad(text, length, justify)
     return H.pad_around(text, length)
   elseif justify == "right" then
     return H.pad_left(text, length)
-  else
+  elseif justify == "left" then
     return H.pad_right(text, length)
   end
+
+  error("No justify provided")
 end
 
 function H.directional(h, j, k, l, spacing_amount)

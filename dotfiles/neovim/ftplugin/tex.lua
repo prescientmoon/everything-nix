@@ -46,8 +46,9 @@ local abbreviations = {
   { "lambda", "\\lambda" },
   { "omega", "\\omega" },
   { "Omega", "\\Omega" },
-  { "nuls", "\\varnothing" }, -- Other fancy symvols
+  { "nuls", "\\varnothing" },
 
+  -- Other fancy symvols
   { "tmat", "^T" }, -- Tranpose of a matrix
   { "cmat", "^*" }, -- Conjugate of a matrix
   { "sneg", "^C" }, -- Set complement
@@ -60,7 +61,9 @@ local abbreviations = {
 
   { "sdiff", "\\setminus" },
   { "sst", "\\subset" },
+  { "spt", "\\supset" },
   { "sseq", "\\subseteq" },
+  { "speq", "\\supseteq" },
   { "nin", "\\not\\in" },
   { "iin", "\\in" },
   { "tto", "\\to" },
@@ -90,11 +93,15 @@ local abbreviations = {
   { "div", "\\|" },
   { "ndiv", "\\not\\|\\:" },
   { "perp", "\\perp" },
+
+  -- Custom commands
   { "abs", "\\abs" }, -- custom abs command
   { "norm", "\\norm" }, -- custom norm command
   { "iprod", "\\iprod" }, -- custom inner product command
   { "diprod", "\\dprod" }, -- custom self inner product command
   { "prob", "\\prob" }, -- custom probability function
+  { "dist", "\\dist" }, -- custom dist function
+  { "diam", "\\diam" }, -- custom diam operator
 }
 
 -- Todo: convert exponents and subscripts

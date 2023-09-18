@@ -73,5 +73,15 @@
     "prefix": "exln",
     "description": "Explain a step which applies the ln function to both sides of an equation",
     "body": "&& \\left(  \\ln $1 \\right)$0"
+  },
+  "Explain triangle inequality": {
+    "prefix": "extrin",
+    "description": "Explain a step using the triangle inequality in math mode",
+    "body": "&& \\text{(Triangle inequality on $ $1 $)}$0"
+  },
+  "Explain being bounded": {
+    "prefix": "exbound",
+    "description": "Explain that something is bounded in math mode",
+    "body": "&& \\text{($ $1 $ is bounded)}$0"
   }
 }

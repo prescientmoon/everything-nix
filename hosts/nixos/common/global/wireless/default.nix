@@ -20,6 +20,7 @@
 
       "Sailhorse".psk = "@NL_PLACE_0_PASS@";
       "Ziggo1721699".psk = "@NL_PLACE_1_PASS@";
+      "Konijntjes".psk = "@NL_PLACE_1_PODS_PASS@";
       "InfoEdu12".psk = "@INFOEDU_PASS@";
       "ZTE_F7A321".psk = "@MADALINA_PASS@";
 

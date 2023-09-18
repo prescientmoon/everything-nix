@@ -47,6 +47,7 @@ let
     (chord [ "n" "l" "f" ] [ "leftmeta" "8" ])
     (chord [ "n" "l" "z" ] [ "leftmeta" "9" ])
     (chord [ "n" "l" "x" ] [ "leftmeta" "0" ])
+    (chord [ "n" "k" "l" ] [ "leftmeta" "p" ])
     # }}}
     # {{{ Handled by vim
     (chord [ "j" "k" ] [ "f10" ])
