@@ -240,15 +240,6 @@ local expanded = scrap.expand_many(abolishAbbreviations)
 -- Last I checked this contained 1179 abbreviations
 -- print(#abbreviations + #expanded)
 
-local all = ""
-for _, v in pairs(abbreviations) do
-  all = all .. v[1] .. " " .. v[2] .. "\n"
-end
-for _, v in pairs(expanded) do
-  all = all .. v[1] .. " " .. v[2] .. "\n"
-end
-print(all)
-
 A.manyLocalAbbr(abbreviations)
 A.manyLocalAbbr(expanded)
 
