@@ -48,7 +48,7 @@
     let
       blacklisted = [
         "twitter.com"
-        "www.reddit.com"
+        # "www.reddit.com"
         # "minesweeper.online" 
       ];
       blacklist = lib.concatStringsSep "\n" (lib.forEach blacklisted (host: "127.0.0.1 ${host}"));

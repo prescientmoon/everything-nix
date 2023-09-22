@@ -14,6 +14,13 @@
       # Direnv
       ".direnv"
       ".envrc"
+
+      # Haskell
+      # NOTE: THIS IS A BAD IDEA
+      # I need to figure out a better way (this is simply here because
+      # a project I contribute to doesn't gitignore this file, nor does
+      # it have it commited).
+      "hie.yaml"
     ];
 
     aliases = {

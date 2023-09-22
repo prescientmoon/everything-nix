@@ -51,6 +51,7 @@ let
     libstdcxx5 # Required by treesitter aparently
     python310Packages.jupytext # Convert between jupyter notebooks and python files
     graphviz # For rust crate graph
+    haskellPackages.hoogle # For haskell search
 
     # Preview
     zathura # Pdf reader

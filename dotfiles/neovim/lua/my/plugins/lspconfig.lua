@@ -97,8 +97,10 @@ end
 
 -- {{{ General server config
 ---@type lspconfig.options
+---@diagnostic disable-next-line: missing-fields
 local servers = {
   -- {{{ Typescript
+  ---@diagnostic disable-next-line: missing-fields
   tsserver = {
     on_attach = function(client, bufnr)
       -- We handle formatting using null-ls and prettierd
@@ -110,19 +112,10 @@ local servers = {
   -- {{{ Purescript
   purescriptls = {
     settings = {
+      ---@diagnostic disable-next-line: missing-fields
       purescript = {
         censorWarnings = { "UnusedName", "ShadowedName", "UserDefinedWarning" },
         formatter = "purs-tidy",
-      },
-    },
-  },
-  -- }}}
-  -- {{{ Haskell
-  hls = {
-    settings = {
-      haskell = {
-        -- set formatter
-        formattingProvider = "fourmolu",
       },
     },
   },
@@ -134,6 +127,7 @@ local servers = {
       "--logpath=/home/adrielus/.local/share/lua-language-server/log",
     },
     settings = {
+      ---@diagnostic disable-next-line: missing-fields
       Lua = {
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = {
@@ -174,10 +168,13 @@ local servers = {
   nil_ls = {},
   nixd = {},
   -- }}}
+  ---@diagnostic disable-next-line: missing-fields
   cssls = {},
+  ---@diagnostic disable-next-line: missing-fields
   jsonls = {},
   dhall_lsp_server = {},
   typst_lsp = {},
+  ---@diagnostic disable-next-line: missing-fields
   elmls = {},
   -- {{{ Inactive
   -- pylsp = {},

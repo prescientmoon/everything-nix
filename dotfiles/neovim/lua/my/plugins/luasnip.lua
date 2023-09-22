@@ -2,7 +2,7 @@ local env = require("my.helpers.env")
 
 local M = {
   "L3MON4D3/LuaSnip", -- snippeting engine
-  cond = env.vscode.not_active()
+  cond = env.vscode.not_active(),
 }
 
 local function reload()
