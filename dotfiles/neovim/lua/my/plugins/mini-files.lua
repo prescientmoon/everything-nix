@@ -15,7 +15,9 @@ function M.config()
     windows = {
       preview = false,
     },
-    mappings = {},
+    mappings = {
+      go_in_plus = "<cr>",
+    },
   })
 
   K.nmap("<C-S-F>", function()

@@ -1,6 +1,6 @@
 local env = require("my.helpers.env")
 
-local header = [[
+local header_string = [[
 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗       ██████╗
 ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║    ██╗╚════██╗
 ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║    ╚═╝ █████╔╝
@@ -8,6 +8,8 @@ local header = [[
 ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║    ╚═╝██████╔╝
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝       ╚═════╝
 ]]
+
+local header = require("my.helpers.string").split(header_string, "\n")
 
 local M = {
   "goolord/alpha-nvim",

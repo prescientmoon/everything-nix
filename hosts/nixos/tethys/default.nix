@@ -26,9 +26,13 @@
   system.stateVersion = "22.11";
 
   # {{{ A few ad-hoc hardware settings
+  hardware.enableAllFirmware = true;
   hardware.opengl.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.keyboard.qmk.enable = true;
+  powerManagement.cpuFreqGovernor = "ondemand";
+  services.tlp.enable = true;
+  services.thermald.enable = true;
   # }}}
   # {{{ A few ad-hoc programs
   programs.kdeconnect.enable = true;
@@ -42,7 +46,11 @@
   # {{{ Some ad-hoc site blocking
   networking.extraHosts =
     let
-      blacklisted = [ "twitter.com" "minesweeper.online" ];
+      blacklisted = [
+        "twitter.com"
+        "www.reddit.com"
+        # "minesweeper.online" 
+      ];
       blacklist = lib.concatStringsSep "\n" (lib.forEach blacklisted (host: "127.0.0.1 ${host}"));
     in
     blacklist;

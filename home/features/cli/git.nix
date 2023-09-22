@@ -3,8 +3,6 @@
     enable = true;
     package = pkgs.gitFull;
 
-    aliases.graph = "log --decorate --oneline --graph";
-
     userName = "Matei Adriel";
     userEmail = "rafaeladriel11@gmail.com";
 
@@ -12,16 +10,26 @@
       # Syncthing
       ".stfolder"
       ".stversions"
+
       # Direnv
       ".direnv"
+      ".envrc"
     ];
+
+    aliases = {
+      # Print history nicely
+      graph = "log --decorate --oneline --graph";
+
+      # Print last commit's hash
+      hash = "log -1 --format='%H'";
+    };
 
     extraConfig = {
       github.user = "Mateiadrielrafael";
       hub.protocol = "ssh";
       core.editor = "nvim";
-      rebase.autoStash = true;
       init.defaultBranch = "main";
+      rebase.autoStash = true;
 
       # Sign commits using ssh
       gpg.format = "ssh";
