@@ -14,7 +14,8 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    recommendedEnvironment = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    settings = { };
     extraConfig = ''
       ${builtins.readFile ./hyprland.conf}
       ${hyprland-monitors}

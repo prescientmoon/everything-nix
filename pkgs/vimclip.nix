@@ -15,13 +15,15 @@ let vimclip = pkgs.stdenv.mkDerivation rec {
     cp ./vimclip $out/bin/vimclip
     chmod +x $out/bin/vimclip
   '';
+
+  meta.mainProgram = "vimclip";
 }; in
 pkgs.writeShellScriptBin "vimclip" ''
   if [ "wayland" = $XDG_SESSION_TYPE ]
   then
     export VIMCLIP_CLIPBOARD_COMMAND=${pkgs.wl-clipboard}/bin/wl-copy
   else
-    export VIMCLIP_CLIPBOARD_COMMAND=${lib.getExe pkgs.xsel}
+    export VIMCLIP_CLIPBOARD_COMMAND=${pkgs.xsel}/bin/xsel
   fi
 
   ${lib.getExe vimclip}

@@ -12,7 +12,8 @@ let
     nil # nix
     inputs.nixd.packages.${system}.nixd # nix
     haskell-language-server # haskell
-    dhall-lsp-server # dhall
+    # REASON: marked as broken
+    # dhall-lsp-server # dhall
     tectonic # something related to latex (?)
     texlab # latex
     nodePackages_latest.vscode-langservers-extracted # web stuff

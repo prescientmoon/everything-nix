@@ -6,7 +6,6 @@ let
     inputs.homeage.homeManagerModules.homeage
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModules.home-manager.impermanence
-    inputs.hyprland.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.anyrun.homeManagerModules.default
 

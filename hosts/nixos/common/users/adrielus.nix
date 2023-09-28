@@ -13,7 +13,7 @@
       isNormalUser = true;
 
       # File containing my password, managed by agenix
-      passwordFile = config.age.secrets.adrielusPassword.path;
+      hashedPasswordFile = config.age.secrets.adrielusPassword.path;
 
       # Set default shell
       shell = pkgs.fish;

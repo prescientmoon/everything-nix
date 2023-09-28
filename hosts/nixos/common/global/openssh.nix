@@ -40,7 +40,7 @@ in
 
   # Passwordless sudo when SSH'ing with keys
   # TODO: is this safe? Can we ssh back and gain root access this way?
-  security.pam.enableSSHAgentAuth = true;
+  # security.pam.enableSSHAgentAuth = true;
 
   # SSH on slow connections
   programs.mosh.enable = true;

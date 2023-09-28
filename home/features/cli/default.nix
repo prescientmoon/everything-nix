@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }: {
   imports = [
-    ./exa.nix
+    ./eza.nix
     ./bat.nix
     ./ssh.nix
     ./gpg.nix

@@ -1,7 +1,7 @@
 {
   imports = [ ../../common/optional/syncthing.nix ];
 
-  services.syncthing.folders = {
+  services.syncthing.settings.folders = {
     "mythical-vault" = {
       path = "/home/adrielus/.password-store";
       devices = [ "enceladus" "lapetus" ];

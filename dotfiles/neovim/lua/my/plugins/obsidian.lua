@@ -21,6 +21,7 @@ return {
       prepend_note_id = true,
     },
     mappings = {},
+    disable_frontmatter = true,
   },
   keys = {
     { "<C-O>", "<cmd>ObsidianQuickSwitch<cr>" },
