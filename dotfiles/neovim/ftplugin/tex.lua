@@ -32,28 +32,13 @@ vim.opt.foldmethod = "expr"
 -- }}}
 
 local abbreviations = {
-  -- {{{ Greek chars
-  { "eps", "\\epsilon" },
-  { "delta", "\\delta" },
-  { "Delta", "\\Delta" },
-  { "pi", "\\pi" },
-  { "psi", "\\psi" },
-  { "alpha", "\\alpha" },
-  { "beta", "\\beta" },
-  { "theta", "\\theta" },
-  { "gamma", "\\gamma" },
-  { "lam", "\\lambda" },
-  { "lambda", "\\lambda" },
-  { "omega", "\\omega" },
-  { "Omega", "\\Omega" },
-  { "nuls", "\\varnothing" },
-  -- }}}
   -- Other fancy symvols
   { "tmat", "^T" }, -- Tranpose of a matrix
   { "cmat", "^*" }, -- Conjugate of a matrix
   { "sneg", "^C" }, -- Set complement
   { "ortco", "^\\bot" }, -- Orthogonal complement
   { "sinter", "^\\circ" }, -- Interior of a set
+  { "nuls", "\\varnothing" },
 
   -- Basic commands
   { "mangle", "\\measuredangle" },
@@ -91,6 +76,10 @@ local abbreviations = {
   { "ndiv", "\\not\\|\\:" },
   { "perp", "\\perp" },
 
+  -- Decorations
+  { "hat", "\\hat" },
+  { "bar", "\\bar" },
+
   -- Custom commands
   { "abs", "\\abs" }, -- custom abs command
   { "norm", "\\norm" }, -- custom norm command
@@ -117,6 +106,78 @@ local abolishAbbreviations = {
   { "{ww,tt}{m,i}", "{which,this} {means,implies}" },
   { "cex{,s}", "counterexample{}" },
   { "er{t,s,r}", "{transitivity,symmetry,reflexivity}" },
+  -- }}}
+  -- {{{ Exponents and subscripts:
+  --   {operation}{argument}
+  --   - operation = e (exponent) | s (subscript)
+  --   - argument = t{special} | {basic}
+  --   - basic = 0-9|n|i|t|k
+  --   - special =
+  --     - "p" => +
+  --     - "m" => -
+  --     - "i" => -1
+  {
+    "{e,s}{{0,1,2,3,4,5,6,7,8,9,n,i,t,k},t{i,m,p}}",
+    "{^,_}{{},{\\{-1\\},-,+}}",
+    options = A.no_capitalization,
+  },
+  -- }}}
+  -- {{{ Special chars
+  -- System for writing special characters which need to also be easly
+  -- accessible as {sub/super}scripts.
+  --
+  -- The reason epsilon and lambda are separated out from everything else in
+  -- the pattern is because they are the only ones where `foo` doesn't expand
+  -- to `\\foo` directly (so I saved some keystrokes by letting scrap.nvim
+  -- repeat everything for me).
+  {
+    "{,e,s}{{eps,lam},{star,delta,Delta,pi,psi,sigma,alpha,beta,theta,gamma,omega,Omega}}",
+    "{,^,_}\\\\{{epsilon,lambda},{}}",
+    options = A.no_capitalization,
+  },
+  -- }}}
+  -- {{{ My own operator syntax:
+  --   - Any operator can be prefixed with "a" to
+  --     align in aligned mode
+  --   - Any operator can be prefixed with cr to
+  --     start a new line and align in aligned mode
+  {
+    "{cr,a,}{eq,neq,leq,geq,lt,gt,iff,iip,iib}",
+    "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>,\\iff,\\implies,\\impliedby}",
+    options = A.no_capitalization,
+  },
+  -- }}}
+  -- {{{ Set symbols
+  --   - nats => naturals
+  --   - ints => integers
+  --   - rats => rationals
+  --   - irats => irationals
+  --   - rrea => reals
+  --   - comp => complex
+  --   - ppri => primes
+  --   - ffie => fields
+  {
+    "{nats,ints,rats,irats,rrea,comp,ppri,ffie}",
+    "\\mathbb\\{{N,Z,Q,I,R,C,P,F}\\}",
+    options = A.no_capitalization,
+  },
+  -- }}}
+  -- {{{ General function calls:
+  --   {function-name}{modifier?}{argument}{argument-modifier?}
+  --
+  --   - function-name = f/g/h/P
+  --   - modifier:
+  --     - d => derivative
+  --     - 2 => squared
+  --     - 3 => cubed
+  --     - i => inverse
+  --   - argument = x/y/z/a/t/i/n/k
+  --   - argument-modifier:
+  --     - n => subscript n
+  {
+    "{f,g,h,P}{d,2,3,i,}{x,y,z,a,t,i,n,k}{n,}",
+    "{}{',^2,^3,^\\{-1\\},}({}{_n,})",
+  },
   -- }}}
   -- {{{ Calculus & analysis
   { "ib{p,s}", "integration by {parts,substitution}" },
@@ -173,64 +234,6 @@ local abolishAbbreviations = {
     "gt{{e,E,v,V,L},k,a,w,d,md{,e},c{,e}{,l}}{,s,h,x,y}{,a,1,2}",
     "{{},\\kappa,\\alpha,\\omega,\\Delta,\\delta{,'},\\chi{,'}{,_l}}({G,S,H,X,Y}{,',_1,_2})",
     options = A.no_capitalization,
-  },
-  -- }}}
-  -- {{{ My own operator syntax:
-  --   - Any operator can be prefixed with "a" to
-  --     align in aligned mode
-  --   - Any operator can be prefixed with cr to
-  --     start a new line and align in aligned mode
-  {
-    "{cr,a,}{eq,neq,leq,geq,lt,gt,iff,iip,iib}",
-    "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>,\\iff,\\implies,\\impliedby}",
-    options = A.no_capitalization,
-  },
-  -- }}}
-  -- {{{ Exponents and subscripts:
-  --   {operation}{argument}
-  --   - operation = e (exponent) | s (subscript)
-  --   - argument = t{special} | {basic}
-  --   - basic = 0-9|n|i|t|k
-  --   - special =
-  --     - "p" => +
-  --     - "m" => -
-  --     - "i" => -1
-  {
-    "{e,s}{{0,1,2,3,4,5,6,7,8,9,n,i,t,k},t{i,m,p}}",
-    "{^,_}{{},{\\{-1\\},-,+}}",
-    options = A.no_capitalization,
-  },
-  -- }}}
-  -- {{{ Set symbols
-  --   - nats => naturals
-  --   - ints => integers
-  --   - rats => rationals
-  --   - irats => irationals
-  --   - rrea => reals
-  --   - comp => complex
-  --   - ppri => primes
-  --   - ffie => fields
-  {
-    "{nats,ints,rats,irats,rrea,comp,ppri,ffie}",
-    "\\mathbb\\{{N,Z,Q,I,R,C,P,F}\\}",
-    options = A.no_capitalization,
-  },
-  -- }}}
-  -- {{{ General function calls:
-  --   {function-name}{modifier?}{argument}{argument-modifier?}
-  --
-  --   - function-name = f/g/h/P
-  --   - modifier:
-  --     - d => derivative
-  --     - 2 => squared
-  --     - 3 => cubed
-  --     - i => inverse
-  --   - argument = x/y/z/a/t/i/n/k
-  --   - argument-modifier:
-  --     - n => subscript n
-  {
-    "{f,g,h,P}{d,2,3,i,}{x,y,z,a,t,i,n,k}{n,}",
-    "{}{',^2,^3,^\\{-1\\},}({}{_n,})",
   },
   -- }}}
 }

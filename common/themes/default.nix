@@ -13,7 +13,7 @@ let
 
     catppuccin-latte = {
       stylix = {
-        image = ./wallpapers/needygirloverdose.jpg;
+        image = ./wallpapers/watercag.png;
         base16Scheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
         polarity = "light";
       };
