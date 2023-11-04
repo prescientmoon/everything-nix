@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.fish = {
     enable = true;
@@ -30,4 +30,9 @@
 
     interactiveShellInit = builtins.readFile ./config.fish;
   };
+
+  satellite.persistence.at.state.apps.fish.directories = [
+    "${config.xdg.dataHome}/fish"
+    "${config.xdg.dataHome}/z" # The z fish plugin
+  ];
 }

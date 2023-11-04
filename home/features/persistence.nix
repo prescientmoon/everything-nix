@@ -15,34 +15,38 @@
   ];
   # }}}
   # {{{ Rust
-  satellite.persistence.at.cache.apps.Rust.directories = [
-    #".cargo"
-    #".rustup"
+  satellite.persistence.at.cache.apps.rust.directories = [
+    ".cargo"
+    ".rustup"
   ];
   # }}}
   # {{{ Purescript
-  satellite.persistence.at.cache.apps.Purescript.directories = [
-    #"${config.xdg.cacheHome}/spago"
+  satellite.persistence.at.cache.apps.purescript.directories = [
+    "${config.xdg.dataHome}/purescript"
+    "${config.xdg.cacheHome}/spago"
   ];
   # }}}
   # {{{ Nodejs
-  satellite.persistence.at.cache.apps.Node.directories = [
-    #"${config.xdg.cacheHome}/yarn"
-    #"${config.xdg.dataHome}/pnpm"
-  ];
-  # }}}
-  # {{{ Shell stuff
-  satellite.persistence.at.cache.apps.Shell.directories = [
-    #"${config.xdg.dataHome}/fish"
-    #"${config.xdg.dataHome}/z" # The z fish plugin
-    #"${config.xdg.dataHome}/direnv/allow"
-    #".tmux"
-  ];
-  # }}}
-  # {{{ Neovim
-  satellite.persistence.at.cache.apps.Neovim.directories = [
-    #  "${config.xdg.dataHome}/nvim"
-  ];
+  satellite.persistence.at.cache.apps.nodejs = {
+    files = [
+      # Yarn auto-generated file
+      ".yarnrc"
+    ];
+
+    directories = [
+      # Node & npm
+      "${config.xdg.cacheHome}/node-gyp"
+      ".npm"
+
+      # Yarn
+      "${config.xdg.cacheHome}/yarn"
+
+      # Pnpm
+      "${config.xdg.cacheHome}/pnpm"
+      "${config.xdg.dataHome}/pnpm"
+      ".local/state/pnpm"
+    ];
+  };
   # }}}
   # {{{ SSH
   satellite.persistence.at.state.apps.Ssh.directories = [
@@ -91,9 +95,4 @@
   # {{{ Wine
   satellite.persistence.at.state.apps.Wine.directories = [ ".wine" ];
   # }}}
-  # # {{{ Syncthing
-  # satellite.persistence.at.state.apps.Syncthing.directories = [
-  #   "${config.xdg.configHome}/syncthing" # Syncthing config data
-  # ];
-  # # }}}
 }

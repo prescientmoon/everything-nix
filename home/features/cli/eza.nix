@@ -1,10 +1,12 @@
-{ upkgs, lib, ... }: {
-  # REASON: not yet in nixpkgs-stable
-  home.packages = [ upkgs.eza ];
+{ pkgs, lib, ... }:
+let package = pkgs.eza;
+in
+{
+  home.packages = [ package ];
 
   # TODO: generalize alias creation to all shells
   programs.fish.shellAliases =
-    let eza = lib.getExe upkgs.eza;
+    let eza = lib.getExe package;
     in
     rec {
       ls = "${eza} --icons --long";

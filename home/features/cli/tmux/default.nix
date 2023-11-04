@@ -35,4 +35,8 @@ in
       source ${base16-tmux}
     '';
   };
+
+  satellite.persistence.at.state.apps.tmux.directories = [
+    ".tmux"
+  ];
 }

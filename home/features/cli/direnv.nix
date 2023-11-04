@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
@@ -8,4 +8,8 @@
     # No more usesless logs
     DIRENV_LOG_FORMAT = "";
   };
+
+  satellite.persistence.at.state.apps.direnv.directories = [
+    "${config.xdg.dataHome}/direnv/allow"
+  ];
 }
