@@ -12,6 +12,7 @@
     ../common/optional/xdg-portal.nix
     ../common/optional/hyprland.nix
     ../common/optional/quietboot.nix
+    ../common/optional/gitea.nix
 
     ./hardware
     ./services/syncthing.nix
@@ -36,7 +37,9 @@
   # }}}
   # {{{ A few ad-hoc programs
   programs.kdeconnect.enable = true;
+  programs.firejail.enable = true;
   programs.extra-container.enable = true;
+  virtualisation.docker.enable = true;
   # }}}
   # {{{ Ad-hoc stylix targets
   # TODO: include this on all gui hosts

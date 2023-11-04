@@ -13,7 +13,7 @@ let
     (chord [ "j" "k" "l" ] [ "rightctrl" "rightshift" ])
     (chord [ "s" "d" "f" ] [ "leftctrl" "leftshift" ])
     (unmap [ "leftalt" ])
-    (unmap [ "leftshift" ])
+    # (unmap [ "leftshift" ]) # Useful for touhou
     (unmap [ "leftctrl" ])
     (unmap [ "rightshift" ])
     (unmap [ "rightctrl" ])

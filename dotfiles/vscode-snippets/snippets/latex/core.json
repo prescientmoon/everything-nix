@@ -36,7 +36,7 @@
   "Self inner product": {
     "prefix": "diprod",
     "description": "Inner product of a vector with itself",
-    "body": "\\dprod{$1}{$1}$0"
+    "body": "\\dprod{$1}$0"
   },
   "Lemma": {
     "prefix": "lemma",

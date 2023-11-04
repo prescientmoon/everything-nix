@@ -6,6 +6,7 @@ pkgs.mkShell {
     hpack
     stack
     cabal-install
+    haskell-language-server
     haskellPackages.implicit-hie # Automatically generate hie.yaml!
   ];
 }
