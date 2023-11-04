@@ -1,8 +1,5 @@
 {
   programs.ssh.enable = true;
 
-  # TODO: persistence
-  # home.persistence = {
-  #   "/persist/home/adrielus".directories = [ ".ssh" ];
-  # };
+  satellite.persistence.at.state.apps.ssh.directories = [ ".ssh" ];
 }
