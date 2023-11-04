@@ -96,9 +96,4 @@
   #   "${config.xdg.configHome}/syncthing" # Syncthing config data
   # ];
   # # }}}
-  # {{{ Tldr
-  satellite.persistence.at.cache.apps.tldr.directories = [
-    "${config.home.homeDirectory}/.tldrc" # tldr cache
-  ];
-  # }}}
 }
