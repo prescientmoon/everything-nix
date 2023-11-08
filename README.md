@@ -2,6 +2,8 @@
 
 In case you are not familiar with nix/nixos, this is a collection of configuration files which build all my systems in a declarative manner. The tool used to configure the global system is called [nixos](https://nixos.org/), and the one used to configure the individual users is called [home-manager](https://github.com/nix-community/home-manager).
 
+> A [visual history](./history.md) of my setup is in the work!
+
 ## Features this repository includes:
 
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)

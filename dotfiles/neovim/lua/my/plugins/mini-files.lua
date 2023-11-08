@@ -16,7 +16,7 @@ function M.config()
       preview = false,
     },
     mappings = {
-      go_in_plus = "<cr>",
+      go_in_plus = "l",
     },
   })
 

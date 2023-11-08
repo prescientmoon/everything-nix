@@ -25,7 +25,7 @@ let
 
     catppuccin-macchiato = {
       stylix = {
-        image = ./wallpapers/nix-catppuccin.png;
+        image = ./wallpapers/lapis_lazuli.jpg;
         base16Scheme = "${inputs.catppuccin-base16}/base16/macchiato.yaml";
         polarity = "dark";
       };
@@ -85,7 +85,7 @@ let
   };
 
   # Select your current theme here!
-  currentTheme = themes.catppuccin-latte;
+  currentTheme = themes.catppuccin-macchiato;
 in
 {
   # We apply the current theme here.
