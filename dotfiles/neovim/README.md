@@ -221,7 +221,7 @@ The following keybinds are available only when running inside firenvim:
 | \<leader>p            | [P]aste imge from clipboard         | clipboard-image.nvim |
 | \<leader>L            | [L]azy ui                           | lazy.nvim            |
 | C-h/j/k/l             | Navigate panes                      | vim-tmux-navigator   |
-| \<leader\>h           | Add file to harpoon                 | harpoon              |
+| \<leader\>H           | Add file to harpoon                 | harpoon              |
 | C-a                   | Harpoon quick menu                  | harpoon              |
 | C-s q/w/e/r/a/s/d/f/z | Open harpoon file with index 0-9    | harpoon              |
 | <leader>lc            | Open [l]ocal [c]argo.toml           | rust-tools           |
@@ -235,3 +235,7 @@ Iron.nvim commands rest in the `<leader>i` namespace. There is a lot of them, an
 #### Magma
 
 Magma commands live under the namespace `<leader>M`. I barely use this plugin, so I won't document my keybinds just yet.
+
+#### Gitsigns
+
+I use a slightly modified version of the default keybinds, and I've been too lazy to document everything.

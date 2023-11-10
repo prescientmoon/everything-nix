@@ -9,7 +9,7 @@ local function bindHarpoon(key, index)
 end
 
 function M.init()
-  vim.keymap.set("n", "<leader>h", function()
+  vim.keymap.set("n", "<leader>H", function()
     require("harpoon.mark").add_file()
   end, { desc = "Add file to [h]arpoon" })
   vim.keymap.set("n", "<C-a>", function()

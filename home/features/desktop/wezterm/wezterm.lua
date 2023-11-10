@@ -51,18 +51,27 @@ config.colors.tab_bar = {
   },
 }
 -- }}}
--- {{{ Other visual things 
-config.window_background_opacity = 0.6;
+-- {{{ Other visual things
+config.window_background_opacity = 0.6 -- TODO: load from nix!
 -- }}}
 -- }}}
 -- {{{ Main config options
-config.adjust_window_size_when_changing_font_size = false -- Makes it work with fixed window sizes.
 config.automatically_reload_config = true
+
+-- {{{ Fonts
+config.adjust_window_size_when_changing_font_size = false -- Makes it work with fixed window sizes.
 config.font_size = font_size
-config.use_fancy_tab_bar = false
+-- }}}
+-- {{{ Tab bar
+config.use_fancy_tab_bar = true
+-- config.enable_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+-- }}}
+-- {{{ Keycodes
 config.disable_default_key_bindings = true
 -- config.enable_kitty_keyboard = true -- Let's apps recognise more distinct keys
 config.enable_csi_u_key_encoding = true -- For some reason I need this for all keybinds to work inside neovim.
+-- }}}
 -- }}}
 -- {{{ Keybinds
 -- }}}
