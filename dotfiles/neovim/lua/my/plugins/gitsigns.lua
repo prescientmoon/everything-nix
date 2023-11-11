@@ -52,7 +52,7 @@ local M = {
       local prefix = "<leader>h"
 
       wk.register({
-        [prefix] = { name = "gitsigns" },
+        ["<leader>"] = { h = { name = "gitsigns" } },
       })
 
       -- {{{ Normal mode

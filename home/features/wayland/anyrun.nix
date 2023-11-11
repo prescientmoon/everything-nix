@@ -25,7 +25,7 @@
       maxEntries = 7;
     };
 
-    extraCss = ''
+    extraCss = /* css */ ''
       /* {{{ Global overrides */
       #window,
       #entry,

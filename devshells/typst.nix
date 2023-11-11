@@ -1,8 +1,7 @@
 # Shell for using a pinned version of typst
-{ pkgs, upkgs, ... }:
+{ pkgs, ... }:
 pkgs.mkShell {
   nativeBuildInputs = [
-    # REASON: version 0.7.0
-    upkgs.typst
+    pkgs.typst
   ];
 }

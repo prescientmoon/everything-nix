@@ -10,6 +10,7 @@ let
     don-t-fuck-with-paste # disallows certain websites from disabling pasting
     decentraleyes # Serves local copies of a bunch of things instead of reaching a CDN
     gesturefy # mouse gestures
+    indie-wiki-buddy # redirects fandom wiki urls to the proper wikis
     i-dont-care-about-cookies
     localcdn # caches libraries locally
     privacy-badger # blocks some trackers

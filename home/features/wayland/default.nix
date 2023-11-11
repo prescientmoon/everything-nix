@@ -1,5 +1,5 @@
 # Common wayland stuff
-{ lib, pkgs, upkgs, ... }: {
+{ lib, pkgs, ... }: {
   imports = [
     ./dunst.nix
     ./wlsunset.nix
@@ -10,28 +10,16 @@
     ../desktop/eww
   ];
 
-  # Makes some stuff run on wayland (?)
-  # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)
-  # TODO: ask author what those do
-  # home.sessionVariables = {
-  #   QT_QPA_PLATFORM = "wayland";
-  #   SDL_VIDEODRIVER = "wayland";
-  #   XDG_SESSION_TYPE = "wayland";
-  # };
-
   # TODO: set up
-  # - wallpaper
-  # - notification daemon
-  # - screen recording
   # - volume/backlight controls
   # - eww bar
   # - configure hyprland colors using base16 stuff
   # - look into swaylock or whatever people use
-  # - look into greetd or something
   # - multiple keyboard layouts
 
   home.packages =
     let
+      # {{{ OCR 
       _ = lib.getExe;
 
       wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
@@ -45,20 +33,20 @@
           | ${wl-copy}
         ${_ pkgs.libnotify} "Run ocr on area with output \"$(${wl-paste})\""
       '';
+      # }}}
     in
     with pkgs; [
-      # Utils
+      # {{{ Utils
       libnotify # Send notifications
       wl-ocr # Custom ocr script
       wl-clipboard # Clipboard manager
       wlogout # Nice logout script
       wlsunset # Day/night gamma display adjustments
-
-      # REASON: not available on stable yet
-      upkgs.hyprpicker # Color picker
-
-      # Screenshot related tools
+      hyprpicker # Color picker
+      # }}}
+      # {{{ Screenshot related tools
       grim # Take screenshot
       slurp # Area selector
+      # }}}
     ];
 }

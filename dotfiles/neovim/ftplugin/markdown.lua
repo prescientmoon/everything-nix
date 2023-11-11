@@ -1,1 +1,1 @@
-require("my.helpers.wrapMovement").setup()
+require("my.helpers.wrapMovement").enable()

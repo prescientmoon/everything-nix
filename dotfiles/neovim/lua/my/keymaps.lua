@@ -65,6 +65,13 @@ function M.setup()
   -- {{{ Replace word in file
   M.nmap("<leader>rw", ":%s/<C-r><C-w>/", "[R]eplace [w]ord in file")
   -- }}}
+  -- {{{ Toggle settings
+  M.nmap(
+    "<leader>sw",
+    require("my.helpers.wrapMovement").toggle,
+    "toggle word [w]rap"
+  )
+  -- }}}
   -- {{{ Text objects
   M.delimitedTextobject("q", '"', "[q]uotes")
   M.delimitedTextobject("a", "'", "[a]postrophes")
@@ -104,7 +111,6 @@ function M.setup()
     end,
   })
   -- }}}
-
   -- -- {{{ Winblend
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "*" },
@@ -114,8 +120,6 @@ function M.setup()
     end,
   })
   -- -- }}}
-
-  return M
 end
 
 return M

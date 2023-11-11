@@ -1,5 +1,5 @@
 # Allows installing web apps as desktop apps
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 let cfg = config.programs.firefox.apps;
 in
 {

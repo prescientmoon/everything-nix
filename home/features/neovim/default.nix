@@ -1,13 +1,12 @@
 # TODO(imperanence): handle persistence of things like harpoon, lazy, etc
-{ pkgs, upkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, inputs, ... }:
 let
   # {{{ extraPackages
   extraPackages = with pkgs; [
     # Language servers
     nodePackages.typescript-language-server # typescript
     nodePackages_latest.purescript-language-server # purescript
-    # REASON: not in stable
-    upkgs.lua-language-server # lua
+    lua-language-server # lua
     rnix-lsp # nix
     nil # nix
     inputs.nixd.packages.${system}.nixd # nix
@@ -20,7 +19,7 @@ let
     python310Packages.python-lsp-server # python
     pyright # python
     rust-analyzer # rust
-    upkgs.typst-lsp # typst
+    typst-lsp # typst
 
     # Formatters
     luaformatter # Lua
@@ -32,7 +31,7 @@ let
     nodePackages_latest.purs-tidy # Purescript
     nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
-    upkgs.typst-fmt # Typst
+    typst-fmt # Typst
 
     # Linters
     ruff # Python linter

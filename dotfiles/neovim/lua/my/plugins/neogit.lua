@@ -9,7 +9,7 @@ local M = {
     vim.keymap.set("n", "<C-g>", "<cmd>Neogit<cr>", { desc = "Open neo[g]it" })
   end,
   config = function()
-    require("neogit").setup()
+    require("neogit").setup({})
 
     -- {{{ Disable folds inside neogit
     vim.api.nvim_create_autocmd("FileType", {

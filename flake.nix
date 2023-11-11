@@ -6,9 +6,6 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # Nixpkgs-unstable
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -58,15 +55,15 @@
 
     # Hyprland (available in nix unstable only atm)
     hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprland (available in nix unstable only atm)
     hyprland-contrib.url = "github:hyprwm/contrib";
-    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
 
     # Contains a bunch of wayland stuff not on nixpkgs
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix language server
     # [the docs](https://github.com/nix-community/nixd/blob/main/docs/user-guide.md#installation)
@@ -75,11 +72,11 @@
 
     # Spotify client
     spicetify-nix.url = "github:the-argus/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Disko
     disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # Deploy-rs
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -87,7 +84,7 @@
 
     # Nixinate
     nixinate.url = "github:matthewcroughan/nixinate";
-    nixinate.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nixinate.inputs.nixpkgs.follows = "nixpkgs";
 
     # Anyrun
     anyrun.url = "github:Kirottu/anyrun";
@@ -104,7 +101,8 @@
     # {{{ Self management
     # Smos
     smos.url = "github:NorfairKing/smos";
-    # smos.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # REASON: smos fails to build this way
+    # smos.inputs.nixpkgs.follows = "nixpkgs";
     # smos.inputs.home-manager.follows = "home-manager";
 
     # Intray
@@ -133,8 +131,6 @@
 
       specialArgs = system: {
         inherit inputs outputs;
-        # This is used so often it makes sense to have it as it's own thing
-        upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       };
       # }}}
     in

@@ -23,6 +23,7 @@ function M.config()
       l = { name = "[L]ocal" },
       w = { name = "[W]orkspace" },
       y = { name = "[Y]ank" },
+      s = { name = "[S]ettings" },
     },
   })
 end

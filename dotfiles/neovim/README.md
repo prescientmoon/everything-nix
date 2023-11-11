@@ -19,6 +19,7 @@ I feel like macro recording is a rare thing, so I moved it to `yq/yQ`. This free
 | ----------- | ------------------------------------------------ | ------- |
 | \<leader>a  | [A]lternate file                                 |         |
 | \<leader>rw | [R]eplace [w]ord under cursor in the entire file |         |
+| \<leader>sw | toggle word [w]rap and visual-line keybinds      |         |
 | Q           | [Q]uit all buffers                               |         |
 | [d          | Previous [d]iagnostic                            |         |
 | d]          | Next [d]iagnostic                                |         |
