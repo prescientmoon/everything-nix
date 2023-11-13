@@ -83,11 +83,17 @@ in
         lib.platforms.linux)
     ];
 
-    xdg.configFile."hypr/hyprpaper.conf".text = ''
-      ${lib.concatStringsSep "\n" (lib.forEach cfg.preload (image: "preload=${image}"))}
-      ${lib.concatStringsSep "\n" (lib.forEach cfg.wallpapers mkWallpaper)}
-      splash=true
-    '';
+    xdg.configFile."hypr/hyprpaper.conf" = {
+      text = ''
+        ${lib.concatStringsSep "\n" (lib.forEach cfg.preload (image: "preload=${image}"))}
+        ${lib.concatStringsSep "\n" (lib.forEach cfg.wallpapers mkWallpaper)}
+        splash=true
+      '';
+
+      onChange = (pkgs.writeShellScript "reload_hyprpaper" ''
+        systemctl --user restart hyprpaper.service
+      '').outPath;
+    };
 
     systemd.user.services.hyprpaper = {
       Unit = {
