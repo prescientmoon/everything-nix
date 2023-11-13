@@ -76,7 +76,7 @@ in
         terminal = false;
         name = app.displayName;
         type = "Application";
-        exec = "firefox --name=${app.displayName} --no-remote -P \"${app.name}\" \"${app.url}\"";
+        exec = "firefox --name=${app.displayName} --no-remote --kiosk -P \"${app.name}\" \"${app.url}\"";
         icon = app.icon;
       };
     in

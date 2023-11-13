@@ -12,10 +12,13 @@ in
     enable = true;
   };
 
-  home.packages = lib.mkIf config.programs.wofi.enable [
-    pkgs.wofi-pass
-  ];
+  # Enable runner integration
+  home.packages = lib.lists.optional config.programs.wofi.enable pkgs.wofi-pass;
 
-  programs.browserpass.enable = config.programs.firefox.enable;
+  # Enable the firefox extension
+  home.file.".mozilla/native-messaging-hosts/passff.json".source =
+    lib.mkIf config.programs.firefox.enable
+      "${pkgs.passff-host}/lib/mozilla/native-messaging-hosts/passff.json";
+
   satellite.persistence.at.data.apps.pass.directories = [ storePath ];
 }

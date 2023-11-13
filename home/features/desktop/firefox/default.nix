@@ -1,7 +1,7 @@
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   # {{{ Global extensions
-  extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+  extensions = with inputs.firefox-addons.packages.${pkgs.system}; ([
     buster-captcha-solver
     # REASON: returns 404 for now
     # bypass-paywalls-clean
@@ -21,8 +21,10 @@ let
     ublock-origin
     unpaywall
     user-agent-string-switcher
-    browserpass # Password store support
-  ];
+  ] ++
+  # Password store support
+  lib.lists.optional config.programs.password-store.enable passff
+  );
   # }}}
 in
 {
@@ -47,21 +49,28 @@ in
       userContent = builtins.readFile ./userContent.css;
       # }}}
       # {{{ Extensions
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; extensions ++ [
-        augmented-steam # Adds more info to steam
-        blocktube # Lets you block youtube channels
-        dearrow # Crowdsourced clickbait remover 💀
-        firenvim # summon a nvim instance inside the browser
-        lovely-forks # displays forks on github
-        octolinker # github import to link thingy
-        octotree # github file tree
-        refined-github # a bunch of github modifications
-        return-youtube-dislikes
-        steam-database # adds info from steamdb on storepages
-        sponsorblock # skip youtube sponsors
-        vimium-c # vim keybinds
-        youtube-shorts-block
-      ];
+      extensions =
+        with inputs.firefox-addons.packages.${pkgs.system};
+        with lib.lists; flatten [
+          extensions
+          # List of profile-specific extensions
+          [
+            augmented-steam # Adds more info to steam
+            blocktube # Lets you block youtube channels
+            dearrow # Crowdsourced clickbait remover 💀
+            lovely-forks # displays forks on github
+            octolinker # github import to link thingy
+            octotree # github file tree
+            refined-github # a bunch of github modifications
+            return-youtube-dislikes
+            steam-database # adds info from steamdb on storepages
+            sponsorblock # skip youtube sponsors
+            vimium-c # vim keybinds
+            youtube-shorts-block
+          ]
+          # summons a nvim instance inside the browser
+          (optional config.satellite.toggles.neovim.enable firenvim)
+        ];
       # }}}
       # {{{ Search engines
       search.engines =
