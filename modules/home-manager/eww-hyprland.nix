@@ -1,10 +1,12 @@
+# A big chunk of this was taken from fuxefan's config:
+# https://github.com/fufexan/dotfiles/blob/main/home/programs/eww/default.nix
 { config
 , pkgs
 , lib
 , ...
 }:
 let
-  reload_script = pkgs.writeShellScript "reload_eww" ''
+  reloadScript = pkgs.writeShellScript "reload_eww" ''
     systemctl --user restart eww.service
   '';
 
@@ -51,7 +53,7 @@ in
 
       onChange =
         if cfg.autoReload
-        then reload_script.outPath
+        then reloadScript.outPath
         else "";
     };
 

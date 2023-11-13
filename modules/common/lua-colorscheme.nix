@@ -5,7 +5,7 @@
     description = "Lua file containing the current colorscheme";
   };
 
-  config.satellite.colorscheme.lua = ''
+  config.satellite.colorscheme.lua = /* lua */ ''
     return {
       name = "${config.lib.stylix.scheme.scheme}",
       base00 = "${config.lib.stylix.scheme.base00}",

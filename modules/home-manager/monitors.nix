@@ -2,7 +2,7 @@
 # This is meant to provide a wm-independent way of specifying the monitor configuration of each machine.
 { lib, ... }:
 {
-  options.monitors = lib.mkOption {
+  options.satellite.monitors = lib.mkOption {
     type = lib.types.listOf (lib.types.submodule {
       options = {
         name = lib.mkOption {

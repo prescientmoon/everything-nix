@@ -1,7 +1,7 @@
 { pkgs, lib, config, inputs, ... }:
 
 let
-  enabledMonitors = lib.filter (m: m.enabled) config.monitors;
+  enabledMonitors = lib.filter (m: m.enabled) config.satellite.monitors;
   hyprland-monitors = lib.concatStringsSep "\n" (lib.forEach enabledMonitors (m: ''
     monitor=${m.name},${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1
     ${lib.optionalString (m.workspace != null) "workspace=${m.name},${m.workspace}"}

@@ -59,11 +59,11 @@
       # App state which I should be able to delete at any point
       at.cache.path = "/persist/local/cache";
     };
-  };
 
-  monitors = [{
-    name = "eDP-1";
-    width = 1920;
-    height = 1080;
-  }];
+    monitors = [{
+      name = "eDP-1";
+      width = 1920;
+      height = 1080;
+    }];
+  };
 }
