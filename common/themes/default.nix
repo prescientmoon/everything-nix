@@ -4,16 +4,19 @@ let
     # {{{ Catppuccin variants
     catppuccin-mocha = {
       stylix = {
-        image = ./wallpapers/auto/catppuccin-mocha-rain-world.png;
+        image = ./wallpapers/breaking_phos.jpg;
         base16Scheme = "${inputs.catppuccin-base16}/base16/mocha.yaml";
         polarity = "dark";
       };
-      satellite = { };
+      satellite = {
+        transparency.alpha = 0.7;
+        rounding.radius = 8.0;
+      };
     };
 
     catppuccin-latte = {
       stylix = {
-        image = ./wallpapers/needygirloverdose.jpg;
+        image = ./wallpapers/happy_phos.png;
         base16Scheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
         polarity = "light";
       };
@@ -25,7 +28,7 @@ let
 
     catppuccin-macchiato = {
       stylix = {
-        image = ./wallpapers/lapis_lazuli.jpg;
+        image = ./wallpapers/breaking_phos.jpg;
         base16Scheme = "${inputs.catppuccin-base16}/base16/macchiato.yaml";
         polarity = "dark";
       };
@@ -71,7 +74,7 @@ let
 
       purplepink-light = {
         stylix = {
-          image = ./wallpapers/needygirloverdose.jpg;
+          image = ./wallpapers/spaceship.jpg;
           base16Scheme = ./schemes/gpt-themes/purplepink-light.yaml;
           polarity = "light";
         };

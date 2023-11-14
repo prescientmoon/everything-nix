@@ -1,14 +1,15 @@
 { pkgs, lib, ... }:
 let
   libnotify = lib.getExe pkgs.libnotify;
+  systemctl = "${pkgs.systemd}/bin/systemctl";
 
   wlsunset-toggle = pkgs.writeShellScriptBin "wlsunset-toggle" ''
     if [ "active" = "$(systemctl --user is-active wlsunset.service)" ]
     then
-      systemctl --user stop wlsunset.service
+      ${systemctl} --user stop wlsunset.service
       ${libnotify} "Stopped wlsunset"
     else
-      systemctl --user start wlsunset.service
+      ${systemctl} --user start wlsunset.service
       ${libnotify} "Started wlsunset"
     fi
   '';

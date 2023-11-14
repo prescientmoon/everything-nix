@@ -7,7 +7,7 @@
 }:
 let
   reloadScript = pkgs.writeShellScript "reload_eww" ''
-    systemctl --user restart eww.service
+    ${pkgs.systemd}/bin/systemctl
   '';
 
   cfg = config.programs.eww-hyprland;
@@ -51,10 +51,7 @@ in
     xdg.configFile."eww/eww.yuck" = {
       text = cfg.extraConfig or "";
 
-      onChange =
-        if cfg.autoReload
-        then reloadScript.outPath
-        else "";
+      onChange = lib.mkIf cfg.autoReload reloadScript.outPath;
     };
 
     systemd.user.services.eww = {

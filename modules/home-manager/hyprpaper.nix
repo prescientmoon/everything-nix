@@ -91,7 +91,7 @@ in
       '';
 
       onChange = (pkgs.writeShellScript "reload_hyprpaper" ''
-        systemctl --user restart hyprpaper.service
+        ${pkgs.systemd}/bin/systemctl --user restart hyprpaper.service
       '').outPath;
     };
 
