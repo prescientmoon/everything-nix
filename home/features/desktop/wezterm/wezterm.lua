@@ -52,7 +52,7 @@ config.colors.tab_bar = {
 }
 -- }}}
 -- {{{ Other visual things
-config.window_background_opacity = 0.6 -- TODO: load from nix!
+config.window_background_opacity = colorscheme.transparency.value
 -- }}}
 -- }}}
 -- {{{ Main config options

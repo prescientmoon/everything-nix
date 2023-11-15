@@ -179,7 +179,7 @@ in
         # Required for figma to be able to export to svg
         "dom.events.asyncClipboard.clipboardItem" = true;
 
-        # Customize css
+        # Allow custom css
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
         # Set language to english
@@ -188,12 +188,71 @@ in
         # Do not restore sessions after what looks like a "crash"
         "browser.sessionstore.resume_from_crash" = false;
 
-        # Tell firefox to make multiple requests at once
-        # See [this random page](https://doorsanchar.com/how-to-make-mozilla-firefox-30-times-faster/)
-        # "network.http.pipelining" = true;
-        # "network.http.proxy.pipelining" = true;
-        # "network.http.pipelining.maxrequests" = 30; # Allow 30 requests at once
-        # "nglayout.initialpaint.delay" = 0;
+        # Inspired by https://github.com/TLATER/dotfiles/blob/b39af91fbd13d338559a05d69f56c5a97f8c905d/home-config/config/graphical-applications/firefox.nix
+        # {{{ Performance settings
+        "gfx.webrender.all" = true; # Force enable GPU acceleration
+        "media.ffmpeg.vaapi.enabled" = true;
+        "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
+        # }}}
+        # {{{ New tab page 
+        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" =
+          false;
+        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
+          false;
+        "browser.newtabpage.activity-stream.feeds.snippets" = false;
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "";
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
+          false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.newtabpage.pinned" = false;
+        # }}}
+        # {{{ Privacy
+        "browser.contentblocking.category" = "strict";
+        "app.shield.optoutstudies.enabled" = false;
+        "dom.security.https_only_mode" = true;
+        "dom.security.https_only_mode_ever_enabled" = true;
+        "datareporting.policy.dataSubmissionEnable" = false;
+        "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.trackingprotection.socialtracking.enabled" = true;
+        "browser.discovery.enabled" = false;
+        # }}}
+
+        # Keep the reader button enabled at all times; really don't
+        # care if it doesn't work 20% of the time, most websites are
+        # crap and unreadable without this
+        "reader.parse-on-load.force-enabled" = true;
+
+        # Hide the "sharing indicator", it's especially annoying
+        # with tiling WMs on wayland
+        "privacy.webrtc.legacyGlobalIndicator" = false;
+
+        # Disable auto update checks
+        "app.update.auto" = false;
+
+        # Do not include "switch to [tab]" in search results
+        "browser.urlbar.suggest.openpage" = false;
+
+        # Hide random popup: https://forums.linuxmint.com/viewtopic.php?t=379164
+        "browser.protections_panel.infoMessage.seen" = true;
+
+        # Disable shortcut for quitting :)
+        "browser.quitShortcut.disabled" = true;
+
+        # Do not show dialog for getting panes in the addons menu (?)
+        # http://kb.mozillazine.org/Extensions.getAddons.showPane
+        "extensions.getAddons.showPane" = false;
+
+        # Do not recommend addons
+        "extensions.htmlaboutaddons.recommendations.enabled" = false;
+
+        # Link saving thingy (?)
+        "extensions.pocket.enabled" = false;
+
+        # Disable firefox accounts (?)
+        "identity.fxaccounts.enabled" = false;
       };
       # }}}
     };
