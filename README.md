@@ -8,7 +8,7 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) based secret management
-- Sets up all the apps I use — including git, neovim, fish, tmux, starship, xmonad, rofi, polybar, discord, zathura, alacritty & more.
+- Sets up all the apps I use — including git, neovim, fish, tmux, starship, hyprland, anyrun, discord, zathura, wezterm & much more.
 
 The current state of this repo is a refactor of my old, messy nixos config, based on the structure of [this template](https://github.com/Misterio77/nix-starter-configs).
 
@@ -107,7 +107,7 @@ Includes links to stuff which used to be in the previous section but is not used
 - [Mind.nvim](https://github.com/phaazon/mind.nvim) — self management tree editor. The project got archived, so I switched to [Smos](https://github.com/NorfairKing/smos).
 - [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) — general purpose neovim LSP. The project got archived, so I switched to [formatter.nvim](https://github.com/mhartington/formatter.nvim).
 - [Wofi](https://sr.ht/~scoopta/wofi/) — program launcher. I switched to [Anyrun](https://github.com/Kirottu/anyrun).
-- [Alacritty](https://github.com/alacritty/alacritty) — terminal emulator
+- [Alacritty](https://github.com/alacritty/alacritty) — terminal emulator. I switched to [Wezterm](https://wezfurlong.org/wezterm/).
 - [Xmonad](https://xmonad.org/) — xorg window manager. I switched to [Hyprland](https://hyprland.org/).
   - [Polybar](https://github.com/polybar/polybar) — desktop bar
   - [Rofi](https://github.com/davatorium/rofi) — program launcher. I switched to [Wofi](https://sr.ht/~scoopta/wofi/).
