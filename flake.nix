@@ -97,6 +97,9 @@
     # Nixos hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    # Matrix TUi
+    matui.url = "github:pkulak/matui";
+    matui.inputs.nixpkgs.follows = "nixpkgs";
 
     # {{{ Self management
     # Smos

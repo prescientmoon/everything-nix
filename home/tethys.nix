@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   imports = [
     ./global
 
@@ -34,6 +34,7 @@
     lutris # Game launcher
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder
+    inputs.matui.packages.${pkgs.system}.matui # Matrix TUi
 
     # Clis
     sherlock # Search for usernames across different websites
