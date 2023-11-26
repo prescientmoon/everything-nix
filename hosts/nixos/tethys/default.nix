@@ -40,6 +40,7 @@
   programs.firejail.enable = true;
   programs.extra-container.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
   # }}}
   # {{{ Ad-hoc stylix targets
   # TODO: include this on all gui hosts

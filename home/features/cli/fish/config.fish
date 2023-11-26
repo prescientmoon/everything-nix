@@ -41,3 +41,8 @@ function fish_user_key_bindings
   # }}}
 end
 # }}}
+# {{{ Helpers
+function take -d "Create a directory and cd into it"
+  mkdir $argv; and cd $argv
+end
+# }}}

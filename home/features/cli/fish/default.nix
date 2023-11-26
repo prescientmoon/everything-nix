@@ -12,6 +12,7 @@
       df = "df -h";
       du = "du -h";
       duh = "du -hd 1"; # short for du here
+      pdf = "zathura --fork"; # Open a pdf reader
     };
 
     # with pkgs.fishPlugins;
