@@ -36,15 +36,14 @@ main =
     myWorkspaces =
       ["1:dev", "2:browser", "3:chat", "4:terminal", "5:reading", "6:music", "7:gaming"]
 
-    myTerminal = "alacritty"
+    myTerminal = "xmonad"
     myBrowser = "firefox"
 
     keymap =
       [ ("M-p", spawn "rofi -show drun"),
-        ("M-w", spawn "rofi -show window"),
         ("M-g", spawn myBrowser),
         ("M-d", spawn "Discord"),
-        ("M-v", spawn "alacritty -e 'vimclip'"),
+        ("M-v", spawn "wezterm start vimclip"),
         ("M-s", spawn "spectacle -rcb"),
         ("M-S-s", spawn "spectacle -mcb"),
         ("M-C-s", spawn "spectacle -ucb"),
@@ -62,8 +61,8 @@ main =
     myLayoutHook = spacingHook layouts
 
     startupApps = []
-    -- [ (0, "alacritty"),
-    --   (1, "google-chrome-stable"),
+    -- [ (0, "wezterm"),
+    --   (1, "firefox"),
     --   (2, "Discord")
     -- ]
 

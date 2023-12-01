@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    ../desktop/batsignal.nix
+    ../desktop
     ./rofi
     ./polybar
     ./feh.nix

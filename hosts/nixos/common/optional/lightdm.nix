@@ -2,7 +2,8 @@
 let greeter = "enso";
 in
 {
-  services.xserver.enable = true;
+  imports = [ ./xserver.nix ];
+
   services.xserver.displayManager.lightdm = {
     enable = true;
 
@@ -22,6 +23,7 @@ in
   # services.xserver.displayManager.defaultSession = lib.mkDefault "hyprland";
   services.xserver.displayManager.defaultSession = lib.mkDefault "none+xmonad";
 
+  # Enable base16 styling
   stylix.targets.lightdm.enable = true;
 }
 

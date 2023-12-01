@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }: {
   imports = [
-    ./global
+    ./global.nix
 
     ./features/desktop/zathura.nix
     ./features/desktop/spotify.nix
@@ -18,26 +18,35 @@
   # Arbitrary extra packages
   home.packages = with pkgs; [
     # Desktop apps
-    zoom-us # Zoom client 🤮
+    # {{{ Communication
+    signal-desktop # Signal client
     element-desktop # Matrix client
-    obsidian # Notes
-    peek # GIF recorder
-    vlc # Video player
+    zoom-us # Zoom client 🤮
+    inputs.matui.packages.${pkgs.system}.matui # Matrix TUi
+    # }}}
+    # {{{ Editors for different formats 
     gimp # Image editing
-    libreoffice # Free office suite
     lmms # Music software
     kicad # PCB editing
-    plover.dev # steno engine
-    qbittorrent # Torrent client
-    signal-desktop # Signal client
+    libreoffice # Free office suite
+    # }}}
+    # {{{ Gaming 
     wine # Windows compat layer or whatever
     lutris # Game launcher
+    # }}}
+    # {{{ Clis
+    sherlock # Search for usernames across different websites
+    # }}}
+    # {{{ Misc 
+    obsidian # Notes
+    peek # GIF recorder
+    mpv # Video player
+    plover.dev # steno engine
+    qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder
-    inputs.matui.packages.${pkgs.system}.matui # Matrix TUi
 
-    # Clis
-    sherlock # Search for usernames across different websites
+    # }}} 
   ];
 
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4; # Bigger text in qt apps

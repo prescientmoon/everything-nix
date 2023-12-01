@@ -1,18 +1,17 @@
 # Common wayland stuff
-{ lib, pkgs, ... }: {
+{ lib, pkgs, inputs, ... }: {
   imports = [
-    ./dunst.nix
     ./wlsunset.nix
     ./wlogout.nix
     ./anyrun.nix
-    ../desktop/wezterm # Default hyprland terminal
-    ../desktop/batsignal.nix
+
+    ../desktop
     ../desktop/eww
   ];
 
   # TODO: set up
   # - volume/backlight controls
-  # - eww bar
+  # - bar
   # - configure hyprland colors using base16 stuff
   # - look into swaylock or whatever people use
   # - multiple keyboard layouts
@@ -36,17 +35,10 @@
       # }}}
     in
     with pkgs; [
-      # {{{ Utils
       libnotify # Send notifications
       wl-ocr # Custom ocr script
       wl-clipboard # Clipboard manager
-      wlogout # Nice logout script
-      wlsunset # Day/night gamma display adjustments
       hyprpicker # Color picker
-      # }}}
-      # {{{ Screenshot related tools
-      grim # Take screenshot
-      slurp # Area selector
-      # }}}
+      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast # Screenshot tool
     ];
 }

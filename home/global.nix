@@ -14,9 +14,9 @@ let
     inputs.intray.homeManagerModules.x86_64-linux.default
     inputs.smos.homeManagerModules.x86_64-linux.default
 
-    ../features/cli
-    ../features/persistence.nix
-    ../../common
+    ./features/cli
+    ./features/persistence.nix
+    ../common
   ];
   # }}} 
   # {{{ Overlays

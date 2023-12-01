@@ -24,7 +24,6 @@ let
     # Formatters
     luaformatter # Lua
     stylua # Lua
-    ormolu # Haskell
     black # Python
     yapf # Python
     isort # Reorder python imports

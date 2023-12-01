@@ -2,12 +2,9 @@ local A = require("my.abbreviations")
 local scrap = require("scrap")
 
 require("my.helpers.wrapMovement").enable()
+require("my.abbreviations.math").setup()
 
 vim.opt.conceallevel = 0
-
--- vim.opt.foldcolumn = "1"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.opt.foldmethod = "expr"
 
 -- {{{ Older functions for calculating things inside vim
 -- vim.keymap.set("n", "<leader>lg", function()
@@ -103,35 +100,7 @@ local abbreviations = {
   { "half", "\\half" }, -- 1/2 fraction
 }
 
--- Todo: convert exponents and subscripts
--- to use this more concise notation.
 local abolishAbbreviations = {
-  -- {{{ General phrases
-  { "thrf", "therefore" },
-  { "bcla", "by contradiction let's assume" },
-  { "wlg", "without loss of generality" },
-  { "tits", "that is to say," },
-  { "wpbd", "we will prove the statement in both directions." },
-  { "stam{,s}", "statement{}" },
-  { "{ww,tt}{m,i}", "{which,this} {means,implies}" },
-  { "cex{,s}", "counterexample{}" },
-  { "er{t,s,r}", "{transitivity,symmetry,reflexivity}" },
-  -- }}}
-  -- {{{ Exponents and subscripts:
-  --   {operation}{argument}
-  --   - operation = e (exponent) | s (subscript)
-  --   - argument = t{special} | {basic}
-  --   - basic = 0-9|n|i|t|k
-  --   - special =
-  --     - "p" => +
-  --     - "m" => -
-  --     - "i" => -1
-  {
-    "{e,s}{{0,1,2,3,4,5,6,7,8,9,n,i,t,k},t{i,m,p}}",
-    "{^,_}{{},{\\{-1\\},-,+}}",
-    options = A.no_capitalization,
-  },
-  -- }}}
   -- {{{ Special chars
   -- System for writing special characters which need to also be easly
   -- accessible as {sub/super}scripts.
@@ -143,17 +112,6 @@ local abolishAbbreviations = {
   {
     "{,e,s}{{eps,lam},{star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega}}",
     "{,^,_}\\\\{{epsilon,lambda},{}}",
-    options = A.no_capitalization,
-  },
-  -- }}}
-  -- {{{ My own operator syntax:
-  --   - Any operator can be prefixed with "a" to
-  --     align in aligned mode
-  --   - Any operator can be prefixed with cr to
-  --     start a new line and align in aligned mode
-  {
-    "{cr,a,}{eq,neq,leq,geq,lt,gt,iff,iip,iib}",
-    "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>,\\iff,\\implies,\\impliedby}",
     options = A.no_capitalization,
   },
   -- }}}
@@ -170,6 +128,16 @@ local abolishAbbreviations = {
     "{nats,ints,rats,irats,rrea,comp,ppri,ffie}",
     "\\mathbb\\{{N,Z,Q,I,R,C,P,F}\\}",
     options = A.no_capitalization,
+  },
+  -- }}}
+  -- {{{ My own operator syntax:
+  --   - Any operator can be prefixed with "a" to
+  --     align in aligned mode
+  --   - Any operator can be prefixed with cr to
+  --     start a new line and align in aligned mode
+  {
+    "{cr,a,}{eq,neq,leq,geq,lt,gt,iff,iip,iib}",
+    "{\\\\\\&,&,}{=,\\neq,\\leq,\\geq,<,>,\\iff,\\implies,\\impliedby}",
   },
   -- }}}
   -- {{{ General function calls:
@@ -189,36 +157,7 @@ local abolishAbbreviations = {
     "{}{',^2,^3,^\\{-1\\},}({}{_n,})",
   },
   -- }}}
-  -- {{{ Calculus & analysis
-  { "ib{p,s}", "integration by {parts,substitution}" },
-  { "nb{,h}{,s}", "neighbour{,hood}{}" },
-  -- }}}
-  -- {{{ Linear algebra
-  { "rref", "reduced row echalon form" },
-  { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },
-  { "mx{,s}", "matri{x,ces}" },
-  { "dete{,s}", "determinant{}" },
-  { "ort{n,g}", "orto{normal,gonal}" },
-  { "l{in,de}", "linearly {independent,dependent}" },
-  { "lcon{,s}", "linear combination{}" },
-  { "vst{,s}", "vector space{}" }, -- text vector space
-  {
-    "rizz", -- ok please ignore this one 💀
-    "Riesz vector",
-    options = A.no_capitalization,
-  },
-  -- }}}
-  -- {{{ Linear systems
-  -- Note: we must add the space inside the {} in order for capitalization to work!
-  {
-    "{{s,o,l},}deq{s,}",
-    "{{scalar,ordinary,linear} ,}differential equation{}",
-  },
-  -- }}}
   -- {{{ Graph theory
-  { "vx{,s}", "vert{ex,ices}" },
-  { "edg{,s}", "edge{}" },
-
   -- Graph theory function syntax:
   --   gt[function]{graph}{modifier}
   --   - function:
@@ -255,12 +194,5 @@ local expanded = scrap.expand_many(abolishAbbreviations)
 
 A.manyLocalAbbr(abbreviations)
 A.manyLocalAbbr(expanded)
-
-vim.keymap.set(
-  "n",
-  "<leader>lc",
-  "<cmd>VimtexCompile<cr>",
-  { desc = "Compile current buffer using vimtex", buffer = true }
-)
 
 vim.opt_local.list = false -- The lsp usese tabs for formatting

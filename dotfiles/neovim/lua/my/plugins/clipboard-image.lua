@@ -32,6 +32,10 @@ function M.config()
       img_dir = { "%:p:h", "img" },
       affix = "\\includegraphics[width=\\textwidth]{%s}",
     },
+    typst = {
+      img_dir = { "%:p:h", "img" },
+      affix = '#image("%s", width: 100)',
+    },
   })
 end
 

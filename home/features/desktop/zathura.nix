@@ -1,3 +1,4 @@
+# Zathura is the pdf reader I am using.
 { config, ... }:
 {
   programs.zathura = {
@@ -84,4 +85,6 @@
       # }}}
     '';
   };
+
+  home.shellAliases.pdf = "zathura --fork";
 }

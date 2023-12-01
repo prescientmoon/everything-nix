@@ -1,6 +1,6 @@
 {
   imports = [
-    ./global
+    ./global.nix
     ./features/wayland/hyprland
   ];
 

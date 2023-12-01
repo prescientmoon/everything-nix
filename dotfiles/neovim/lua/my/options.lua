@@ -42,7 +42,8 @@ function M.setup()
   vim.g.mapleader = " "
 
   -- Folding
-  vim.opt.foldmethod = "marker"
+  vim.opt.foldmethod = "marker" -- use {{{ }}} for folding
+  vim.opt.foldcolumn = "1" -- show column with folds on the left
 end
 
 return M

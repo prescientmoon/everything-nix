@@ -1,5 +1,7 @@
 # My touchpad configuration
 { ... }: {
+  imports = [ ./xserver.nix ];
+
   services.xserver.libinput = {
     enable = true;
 

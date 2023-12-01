@@ -1,3 +1,4 @@
+# This handles audio stuff
 { pkgs, ... }: {
   security.rtkit.enable = true;
   hardware.pulseaudio.enable = false;
@@ -12,16 +13,20 @@
 
   # Volume controls
   environment.shellAliases =
-    let pactl = "${pkgs.pulseaudio}/bin/pactl";
+    let
+      pactl = "${pkgs.pulseaudio}/bin/pactl";
+      volume = amount: "${pactl} set-sink-volume @DEFAULT_SINK@ ${amount}";
     in
     {
       # Relative 
-      "v-up" = "${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
-      "v-down" = "${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
+      "v-down" = volume "-5%";
+      "v-up" = volume "+5%";
 
       # Absolute
-      "v-min" = "${pactl} set-sink-volume @DEFAULT_SINK@ 0%";
-      "v-mid" = "${pactl} set-sink-volume @DEFAULT_SINK@ 50%";
-      "v-max" = "${pactl} set-sink-volume @DEFAULT_SINK@ 100%";
+      "v-min" = volume "0%";
+      "v-low" = volume "25%";
+      "v-mid" = volume "50%";
+      "v-high" = volume "75%";
+      "v-max" = volume "100%";
     };
 }

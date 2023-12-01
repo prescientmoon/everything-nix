@@ -1,3 +1,4 @@
+# Wlogout is a logout menu. In my setup, it can be triggered using mod-q
 { config
 , pkgs
 , ...
@@ -9,6 +10,8 @@ let bgImageSection = name: ''
 '';
 in
 {
+  home.packages = [ pkgs.wlogout ];
+
   xdg.configFile."wlogout/style.css".text = ''
     * {
       background-image: none;
