@@ -5,6 +5,7 @@ pkgs.mkShell {
     ghc
     hpack
     stack
+    fourmolu # Formatter
     cabal-install
     haskell-language-server
     haskellPackages.implicit-hie # Automatically generate hie.yaml!

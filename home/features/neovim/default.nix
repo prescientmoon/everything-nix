@@ -78,7 +78,7 @@ let
   # {{{ extraRuntime
   extraRuntime = env: [
     # Snippets
-    (config.satellite.dev.path "dotfiles/vscode-snippets")
+    (config.satellite.dev.path "home/features/neovim/snippets")
 
     # Base16 theme
     (pkgs.writeTextDir
@@ -136,13 +136,10 @@ let
 in
 {
   # {{{ Basic config
-  # Do not manage neovim via the default home manager module
-  programs.neovim.enable = false;
-
   # We still want other modules to know that we are using neovim!
   satellite.toggles.neovim.enable = true;
 
-  xdg.configFile.nvim.source = config.satellite.dev.path "dotfiles/neovim";
+  xdg.configFile.nvim.source = config.satellite.dev.path "home/features/neovim/config";
   home.sessionVariables.EDITOR = "nvim";
 
   home.packages = [
