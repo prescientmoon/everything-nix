@@ -22,22 +22,21 @@ This repo's structure is based on the concept of hosts - individual machines con
 
 ## File structure
 
-| Location                     | Description                                                        |
-| ---------------------------- | ------------------------------------------------------------------ |
-| [common](./common)           | Configuration loaded on both nixos and home-manager                |
-| [devshells](./devshells)     | Nix shells                                                         |
-| [docs](./docs)               | Additional documentation regarding my setup                        |
-| [dotfiles](./dotfiles)       | Contains some of the bigger dotfile dirs. Will eventually be moved |
-| [home](./home)               | Home manager configurations                                        |
-| [hosts/nixos](./hosts/nixos) | Nixos configurations                                               |
-| [modules](./modules)         | Custom generic/nixos/home-manager modules                          |
-| [overlays](./overlays)       | Nix overlays                                                       |
-| [pkgs](./pkgs)               | Nix packages                                                       |
-| [flake.nix](./flake.nix)     | Nix flake entrypoint!                                              |
-| [nixpkgs.nix](./nixpkgs.nix) | Pinned nixpkgs for bootstrapping                                   |
-| [secrets.nix](./secrets.nix) | Agenix entrypoint                                                  |
-| [shell.nix](./shell.nix)     | Bootstrapping nix shell                                            |
-| [stylua.toml](./stylua.toml) | Lua formatter config for the repo                                  |
+| Location                     | Description                                         |
+| ---------------------------- | --------------------------------------------------- |
+| [common](./common)           | Configuration loaded on both nixos and home-manager |
+| [devshells](./devshells)     | Nix shells                                          |
+| [docs](./docs)               | Additional documentation regarding my setup         |
+| [home](./home)               | Home manager configurations                         |
+| [hosts/nixos](./hosts/nixos) | Nixos configurations                                |
+| [modules](./modules)         | Custom generic/nixos/home-manager modules           |
+| [overlays](./overlays)       | Nix overlays                                        |
+| [pkgs](./pkgs)               | Nix packages                                        |
+| [flake.nix](./flake.nix)     | Nix flake entrypoint!                               |
+| [nixpkgs.nix](./nixpkgs.nix) | Pinned nixpkgs for bootstrapping                    |
+| [secrets.nix](./secrets.nix) | Agenix entrypoint                                   |
+| [shell.nix](./shell.nix)     | Bootstrapping nix shell                             |
+| [stylua.toml](./stylua.toml) | Lua formatter config for the repo                   |
 
 ## Points of interest
 
