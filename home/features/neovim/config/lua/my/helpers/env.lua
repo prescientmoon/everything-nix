@@ -2,7 +2,7 @@ local function makeEnv(cond)
   return {
     -- I am doing this to get type hints!
     active = function()
-      return cond
+      return cond()
     end,
     not_active = function()
       return not cond()
@@ -20,7 +20,7 @@ local function makeEnv(cond)
   }
 end
 
-return {
+local M = {
   vscode = makeEnv(function()
     return vim.g.vscode ~= nil
   end),
@@ -41,3 +41,15 @@ return {
     end)
   end,
 }
+
+M.blacklist = function(list)
+  for _, key in pairs(list) do
+    if M[key].active() then
+      return false
+    end
+  end
+
+  return true
+end
+
+return M

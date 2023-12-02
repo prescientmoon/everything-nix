@@ -10,6 +10,24 @@ let
     luaCode = types.nullOr (types.oneOf [
       types.str
       types.path
+      myTypes.luaLiteral
+    ]);
+
+    luaLiteral = types.submodule (_: {
+      options.__luaEncoderTag = lib.mkOption {
+        type = types.enum [ "lua" ];
+      };
+      options.value = lib.mkOption {
+        type = types.str;
+      };
+    });
+
+    luaValue = types.nullOr (types.oneOf [
+      types.str
+      types.number
+      types.bool
+      (types.attrsOf myTypes.luaValue)
+      (types.listOf myTypes.luaValue)
     ]);
 
     fileTypes = types.nullOr (types.oneOf [
@@ -27,7 +45,10 @@ let
           };
 
           options.action = lib.mkOption {
-            type = types.str;
+            type = types.nullOr (types.oneOf [
+              types.str
+              myTypes.luaLiteral
+            ]);
           };
 
           options.ft = lib.mkOption {
@@ -38,8 +59,7 @@ let
 
           options.mode = lib.mkOption {
             default = null;
-            # Only added the types I'm using in my config atm
-            type = types.nullOr (types.enum [ "n" "v" ]);
+            type = types.nullOr types.str;
           };
 
           options.desc = lib.mkOption {
@@ -59,6 +79,20 @@ let
           ];
           description = "Package to configure the module around";
           example = "nvim-telescope/telescope.nvim";
+        };
+
+        name = lib.mkOption {
+          default = null;
+          type = types.nullOr types.str;
+          description = "Custom name to use for the module";
+          example = "lualine";
+        };
+
+        main = lib.mkOption {
+          default = null;
+          type = types.nullOr types.str;
+          description = "The name of the lua entrypoint for the plugin (usually auto-detected)";
+          example = "lualine";
         };
 
         version = lib.mkOption {
@@ -130,6 +164,12 @@ let
           description = "Attach additional things to the lazy module";
         };
 
+        opts = lib.mkOption {
+          default = null;
+          type = myTypes.luaValue;
+          description = "Custom data to pass to the plugin .setup function";
+        };
+
         keys = lib.mkOption {
           default = null;
           type =
@@ -138,8 +178,6 @@ let
               (types.listOf myTypes.lazyKey)
             ]);
         };
-
-        opts = { };
       };
     }));
     # }}}
@@ -162,38 +200,72 @@ let
     conditional = predicate: caseTrue: caseFalse:
       luaEncoders.bind (given: if predicate given then caseTrue else caseFalse);
     map = f: encoder: given: encoder (f given);
-    trace = message: luaEncoders.map (f: lib.traceSeq message f);
+    trace = message: luaEncoders.map (f: lib.traceSeq message (lib.traceVal f));
+    fail = mkMessage: v: builtins.throw (mkMessage v);
+    const = code: _: code;
     # }}}
     # {{{ Base types
     # TODO: figure out escaping and whatnot
     string = string: ''"${string}"'';
     bool = bool: if bool then "true" else "false";
+    number = toString;
     nil = _: "nil";
     stringOr = luaEncoders.conditional lib.isString luaEncoders.string;
     boolOr = luaEncoders.conditional lib.isBool luaEncoders.bool;
+    numberOr = luaEncoders.conditional (e: lib.isFloat e || lib.isInt e) luaEncoders.number;
     nullOr = luaEncoders.conditional (e: e == null) luaEncoders.nil;
+    anything = lib.pipe (luaEncoders.fail (v: "Cannot figure out how to encode value ${builtins.toJSON v}")) [
+      luaEncoders.luaCodeOr
+      luaEncoders.nullOr
+      luaEncoders.boolOr
+      luaEncoders.numberOr
+      luaEncoders.stringOr
+      (luaEncoders.listOfOr luaEncoders.anything)
+      (luaEncoders.attrsetOfOr luaEncoders.anything)
+    ];
     # }}}
-    # {{{ Advanced types
+    # {{{ Lua code
     luaCode = tag:
-      luaEncoders.conditional lib.isPath
-        (path: "require(${path}).${tag}")
-        luaEncoders.identity;
-
+      luaEncoders.luaCodeOr
+        (luaEncoders.conditional lib.isPath
+          (path: "dofile(${luaEncoders.string path}).${tag}")
+          luaEncoders.identity);
+    luaCodeOr =
+      luaEncoders.conditional (e: lib.isAttrs e && (e.__luaEncoderTag or null) == "lua")
+        (obj: obj.value);
+    # }}}
+    # {{{ Lists
     listOf = encoder: list:
       mkRawLuaObject (lib.lists.map encoder list);
     tryNonemptyList = encoder: luaEncoders.conditional
       (l: l == [ ])
       luaEncoders.nil
       (luaEncoders.listOf encoder);
-    oneOrMany = encoder:
+    listOfOr = encoder:
       luaEncoders.conditional
         lib.isList
-        (luaEncoders.listOf encoder)
-        encoder;
+        (luaEncoders.listOf encoder);
+    oneOrMany = encoder: luaEncoders.listOfOr encoder encoder;
     oneOrManyAsList = encoder: luaEncoders.map
       (given: if lib.isList given then given else [ given ])
       (luaEncoders.listOf encoder);
-
+    listAsOneOrMany = encoder:
+      luaEncoders.map
+        (l: if lib.length l == 1 then lib.head l else l)
+        (luaEncoders.oneOrMany encoder);
+    # }}}
+    # {{{ Attrsets
+    attrsetOf = encoder: object:
+      mkRawLuaObject (lib.mapAttrsToList
+        (name: value:
+          let result = encoder value;
+          in
+          lib.optionalString (result != "nil")
+            "${name} = ${result}"
+        )
+        object
+      );
+    attrsetOfOr = of: luaEncoders.conditional lib.isAttrs (luaEncoders.attrsetOf of);
     attrset = noNils: listOrder: listSpec: spec: attrset:
       let
         shouldKeep = given:
@@ -224,7 +296,6 @@ let
 
   e = luaEncoders;
   # }}}
-
   # Format and write a lua file to disk
   writeLuaFile = path: name: text:
     let
@@ -246,27 +317,59 @@ in
       type = types.attrsOf myTypes.lazyModule;
     };
 
-    generated.lazy = lib.mkOption {
-      type = types.attrsOf (types.submodule (_: {
-        options = {
-          raw = lib.mkOption {
-            type = types.lines;
-            description = "The lua script generated using the other options";
-          };
+    generated = {
+      lazy = lib.mkOption {
+        type = types.attrsOf (types.submodule (_: {
+          options = {
+            raw = lib.mkOption {
+              type = types.lines;
+              description = "The lua script generated using the other options";
+            };
 
-          module = lib.mkOption {
-            type = types.package;
-            description = "The lua script generated using the other options";
+            module = lib.mkOption {
+              type = types.package;
+              description = "The lua script generated using the other options";
+            };
           };
-        };
-      }));
-      description = "Attrset containing every module generated from the lazy configuration";
+        }));
+        description = "Attrset containing every module generated from the lazy configuration";
+      };
+
+      all = lib.mkOption {
+        default = { };
+        type = types.package;
+        description = "Derivation building all the given nix modules";
+      };
     };
 
-    generated.all = lib.mkOption {
-      default = { };
-      type = types.package;
-      description = "Derivation building all the given nix modules";
+    lib = {
+      lua = lib.mkOption {
+        default = value: { inherit value; __luaEncoderTag = "lua"; };
+        type = types.functionTo myTypes.luaLiteral;
+        description = "include some raw lua code inside module configuration";
+      };
+
+      import = lib.mkOption {
+        default = path: tag: cfg.lib.lua "dofile(${e.string path}).${tag}";
+        type = types.functionTo (types.functionTo myTypes.luaLiteral);
+        description = "import some identifier from some module";
+      };
+
+      blacklistEnv = lib.mkOption {
+        default = given: cfg.lib.lua ''
+          require(${e.string cfg.env.module}).blacklist(${e.listOf e.string given})
+        '';
+        type = types.functionTo myTypes.luaLiteral;
+        description = "Generate a lazy.cond predicate which disables a module if one of the given envs is active";
+      };
+    };
+
+    env = {
+      module = lib.mkOption {
+        type = types.str;
+        example = "my.helpers.env";
+        description = "Module where to import env flags from";
+      };
     };
 
     styluaConfig = lib.mkOption {
@@ -281,37 +384,35 @@ in
         e.stringOr (e.attrset true [ "mapping" "action" ]
           {
             mapping = e.string;
-            action = e.nullOr e.string;
+            action = e.nullOr (e.luaCodeOr e.string);
           }
           {
-            mode = e.nullOr e.string;
+            mode = e.nullOr
+              (e.map
+                lib.strings.stringToCharacters
+                (e.listAsOneOrMany e.string));
             desc = e.nullOr e.string;
             ft = e.nullOr (e.oneOrMany e.string);
           });
 
-      renameKey = from: to: lib.mapAttrs' (name: value:
-        if name == from then { inherit value; name = to; }
-        else { inherit name value; });
-
-
-      lazyObjectEncoder = e.map (renameKey "setup" "config")
-        (e.attrset true [ "package" ]
+      lazyObjectEncoder = e.bind
+        (opts: e.attrset true [ "package" ]
+          { package = e.string; }
           {
-            package = e.string;
-          }
-          {
+            name = e.nullOr e.string;
+            main = e.nullOr e.string;
             tag = e.nullOr e.string;
             version = e.nullOr e.string;
             dependencies = e.map (d: d.lua) (e.tryNonemptyList lazyObjectEncoder);
             lazy = e.nullOr e.bool;
-            # TODO: add sugar for enabling/disabling under certain envs
             cond = e.nullOr (e.luaCode "cond");
-            config = e.nullOr (e.boolOr (e.luaCode "config"));
+            config = e.const (e.nullOr (e.boolOr (e.luaCode "config")) opts.setup);
             init = e.nullOr (e.luaCode "init");
             event = e.nullOr (e.oneOrMany e.string);
             ft = e.nullOr (e.oneOrMany e.string);
             keys = e.nullOr (e.oneOrManyAsList lazyKeyEncoder);
-            # TODO: passthrough
+            passthrough = e.anything;
+            opts = e.anything;
           });
 
       makeLazyScript = opts: ''

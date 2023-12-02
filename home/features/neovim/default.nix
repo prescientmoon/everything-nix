@@ -144,6 +144,8 @@ let
     extraArgs = "--set GIT_DISCOVERY_ACROSS_FILESYSTEM 1";
   };
   # }}}
+
+  nlib = config.satellite.neovim.lib;
 in
 {
   # {{{ Basic config
@@ -208,12 +210,82 @@ in
   # }}}
   # {{{ Custom module testing 
   satellite.neovim.styluaConfig = ../../../stylua.toml;
+  satellite.neovim.env.module = "my.helpers.env";
+
+  # {{{ Nvim-tree 
   satellite.neovim.lazy.nvim-tree = {
-    setup = true;
     package = "kyazdani42/nvim-tree.lua";
+    setup = true;
     keys.mapping = "<C-n>";
     keys.desc = "Toggle [n]vim-tree";
     keys.action = "<cmd>NvimTreeToggle<cr>";
+    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
   };
+  # }}}
+  # {{{ Lualine
+  satellite.neovim.lazy.lualine = {
+    package = "nvim-lualine/lualine.nvim";
+    name = "lualine";
+
+    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
+    event = "VeryLazy";
+
+    opts = {
+      options = {
+        component_separators = { left = ""; right = ""; };
+        section_separators = { left = ""; right = ""; };
+        theme = "auto";
+        disabled_filetypes = [ "undotree" ];
+      };
+
+      sections = {
+        lualine_a = [ "branch" ];
+        lualine_b = [ "filename" ];
+        lualine_c = [ "filetype" ];
+        lualine_x = [ "diagnostics" "diff" ];
+        lualine_y = [ ];
+        lualine_z = [ ];
+      };
+
+      # Integration with other plugins
+      extensions = [ "nvim-tree" ];
+    };
+  };
+  # }}}
+  # {{{ Winbar
+  satellite.neovim.lazy.winbar = {
+    package = "fgheng/winbar.nvim";
+    name = "winbar";
+
+    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
+    event = "VeryLazy";
+
+    opts.enabled = true;
+  };
+  # }}}
+  # {{{ Flash
+  satellite.neovim.lazy.flash = {
+    package = "folke/flash.nvim";
+    name = "flash";
+
+    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
+    keys =
+      let keybind = mode: mapping: action: desc: {
+        inherit mapping desc mode;
+        action = nlib.lua ''function () require("flash").${action}() end'';
+      };
+      in
+      [
+        (keybind "nxo" "s" "jump" "Flash")
+        (keybind "nxo" "S" "treesitter" "Flash Treesitter")
+        (keybind "o" "r" "remote" "Remote Flash")
+        (keybind "ox" "R" "treesitter_search" "Treesitter Search")
+        (keybind "c" "<C-S>" "toggle" "Toggle Flash Search")
+      ];
+
+    # Disable stuff like f/t/F/T
+    opts.modes.char.enabled = false;
+  };
+  # }}}
   # }}}
 }
