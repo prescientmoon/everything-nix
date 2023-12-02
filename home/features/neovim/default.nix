@@ -76,10 +76,7 @@ let
   ];
   # }}}
   # {{{ extraRuntime
-  extraRuntime = env: [
-    # Snippets
-    (config.satellite.dev.path "home/features/neovim/snippets")
-
+  extraRuntimePaths = env: [
     # Base16 theme
     (pkgs.writeTextDir
       "lua/nix/theme.lua"
@@ -92,7 +89,21 @@ let
       "lua/nix/env.lua"
       "return '${env}'"
     )
+
+    # Experimental nix module generation
+    config.satellite.neovim.generated.all
   ];
+
+  extraRuntime = env:
+    let
+      generated = pkgs.symlinkJoin {
+        name = "nixified-neovim-lua-modules";
+        paths = extraRuntimePaths env;
+      };
+
+      snippets = config.satellite.dev.path "home/features/neovim/snippets";
+    in
+    lib.concatStringsSep "," [ generated snippets ];
   # }}}
   # {{{ Client wrapper
   # Wraps a neovim client, providing the dependencies
@@ -109,7 +120,7 @@ let
       postBuild = ''
         wrapProgram $out/bin/${binName} \
           --prefix PATH : ${lib.makeBinPath extraPackages} \
-          --set NVIM_EXTRA_RUNTIME ${lib.strings.concatStringsSep "," (extraRuntime name)} \
+          --set NVIM_EXTRA_RUNTIME ${extraRuntime name} \
           ${extraArgs}
       '';
     };
@@ -194,5 +205,15 @@ in
           '';
         };
     };
+  # }}}
+  # {{{ Custom module testing 
+  satellite.neovim.styluaConfig = ../../../stylua.toml;
+  satellite.neovim.lazy.nvim-tree = {
+    setup = true;
+    package = "kyazdani42/nvim-tree.lua";
+    keys.mapping = "<C-n>";
+    keys.desc = "Toggle [n]vim-tree";
+    keys.action = "<cmd>NvimTreeToggle<cr>";
+  };
   # }}}
 }
