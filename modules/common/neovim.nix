@@ -215,13 +215,13 @@ let
     numberOr = luaEncoders.conditional (e: lib.isFloat e || lib.isInt e) luaEncoders.number;
     nullOr = luaEncoders.conditional (e: e == null) luaEncoders.nil;
     anything = lib.pipe (luaEncoders.fail (v: "Cannot figure out how to encode value ${builtins.toJSON v}")) [
-      luaEncoders.luaCodeOr
+      (luaEncoders.attrsetOfOr luaEncoders.anything)
+      (luaEncoders.listOfOr luaEncoders.anything)
       luaEncoders.nullOr
       luaEncoders.boolOr
       luaEncoders.numberOr
       luaEncoders.stringOr
-      (luaEncoders.listOfOr luaEncoders.anything)
-      (luaEncoders.attrsetOfOr luaEncoders.anything)
+      luaEncoders.luaCodeOr # Lua code expressions have priority over attrsets
     ];
     # }}}
     # {{{ Lua code
@@ -299,7 +299,7 @@ let
   # Format and write a lua file to disk
   writeLuaFile = path: name: text:
     let
-      directory = "lua/${path}";
+      directory =   "lua/${path}";
       destination = "${directory}/${name}.lua";
       unformatted = pkgs.writeText "raw-lua-${name}" text;
     in
@@ -339,6 +339,12 @@ in
         default = { };
         type = types.package;
         description = "Derivation building all the given nix modules";
+      };
+
+      dependencies = lib.mkOption {
+        default = [ ];
+        type = types.listOf types.package;
+        description = "List of packages to give neovim access to";
       };
     };
 
@@ -432,4 +438,12 @@ in
       name = "lazy-nvim-modules";
       paths = lib.attrsets.mapAttrsToList (_: m: m.module) cfg.generated.lazy;
     };
+
+  config.satellite.neovim.generated.dependencies =
+    lib.pipe cfg.lazy
+      [
+        (lib.attrsets.mapAttrsToList (_: m: m.dependencies.nix))
+        lib.lists.flatten
+      ]
+  ;
 }

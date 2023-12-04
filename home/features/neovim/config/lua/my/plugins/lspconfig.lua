@@ -42,14 +42,14 @@ function M.on_attach(client, bufnr)
     vim.lsp.buf.format({ async = false, bufnr = bufnr })
   end
 
-  if client.supports_method("textDocument/formatting") then
-    nmap("<leader>F", format, "[F]ormat")
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
-      buffer = bufnr,
-      callback = format,
-    })
-  end
+  -- if client.supports_method("textDocument/formatting") then
+  --   nmap("<leader>F", format, "[F]ormat")
+  --   vim.api.nvim_create_autocmd("BufWritePre", {
+  --     group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
+  --     buffer = bufnr,
+  --     callback = format,
+  --   })
+  -- end
   -- }}}
   -- {{{ Go to declaration / references / implementation
   nmap("gd", vim.lsp.buf.definition, "[G]o to [d]efinition")
@@ -129,6 +129,10 @@ local servers = {
     settings = {
       ---@diagnostic disable-next-line: missing-fields
       Lua = {
+        ---@diagnostic disable-next-line: missing-fields
+        format = {
+          enable = true
+        },
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = {
           enable = false,
@@ -211,9 +215,9 @@ function lspconfig.config()
   diagnostics_icons()
   -- -- {{{ Change on-hover borders
   vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+      vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
   vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+      vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
   -- -- }}}
 
   local capabilities = M.capabilities()
@@ -226,7 +230,7 @@ function lspconfig.config()
 
     require("lspconfig")[lsp].setup({
       on_attach = details.on_attach,
-      settings = details.settings, -- Specific per-language settings
+      settings = details.settings,   -- Specific per-language settings
       flags = {
         debounce_text_changes = 150, -- This will be the default in neovim 0.7+
       },

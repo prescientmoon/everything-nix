@@ -73,7 +73,7 @@ let
     # Required by magma-nvim:
     # python310Packages.pynvim
     # python310Packages.jupyter
-  ];
+  ] ++ config.satellite.neovim.generated.dependencies;
   # }}}
   # {{{ extraRuntime
   extraRuntimePaths = env: [
@@ -268,7 +268,7 @@ in
     package = "folke/flash.nvim";
     name = "flash";
 
-    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
+    cond = nlib.blacklistEnv [ "vscode" ];
     keys =
       let keybind = mode: mapping: action: desc: {
         inherit mapping desc mode;
@@ -285,6 +285,23 @@ in
 
     # Disable stuff like f/t/F/T
     opts.modes.char.enabled = false;
+  };
+  # }}}
+  # {{{ Conform.nvim
+  satellite.neovim.lazy.conform = {
+    package = "stevearc/conform.nvim";
+    name = "conform";
+
+    cond = nlib.blacklistEnv [ "vscode" ];
+    event = "BufReadPost";
+
+    opts.log_level = nlib.lua "vim.log.levels.DEBUG";
+    opts.format_on_save.lsp_fallback = true;
+    opts.formatters_by_ft = {
+      lua = [ "stylua" ];
+      python = [ "ruff_format" ];
+      javascript = [ [ "prettierd" "prettier" ] ];
+    };
   };
   # }}}
   # }}}
