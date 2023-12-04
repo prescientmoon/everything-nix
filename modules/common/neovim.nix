@@ -7,6 +7,8 @@ let
 
   # {{{ Custom types 
   myTypes = {
+    zeroOrMore = t: types.nullOr (types.either t (types.listOf t));
+
     luaCode = types.nullOr (types.oneOf [
       types.str
       types.path
@@ -30,11 +32,6 @@ let
       (types.listOf myTypes.luaValue)
     ]);
 
-    fileTypes = types.nullOr (types.oneOf [
-      types.str
-      (types.listOf types.str)
-    ]);
-
     # {{{ Key type
     lazyKey = types.oneOf [
       types.str
@@ -42,6 +39,7 @@ let
         (_: {
           options.mapping = lib.mkOption {
             type = types.str;
+            description = "The lhs of the neovim mapping";
           };
 
           options.action = lib.mkOption {
@@ -49,22 +47,25 @@ let
               types.str
               myTypes.luaLiteral
             ]);
+            description = "The rhs of the neovim mapping";
           };
 
           options.ft = lib.mkOption {
             default = null;
-            type = myTypes.fileTypes;
+            type = myTypes.zeroOrMore types.str;
             description = "Filetypes on which this keybind should take effect";
           };
 
           options.mode = lib.mkOption {
             default = null;
             type = types.nullOr types.str;
+            description = "The vim modes the mapping should take effect in";
           };
 
           options.desc = lib.mkOption {
             default = null;
             type = types.nullOr types.str;
+            description = "Description for the current keymapping";
           };
         }))
     ];
@@ -116,11 +117,13 @@ let
         dependencies.lua = lib.mkOption {
           default = [ ];
           type = types.listOf lazyModule;
+          description = "Lazy.nvim module dependencies";
         };
 
         dependencies.nix = lib.mkOption {
           default = [ ];
           type = types.listOf types.package;
+          description = "Nix packages to give nvim access to";
         };
 
         cond = lib.mkOption {
@@ -139,17 +142,20 @@ let
 
         event = lib.mkOption {
           default = null;
-          type = types.nullOr (types.oneOf [
-            types.str
-            (types.listOf types.str)
-          ]);
+          type = myTypes.zeroOrMore types.str;
           description = "Event on which the module should be lazy loaded";
         };
 
         ft = lib.mkOption {
           default = null;
-          type = myTypes.fileTypes;
+          type = myTypes.zeroOrMore types.str;
           description = "Filetypes on which the module should be lazy loaded";
+        };
+
+        cmd = lib.mkOption {
+          default = null;
+          type = myTypes.zeroOrMore types.str;
+          description = "Comands on which to load this plugin";
         };
 
         init = lib.mkOption {
@@ -172,11 +178,8 @@ let
 
         keys = lib.mkOption {
           default = null;
-          type =
-            types.nullOr (types.oneOf [
-              myTypes.lazyKey
-              (types.listOf myTypes.lazyKey)
-            ]);
+          type = myTypes.zeroOrMore myTypes.lazyKey;
+          description = "Keybinds to lazy-load the module on";
         };
       };
     }));
@@ -246,6 +249,7 @@ let
         lib.isList
         (luaEncoders.listOf encoder);
     oneOrMany = encoder: luaEncoders.listOfOr encoder encoder;
+    zeroOrMany = encoder: luaEncoders.nullOr (luaEncoders.oneOrMany encoder);
     oneOrManyAsList = encoder: luaEncoders.map
       (given: if lib.isList given then given else [ given ])
       (luaEncoders.listOf encoder);
@@ -299,7 +303,7 @@ let
   # Format and write a lua file to disk
   writeLuaFile = path: name: text:
     let
-      directory =   "lua/${path}";
+      directory = "lua/${path}";
       destination = "${directory}/${name}.lua";
       unformatted = pkgs.writeText "raw-lua-${name}" text;
     in
@@ -368,6 +372,14 @@ in
         type = types.functionTo myTypes.luaLiteral;
         description = "Generate a lazy.cond predicate which disables a module if one of the given envs is active";
       };
+
+      thunk = lib.mkOption {
+        default = given: cfg.lib.lua ''
+          function() return ${given} end
+        '';
+        type = types.functionTo myTypes.luaLiteral;
+        description = "Wrap a lua expression into a lua function";
+      };
     };
 
     env = {
@@ -398,7 +410,7 @@ in
                 lib.strings.stringToCharacters
                 (e.listAsOneOrMany e.string));
             desc = e.nullOr e.string;
-            ft = e.nullOr (e.oneOrMany e.string);
+            ft = e.zeroOrMany e.string;
           });
 
       lazyObjectEncoder = e.bind
@@ -414,8 +426,9 @@ in
             cond = e.nullOr (e.luaCode "cond");
             config = e.const (e.nullOr (e.boolOr (e.luaCode "config")) opts.setup);
             init = e.nullOr (e.luaCode "init");
-            event = e.nullOr (e.oneOrMany e.string);
-            ft = e.nullOr (e.oneOrMany e.string);
+            event = e.zeroOrMany e.string;
+            cmd = e.zeroOrMany e.string;
+            ft = e.zeroOrMany e.string;
             keys = e.nullOr (e.oneOrManyAsList lazyKeyEncoder);
             passthrough = e.anything;
             opts = e.anything;

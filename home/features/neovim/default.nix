@@ -168,7 +168,7 @@ in
         let
           # God knows what this does
           # https://github.com/glacambre/firenvim/blob/87c9f70d3e6aa2790982aafef3c696dbe962d35b/autoload/firenvim.vim#L592
-          firenvim_init = pkgs.writeText "firenvim_init.vim" ''
+          firenvim_init = pkgs.writeText "firenvim_init.vim" /* vim */ ''
             let g:firenvim_i=[]
             let g:firenvim_o=[]
             let g:Firenvim_oi={i,d,e->add(g:firenvim_i,d)}
@@ -177,7 +177,7 @@ in
             let g:started_by_firenvim = v:true
           '';
 
-          firenvim_file_loaded = pkgs.writeText "firenvim_file_loaded.vim" ''
+          firenvim_file_loaded = pkgs.writeText "firenvim_file_loaded.vim" /* vim */ ''
             try
               call firenvim#run()
             catch /Unknown function/
@@ -215,11 +215,13 @@ in
   # {{{ Nvim-tree 
   satellite.neovim.lazy.nvim-tree = {
     package = "kyazdani42/nvim-tree.lua";
+
     setup = true;
+    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
+
     keys.mapping = "<C-n>";
     keys.desc = "Toggle [n]vim-tree";
     keys.action = "<cmd>NvimTreeToggle<cr>";
-    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
   };
   # }}}
   # {{{ Lualine
@@ -272,7 +274,7 @@ in
     keys =
       let keybind = mode: mapping: action: desc: {
         inherit mapping desc mode;
-        action = nlib.lua ''function () require("flash").${action}() end'';
+        action = nlib.thunk /* lua */ ''require("flash").${action}()'';
       };
       in
       [
@@ -295,13 +297,61 @@ in
     cond = nlib.blacklistEnv [ "vscode" ];
     event = "BufReadPost";
 
-    opts.log_level = nlib.lua "vim.log.levels.DEBUG";
     opts.format_on_save.lsp_fallback = true;
     opts.formatters_by_ft = {
       lua = [ "stylua" ];
       python = [ "ruff_format" ];
       javascript = [ [ "prettierd" "prettier" ] ];
     };
+  };
+  # }}}
+  # {{{ Neoconf
+  satellite.neovim.lazy.neoconf = {
+    package = "folke/neoconf.nvim";
+    name = "neoconf";
+
+    cmd = "Neoconf";
+    opts.import = {
+      vscode = true; # local .vscode/settings.json
+      coc = false; # global/local coc-settings.json
+      nlsp = false; # global/local nlsp-settings.nvim json settings
+    };
+  };
+  # }}}
+  # {{{ Harpoon
+  satellite.neovim.lazy.harpoon = {
+    package = "ThePrimeagen/harpoon";
+    keys =
+      let goto = key: index: {
+        desc = "Goto harpoon file ${toString index}";
+        mapping = "<c-s>${key}";
+        action = nlib.thunk
+          /* lua */ ''require("harpoon.ui").nav_file(${toString index})'';
+      };
+      in
+      [
+        {
+          desc = "Add file to [h]arpoon";
+          mapping = "<leader>H";
+          action = nlib.thunk
+            /* lua */ ''require("harpoon.mark").add_file()'';
+        }
+        {
+          desc = "Toggle harpoon quickmenu";
+          mapping = "<c-a>";
+          action = nlib.thunk
+            /* lua */ ''require("harpoon.ui").toggle_quick_menu()'';
+        }
+        (goto "q" 1)
+        (goto "w" 2)
+        (goto "e" 3)
+        (goto "r" 4)
+        (goto "a" 5)
+        (goto "s" 6)
+        (goto "d" 7)
+        (goto "f" 8)
+        (goto "z" 9)
+      ];
   };
   # }}}
   # }}}

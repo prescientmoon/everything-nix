@@ -227,12 +227,9 @@
         let
           mkHomeConfig = { system, hostname }:
             home-manager.lib.homeManagerConfiguration {
-              inherit system;
               pkgs = nixpkgs.legacyPackages.${system};
               extraSpecialArgs = specialArgs system;
-              modules = [
-                ./home/${hostname}.nix
-              ];
+              modules = [ ./home/${hostname}.nix ];
             };
         in
         {
