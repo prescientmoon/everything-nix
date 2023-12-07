@@ -6,28 +6,6 @@ require("my.abbreviations.math").setup()
 
 vim.opt.conceallevel = 0
 
--- {{{ Older functions for calculating things inside vim
--- vim.keymap.set("n", "<leader>lg", function()
---   if not pcall(function()
---     local a = tonumber(vim.fn.input("A: "))
---     local b = tonumber(vim.fn.input("B: "))
---
---     local g, x, y = require("my.helpers.math.mod").gcd(a, b)
---
---     vim.fn.input("Result: " .. g .. " " .. x .. " " .. y)
---   end) then vim.fn.input("No results exist") end
--- end, { buffer = true, desc = "Gcd calculator" })
---
--- vim.keymap.set("n", "<leader>li", function()
---   if not pcall(function()
---     local class = tonumber(vim.fn.input("Mod class: "))
---     local num = tonumber(vim.fn.input("Number: "))
---
---     vim.fn.input("Result: " .. require("my.helpers.math.mod").modinverse(num, class))
---   end) then vim.fn.input("No results exist") end
--- end, { buffer = true, desc = "Mod inverse calculator" })
--- }}}
-
 local abbreviations = {
   -- Other fancy symvols
   { "tmat", "^T" }, -- Tranpose of a matrix

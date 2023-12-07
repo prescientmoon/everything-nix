@@ -1,4 +1,5 @@
-# Additional theming primitives not provided by stylix
+# This module provides personalised helpers for managing plugins
+# using lazy.nvim and a set of custom runtime primitives.
 { pkgs, lib, config, ... }:
 let
   inherit (lib) types;
@@ -7,22 +8,24 @@ let
 
   # {{{ Custom types 
   myTypes = {
-    zeroOrMore = t: types.nullOr (types.either t (types.listOf t));
+    oneOrMany = t: types.either t (types.listOf t);
+    zeroOrMore = t: types.nullOr (myTypes.oneOrMany t);
 
+    # {{{ Lua code 
     luaCode = types.nullOr (types.oneOf [
       types.str
       types.path
       myTypes.luaLiteral
     ]);
 
-    luaLiteral = types.submodule (_: {
+    luaLiteral = types.submodule {
       options.__luaEncoderTag = lib.mkOption {
         type = types.enum [ "lua" ];
       };
       options.value = lib.mkOption {
         type = types.str;
       };
-    });
+    };
 
     luaValue = types.nullOr (types.oneOf [
       types.str
@@ -31,12 +34,12 @@ let
       (types.attrsOf myTypes.luaValue)
       (types.listOf myTypes.luaValue)
     ]);
-
-    # {{{ Key type
+    # }}}
+    # {{{ Lazy key
     lazyKey = types.oneOf [
       types.str
       (types.submodule
-        (_: {
+        {
           options.mapping = lib.mkOption {
             type = types.str;
             description = "The lhs of the neovim mapping";
@@ -67,11 +70,151 @@ let
             type = types.nullOr types.str;
             description = "Description for the current keymapping";
           };
-        }))
+        })
     ];
     # }}} 
-    # {{{ Lazy module type 
-    lazyModule = lib.fix (lazyModule: types.submodule (_: {
+    # {{{ Tempest key
+    tempestKey = types.submodule {
+      options = {
+        mapping = lib.mkOption {
+          example = "<leader>a";
+          type = types.str;
+          description = "The lhs of the neovim mapping";
+        };
+
+        action = lib.mkOption {
+          example = "<C-^>";
+          type = types.either types.str myTypes.luaLiteral;
+          description = "The rhs of the neovim mapping";
+        };
+
+        bufnr = lib.mkOption {
+          default = null;
+          example = true;
+          type = types.nullOr
+            (types.oneOf [
+              types.bool
+              types.integer
+              myTypes.luaLiteral
+            ]);
+          description = ''
+            The index of the buffer to apply local keymaps to. Can be set to 
+            `true` to refer to the current buffer
+          '';
+        };
+
+        mode = lib.mkOption {
+          default = null;
+          example = "nov";
+          type = types.nullOr types.str;
+          description = "The vim modes the mapping should take effect in";
+        };
+
+        silent = lib.mkOption {
+          default = null;
+          example = true;
+          type = types.nullOr types.bool;
+          description = "Whether the logs emitted by the keymap should be supressed";
+        };
+
+        expr = lib.mkOption {
+          default = null;
+          example = true;
+          type = types.nullOr types.bool;
+          description = "If set to `true`, the mapping is treated as an action factory";
+        };
+
+        desc = lib.mkOption {
+          default = null;
+          type = types.nullOr types.str;
+          description = "Description for the current keymapping";
+        };
+      };
+    };
+    # }}}
+    # {{{ Tempest autocmd
+    tempestAutocmd = types.submodule {
+      options = {
+        event = lib.mkOption {
+          example = "InsertEnter";
+          type = myTypes.oneOrMany types.str;
+          description = "Events to bind autocmd to";
+        };
+
+        pattern = lib.mkOption {
+          example = "Cargo.toml";
+          type = myTypes.oneOrMany types.str;
+          description = "File name patterns to run autocmd on";
+        };
+
+        group = lib.mkOption {
+          example = "CargoCmpSource";
+          type = types.str;
+          description = "Name of the group to create and assign autocmd to";
+        };
+
+        callback = lib.mkOption {
+          example.vim.opt.cmdheight = 1;
+          type = types.oneOf [
+            myTypes.tempestConfiguration
+            myTypes.luaCode
+          ];
+          description = ''
+            Code to run when the respctive event occurs. Will pass the event
+            object as context, which might be used for things like assigning 
+            a buffer number to local keymaps automatically.
+          '';
+        };
+      };
+    };
+    # }}}
+    # {{{ Tempest configuration
+    tempestConfiguration = types.submodule {
+      options = {
+        vim = lib.mkOption {
+          default = null;
+          type = myTypes.luaValue;
+          example.opt.cmdheight = 0;
+          description = "Values to assign to the `vim` lua global object";
+        };
+
+        keys = lib.mkOption {
+          default = null;
+          type = myTypes.zeroOrMore myTypes.tempestKey;
+          description = ''
+            Arbitrary key mappings to create. The keymappings might 
+            automatically be buffer specific depending on the context. For 
+            instance, keymappings created inside autocmds will be local unless
+            otherwise specified.
+          '';
+        };
+
+        autocmds = lib.mkOption {
+          default = null;
+          type = myTypes.zeroOrMore myTypes.tempestAutocmd;
+          description = "Arbitrary autocmds to create";
+        };
+
+        setup = lib.mkOption {
+          default = null;
+          type = types.nullOr (types.attrsOf myTypes.luaValue);
+          example.lualine.opts.theme = "auto";
+          description = ''
+            Key-pair mappings for options to pass to .setup functions imported
+            from different modules
+          '';
+        };
+
+        callback = lib.mkOption {
+          default = null;
+          type = types.nullOr myTypes.luaCode;
+          description = "Arbitrary code to run after everything else has been configured";
+        };
+      };
+    };
+    # }}}
+    # {{{ Lazy module
+    lazyModule = lib.fix (lazyModule: types.submodule ({ name ? null, ... }: {
       options = {
         package = lib.mkOption {
           type = types.oneOf [
@@ -83,7 +226,7 @@ let
         };
 
         name = lib.mkOption {
-          default = null;
+          default = name;
           type = types.nullOr types.str;
           description = "Custom name to use for the module";
           example = "lualine";
@@ -116,7 +259,7 @@ let
 
         dependencies.lua = lib.mkOption {
           default = [ ];
-          type = types.listOf lazyModule;
+          type = types.listOf (types.either types.str lazyModule);
           description = "Lazy.nvim module dependencies";
         };
 
@@ -132,12 +275,23 @@ let
           description = "Condition based on which to enable/disbale loading the package";
         };
 
+        env.blacklist = lib.mkOption {
+          default = [ ];
+          type = types.listOf (types.enum [ "firenvim" "vscode" "neovide" ]);
+          description = "Environments to blacklist plugin on";
+        };
+
         setup = lib.mkOption {
           default = null;
-          type = types.oneOf [ myTypes.luaCode types.bool ];
+          type = types.nullOr (types.oneOf [
+            myTypes.tempestConfiguration
+            myTypes.luaCode
+            types.bool
+          ]);
           description = ''
             Lua function (or module) to use for configuring the package.
-            Used instead of the canonically named `config` because said property has a special name in nix'';
+            Used instead of the canonically named `config` because said name has a special meaning in nix
+          '';
         };
 
         event = lib.mkOption {
@@ -187,29 +341,41 @@ let
   };
   # }}}
   # {{{ Lua encoders
-  mkRawLuaObject = chunks:
-    ''
-      {
-        ${lib.concatStringsSep "," (lib.filter (s: s != "") chunks)}
-      }
-    '';
-
+  # We provide a custom set of helpers for generating lua code for nix.enable
+  #
   # An encoder is a function from some nix value to a string containing lua code. 
   # This object provides combinators for writing such encoders.
   luaEncoders = {
+    # {{{ "Raw" helpers 
+    mkRawLuaObject = chunks:
+      ''
+        {
+          ${lib.concatStringsSep "," (lib.filter (s: s != "") chunks)}
+        }
+      '';
+    # }}}
     # {{{ General helpers 
     identity = given: given;
+    # `const` is mostly useful together with `bind`. See the lua encoder for 
+    # lazy modules for example usage.
+    const = code: _: code;
+    # Conceptually, this is the monadic bind operation for encoders.
+    # This implementation is isomoprhic to that of the reader monad in haskell.
     bind = encoder: given: encoder given given;
+    # This is probably the most useful combinnator defined in this entire object.
+    # Most of the combinators in the other categories are based on this.
     conditional = predicate: caseTrue: caseFalse:
       luaEncoders.bind (given: if predicate given then caseTrue else caseFalse);
+    # This is simply left-composition of functions
     map = f: encoder: given: encoder (f given);
+    # This is simply right-composition of functions
+    postmap = f: encoder: given: f (encoder given);
+    # This is mostly useful for debugging
     trace = message: luaEncoders.map (f: lib.traceSeq message (lib.traceVal f));
     fail = mkMessage: v: builtins.throw (mkMessage v);
-    const = code: _: code;
     # }}}
     # {{{ Base types
-    # TODO: figure out escaping and whatnot
-    string = string: ''"${string}"'';
+    string = given: ''"${lib.escape ["\"" "\\"] (toString given)}"'';
     bool = bool: if bool then "true" else "false";
     number = toString;
     nil = _: "nil";
@@ -217,6 +383,10 @@ let
     boolOr = luaEncoders.conditional lib.isBool luaEncoders.bool;
     numberOr = luaEncoders.conditional (e: lib.isFloat e || lib.isInt e) luaEncoders.number;
     nullOr = luaEncoders.conditional (e: e == null) luaEncoders.nil;
+    # We pipe a combinator which always fail through a bunch of
+    # `(thing)or : encoder -> encoder` functions, building up a combinator which
+    # can handle more and more kinds of values, until we eventually build up
+    # something that should be able to handle everything we throw at it.
     anything = lib.pipe (luaEncoders.fail (v: "Cannot figure out how to encode value ${builtins.toJSON v}")) [
       (luaEncoders.attrsetOfOr luaEncoders.anything)
       (luaEncoders.listOfOr luaEncoders.anything)
@@ -228,31 +398,43 @@ let
     ];
     # }}}
     # {{{ Lua code
-    luaCode = tag:
-      luaEncoders.luaCodeOr
-        (luaEncoders.conditional lib.isPath
-          (path: "dofile(${luaEncoders.string path}).${tag}")
-          luaEncoders.identity);
+    # Tagged lua code can be combined with other combinators without worrying
+    # about conflicts regarding how strings are interpreted.
     luaCodeOr =
       luaEncoders.conditional (e: lib.isAttrs e && (e.__luaEncoderTag or null) == "lua")
         (obj: obj.value);
+    # This is the most rudimentary (and currently only) way of handling paths.
+    luaImportOr = tag:
+      luaEncoders.conditional lib.isPath
+        (path: "dofile(${luaEncoders.string path}).${tag}");
+    # Accepts both tagged and untagged strings of lua code.
+    luaString = luaEncoders.luaCodeOr luaEncoders.identity;
+    # This simply combines the above combinators into one.
+    luaCode = tag: luaEncoders.luaImportOr tag luaEncoders.luaString;
     # }}}
     # {{{ Lists
     listOf = encoder: list:
-      mkRawLuaObject (lib.lists.map encoder list);
-    tryNonemptyList = encoder: luaEncoders.conditional
-      (l: l == [ ])
-      luaEncoders.nil
-      (luaEncoders.listOf encoder);
+      luaEncoders.mkRawLuaObject (lib.lists.map encoder list);
     listOfOr = encoder:
       luaEncoders.conditional
         lib.isList
         (luaEncoders.listOf encoder);
+    # Returns nil when given empty lists
+    tryNonemptyList = encoder: luaEncoders.conditional
+      (l: l == [ ])
+      luaEncoders.nil
+      (luaEncoders.listOf encoder);
     oneOrMany = encoder: luaEncoders.listOfOr encoder encoder;
+    # Can encode:
+    # - zero values as nil
+    # - one value as itself
+    # - multiple values as a list
     zeroOrMany = encoder: luaEncoders.nullOr (luaEncoders.oneOrMany encoder);
+    # Coerces non list values to lists of one element.
     oneOrManyAsList = encoder: luaEncoders.map
       (given: if lib.isList given then given else [ given ])
       (luaEncoders.listOf encoder);
+    # Coerces lists of one element to said element.
     listAsOneOrMany = encoder:
       luaEncoders.map
         (l: if lib.length l == 1 then lib.head l else l)
@@ -260,7 +442,7 @@ let
     # }}}
     # {{{ Attrsets
     attrsetOf = encoder: object:
-      mkRawLuaObject (lib.mapAttrsToList
+      luaEncoders.mkRawLuaObject (lib.mapAttrsToList
         (name: value:
           let result = encoder value;
           in
@@ -270,7 +452,14 @@ let
         object
       );
     attrsetOfOr = of: luaEncoders.conditional lib.isAttrs (luaEncoders.attrsetOf of);
-    attrset = noNils: listOrder: listSpec: spec: attrset:
+    # This is the most general combinator provided in this section.
+    #
+    # We accept:
+    # - a `noNils` flag which will automatically remove any nil properties
+    # - order of props that should be interpreted as list elements
+    # - spec of props that should be interpreted as list elements
+    # - record of props that should be interpreted as attribute props
+    attrset = noNils: listOrder: spec: attrset:
       let
         shouldKeep = given:
           if noNils then
@@ -280,7 +469,7 @@ let
 
         listChunks = lib.lists.map
           (attr:
-            let result = listSpec.${attr} (attrset.${attr} or null);
+            let result = spec.${attr} (attrset.${attr} or null);
             in
             lib.optionalString (shouldKeep result) result
           )
@@ -289,17 +478,18 @@ let
           (attr: encoder:
             let result = encoder (attrset.${attr} or null);
             in
-            lib.optionalString (shouldKeep result)
+            lib.optionalString (!(lib.elem attr listOrder) && shouldKeep result)
               "${attr} = ${result}"
           )
           spec;
       in
-      mkRawLuaObject (listChunks ++ objectChunks);
+      luaEncoders.mkRawLuaObject (listChunks ++ objectChunks);
     # }}}
   };
 
   e = luaEncoders;
   # }}}
+  # {{{ Helpers 
   # Format and write a lua file to disk
   writeLuaFile = path: name: text:
     let
@@ -312,18 +502,21 @@ let
       cp --no-preserve=mode ${unformatted} $out/${destination}
       ${lib.getExe pkgs.stylua} --config-path ${cfg.styluaConfig} $out/${destination}
     '';
+  # }}}
 in
 {
+  # {{{ Option declaration 
   options.satellite.neovim = {
     lazy = lib.mkOption {
       default = { };
-      description = "Record of persistent locations (eg: /persist)";
+      description = "Record of plugins to install using lazy.nvim";
       type = types.attrsOf myTypes.lazyModule;
     };
 
+    # {{{ Generated
     generated = {
       lazy = lib.mkOption {
-        type = types.attrsOf (types.submodule (_: {
+        type = types.attrsOf (types.submodule {
           options = {
             raw = lib.mkOption {
               type = types.lines;
@@ -335,7 +528,7 @@ in
               description = "The lua script generated using the other options";
             };
           };
-        }));
+        });
         description = "Attrset containing every module generated from the lazy configuration";
       };
 
@@ -351,8 +544,10 @@ in
         description = "List of packages to give neovim access to";
       };
     };
-
+    # }}}
+    # {{{ Lua generation lib 
     lib = {
+      # {{{ Basic lua generators
       lua = lib.mkOption {
         default = value: { inherit value; __luaEncoderTag = "lua"; };
         type = types.functionTo myTypes.luaLiteral;
@@ -364,67 +559,166 @@ in
         type = types.functionTo (types.functionTo myTypes.luaLiteral);
         description = "import some identifier from some module";
       };
+      # }}}
+      # {{{ Encoders 
+      encode = lib.mkOption {
+        default = luaEncoders.anything;
+        type = types.functionTo types.str;
+        description = "Encode a nix value to a lua string";
+      };
 
-      blacklistEnv = lib.mkOption {
-        default = given: cfg.lib.lua ''
-          require(${e.string cfg.env.module}).blacklist(${e.listOf e.string given})
+      encodeTempestConfiguration = lib.mkOption {
+        default = given:
+          e.attrset true [ ]
+            {
+              vim = e.anything;
+              callback = e.nullOr e.luaString;
+              setup = e.nullOr (e.attrsetOf e.anything);
+              keys = e.zeroOrMany (e.attrset true [ ] {
+                mapping = e.string;
+                action = e.luaCodeOr e.string;
+                desc = e.nullOr e.string;
+                expr = e.nullOr e.bool;
+                mode = e.nullOr e.string;
+                silent = e.nullOr e.bool;
+                buffer = e.nullOr (e.luaCodeOr (e.boolOr e.number));
+              });
+              autocmds = e.zeroOrMany (e.attrset true [ ] {
+                event = e.oneOrMany e.string;
+                pattern = e.oneOrMany e.string;
+                group = e.string;
+                callback = e.conditional lib.isAttrs
+                  cfg.lib.encodeTempestConfiguration
+                  e.luaString;
+              });
+            }
+            given;
+        type = types.functionTo types.str;
+        description = "Generate a lua object for passing to my own lua runtime for configuration";
+      };
+      # }}}
+      # {{{ Thunks
+      # This version of `nlib.thunk` is required in ceratain cases because 
+      # of issues with `types.oneOf [types.submodule ..., types.submodule]` not
+      # working as intended atm.
+      thunkString = lib.mkOption {
+        default = given: /* lua */ ''
+          function() ${e.luaString given} end
         '';
-        type = types.functionTo myTypes.luaLiteral;
-        description = "Generate a lazy.cond predicate which disables a module if one of the given envs is active";
+        type = types.functionTo types.str;
+        description = "Wrap a lua expression into a lua function as a string";
       };
 
       thunk = lib.mkOption {
-        default = given: cfg.lib.lua ''
-          function() return ${given} end
-        '';
+        default = given: cfg.lib.lua (cfg.lib.thunkString given);
         type = types.functionTo myTypes.luaLiteral;
         description = "Wrap a lua expression into a lua function";
       };
-    };
 
-    env = {
-      module = lib.mkOption {
+
+      contextThunk = lib.mkOption {
+        default = given: cfg.lib.lua /* lua */ ''
+          function(context) ${e.luaString given} end
+        '';
+        type = types.functionTo myTypes.luaLiteral;
+        description = "Wrap a lua expression into a lua function taking an argument named `context`";
+      };
+      # }}}
+      # {{{ Language server on attach
+      languageServerOnAttach = lib.mkOption {
+        default = given: cfg.lib.lua /* lua */ ''
+          function(client, bufnr)
+            require(${e.string cfg.runtime.tempest}).configure(${cfg.lib.encodeTempestConfiguration given}, 
+              { client = client; bufnr = bufnr; })
+
+            require(${e.string cfg.runtime.languageServerOnAttach}).on_attach(client, bufnr)
+          end
+        '';
+        type = types.functionTo myTypes.luaCode;
+        description = "Attach a language server and run some additional code";
+      };
+      # }}}
+    };
+    # }}}
+    # {{{ Neovim runtime module paths
+    runtime = {
+      env = lib.mkOption {
         type = types.str;
         example = "my.helpers.env";
-        description = "Module where to import env flags from";
+        description = "Module to import env flags from";
+      };
+
+      tempest = lib.mkOption {
+        type = types.str;
+        example = "my.runtime.tempest";
+        description = "Module to import the tempest runtime from";
+      };
+
+      languageServerOnAttach = lib.mkOption {
+        type = types.str;
+        example = "my.runtime.lspconfig";
+        description = "Module to import langauge server .on_attach function from";
       };
     };
+    # }}}
 
     styluaConfig = lib.mkOption {
       type = types.path;
       description = "Config to use for formatting lua modules";
     };
   };
-
+  # }}}
+  # {{{ Config generation 
+  # {{{ Lazy module generation 
   config.satellite.neovim.generated.lazy =
     let
+      # {{{ Lazy key encoder
       lazyKeyEncoder =
-        e.stringOr (e.attrset true [ "mapping" "action" ]
-          {
-            mapping = e.string;
-            action = e.nullOr (e.luaCodeOr e.string);
-          }
-          {
-            mode = e.nullOr
-              (e.map
-                lib.strings.stringToCharacters
-                (e.listAsOneOrMany e.string));
-            desc = e.nullOr e.string;
-            ft = e.zeroOrMany e.string;
-          });
-
+        e.stringOr (e.attrset true [ "mapping" "action" ] {
+          mapping = e.string;
+          action = e.nullOr (e.luaCodeOr e.string);
+          mode = e.nullOr
+            (e.map
+              lib.strings.stringToCharacters
+              (e.listAsOneOrMany e.string));
+          desc = e.nullOr e.string;
+          ft = e.zeroOrMany e.string;
+        });
+      # }}}
+      # {{{ Lazy spec encoder 
       lazyObjectEncoder = e.bind
         (opts: e.attrset true [ "package" ]
-          { package = e.string; }
           {
+            package = e.string;
             name = e.nullOr e.string;
             main = e.nullOr e.string;
             tag = e.nullOr e.string;
             version = e.nullOr e.string;
-            dependencies = e.map (d: d.lua) (e.tryNonemptyList lazyObjectEncoder);
+            dependencies = e.map (d: d.lua) (e.tryNonemptyList (e.stringOr lazyObjectEncoder));
             lazy = e.nullOr e.bool;
-            cond = e.nullOr (e.luaCode "cond");
-            config = e.const (e.nullOr (e.boolOr (e.luaCode "config")) opts.setup);
+            cond =
+              if opts.env.blacklist != [ ] then
+                assert lib.asserts.assertMsg (opts.cond == null)
+                  "env.blacklist overrides plugin condition";
+                e.const /* lua */ ''
+                  require(${e.string cfg.runtime.env}).blacklist(${e.listOf e.string opts.env.blacklist})
+                ''
+              else
+                e.nullOr (e.luaCode "cond");
+
+            config = _:
+              let
+                wrap = given: /* lua */''
+                  function(lazy, opts)
+                    require(${e.string cfg.runtime.tempest}).configure(${given}, 
+                      { lazy = lazy; opts = opts; })
+                  end
+                '';
+              in
+              e.conditional lib.isAttrs
+                (e.postmap wrap cfg.lib.encodeTempestConfiguration)
+                (e.nullOr (e.boolOr (e.luaCode "config")))
+                opts.setup;
             init = e.nullOr (e.luaCode "init");
             event = e.zeroOrMany e.string;
             cmd = e.zeroOrMany e.string;
@@ -433,9 +727,10 @@ in
             passthrough = e.anything;
             opts = e.anything;
           });
+      # }}}
 
       makeLazyScript = opts: ''
-        -- This file was generated by nix
+        -- ❄️ This file was generated using nix ^~^
         return ${lazyObjectEncoder opts}
       '';
     in
@@ -451,12 +746,15 @@ in
       name = "lazy-nvim-modules";
       paths = lib.attrsets.mapAttrsToList (_: m: m.module) cfg.generated.lazy;
     };
+  # }}}
 
   config.satellite.neovim.generated.dependencies =
     lib.pipe cfg.lazy
       [
         (lib.attrsets.mapAttrsToList (_: m: m.dependencies.nix))
         lib.lists.flatten
-      ]
-  ;
+      ];
+  # }}}
 }
+
+

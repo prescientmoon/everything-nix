@@ -62,8 +62,8 @@ let
     # Latex setup
     texlive.combined.scheme-full # Latex stuff
     python38Packages.pygments # required for latex syntax highlighting
-    sage
-    sagetex # sage in latex
+    # sage
+    # sagetex # sage in latex
 
     # required for the telescope fzf extension
     gnumake
@@ -208,28 +208,32 @@ in
         };
     };
   # }}}
-  # {{{ Custom module testing 
+  # {{{ Plugins
   satellite.neovim.styluaConfig = ../../../stylua.toml;
-  satellite.neovim.env.module = "my.helpers.env";
+  satellite.neovim.runtime = {
+    env = "my.helpers.env";
+    languageServerOnAttach = "my.plugins.lspconfig";
+    tempest = "my.runtime";
+  };
 
-  # {{{ Nvim-tree 
+  # {{{ ui
+  # {{{ nvim-tree 
   satellite.neovim.lazy.nvim-tree = {
     package = "kyazdani42/nvim-tree.lua";
 
+    env.blacklist = [ "vscode" "firenvim" ];
     setup = true;
-    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
 
     keys.mapping = "<C-n>";
     keys.desc = "Toggle [n]vim-tree";
     keys.action = "<cmd>NvimTreeToggle<cr>";
   };
   # }}}
-  # {{{ Lualine
+  # {{{ lualine
   satellite.neovim.lazy.lualine = {
     package = "nvim-lualine/lualine.nvim";
-    name = "lualine";
 
-    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
+    env.blacklist = [ "vscode" "firenvim" ];
     event = "VeryLazy";
 
     opts = {
@@ -254,71 +258,17 @@ in
     };
   };
   # }}}
-  # {{{ Winbar
+  # {{{ winbar
   satellite.neovim.lazy.winbar = {
     package = "fgheng/winbar.nvim";
-    name = "winbar";
 
-    cond = nlib.blacklistEnv [ "vscode" "firenvim" ];
+    env.blacklist = [ "vscode" "firenvim" ];
     event = "VeryLazy";
 
     opts.enabled = true;
   };
   # }}}
-  # {{{ Flash
-  satellite.neovim.lazy.flash = {
-    package = "folke/flash.nvim";
-    name = "flash";
-
-    cond = nlib.blacklistEnv [ "vscode" ];
-    keys =
-      let keybind = mode: mapping: action: desc: {
-        inherit mapping desc mode;
-        action = nlib.thunk /* lua */ ''require("flash").${action}()'';
-      };
-      in
-      [
-        (keybind "nxo" "s" "jump" "Flash")
-        (keybind "nxo" "S" "treesitter" "Flash Treesitter")
-        (keybind "o" "r" "remote" "Remote Flash")
-        (keybind "ox" "R" "treesitter_search" "Treesitter Search")
-        (keybind "c" "<C-S>" "toggle" "Toggle Flash Search")
-      ];
-
-    # Disable stuff like f/t/F/T
-    opts.modes.char.enabled = false;
-  };
-  # }}}
-  # {{{ Conform.nvim
-  satellite.neovim.lazy.conform = {
-    package = "stevearc/conform.nvim";
-    name = "conform";
-
-    cond = nlib.blacklistEnv [ "vscode" ];
-    event = "BufReadPost";
-
-    opts.format_on_save.lsp_fallback = true;
-    opts.formatters_by_ft = {
-      lua = [ "stylua" ];
-      python = [ "ruff_format" ];
-      javascript = [ [ "prettierd" "prettier" ] ];
-    };
-  };
-  # }}}
-  # {{{ Neoconf
-  satellite.neovim.lazy.neoconf = {
-    package = "folke/neoconf.nvim";
-    name = "neoconf";
-
-    cmd = "Neoconf";
-    opts.import = {
-      vscode = true; # local .vscode/settings.json
-      coc = false; # global/local coc-settings.json
-      nlsp = false; # global/local nlsp-settings.nvim json settings
-    };
-  };
-  # }}}
-  # {{{ Harpoon
+  # {{{ harpoon
   satellite.neovim.lazy.harpoon = {
     package = "ThePrimeagen/harpoon";
     keys =
@@ -353,6 +303,214 @@ in
         (goto "z" 9)
       ];
   };
+  # }}}
+  # }}}
+  # {{{ editing 
+  # {{{ flash
+  satellite.neovim.lazy.flash = {
+    package = "folke/flash.nvim";
+
+    env.blacklist = [ "vscode" ];
+    keys =
+      let keybind = mode: mapping: action: desc: {
+        inherit mapping desc mode;
+        action = nlib.thunk /* lua */ ''require("flash").${action}()'';
+      };
+      in
+      [
+        (keybind "nxo" "s" "jump" "Flash")
+        (keybind "nxo" "S" "treesitter" "Flash Treesitter")
+        (keybind "o" "r" "remote" "Remote Flash")
+        (keybind "ox" "R" "treesitter_search" "Treesitter Search")
+        (keybind "c" "<C-S>" "toggle" "Toggle Flash Search")
+      ];
+
+    # Disable stuff like f/t/F/T
+    opts.modes.char.enabled = false;
+  };
+  # }}}
+  # {{{ clipboard-image
+  satellite.neovim.lazy.clipboard-image = {
+    package = "postfen/clipboard-image.nvim";
+
+    env.blacklist = [ "firenvim" ];
+    cmd = "PasteImg";
+
+    keys = {
+      mapping = "<leader>p";
+      action = "<cmd>PasteImg<cr>";
+      desc = "[P]aste image from clipboard";
+    };
+
+    opts.default.img_name = nlib.import ./plugins/clipboard-image.lua "img_name";
+    opts.tex = {
+      img_dir = [ "%:p:h" "img" ];
+      affix = "\\includegraphics[width=\\textwidth]{%s}";
+    };
+    opts.typst = {
+      img_dir = [ "%:p:h" "img" ];
+      affix = ''#image("%s", width: 100)'';
+    };
+  };
+  # }}}
+  # }}}
+  # {{{ ide
+  # {{{ conform
+  satellite.neovim.lazy.conform = {
+    package = "stevearc/conform.nvim";
+
+    env.blacklist = [ "vscode" ];
+    event = "BufReadPost";
+
+    opts.format_on_save.lsp_fallback = true;
+    opts.formatters_by_ft = let prettier = [ [ "prettierd" "prettier" ] ]; in
+      {
+        lua = [ "stylua" ];
+        python = [ "ruff_format" ];
+
+        javascript = prettier;
+        typescript = prettier;
+        javascriptreact = prettier;
+        typescriptreact = prettier;
+        html = prettier;
+        css = prettier;
+        markdown = prettier;
+      };
+  };
+  # }}}
+  # {{{ neoconf
+  satellite.neovim.lazy.neoconf = {
+    package = "folke/neoconf.nvim";
+
+    cmd = "Neoconf";
+
+    opts.import = {
+      vscode = true; # local .vscode/settings.json
+      coc = false; # global/local coc-settings.json
+      nlsp = false; # global/local nlsp-settings.nvim json settings
+    };
+  };
+  # }}}
+  # }}}
+  # {{{ language support 
+  # {{{ haskell
+  satellite.neovim.lazy.haskell-tools = {
+    package = "mrcjkb/haskell-tools.nvim";
+    dependencies.lua = [ "nvim-lua/plenary.nvim" ];
+    version = "^2";
+
+    env.blacklist = [ "vscode" ];
+    ft = [ "haskell" "lhaskell" "cabal" "cabalproject" ];
+
+    setup.vim.g.haskell_tools = {
+      hls = {
+        on_attach = nlib.lua /* lua */ ''require("my.plugins.lspconfig").on_attach'';
+        settings.haskell = {
+          formattingProvider = "fourmolu";
+
+          # This seems to work better with custom preludes
+          # See this issue https://github.com/fourmolu/fourmolu/issues/357
+          plugin.fourmolu.config.external = true;
+        };
+      };
+
+      # I think this wasn't showing certain docs as I expected (?)
+      tools.hover.enable = false;
+    };
+  };
+  # }}}
+  # {{{ rust 
+  # {{{ rust-tools 
+  satellite.neovim.lazy.rust-tools = {
+    package = "simrat39/rust-tools.nvim";
+
+    env.blacklist = [ "vscode" ];
+    ft = "rust";
+
+    opts.server.on_attach = nlib.languageServerOnAttach {
+      keys = {
+        mapping = "<leader>lc";
+        action = "<cmd>RustOpenCargo<cr>";
+        desc = "Open [c]argo.toml";
+      };
+    };
+  };
+  # }}}
+  # {{{ crates 
+  satellite.neovim.lazy.crates = {
+    package = "saecki/crates.nvim";
+    dependencies.lua = [ "nvim-lua/plenary.nvim" ];
+
+    env.blacklist = [ "vscode" ];
+    event = "BufReadPost Cargo.toml";
+
+    # {{{ Set up null_ls source
+    opts.null_ls = {
+      enabled = true;
+      name = "crates";
+    };
+    # }}}
+
+    setup.autocmds = [
+      # {{{ Load cmp source on insert 
+      {
+        event = "InsertEnter";
+        group = "CargoCmpSource";
+        pattern = "Cargo.toml";
+        callback = nlib.thunkString /* lua */ ''
+          require("cmp").setup.buffer({ sources = { { name = "crates" } } })
+        '';
+      }
+      # }}}
+      # {{{ Load keybinds on attach
+      {
+        event = "BufReadPost";
+        group = "CargoKeybinds";
+        pattern = "Cargo.toml";
+        # {{{ Register which-key info
+        callback.callback = nlib.contextThunk /* lua */ ''
+          require("which-key").register({
+            ["<leader>lc"] = {
+              name = "[l]ocal [c]rates",
+              bufnr = context.bufnr
+            },
+          })
+        '';
+        # }}}
+
+        callback.keys =
+          let
+            # {{{ Keymap helpers 
+            keymap = mapping: action: desc: {
+              inherit mapping desc;
+              action = nlib.lua ''require("crates").${action}'';
+            };
+
+            keyroot = "<leader>lc";
+            # }}}
+          in
+          # {{{ Keybinds
+          [
+            (keymap "${keyroot}t" "toggle" "[c]rates [t]oggle")
+            (keymap "${keyroot}r" "reload" "[c]rates [r]efresh")
+
+            (keymap "${keyroot}H" "open_homepage" "[c]rate [H]omephage")
+            (keymap "${keyroot}R" "open_repository" "[c]rate [R]epository")
+            (keymap "${keyroot}D" "open_documentation" "[c]rate [D]ocumentation")
+            (keymap "${keyroot}C" "open_crates_io" "[c]rate [C]rates.io")
+
+            (keymap "${keyroot}v" "show_versions_popup" "[c]rate [v]ersions")
+            (keymap "${keyroot}f" "show_features_popup" "[c]rate [f]eatures")
+            (keymap "${keyroot}d" "show_dependencies_popup" "[c]rate [d]eps")
+            (keymap "K" "show_popup" "[c]rate popup")
+          ];
+        # }}}
+      }
+      # }}}
+    ];
+  };
+  # }}}
+  # }}}
   # }}}
   # }}}
 }

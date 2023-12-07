@@ -117,7 +117,6 @@ function M.config()
       { name = "cmdline" },
     }),
   })
-
 end
 
 return M

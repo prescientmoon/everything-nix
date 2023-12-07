@@ -6,10 +6,7 @@ local M = {}
 M.unicode = {
   -- {{{ Logic
   { "frl", "∀" }, -- [f]o[r]al[l]
-
-
-
-  { "exs",    "∃" }, -- [e][x]ist[s]
+  { "exs", "∃" }, -- [e][x]ist[s]
   { "land", "∧" }, -- [l]ogical [and]
   { "Land", "⋀" }, -- arbitrary [l]ogical [and]
   { "lor", "∨" }, -- [l]ogical [or]
@@ -23,6 +20,7 @@ M.unicode = {
   -- }}}
   -- {{{ Set theory
   { "nolla", "∅" },
+  { "carprod", "×" }, -- cartesian product
   { "sect", "∩" }, -- set intersection
   { "Sect", "⋂" }, -- arbitrary set intersection
   { "dsect", "⊓" }, -- disjoint set intersection (whatever that means lol)

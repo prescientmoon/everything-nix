@@ -11,7 +11,7 @@
     # });
 
     # {{{ Discordchatexporter
-    discordchatexporter-cli = prev.discordchatexporter-cli.overrideAttrs (_: rec {
+    discordchatexporter-cli = prev.discordchatexporter-cli.overrideAttrs (_: {
       version = "unstable-2023-06-21";
       src = prev.fetchFromGitHub {
         owner = "tyrrrz";

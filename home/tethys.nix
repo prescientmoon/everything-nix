@@ -27,7 +27,7 @@
     # {{{ Editors for different formats 
     gimp # Image editing
     lmms # Music software
-    kicad # PCB editing
+    # kicad # PCB editing
     libreoffice # Free office suite
     # }}}
     # {{{ Gaming 
@@ -41,7 +41,7 @@
     obsidian # Notes
     peek # GIF recorder
     mpv # Video player
-    plover.dev # steno engine
+    # plover.dev # steno engine
     qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder

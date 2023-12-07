@@ -1,8 +1,28 @@
 { pkgs, config, lib, ... }:
 {
+  # {{{ Fzf 
+  programs.fzf = {
+    enable = true;
+    defaultOptions = [ "--no-scrollbar" ];
+
+
+    changeDirWidgetOptions = [
+      "--preview '${lib.getExe pkgs.eza} --icons --tree --color=always {}'"
+    ];
+
+    fileWidgetOptions = [
+      "--preview '${lib.getExe pkgs.bat} --number --color=always {}'"
+    ];
+  };
+
+  stylix.targets.fzf.enable = true;
+  # }}}
+  # {{{ Fish
   programs.fish = {
     enable = true;
+    interactiveShellInit = builtins.readFile ./config.fish;
 
+    # {{{ Plugins 
     plugins =
       let
         plugins = with pkgs.fishPlugins; [
@@ -12,7 +32,6 @@
           puffer # Text expansion (i.e. expanding .... to ../../../)
           sponge # Remove failed commands and whatnot from history
           forgit # Git tui thingy? (I'm still trying this one out)
-          fzf-fish # Fuzzy finder for things like files
           colored-man-pages # Self explainatory:)
         ];
       in
@@ -22,12 +41,12 @@
           name = plugin.pname;
           inherit (plugin) src;
         });
-
-    interactiveShellInit = builtins.readFile ./config.fish;
+    # }}}
   };
 
   satellite.persistence.at.state.apps.fish.directories = [
     "${config.xdg.dataHome}/fish"
     "${config.xdg.dataHome}/z" # The z fish plugin
   ];
+  # }}}
 }
