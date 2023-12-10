@@ -34,7 +34,6 @@
     # }}}
     # {{{ Misc  
     ranger # Terminal file explorer
-    comma # Intstall and run programs by sticking a , before them
     bc # Calculator
     ouch # Unified compression / decompression tool
     mkpasswd # Hash passwords

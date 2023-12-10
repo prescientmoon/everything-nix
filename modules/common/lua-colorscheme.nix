@@ -47,8 +47,8 @@
           popups = config.stylix.opacity.popups < 1.0;
         };
         rounding = {
-          enable = toString config.satellite.theming.rounding.enable;
-          radius = toString config.satellite.theming.rounding.radius;
+          enable = config.satellite.theming.rounding.enable;
+          radius = config.satellite.theming.rounding.radius;
         };
       };
     in

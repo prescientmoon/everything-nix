@@ -2,7 +2,7 @@
   imports = [
     ../common/global
     ../common/users/adrielus.nix
-    ../common/optional/slambda.nix
+    ../common/optional/services/slambda.nix
 
     ./services/syncthing.nix
     ./filesystems

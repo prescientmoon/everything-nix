@@ -3,111 +3,66 @@
 
   # {{{ Inputs
   inputs = {
-    # Nixpkgs
+    # {{{ Nixpkgs instances 
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # NUR
+    # }}}
+    # {{{ Additional package repositories
     nur.url = "github:nix-community/NUR";
 
-    # Firefox addons
-    firefox-addons.url = "git+https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons";
-    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Agenix
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Homeage
-    homeage.url = "github:jordanisaacs/homeage";
-    homeage.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Grub2 themes
-    grub2-themes.url = "github:vinceliuice/grub2-themes";
-    grub2-themes.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Stylix
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.inputs.home-manager.follows = "home-manager";
-
-    # Catpuccin base16 color schemes
-    catppuccin-base16.url = "github:catppuccin/base16";
-    catppuccin-base16.flake = false;
-
-    # Rosepine base16 color schemes
-    rosepine-base16.url = "github:edunfelt/base16-rose-pine-scheme";
-    rosepine-base16.flake = false;
-
-    # Impermanence
-    impermanence.url = "github:nix-community/impermanence";
-
-    # Slambda
-    slambda.url = "github:Mateiadrielrafael/slambda";
-    slambda.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Neovim nightly
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Hyprland (available in nix unstable only atm)
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Hyprland-contrib
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Contains a bunch of wayland stuff not on nixpkgs
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Firefox addons
+    firefox-addons.url = "git+https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+    # }}}
+    # {{{ Nix-related tooling
+    # {{{ Secret management
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    homeage.url = "github:jordanisaacs/homeage";
+    homeage.inputs.nixpkgs.follows = "nixpkgs";
+    # }}}
+    # {{{ Storage 
+    impermanence.url = "github:nix-community/impermanence";
+
+    # Declarative partitioning
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    # }}}
+
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     # Nix language server
     # [the docs](https://github.com/nix-community/nixd/blob/main/docs/user-guide.md#installation)
     # tell me not to override the nixpkgs input.
     nixd.url = "github:nix-community/nixd";
+    # }}}
+    # {{{ Standalone software
+    # {{{ Nightly versions of things
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Spotify client
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Disko
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Deploy-rs
-    deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Nixinate
-    nixinate.url = "github:matthewcroughan/nixinate";
-    nixinate.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Anyrun
-    anyrun.url = "github:Kirottu/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Anyrun nixos options
-    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
-    anyrun-nixos-options.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Nixos hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    # Matrix TUi
-    matui.url = "github:pkulak/matui";
-    matui.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Wezterm nightly 
     # https://github.com/happenslol/wezterm/blob/add-nix-flake/nix/flake.nix
     wezterm.url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
     wezterm.inputs.nixpkgs.follows = "nixpkgs";
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    # }}}
     # {{{ Self management
     # Smos
     smos.url = "github:NorfairKing/smos";
@@ -124,6 +79,43 @@
     tickler.url = "github:NorfairKing/tickler";
     tickler.inputs.nixpkgs.follows = "nixpkgs";
     tickler.inputs.intray.follows = "intray";
+    # }}}
+    # {{{ Anyrun 
+    anyrun.url = "github:Kirottu/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+
+    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
+    anyrun-nixos-options.inputs.nixpkgs.follows = "nixpkgs";
+    # }}}
+
+    matui.url = "github:pkulak/matui";
+    matui.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Spotify client with theming support
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Keyboard configuration (to be replaced by kanata at some point)
+    slambda.url = "github:Mateiadrielrafael/slambda";
+    slambda.inputs.nixpkgs.follows = "nixpkgs";
+    # }}}
+    # {{{ Theming
+    # Grub2 themes
+    grub2-themes.url = "github:vinceliuice/grub2-themes";
+    grub2-themes.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Stylix
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.inputs.home-manager.follows = "home-manager";
+
+    # Catpuccin base16 color schemes
+    catppuccin-base16.url = "github:catppuccin/base16";
+    catppuccin-base16.flake = false;
+
+    # Rosepine base16 color schemes
+    rosepine-base16.url = "github:edunfelt/base16-rose-pine-scheme";
+    rosepine-base16.flake = false;
     # }}}
   };
   # }}}
@@ -152,22 +144,7 @@
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; } // {
-	  nix-tree =  (pkgs.nix-tree.overrideAttrs (oldAttrs: {
-  patches =
-    (oldAttrs.patches or [])
-    ++ [
-      (pkgs.fetchpatch {
-        url = "https://github.com/utdemir/nix-tree/pull/68.patch";
-        hash = "sha256-70Xo88ZWzWUYM0qxbW64kYaVwHaYkS2dQWmBGCkL0oA=";
-      })
-      (pkgs.fetchpatch {
-        url = "https://github.com/utdemir/nix-tree/pull/69.patch";
-        hash = "sha256-8LdOKU2pc0tojmquCEqjnovkG3hD7YdTQoC4WSawdAQ=";
-      })
-    ];
-}));
-	}
+        in import ./pkgs { inherit pkgs; }
       );
       # }}}
       # {{{ Bootstrapping and other pinned devshells
@@ -176,11 +153,9 @@
         (system:
           let
             pkgs = nixpkgs.legacyPackages.${system};
-            default = import ./shell.nix { inherit pkgs; };
             args = { inherit pkgs; } // specialArgs system;
-            devshells = import ./devshells args;
           in
-          devshells // { inherit default; });
+          ./devshells args);
       # }}}
       # {{{ Overlays and modules
       # Custom packages and modifications, exported as overlays
@@ -209,12 +184,6 @@
 
               stylix.homeManagerIntegration.followSystem = false;
               stylix.homeManagerIntegration.autoImport = false;
-
-              _module.args.nixinate = {
-                host = hostname;
-                sshUser = "adrielus";
-                buildOn = "remote";
-              };
             }
 
             ./hosts/nixos/${hostname}
@@ -284,27 +253,6 @@
           };
         };
       # }}}
-      # {{{ Deploy-rs nodes
-      deploy.nodes =
-        let deployNixos = hostname: {
-          user = "root";
-          path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${hostname};
-        };
-        in
-        {
-          lapetus.hostname = "lapetus";
-          lapetus.sshOpts = [ "-t" ];
-          lapetus.profiles.system = deployNixos "lapetus";
-        };
-      # }}}
-      # {{{ Checks
-      # This is highly advised, and will prevent many possible mistakes
-      # Taken from [the deploy-rs docs](https://github.com/serokell/deploy-rs).
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
-      # }}}
-      # # {{{ Apps
-      # apps.x86_64-linux = (inputs.nixinate.nixinate.x86_64-linux self);
-      # # }}}
     };
 
   # {{{ Caching and whatnot

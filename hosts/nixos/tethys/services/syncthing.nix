@@ -9,7 +9,7 @@ let
   };
 in
 {
-  imports = [ ../../common/optional/syncthing.nix ];
+  imports = [ ../../common/optional/services/syncthing.nix ];
 
   services.syncthing.settings.folders = {
     "mythical-vault" = {

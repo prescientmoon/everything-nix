@@ -1,31 +1,30 @@
 { lib, ... }: {
+  # {{{ Imports
   imports = [
     ../common/global
     ../common/users/adrielus.nix
 
     ../common/optional/pipewire.nix
     ../common/optional/greetd.nix
-    # ../common/optional/xmonad
-    # ../common/optional/lightdm.nix
-    ../common/optional/steam.nix
-    ../common/optional/slambda.nix
-    ../common/optional/xdg-portal.nix
-    ../common/optional/hyprland.nix
     ../common/optional/quietboot.nix
-    # ../common/optional/gitea.nix
+    ../common/optional/desktop/steam.nix
+    ../common/optional/services/slambda.nix
+    ../common/optional/desktop/xdg-portal.nix
+    ../common/optional/wayland/hyprland.nix
 
     ./hardware
-    ./services/syncthing.nix
     ./boot.nix
+    ./services/syncthing.nix
   ];
-
-  # Machine ids
-  networking.hostName = "tethys";
-  environment.etc.machine-id.text = "08357db3540c4cd2b76d4bb7f825ec88";
+  # }}}
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
 
+  # {{{ Machine ids
+  networking.hostName = "tethys";
+  environment.etc.machine-id.text = "08357db3540c4cd2b76d4bb7f825ec88";
+  # }}}
   # {{{ A few ad-hoc hardware settings
   hardware.enableAllFirmware = true;
   hardware.opengl.enable = true;

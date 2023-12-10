@@ -1,5 +1,5 @@
 { pkgs, lib, ... }:
-let vimclip = pkgs.stdenv.mkDerivation rec {
+let vimclipRaw = pkgs.stdenv.mkDerivation rec {
   name = "vimclip";
   rev = "52003cc31e6e1d20550cdf6b7d3bf1a019a34fa0";
 
@@ -26,5 +26,5 @@ pkgs.writeShellScriptBin "vimclip" ''
     export VIMCLIP_CLIPBOARD_COMMAND=${pkgs.xsel}/bin/xsel
   fi
 
-  ${lib.getExe vimclip}
+  ${lib.getExe vimclipRaw}
 ''

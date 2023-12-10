@@ -127,7 +127,10 @@ let
   # }}}
   # {{{ Clients
   neovim = wrapClient {
-    base = pkgs.neovim;
+    base =
+      if config.satellite.toggles.neovim-nightly.enable
+      then pkgs.neovim-nightly
+      else pkgs.neovim;
     name = "nvim";
   };
 

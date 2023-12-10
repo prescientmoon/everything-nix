@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, config, ... }: {
   imports = [
     ./global.nix
 
@@ -8,10 +8,9 @@
     ./features/desktop/discord
     ./features/cli/productivity
     ./features/cli/pass.nix
-    ./features/neovim
-
-    # ./features/xorg/xmonad.nix
+    ./features/cli/nix-index.nix
     ./features/wayland/hyprland
+    ./features/neovim
   ];
 
   # Arbitrary extra packages

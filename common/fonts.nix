@@ -16,8 +16,8 @@
     };
 
     sizes = {
-      desktop = 14;
-      applications = 17;
+      desktop = 13;
+      applications = 15;
     };
   };
 }

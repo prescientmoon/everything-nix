@@ -4,8 +4,7 @@ in
 {
   home.packages = [ package ];
 
-  # TODO: generalize alias creation to all shells
-  programs.fish.shellAliases =
+  home.shellAliases =
     let eza = lib.getExe package;
     in
     rec {

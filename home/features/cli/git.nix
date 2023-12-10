@@ -1,4 +1,6 @@
 { pkgs, ... }: {
+  # TODO: use `delta` as a pager, as highlighted here
+  # https://github.com/lilyinstarlight/foosteros/blob/main/config/base.nix#L163
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -6,6 +8,7 @@
     userName = "Matei Adriel";
     userEmail = "rafaeladriel11@gmail.com";
 
+    # {{{ Globally ignored files
     ignores = [
       # Syncthing
       ".stfolder"
@@ -22,7 +25,8 @@
       # it have it commited).
       "hie.yaml"
     ];
-
+    # }}}
+    # {{{ Aliases 
     aliases = {
       # Print history nicely
       graph = "log --decorate --oneline --graph";
@@ -30,6 +34,7 @@
       # Print last commit's hash
       hash = "log -1 --format='%H'";
     };
+    # }}}
 
     extraConfig = {
       github.user = "Mateiadrielrafael";
@@ -38,6 +43,7 @@
       init.defaultBranch = "main";
       rebase.autoStash = true;
 
+      # {{{ Signing
       # Sign commits using ssh
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
@@ -45,12 +51,14 @@
       # Sign everything by default
       commit.gpgsign = true;
       tag.gpgsign = true;
+      # }}}
     };
   };
 
-  # Github cli
+  # {{{ Github cli
   programs.gh = {
     enable = true;
     settings.git_protocol = "ssh";
   };
+  # }}}
 }

@@ -6,5 +6,5 @@
     ];
   };
 
-  home.packages = with pkgs; [ wakatime ];
+  home.packages = [ pkgs.wakatime ];
 }

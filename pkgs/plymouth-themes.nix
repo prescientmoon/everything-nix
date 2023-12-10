@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { }
 }:
 # See [this blog post](http://blog.sidhartharya.com/using-custom-plymouth-theme-on-nixos/)
-let mkTheme = { themeName, pack }: pkgs.stdenv.mkDerivation rec {
+let mkTheme = { themeName, pack }: pkgs.stdenv.mkDerivation {
   pname = "adi1090x-plymouth-${themeName}";
   version = "0.0.1";
 

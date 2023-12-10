@@ -2,28 +2,29 @@
 let
   # {{{ Imports
   imports = [
+    # {{{ flake inputs
     inputs.stylix.homeManagerModules.stylix
     inputs.homeage.homeManagerModules.homeage
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.anyrun.homeManagerModules.default
+    inputs.nix-index-database.hmModules.nix-index
 
+    # {{{ self management
     # NOTE: using `pkgs.system` before `module.options` is evaluated
     # leads to infinite recursion!
     inputs.intray.homeManagerModules.x86_64-linux.default
     inputs.smos.homeManagerModules.x86_64-linux.default
-
+    # }}}
+    # }}}
+    # {{{ global configuration
     ./features/cli
     ./features/persistence.nix
     ../common
+    # }}} 
   ];
   # }}} 
-  # {{{ Overlays
-  overlays = [
-    # inputs.neovim-nightly-overlay.overlay
-  ];
-  # }}}
 in
 {
   # Import all modules defined in modules/home-manager
@@ -32,31 +33,30 @@ in
   # {{{ Nixpkgs
   nixpkgs = {
     # Add all overlays defined in the overlays directory
-    overlays = builtins.attrValues outputs.overlays ++ overlays;
+    overlays = builtins.attrValues outputs.overlays ++
+      lib.lists.optional
+        config.satellite.toggles.neovim-nightly.enable
+        inputs.neovim-nightly-overlay.overlay;
 
-    # Allow unfree packages
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
+    config.allowUnfree = true;
   };
   # }}}
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = lib.mkForce "sd-switch";
-
-  # Enable the home-manager and git clis
+  # {{{ Enable the home-manager and git clis
   programs = {
     home-manager.enable = true;
     git.enable = true;
   };
-
-  # Set reasonable defaults for some settings
+  # }}}
+  # {{{ Set reasonable defaults for some settings
   home = {
     username = lib.mkDefault "adrielus";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "23.05";
   };
+  # }}} 
+  # {{{ Ad-hoc settings 
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = lib.mkForce "sd-switch";
 
   # Where homeage should look for our ssh key
   homeage.identityPaths = [ "~/.ssh/id_ed25519" ];
@@ -64,18 +64,18 @@ in
   # Allow root to read persistent files from this user.
   home.persistence."/persist/home/adrielus".allowOther = true;
 
+  # {{{ Ad-hoc stylix targets
+  stylix.targets.xresources.enable = true;
+  # }}}
+  # }}}
+  # {{{ Xdg user directories
   # Set the xdg env vars
   xdg.enable = true;
 
-  # {{{ Xdg user directories
   xdg.userDirs = {
     enable = lib.mkDefault true;
     createDirectories = lib.mkDefault false;
     extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
   };
-  # }}}
-  # {{{ Ad-hoc stylix targets
-  # TODO: is this useful outside xorg?
-  stylix.targets.xresources.enable = true;
   # }}}
 }

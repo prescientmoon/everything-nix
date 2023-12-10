@@ -3,10 +3,10 @@
     ../common/global
     ../common/users/guest.nix
 
+    ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
-    ../common/optional/lightdm.nix
-    ../common/optional/xdg-portal.nix
-    ../common/optional/hyprland.nix
+    ../common/optional/desktop/xdg-portal.nix
+    ../common/optional/wayland/hyprland.nix
   ];
 
   # Usually included in the hardware-configuration

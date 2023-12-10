@@ -1,5 +1,5 @@
 {
-  imports = [ ../../common/optional/syncthing.nix ];
+  imports = [ ../../common/optional/services/syncthing.nix ];
 
   networking.firewall.allowedTCPPorts = [ 8384 ];
 
