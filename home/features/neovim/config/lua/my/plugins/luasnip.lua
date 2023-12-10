@@ -2,6 +2,7 @@ local env = require("my.helpers.env")
 
 local M = {
   "L3MON4D3/LuaSnip", -- snippeting engine
+  version = "v2",
   cond = env.vscode.not_active(),
 }
 

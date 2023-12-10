@@ -2,10 +2,20 @@
 let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
   themeMap = lib.fix (self: {
-    "Catppuccin Mocha" = spicePkgs.themes.catppuccin-mocha;
-    "Catppuccin Latte" = spicePkgs.themes.catppuccin-latte;
-    "Catppuccin Frappe" = spicePkgs.themes.catppuccin-frappe;
-    "Catppuccin Macchiato" = spicePkgs.themes.catppuccin-macchiato;
+    "Catppuccin Mocha" = spicePkgs.themes.catppuccin;
+    "Catppuccin Latte" = spicePkgs.themes.catppuccin;
+    "Catppuccin Frappe" = spicePkgs.themes.catppuccin;
+    "Catppuccin Macchiato" = spicePkgs.themes.catppuccin;
+
+    default.light = self."Catppuccin Latte";
+    default.dark = self."Catppuccin Macchiato";
+  });
+
+  colorschemeMap = lib.fix (self: {
+    "Catppuccin Mocha" = "mocha";
+    "Catppuccin Latte" = "latte";
+    "Catppuccin Frappe" = "frappe";
+    "Catppuccin Macchiato" = "macchiato";
 
     default.light = self."Catppuccin Latte";
     default.dark = self."Catppuccin Macchiato";
@@ -16,6 +26,7 @@ in
     enable = true;
 
     theme = config.satellite.theming.get themeMap;
+    colorScheme = config.satellite.theming.get colorschemeMap;
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplayMod

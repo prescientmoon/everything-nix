@@ -68,8 +68,7 @@ end
 -- {{{ Main config runtime
 local function recursive_assign(source, destination)
   for key, value in pairs(source) do
-    if type(value) == "table" then
-      destination[key] = destination[key] or {}
+    if type(value) == "table" and type(destination[key]) == "table" then
       recursive_assign(value, destination[key])
     else
       destination[key] = value
@@ -79,7 +78,7 @@ end
 
 function M.configure(opts, context)
   if type(opts.vim) == "table" then
-    recursive_assign(opts, vim)
+    recursive_assign(opts.vim, vim)
   end
 
   if type(opts.keys) == "table" then
@@ -117,10 +116,14 @@ function M.configure(opts, context)
   if
     type(context) == "table"
     and context.opts ~= nil
+    and vim.inspect(context.opts) ~= "{}"
     and context.lazy ~= nil
   then
     -- This is a terrible way to do it :/
-    require(context.lazy.name).setup(context.opts)
+    local status, module = pcall(require, context.lazy.name)
+    if status then
+      module.setup(context.opts)
+    end
   end
 
   if type(opts.callback) == "function" then

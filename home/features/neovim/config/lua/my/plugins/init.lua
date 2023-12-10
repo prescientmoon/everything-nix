@@ -95,14 +95,6 @@ return {
     end,
   },
 
-  -- Helper libs
-  {
-    "nvim-lua/plenary.nvim",
-    -- Autoload when running tests
-    cmd = { "PlenaryBustedDirectory", "PlenaryBustedFile" },
-  },
-  "MunifTanjim/nui.nvim",
-  "nvim-tree/nvim-web-devicons", -- nice looking icons
   {
     "mateiadrielrafael/scrap.nvim",
     event = "InsertEnter",
@@ -110,14 +102,6 @@ return {
       require("my.abbreviations").setup()
     end,
   }, -- vim-abolish rewrite
-
-  {
-    "terrortylor/nvim-comment",
-    keys = { "gc", "gcc", { "gc", mode = "v" } },
-    config = function()
-      require("nvim_comment").setup()
-    end,
-  },
 
   {
     -- easly switch between tmux and vim panes
@@ -129,28 +113,12 @@ return {
   },
 
   {
-    -- track time usage
-    "wakatime/vim-wakatime",
-    event = "VeryLazy",
-    cond = env.vscode.not_active() and env.firenvim.not_active(),
-  },
-
-  {
     -- show progress for lsp stuff
     "j-hui/fidget.nvim",
     tag = "legacy",
     event = "BufReadPre",
     cond = env.vscode.not_active(),
     config = true,
-  },
-
-  {
-    -- export to pastebin like services
-    "rktjmp/paperplanes.nvim",
-    opts = {
-      provider = "paste.rs",
-    },
-    cmd = "PP",
   },
 
   {
@@ -187,16 +155,6 @@ return {
     keys = "<leader>yg",
   },
 
-  {
-    -- discord rich presence
-    "andweeb/presence.nvim",
-    cond = env.vscode.not_active() and env.firenvim.not_active(),
-    config = function()
-      require("presence"):setup()
-    end,
-    event = "VeryLazy",
-  },
-
   -- Live command preview for stuff like :norm
   {
     "smjonas/live-command.nvim",
@@ -209,17 +167,5 @@ return {
     end,
     event = "VeryLazy",
     -- cond = false,
-  },
-  {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-    init = function()
-      vim.keymap.set(
-        "n",
-        "<leader>u",
-        "<cmd>UndotreeToggle<cr>",
-        { desc = "[U]ndo tree" }
-      )
-    end,
   },
 }

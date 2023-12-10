@@ -46,6 +46,7 @@ let
           };
 
           options.action = lib.mkOption {
+            default = null;
             type = types.nullOr (types.oneOf [
               types.str
               myTypes.luaLiteral

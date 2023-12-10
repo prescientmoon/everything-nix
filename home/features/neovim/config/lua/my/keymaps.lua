@@ -89,7 +89,7 @@ function M.setup()
   -- In the future, I might get this on my keyboard firmware.
   vim.keymap.set({ "i", "v" }, "<f10>", "<Esc>", { desc = "Exit insert mode" }) -- Exit inset mode using *jk*
   vim.keymap.set({ "n", "v" }, "<f11>", '"+', { desc = "Use global clipboard" }) -- Use global clipboard with *cp*
-  M.nmap("<f12>", ":silent write<cr>", "Save current file") -- Save using *ji*
+  M.nmap("<f12>", "<cmd>silent write<cr>", "Save current file", true) -- Save using *ji*
   -- }}}
   -- {{{ Shift-Enter for not continuing the current comment
   -- This does not preserve intendation. Not sure what a better solution would look like.

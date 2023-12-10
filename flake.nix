@@ -4,10 +4,12 @@
   # {{{ Inputs
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # NUR
@@ -57,7 +59,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Hyprland (available in nix unstable only atm)
+    # Hyprland-contrib
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -101,6 +103,11 @@
     matui.url = "github:pkulak/matui";
     matui.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Wezterm nightly 
+    # https://github.com/happenslol/wezterm/blob/add-nix-flake/nix/flake.nix
+    wezterm.url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
+    wezterm.inputs.nixpkgs.follows = "nixpkgs";
+
     # {{{ Self management
     # Smos
     smos.url = "github:NorfairKing/smos";
@@ -134,6 +141,9 @@
 
       specialArgs = system: {
         inherit inputs outputs;
+
+        spkgs = inputs.nixpkgs-stable.legacyPackages.${system};
+        upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       };
       # }}}
     in
@@ -142,7 +152,22 @@
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; }
+        in import ./pkgs { inherit pkgs; } // {
+	  nix-tree =  (pkgs.nix-tree.overrideAttrs (oldAttrs: {
+  patches =
+    (oldAttrs.patches or [])
+    ++ [
+      (pkgs.fetchpatch {
+        url = "https://github.com/utdemir/nix-tree/pull/68.patch";
+        hash = "sha256-70Xo88ZWzWUYM0qxbW64kYaVwHaYkS2dQWmBGCkL0oA=";
+      })
+      (pkgs.fetchpatch {
+        url = "https://github.com/utdemir/nix-tree/pull/69.patch";
+        hash = "sha256-8LdOKU2pc0tojmquCEqjnovkG3hD7YdTQoC4WSawdAQ=";
+      })
+    ];
+}));
+	}
       );
       # }}}
       # {{{ Bootstrapping and other pinned devshells
@@ -233,6 +258,18 @@
             };
         in
         {
+          nixd = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages."x86_64-linux";
+            modules = [
+              ({ lib, config, ... }: {
+                home = {
+                  username = "adrielus";
+                  homeDirectory = "/home/${config.home.username}";
+                  stateVersion = "23.05";
+                };
+              })
+            ];
+          };
           "adrielus@tethys" = mkHomeConfig {
             system = "x86_64-linux";
             hostname = "tethys";

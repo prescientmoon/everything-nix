@@ -29,7 +29,13 @@
 
     settings = {
       # Enable flakes and new 'nix' command
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "repl-flake"
+	"auto-allocate-uids"
+	# "configurable-impure-env"
+      ];
 
       # Disable warning when rebuilding before commiting
       warn-dirty = false;
@@ -39,7 +45,6 @@
 
       # TODO: what is a trusted user?
       trusted-users = [ "root" "@wheel" ];
-
     };
   };
 }

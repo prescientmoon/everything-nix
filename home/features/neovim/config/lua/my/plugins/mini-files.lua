@@ -3,8 +3,7 @@ local env = require("my.helpers.env")
 
 local M = {
   "echasnovski/mini.files",
-  version = "main",
-  event = "VeryLazy",
+  keys = { "<C-S-F>" },
   cond = env.vscode.not_active() and env.firenvim.not_active(),
 }
 

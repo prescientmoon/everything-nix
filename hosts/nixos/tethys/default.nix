@@ -12,7 +12,7 @@
     ../common/optional/xdg-portal.nix
     ../common/optional/hyprland.nix
     ../common/optional/quietboot.nix
-    ../common/optional/gitea.nix
+    # ../common/optional/gitea.nix
 
     ./hardware
     ./services/syncthing.nix

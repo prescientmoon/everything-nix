@@ -57,6 +57,7 @@ config.window_background_opacity = colorscheme.transparency.value
 -- }}}
 -- {{{ Main config options
 config.automatically_reload_config = true
+config.check_for_updates = false
 
 -- {{{ Fonts
 config.adjust_window_size_when_changing_font_size = false -- Makes it work with fixed window sizes.

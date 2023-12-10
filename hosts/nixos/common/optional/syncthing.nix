@@ -22,11 +22,7 @@ in
         tethys.id = "NGHX5G4-IY3ZXL2-NQMMRQV-2GDQLC6-LIDWSNG-DAJUAQH-KBAP64V-55K2LQ6";
       };
 
-      extraOptions = {
-        options = {
-          crashReportingEnabled = false;
-        };
-      };
+      extraOptions.options.crashReportingEnabled = false;
     };
   };
 }

@@ -10,23 +10,23 @@ let
     rnix-lsp # nix
     nil # nix
     inputs.nixd.packages.${system}.nixd # nix
-    haskell-language-server # haskell
+    # haskell-language-server # haskell
     # REASON: marked as broken
     # dhall-lsp-server # dhall
-    tectonic # something related to latex (?)
+    # tectonic # something related to latex (?)
     texlab # latex
     nodePackages_latest.vscode-langservers-extracted # web stuff
-    python310Packages.python-lsp-server # python
-    pyright # python
+    # python310Packages.python-lsp-server # python
+    # pyright # python
     rust-analyzer # rust
     typst-lsp # typst
 
     # Formatters
-    luaformatter # Lua
+    # luaformatter # Lua
     stylua # Lua
-    black # Python
-    yapf # Python
-    isort # Reorder python imports
+    # black # Python
+    # yapf # Python
+    # isort # Reorder python imports
     nodePackages_latest.purs-tidy # Purescript
     nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
@@ -34,7 +34,7 @@ let
 
     # Linters
     ruff # Python linter
-    mypy # Python typechecking
+    # mypy # Python typechecking
 
     # Languages
     nodePackages.typescript # typescript
@@ -48,20 +48,20 @@ let
     update-nix-fetchgit # Useful for nix stuff
     tree-sitter # Syntax highlighting
     libstdcxx5 # Required by treesitter aparently
-    python310Packages.jupytext # Convert between jupyter notebooks and python files
-    graphviz # For rust crate graph
+    # python310Packages.jupytext # Convert between jupyter notebooks and python files
+    # graphviz # For rust crate graph
     haskellPackages.hoogle # For haskell search
 
     # Preview
-    zathura # Pdf reader
-    xdotool # For zathura reverse search or whatever it's called
-    glow # Md preview in terminal
-    pandoc # Md processing
-    libsForQt5.falkon # Needed for one of the md preview plugins I tried
+    # zathura # Pdf reader
+    # xdotool # For zathura reverse search or whatever it's called
+    # glow # Md preview in terminal
+    # pandoc # Md processing
+    # libsForQt5.falkon # Needed for one of the md preview plugins I tried
 
     # Latex setup
-    texlive.combined.scheme-full # Latex stuff
-    python38Packages.pygments # required for latex syntax highlighting
+    # texlive.combined.scheme-full # Latex stuff
+    # python38Packages.pygments # required for latex syntax highlighting
     # sage
     # sagetex # sage in latex
 
@@ -146,6 +146,7 @@ let
   # }}}
 
   nlib = config.satellite.neovim.lib;
+  lazy = config.satellite.neovim.lazy;
 in
 {
   # {{{ Basic config
@@ -216,6 +217,21 @@ in
     tempest = "my.runtime";
   };
 
+  # {{{ libraries
+  # {{{ plenary
+  satellite.neovim.lazy.plenary = {
+    package = "nvim-lua/plenary.nvim";
+    # Autoload when running tests
+    cmd = [ "PlenaryBustedDirectory" "PlenaryBustedFile" ];
+  };
+  # }}}
+  # {{{ nui
+  satellite.neovim.lazy.nui.package = "MunifTanjim/nui.nvim";
+  # }}}
+  # {{{ web-devicons
+  satellite.neovim.lazy.web-devicons.package = "nvim-tree/nvim-web-devicons";
+  # }}}
+  # }}}
   # {{{ ui
   # {{{ nvim-tree 
   satellite.neovim.lazy.nvim-tree = {
@@ -232,6 +248,7 @@ in
   # {{{ lualine
   satellite.neovim.lazy.lualine = {
     package = "nvim-lualine/lualine.nvim";
+    dependencies.lua = [ lazy.web-devicons.package ];
 
     env.blacklist = [ "vscode" "firenvim" ];
     event = "VeryLazy";
@@ -305,7 +322,22 @@ in
   };
   # }}}
   # }}}
-  # {{{ editing 
+  # {{{ visual
+  # The line between `ui` and `visual is a bit rought. I currenlty mostly judge
+  # it by vibe.
+  # {{{ indent-blankline 
+  satellite.neovim.lazy.indent-blankline = {
+    package = "lukas-reineke/indent-blankline.nvim";
+    main = "ibl";
+    setup = true;
+
+    env.blacklist = [ "vscode" ];
+    event = "BufReadPost";
+  };
+  # }}}
+  # }}}
+  # {{{ editing
+  # {{{ text navigation
   # {{{ flash
   satellite.neovim.lazy.flash = {
     package = "folke/flash.nvim";
@@ -329,6 +361,16 @@ in
     opts.modes.char.enabled = false;
   };
   # }}}
+  # {{{ ftft (quickscope but written in lua)
+  satellite.neovim.lazy.ftft = {
+    package = "gukz/ftFT.nvim";
+
+    env.blacklist = [ "vscode" ];
+    keys = [ "f" "F" "t" "T" ];
+    setup = true;
+  };
+  # }}}
+  # }}}
   # {{{ clipboard-image
   satellite.neovim.lazy.clipboard-image = {
     package = "postfen/clipboard-image.nvim";
@@ -351,6 +393,71 @@ in
       img_dir = [ "%:p:h" "img" ];
       affix = ''#image("%s", width: 100)'';
     };
+  };
+  # }}}
+  # {{{ lastplace 
+  satellite.neovim.lazy.lastplace = {
+    package = "ethanholz/nvim-lastplace";
+
+    env.blacklist = [ "vscode" ];
+    event = "BufReadPre";
+
+    opts.lastplace_ignore_buftype = [ "quickfix" "nofile" "help" ];
+  };
+  # }}}
+  # {{{ undotree
+  satellite.neovim.lazy.undotree = {
+    package = "mbbill/undotree";
+
+    env.blacklist = [ "vscode" ];
+    cmd = "UndotreeToggle";
+    keys = {
+      mapping = "<leader>u";
+      action = "<cmd>UndoTreeToggle<cr>";
+      desc = "[U]ndo tree";
+    };
+  };
+  # }}}
+  # {{{ ssr (structured search & replace)
+  satellite.neovim.lazy.ssr = {
+    package = "cshuaimin/ssr.nvim";
+
+    env.blacklist = [ "vscode" ];
+    keys = {
+      mode = "nx";
+      mapping = "<leader>rt";
+      action = nlib.thunk /* lua */ ''require("ssr").open()'';
+      desc = "[r]eplace [t]emplate";
+    };
+
+    opts.keymaps.replace_all = "<s-cr>";
+  };
+  # }}}
+  # {{{ edit-code-block (edit injections in separate buffers)
+  satellite.neovim.lazy.edit-code-block = {
+    package = "dawsers/edit-code-block.nvim";
+    dependencies.lua = [ "nvim-treesitter/nvim-treesitter" ];
+    main = "ecb";
+
+    env.blacklist = [ "vscode" ];
+    setup = true;
+    keys = {
+      mapping = "<leader>e";
+      action = "<cmd>EditCodeBlock<cr>";
+      desc = "[e]dit injection";
+    };
+  };
+  # }}}
+  # {{{ mini.comment 
+  satellite.neovim.lazy.mini-comment = {
+    package = "echasnovski/mini.comment";
+    name = "mini.comment";
+
+    setup = true;
+    keys = [
+      { mapping = "gc"; mode = "nxv"; }
+      { mapping = "gcc"; }
+    ];
   };
   # }}}
   # }}}
@@ -396,7 +503,7 @@ in
   # {{{ haskell
   satellite.neovim.lazy.haskell-tools = {
     package = "mrcjkb/haskell-tools.nvim";
-    dependencies.lua = [ "nvim-lua/plenary.nvim" ];
+    dependencies.lua = [ lazy.plenary.package ];
     version = "^2";
 
     env.blacklist = [ "vscode" ];
@@ -439,7 +546,7 @@ in
   # {{{ crates 
   satellite.neovim.lazy.crates = {
     package = "saecki/crates.nvim";
-    dependencies.lua = [ "nvim-lua/plenary.nvim" ];
+    dependencies.lua = [ lazy.plenary.package ];
 
     env.blacklist = [ "vscode" ];
     event = "BufReadPost Cargo.toml";
@@ -483,7 +590,7 @@ in
             # {{{ Keymap helpers 
             keymap = mapping: action: desc: {
               inherit mapping desc;
-              action = nlib.lua ''require("crates").${action}'';
+              action = nlib.lua /* lua */ ''require("crates").${action}'';
             };
 
             keyroot = "<leader>lc";
@@ -510,6 +617,48 @@ in
     ];
   };
   # }}}
+  # }}}
+  # }}}
+  # {{{ external
+  # These plugins integrate neovim with external services
+  # {{{ wakatime
+  satellite.neovim.lazy.wakatime = {
+    package = "wakatime/vim-wakatime";
+    env.blacklist = [ "vscode" "firenvim" ];
+    event = "VeryLazy";
+  };
+  # }}}
+  # {{{ discord rich presence 
+  satellite.neovim.lazy.discord-rich-presence = {
+    package = "andweeb/presence.nvim";
+    main = "presence";
+
+    env.blacklist = [ "vscode" "firenvim" ];
+    event = "VeryLazy";
+    setup = true;
+  };
+  # }}}
+  # {{{ gitlinker 
+  # generate permalinks for code
+  satellite.neovim.lazy.gitlinker =
+    let mapping = "<leader>yg";
+    in
+    {
+      package = "ruifm/gitlinker.nvim";
+      dependencies.lua = [ lazy.plenary.package ];
+
+      env.blacklist = [ "vscode" "firenvim" ];
+      opts.mappings = mapping;
+      keys = mapping;
+    };
+  # }}}
+  # {{{ paperplanes
+  # export to pastebin like services
+  satellite.neovim.lazy.paperlanes = {
+    package = "rktjmp/paperplanes.nvim";
+    cmd = "PP";
+    opts.provider = "paste.rs";
+  };
   # }}}
   # }}}
   # }}}

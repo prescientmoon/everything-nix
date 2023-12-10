@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./global.nix
 
@@ -7,7 +7,6 @@
     ./features/desktop/firefox
     ./features/desktop/discord
     ./features/cli/productivity
-    ./features/cli/khal.nix
     ./features/cli/pass.nix
     ./features/neovim
 
@@ -19,33 +18,32 @@
   home.packages = with pkgs; [
     # Desktop apps
     # {{{ Communication
-    signal-desktop # Signal client
+    # signal-desktop # Signal client
     element-desktop # Matrix client
-    zoom-us # Zoom client 🤮
-    inputs.matui.packages.${pkgs.system}.matui # Matrix TUi
+    # zoom-us # Zoom client 🤮
+    # inputs.matui.packages.${pkgs.system}.matui # Matrix TUi
     # }}}
     # {{{ Editors for different formats 
-    gimp # Image editing
-    lmms # Music software
+    # gimp # Image editing
+    # lmms # Music software
     # kicad # PCB editing
-    libreoffice # Free office suite
+    # libreoffice # Free office suite
     # }}}
     # {{{ Gaming 
-    wine # Windows compat layer or whatever
-    lutris # Game launcher
+    # wine # Windows compat layer or whatever
+    # lutris # Game launcher
     # }}}
     # {{{ Clis
-    sherlock # Search for usernames across different websites
+    # sherlock # Search for usernames across different websites
     # }}}
     # {{{ Misc 
     obsidian # Notes
-    peek # GIF recorder
-    mpv # Video player
+    # peek # GIF recorder
+    # mpv # Video player
     # plover.dev # steno engine
-    qbittorrent # Torrent client
+    # qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # obs-studio # video recorder
-
     # }}} 
   ];
 
@@ -66,7 +64,7 @@
       # App state I want to keep
       at.state.path = "/persist/state";
 
-      # App state which I should be able to delete at any point
+      # App state which I should be able to delete on a whim
       at.cache.path = "/persist/local/cache";
     };
 

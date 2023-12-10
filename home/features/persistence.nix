@@ -101,7 +101,6 @@
   satellite.persistence.at.state.apps.Steam = {
     directories = [
       ".factorio" # TODO: perhaps this should have it's own file?
-
       # A couple of games don't play well with bindfs
       {
         directory = "${config.xdg.dataHome}/Steam";
