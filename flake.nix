@@ -155,7 +155,7 @@
             pkgs = nixpkgs.legacyPackages.${system};
             args = { inherit pkgs; } // specialArgs system;
           in
-          ./devshells args);
+          import ./devshells args);
       # }}}
       # {{{ Overlays and modules
       # Custom packages and modifications, exported as overlays

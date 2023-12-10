@@ -49,6 +49,9 @@
     # }}}
   };
 
+  # I sometimes get errors about `grc` being missing, so I gave up and added it here.
+  home.packages = [ pkgs.grc ];
+
   satellite.persistence.at.state.apps.fish.directories = [
     "${config.xdg.dataHome}/fish"
     "${config.xdg.dataHome}/z" # The z fish plugin
