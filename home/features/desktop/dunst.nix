@@ -1,6 +1,4 @@
 {
-  # TODO: use base16 theme
-  services.dunst = {
-    enable = true;
-  };
+  services.dunst.enable = true;
+  stylix.targets.hyprland.enable = true;
 }

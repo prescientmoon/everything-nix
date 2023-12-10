@@ -78,8 +78,8 @@ let
   # {{{ extraRuntime
   extraRuntimePaths = env: [
     # Base16 theme
-    (pkgs.writeTextDir
-      "lua/nix/theme.lua"
+    (config.satellite.lib.lua.writeFile
+      "lua/nix" "theme"
       config.satellite.colorscheme.lua
     )
 
@@ -210,7 +210,7 @@ in
     };
   # }}}
   # {{{ Plugins
-  satellite.neovim.styluaConfig = ../../../stylua.toml;
+  satellite.lua.styluaConfig = ../../../stylua.toml;
   satellite.neovim.runtime = {
     env = "my.helpers.env";
     languageServerOnAttach = "my.plugins.lspconfig";

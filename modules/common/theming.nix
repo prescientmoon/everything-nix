@@ -4,16 +4,6 @@ let cfg = config.satellite.theming;
 in
 {
   options.satellite.theming = {
-    transparency = {
-      enable = lib.mkEnableOption "transparency for desktop apps";
-      alpha = lib.mkOption {
-        description = "How transparent windows should be by default";
-        default = 1.0;
-        example = 0.6;
-        type = lib.types.float;
-      };
-    };
-
     rounding = {
       enable = lib.mkEnableOption "rounded corners for desktop apps";
       radius = lib.mkOption {
@@ -27,12 +17,11 @@ in
 
     get = lib.mkOption {
       # No generics:(
-      # The type of this is essentially (written in pseudocode):
+      # The type of this is essentially (written in ts-like -pseudocode):
       #
       # Record<String, T> 
-      #   & { default?: T
-      #         | {light?: T, dark?: T } }
-      # -> Option<T>
+      #   & { default?: T | {light?: T, dark?: T } }
+      #   -> Option<T>
       type = lib.types.functionTo lib.types.anything;
       description = "Index a theme map by the current theme";
     };
@@ -54,7 +43,6 @@ in
   };
 
   config.satellite.theming = {
-    transparency.enable = cfg.transparency.alpha < 1.0;
     rounding.enable = cfg.rounding.radius > 0.0;
 
     get = themeMap:
@@ -69,6 +57,6 @@ in
       config.lib.stylix.scheme."${color}-rgb-b"
     ];
 
-    colors.rgba = color: "${cfg.colors.rgb color},${toString cfg.transparency.alpha}";
+    colors.rgba = color: "${cfg.colors.rgb color},${toString config.stylix.opacity.applications}";
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   hyprland-monitors = lib.concatStringsSep "\n" (lib.forEach config.satellite.monitors (m: ''
@@ -9,10 +9,10 @@ in
 {
   imports = [ ../global.nix ./hyprpaper.nix ];
 
+  stylix.targets.hyprland.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    settings = { };
     extraConfig = ''
       ${builtins.readFile ./hyprland.conf}
       ${hyprland-monitors}

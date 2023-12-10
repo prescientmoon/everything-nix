@@ -13,7 +13,7 @@ function M.config()
   vim.g.catppuccin_flavour = H.variant("Catppuccin")
 
   catppuccin.setup({
-    transparent_background = T.transparency.enable,
+    transparent_background = T.transparent.terminal,
     integrations = { nvimtree = true, telescope = true },
   })
 
@@ -22,7 +22,7 @@ function M.config()
 
   vim.cmd("colorscheme catppuccin")
 
-  if T.transparency.enable then
+  if T.transparent.terminal then
     vim.cmd([[highlight FloatBorder blend=0]])
   end
 end

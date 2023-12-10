@@ -20,7 +20,12 @@
   # {{{ Fish
   programs.fish = {
     enable = true;
-    interactiveShellInit = builtins.readFile ./config.fish;
+    interactiveShellInit = ''
+      ${builtins.readFile ./config.fish}
+
+      # Modify nix-shell to use `fish` as it's default shell
+      ${lib.getExe pkgs.nix-your-shell} fish | source
+    '';
 
     # {{{ Plugins 
     plugins =
