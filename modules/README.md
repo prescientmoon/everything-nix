@@ -12,11 +12,12 @@ This directory contains custom module definitions used throughout my config.
 
 ## Common modules
 
-| Name                                            | Attribute                   | Description                              | Dependencies                              |
-| ----------------------------------------------- | --------------------------- | ---------------------------------------- | ----------------------------------------- |
-| [lua-colorscheme](./common/lua-colorscheme.nix) | `satellite.colorscheme.lua` | Base16 theme to lua module generation    | [stylix](https://github.com/danth/stylix) |
-| [theming](./common/theming.nix)                 | `satellite.theming`         | Base16 theming helpers and configuration | [stylix](https://github.com/danth/stylix) |
-| [toggles](./common/toggles.nix)                 | `satellite.toggles`         | Generic interface for feature flags      |                                           |
+| Name                                            | Attribute                   | Description                                         | Dependencies                              |
+| ----------------------------------------------- | --------------------------- | --------------------------------------------------- | ----------------------------------------- |
+| [lua-colorscheme](./common/lua-colorscheme.nix) | `satellite.colorscheme.lua` | Base16 theme to lua module generation               | [stylix](https://github.com/danth/stylix) |
+| [lua-encoders](./common/lua-encoders.nix)       | `satellite.lib.lua`         | Combinators for generating lua code from nix values |                                           |
+| [theming](./common/theming.nix)                 | `satellite.theming`         | Base16 theming helpers and configuration            | [stylix](https://github.com/danth/stylix) |
+| [toggles](./common/toggles.nix)                 | `satellite.toggles`         | Generic interface for feature flags                 |                                           |
 
 ## Nixos modules
 
@@ -24,11 +25,12 @@ There are no nixos modules at the moment!
 
 ## Home-manager modules
 
-| Name                                              | Attribute               | Description                                                        | Dependencies                                                  |
-| ------------------------------------------------- | ----------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------- |
-| [discord](./home-manager/discord.nix)             | `programs.discord`      | Additional discord options                                         |                                                               |
-| [eww-hyprland](./home-manager/eww-hyprland.nix)   | `programs.eww-hyprland` | `eww` service for `hyprland`                                       |                                                               |
-| [hyprpaper](./home-manager/hyprpaper.nix)         | `services.hyprpaper`    | Wallpaper service for `hyprland`                                   |                                                               |
-| [monitors](./home-manager/monitors.nix)           | `satellite.monitors`    | WM generic monitor configuration                                   |                                                               |
-| [persistence](./home-manager/persistence.nix)     | `satellite.persistence` | Syntactic wrapper around impermanence                              | [impermanence](https://github.com/nix-community/impermanence) |
-| [satellite-dev](./home-manager/satellite-dev.nix) | `satellite.dev`         | Helpers for managing dotfiles which are actively under development |                                                               |
+| Name                                              | Attribute               | Description                                                                       | Dependencies                                                  |
+| ------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [discord](./home-manager/discord.nix)             | `programs.discord`      | Additional discord options                                                        |                                                               |
+| [firefox](./home-manager/firefox)                 | `programs.firefox.apps` | Hacky system for wrapping websites into desktop apps by hiding the firefox tabbar |                                                               |
+| [eww-hyprland](./home-manager/eww-hyprland.nix)   | `programs.eww-hyprland` | `eww` service for `hyprland`                                                      |                                                               |
+| [hyprpaper](./home-manager/hyprpaper.nix)         | `services.hyprpaper`    | Wallpaper service for `hyprland`                                                  |                                                               |
+| [monitors](./home-manager/monitors.nix)           | `satellite.monitors`    | WM generic monitor configuration                                                  |                                                               |
+| [persistence](./home-manager/persistence.nix)     | `satellite.persistence` | Syntactic wrapper around impermanence                                             | [impermanence](https://github.com/nix-community/impermanence) |
+| [satellite-dev](./home-manager/satellite-dev.nix) | `satellite.dev`         | Helpers for managing dotfiles which are actively under development                |                                                               |

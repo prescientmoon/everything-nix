@@ -40,12 +40,12 @@ This repo's structure is based on the concept of hosts - individual machines con
 
 Here's some things you might want to check out:
 
-- My [neovim config](./dotfiles/neovim)
+- My [neovim config](./home/features/neovim)
 - The [flake](./flake.nix) entrypoint for this repository
 
 ## Things I use
 
-> This does not include links to every plugin I used for every program here. You can see more details in the respective configurations.
+> This does not include links to every plugin I use for every program here. You can see more details in the respective configurations.
 
 ### Fundamentals
 
