@@ -1,4 +1,19 @@
 { config, ... }: {
+  # {{{ Set up my custom imperanence wrapper
+  satellite.persistence = {
+    enable = true;
+
+    # Actual data/media (eg: projects, images, videos, etc)
+    at.data.path = "/persist/data";
+    at.data.prefixDirectories = false;
+
+    # App state I want to keep
+    at.state.path = "/persist/state";
+
+    # App state which I should be able to delete on a whim
+    at.cache.path = "/persist/local/cache";
+  };
+  # }}}
   # {{{ XDG dirs
   # The lack of "~/Desktop" and "~/Downloads" is intentional!
   satellite.persistence.at.data.apps.main.directories = [

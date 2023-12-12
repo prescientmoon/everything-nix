@@ -1,4 +1,3 @@
-# TODO(imperanence): handle persistence of things like harpoon, lazy, etc
 { pkgs, lib, config, inputs, ... }:
 let
   # {{{ extraPackages
@@ -326,7 +325,7 @@ in
   # }}}
   # }}}
   # {{{ visual
-  # The line between `ui` and `visual is a bit rought. I currenlty mostly judge
+  # The line between `ui` and `visual` is a bit rought. I currenlty mostly judge
   # it by vibe.
   # {{{ indent-blankline 
   satellite.neovim.lazy.indent-blankline = {
@@ -664,5 +663,15 @@ in
   };
   # }}}
   # }}}
+  # }}}
+  # {{{ Persistence
+  satellite.persistence.at.state.apps.neovim.directories = [
+    ".local/state/nvim"
+    "${config.xdg.dataHome}/nvim"
+  ];
+
+  satellite.persistence.at.cache.apps.neovim.directories = [
+    "${config.xdg.cacheHome}/nvim"
+  ];
   # }}}
 }

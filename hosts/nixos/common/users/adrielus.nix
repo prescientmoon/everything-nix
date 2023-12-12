@@ -18,6 +18,9 @@
       # Set default shell
       shell = pkgs.fish;
 
+      # Picked up by our persistence module
+      homeMode = "755";
+
       # Add user to the following groups
       extraGroups = [
         "wheel" # Access to sudo

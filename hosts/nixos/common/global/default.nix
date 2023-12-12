@@ -9,7 +9,6 @@ let
     inputs.agenix.nixosModules.default
     inputs.stylix.nixosModules.stylix
     inputs.nur.nixosModules.nur
-    inputs.impermanence.nixosModule
     inputs.slambda.nixosModule
 
     # {{{ self management 
@@ -40,10 +39,6 @@ in
   imports = builtins.attrValues outputs.nixosModules ++ imports;
 
   # {{{ ad-hoc options
-  # Allow non root users to specify the "allowOther" option.
-  # See [the imperanence readme](https://github.com/nix-community/impermanence#home-manager)
-  programs.fuse.userAllowOther = true;
-
   # Customize tty colors
   stylix.targets.console.enable = true;
 

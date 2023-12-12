@@ -16,9 +16,13 @@
   # - look into swaylock or whatever people use
   # - multiple keyboard layouts
 
+  home.sessionVariables = {
+    NIXOS_OZONES_WL = "1";
+  };
+
   home.packages =
     let
-      # {{{ OCR 
+      # {{{ OCR script
       _ = lib.getExe;
 
       wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";

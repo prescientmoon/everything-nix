@@ -18,4 +18,6 @@ in
   };
 
   programs.gpg.enable = true;
+
+  satellite.persistence.at.state.apps.gpg.directories = [ ".gnupg" ];
 }

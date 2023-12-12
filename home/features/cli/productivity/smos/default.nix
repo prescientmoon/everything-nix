@@ -1,10 +1,7 @@
 { config, ... }: {
   programs.smos = {
     enable = true;
-
-    notify = {
-      enable = true;
-    };
+    notify.enable = true;
 
     github = {
       enable = true;

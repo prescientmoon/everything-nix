@@ -5,6 +5,11 @@
       package = pkgs.iosevka;
     };
 
+    # monospace = {
+    #   name = "Cascadia Code";
+    #   package = pkgs.cascadia-code;
+    # };
+
     sansSerif = {
       name = "CMUSansSerif";
       package = pkgs.cm_unicode;

@@ -52,21 +52,6 @@
     # Simlink some commonly modified dotfiles outside the store
     dev.enable = true;
 
-    # Set up my custom imperanence wrapper
-    persistence = {
-      enable = true;
-
-      # Actual data/media (eg: projects, images, videos, etc)
-      at.data.path = "/persist/data";
-      at.data.prefixDirectories = false;
-
-      # App state I want to keep
-      at.state.path = "/persist/state";
-
-      # App state which I should be able to delete on a whim
-      at.cache.path = "/persist/local/cache";
-    };
-
     monitors = [{
       name = "eDP-1";
       width = 1920;

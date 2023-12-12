@@ -85,6 +85,7 @@ return {
       end
     end,
     cond = env.vscode.not_active(),
+    enabled = false,
   },
 
   {
