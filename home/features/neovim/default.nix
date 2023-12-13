@@ -290,6 +290,7 @@ in
     event = "BufReadPost";
 
     opts.enabled = true;
+    # TODO: blacklist harpoon, NeogitStatus
   };
   # }}}
   # {{{ harpoon
