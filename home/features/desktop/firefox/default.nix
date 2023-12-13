@@ -327,11 +327,11 @@ in
   home.sessionVariables.BROWSER = "firefox";
   # }}}
   # {{{ Persistence
-  satellite.persistence.at.state.apps.Firefox.directories = [
+  satellite.persistence.at.state.apps.firefox.directories = [
     ".mozilla/firefox" # More important stuff
   ];
 
-  satellite.persistence.at.cache.apps.Firefox.directories = [
+  satellite.persistence.at.cache.apps.firefox.directories = [
     "${config.xdg.cacheHome}/mozilla/firefox" # Non important cache
   ];
   # }}}

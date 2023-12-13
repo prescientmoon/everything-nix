@@ -2,6 +2,7 @@
   programs.smos = {
     enable = true;
     notify.enable = true;
+    workflowDir = "${config.home.homeDirectory}/productivity/smos";
 
     github = {
       enable = true;

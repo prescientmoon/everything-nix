@@ -21,12 +21,12 @@
     config.xdg.userDirs.pictures
     config.xdg.userDirs.music
     config.xdg.userDirs.videos
-    "Projects"
+    config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR
   ];
   # }}}
   # {{{ OpenTabletDriver
-  satellite.persistence.at.state.apps.OpenTabletDriver.directories = [
-    #"${config.xdg.configHome}/OpenTabletDriver"
+  satellite.persistence.at.state.apps.open-tablet-driver.directories = [
+    "${config.xdg.configHome}/OpenTabletDriver"
   ];
   # }}}
   # {{{ Programming tooling
@@ -98,22 +98,22 @@
   # }}}
   # {{{ Desktop apps
   # {{{ QBittorrent
-  satellite.persistence.at.state.apps.QBittorrent.directories = [
+  satellite.persistence.at.state.apps.qbittorrent.directories = [
     "${config.xdg.configHome}/qBittorrent" # Config options
   ];
 
-  satellite.persistence.at.cache.apps.QBittorrent.directories = [
+  satellite.persistence.at.cache.apps.qbittorrent.directories = [
     # TODO: investigate which subdirectories/files I actually want to keep
     "${config.xdg.dataHome}/qBittorrent" # Torrent files, logs, etc
   ];
   # }}}
   # {{{ Signal
-  satellite.persistence.at.state.apps.Signal.directories = [
+  satellite.persistence.at.state.apps.signal.directories = [
     "${config.xdg.configHome}/Signal" # Why tf does signal store it's state here 💀
   ];
   # }}}
   # {{{ Steam
-  satellite.persistence.at.state.apps.Steam = {
+  satellite.persistence.at.state.apps.steam = {
     directories = [
       ".factorio" # TODO: perhaps this should have it's own file?
       # A couple of games don't play well with bindfs
@@ -126,17 +126,22 @@
   # }}}
   # {{{ Lutris
   # TODO: there might be more to cache in .cache/lutris
-  satellite.persistence.at.state.apps.Lutris.directories = [
+  satellite.persistence.at.state.apps.lutris.directories = [
     "${config.xdg.configHome}/lutris" # General config data
     "${config.xdg.cacheHome}/lutris/banners" # Game banners
     "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
 
     # Aparently IO intensive stuff like games prefer symlinks?
-    { directory = "Games/Lutris"; method = "symlink"; } # Lutris games
+    { directory = "media/games/lutris"; method = "symlink"; } # Lutris games
   ];
   # }}}
   # {{{ Wine
-  satellite.persistence.at.state.apps.Wine.directories = [ ".wine" ];
+  satellite.persistence.at.state.apps.wine.directories = [ ".wine" ];
+  # }}}
+  # {{{ Element 
+  satellite.persistence.at.state.apps.element.directories = [
+    "${config.xdg.configHome}/Element"
+  ];
   # }}}
   # }}}
 }

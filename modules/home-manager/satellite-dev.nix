@@ -8,7 +8,7 @@
 
     root = lib.mkOption {
       type = lib.types.str;
-      default = "${config.home.homeDirectory}/Projects/satellite";
+      default = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/satellite";
       description = "Where the satellite repo is cloned";
     };
 

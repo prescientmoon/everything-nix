@@ -1,10 +1,13 @@
 # TODO: sync theme with global theme
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let calendarsHome = "productivity/calendars";
+in
+{
   home.packages = with pkgs; [ khal ];
   xdg.configFile."khal/config".text = ''
     [calendars]
       [[calendars]]
-        path = ~/Calendars/*
+        path = ~/${calendarsHome}/*
         type = discover
         color = dark magenta
 
@@ -15,7 +18,8 @@
     [view]
       theme = light
   '';
+
   satellite.persistence.at.data.apps.khal.directories = [
-    "Calendars"
+    calendarsHome
   ];
 }

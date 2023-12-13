@@ -30,6 +30,7 @@ let
     map = f: encoder: given: encoder (f given);
     # This is simply right-composition of functions
     postmap = f: encoder: given: f (encoder given);
+    filter = f: encoder: luaEncoders.conditional f encoder luaEncoders.nil;
     # This is mostly useful for debugging
     trace = message: luaEncoders.map (f: lib.traceSeq message (lib.traceVal f));
     fail = mkMessage: v: builtins.throw (mkMessage v);
@@ -72,6 +73,16 @@ let
     # This simply combines the above combinators into one.
     luaCode = tag: luaEncoders.luaImportOr tag luaEncoders.luaString;
     # }}}
+    # {{{ Operators
+    conjunction = left: right: given:
+      let
+        l = left given;
+        r = right given;
+      in
+      if l == "nil" then r
+      else if r == "nil" then l
+      else "${l} and ${r}";
+    # }}}
     # {{{ Lists
     listOf = encoder: list:
       luaEncoders.mkRawLuaObject (lib.lists.map encoder list);
@@ -80,10 +91,10 @@ let
         lib.isList
         (luaEncoders.listOf encoder);
     # Returns nil when given empty lists
-    tryNonemptyList = encoder: luaEncoders.conditional
-      (l: l == [ ])
-      luaEncoders.nil
-      (luaEncoders.listOf encoder);
+    tryNonemptyList = encoder:
+      luaEncoders.filter
+        (l: l != [ ])
+        (luaEncoders.listOf encoder);
     oneOrMany = encoder: luaEncoders.listOfOr encoder encoder;
     # Can encode:
     # - zero values as nil

@@ -24,16 +24,12 @@ function M.setup()
         fallback = true,
 
         -- Directory where I store my local plugin projects
-        path = "~/Projects",
-
+        path = vim.g.nix_projects_path,
         patterns = { "Mateiadrielrafael" },
       },
       performance = {
         rtp = {
-          paths = {
-            -- Extra runtime path specified by nix
-            os.getenv("NVIM_EXTRA_RUNTIME") or "",
-          },
+          paths = { vim.g.nix_extra_runtime },
           disabled_plugins = {
             "gzip",
             "matchit",

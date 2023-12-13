@@ -1,6 +1,6 @@
 local M = {
   "echasnovski/mini.surround",
-  event = "VeryLazy",
+  event = "BufReadPost",
 }
 
 function M.config()

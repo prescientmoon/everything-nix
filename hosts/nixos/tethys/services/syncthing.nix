@@ -18,7 +18,7 @@ in
       versioning = commonVersioning;
     };
     "stellar-sanctum" = {
-      path = "/home/adrielus/Projects/stellar-sanctum/";
+      path = "/home/adrielus/projects/stellar-sanctum/";
       devices = [ "enceladus" "lapetus" ];
       versioning = commonVersioning;
     };

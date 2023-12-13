@@ -1,7 +1,7 @@
 local M = {
   "echasnovski/mini.operators",
-  event = "VeryLazy",
-  opts = {},
+  event = "BufReadPost",
+  config = true,
 }
 
 return M

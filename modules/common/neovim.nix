@@ -530,15 +530,12 @@ in
             version = e.nullOr e.string;
             dependencies = e.map (d: d.lua) (e.tryNonemptyList (e.stringOr lazyObjectEncoder));
             lazy = e.nullOr e.bool;
-            cond =
-              if opts.env.blacklist != [ ] then
-                assert lib.asserts.assertMsg (opts.cond == null)
-                  "env.blacklist overrides plugin condition";
-                e.const /* lua */ ''
+            cond = e.conjunction
+              (e.nullOr (e.luaCode "cond"))
+              (e.filter (_: opts.env.blacklist != [ ])
+                (e.const /* lua */ ''
                   require(${e.string cfg.runtime.env}).blacklist(${e.listOf e.string opts.env.blacklist})
-                ''
-              else
-                e.nullOr (e.luaCode "cond");
+                ''));
 
             config = _:
               let
@@ -590,5 +587,3 @@ in
       ];
   # }}}
 }
-
-

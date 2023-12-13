@@ -25,10 +25,11 @@ local M = {
     return vim.g.vscode ~= nil
   end),
   neovide = makeEnv(function()
-    return vim.g.neovide ~= nil or require("nix.env") == "neovide"
+    return vim.g.neovide ~= nil or vim.g.nix_neovim_app == "neovide"
   end),
   firenvim = makeEnv(function()
-    return vim.g.started_by_firenvim ~= nil or require("nix.env") == "firenvim"
+    return vim.g.started_by_firenvim ~= nil
+      or vim.g.nix_neovim_app == "firenvim"
   end),
   _and = function(a, b)
     return makeEnv(function()

@@ -110,7 +110,8 @@ return {
     keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
     cond = env.vscode.not_active()
       and env.neovide.not_active()
-      and env.firenvim.not_active(),
+      and env.firenvim.not_active()
+      and false,
   },
 
   {
@@ -120,40 +121,6 @@ return {
     event = "BufReadPre",
     cond = env.vscode.not_active(),
     config = true,
-  },
-
-  {
-    -- case switching + the subvert command
-    "tpope/vim-abolish",
-    event = "VeryLazy",
-    enabled = false,
-  },
-
-  {
-    -- automatically set options based on current file
-    "tpope/vim-sleuth",
-    event = "BufRead",
-    cond = env.vscode.not_active(),
-  },
-
-  {
-    -- generate permalinks for code
-    "ruifm/gitlinker.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = { mappings = "<leader>yg" },
-    init = function()
-      local status, wk = pcall(require, "which-key")
-
-      if status then
-        wk.register({
-          ["<leader>yg"] = {
-            desc = "[Y]ank [g]it remote url",
-          },
-        })
-      end
-    end,
-    cond = env.firenvim.not_active(),
-    keys = "<leader>yg",
   },
 
   -- Live command preview for stuff like :norm
@@ -167,6 +134,6 @@ return {
       })
     end,
     event = "VeryLazy",
-    -- cond = false,
+    cond = false,
   },
 }

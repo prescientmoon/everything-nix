@@ -14,7 +14,11 @@ function M.config()
 
   catppuccin.setup({
     transparent_background = T.transparent.terminal,
-    integrations = { nvimtree = true, telescope = true },
+    integrations = {
+      nvimtree = true,
+      telescope = true,
+      mini = { enabled = true },
+    },
   })
 
   vim.cmd([[highlight NotifyINFOIcon guifg=#d6b20f]])
@@ -23,7 +27,13 @@ function M.config()
   vim.cmd("colorscheme catppuccin")
 
   if T.transparent.terminal then
-    vim.cmd([[highlight FloatBorder blend=0]])
+    vim.cmd([[highlight FloatBorder blend=0 guibg=NONE]])
+    -- vim.cmd([[highlight MiniStatuslineInactive blend=0 guibg=NONE]])
+    vim.cmd([[highlight MiniStatuslineFilename blend=0 guibg=NONE]])
+    -- vim.cmd([[highlight MiniStatuslineFileinfo blend=0 guibg=NONE]])
+    -- vim.cmd([[highlight MiniStatuslineDevInfo blend=0 guibg=NONE]])
+    vim.cmd([[highlight Statusline blend=0 guibg=NONE]])
+    vim.cmd([[highlight StatuslineNC blend=0 guibg=NONE]])
   end
 end
 

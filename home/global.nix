@@ -75,7 +75,18 @@ in
   xdg.userDirs = {
     enable = lib.mkDefault true;
     createDirectories = lib.mkDefault false;
-    extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+
+    desktop = null;
+    templates = null;
+    download = "${config.home.homeDirectory}/downloads";
+    publicShare = "${config.home.homeDirectory}/public";
+    music = "${config.home.homeDirectory}/media/music";
+    pictures = "${config.home.homeDirectory}/media/pictures";
+    videos = "${config.home.homeDirectory}/media/videos";
+    documents = "${config.home.homeDirectory}/media/documents";
+
+    extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/screenshots";
+    extraConfig.XDG_PROJECTS_DIR = "${config.home.homeDirectory}/projects";
   };
   # }}}
 }

@@ -75,34 +75,26 @@ let
   ] ++ config.satellite.neovim.generated.dependencies;
   # }}}
   # {{{ extraRuntime
-  extraRuntimePaths = env: [
+  extraRuntimePaths = [
     # Base16 theme
     (config.satellite.lib.lua.writeFile
       "lua/nix" "theme"
       config.satellite.colorscheme.lua
     )
 
-    # Provide hints as to what app we are in
-    # (Useful because neovide does not provide the info itself right away)
-    (pkgs.writeTextDir
-      "lua/nix/env.lua"
-      "return '${env}'"
-    )
-
     # Experimental nix module generation
     config.satellite.neovim.generated.all
   ];
 
-  extraRuntime = env:
-    let
-      generated = pkgs.symlinkJoin {
-        name = "nixified-neovim-lua-modules";
-        paths = extraRuntimePaths env;
-      };
+  extraRuntimeJoinedPaths = pkgs.symlinkJoin {
+    name = "nixified-neovim-lua-modules";
+    paths = extraRuntimePaths;
+  };
 
-      snippets = config.satellite.dev.path "home/features/neovim/snippets";
+  extraRuntime =
+    let snippets = config.satellite.dev.path "home/features/neovim/snippets";
     in
-    lib.concatStringsSep "," [ generated snippets ];
+    lib.concatStringsSep "," [ extraRuntimeJoinedPaths snippets ];
   # }}}
   # {{{ Client wrapper
   # Wraps a neovim client, providing the dependencies
@@ -112,6 +104,14 @@ let
   #   I cannot just install those dirs using the builtin package support because 
   #   my package manager (lazy.nvim) disables those.
   wrapClient = { base, name, binName ? name, extraArgs ? "" }:
+    let startupScript = pkgs.writeText "startup.lua" /* lua */''
+      vim.g.nix_extra_runtime = ${nlib.encode extraRuntime}
+      vim.g.nix_projects_dir = ${nlib.encode config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}
+      -- Provide hints as to what app we are running in
+      -- (Useful because neovide does not provide the info itself right away)
+      vim.g.nix_neovim_app = ${nlib.encode name}
+    '';
+    in
     pkgs.symlinkJoin {
       inherit (base) name meta;
       paths = [ base ];
@@ -119,7 +119,7 @@ let
       postBuild = ''
         wrapProgram $out/bin/${binName} \
           --prefix PATH : ${lib.makeBinPath extraPackages} \
-          --set NVIM_EXTRA_RUNTIME ${extraRuntime name} \
+          --add-flags ${lib.escapeShellArg ''--cmd "lua dofile('${startupScript}')"''} \
           ${extraArgs}
       '';
     };
@@ -156,7 +156,10 @@ in
   satellite.toggles.neovim.enable = true;
 
   xdg.configFile.nvim.source = config.satellite.dev.path "home/features/neovim/config";
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    NVIM_GENERATED_RUNTIME = extraRuntimeJoinedPaths;
+  };
 
   home.packages = [
     neovim
@@ -247,34 +250,36 @@ in
     keys.action = "<cmd>NvimTreeToggle<cr>";
   };
   # }}}
-  # {{{ lualine
-  satellite.neovim.lazy.lualine = {
-    package = "nvim-lualine/lualine.nvim";
+  # {{{ mini.statusline
+  satellite.neovim.lazy.mini-statusline = {
+    package = "echasnovski/mini.statusline";
+    name = "mini.statusline";
     dependencies.lua = [ lazy.web-devicons.package ];
 
     env.blacklist = [ "vscode" "firenvim" ];
-    event = "VeryLazy";
+    lazy = false;
 
-    opts = {
-      options = {
-        component_separators = { left = ""; right = ""; };
-        section_separators = { left = ""; right = ""; };
-        theme = "auto";
-        disabled_filetypes = [ "undotree" ];
-      };
+    opts.content.inactive = nlib.thunk /* lua */ ''
+      require("mini.statusline").combine_groups({
+        { hl = "MiniStatuslineFilename", strings = { vim.fn.expand("%:t") } },
+      })
+    '';
 
-      sections = {
-        lualine_a = [ "branch" ];
-        lualine_b = [ "filename" ];
-        lualine_c = [ "filetype" ];
-        lualine_x = [ "diagnostics" "diff" ];
-        lualine_y = [ ];
-        lualine_z = [ ];
-      };
+    opts.content.active = nlib.thunk /* lua */ ''
+      local st = require("mini.statusline");
+      local mode, mode_hl = st.section_mode({ trunc_width = 120 })
+      local git = st.section_git({ trunc_width = 75 })
+      local diagnostics = st.section_diagnostics({ trunc_width = 75 })
 
-      # Integration with other plugins
-      extensions = [ "nvim-tree" ];
-    };
+      return st.combine_groups({
+        { hl = mode_hl, strings = { mode } },
+        { hl = "MiniStatuslineDevinfo", strings = { git } },
+        { hl = "MiniStatuslineFilename", strings = { vim.fn.expand("%:t") } },
+        "%=", -- End left alignment
+        { hl = "MiniStatuslineFilename", strings = { diagnostics } },
+        { hl = "MiniStatuslineDevinfo", strings = { vim.bo.filetype } },
+      })
+    '';
   };
   # }}}
   # {{{ winbar
@@ -282,7 +287,7 @@ in
     package = "fgheng/winbar.nvim";
 
     env.blacklist = [ "vscode" "firenvim" ];
-    event = "VeryLazy";
+    event = "BufReadPost";
 
     opts.enabled = true;
   };
@@ -627,8 +632,9 @@ in
   satellite.neovim.lazy.wakatime = {
     package = "wakatime/vim-wakatime";
     env.blacklist = [ "vscode" "firenvim" ];
-    event = "VeryLazy";
+    event = "BufReadPost";
   };
+
   # }}}
   # {{{ discord rich presence 
   satellite.neovim.lazy.discord-rich-presence = {
@@ -636,7 +642,7 @@ in
     main = "presence";
 
     env.blacklist = [ "vscode" "firenvim" ];
-    event = "VeryLazy";
+    event = "BufReadPost";
     setup = true;
   };
   # }}}
@@ -661,6 +667,41 @@ in
     cmd = "PP";
     opts.provider = "paste.rs";
   };
+  # }}}
+  # {{{ obsidian
+  satellite.neovim.lazy.obsidian =
+    let vault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum";
+    in
+    {
+      package = "epwalsh/obsidian.nvim";
+      dependencies.lua = [ lazy.plenary.package ];
+
+      env.blacklist = [ "vscode" "firenvim" ];
+      cond = nlib.lua /* lua */ "vim.loop.cwd() == ${nlib.encode vault}";
+      event = "VeryLazy";
+
+      keys.mapping = "<C-O>";
+      keys.action = "<cmd>ObsidianQuickSwitch<cr>";
+
+      opts = {
+        dir = vault;
+        notes_subdir = "chaos";
+        daily_notes = {
+          folder = "daily";
+          date_format = "%Y-%m-%d";
+        };
+
+        completion = {
+          nvim_cmp = true;
+          min_chars = 2;
+          new_notes_location = "current_dir";
+          prepend_note_id = true;
+        };
+
+        mappings = { };
+        disable_frontmatter = true;
+      };
+    };
   # }}}
   # }}}
   # }}}
