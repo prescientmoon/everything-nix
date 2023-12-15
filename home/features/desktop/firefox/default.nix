@@ -140,6 +140,12 @@ in
             aliases = [ "@yt" "@youtube" ];
           };
 
+          "Arcaea wiki" = mkBasicSearchEngine {
+            url = "https://arcaea.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true";
+            param = "query";
+            aliases = [ "@ae" "@arcaea" ];
+          };
+
           "Noita wiki" = mkBasicSearchEngine {
             url = "https://noita.wiki.gg/index.php";
             param = "search";

@@ -9,14 +9,14 @@
       dates = "weekly";
     };
 
-    # Protect nix shell from garbage collection
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-    '';
+    # ~~Protect nix shell from garbage collection~~
+    # This was taking too much storage
+    # extraOptions = ''
+    #   keep-outputs = true
+    #   keep-derivations = true
+    # '';
 
-    # TODO: look into what this does,
-    # and why it was here in my old config
+    # https://nixos.wiki/wiki/Storage_optimization
     optimise.automatic = true;
 
     # This will add each flake input as a registry
@@ -33,8 +33,8 @@
         "nix-command"
         "flakes"
         "repl-flake"
-	"auto-allocate-uids"
-	# "configurable-impure-env"
+        "auto-allocate-uids"
+        # "configurable-impure-env"
       ];
 
       # Disable warning when rebuilding before commiting
