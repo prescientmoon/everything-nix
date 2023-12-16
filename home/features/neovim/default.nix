@@ -9,23 +9,13 @@ let
     rnix-lsp # nix
     nil # nix
     inputs.nixd.packages.${system}.nixd # nix
-    # haskell-language-server # haskell
-    # REASON: marked as broken
-    # dhall-lsp-server # dhall
-    # tectonic # something related to latex (?)
     texlab # latex
     nodePackages_latest.vscode-langservers-extracted # web stuff
-    # python310Packages.python-lsp-server # python
-    # pyright # python
-    rust-analyzer # rust
     typst-lsp # typst
+    # haskell-language-server # haskell
 
     # Formatters
-    # luaformatter # Lua
     stylua # Lua
-    # black # Python
-    # yapf # Python
-    # isort # Reorder python imports
     nodePackages_latest.purs-tidy # Purescript
     nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
@@ -33,45 +23,20 @@ let
 
     # Linters
     ruff # Python linter
-    # mypy # Python typechecking
 
     # Languages
     nodePackages.typescript # typescript
     lua # For repls and whatnot
-    wakatime # time tracking
-    rustfmt
 
     # Others
     fd # file finder
-    ripgrep # Grep rewrite
     update-nix-fetchgit # Useful for nix stuff
     tree-sitter # Syntax highlighting
     libstdcxx5 # Required by treesitter aparently
-    # python310Packages.jupytext # Convert between jupyter notebooks and python files
-    # graphviz # For rust crate graph
-    # haskellPackages.hoogle # For haskell search
-
-    # Preview
-    # zathura # Pdf reader
-    # xdotool # For zathura reverse search or whatever it's called
-    # glow # Md preview in terminal
-    # pandoc # Md processing
-    # libsForQt5.falkon # Needed for one of the md preview plugins I tried
 
     # Latex setup
     # texlive.combined.scheme-full # Latex stuff
     # python38Packages.pygments # required for latex syntax highlighting
-    # sage
-    # sagetex # sage in latex
-
-    # required for the telescope fzf extension
-    gnumake
-    cmake
-    gcc
-
-    # Required by magma-nvim:
-    # python310Packages.pynvim
-    # python310Packages.jupyter
   ] ++ config.satellite.neovim.generated.dependencies;
   # }}}
   # {{{ extraRuntime
@@ -83,7 +48,7 @@ let
     )
 
     # Experimental nix module generation
-    config.satellite.neovim.generated.all
+    config.satellite.neovim.generated.lazySingleFile
   ];
 
   extraRuntimeJoinedPaths = pkgs.symlinkJoin {
@@ -282,6 +247,29 @@ in
     '';
   };
   # }}}
+  # {{{ mini.files
+  satellite.neovim.lazy.mini-files = {
+    package = "echasnovski/mini.files";
+    name = "mini.files";
+    dependencies.lua = [ lazy.web-devicons.package ];
+
+    env.blacklist = [ "vscode" "firenvim" ];
+    keys = {
+      mapping = "<c-s-f>";
+      desc = "[S]earch [F]iles";
+      action = nlib.thunk /* lua */ ''
+        local files = require("mini.files")
+        if not files.close() then
+          files.open(vim.api.nvim_buf_get_name(0))
+          files.reveal_cwd()
+        end
+      '';
+    };
+
+    opts.windows.preview = false;
+    opts.mappings.go_in_plus = "l";
+  };
+  # }}}
   # {{{ winbar
   satellite.neovim.lazy.winbar = {
     package = "fgheng/winbar.nvim";
@@ -327,6 +315,102 @@ in
         (goto "f" 8)
         (goto "z" 9)
       ];
+  };
+  # }}}
+  # {{{ neogit
+  satellite.neovim.lazy.neogit = {
+    package = "TimUntersberger/neogit";
+    dependencies.lua = [ lazy.plenary.package ];
+
+    env.blacklist = [ "vscode" "firenvim" ];
+    keys = {
+      mapping = "<c-g>";
+      action = "<cmd>Neogit<cr>";
+      desc = "Open neo[g]it";
+    };
+
+    opts = true; # Here so the tempest runtime will call .setup
+    setup.autocmds = {
+      event = "FileType";
+      pattern = "NeogitStatus";
+      group = "NeogitStatusDisableFolds";
+      action.vim.opt.foldenable = false;
+    };
+  };
+  # }}}
+  # {{{ telescope
+  satellite.neovim.lazy.telescope = {
+    package = "nvim-telescope/telescope.nvim";
+    version = "0.1.x";
+    env.blacklist = [ "vscode" ];
+
+    # {{{ Dependencies
+    dependencies = {
+      nix = [ pkgs.ripgrep ];
+      lua = [
+        lazy.plenary.package
+        {
+          # We want a prebuilt version of this plugin
+          dir = pkgs.vimPlugins.telescope-fzf-native-nvim;
+          name = "telescope-fzf-native";
+        }
+      ];
+    };
+    # }}}
+    # {{{ Keymaps
+    keys =
+      let
+        keymap = mapping: action: desc: {
+          inherit mapping desc;
+          action = "<cmd>Telescope ${action} theme=ivy<cr>";
+        };
+
+        findFilesByExtension = mapping: extension: tag:
+          keymap
+            "<leader>f${mapping}"
+            "find_files find_command=rg,--files,--glob=**/*.${extension}"
+            "Find ${tag} files";
+      in
+      [
+        (keymap "<c-p>" "find_files" "Find files")
+        (keymap "<leader>d" "diagnostics" "Diagnostics")
+        (keymap "<c-f>" "live_grep" "[F]ind in project")
+        (keymap "<leader>t" "builtin" "[T]elescope pickers")
+        # {{{ Files by extension 
+        (findFilesByExtension "tx" "tex" "[t]ex")
+        (findFilesByExtension "ts" "ts" "[t]ypescript")
+        (findFilesByExtension "ty" "typst" "[t]ypst")
+        (findFilesByExtension "l" "lua" "[l]ua")
+        (findFilesByExtension "n" "nix" "[n]ua")
+        (findFilesByExtension "p" "purs" "[p]urescript")
+        (findFilesByExtension "h" "hs" "[h]askell")
+        (findFilesByExtension "e" "elm" "[e]lm")
+        (findFilesByExtension "r" "rs" "[r]ust")
+        # }}}
+      ];
+    # }}}
+    # {{{ Disable folds in telescope windows
+    setup.autocmds = {
+      event = "FileType";
+      pattern = "TelescopeResults";
+      group = "TelescopeResultsDisableFolds";
+      action.vim.opt.foldenable = false;
+    };
+    # }}}
+    # {{{ Load fzf extension
+    setup.callback = nlib.thunkString /* lua */ ''
+      require("telescope").load_extension("fzf")
+    '';
+    # }}}
+    # {{{ Options
+    opts.defaults.mappings.i."<C-h>" = "which_key";
+    opts.pickers.find_files.hidden = true;
+    opts.extensions.fzf = {
+      fuzzy = true;
+      override_generic_sorter = true;
+      override_file_sorter = true;
+    };
+    # }}}
   };
   # }}}
   # }}}
@@ -464,8 +548,72 @@ in
     setup = true;
     keys = [
       { mapping = "gc"; mode = "nxv"; }
-      { mapping = "gcc"; }
+      "gcc"
     ];
+  };
+  # }}}
+  # {{{ mini.surround
+  satellite.neovim.lazy.mini-surround = {
+    package = "echasnovski/mini.surround";
+    name = "mini.surround";
+
+    keys = lib.flatten [
+      # ^ doing the whole `flatten` thing to lie to my formatter
+      { mapping = "<tab>s"; mode = "nv"; }
+      [ "<tab>d" "<tab>f" "<tab>F" "<tab>h" "<tab>r" ]
+    ];
+
+    # {{{ Keymaps
+    opts.mappings = {
+      add = "<tab>s"; # Add surrounding in Normal and Visul modes
+      delete = "<tab>d"; # Delete surrounding
+      find = "<tab>f"; # Find surrounding (to the right)
+      find_left = "<tab>F"; # Find surrounding (to the left)
+      highlight = "<tab>h"; # Highlight surrounding
+      replace = "<tab>r"; # Replace surrounding
+      update_n_lines = ""; # Update `n_lines`
+    };
+    # }}}
+    # {{{ Custom surroundings
+    opts.custom_surroundings =
+      let mk = balanced: input: left: right: {
+        input = [
+          input
+          (if balanced
+          then "^.%s*().-()%s*.$"
+          else "^.().*().$")
+        ];
+        output = { inherit left right; };
+      };
+      in
+      {
+        b = mk true "%b()" "(" ")";
+        B = mk true "%b{}" "{" "}";
+        r = mk true "%b[]" "[" "]";
+        q = mk false "\".-\"" "\"" "\"";
+        a = mk false "'.-'" "'" "'";
+      };
+    # }}}
+  };
+  # }}}
+  # {{{ mini.operators
+  satellite.neovim.lazy.mini-operators = {
+    package = "echasnovski/mini.operators";
+    name = "mini.operators";
+
+    setup = true;
+    keys =
+      let operator = key: [
+        { mapping = "g${key}"; mode = "nv"; }
+        "g${key}${key}"
+      ];
+      in
+      lib.flatten [
+        (operator "=")
+        (operator "x")
+        (operator "r")
+        (operator "s")
+      ];
   };
   # }}}
   # }}}
@@ -538,6 +686,7 @@ in
   # {{{ rust-tools 
   satellite.neovim.lazy.rust-tools = {
     package = "simrat39/rust-tools.nvim";
+    dependencies.nix = [ pkgs.rust-analyzer pkgs.rustfmt ];
 
     env.blacklist = [ "vscode" ];
     ft = "rust";
@@ -572,7 +721,7 @@ in
         event = "InsertEnter";
         group = "CargoCmpSource";
         pattern = "Cargo.toml";
-        callback = nlib.thunkString /* lua */ ''
+        action = nlib.thunkString /* lua */ ''
           require("cmp").setup.buffer({ sources = { { name = "crates" } } })
         '';
       }
@@ -582,18 +731,18 @@ in
         event = "BufReadPost";
         group = "CargoKeybinds";
         pattern = "Cargo.toml";
-        # {{{ Register which-key info
-        callback.callback = nlib.contextThunk /* lua */ ''
-          require("which-key").register({
-            ["<leader>lc"] = {
-              name = "[l]ocal [c]rates",
-              bufnr = context.bufnr
-            },
-          })
-        '';
+        # # {{{ Register which-key info
+        # callback.callback = nlib.contextThunk /* lua */ ''
+        #  require("which-key").register({
+        #    ["<leader>lc"] = {
+        #      name = "[l]ocal [c]rates",
+        #      bufnr = context.bufnr
+        #    },
+        #  })
+        # '';
         # }}}
 
-        callback.keys =
+        action.keys =
           let
             # {{{ Keymap helpers 
             keymap = mapping: action: desc: {
@@ -626,16 +775,83 @@ in
   };
   # }}}
   # }}}
+  # {{{ lean
+  satellite.neovim.lazy.lean = {
+    package = "Julian/lean.nvim";
+    name = "lean";
+    dependencies.lua = [
+      lazy.plenary.package
+      "neovim/nvim-lspconfig"
+      "hrsh7th/nvim-cmp"
+    ];
+
+    env.blacklist = [ "vscode" ];
+    ft = "lean";
+
+    opts = {
+      abbreviations = {
+        builtin = true;
+        cmp = true;
+      };
+
+      lsp = {
+        on_attach = nlib.lua /* lua */ ''require("my.plugins.lspconfig").on_attach'';
+        capabilites = nlib.lua /* lua */ ''require("my.plugins.lspconfig").capabilities'';
+      };
+
+      lsp3 = false; # We don't want the lean 3 language server!
+      mappings = true;
+    };
+  };
+  # }}}
+  # {{{ idris
+  satellite.neovim.lazy.idris = {
+    package = "ShinKage/idris2-nvim";
+    name = "idris";
+    dependencies.lua = [
+      lazy.nui.package
+      "neovim/nvim-lspconfig"
+    ];
+
+    env.blacklist = [ "vscode" ];
+    ft = [ "idris2" "lidris2" "ipkg" ];
+
+    opts = {
+      client.hover.use_split = true;
+      serve.on_attach = nlib.languageServerOnAttach {
+        # {{{ Keymaps
+        keys =
+          let keymap = mapping: action: desc: {
+            inherit desc;
+            mapping = "<leader>i${mapping}";
+            action = nlib.lua /* lua */ ''require("idris2.code_action").${action}'';
+          };
+          in
+          [
+            (keymap "C" "make_case" "Make [c]ase")
+            (keymap "L" "make_lemma" "Make [l]emma")
+            (keymap "c" "add_clause" "Add [c]lause")
+            (keymap "e" "expr_search" "[E]xpression search")
+            (keymap "d" "generate_def" "Generate [d]efinition")
+            (keymap "s" "case_split" "Case [s]plit")
+            (keymap "h" "refine_hole" "Refine [h]ole")
+          ];
+        # }}}
+      };
+    };
+  };
+  # }}}
   # }}}
   # {{{ external
   # These plugins integrate neovim with external services
   # {{{ wakatime
   satellite.neovim.lazy.wakatime = {
     package = "wakatime/vim-wakatime";
+    dependencies.nix = [ pkgs.wakatime ];
+
     env.blacklist = [ "vscode" "firenvim" ];
     event = "BufReadPost";
   };
-
   # }}}
   # {{{ discord rich presence 
   satellite.neovim.lazy.discord-rich-presence = {

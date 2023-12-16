@@ -6,7 +6,6 @@ local M = {
   cond = env.firenvim.not_active() and env.vscode.not_active(),
   opts = {
     on_attach = function(bufnr)
-      local wk = require("which-key")
       local gs = package.loaded.gitsigns
 
       -- {{{ Helpers
@@ -51,9 +50,9 @@ local M = {
       -- {{{ Actions
       local prefix = "<leader>h"
 
-      wk.register({
-        ["<leader>"] = { h = { name = "gitsigns" } },
-      })
+      -- require("which-key").register({
+      --   ["<leader>"] = { h = { name = "gitsigns" } },
+      -- })
 
       -- {{{ Normal mode
       map("n", prefix .. "s", gs.stage_hunk, "[s]tage hunk")

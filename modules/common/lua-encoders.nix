@@ -112,13 +112,20 @@ let
         (luaEncoders.oneOrMany encoder);
     # }}}
     # {{{ Attrsets
+    attrName = s:
+      let forbiddenChars = lib.stringToCharacters "<>'\".,;"; # This list *is* incomplete
+      in
+      if lib.any (c: lib.hasInfix c s) forbiddenChars then
+        "[${luaEncoders.string s}]"
+      else s;
+
     attrsetOf = encoder: object:
       luaEncoders.mkRawLuaObject (lib.mapAttrsToList
         (name: value:
           let result = encoder value;
           in
           lib.optionalString (result != "nil")
-            "${name} = ${result}"
+            "${luaEncoders.attrName name} = ${result}"
         )
         object
       );
@@ -150,7 +157,7 @@ let
             let result = encoder (attrset.${attr} or null);
             in
             lib.optionalString (!(lib.elem attr listOrder) && shouldKeep result)
-              "${attr} = ${result}"
+              "${luaEncoders.attrName attr} = ${result}"
           )
           spec;
       in
@@ -184,7 +191,10 @@ in
     writeFile = path: name: text:
       let
         destination = "${path}/${name}.lua";
-        unformatted = pkgs.writeText "raw-lua-${name}" text;
+        unformatted = pkgs.writeText "raw-lua-${name}" ''
+          -- ❄️ This file was generated using nix ^~^
+          ${text}
+        '';
       in
       pkgs.runCommand "formatted-lua-${name}" { } ''
         mkdir -p $out/${path}

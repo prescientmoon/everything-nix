@@ -155,7 +155,7 @@ let
           description = "Name of the group to create and assign autocmd to";
         };
 
-        callback = lib.mkOption {
+        action = lib.mkOption {
           example.vim.opt.cmdheight = 1;
           type = types.oneOf [
             myTypes.tempestConfiguration
@@ -219,12 +219,16 @@ let
     lazyModule = lib.fix (lazyModule: types.submodule ({ name ? null, ... }: {
       options = {
         package = lib.mkOption {
-          type = types.oneOf [
-            types.package
-            types.str
-          ];
+          default = null;
+          type = types.nullOr types.str;
           description = "Package to configure the module around";
           example = "nvim-telescope/telescope.nvim";
+        };
+
+        dir = lib.mkOption {
+          default = null;
+          type = types.nullOr types.path;
+          description = "Path to install pacakge from";
         };
 
         name = lib.mkOption {
@@ -377,6 +381,11 @@ in
         description = "Derivation building all the given nix modules";
       };
 
+      lazySingleFile = lib.mkOption {
+        type = types.package;
+        description = "Derivation building all the given nix modules in a single file";
+      };
+
       dependencies = lib.mkOption {
         default = [ ];
         type = types.listOf types.package;
@@ -426,7 +435,7 @@ in
                 event = e.oneOrMany e.string;
                 pattern = e.oneOrMany e.string;
                 group = e.string;
-                callback = e.conditional lib.isAttrs
+                action = e.conditional lib.isAttrs
                   cfg.lib.encodeTempestConfiguration
                   e.luaString;
               });
@@ -520,14 +529,21 @@ in
         });
       # }}}
       # {{{ Lazy spec encoder 
+      xor = a: b: (a || b) && (!a || !b);
+      implies = a: b: !a || b;
+      hasProp = obj: p: (obj.${p} or null) != null;
+      propXor = a: b: obj: xor (hasProp obj a) (hasProp obj b);
+      propImplies = a: b: obj: implies (hasProp obj a) (hasProp obj b);
+
       lazyObjectEncoder = e.bind
         (opts: e.attrset true [ "package" ]
           {
-            package = e.string;
+            package = e.nullOr e.string;
+            dir = assert propXor "package" "dir" opts; e.nullOr e.string;
+            tag = assert propImplies "tag" "package" opts; e.nullOr e.string;
+            version = assert propImplies "tag" "package" opts; e.nullOr e.string;
             name = e.nullOr e.string;
             main = e.nullOr e.string;
-            tag = e.nullOr e.string;
-            version = e.nullOr e.string;
             dependencies = e.map (d: d.lua) (e.tryNonemptyList (e.stringOr lazyObjectEncoder));
             lazy = e.nullOr e.bool;
             cond = e.conjunction
@@ -559,18 +575,35 @@ in
             opts = e.anything;
           });
       # }}}
-
-      makeLazyScript = opts: ''
-        -- ❄️ This file was generated using nix ^~^
-        return ${lazyObjectEncoder opts}
-      '';
     in
     lib.attrsets.mapAttrs
       (name: opts: rec {
-        raw = makeLazyScript opts;
+        raw = lazyObjectEncoder opts;
         module = config.satellite.lib.lua.writeFile "lua/nix/plugins" name raw;
       })
       cfg.lazy;
+
+  config.satellite.neovim.generated.lazySingleFile =
+    let
+      makeFold = name: m: ''
+        -- {{{ ${name}
+        ${m.raw},
+        -- }}}'';
+
+      mkReturnList = objects: ''
+        return {
+          ${objects}
+        }'';
+
+      script = lib.pipe cfg.generated.lazy [
+        (lib.attrsets.mapAttrsToList makeFold)
+        (lib.concatStringsSep "\n")
+        mkReturnList
+      ];
+    in
+    config.satellite.lib.lua.writeFile
+      "lua/nix/plugins" "init"
+      script;
 
   config.satellite.neovim.generated.all =
     pkgs.symlinkJoin {

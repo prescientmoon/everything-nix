@@ -39,8 +39,8 @@ function M.on_attach(client, bufnr)
   -- }}}
   -- {{{ Go to declaration / references / implementation
   nmap("gd", vim.lsp.buf.definition, "[G]o to [d]efinition")
-  nmap("gi", vim.lsp.buf.implementation, "[G]o to [i]mplementation")
-  nmap("gr", vim.lsp.buf.references, "[G]o to [r]eferences")
+  nmap("<leader>gi", vim.lsp.buf.implementation, "[G]o to [i]mplementation")
+  nmap("<leader>gr", vim.lsp.buf.references, "[G]o to [r]eferences")
   -- }}}
   -- {{{ Hover
   -- Note: diagnostics are already covered in keymaps.lua

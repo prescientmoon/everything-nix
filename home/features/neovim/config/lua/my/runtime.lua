@@ -47,13 +47,13 @@ end
 function M.create_autocmd(opts)
   local callback
 
-  if type(opts.callback) == "function" then
-    callback = opts.callback
+  if type(opts.action) == "function" then
+    callback = opts.action
   end
 
-  if type(opts.callback) == "table" then
+  if type(opts.action) == "table" then
     callback = function(event)
-      M.configure(opts.callback, event)
+      M.configure(opts.action, event)
     end
   end
 
@@ -115,9 +115,9 @@ function M.configure(opts, context)
 
   if
     type(context) == "table"
+    and context.lazy ~= nil
     and context.opts ~= nil
     and vim.inspect(context.opts) ~= "{}"
-    and context.lazy ~= nil
   then
     -- This is a terrible way to do it :/
     local status, module = pcall(require, context.lazy.name)
