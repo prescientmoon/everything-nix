@@ -67,7 +67,7 @@ let
     # This is the most rudimentary (and currently only) way of handling paths.
     luaImportOr = tag:
       luaEncoders.conditional lib.isPath
-        (path: "dofile(${luaEncoders.string path}).${tag}");
+        (path: "dofile(${luaEncoders.string "${path}"}).${tag}");
     # Accepts both tagged and untagged strings of lua code.
     luaString = luaEncoders.luaCodeOr luaEncoders.identity;
     # This simply combines the above combinators into one.
@@ -82,6 +82,7 @@ let
       if l == "nil" then r
       else if r == "nil" then l
       else "${l} and ${r}";
+    all = lib.foldr luaEncoders.conjunction luaEncoders.nil;
     # }}}
     # {{{ Lists
     listOf = encoder: list:
@@ -113,9 +114,12 @@ let
     # }}}
     # {{{ Attrsets
     attrName = s:
-      let forbiddenChars = lib.stringToCharacters "<>'\".,;"; # This list *is* incomplete
+      let
+        # These list *are* incomplete
+        forbiddenChars = lib.stringToCharacters "<>[]{}()'\".,;";
+        keywords = [ "if" "then" "else" "do" "for" "local" "" ];
       in
-      if lib.any (c: lib.hasInfix c s) forbiddenChars then
+      if lib.any (c: lib.hasInfix c s) forbiddenChars || lib.elem s keywords then
         "[${luaEncoders.string s}]"
       else s;
 

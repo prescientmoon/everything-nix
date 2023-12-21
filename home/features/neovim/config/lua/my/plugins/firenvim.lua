@@ -1,10 +1,10 @@
-local env = require("my.helpers.env")
+local runtime = require("my.tempest")
 local K = require("my.keymaps")
 
 local M = {
   "glacambre/firenvim", -- vim inside chrome
   lazy = false,
-  cond = env.firenvim.active(),
+  cond = runtime.whitelist("firenvim"),
 }
 
 M.localSettings = {}
@@ -51,11 +51,6 @@ function M.config()
   -- {{{ Comitting our config changes
   vim.g.firenvim_config = { localSettings = M.localSettings }
   -- }}}
-end
-
-function M.setup()
-  M.config()
-  print(vim.inspect(M.localSettings))
 end
 
 return M

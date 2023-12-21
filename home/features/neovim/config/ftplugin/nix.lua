@@ -1,6 +1,6 @@
 -- Use _<leader>lg_ to fetchgit stuff
 vim.keymap.set("n", "<leader>lg", function()
-  require("my.helpers").saveCursor(function()
+  require("my.tempest").withSavedCursor(function()
     vim.cmd(":%!update-nix-fetchgit")
   end)
 end, { buffer = true, desc = "Update all fetchgit calls" })

@@ -52,5 +52,5 @@
         };
       };
     in
-    "return ${config.satellite.lib.lua.encoders.anything theme}";
+    config.satellite.lib.lua.encoders.anything theme;
 }

@@ -1,4 +1,4 @@
-local env = require("my.helpers.env")
+local runtime = require("my.tempest")
 
 local header_string = [[
 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗       ██████╗
@@ -9,7 +9,7 @@ local header_string = [[
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝       ╚═════╝
 ]]
 
-local header = require("my.helpers.string").split(header_string, "\n")
+local header = runtime.helpers.split(header_string, "\n")
 
 local M = {
   "goolord/alpha-nvim",
@@ -23,23 +23,24 @@ local M = {
     -- See [the header generator](https://patorjk.com/software/taag/#p=display&v=0&f=ANSI%20Shadow&t=NEOVim%20%3A3)
     theme.section.header.opts.hl = "AlphaHeader"
     theme.section.header.val = header
+    local version = vim.version()
     local footer = function()
-      local version = "🚀 "
-        .. vim.version().major
+      local versionString = "🚀 "
+        .. version.major
         .. "."
-        .. vim.version().minor
+        .. version.minor
         .. "."
-        .. vim.version().patch
+        .. version.patch
       local lazy_ok, lazy = pcall(require, "lazy")
       if lazy_ok then
         local total_plugins = lazy.stats().count .. " Plugins"
         local startuptime = (
           math.floor(lazy.stats().startuptime * 100 + 0.5) / 100
         )
-        return version
-          .. " — 🧰 "
+        return versionString
+          .. " —  🧰 "
           .. total_plugins
-          .. " — 🕐 "
+          .. " —  🕐 "
           .. startuptime
           .. "ms"
       else
@@ -63,7 +64,7 @@ local M = {
     require("alpha").setup(theme.config)
   end,
   lazy = false,
-  cond = env.vscode.not_active() and env.firenvim.not_active(),
+  cond = runtime.blacklist({ "vscode", "firenvim" }),
 }
 
 return M

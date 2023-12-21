@@ -46,6 +46,8 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    korora.url = "github:adisbladis/korora";
+
     # Nix language server
     # [the docs](https://github.com/nix-community/nixd/blob/main/docs/user-guide.md#installation)
     # tell me not to override the nixpkgs input.

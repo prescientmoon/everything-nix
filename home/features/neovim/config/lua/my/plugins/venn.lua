@@ -28,46 +28,53 @@ local venn_hint = H.concat_many_h({
 }, 3).value
 
 function M.config()
-  local r = "<leader>V"
-  vim.keymap.set("n", r .. "H", "<C-v>h:VBox<CR>", { desc = "left" })
-  vim.keymap.set("n", r .. "J", "<C-v>j:VBox<CR>", { desc = "down" })
-  vim.keymap.set("n", r .. "K", "<C-v>k:VBox<CR>", { desc = "up" })
-  vim.keymap.set("n", r .. "L", "<C-v>l:VBox<CR>", { desc = "right" })
-  vim.keymap.set("v", r .. "f", ":VBox<CR>", { desc = "box" })
+  -- local r = "<leader>V"
+  -- vim.keymap.set("n", r .. "H", "<C-v>h:VBox<CR>", { desc = "left" })
+  -- vim.keymap.set("n", r .. "J", "<C-v>j:VBox<CR>", { desc = "down" })
+  -- vim.keymap.set("n", r .. "K", "<C-v>k:VBox<CR>", { desc = "up" })
+  -- vim.keymap.set("n", r .. "L", "<C-v>l:VBox<CR>", { desc = "right" })
+  -- vim.keymap.set("v", r .. "f", ":VBox<CR>", { desc = "box" })
 
-  -- local Hydra = require("hydra")
-  --
-  -- Hydra({
-  --   name = "Draw Diagram",
-  --   hint = venn_hint,
-  --   config = {
-  --     color = "pink",
-  --     invoke_on_body = true,
-  --     hint = {
-  --       border = "single",
-  --     },
-  --     on_enter = function()
-  --       vim.o.virtualedit = "all"
-  --     end,
-  --   },
-  --   mode = "n",
-  --   desc = "[V]enn mode",
-  --   body = "<leader>V",
-  --   heads = {
-  --     { "H", "<C-v>h:VBox<CR>" },
-  --     { "J", "<C-v>j:VBox<CR>" },
-  --     { "K", "<C-v>k:VBox<CR>" },
-  --     { "L", "<C-v>l:VBox<CR>" },
-  --     { "f", ":VBox<CR>", { mode = "v" } },
-  --     { "<Esc>", nil, { exit = true } },
-  --   },
-  -- })
+  local Hydra = require("hydra")
+
+  Hydra({
+    name = "Draw Diagram",
+    hint = venn_hint,
+    config = {
+      color = "pink",
+      invoke_on_body = true,
+      hint = {
+        border = "single",
+      },
+      on_enter = function()
+        vim.opt.virtualedit = "all"
+        vim.g.inside_venn = true
+        vim.opt.cmdheight = 1
+      end,
+      on_exit = function()
+        vim.opt.virtualedit = ""
+        vim.g.inside_venn = false
+        vim.opt.cmdheight = 0
+      end,
+      desc = "[V]enn mode",
+    },
+    mode = "n",
+    body = "<leader>V",
+    heads = {
+      { "H", "<C-v>h:VBox<cr>", { silent = true, desc = "test description" } },
+      { "J", "<C-v>j:VBox<cr>", { silent = true, desc = "test description" } },
+      { "K", "<C-v>k:VBox<cr>", { silent = true, desc = "test description" } },
+      { "L", "<C-v>l:VBox<cr>", { silent = true, desc = "test description" } },
+      { "f", "<cmd>VBox<cr>", { mode = "v" } },
+      { "<Esc>", nil, { exit = true } },
+    },
+  })
 end
 
--- function M.init()
---   require("which-key").register({
---     ["<leader>V"] = { name = "[V]enn mode" },
---   })
--- end
+function M.init()
+  require("which-key").register({
+    ["<leader>V"] = { name = "[V]enn mode" },
+  })
+end
 
-return {}
+return M

@@ -12,10 +12,12 @@ let
     oneOrMany = t: types.either t (types.listOf t);
     zeroOrMore = t: types.nullOr (myTypes.oneOrMany t);
 
+    neovimEnv = types.enum [ "firenvim" "vscode" "neovide" ];
+
     # {{{ Lua code 
     luaCode = types.nullOr (types.oneOf [
-      types.str
       types.path
+      types.str
       myTypes.luaLiteral
     ]);
 
@@ -41,36 +43,46 @@ let
       types.str
       (types.submodule
         {
-          options.mapping = lib.mkOption {
-            type = types.str;
-            description = "The lhs of the neovim mapping";
-          };
+          options = {
+            mapping = lib.mkOption {
+              type = types.str;
+              description = "The lhs of the neovim mapping";
+            };
 
-          options.action = lib.mkOption {
-            default = null;
-            type = types.nullOr (types.oneOf [
-              types.str
-              myTypes.luaLiteral
-            ]);
-            description = "The rhs of the neovim mapping";
-          };
+            action = lib.mkOption {
+              default = null;
+              type = types.nullOr (types.oneOf [
+                types.str
+                myTypes.luaLiteral
+              ]);
+              description = "The rhs of the neovim mapping";
+            };
 
-          options.ft = lib.mkOption {
-            default = null;
-            type = myTypes.zeroOrMore types.str;
-            description = "Filetypes on which this keybind should take effect";
-          };
+            ft = lib.mkOption {
+              default = null;
+              type = myTypes.zeroOrMore types.str;
+              description = "Filetypes on which this keybind should take effect";
+            };
 
-          options.mode = lib.mkOption {
-            default = null;
-            type = types.nullOr types.str;
-            description = "The vim modes the mapping should take effect in";
-          };
+            mode = lib.mkOption {
+              default = null;
+              type = types.nullOr types.str;
+              description = "The vim modes the mapping should take effect in";
+            };
 
-          options.desc = lib.mkOption {
-            default = null;
-            type = types.nullOr types.str;
-            description = "Description for the current keymapping";
+            desc = lib.mkOption {
+              default = null;
+              type = types.nullOr types.str;
+              description = "Description for the current keymapping";
+            };
+
+
+            expr = lib.mkOption {
+              default = null;
+              example = true;
+              type = types.nullOr types.bool;
+              description = "If set to `true`, the mapping is treated as an action factory";
+            };
           };
         })
     ];
@@ -282,9 +294,15 @@ let
         };
 
         env.blacklist = lib.mkOption {
-          default = [ ];
-          type = types.listOf (types.enum [ "firenvim" "vscode" "neovide" ]);
+          default = null;
+          type = myTypes.zeroOrMore myTypes.neovimEnv;
           description = "Environments to blacklist plugin on";
+        };
+
+        env.whitelist = lib.mkOption {
+          default = null;
+          type = myTypes.zeroOrMore myTypes.neovimEnv;
+          description = "Environments to whitelist plugin on";
         };
 
         setup = lib.mkOption {
@@ -403,7 +421,7 @@ in
       };
 
       import = lib.mkOption {
-        default = path: tag: cfg.lib.lua "dofile(${e.string path}).${tag}";
+        default = path: tag: cfg.lib.lua (e.luaCode tag path);
         type = types.functionTo (types.functionTo myTypes.luaLiteral);
         description = "import some identifier from some module";
       };
@@ -439,6 +457,7 @@ in
                   cfg.lib.encodeTempestConfiguration
                   e.luaString;
               });
+              mk_context = e.const (e.nullOr e.luaString (given.mkContext or null));
             }
             given;
         type = types.functionTo types.str;
@@ -463,10 +482,34 @@ in
         description = "Wrap a lua expression into a lua function";
       };
 
-
       contextThunk = lib.mkOption {
         default = given: cfg.lib.lua /* lua */ ''
           function(context) ${e.luaString given} end
+        '';
+        type = types.functionTo myTypes.luaLiteral;
+        description = "Wrap a lua expression into a lua function taking an argument named `context`";
+      };
+
+      lazy = lib.mkOption {
+        default = given: cfg.lib.thunk "return ${e.luaCodeOr e.anything given}";
+        type = types.functionTo myTypes.luaLiteral;
+        description = "Wrap a lua expression into a function returning said expression";
+      };
+
+      withContext = lib.mkOption {
+        default = given: cfg.lib.contextThunk "return ${e.luaCodeOr e.anything given}";
+        type = types.functionTo myTypes.luaLiteral;
+        description = "Wrap a lua expression into a lua function taking an argument named `context` and returning said expression";
+      };
+
+      tempest = lib.mkOption {
+        default = given: cfg.lib.lua /* lua */ ''
+          function(context)
+            require(${e.string cfg.runtime.tempest}).configure(
+              ${cfg.lib.encodeTempestConfiguration given},
+              context
+            )
+          end
         '';
         type = types.functionTo myTypes.luaLiteral;
         description = "Wrap a lua expression into a lua function taking an argument named `context`";
@@ -490,12 +533,6 @@ in
     # }}}
     # {{{ Neovim runtime module paths
     runtime = {
-      env = lib.mkOption {
-        type = types.str;
-        example = "my.helpers.env";
-        description = "Module to import env flags from";
-      };
-
       tempest = lib.mkOption {
         type = types.str;
         example = "my.runtime.tempest";
@@ -525,6 +562,7 @@ in
               lib.strings.stringToCharacters
               (e.listAsOneOrMany e.string));
           desc = e.nullOr e.string;
+          expr = e.nullOr e.bool;
           ft = e.zeroOrMany e.string;
         });
       # }}}
@@ -546,19 +584,23 @@ in
             main = e.nullOr e.string;
             dependencies = e.map (d: d.lua) (e.tryNonemptyList (e.stringOr lazyObjectEncoder));
             lazy = e.nullOr e.bool;
-            cond = e.conjunction
+            cond = e.all [
               (e.nullOr (e.luaCode "cond"))
-              (e.filter (_: opts.env.blacklist != [ ])
+              (e.filter (_: opts.env.blacklist != [ ] && opts.env.blacklist != null)
                 (e.const /* lua */ ''
-                  require(${e.string cfg.runtime.env}).blacklist(${e.listOf e.string opts.env.blacklist})
-                ''));
+                  require(${e.string cfg.runtime.tempest}).blacklist(${e.oneOrMany e.string opts.env.blacklist})
+                ''))
+              (e.filter (_: opts.env.whitelist != [ ] && opts.env.whitelist != null)
+                (e.const /* lua */ ''
+                  require(${e.string cfg.runtime.tempest}).whitelist(${e.oneOrMany e.string opts.env.blacklist})
+                ''))
+            ];
 
             config = _:
               let
                 wrap = given: /* lua */''
                   function(lazy, opts)
-                    require(${e.string cfg.runtime.tempest}).configure(${given}, 
-                      { lazy = lazy; opts = opts; })
+                    require(${e.string cfg.runtime.tempest}).lazy(lazy, opts, ${given})
                   end
                 '';
               in

@@ -135,6 +135,8 @@ M.unicode = {
   { "iinf", "∞" },
   { "star", "⋆" },
   { "diamond", "⋄" },
+  { "tto", "→" },
+  { "ttoo", "⟶" },
   -- }}}
   -- {{{ Brackets
   { "langle", "⟨" },

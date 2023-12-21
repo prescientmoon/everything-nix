@@ -1,5 +1,4 @@
-local H = require("my.plugins.themes.helpers")
-local T = require("nix.theme")
+local H = require("my.helpers.theme")
 
 local M = {
   "uloco/bluloco.nvim",
@@ -12,7 +11,7 @@ function M.config()
   local bluloco = require("bluloco")
 
   bluloco.setup({
-    transparent = T.opacity.terminal < 1.0,
+    transparent = H.theme.opacity.terminal < 1.0,
     style = H.variant("Bluloco"),
   })
 

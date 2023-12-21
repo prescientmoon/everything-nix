@@ -1,6 +1,9 @@
+local runtime = require("my.tempest")
+
 local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  cond = runtime.blacklist("vscode"),
 }
 
 function M.config()
@@ -28,4 +31,4 @@ function M.config()
   })
 end
 
-return {}
+return M

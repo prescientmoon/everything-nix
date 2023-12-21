@@ -1,5 +1,4 @@
-local helpers = require("my.helpers")
-local env = require("my.helpers.env")
+local runtime = require("my.tempest")
 
 local lspconfig = {
   "neovim/nvim-lspconfig",
@@ -12,7 +11,7 @@ local lspconfig = {
     },
     "simrat39/rust-tools.nvim",
   },
-  cond = env.vscode.not_active(),
+  cond = runtime.blacklist("vscode"),
 }
 
 local M = {
@@ -23,7 +22,7 @@ local M = {
     opts = {
       input_buffer_type = "dressing",
     },
-    cond = env.vscode.not_active(),
+    cond = runtime.blacklist("vscode"),
   },
 }
 
@@ -53,9 +52,11 @@ function M.on_attach(client, bufnr)
   nmap("<leader>c", vim.lsp.buf.code_action, "[C]ode actions")
   nmap("<leader>li", "<cmd>LspInfo<cr>", "[L]sp [i]nfo")
 
+  local expropts = opts("[R]e[n]ame")
+  expropts.expr = true
   vim.keymap.set("n", "<leader>rn", function()
     return ":IncRename " .. vim.fn.expand("<cword>")
-  end, helpers.mergeTables(opts("[R]e[n]ame"), { expr = true }))
+  end, expropts)
 
   vim.keymap.set(
     "v",

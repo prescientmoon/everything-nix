@@ -1,4 +1,4 @@
-local H = require("my.plugins.themes.helpers")
+local H = require("my.helpers.theme")
 
 local M = {
   "rose-pine/neovim",

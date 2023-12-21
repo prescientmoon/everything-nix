@@ -1,5 +1,4 @@
-local helpers = require("my.helpers")
-
+-- TODO: operator for wrapping motion with fold
 local M = {}
 
 -- {{{ Helpers
@@ -18,9 +17,13 @@ end
 ---@param from string
 ---@param to string
 ---@param name string
----@param perhapsOpts table|nil
-function M.delimitedTextobject(from, to, name, perhapsOpts)
-  local opts = helpers.mergeTables(perhapsOpts or {}, { desc = name })
+---@param opts table|nil
+function M.delimitedTextobject(from, to, name, opts)
+  opts = opts or {}
+
+  if opts.desc == nil then
+    opts.desc = name
+  end
 
   vim.keymap.set({ "v", "o" }, "i" .. from, "i" .. to, opts)
   vim.keymap.set({ "v", "o" }, "a" .. from, "a" .. to, opts)
@@ -111,7 +114,7 @@ function M.setup()
     end,
   })
   -- }}}
-  -- -- {{{ Winblend
+  -- {{{ Winblend
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "*" },
     group = vim.api.nvim_create_augroup("WinblendSettings", {}),
@@ -119,7 +122,25 @@ function M.setup()
       vim.opt.winblend = 0
     end,
   })
-  -- -- }}}
+  -- }}}
+  -- {{{ Manage cmdheight
+  vim.api.nvim_create_autocmd("CmdlineEnter", {
+    group = vim.api.nvim_create_augroup("SetCmdheightCmdlineEnter", {}),
+    callback = function()
+      if not vim.g.inside_venn then
+        vim.opt.cmdheight = 1
+      end
+    end,
+  })
+  vim.api.nvim_create_autocmd("CmdlineLeave", {
+    group = vim.api.nvim_create_augroup("SetCmdheightCmdlineLeave", {}),
+    callback = function()
+      if not vim.g.inside_venn then
+        vim.opt.cmdheight = 0
+      end
+    end,
+  })
+  -- }}}
 end
 
 return M

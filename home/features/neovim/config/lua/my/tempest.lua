@@ -1,7 +1,18 @@
 local M = {}
+local H = {}
+M.helpers = H
 
 -- {{{ General helpers
-local function string_chars(str)
+function H.with_default(default, given)
+  if given == nil then
+    return default
+  else
+    return given
+  end
+end
+
+-- {{{ Strings
+function H.string_chars(str)
   local chars = {}
   for i = 1, #str do
     table.insert(chars, str:sub(i, i))
@@ -9,13 +20,35 @@ local function string_chars(str)
   return chars
 end
 
-local function with_default(default, given)
-  if given == nil then
-    return default
-  else
-    return given
-  end
+function H.split(text, sep)
+  ---@diagnostic disable-next-line: redefined-local
+  local sep, fields = sep or ":", {}
+  local pattern = string.format("([^%s]+)", sep)
+  text:gsub(pattern, function(c)
+    fields[#fields + 1] = c
+  end)
+  return fields
 end
+-- }}}
+-- {{{ Tables
+function H.mergeTables(t1, t2)
+  local t3 = {}
+
+  if t1 ~= nil then
+    for k, v in pairs(t1) do
+      t3[k] = v
+    end
+  end
+
+  if t2 ~= nil then
+    for k, v in pairs(t2) do
+      t3[k] = v
+    end
+  end
+
+  return t3
+end
+-- }}}
 -- }}}
 -- {{{ API wrappers
 -- {{{ Keymaps
@@ -30,15 +63,23 @@ function M.set_keymap(opts, context)
     buffer = context.bufnr
   end
 
+  local action = opts.action
+
+  if type(opts.action) == "function" then
+    action = function()
+      opts.action(context)
+    end
+  end
+
   vim.keymap.set(
-    string_chars(with_default("n", opts.mode)),
+    H.string_chars(H.with_default("n", opts.mode)),
     opts.mapping,
-    opts.action,
+    action,
     {
       desc = opts.desc,
-      buffer = with_default(buffer, opts.buffer),
+      buffer = H.with_default(buffer, opts.buffer),
       expr = opts.expr,
-      silent = with_default(true, opts.silent),
+      silent = H.with_default(true, opts.silent),
     }
   )
 end
@@ -77,6 +118,10 @@ local function recursive_assign(source, destination)
 end
 
 function M.configure(opts, context)
+  if type(opts.mk_context) == "function" then
+    context = opts.mk_context(context)
+  end
+
   if type(opts.vim) == "table" then
     recursive_assign(opts.vim, vim)
   end
@@ -129,6 +174,53 @@ function M.configure(opts, context)
   if type(opts.callback) == "function" then
     opts.callback(context)
   end
+end
+
+M.lazy = function(lazy, opts, spec)
+  return M.configure(spec, { lazy = lazy, opts = opts })
+end
+-- }}}
+-- {{{ Neovim env handling
+local envs = {
+  vscode = vim.g.vscode ~= nil,
+  neovide = vim.g.neovide ~= nil or vim.g.nix_neovim_app == "neovide",
+  firenvim = vim.g.started_by_firenvim ~= nil
+    or vim.g.nix_neovim_app == "firenvim",
+}
+
+M.blacklist = function(list)
+  if type(list) == "string" then
+    list = { list }
+  end
+
+  for _, key in pairs(list) do
+    if envs[key] then
+      return false
+    end
+  end
+
+  return true
+end
+
+M.whitelist = function(list)
+  if type(list) == "string" then
+    list = { list }
+  end
+
+  for _, key in pairs(list) do
+    if not envs[key] then
+      return false
+    end
+  end
+
+  return true
+end
+-- }}}
+-- {{{ Other misc thingies
+function M.withSavedCursor(callback)
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  callback()
+  vim.api.nvim_win_set_cursor(0, cursor)
 end
 -- }}}
 

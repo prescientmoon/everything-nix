@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, ... }:
+{ upkgs, pkgs, lib, config, inputs, ... }:
 let
   # {{{ extraPackages
   extraPackages = with pkgs; [
@@ -11,7 +11,6 @@ let
     inputs.nixd.packages.${system}.nixd # nix
     texlab # latex
     nodePackages_latest.vscode-langservers-extracted # web stuff
-    typst-lsp # typst
     # haskell-language-server # haskell
 
     # Formatters
@@ -19,7 +18,6 @@ let
     nodePackages_latest.purs-tidy # Purescript
     nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
-    typst-fmt # Typst
 
     # Linters
     ruff # Python linter
@@ -31,8 +29,6 @@ let
     # Others
     fd # file finder
     update-nix-fetchgit # Useful for nix stuff
-    tree-sitter # Syntax highlighting
-    libstdcxx5 # Required by treesitter aparently
 
     # Latex setup
     # texlive.combined.scheme-full # Latex stuff
@@ -41,12 +37,6 @@ let
   # }}}
   # {{{ extraRuntime
   extraRuntimePaths = [
-    # Base16 theme
-    (config.satellite.lib.lua.writeFile
-      "lua/nix" "theme"
-      config.satellite.colorscheme.lua
-    )
-
     # Experimental nix module generation
     config.satellite.neovim.generated.lazySingleFile
   ];
@@ -69,9 +59,11 @@ let
   #   I cannot just install those dirs using the builtin package support because 
   #   my package manager (lazy.nvim) disables those.
   wrapClient = { base, name, binName ? name, extraArgs ? "" }:
-    let startupScript = pkgs.writeText "startup.lua" /* lua */''
+    let startupScript = config.satellite.lib.lua.writeFile
+      "." "startup" /* lua */ ''
       vim.g.nix_extra_runtime = ${nlib.encode extraRuntime}
       vim.g.nix_projects_dir = ${nlib.encode config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}
+      vim.g.nix_theme = ${config.satellite.colorscheme.lua}
       -- Provide hints as to what app we are running in
       -- (Useful because neovide does not provide the info itself right away)
       vim.g.nix_neovim_app = ${nlib.encode name}
@@ -84,7 +76,7 @@ let
       postBuild = ''
         wrapProgram $out/bin/${binName} \
           --prefix PATH : ${lib.makeBinPath extraPackages} \
-          --add-flags ${lib.escapeShellArg ''--cmd "lua dofile('${startupScript}')"''} \
+          --add-flags ${lib.escapeShellArg ''--cmd "lua dofile('${startupScript}/startup.lua')"''} \
           ${extraArgs}
       '';
     };
@@ -182,9 +174,8 @@ in
   # {{{ Plugins
   satellite.lua.styluaConfig = ../../../stylua.toml;
   satellite.neovim.runtime = {
-    env = "my.helpers.env";
     languageServerOnAttach = "my.plugins.lspconfig";
-    tempest = "my.runtime";
+    tempest = "my.tempest";
   };
 
   # {{{ libraries
@@ -200,6 +191,9 @@ in
   # }}}
   # {{{ web-devicons
   satellite.neovim.lazy.web-devicons.package = "nvim-tree/nvim-web-devicons";
+  # }}}
+  # {{{ Scrap
+  satellite.neovim.lazy.scrap.package = "mateiadrielrafael/scrap.nvim";
   # }}}
   # }}}
   # {{{ ui
@@ -323,6 +317,7 @@ in
     dependencies.lua = [ lazy.plenary.package ];
 
     env.blacklist = [ "vscode" "firenvim" ];
+    cmd = "Neogit"; # We sometimes spawn this directly from fish using a keybind
     keys = {
       mapping = "<c-g>";
       action = "<cmd>Neogit<cr>";
@@ -342,7 +337,7 @@ in
   satellite.neovim.lazy.telescope = {
     package = "nvim-telescope/telescope.nvim";
     version = "0.1.x";
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
 
     # {{{ Dependencies
     dependencies = {
@@ -372,14 +367,14 @@ in
             "Find ${tag} files";
       in
       [
-        (keymap "<c-p>" "find_files" "Find files")
-        (keymap "<leader>d" "diagnostics" "Diagnostics")
+        (keymap "<c-p>" "find_files" "File finder [p]alette")
+        (keymap "<leader>d" "diagnostics" "[D]iagnostics")
         (keymap "<c-f>" "live_grep" "[F]ind in project")
         (keymap "<leader>t" "builtin" "[T]elescope pickers")
         # {{{ Files by extension 
         (findFilesByExtension "tx" "tex" "[t]ex")
         (findFilesByExtension "ts" "ts" "[t]ypescript")
-        (findFilesByExtension "ty" "typst" "[t]ypst")
+        (findFilesByExtension "ty" "typ" "[t]ypst")
         (findFilesByExtension "l" "lua" "[l]ua")
         (findFilesByExtension "n" "nix" "[n]ua")
         (findFilesByExtension "p" "purs" "[p]urescript")
@@ -423,18 +418,125 @@ in
     main = "ibl";
     setup = true;
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     event = "BufReadPost";
   };
   # }}}
+  # {{{ live-command
+  # Live command preview for commands like :norm
+  satellite.neovim.lazy.live-command = {
+    package = "smjonas/live-command.nvim";
+    version = "remote"; # https://github.com/smjonas/live-command.nvim/pull/29
+    main = "live-command";
+
+    event = "CmdlineEnter";
+    opts.commands.Norm.cmd = "norm";
+    opts.commands.G.cmd = "g";
+
+    keys = {
+      mode = "v";
+      mapping = "N";
+      action = ":Norm ";
+      desc = "Map lines in [n]ormal mode";
+    };
+  };
   # }}}
-  # {{{ editing
-  # {{{ text navigation
+  # {{{ fidget
+  satellite.neovim.lazy.fidget = {
+    package = "j-hui/fidget.nvim";
+    tag = "legacy";
+
+    env.blacklist = "vscode";
+    event = "BufReadPre";
+    setup = true;
+  };
+  # }}}
+  # {{{ treesitter
+  satellite.neovim.lazy.treesitter = {
+    # REASON: more grammars
+    dir = upkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+    dependencies.lua = [ "nvim-treesitter/nvim-treesitter-textobjects" ];
+    dependencies.nix = [ pkgs.tree-sitter ];
+
+    env.blacklist = "vscode";
+    event = "BufReadPost";
+
+    #{{{ Highlighting
+    opts.highlight = {
+      enable = true;
+      disable = [ "kotlin" ]; # This one seemed a bit broken
+      additional_vim_regex_highlighting = false;
+    };
+    #}}}
+    # {{{ Textobjects
+    opts.textobjects = {
+      #{{{ Select
+      select = {
+        enable = true;
+        lookahead = true;
+        keymaps = {
+          # You can use the capture groups defined in textobjects.scm
+          af = "@function.outer";
+          "if" = "@function.inner";
+          ac = "@class.outer";
+          ic = "@class.inner";
+        };
+      };
+      #}}}
+      #{{{ Move
+      move = {
+        enable = true;
+        set_jumps = true; # whether to set jumps in the jumplist
+        goto_next_start = {
+          "]f" = "@function.outer";
+          "]t" = "@class.outer";
+        };
+        goto_next_end = {
+          "]F" = "@function.outer";
+          "]T" = "@class.outer";
+        };
+        goto_previous_start = {
+          "[f" = "@function.outer";
+          "[t" = "@class.outer";
+        };
+        goto_previous_end = {
+          "[F" = "@function.outer";
+          "[T" = "@class.outer";
+        };
+      };
+      #}}}
+    };
+    # }}}
+    opts.indent.enable = true;
+  };
+  # }}}
+  # {{{ treesitter context
+  # Show context at the of closing delimiters
+  satellite.neovim.lazy.treesitter-virtual-context = {
+    package = "haringsrob/nvim_context_vt";
+    dependencies.lua = [ lazy.treesitter.name ];
+
+    env.blacklist = "vscode";
+    event = "BufReadPost";
+  };
+
+  # show context at top of file
+  satellite.neovim.lazy.treesitter-top-context = {
+    package = "nvim-treesitter/nvim-treesitter-context";
+    dependencies.lua = [ lazy.treesitter.name ];
+
+    env.blacklist = "vscode";
+    event = "BufReadPost";
+    opts.enable = true;
+  };
+  # }}}
+  # }}}
+  # {{{ editing {{{ text navigation
   # {{{ flash
   satellite.neovim.lazy.flash = {
     package = "folke/flash.nvim";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     keys =
       let keybind = mode: mapping: action: desc: {
         inherit mapping desc mode;
@@ -457,7 +559,7 @@ in
   satellite.neovim.lazy.ftft = {
     package = "gukz/ftFT.nvim";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     keys = [ "f" "F" "t" "T" ];
     setup = true;
   };
@@ -467,7 +569,7 @@ in
   satellite.neovim.lazy.clipboard-image = {
     package = "postfen/clipboard-image.nvim";
 
-    env.blacklist = [ "firenvim" ];
+    env.blacklist = "firenvim";
     cmd = "PasteImg";
 
     keys = {
@@ -491,7 +593,7 @@ in
   satellite.neovim.lazy.lastplace = {
     package = "ethanholz/nvim-lastplace";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     event = "BufReadPre";
 
     opts.lastplace_ignore_buftype = [ "quickfix" "nofile" "help" ];
@@ -501,7 +603,7 @@ in
   satellite.neovim.lazy.undotree = {
     package = "mbbill/undotree";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     cmd = "UndotreeToggle";
     keys = {
       mapping = "<leader>u";
@@ -514,7 +616,7 @@ in
   satellite.neovim.lazy.ssr = {
     package = "cshuaimin/ssr.nvim";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     keys = {
       mode = "nx";
       mapping = "<leader>rt";
@@ -528,10 +630,10 @@ in
   # {{{ edit-code-block (edit injections in separate buffers)
   satellite.neovim.lazy.edit-code-block = {
     package = "dawsers/edit-code-block.nvim";
-    dependencies.lua = [ "nvim-treesitter/nvim-treesitter" ];
+    dependencies.lua = [ lazy.treesitter.name ];
     main = "ecb";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     setup = true;
     keys = {
       mapping = "<leader>e";
@@ -616,13 +718,63 @@ in
       ];
   };
   # }}}
+  # {{{ luasnip
+  # snippeting engine
+  satellite.neovim.lazy.luasnip =
+    let reload = /* lua */ ''require("luasnip.loaders.from_vscode").lazy_load()'';
+    in
+    {
+      package = "L3MON4D3/LuaSnip";
+      version = "v2";
+
+      env.blacklist = "vscode";
+      setup.callback = nlib.thunk reload;
+
+      # {{{ Keybinds
+      keys = [
+        {
+          mapping = "<leader>rs";
+          action = nlib.thunk reload;
+          desc = "[R]eload [s]nippets";
+        }
+        {
+          mode = "i";
+          expr = true;
+          mapping = "<tab>";
+          action = nlib.thunk /* lua */ ''
+            local luasnip = require("luasnip")
+
+            if not luasnip.jumpable(1) then
+              return "<tab>"
+            end
+
+            vim.schedule(function()
+              luasnip.jump(1)
+            end)
+
+            return "<ignore>"
+          '';
+          desc = "Jump to next snippet tabstop";
+        }
+        {
+          mode = "i";
+          mapping = "<s-tab>";
+          action = nlib.thunk /* lua */ ''
+            require("luasnip").jump(-1)
+          '';
+          desc = "Jump to previous snippet tabstop";
+        }
+      ];
+      # }}}
+    };
+  # }}}
   # }}}
   # {{{ ide
   # {{{ conform
   satellite.neovim.lazy.conform = {
     package = "stevearc/conform.nvim";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     event = "BufReadPost";
 
     opts.format_on_save.lsp_fallback = true;
@@ -654,15 +806,149 @@ in
     };
   };
   # }}}
+  # {{{ null-ls
+  satellite.neovim.lazy.null-ls = {
+    package = "jose-elias-alvarez/null-ls.nvim";
+    dependencies.lua = [ "neovim/nvim-lspconfig" ];
+
+    env.blacklist = "vscode";
+    event = "BufReadPre";
+
+    opts = nlib.thunk /* lua */ ''
+      local p = require("null-ls")
+      return {
+        on_attach = require("my.plugins.lspconfig").on_attach, 
+        sources = {
+          p.builtins.diagnostics.ruff
+        }
+      }
+    '';
+  };
+  # }}}
+  # {{{ gitsigns
+  satellite.neovim.lazy.gitsigns = {
+    package = "lewis6991/gitsigns.nvim";
+
+    env.blacklist = [ "vscode" "firenvim" ];
+    event = "BufReadPost";
+
+    opts.on_attach = nlib.tempest {
+      mkContext = /* lua */ ''function(bufnr) return { bufnr = bufnr } end'';
+      keys =
+        let
+          prefix = m: "<leader>h${m}";
+          gs = "package.loaded.gitsigns";
+
+          # {{{ nmap helper
+          nmap = mapping: action: desc: {
+            inherit desc;
+            mapping = prefix "mapping";
+            action = "${gs}.action";
+          };
+          # }}}
+          # {{{ exprmap helper
+          exprmap = mapping: action: desc: {
+            inherit mapping desc;
+            action = nlib.thunk /* lua */ ''
+              if vim.wo.diff then
+                return "${mapping}"
+              end
+
+              vim.schedule(function()
+                ${gs}.${action}()
+              end)
+
+              return "<ignore>"
+            '';
+            expr = true;
+          };
+          # }}}
+        in
+        [
+          # {{{ navigation
+          (exprmap "]c" "next_hunk" "Navigate to next hunk")
+          (exprmap "[c" "prev_hunk" "Navigate to previous hunk")
+          # }}}
+          # {{{ actions
+          (nmap "s" "stage_hunk" "[s]tage hunk")
+          (nmap "r" "reset_hunk" "[s]tage hunk")
+          (nmap "S" "stage_buffer" "[s]tage hunk")
+          (nmap "u" "undo_stage_hunk" "[s]tage hunk")
+          (nmap "R" "reset_buffer" "[s]tage hunk")
+          (nmap "p" "preview_hunk" "[s]tage hunk")
+          (nmap "d" "diffthis" "[s]tage hunk")
+          {
+            mapping = prefix "D";
+            action = nlib.thunk ''
+              ${gs}.diffthis("~")
+            '';
+            desc = "[d]iff file (?)";
+          }
+          {
+            mapping = prefix "b";
+            action = nlib.thunk ''
+              ${gs}.blame_line({ full = true })
+            '';
+            desc = "[b]lame line";
+          }
+          # }}}
+          # {{{ Toggles
+          (nmap "tb" "toggle_current_line_blame" "[t]oggle line [b]laming")
+          (nmap "td" "toggle_deleted" "[t]oggle [d]eleted")
+          # }}}
+          # {{{ visual mappings
+          {
+            mode = "v";
+            mapping = prefix "s";
+            action = nlib.thunk /* lua */ ''
+              ${gs}.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+            '';
+            desc = "stage visual hunk";
+          }
+          {
+            mode = "v";
+            mapping = prefix "r";
+            action = nlib.thunk /* lua */ ''
+              ${gs}.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+            '';
+            desc = "reset visual hunk";
+          }
+          # }}}
+        ];
+    };
+  };
+  # }}}
+  # {{{ cmp
+  satellite.neovim.lazy.cmp = {
+    package = "hrsh7th/nvim-cmp";
+    dependencies.lua = [
+      # {{{ Completion sources
+      "hrsh7th/cmp-nvim-lsp"
+      "hrsh7th/cmp-buffer"
+      "hrsh7th/cmp-emoji"
+      "hrsh7th/cmp-cmdline"
+      "hrsh7th/cmp-path"
+      "saadparwaiz1/cmp_luasnip"
+      "dmitmel/cmp-digraphs"
+      # }}}
+      "onsails/lspkind.nvim" # show icons in lsp completion menus
+      lazy.luasnip.package
+    ];
+
+    env.blacklist = "vscode";
+    event = [ "InsertEnter" "CmdlineEnter" ];
+    setup = (nlib.import ./plugins/cmp.lua "config").value;
+  };
+  # }}}
   # }}}
   # {{{ language support 
-  # {{{ haskell
+  # {{{ haskell support
   satellite.neovim.lazy.haskell-tools = {
     package = "mrcjkb/haskell-tools.nvim";
     dependencies.lua = [ lazy.plenary.package ];
     version = "^2";
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     ft = [ "haskell" "lhaskell" "cabal" "cabalproject" ];
 
     setup.vim.g.haskell_tools = {
@@ -682,13 +968,13 @@ in
     };
   };
   # }}}
-  # {{{ rust 
+  # {{{ rust support
   # {{{ rust-tools 
   satellite.neovim.lazy.rust-tools = {
     package = "simrat39/rust-tools.nvim";
     dependencies.nix = [ pkgs.rust-analyzer pkgs.rustfmt ];
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     ft = "rust";
 
     opts.server.on_attach = nlib.languageServerOnAttach {
@@ -705,7 +991,7 @@ in
     package = "saecki/crates.nvim";
     dependencies.lua = [ lazy.plenary.package ];
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     event = "BufReadPost Cargo.toml";
 
     # {{{ Set up null_ls source
@@ -732,7 +1018,7 @@ in
         group = "CargoKeybinds";
         pattern = "Cargo.toml";
         # # {{{ Register which-key info
-        # callback.callback = nlib.contextThunk /* lua */ ''
+        # action.callback = nlib.contextThunk /* lua */ ''
         #  require("which-key").register({
         #    ["<leader>lc"] = {
         #      name = "[l]ocal [c]rates",
@@ -775,17 +1061,16 @@ in
   };
   # }}}
   # }}}
-  # {{{ lean
+  # {{{ lean support
   satellite.neovim.lazy.lean = {
     package = "Julian/lean.nvim";
     name = "lean";
     dependencies.lua = [
       lazy.plenary.package
       "neovim/nvim-lspconfig"
-      "hrsh7th/nvim-cmp"
     ];
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     ft = "lean";
 
     opts = {
@@ -804,7 +1089,7 @@ in
     };
   };
   # }}}
-  # {{{ idris
+  # {{{ idris support
   satellite.neovim.lazy.idris = {
     package = "ShinKage/idris2-nvim";
     name = "idris";
@@ -813,7 +1098,7 @@ in
       "neovim/nvim-lspconfig"
     ];
 
-    env.blacklist = [ "vscode" ];
+    env.blacklist = "vscode";
     ft = [ "idris2" "lidris2" "ipkg" ];
 
     opts = {
@@ -838,6 +1123,38 @@ in
           ];
         # }}}
       };
+    };
+  };
+  # }}}
+  # {{{ github actions
+  satellite.neovim.lazy.github-actions = {
+    package = "yasuhiroki/github-actions-yaml.vim";
+
+    env.blacklist = "vscode";
+    ft = [ "yml" "yaml" ];
+  };
+  # }}}
+  # {{{ typst support
+  satellite.neovim.lazy.typst = {
+    package = "kaarmu/typst.vim";
+    dependencies.nix = [ pkgs.typst-lsp pkgs.typst-fmt ];
+
+    env.blacklist = "vscode";
+    ft = "typst";
+  };
+  # }}}
+  # {{{ hyprland
+  satellite.neovim.lazy.hyprland = {
+    package = "theRealCarneiro/hyprland-vim-syntax";
+
+    env.blacklist = "vscode";
+    ft = "hypr";
+
+    setup.autocmds = {
+      event = "BufRead";
+      group = "DetectHyprlandConfig";
+      pattern = "hyprland.conf";
+      action.vim.opt.ft = "hypr";
     };
   };
   # }}}
