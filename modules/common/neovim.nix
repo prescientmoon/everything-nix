@@ -579,7 +579,7 @@ in
             package = e.nullOr e.string;
             dir = assert propXor "package" "dir" opts; e.nullOr e.string;
             tag = assert propImplies "tag" "package" opts; e.nullOr e.string;
-            version = assert propImplies "tag" "package" opts; e.nullOr e.string;
+            version = assert propImplies "version" "package" opts; e.nullOr e.string;
             name = e.nullOr e.string;
             main = e.nullOr e.string;
             dependencies = e.map (d: d.lua) (e.tryNonemptyList (e.stringOr lazyObjectEncoder));
