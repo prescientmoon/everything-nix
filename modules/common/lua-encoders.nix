@@ -196,7 +196,7 @@ in
       let
         destination = "${path}/${name}.lua";
         unformatted = pkgs.writeText "raw-lua-${name}" ''
-          -- ❄️ This file was generated using nix ^~^
+          -- ❄️ I was generated using nix ^~^
           ${text}
         '';
       in

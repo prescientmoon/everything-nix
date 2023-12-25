@@ -7,8 +7,8 @@ end
 function M.setup()
   require("lazy").setup({
     importFrom("my.plugins"),
-    importFrom("nix.plugins"),
     importFrom("my.plugins.themes"),
+    unpack(require("nix").lazy),
   }, {
     defaults = { lazy = true },
     install = {
