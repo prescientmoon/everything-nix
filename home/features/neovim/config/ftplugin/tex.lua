@@ -1,7 +1,6 @@
 local A = require("my.abbreviations")
 local scrap = require("scrap")
 
-require("my.helpers.wrapMovement").enable()
 require("my.abbreviations.math").setup()
 
 vim.opt.conceallevel = 0

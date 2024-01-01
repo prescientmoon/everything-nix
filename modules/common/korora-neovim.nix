@@ -110,11 +110,12 @@ let
     tempestConfig = lazyType "lazy tempest config" (_: struct "tempest config"
       {
         vim = types.luaValue;
-        callback = k.union [ k.function types.luaLiteral ];
+        callback = k.union [ types.luaLiteral types.tempestConfig ];
         setup = k.attrsOf types.luaValue;
         keys = types.luaEagerOrLazy (types.oneOrMany types.tempestKey);
         autocmds = types.luaEagerOrLazy (types.oneOrMany types.tempestAutocmd);
-        mkContext = types.luaLiteral;
+        mkContext = types.luaValue;
+        cond = types.oneOrMany types.luaLiteral;
       }
       [ ]);
     # }}}
@@ -136,15 +137,14 @@ let
     let err = type.verify value; in
     lib.assertMsg (err == null) err;
 
-  mkLib = { tempestModule, languageServerModule }:
+  mkLib = { tempestModule }:
     assert hasType k.string tempestModule;
-    assert hasType k.string languageServerModule;
     rec {
       inherit (e) encode;
       # {{{ Common generation helpers 
       lua = value: assert hasType k.string value;
         { inherit value; __luaEncoderTag = "lua"; };
-      import = path: tag:
+      importFrom = path: tag:
         assert lib.isPath path;
         assert hasType k.string tag;
         lua "dofile(${encode (toString path)}).${tag}";
@@ -157,16 +157,18 @@ let
           ${context}
         )
       '';
-      customLanguageServerOnAttach = given:
-        assert hasType types.tempestConfig given;
-        lua /* lua */ ''
-          function(client, bufnr)
-            D.tempest.configure(${encode given}, 
-              { client = client; bufnr = bufnr; })
-
-            D.language_server.on_attach(client, bufnr)
-          end
-        '';
+      tempestBufnr = given: context: lua ''
+        D.tempest.configure(
+          ${encode given},
+          { bufnr = ${context}}
+        )
+      '';
+      keymap = mode: mapping: action: desc:
+        { inherit mode mapping action desc; };
+      nmap = mapping: action: desc:
+        { inherit mapping action desc; };
+      unmap = mapping:
+        { inherit mapping; action = "<nop>"; };
       blacklist = given:
         assert hasType (types.oneOrMany types.neovimEnv) given;
         lua /* lua */  ''
@@ -210,7 +212,6 @@ let
             local M = {}
             local D = {
               tempest = require(${encode tempestModule}),
-              langauge_server = require(${encode languageServerModule})
             }
 
             -- {{{ Pre-plugin config

@@ -49,32 +49,31 @@ function M.config()
       on_enter = function()
         vim.opt.virtualedit = "all"
         vim.g.inside_venn = true
-        vim.opt.cmdheight = 1
       end,
       on_exit = function()
         vim.opt.virtualedit = ""
-        vim.g.inside_venn = false
-        vim.opt.cmdheight = 0
       end,
       desc = "[V]enn mode",
     },
     mode = "n",
     body = "<leader>V",
     heads = {
-      { "H", "<C-v>h:VBox<cr>", { silent = true, desc = "test description" } },
-      { "J", "<C-v>j:VBox<cr>", { silent = true, desc = "test description" } },
-      { "K", "<C-v>k:VBox<cr>", { silent = true, desc = "test description" } },
-      { "L", "<C-v>l:VBox<cr>", { silent = true, desc = "test description" } },
+      { "H", "<C-v>h<esc><cmd>silent VBox<cr>", { silent = true } },
+      { "J", "<C-v>j<esc><cmd>silent VBox<cr>", { silent = true } },
+      { "K", "<C-v>k<esc><cmd>silent VBox<cr>", { silent = true } },
+      { "L", "<C-v>l<esc><cmd>silent VBox<cr>", { silent = true } },
       { "f", "<cmd>VBox<cr>", { mode = "v" } },
       { "<Esc>", nil, { exit = true } },
     },
   })
+
+  -- vim.keymap.set("n", "w", "<C-v>h:VBox<cr>", { silent = true })
 end
 
 function M.init()
-  require("which-key").register({
-    ["<leader>V"] = { name = "[V]enn mode" },
-  })
+  -- require("which-key").register({
+  --   ["<leader>V"] = { name = "[V]enn mode" },
+  -- })
 end
 
 return M

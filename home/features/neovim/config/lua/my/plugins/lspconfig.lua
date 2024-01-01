@@ -4,7 +4,7 @@ local lspconfig = {
   "neovim/nvim-lspconfig",
   event = "BufReadPre",
   dependencies = {
-    "folke/neoconf.nvim",
+    "neoconf",
     {
       "folke/neodev.nvim",
       config = true,
@@ -26,59 +26,19 @@ local M = {
   },
 }
 
-function M.on_attach(client, bufnr)
+function M.on_attach(_, _) end
+function M.legacy_on_attach(_, bufnr)
   -- {{{ Keymap helpers
   local opts = function(desc)
     return { silent = true, desc = desc, buffer = bufnr }
   end
-
-  local nmap = function(from, to, desc)
-    vim.keymap.set("n", from, to, opts(desc))
-  end
-  -- }}}
-  -- {{{ Go to declaration / references / implementation
-  nmap("gd", vim.lsp.buf.definition, "[G]o to [d]efinition")
-  nmap("<leader>gi", vim.lsp.buf.implementation, "[G]o to [i]mplementation")
-  nmap("<leader>gr", vim.lsp.buf.references, "[G]o to [r]eferences")
-  -- }}}
-  -- {{{ Hover
-  -- Note: diagnostics are already covered in keymaps.lua
-  if client.supports_method("textDocument/hover") then
-    nmap("K", vim.lsp.buf.hover, "Hover")
-  end
-  nmap("L", vim.lsp.buf.signature_help, "Signature help")
   -- }}}
   -- {{{ Code actions
-  nmap("<leader>c", vim.lsp.buf.code_action, "[C]ode actions")
-  nmap("<leader>li", "<cmd>LspInfo<cr>", "[L]sp [i]nfo")
-
   local expropts = opts("[R]e[n]ame")
   expropts.expr = true
   vim.keymap.set("n", "<leader>rn", function()
     return ":IncRename " .. vim.fn.expand("<cword>")
   end, expropts)
-
-  vim.keymap.set(
-    "v",
-    "<leader>c",
-    ":'<,'> lua vim.lsp.buf.range_code_action()",
-    opts("[C]ode actions")
-  )
-  -- }}}
-  -- {{{ Workspace stuff
-  nmap(
-    "<leader>wa",
-    vim.lsp.buf.add_workspace_folder,
-    "[W]orkspace [A]dd Folder"
-  )
-  nmap(
-    "<leader>wr",
-    vim.lsp.buf.remove_workspace_folder,
-    "[W]orkspace [R]emove Folder"
-  )
-  nmap("<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, "[W]orkspace [L]ist Folders")
   -- }}}
 end
 
@@ -156,7 +116,7 @@ local servers = {
   -- }}}
   -- {{{ Nix
   rnix = {},
-  nil_ls = {},
+  -- nil_ls = {},
   nixd = {},
   -- }}}
   ---@diagnostic disable-next-line: missing-fields
@@ -185,21 +145,9 @@ M.capabilities = function()
   return c
 end
 -- }}}
--- {{{ Nice diagnostic icons
--- See https://github.com/folke/dot/blob/master/config/nvim/lua/config/plugins/lsp/diagnostics.lua
-local function diagnostics_icons()
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
-end
-
---}}}
 -- {{{ Main config function
 function lspconfig.config()
-  diagnostics_icons()
+  -- diagnostics_icons()
   -- -- {{{ Change on-hover borders
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
@@ -210,23 +158,22 @@ function lspconfig.config()
   local capabilities = M.capabilities()
   -- Setup basic language servers
   for lsp, details in pairs(servers) do
-    if details.on_attach == nil then
-      -- Default setting for on_attach
-      details.on_attach = M.on_attach
-    end
-
     require("lspconfig")[lsp].setup({
       on_attach = details.on_attach,
       settings = details.settings, -- Specific per-language settings
-      flags = {
-        debounce_text_changes = 150, -- This will be the default in neovim 0.7+
-      },
       cmd = details.cmd,
       capabilities = capabilities,
     })
   end
-end
 
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      M.legacy_on_attach(client, ev.buf)
+    end,
+  })
+end
 --}}}
 
 return M

@@ -100,7 +100,7 @@ function M.create_autocmd(opts)
 
   vim.api.nvim_create_autocmd(opts.event, {
     group = vim.api.nvim_create_augroup(opts.group, {}),
-    pattern = opts.pattern,
+    pattern = H.with_default("*", opts.pattern),
     callback = callback,
   })
 end
@@ -118,6 +118,7 @@ local function recursive_assign(source, destination)
 end
 
 function M.configure(opts, context)
+  -- {{{ Construct opts & context
   if type(opts) == "function" then
     opts = opts(context)
   end
@@ -130,11 +131,20 @@ function M.configure(opts, context)
   if type(opts.mkContext) == "function" then
     context = opts.mkContext(context)
   end
+  -- }}}
+
+  if
+    opts.cond == false
+    or type(opts.cond) == "function" and opts.cond(context) == false
+  then
+    return
+  end
 
   if type(opts.vim) == "table" then
     recursive_assign(opts.vim, vim)
   end
 
+  -- {{{ Keybinds
   if type(opts.keys) == "function" then
     opts.keys = opts.keys(context)
   end
@@ -151,7 +161,8 @@ function M.configure(opts, context)
       M.set_keymap(keymap, context)
     end
   end
-
+  -- }}}
+  -- {{{ Autocmds
   if type(opts.autocmds) == "function" then
     opts.autocmds = opts.autocmds(context)
   end
@@ -160,7 +171,7 @@ function M.configure(opts, context)
     local autocmds = opts.autocmds
 
     -- Detect single autocmd passed instead of array
-    if autocmds.pattern ~= nil then
+    if autocmds.event ~= nil then
       autocmds = { autocmds }
     end
 
@@ -168,7 +179,8 @@ function M.configure(opts, context)
       M.create_autocmd(autocmd)
     end
   end
-
+  -- }}}
+  -- {{{ .setup calls
   if type(opts.setup) == "table" then
     for key, arg in pairs(opts.setup) do
       require(key).setup(arg)
@@ -187,10 +199,16 @@ function M.configure(opts, context)
       module.setup(context.opts)
     end
   end
-
+  -- }}}
+  -- {{{ Callbacks
   if type(opts.callback) == "function" then
     opts.callback(context)
   end
+
+  if type(opts.callback) == "table" then
+    M.configure(opts.callback, context)
+  end
+  -- }}}
 end
 
 function M.configureMany(specs, context)
