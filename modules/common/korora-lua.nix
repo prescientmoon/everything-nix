@@ -86,7 +86,7 @@ let
     mkAttrName = s:
       let
         # These list *are* incomplete
-        forbiddenChars = lib.stringToCharacters "<>[]{}()'\".,:;";
+        forbiddenChars = lib.stringToCharacters "<>[]{}()'\".,:;\\/";
         keywords = [ "if" "then" "else" "do" "for" "local" "" ];
       in
       if lib.any (c: lib.hasInfix c s) forbiddenChars || lib.elem s keywords then

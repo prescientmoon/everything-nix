@@ -1,4 +1,4 @@
-local H = require("my.helpers.theme")
+local H = require("my.tempest")
 
 local M = {
   "uloco/bluloco.nvim",
@@ -12,7 +12,7 @@ function M.config()
 
   bluloco.setup({
     transparent = H.theme.opacity.terminal < 1.0,
-    style = H.variant("Bluloco"),
+    style = H.theme_variant("Bluloco"),
   })
 
   vim.cmd("colorscheme bluloco")

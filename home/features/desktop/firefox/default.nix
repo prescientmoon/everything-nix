@@ -266,38 +266,13 @@ in
     # {{{ Standalone "apps" which actually run inside a browser.
     apps.extensions = extensions;
     apps.app = {
-      # {{{ Job stuff
-      # {{{ Asana
-      asana = {
-        url = "https://app.asana.com/";
-        icon = ./icons/asana.png;
-        displayName = "Asana";
-        id = 1;
-      };
-      # }}}
-      # {{{ Clockodo
-      clockodo = {
-        url = "https://my.clockodo.com/en/";
-        icon = ./icons/clockodo.png;
-        displayName = "Clockodo";
-        id = 2;
-      };
-      # }}}
-      # }}}
-      # {{{ Gitlab
-      gitlab = {
-        url = "https://gitlab.com";
-        icon = ./icons/gitlab.png;
-        displayName = "Gitlab";
-        id = 3;
-      };
-      # }}}
+      # TODO: auto increment ids
       # {{{ Desmos
       desmos = {
         url = "https://www.desmos.com/calculator";
         icon = ./icons/desmos.png;
         displayName = "Desmos";
-        id = 4;
+        id = 1;
       };
       # }}}
       # {{{ Monkey type
@@ -305,7 +280,7 @@ in
         url = "https://monkeytype.com/";
         icon = ./icons/monkeytype.png;
         displayName = "Monkeytype";
-        id = 5;
+        id = 2;
       };
       # }}}
       # {{{ Syncthing
@@ -313,12 +288,18 @@ in
         url = "http://localhost:8384/";
         icon = ./icons/syncthing.png;
         displayName = "Syncthing";
-        id = 6;
+        id = 3;
       };
       # }}}
     };
     # }}}
   };
+
+  # TODO: uncomment when using newer version
+  # stylix.targets.firefox = {
+  #   enable = true;
+  #   profileNames = [ "adrielus" "desmos" "monkey-type" "syncthing" ];
+  # };
 
   # {{{ Make firefox the default
   # Use firefox as the default browser to open stuff.

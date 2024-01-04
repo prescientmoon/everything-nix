@@ -31,6 +31,10 @@ function fish_user_key_bindings
   bind -M default \cx "clear && commandline -f repaint"
   bind -M insert  \cx "clear && commandline -f repaint"
   # }}}
+  # {{{ C-z to run `fg`
+  bind -M default \cz "fg && commandline -f repaint"
+  bind -M insert  \cz "fg && commandline -f repaint"
+  # }}}
   # {{{ C-enter to run command through less
   bind -M default \e\[13\;2u "commandline -a ' | less' && commandline -f execute"
   bind -M insert  \e\[13\;2u "commandline -a ' | less' && commandline -f execute"

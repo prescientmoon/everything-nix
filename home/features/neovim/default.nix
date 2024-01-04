@@ -14,8 +14,8 @@ let
       # {{{ Pre-plugin config
       pre = {
         # {{{ General options
-        "0:general-options".vim = {
-          g = {
+        "0:general-options" = {
+          vim.g = {
             # Disable filetype.vim
             do_filetype_lua = true;
             did_load_filetypes = false;
@@ -24,7 +24,7 @@ let
             mapleader = " ";
           };
 
-          opt = {
+          vim.opt = {
             # Basic options
             joinspaces = false; # No double spaces with join (mapped to qj in my config)
             list = true; # Show some invisible characters
@@ -67,12 +67,13 @@ let
             # }}}
           };
 
-          # Disable pseudo-transparency;
+          # {{{Disable pseudo-transparency;
           autocmds = {
             event = "FileType";
             group = "WinblendSettings";
             action.vim.opt.winblend = 0;
           };
+          #  }}}
         };
         # }}}
         # {{{ Misc keybinds
@@ -135,7 +136,7 @@ let
               (nmap "Q" ":wqa<cr>" "Save all files and [q]uit")
               (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
               (nmap "<leader>sw"
-                (lua ''require("my.helpers.wrapMovement").toggle'')
+                (lua ''require("my.helpers.wrap").toggle'')
                 "toggle word [w]rap")
               # }}}
             ];
@@ -156,7 +157,7 @@ let
               event = "FileType";
               pattern = [ "markdown" "typst" "tex" ];
               group = "EnableWrapMovement";
-              action = lua ''require("my.helpers.wrapMovement").enable'';
+              action = lua ''require("my.helpers.wrap").enable'';
             }
             # }}}
           ];
@@ -177,51 +178,61 @@ let
           }
         ];
         # }}}
-        # {{{ Lsp on-attach
-        "3:lsp-on-attach".autocmds = {
-          event = "LspAttach";
-          group = "UserLspConfig";
-          action =
-            let nmap = mapping: action: desc:
-              nlib.nmap mapping
-                (lua "vim.lsp.buf.${action}")
-                desc;
-            in
-            {
-              mkContext = event: {
-                bufnr = lua "${event}.buf";
-                client = lua /* lua */
-                  "vim.lsp.get_client_by_id(${event}.data.client_id)";
+        # {{{ Lsp settings
+        "3:lsp-settings" = {
+          # {{{ Change lsp on-hover borders
+          vim.lsp.handlers."textDocument/hover" = lua
+            ''vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })'';
+          vim.lsp.handlers."textDocument/signatureHelp" = lua
+            ''vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })'';
+          # }}}
+          # {{{ Create on-attach keybinds
+          autocmds = {
+            event = "LspAttach";
+            group = "UserLspConfig";
+            action =
+              let nmap = mapping: action: desc:
+                nlib.nmap mapping
+                  (lua "vim.lsp.buf.${action}")
+                  desc;
+              in
+              {
+                mkContext = event: {
+                  bufnr = lua "${event}.buf";
+                  client = lua /* lua */
+                    "vim.lsp.get_client_by_id(${event}.data.client_id)";
+                };
+                keys = [
+                  (nlib.nmap "<leader>li" "<cmd>LspInfo<cr>" "[L]sp [i]nfo")
+                  (nmap "gd" "definition" "[G]o to [d]efinition")
+                  (nmap "<leader>gi" "implementation" "[G]o to [i]mplementation")
+                  (nmap "<leader>gr" "references" "[G]o to [r]eferences")
+                  (nmap "L" "signature_help" "Signature help")
+                  (nmap "<leader>c" "code_action" "[C]ode actions")
+                  (keymap "v" "<leader>c" ":'<,'> lua vim.lsp.buf.range_code_action()" "[C]ode actions")
+                  (nmap "<leader>wa" "add_workspace_folder" "[W]orkspace [A]dd Folder")
+                  (nmap "<leader>wr" "remove_workspace_folder" "[W]orkspace [R]emove Folder")
+                  (nlib.nmap "<leader>wl"
+                    (thunk /* lua */ ''
+                      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                    '') "[W]orkspace [L]ist Folders")
+                ];
+                callback = {
+                  cond = ctx: lua ''
+                    return ${ctx}.client.supports_method("textDocument/hover")
+                  '';
+                  keys = nmap "K" "hover" "Hover";
+                };
               };
-              keys = [
-                (nlib.nmap "<leader>li" "<cmd>LspInfo<cr>" "[L]sp [i]nfo")
-                (nmap "gd" "definition" "[G]o to [d]efinition")
-                (nmap "<leader>gi" "implementation" "[G]o to [i]mplementation")
-                (nmap "<leader>gr" "references" "[G]o to [r]eferences")
-                (nmap "L" "signature_help" "Signature help")
-                (nmap "<leader>c" "code_action" "[C]ode actions")
-                (keymap "v" "<leader>c" ":'<,'> lua vim.lsp.buf.range_code_action()" "[C]ode actions")
-                (nmap "<leader>wa" "add_workspace_folder" "[W]orkspace [A]dd Folder")
-                (nmap "<leader>wr" "remove_workspace_folder" "[W]orkspace [R]emove Folder")
-                (nlib.nmap "<leader>wl"
-                  (thunk /* lua */ ''
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                  '') "[W]orkspace [L]ist Folders")
-              ];
-              callback = {
-                cond = ctx: lua ''
-                  return ${ctx}.client.supports_method("textDocument/hover")
-                '';
-                keys = nmap "K" "hover" "Hover";
-              };
-            };
+          };
+          # }}}
         };
         # }}}
         # {{{ Neovide config
         "4:configure-neovide" = {
           cond = whitelist "neovide";
           vim.g = {
-            neovide_transparency = lua ''require("my.helpers.theme").theme.opacity.applications'';
+            neovide_transparency = lua ''D.tempest.theme.opacity.applications'';
             neovide_cursor_animation_length = 0.04;
             neovide_cursor_animate_in_insert_mode = false;
           };
@@ -231,7 +242,7 @@ let
         "5:language-specific-settings".autocmds = [{
           event = "FileType";
           group = "UserNixSettings";
-          pattern = "*.nix";
+          pattern = "nix";
           action = {
             vim.opt.commentstring = "# %s";
             keys = {
@@ -1036,6 +1047,26 @@ let
           cond = blacklist "vscode";
           event = [ "InsertEnter" "CmdlineEnter" ];
           config = importFrom ./plugins/cmp.lua "config";
+        };
+        # }}}
+        # {{{ inc-rename
+        inc-rename = {
+          package = "smjonas/inc-rename.nvim";
+          dependencies.lua = [ self.lazy.dressing.package ];
+
+          cond = blacklist "vscode";
+          event = "BufReadPost";
+
+          opts.input_buffer_type = "dressing";
+          config.autocmds = {
+            event = "LspAttach";
+            group = "CreateIncRenameKeybinds";
+            action.keys = {
+              mapping = "<leader>rn";
+              action = ":IncRename <c-r><c-w>";
+              desc = "Incremenetal [r]e[n]ame";
+            };
+          };
         };
         # }}}
         # }}}

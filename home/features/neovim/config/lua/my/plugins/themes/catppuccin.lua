@@ -1,4 +1,4 @@
-local H = require("my.helpers.theme")
+local H = require("my.tempest")
 
 local M = {
   "catppuccin/nvim",
@@ -9,7 +9,7 @@ local M = {
 
 function M.config()
   local catppuccin = require("catppuccin")
-  vim.g.catppuccin_flavour = H.variant("Catppuccin")
+  vim.g.catppuccin_flavour = H.theme_variant("Catppuccin")
 
   catppuccin.setup({
     transparent_background = H.theme.transparent.terminal,

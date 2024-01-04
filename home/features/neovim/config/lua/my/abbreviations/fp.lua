@@ -13,6 +13,7 @@ M.types = {
   { "tlis", "List" },
   { "tmay", "Maybe" },
   { "teff", "Effect" },
+  { "tio", "IO" },
   { "taff", "Aff" },
   { "tnea", "NonEmptyArray" },
 }

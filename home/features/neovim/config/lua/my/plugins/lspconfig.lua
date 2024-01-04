@@ -9,38 +9,11 @@ local lspconfig = {
       "folke/neodev.nvim",
       config = true,
     },
-    "simrat39/rust-tools.nvim",
   },
   cond = runtime.blacklist("vscode"),
 }
 
-local M = {
-  lspconfig,
-  {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    opts = {
-      input_buffer_type = "dressing",
-    },
-    cond = runtime.blacklist("vscode"),
-  },
-}
-
-function M.on_attach(_, _) end
-function M.legacy_on_attach(_, bufnr)
-  -- {{{ Keymap helpers
-  local opts = function(desc)
-    return { silent = true, desc = desc, buffer = bufnr }
-  end
-  -- }}}
-  -- {{{ Code actions
-  local expropts = opts("[R]e[n]ame")
-  expropts.expr = true
-  vim.keymap.set("n", "<leader>rn", function()
-    return ":IncRename " .. vim.fn.expand("<cword>")
-  end, expropts)
-  -- }}}
-end
+local M = lspconfig
 
 -- {{{ General server config
 ---@type lspconfig.options
@@ -147,32 +120,17 @@ end
 -- }}}
 -- {{{ Main config function
 function lspconfig.config()
-  -- diagnostics_icons()
-  -- -- {{{ Change on-hover borders
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
   vim.lsp.handlers["textDocument/signatureHelp"] =
     vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
-  -- -- }}}
+  -- }}}
 
   local capabilities = M.capabilities()
-  -- Setup basic language servers
   for lsp, details in pairs(servers) do
-    require("lspconfig")[lsp].setup({
-      on_attach = details.on_attach,
-      settings = details.settings, -- Specific per-language settings
-      cmd = details.cmd,
-      capabilities = capabilities,
-    })
+    details.capabilities = capabilities
+    require("lspconfig")[lsp].setup(details)
   end
-
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
-      local client = vim.lsp.get_client_by_id(ev.data.client_id)
-      M.legacy_on_attach(client, ev.buf)
-    end,
-  })
 end
 --}}}
 

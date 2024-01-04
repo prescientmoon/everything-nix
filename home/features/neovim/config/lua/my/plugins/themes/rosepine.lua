@@ -1,4 +1,4 @@
-local H = require("my.helpers.theme")
+local H = require("my.tempest")
 
 local M = {
   "rose-pine/neovim",
@@ -8,7 +8,7 @@ local M = {
 }
 
 function M.config()
-  local variant = H.variant("Rosé Pine")
+  local variant = H.theme_variant("Rosé Pine")
 
   if variant == "dawn" then
     vim.o.background = "light"
