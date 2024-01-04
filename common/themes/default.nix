@@ -1,7 +1,7 @@
 { inputs, ... }:
 let
   transparency = amount: {
-    desktop = 1.0;
+    desktop = amount;
     applications = amount;
     terminal = amount;
     popups = amount;

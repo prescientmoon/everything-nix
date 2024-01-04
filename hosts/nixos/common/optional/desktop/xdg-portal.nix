@@ -3,7 +3,7 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    configPackages = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   environment.systemPackages = [ pkgs.xdg-utils ];

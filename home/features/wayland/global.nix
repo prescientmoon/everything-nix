@@ -3,6 +3,7 @@
   imports = [
     ./wlsunset.nix
     ./wlogout.nix
+    ./waybar.nix
     ./anyrun.nix
 
     ../desktop
