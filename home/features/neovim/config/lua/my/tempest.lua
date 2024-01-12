@@ -276,6 +276,14 @@ function M.prepareLazySpec(spec)
       end
     end
 
+    local initType = type(module.init)
+    if initType == "function" or initType == "table" then
+      local previousInit = module.init
+      module.init = function(lazy, opts)
+        M.configure(previousInit, { lazy = lazy, opts = opts })
+      end
+    end
+
     if module.keys ~= nil then
       if type(module.keys) == "string" or module.keys.mapping ~= nil then
         module.keys = { module.keys }

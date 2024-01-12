@@ -1274,7 +1274,7 @@ let
           cond = blacklist "vscode";
           ft = "hypr";
 
-          config.autocmds = {
+          init.autocmds = {
             event = "BufRead";
             group = "DetectHyprlandConfig";
             pattern = "hyprland.conf";

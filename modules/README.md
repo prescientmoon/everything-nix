@@ -12,12 +12,14 @@ This directory contains custom module definitions used throughout my config.
 
 ## Common modules
 
-| Name                                            | Attribute                   | Description                                         | Dependencies                              |
-| ----------------------------------------------- | --------------------------- | --------------------------------------------------- | ----------------------------------------- |
-| [lua-colorscheme](./common/lua-colorscheme.nix) | `satellite.colorscheme.lua` | Base16 theme to lua module generation               | [stylix](https://github.com/danth/stylix) |
-| [lua-encoders](./common/lua-encoders.nix)       | `satellite.lib.lua`         | Combinators for generating lua code from nix values |                                           |
-| [theming](./common/theming.nix)                 | `satellite.theming`         | Base16 theming helpers and configuration            | [stylix](https://github.com/danth/stylix) |
-| [toggles](./common/toggles.nix)                 | `satellite.toggles`         | Generic interface for feature flags                 |                                           |
+| Name                                            | Attribute                   | Description                              | Dependencies                                   |
+| ----------------------------------------------- | --------------------------- | ---------------------------------------- | ---------------------------------------------- |
+| [lua-colorscheme](./common/lua-colorscheme.nix) | `satellite.colorscheme.lua` | Base16 theme to lua module generation    | [stylix](https://github.com/danth/stylix)      |
+| [lua-lib](./common/lua-lib.nix)                 | `satellite.lib.lua`         | Helpers for working with lua code        |                                                |
+| [korora-lua](./common/korora-lua.nix)           | -                           | Nix -> lua encoder                       | [korora](https://github.com/adisbladis/korora) |
+| [korora-neovim](./common/korora-neovim.nix)     | -                           | Nix -> neovim config helpers             | [korora](https://github.com/adisbladis/korora) |
+| [theming](./common/theming.nix)                 | `satellite.theming`         | Base16 theming helpers and configuration | [stylix](https://github.com/danth/stylix)      |
+| [toggles](./common/toggles.nix)                 | `satellite.toggles`         | Generic interface for feature flags      |                                                |
 
 ## Nixos modules
 

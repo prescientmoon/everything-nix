@@ -1,6 +1,5 @@
 # Lua file containing the current colorscheme.
-# TODO: use the lua encoders I've written for neovim
-{ lib, config, ... }: {
+{ lib, config, inputs, ... }: {
   options.satellite.colorscheme.lua = lib.mkOption {
     type = lib.types.lines;
     description = "Lua file containing the current colorscheme";
@@ -8,6 +7,11 @@
 
   config.satellite.colorscheme.lua =
     let
+      e = import ./korora-lua.nix {
+        inherit lib;
+        korora = inputs.korora.lib;
+      };
+
       theme = {
         name = config.lib.stylix.scheme.scheme;
         base00 = config.lib.stylix.scheme.base00;
@@ -52,5 +56,5 @@
         };
       };
     in
-    config.satellite.lib.lua.encoders.anything theme;
+    e.encode theme;
 }

@@ -60,7 +60,7 @@ let
           }
           [ ];
         cond = types.oneOrMany types.luaLiteral;
-        init = types.luaLiteral;
+        init = k.union [ types.luaLiteral types.tempestConfig ];
         config = k.union [ types.luaLiteral k.bool types.tempestConfig ];
         event = types.oneOrMany k.string;
         cmd = types.oneOrMany k.string;
