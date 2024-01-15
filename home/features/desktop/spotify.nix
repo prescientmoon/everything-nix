@@ -48,5 +48,13 @@ in
     ];
   };
 
-  # TODO: persistence
+  # {{{ Persistence
+  satellite.persistence.at.state.apps.spotify.directories = [
+    "${config.xdg.configHome}/spotify"
+  ];
+
+  satellite.persistence.at.cache.apps.spotify.directories = [
+    "${config.xdg.cacheHome}/spotify"
+  ];
+  # }}}
 }
