@@ -12,10 +12,9 @@ in
   boot.initrd.systemd.mounts = [{
     where = "/hermes";
     what = "/dev/sdb";
-    type = "exfat";
 
     # The usb contains sensitive data that should only be readable to root
-    mountConfig.DirectoryMode = "0750";
+    # mountConfig.DirectoryMode = "0750";
 
     wantedBy = [ "zfs-import.target" ];
     before = [ "zfs-import.target" ];
