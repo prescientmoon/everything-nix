@@ -9,7 +9,7 @@ in
   boot.kernelParams = [ "nohibernate" ];
 
   # {{{ Mount usb for zfs secrets
-  boot.initrd.systemd.mounts.hermes = {
+  boot.initrd.systemd.mounts = [{
     where = "/hermes";
     what = "/dev/sdb";
     type = "exfat";
@@ -19,7 +19,7 @@ in
 
     wantedBy = [ "zfs-import.target" ];
     before = [ "zfs-import.target" ];
-  };
+  }];
   # }}}
 
   boot.initrd.systemd.services = {
