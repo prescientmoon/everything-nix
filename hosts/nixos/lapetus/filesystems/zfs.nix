@@ -16,9 +16,8 @@
           RemainAfterExit = true;
         };
         unitConfig.DefaultDependencies = "no";
-        wantedBy = [ "initrd.target" ];
-        before = [ "zfs-mount.service" ];
-        after = [ "zfs-import.target" ];
+        wantedBy = [ "zfs-import.target" ];
+        before = [ "zfs-import.target" ];
         script = ''
           MOUNTPOINT="${secretMountpoint}"
           USB="/dev/sdb"
