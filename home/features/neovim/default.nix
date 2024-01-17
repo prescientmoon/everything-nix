@@ -1328,7 +1328,9 @@ let
         # }}}
         # {{{ obsidian
         obsidian =
-          let vault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum";
+          let
+            vault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum";
+            dateFormat = "%Y-%m-%d";
           in
           {
             package = "epwalsh/obsidian.nvim";
@@ -1346,9 +1348,17 @@ let
             opts = {
               dir = vault;
               notes_subdir = "chaos";
+
               daily_notes = {
                 folder = "daily";
-                date_format = "%Y-%m-%d";
+                date_format = dateFormat;
+                template = "New daily note.md";
+              };
+
+              templates = {
+                subdir = "templates";
+                date_format = dateFormat;
+                time_format = "%H:%M";
               };
 
               completion = {

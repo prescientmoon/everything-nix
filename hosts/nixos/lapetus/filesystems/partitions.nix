@@ -9,10 +9,11 @@
           type = "table";
           format = "gpt";
           partitions = [
+            # {{{ Boot
             {
               name = "ESP";
               start = "0";
-              end = "64MiB";
+              end = "512MiB";
               fs-type = "fat32";
               bootable = true;
               content = {
@@ -21,15 +22,18 @@
                 mountpoint = "/boot";
               };
             }
+            # }}}
+            # {{{ Main
             {
               name = "zfs";
-              start = "128MiB";
+              start = "1GiB";
               end = "100%";
               content = {
                 type = "zfs";
                 pool = "zroot";
               };
             }
+            # }}}
           ];
         };
       };
@@ -43,7 +47,6 @@
 
         postCreateHook = ''
           zfs snapshot zroot@blank
-          zfs set keylocation="prompt" "zroot";
         '';
 
         rootFsOptions = {
@@ -51,7 +54,7 @@
           "com.sun:auto-snapshot" = "false";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "file:///tmp/secret.key";
+          keylocation = "file:///hermes/secrets/lapetus/disk.key";
         };
 
         # {{{ Datasets

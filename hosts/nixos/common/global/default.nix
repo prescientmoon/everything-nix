@@ -46,6 +46,9 @@ in
   services.journald.extraConfig = lib.mkDefault ''
     SystemMaxUse=256M
   '';
+
+  # Boot using systemd
+  boot.initrd.systemd.enable = true;
   # }}}
 
   nixpkgs = {

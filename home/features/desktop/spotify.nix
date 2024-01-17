@@ -2,10 +2,10 @@
 let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
   themeMap = lib.fix (self: {
-    "Catppuccin Mocha" = spicePkgs.themes.catppuccin;
-    "Catppuccin Latte" = spicePkgs.themes.catppuccin;
-    "Catppuccin Frappe" = spicePkgs.themes.catppuccin;
-    "Catppuccin Macchiato" = spicePkgs.themes.catppuccin;
+    "Catppuccin Mocha" = spicePkgs.themes.Comfy;
+    "Catppuccin Latte" = spicePkgs.themes.Comfy;
+    "Catppuccin Frappe" = spicePkgs.themes.Comfy;
+    "Catppuccin Macchiato" = spicePkgs.themes.Comfy;
 
     default.light = self."Catppuccin Latte";
     default.dark = self."Catppuccin Macchiato";
@@ -42,7 +42,9 @@ in
       wikify # Shows an artist's wikipedia entry
       songStats
       showQueueDuration
-      genre
+      # REASON: broken
+      # https://github.com/the-argus/spicetify-nix/issues/50
+      # genre
       adblock
       savePlaylists # Adds a button to duplicate playlists
     ];
