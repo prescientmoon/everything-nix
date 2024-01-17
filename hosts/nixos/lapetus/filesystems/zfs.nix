@@ -9,7 +9,7 @@ in
   boot.kernelParams = [ "nohibernate" ];
 
   # {{{ Mount usb for zfs secrets
-  boot.initrd.systemd.systemd.mounts.hermes = {
+  boot.initrd.systemd.mounts.hermes = {
     where = "/hermes";
     what = "/dev/sdb";
     type = "exfat";
