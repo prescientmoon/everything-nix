@@ -2,9 +2,7 @@
 {
   imports = [
     ./zfs.nix
-    (import ./partitions.nix {
-      disks = [ "/dev/sda" ];
-    })
+    (import ./partitions.nix { })
   ];
 
   # Mark a bunch of paths as needed for boot
