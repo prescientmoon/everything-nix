@@ -19,7 +19,7 @@ in
     environment = {
       WHOOGLE_UPDATE_CHECK = "0";
       WHOOGLE_CONFIG_DISABLE = "0";
-      WHOOGLE_CONFIG_BLOCK = lib.concatStringsSep websiteBlocklist;
+      WHOOGLE_CONFIG_BLOCK = lib.concatStringsSep "," websiteBlocklist;
       WHOOGLE_CONFIG_THEME = "system";
     };
   };
