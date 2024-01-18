@@ -47,38 +47,34 @@
 
         postCreateHook = ''
           zfs snapshot zroot@blank
+          zfs set keylocation="prompt" "zroot";
         '';
 
         rootFsOptions = {
           compression = "lz4";
           "com.sun:auto-snapshot" = "false";
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "file:///hermes/secret.key";
         };
 
         # {{{ Datasets
         datasets = {
-          "secure" = {
-            type = "zfs_fs";
-            options = {
-              encryption = "aes-256-gcm";
-              keyformat = "passphrase";
-              keylocation = "file:///hermes/secrets/lapetus/disk.key";
-            };
-          };
-          "secure/persist/data" = {
+          "root/persist/data" = {
             type = "zfs_fs";
             mountpoint = "/persist/data";
             options."com.sun:auto-snapshot" = "true";
           };
-          "secure/persist/state" = {
+          "root/persist/state" = {
             type = "zfs_fs";
             mountpoint = "/persist/state";
             options."com.sun:auto-snapshot" = "true";
           };
-          "secure/local/nix" = {
+          "root/local/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
           };
-          "secure/local/cache" = {
+          "root/local/cache" = {
             type = "zfs_fs";
             mountpoint = "/persist/local/cache";
           };
