@@ -1,6 +1,5 @@
 #!/usr/bin/env nix-shell
 #!nix-shell ../devshells/bootstrap/shell.nix
-#!nix shell disko
 #!nix-shell -i bash
 
 # Check if at least one argument is provided
@@ -22,25 +21,25 @@ if [ "$#" != "1" ] && [ "$2" != "install" ] && [ "$2" != "enter" ]; then
 fi
 
 echo "Mounting keys"
-sudo mkdir /hermes
-sudo mount /dev/disk/by-uuid/7FE7-CA68 /hermes
+mkdir /hermes
+mount /dev/disk/by-uuid/7FE7-CA68 /hermes
 
 echo "Running disko"
 
-if [ "$1" -eq "mount" ]; then
-  sudo zpool import -lfR /mnt zroot
+if [ "$1" = "mount" ]; then
+  zpool import -lfR /mnt zroot
 fi
 
-sudo disko --mode $1 ./hosts/nixos/lapetus/filesystems/partitions.nix
+nix run disko --mode $1 ./hosts/nixos/lapetus/filesystems/partitions.nix
 
 if [ "$2" = "install" ]; then
   echo "Installing nixos"
-  sudo nixos-install --flake ".#lapetus"
+  nixos-install --flake ".#lapetus"
 fi
 
 if [ "$2" = "enter" ]; then
   echo "Entering nixos"
-  sudo nixos-enter --root /mnt
+  nixos-enter --root /mnt
 fi
 
 echo "All done!"
