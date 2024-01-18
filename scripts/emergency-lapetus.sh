@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell ./devshells/bootstrap/shell.nix
+#!nix-shell ../devshells/bootstrap/shell.nix
 #!nix shell disko
 #!nix-shell -i bash
 
