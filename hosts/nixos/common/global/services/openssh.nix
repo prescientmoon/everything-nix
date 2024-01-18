@@ -62,4 +62,7 @@ in
         (_: { publicKeyFile, ... }: builtins.pathExists publicKeyFile))
     ];
   };
+
+  # Makes it easy to copy host keys at install time without messing up permissions
+  systemd.tmpfiles.rules = [ "d /persist/state/etc/ssh" ];
 }

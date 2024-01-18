@@ -5,6 +5,7 @@
     ../common/optional/services/slambda.nix
 
     ./services/syncthing.nix
+    ./services/whoogle.nix
     ./filesystems
     ./hardware
   ];

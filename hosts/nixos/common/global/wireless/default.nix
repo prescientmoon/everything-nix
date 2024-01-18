@@ -56,4 +56,8 @@
     # TODO: investigate why this doesn't work
     # "/etc/wpa_supplicant.conf"
   ];
+
+
+  # The service seems to fail if this file does not exist
+  systemd.tmpfiles.rules = [ "f /etc/wpa_supplicant.conf" ];
 }
