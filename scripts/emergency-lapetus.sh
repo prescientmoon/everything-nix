@@ -1,3 +1,8 @@
+#!/usr/bin/env nix-shell
+#!nix-shell ./devshells/bootstrap/shell.nix
+#!nix shell disko
+#!nix-shell -i bash
+
 # Check if at least one argument is provided
 if [ "$#" -eq 0 ]; then
     echo "Usage: $0 <disko-mode> [action]"
@@ -15,10 +20,6 @@ if [ "$#" != "1" ] && [ "$2" != "install" ] && [ "$2" != "enter" ]; then
     echo "Action must either be empty, 'install' or 'enter'"
     exit 1
 fi
-
-echo "Entering shells..."
-exec nix-shell ./devshells/bootstrap/shell.nix
-exec nix shell disko
 
 echo "Mounting keys"
 sudo mkdir /hermes
