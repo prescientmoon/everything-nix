@@ -55,7 +55,7 @@
           "com.sun:auto-snapshot" = "false";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "file:///hermes/secret.key";
+          keylocation = "file:///hermes/secrets/lapetus/disk.key";
         };
 
         # {{{ Datasets
