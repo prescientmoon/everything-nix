@@ -30,7 +30,7 @@ if [ "$1" = "mount" ]; then
   zpool import -lfR /mnt zroot
 fi
 
-nix run disko --mode $1 ./hosts/nixos/lapetus/filesystems/partitions.nix
+nix run disko -- --mode $1 ./hosts/nixos/lapetus/filesystems/partitions.nix
 
 if [ "$2" = "install" ]; then
   echo "Installing nixos"
