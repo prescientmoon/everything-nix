@@ -52,28 +52,30 @@
         rootFsOptions = {
           compression = "lz4";
           "com.sun:auto-snapshot" = "false";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///hermes/secrets/lapetus/disk.key";
         };
 
         # {{{ Datasets
         datasets = {
-          "root/persist/data" = {
+          "secure" = {
+            encryption = "aes-256-gcm";
+            keyformat = "passphrase";
+            keylocation = "file:///hermes/secrets/lapetus/disk.key";
+          };
+          "secure/persist/data" = {
             type = "zfs_fs";
             mountpoint = "/persist/data";
             options."com.sun:auto-snapshot" = "true";
           };
-          "root/persist/state" = {
+          "secure/persist/state" = {
             type = "zfs_fs";
             mountpoint = "/persist/state";
             options."com.sun:auto-snapshot" = "true";
           };
-          "root/local/nix" = {
+          "secure/local/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
           };
-          "root/local/cache" = {
+          "secure/local/cache" = {
             type = "zfs_fs";
             mountpoint = "/persist/local/cache";
           };

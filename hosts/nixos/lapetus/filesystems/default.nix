@@ -8,8 +8,9 @@
   # Mark a bunch of paths as needed for boot
   fileSystems = lib.attrsets.genAttrs
     [ "/" "/nix" "/persist/data" "/persist/state" "/persist/local/cache" "/boot" ]
-    (_: {
+    (p: {
       neededForBoot = true;
-      depends = [ "/hermes" ];
+      # We need the extra check to allow nix to topologically sort everything
+      depends = lib.mkIf (p != "/") [ "/hermes" ];
     });
 }
