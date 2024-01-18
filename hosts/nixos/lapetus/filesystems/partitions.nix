@@ -57,9 +57,12 @@
         # {{{ Datasets
         datasets = {
           "secure" = {
-            encryption = "aes-256-gcm";
-            keyformat = "passphrase";
-            keylocation = "file:///hermes/secrets/lapetus/disk.key";
+            type = "zfs_fs";
+            options = {
+              encryption = "aes-256-gcm";
+              keyformat = "passphrase";
+              keylocation = "file:///hermes/secrets/lapetus/disk.key";
+            };
           };
           "secure/persist/data" = {
             type = "zfs_fs";
