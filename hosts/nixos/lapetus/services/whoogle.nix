@@ -12,7 +12,7 @@ in
   imports = [ ../../common/optional/podman.nix ];
 
   networking.firewall.allowedTCPPorts = [ port ];
-  virtualisation.oci-containers.whoogle-search = {
+  virtualisation.oci-containers.containers.whoogle-search = {
     image = "benbusby/whoogle-search";
     autoStart = true;
     ports = "${toString port}:5000"; # server:docker
