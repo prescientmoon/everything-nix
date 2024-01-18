@@ -15,7 +15,7 @@ in
   virtualisation.oci-containers.containers.whoogle-search = {
     image = "benbusby/whoogle-search";
     autoStart = true;
-    ports = "${toString port}:5000"; # server:docker
+    ports = [ "${toString port}:5000" ]; # server:docker
     environment = {
       WHOOGLE_UPDATE_CHECK = "0";
       WHOOGLE_CONFIG_DISABLE = "0";
