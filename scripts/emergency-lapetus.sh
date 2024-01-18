@@ -20,9 +20,13 @@ if [ "$#" != "1" ] && [ "$2" != "install" ] && [ "$2" != "enter" ]; then
     exit 1
 fi
 
-echo "Mounting keys"
-mkdir /hermes
-mount /dev/disk/by-uuid/7FE7-CA68 /hermes
+if mountpoint -q /hermes; then 
+  echo "Keys already mounted"
+else
+  echo "Mounting keys"
+  mkdir -p /hermes
+  mount /dev/disk/by-uuid/7FE7-CA68 /hermes
+fi
 
 echo "Running disko"
 
