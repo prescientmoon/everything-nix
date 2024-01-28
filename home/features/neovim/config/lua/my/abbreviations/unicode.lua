@@ -111,19 +111,20 @@ M.unicode = {
   { "Theta", "Θ" },
   { "iota", "ι" },
   { "kappa", "κ" },
-  { "lambda", "λ" },
-  { "Lambda", "Λ" },
+  { "lam", "λ" },
+  { "Lam", "Λ" },
   { "mu", "μ" },
   { "nu", "ν" },
   { "xi", "ξ" },
   { "pi", "π" },
   { "Pi", "∏" },
   { "rho", "ρ" },
-  { "sigma", "ς" },
+  { "sigma", "σ" },
   { "Sigma", "Σ" },
   { "tau", "τ" },
   { "upsilon", "υ" },
   { "phi", "ϕ" },
+  { "ophi", "φ" }, -- open phi?
   { "Phi", "Φ" },
   { "chi", "χ" },
   { "psi", "ψ" },
@@ -133,10 +134,13 @@ M.unicode = {
   -- }}}
   -- {{{ Common symbols
   { "iinf", "∞" },
+  { "niinf", "-∞" },
   { "star", "⋆" },
+  { "nabla", "∇" },
   { "diamond", "⋄" },
   { "tto", "→" },
   { "ttoo", "⟶" },
+  { "mapto", "↦" },
   -- }}}
   -- {{{ Brackets
   { "langle", "⟨" },

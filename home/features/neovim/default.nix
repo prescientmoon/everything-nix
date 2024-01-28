@@ -29,6 +29,7 @@ let
             joinspaces = false; # No double spaces with join (mapped to qj in my config)
             list = true; # Show some invisible characters
             cmdheight = 0; # Hide command line when it's not getting used
+            spell = true; # Spell checker
 
             # tcqj are there by default, and "r" automatically continues comments on enter
             formatoptions = "tcqjr";
@@ -134,10 +135,15 @@ let
               (nmap "<Leader>a" "<C-^>" "[A]lternate file")
               (unmap "<C-^>")
               (nmap "Q" ":wqa<cr>" "Save all files and [q]uit")
-              (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
+              (nmap "<leader>rw"
+                ":%s/<C-r><C-w>/"
+                "[R]eplace [w]ord in file")
               (nmap "<leader>sw"
                 (lua ''require("my.helpers.wrap").toggle'')
                 "toggle word [w]rap")
+              (nmap "<leader>ss"
+                (thunk /* lua */ "vim.opt.spell = not vim.o.spell")
+                "toggle [s]pell checker")
               # }}}
             ];
           # }}}

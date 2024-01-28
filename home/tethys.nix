@@ -34,6 +34,7 @@
     # }}}
     # {{{ Clis
     # sherlock # Search for usernames across different websites
+    catgirl # irc client
     # }}}
     # {{{ Misc 
     obsidian # Notes
