@@ -2,16 +2,16 @@
   services.znc = {
     enable = true;
     # mutable = false;
-    confOptions = {
-      nick = "prescientmoon";
-      networks.tilde = {
-        server = "eu.tilde.chat";
-        port = 6697;
-        channels = [ "#meta" "#math" ];
-        modules = [
-          "simple_away" # marks me as away when disconnected
-          "sasl" # auto login
-        ];
+    useLegacyConfig = false;
+
+    config.User.prescientmoon = {
+      Network.tilde = {
+        Server = "eu.tilde.chat +6697";
+        Chan."#meta" = { };
+        Chan."#math" = { };
+        Nick = "prescientmoon";
+        LoadModule = [ "" ];
+        JoinDelay = 2; # Avoid joining channels before auth
       };
     };
   };
