@@ -2,7 +2,7 @@
   services.znc = {
     enable = true;
     # mutable = false;
-    configOptions = {
+    confOptions = {
       nick = "prescientmoon";
       networks.tilde = {
         server = "eu.tilde.chat";
