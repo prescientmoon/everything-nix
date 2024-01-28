@@ -6,6 +6,7 @@
 
     ./services/syncthing.nix
     ./services/whoogle.nix
+    ./services/znc.nix
     ./filesystems
     ./hardware
   ];
