@@ -144,4 +144,9 @@
   ];
   # }}}
   # }}}
+  # {{{ Cli
+  # {{{ Sops 
+  satellite.persistence.at.state.apps.sops.directories = [ "${config.xdg.configHome}/sops/age" ];
+  # }}}
+  # }}}
 }

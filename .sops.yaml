@@ -11,6 +11,11 @@ creation_rules:
         - *prescientmoon
         - *tethys
         - *lapetus
+  - path_regex: hosts/nixos/common/optional/services/acme/secrets.yaml
+    key_groups:
+      - age: 
+        - *prescientmoon
+        - *lapetus
   - path_regex: home/features/desktop/wakatime/secrets.yaml
     key_groups:
       - age:

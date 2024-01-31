@@ -1,7 +1,6 @@
 {
   programs.ssh.enable = true;
 
-  # TODO: age persistence
   satellite.persistence.at.state.apps.ssh.directories = [ ".ssh" ];
 
   # Makes it easy to copy ssh keys at install time without messing up permissions
