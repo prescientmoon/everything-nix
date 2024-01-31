@@ -1,5 +1,5 @@
 { lib, ... }: {
-  options.satellite.proxy = {
+  options.satellite.proxy = lib.mkOption {
     type = lib.types.functionTo lib.types.anything;
     description = "Helper function for generating a quick proxy config";
   };
