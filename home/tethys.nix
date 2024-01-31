@@ -9,6 +9,7 @@
     ./features/cli/productivity
     ./features/cli/pass.nix
     ./features/cli/nix-index.nix
+    ./features/cli/catgirl.nix
     ./features/wayland/hyprland
     ./features/neovim
   ];
@@ -34,7 +35,6 @@
     # }}}
     # {{{ Clis
     # sherlock # Search for usernames across different websites
-    catgirl # irc client
     # }}}
     # {{{ Misc 
     obsidian # Notes
