@@ -7,7 +7,7 @@ let
     content = ''
       sasl-plain = prescientmoon:${config.sops.placeholder.${secret}}
       nick = prescientmoon
-      save = /persist/var/lib/pounce/${host}
+      save = /persist/state/var/lib/pounce/${host}
       host = ${host}
       port = ${toString port}
       join = ${join}
