@@ -1,11 +1,13 @@
+{ config, ... }:
+let port = 8384;
+in
 {
   imports = [ ../../common/optional/services/syncthing.nix ];
 
-  networking.firewall.allowedTCPPorts = [ 8384 ];
-
   services.syncthing = {
-    guiAddress = "0.0.0.0:8384"; # TODO: put this behind nginx
-
     settings.folders = { };
+    guiAddress = "127.0.0.1:${toString port}";
   };
+
+  services.nginx.virtualHosts."lapetus.syncthing.moonythm.dev" = config.satellite.proxy port;
 }

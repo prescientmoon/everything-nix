@@ -3,10 +3,10 @@
     ../common/global
     ../common/users/adrielus.nix
     ../common/optional/services/slambda.nix
-    ../common/optional/services/acme
 
     ./services/syncthing.nix
     ./services/whoogle.nix
+    ./services/pounce.nix
     ./filesystems
     ./hardware
   ];

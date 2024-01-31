@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   port = 8401;
   websiteBlocklist = [
@@ -9,7 +9,10 @@ let
   ];
 in
 {
-  imports = [ ../../common/optional/podman.nix ./nginx.nix ];
+  imports = [
+    ../../common/optional/podman.nix
+    ../../common/optional/services/nginx.nix
+  ];
 
   virtualisation.oci-containers.containers.whoogle-search = {
     image = "benbusby/whoogle-search";
@@ -23,10 +26,8 @@ in
     };
   };
 
-  services.nginx.virtualHosts."search.moonythm.dev" = {
-    enableACME = true;
-    acmeRoot = null;
-    forceSSL = true;
-    locations."/".proxyPass = "http://127.0.0.1:${toString port}";
-  };
+  services.nginx.virtualHosts."search.moonythm.dev" = config.satellite.proxy port;
+  environment.persistence."/persist/state".directories = [
+    "/var/lib/acme"
+  ];
 }
