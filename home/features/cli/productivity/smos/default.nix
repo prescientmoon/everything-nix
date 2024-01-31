@@ -2,6 +2,7 @@
 let workflowDir = "${config.home.homeDirectory}/productivity/smos";
 in
 {
+  # {{{ Smos config 
   programs.smos = {
     inherit workflowDir;
 
@@ -10,19 +11,21 @@ in
 
     github = {
       enable = true;
-      oauth-token-file = config.homeage.file.smos.path;
+      oauth-token-file = config.sops.secrets.smos_github_token.path;
     };
   };
-
+  # }}}
+  # {{{ Storage & secrets 
   satellite.persistence.at.data.apps.smos.directories = [
     config.programs.smos.workflowDir
   ];
 
-  homeage.file.smos = {
-    source = ./smos_github_oauth.age;
+  sops.secrets.smos_github_token = {
+    sopsFile = ./secrets.yaml;
     path = "${config.xdg.dataHome}/smos/.github_token";
   };
-
+  # }}}
+  # {{{ Add desktop entry
   home.packages =
     # Start smos with a custom class so our WM can move it to the correct workspace
     let smosgui = pkgs.writeShellScriptBin "smosgui" ''
@@ -37,4 +40,5 @@ in
     exec = "smosgui";
     terminal = false;
   };
+  # }}}
 }

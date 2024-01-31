@@ -25,13 +25,6 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Nix-related tooling
-    # {{{ Secret management
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-
-    homeage.url = "github:jordanisaacs/homeage";
-    homeage.inputs.nixpkgs.follows = "nixpkgs";
-    # }}}
     # {{{ Storage 
     impermanence.url = "github:nix-community/impermanence";
 
@@ -45,6 +38,9 @@
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     korora.url = "github:adisbladis/korora";
 

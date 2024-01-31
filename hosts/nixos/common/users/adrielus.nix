@@ -1,7 +1,9 @@
 { pkgs, outputs, config, lib, ... }:
 {
-  # Password file stored through agenix
-  age.secrets.adrielusPassword.file = ./adrielus_password.age;
+  sops.secrets.adrielus_password = {
+    sopsFile = ../secrets.yaml;
+    neededForUsers = true;
+  };
 
   users = {
     # Configure users through nix only
@@ -11,12 +13,6 @@
     users.adrielus = {
       # Adds me to some default groups, and creates the home dir 
       isNormalUser = true;
-
-      # File containing my password, managed by agenix
-      hashedPasswordFile = config.age.secrets.adrielusPassword.path;
-
-      # Set default shell
-      shell = pkgs.fish;
 
       # Picked up by our persistence module
       homeMode = "755";
@@ -30,6 +26,9 @@
         "network" # wpa_supplicant
         "syncthing" # syncthing!
       ];
+
+      hashedPasswordFile = config.sops.secrets.adrielus_password.path;
+      shell = pkgs.fish;
 
       openssh.authorizedKeys.keyFiles =
         (import ./common.nix).authorizedKeys { inherit outputs lib; };

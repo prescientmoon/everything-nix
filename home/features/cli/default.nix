@@ -38,7 +38,6 @@
     ouch # Unified compression / decompression tool
     mkpasswd # Hash passwords
     jq # Json maniuplation
-    inputs.agenix.packages.${pkgs.system}.agenix # Secret encryption
     # }}}
   ];
 

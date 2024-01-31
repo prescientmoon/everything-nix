@@ -6,10 +6,10 @@ let
     # {{{ flake inputs 
     # inputs.hyprland.nixosModules.default
     inputs.disko.nixosModules.default
-    inputs.agenix.nixosModules.default
     inputs.stylix.nixosModules.stylix
     inputs.nur.nixosModules.nur
     inputs.slambda.nixosModule
+    inputs.sops-nix.nixosModules.sops
 
     # {{{ self management 
     # NOTE: using `pkgs.system` before `module.options` is evaluated
@@ -37,6 +37,9 @@ in
 {
   # Import all modules defined in modules/nixos
   imports = builtins.attrValues outputs.nixosModules ++ imports;
+
+  # Tell sops-nix to use the host keys for decrypting secrets
+  sops.age.sshKeyPaths = [ "/persist/state/etc/ssh/ssh_host_ed25519_key" ];
 
   # {{{ ad-hoc options
   # Customize tty colors

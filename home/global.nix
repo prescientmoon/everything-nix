@@ -4,12 +4,12 @@ let
   imports = [
     # {{{ flake inputs
     inputs.stylix.homeManagerModules.stylix
-    inputs.homeage.homeManagerModules.homeage
     inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.anyrun.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
+    inputs.sops-nix.homeManagerModules.sops
 
     # {{{ self management
     # NOTE: using `pkgs.system` before `module.options` is evaluated
@@ -58,8 +58,8 @@ in
   # Nicely reload system units when changing configs
   systemd.user.startServices = lib.mkForce "sd-switch";
 
-  # Where homeage should look for our ssh key
-  homeage.identityPaths = [ "~/.ssh/id_ed25519" ];
+  # Tell sops-nix to use ssh keys for decrypting secrets
+  sops.age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
 
   # Allow root to read persistent files from this user.
   home.persistence."/persist/home/adrielus".allowOther = true;

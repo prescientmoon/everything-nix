@@ -7,7 +7,7 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 ## Features this repository includes:
 
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)
-- [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) based secret management
+- [sops-nix](https://github.com/Mic92/sops-nix) based secret management
 - Sets up all the apps I use — including git, neovim, fish, tmux, starship, hyprland, anyrun, discord, zathura, wezterm & much more.
 
 The current state of this repo is a refactor of my old, messy nixos config, based on the structure of [this template](https://github.com/Misterio77/nix-starter-configs).
@@ -33,7 +33,7 @@ This repo's structure is based on the concept of hosts - individual machines con
 | [overlays](./overlays)       | Nix overlays                                        |
 | [pkgs](./pkgs)               | Nix packages                                        |
 | [flake.nix](./flake.nix)     | Nix flake entrypoint!                               |
-| [secrets.nix](./secrets.nix) | Agenix entrypoint                                   |
+| [.sops.yaml](./.sops.yaml)   | Sops entrypoint                                     |
 | [stylua.toml](./stylua.toml) | Lua formatter config for the repo                   |
 
 ## Points of interest
@@ -52,7 +52,7 @@ Here's some things you might want to check out:
 - [Nixos](http://nixos.org/) — nix based operating system
 - [Home-manager](https://github.com/nix-community/home-manager) — manage user configuration using nix
 - [Impernanence](https://github.com/nix-community/impermanence) — see the article about [erasing your darlings](https://grahamc.com/blog/erase-your-darlings)
-- [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) — secret management
+- [Sops-nix](https://github.com/Mic92/sops-nix) — secret management
 - [Slambda](https://github.com/Mateiadrielrafael/slambda) — custom keyboard chording utility
 - [disko](https://github.com/nix-community/disko) — format disks using nix
   - [zfs](https://openzfs.org/wiki/Main_Page) — filesystem
@@ -101,6 +101,7 @@ Here's some things you might want to check out:
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
+- [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) — I switched to [sops-nix](https://github.com/Mic92/sops-nix)
 - [Mind.nvim](https://github.com/phaazon/mind.nvim) — self management tree editor. The project got archived, so I switched to [Smos](https://github.com/NorfairKing/smos).
 - [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) — general purpose neovim LSP. The project got archived, so I switched to [formatter.nvim](https://github.com/mhartington/formatter.nvim).
 - [Wofi](https://sr.ht/~scoopta/wofi/) — program launcher. I switched to [Anyrun](https://github.com/Kirottu/anyrun).

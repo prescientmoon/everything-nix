@@ -1,0 +1,21 @@
+keys:
+  - &users:
+    - &prescientmoon age14mga4r0xa82a2uus3wq5q7rqnvflms3jmhknz4f3hsda8wttk9gsv2k9fs
+  - &hosts:
+    - &tethys age1avsekqqyr62urdwtpfpt0ledzm49wy0rq7wcg3rnsprdx22er5usp0jxgs
+    - &lapetus age1jem6jfkmfq54wzhqqhrnf786jsn5dmx82ewtt4vducac8m2fyukskun2p4
+creation_rules:
+  - path_regex: hosts/nixos/common/secrets.yaml
+    key_groups:
+      - age: 
+        - *prescientmoon
+        - *tethys
+        - *lapetus
+  - path_regex: home/features/desktop/wakatime/secrets.yaml
+    key_groups:
+      - age:
+        - *prescientmoon
+  - path_regex: home/features/cli/productivity/smos/secrets.yaml
+    key_groups:
+      - age:
+        - *prescientmoon

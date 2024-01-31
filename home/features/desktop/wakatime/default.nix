@@ -1,9 +1,7 @@
 { pkgs, config, ... }: {
-  homeage.file.wakatime = {
-    source = ./wakatime_config.age;
-    symlinks = [
-      "${config.home.homeDirectory}/.wakatime.cfg"
-    ];
+  sops.secrets.wakatime_config = {
+    sopsFile = ./secrets.yaml;
+    path = "${config.home.homeDirectory}/.wakatime.cfg";
   };
 
   home.packages = [ pkgs.wakatime ];

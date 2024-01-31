@@ -1,4 +1,4 @@
-#!/usr/bin/env nix-shell
+#!/usr/bin/env nix-shellge
 #!nix-shell ../devshells/bootstrap/shell.nix
 #!nix-shell -i bash
 

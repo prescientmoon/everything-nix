@@ -1,6 +1,5 @@
 { config, ... }: {
-  # Wireless secrets stored through agenix
-  age.secrets.wireless.file = ./wifi_passwords.age;
+  sops.secrets.wireless.sopsFile = ../../secrets.yaml;
 
   # https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/services/networking/wpa_supplicant.nix
   networking.wireless = {
@@ -8,7 +7,7 @@
     fallbackToWPA2 = false;
 
     # Declarative
-    environmentFile = config.age.secrets.wireless.path;
+    environmentFile = config.sops.secrets.wireless.path;
     networks = {
       "Neptune".psk = "@ENCELADUS_HOTSPOT_PASS@";
 
@@ -50,13 +49,6 @@
 
   # Ensure group exists
   users.groups.network = { };
-
-  # Persist imperative config
-  environment.persistence."/persist/state".files = [
-    # TODO: investigate why this doesn't work
-    # "/etc/wpa_supplicant.conf"
-  ];
-
 
   # The service seems to fail if this file does not exist
   systemd.tmpfiles.rules = [ "f /etc/wpa_supplicant.conf" ];
