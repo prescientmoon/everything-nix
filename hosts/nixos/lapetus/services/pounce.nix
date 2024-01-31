@@ -2,6 +2,7 @@
 let makeNetworkConfig = host: port: join: secret: {
   content = ''
     sasl-plain = prescientmoon:${config.sops.placeholder.${secret}}
+    nick = prescientmoon
     host = ${host}
     port = ${toString port}
     join = ${join}
