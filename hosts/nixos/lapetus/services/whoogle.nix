@@ -25,6 +25,7 @@ in
 
   services.nginx.virtualHosts."search.moonythm.dev" = {
     enableACME = true;
+    acmeRoot = null;
     forceSSL = true;
     locations."/".proxyPass = "http://127.0.0.1:${toString port}";
   };
