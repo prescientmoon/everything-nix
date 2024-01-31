@@ -20,6 +20,7 @@ in
   services.pounce = {
     enable = true;
     externalHost = "irc.moonythm.dev";
+    bindHost = "irc.moonythm.dev";
     certDir = "/var/lib/acme/wildcard-irc.moonythm.dev";
     networks.tilde.config = config.sops.templates."pounce-tilde.cfg".path;
   };
