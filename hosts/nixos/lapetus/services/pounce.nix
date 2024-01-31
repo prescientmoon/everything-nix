@@ -7,7 +7,6 @@ let
     content = ''
       sasl-plain = prescientmoon:${config.sops.placeholder.${secret}}
       nick = prescientmoon
-      save = /persist/state/var/lib/pounce/${host}
       host = ${host}
       port = ${toString port}
       join = ${join}
@@ -16,9 +15,6 @@ let
   };
 in
 {
-  # Create save directory for messages
-  systemd.tmpfiles.rules = [ "d /persist/state/var/lib/pounce 0755 ${user} ${user} -" ];
-
   # Generate cert
   security.acme.certs."wildcard-irc.moonythm.dev" = {
     group = user;
