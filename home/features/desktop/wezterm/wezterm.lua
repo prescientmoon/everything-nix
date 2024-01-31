@@ -76,18 +76,19 @@ config.enable_csi_u_key_encoding = true -- For some reason I need this for all k
 -- }}}
 -- }}}
 -- {{{ Keybinds
+local function unmap(key, mods)
+  return {
+    key = key,
+    mods = mods,
+    action = wezterm.action.DisableDefaultAssignment,
+  }
+end
+
 config.keys = {
   -- {{{ Disable certain default keybinds
-  {
-    key = "f",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.DisableDefaultAssignment,
-  },
-  {
-    key = "w",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.DisableDefaultAssignment,
-  },
+  unmap("f", "CTRL|SHIFT"),
+  unmap("w", "CTRL|SHIFT"),
+  unmap("Enter", "ALT"),
   -- }}}
 }
 -- }}}

@@ -1,24 +1,34 @@
 let
   chord = from: to: { inherit from to; };
   unmap = from: chord from [ ];
+  # I want my brackets to be aligned
+  sem = "semicolon";
   commonChords = [
     # {{{ Modifiers
-    (chord [ "s" "d" ] [ "leftshift" ])
-    (chord [ "s" "f" ] [ "leftctrl" ])
-    (chord [ "s" "a" ] [ "leftalt" ])
-    (chord [ "l" "k" ] [ "rightshift" ])
-    (chord [ "l" "j" ] [ "rightctrl" ])
-    (chord [ "l" "semicolon" ] [ "rightalt" ])
+    # {{{ right
     (chord [ "l" "n" ] [ "rightmeta" ])
+    (chord [ "k" "l" ] [ "rightshift" ])
+    (chord [ "j" "l" ] [ "rightctrl" ])
+    (chord [ "l" sem ] [ "rightalt" ])
     (chord [ "j" "k" "l" ] [ "rightctrl" "rightshift" ])
-    (chord [ "s" "d" "f" ] [ "leftctrl" "leftshift" ])
-    (unmap [ "leftalt" ])
-    # (unmap [ "leftshift" ]) # Useful for touhou
-    (unmap [ "leftctrl" ])
+    (chord [ "k" "l" sem ] [ "rightalt" "rightshift" ])
+    (chord [ "j" "k" "l" sem ] [ "rightalt" "rightctrl" "rightshift" ])
     (unmap [ "rightshift" ])
     (unmap [ "rightctrl" ])
     (unmap [ "rightalt" ])
     (unmap [ "rightmeta" ])
+    # }}}
+    # {{{ left
+    (chord [ "s" "d" ] [ "leftshift" ])
+    (chord [ "s" "f" ] [ "leftctrl" ])
+    (chord [ "s" "a" ] [ "leftalt" ])
+    (chord [ "s" "d" "f" ] [ "leftctrl" "leftshift" ])
+    (chord [ "a" "s" "d" ] [ "leftalt" "leftshift" ])
+    (chord [ "a" "s" "d" "f" ] [ "leftalt" "leftctrl" "leftshift" ])
+    (unmap [ "leftalt" ])
+    (unmap [ "leftctrl" ])
+    # (unmap [ "leftshift" ]) # Useful for touhou
+    # }}}
     # }}}
     # {{{ Other special keys
     (chord [ "g" "h" ] [ "backspace" ])
