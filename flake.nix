@@ -177,7 +177,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.users.${user} = import ./home/${hostname}.nix;
-              home-manager.extraSpecialArgs = specialArgs system;
+              home-manager.extraSpecialArgs = specialArgs system // { inherit hostname; };
               home-manager.useUserPackages = true;
 
               stylix.homeManagerIntegration.followSystem = false;
@@ -220,7 +220,7 @@
           mkHomeConfig = { system, hostname }:
             home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.${system};
-              extraSpecialArgs = specialArgs system;
+              extraSpecialArgs = specialArgs system // { inherit hostname; };
               modules = [ ./home/${hostname}.nix ];
             };
         in

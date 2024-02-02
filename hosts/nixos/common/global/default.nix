@@ -14,7 +14,6 @@ let
     # {{{ self management 
     # NOTE: using `pkgs.system` before `module.options` is evaluated
     # leads to infinite recursion!
-    inputs.intray.nixosModules.x86_64-linux.default
     inputs.smos.nixosModules.x86_64-linux.default
     inputs.tickler.nixosModules.x86_64-linux.default
     # }}}

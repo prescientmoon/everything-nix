@@ -7,4 +7,8 @@
     dnsProvider = "porkbun";
     environmentFile = config.sops.secrets.porkbun_secrets.path;
   };
+
+  environment.persistence."/persist/state".directories = [
+    "/var/lib/acme"
+  ];
 }

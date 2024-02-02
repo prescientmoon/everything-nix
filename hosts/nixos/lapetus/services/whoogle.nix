@@ -27,7 +27,4 @@ in
   };
 
   services.nginx.virtualHosts."search.moonythm.dev" = config.satellite.proxy port;
-  environment.persistence."/persist/state".directories = [
-    "/var/lib/acme"
-  ];
 }

@@ -7,6 +7,7 @@
     ./services/syncthing.nix
     ./services/whoogle.nix
     ./services/pounce.nix
+    ./services/intray.nix
     ./filesystems
     ./hardware
   ];
