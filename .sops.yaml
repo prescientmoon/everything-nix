@@ -11,7 +11,7 @@ creation_rules:
         - *prescientmoon
         - *tethys
         - *lapetus
-  - path_regex: hosts/nixos/common/optional/services/acme/secrets.yaml
+  - path_regex: hosts/nixos/common/optional/services/acme/s?ecrets.yaml
     key_groups:
       - age: 
         - *prescientmoon
@@ -25,7 +25,7 @@ creation_rules:
     key_groups:
       - age:
         - *prescientmoon
-  - path_regex: home/features/cli/productivity/smos/secrets.yaml
+  - path_regex: home/features/cli/productivity/secrets.yaml
     key_groups:
       - age:
         - *prescientmoon

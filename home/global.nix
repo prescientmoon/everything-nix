@@ -61,6 +61,9 @@ in
   # Tell sops-nix to use ssh keys for decrypting secrets
   sops.age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
 
+  # By default the paths given by sops contain annoying %r sections
+  sops.defaultSymlinkPath = "${config.home.homeDirectory}/.nix-sops";
+
   # Allow root to read persistent files from this user.
   home.persistence."/persist/home/adrielus".allowOther = true;
 

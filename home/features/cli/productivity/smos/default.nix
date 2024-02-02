@@ -21,7 +21,7 @@ in
   ];
 
   sops.secrets.smos_github_token = {
-    sopsFile = ./secrets.yaml;
+    sopsFile = ../secrets.yaml;
     path = "${config.xdg.dataHome}/smos/.github_token";
   };
   # }}}
