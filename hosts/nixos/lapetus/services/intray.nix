@@ -16,12 +16,10 @@ in
       # leads to infinite recursion!
       let
         m = inputs.intray.nixosModules.x86_64-linux.default { inherit lib pkgs config; };
-
-        b = lib.traceVal m;
       in
       {
         inherit (m) options;
-        config = lib.mkIf config.services.intray.production.enable { systemd = m.config.systemd; };
+        config = lib.mkIf config.services.intray.production.enable { systemd = (lib.traceVal m).config.systemd; };
       })
   ];
   # }}}
