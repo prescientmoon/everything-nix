@@ -70,8 +70,8 @@
 
     # Intray
     intray.url = "github:Mateiadrielrafael/intray";
-    # intray.inputs.nixpkgs.follows = "nixpkgs";
-    # intray.inputs.home-manager.follows = "home-manager";
+    intray.inputs.nixpkgs.follows = "nixpkgs";
+    intray.inputs.home-manager.follows = "home-manager";
 
     # Tickler
     tickler.url = "github:NorfairKing/tickler";
