@@ -1,4 +1,4 @@
-{ config, ... }:
+{ inputs, config, ... }:
 let
   username = "prescientmoon";
   apiHost = "api.intray.moonythm.dev";
