@@ -18,7 +18,7 @@ in
       in
       {
         inherit (m) options;
-        config = lib.removeAttrs m.config [ "networking" "services" ];
+        config = builtins.removeAttrs m.config [ "networking" "services" ];
       })
   ];
   # }}}
