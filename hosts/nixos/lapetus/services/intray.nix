@@ -9,6 +9,7 @@ in
 {
   # {{{ Import intray module 
   imports = [
+    ../../common/optional/services/nginx.nix
     # We patch out the `intray` module to allow manual configuration for nginx
     (a:
       # NOTE: using `pkgs.system` before `module.options` is evaluated

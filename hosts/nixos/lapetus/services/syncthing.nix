@@ -2,7 +2,10 @@
 let port = 8384;
 in
 {
-  imports = [ ../../common/optional/services/syncthing.nix ];
+  imports = [
+    ../../common/optional/services/syncthing.nix
+    ../../common/optional/services/nginx.nix
+  ];
 
   services.syncthing = {
     settings.folders = { };
