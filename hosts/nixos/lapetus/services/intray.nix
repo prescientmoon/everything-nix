@@ -10,15 +10,15 @@ in
   # {{{ Import intray module 
   imports = [
     # We patch out the `intray` module to allow manual configuration for nginx
-    a:
-    # NOTE: using `pkgs.system` before `module.options` is evaluated
-    # leads to infinite recursion!
-    let m = inputs.intray.nixosModules.x86_64-linux.default a;
-    in
-    {
-      inherit (m) options;
-      config = { inherit (m.config) systemd; };
-    }
+    (a:
+      # NOTE: using `pkgs.system` before `module.options` is evaluated
+      # leads to infinite recursion!
+      let m = inputs.intray.nixosModules.x86_64-linux.default a;
+      in
+      {
+        inherit (m) options;
+        config = { inherit (m.config) systemd; };
+      })
   ];
   # }}}
   # {{{ Configure intray 
