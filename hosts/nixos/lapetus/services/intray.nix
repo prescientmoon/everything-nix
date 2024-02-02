@@ -18,7 +18,7 @@ in
       in
       {
         inherit (m) options;
-        config.systemd = lib.mkIf config.services.intray.production.enable m.config.systemd;
+        config = lib.mkIf config.services.intray.production.enable { systemd = m.config.systemd; };
       })
   ];
   # }}}
