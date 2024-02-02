@@ -7,24 +7,15 @@ let
   webPort = 8403;
 in
 {
-  # {{{ Import intray module 
   imports = [
     ../../common/optional/services/nginx.nix
-    # We patch out the `intray` module to allow manual configuration for nginx
-    ({ lib, pkgs, config, ... }:
-      # NOTE: using `pkgs.system` before `module.options` is evaluated
-      # leads to infinite recursion!
-      let m = inputs.intray.nixosModules.x86_64-linux.default { inherit lib pkgs config; };
-      in
-      {
-        inherit (m) options;
-        config = builtins.removeAttrs m.config [ "networking" "services" ];
-      })
+    inputs.intray.nixosModules.x86_64-linux.default
   ];
-  # }}}
+
   # {{{ Configure intray 
   services.intray.production = {
     enable = true;
+    configureNetworking = false;
     api-server = {
       enable = true;
       hosts = [ apiHost ];

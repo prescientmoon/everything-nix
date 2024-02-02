@@ -69,7 +69,7 @@
     # smos.inputs.home-manager.follows = "home-manager";
 
     # Intray
-    intray.url = "github:NorfairKing/intray";
+    intray.url = "github:Mateiadrielrafael/intray";
     # intray.inputs.nixpkgs.follows = "nixpkgs";
     # intray.inputs.home-manager.follows = "home-manager";
 
