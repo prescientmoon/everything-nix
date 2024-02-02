@@ -18,7 +18,7 @@ in
       in
       {
         inherit (m) options;
-        config = { inherit (m.config) systemd; };
+        config.systemd = m.config.systemd;
       })
   ];
   # }}}
