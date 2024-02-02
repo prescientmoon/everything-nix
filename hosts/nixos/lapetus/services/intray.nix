@@ -11,10 +11,10 @@ in
   imports = [
     ../../common/optional/services/nginx.nix
     # We patch out the `intray` module to allow manual configuration for nginx
-    (a:
+    ({ lib, pkgs, config, ... }:
       # NOTE: using `pkgs.system` before `module.options` is evaluated
       # leads to infinite recursion!
-      let m = inputs.intray.nixosModules.x86_64-linux.default a;
+      let m = inputs.intray.nixosModules.x86_64-linux.default { inherit lib pkgs config; };
       in
       {
         inherit (m) options;
