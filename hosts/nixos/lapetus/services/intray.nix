@@ -3,7 +3,6 @@ let
   username = "prescientmoon";
   apiHost = "api.intray.moonythm.dev";
   apiPort = 8402;
-  webHost = "intray.moonythm.dev";
   webPort = 8403;
 in
 {
@@ -15,14 +14,15 @@ in
   # {{{ Configure intray 
   services.intray.production = {
     enable = true;
-    openFirewall = false;
     api-server = {
       enable = true;
+      openFirewall = false;
       port = apiPort;
       admins = [ username ];
     };
     web-server = {
       enable = true;
+      openFirewall = false;
       port = webPort;
       api-url = "https://${apiHost}";
     };
@@ -30,7 +30,7 @@ in
   # }}}
   # {{{ Networking & storage
   services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort { };
-  services.nginx.virtualHosts.${webHost} = config.satellite.proxy webPort { };
+  services.nginx.virtualHosts."intray.moonythm.dev" = config.satellite.proxy webPort { };
 
   environment.persistence."/persist/state".directories = [
     "/www/intray/production/data"
