@@ -31,8 +31,8 @@ in
   };
   # }}}
   # {{{ Networking & storage
-  services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort;
-  services.nginx.virtualHosts.${webHost} = config.satellite.proxy webPort;
+  services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort { };
+  services.nginx.virtualHosts.${webHost} = config.satellite.proxy webPort { };
 
   environment.persistence."/persist/state".directories = [
     "/www/intray/production/data"

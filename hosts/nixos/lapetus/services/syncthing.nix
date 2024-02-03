@@ -13,5 +13,5 @@ in
     settings.gui.insecureSkipHostcheck = true;
   };
 
-  services.nginx.virtualHosts."lapetus.syncthing.moonythm.dev" = config.satellite.proxy port;
+  services.nginx.virtualHosts."lapetus.syncthing.moonythm.dev" = config.satellite.proxy port { };
 }

@@ -26,5 +26,5 @@ in
     };
   };
 
-  services.nginx.virtualHosts."search.moonythm.dev" = config.satellite.proxy port;
+  services.nginx.virtualHosts."search.moonythm.dev" = config.satellite.proxy port { };
 }
