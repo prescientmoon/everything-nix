@@ -15,7 +15,7 @@ in
   # {{{ Configure intray 
   services.intray.production = {
     enable = true;
-    configureNetworking = false;
+    openFirewall = false;
     api-server = {
       enable = true;
       hosts = [ apiHost ];
