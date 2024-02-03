@@ -18,13 +18,11 @@ in
     openFirewall = false;
     api-server = {
       enable = true;
-      hosts = [ apiHost ];
       port = apiPort;
       admins = [ username ];
     };
     web-server = {
       enable = true;
-      hosts = [ webHost ];
       port = webPort;
       api-url = "https://${apiHost}";
     };
