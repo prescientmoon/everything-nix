@@ -1,5 +1,6 @@
 { pkgs, inputs, ... }: {
   imports = [
+    ./scripts
     ./eza.nix
     ./bat.nix
     ./ssh.nix

@@ -1447,16 +1447,19 @@ let
   # - NVIM_EXTRA_RUNTIME provides extra directories to add to the runtimepath. 
   #   I cannot just install those dirs using the builtin package support because 
   #   my package manager (lazy.nvim) disables those.
-  wrapClient = { base, name, binName ? name, extraArgs ? "" }:
-    let startupScript = config.satellite.lib.lua.writeFile
-      "." "startup" /* lua */ ''
-      vim.g.nix_extra_runtime = ${nlib.encode extraRuntime}
-      vim.g.nix_projects_dir = ${nlib.encode config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}
-      vim.g.nix_theme = ${config.satellite.colorscheme.lua}
-      -- Provide hints as to what app we are running in
-      -- (Useful because neovide does not provide the info itself right away)
-      vim.g.nix_neovim_app = ${nlib.encode name}
-    '';
+  wrapClient = { base, name, binName ? name, extraArgs ? "", wrapFlags ? lib.id }:
+    let
+      startupScript = config.satellite.lib.lua.writeFile
+        "." "startup" /* lua */ ''
+        vim.g.nix_extra_runtime = ${nlib.encode extraRuntime}
+        vim.g.nix_projects_dir = ${nlib.encode config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}
+        vim.g.nix_theme = ${config.satellite.colorscheme.lua}
+        -- Provide hints as to what app we are running in
+        -- (Useful because neovide does not provide the info itself right away)
+        vim.g.nix_neovim_app = ${nlib.encode name}
+      '';
+      extraFlags = lib.escapeShellArg (wrapFlags
+        ''--cmd "lua dofile('${startupScript}/startup.lua')"'');
     in
     pkgs.symlinkJoin {
       inherit (base) name meta;
@@ -1465,35 +1468,33 @@ let
       postBuild = ''
         wrapProgram $out/bin/${binName} \
           --prefix PATH : ${lib.makeBinPath extraPackages} \
-          --add-flags ${lib.escapeShellArg ''--cmd "lua dofile('${startupScript}/startup.lua')"''} \
+          --add-flags ${extraFlags} \
           ${extraArgs}
       '';
     };
   # }}}
   # {{{ Clients
-  neovim = wrapClient
-    {
-      base =
-        if config.satellite.toggles.neovim-nightly.enable
-        then pkgs.neovim-nightly
-        else pkgs.neovim;
-      name = "nvim";
-    };
+  neovim = wrapClient {
+    base =
+      if config.satellite.toggles.neovim-nightly.enable
+      then pkgs.neovim-nightly
+      else pkgs.neovim;
+    name = "nvim";
+  };
 
-  neovide = wrapClient
-    {
-      base = pkgs.neovide;
-      name = "neovide";
-      extraArgs = "--set NEOVIDE_MULTIGRID true";
-    };
+  neovide = wrapClient {
+    base = pkgs.neovide;
+    name = "neovide";
+    extraArgs = "--set NEOVIDE_MULTIGRID true";
+    wrapFlags = flags: "-- ${flags}";
+  };
 
-  firenvim = wrapClient
-    {
-      base = pkgs.neovim;
-      name = "firenvim";
-      binName = "nvim";
-      extraArgs = "--set GIT_DISCOVERY_ACROSS_FILESYSTEM 1";
-    };
+  firenvim = wrapClient {
+    base = pkgs.neovim;
+    name = "firenvim";
+    binName = "nvim";
+    extraArgs = "--set GIT_DISCOVERY_ACROSS_FILESYSTEM 1";
+  };
   # }}}
 in
 {

@@ -43,6 +43,14 @@ function fish_user_key_bindings
   bind -M default \cg "nvim +Neogit"
   bind -M insert  \cg "nvim +Neogit"
   # }}}
+  # {{{ C-e to open $EDITOR
+  bind -M default \ce "$EDITOR"
+  bind -M insert  \ce "$EDITOR"
+  # }}}
+  # {{{ C-S-e to open commandline in $EDITOR
+  bind -M default \e\[69\;5u "commandline -f edit_command_buffer"
+  bind -M insert  \e\[69\;5u "commandline -f edit_command_buffer"
+  # }}}
 end
 # }}}
 # {{{ Helpers
