@@ -9,6 +9,12 @@ let
       tempestModule = "my.tempest";
     };
 
+  # {{{ Config helpers 
+  # :p => expands path
+  # :h => returns the head of the path
+  notmp = nlib.lua ''vim.fn.expand("%:p:h") ~= "/tmp"'';
+  # }}}
+
   generated = nlib.generateConfig
     (lib.fix (self: with nlib; {
       # {{{ Pre-plugin config
@@ -360,7 +366,7 @@ let
         winbar = {
           package = "fgheng/winbar.nvim";
 
-          cond = blacklist [ "vscode" "firenvim" ];
+          cond = [ (blacklist [ "vscode" "firenvim" ]) notmp ];
           event = "BufReadPost";
 
           opts.enabled = true;
@@ -501,7 +507,7 @@ let
           package = "stevearc/dressing.nvim";
 
           cond = blacklist "vscode";
-          event = "BufReadPre";
+          event = "VeryLazy";
 
           config = true;
           init = thunk /* lua */ ''
@@ -527,7 +533,7 @@ let
           config = true;
 
           cond = blacklist "vscode";
-          event = "BufReadPost";
+          event = "VeryLazy";
         };
         # }}}
         # {{{ live-command
@@ -620,7 +626,7 @@ let
           dependencies.lua = [ "treesitter" ];
 
           cond = blacklist "vscode";
-          event = "BufReadPost";
+          event = "VeryLazy";
         };
 
         # show context at top of file
@@ -629,7 +635,7 @@ let
           dependencies.lua = [ "treesitter" ];
 
           cond = blacklist "vscode";
-          event = "BufReadPost";
+          event = "VeryLazy";
           opts.enable = true;
         };
         # }}}
@@ -888,7 +894,7 @@ let
           package = "stevearc/conform.nvim";
 
           cond = blacklist "vscode";
-          event = "BufReadPost";
+          event = "VeryLazy";
 
           opts.format_on_save.lsp_fallback = true;
           opts.formatters_by_ft = let prettier = [ [ "prettierd" "prettier" ] ]; in
@@ -927,7 +933,7 @@ let
           dependencies.lua = [ "neovim/nvim-lspconfig" ];
 
           cond = blacklist "vscode";
-          event = "BufReadPre";
+          event = "VeryLazy";
 
           opts = thunk /* lua */ ''
             local p = require("null-ls")
@@ -943,7 +949,7 @@ let
         gitsigns = {
           package = "lewis6991/gitsigns.nvim";
 
-          cond = blacklist [ "vscode" "firenvim" ];
+          cond = [ (blacklist [ "vscode" "firenvim" ]) notmp ];
           event = "BufReadPost";
 
           opts.on_attach = tempest {
@@ -1061,7 +1067,7 @@ let
           dependencies.lua = [ self.lazy.dressing.package ];
 
           cond = blacklist "vscode";
-          event = "BufReadPost";
+          event = "VeryLazy";
 
           opts.input_buffer_type = "dressing";
           config.autocmds = {
@@ -1297,7 +1303,7 @@ let
           dependencies.nix = [ pkgs.wakatime ];
 
           cond = blacklist [ "vscode" "firenvim" ];
-          event = "BufReadPost";
+          event = "VeryLazy";
         };
         # }}}
         # {{{ discord rich presence 
@@ -1306,7 +1312,7 @@ let
           main = "presence";
 
           cond = blacklist [ "vscode" "firenvim" ];
-          event = "BufReadPost";
+          event = "VeryLazy";
           config = true;
         };
         # }}}

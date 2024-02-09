@@ -2,7 +2,7 @@ local runtime = require("my.tempest")
 
 local lspconfig = {
   "neovim/nvim-lspconfig",
-  event = "BufReadPre",
+  event = "VeryLazy",
   dependencies = {
     "neoconf",
     {
