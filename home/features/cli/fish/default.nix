@@ -1,4 +1,32 @@
 { pkgs, config, lib, ... }:
+let
+  repaint = "commandline -f repaint";
+  fishKeybinds = {
+    # C-x to clear screen
+    "\\cx" = "clear && ${repaint}";
+    # C-z to return to background process
+    "\\cz" = "fg && ${repaint}";
+    # C-y to yank current command
+    # TODO: make this work in xorg as well
+    "\\cy" = "wl-copy \$(commandline)";
+    # C-e to launch $EDITOR
+    "\\ce" = "$EDITOR";
+    # C-S-e to edit commandline using $EDITOR
+    "\\e\\[69\\;5u" = "edit_command_buffer";
+    # C-enter to run command through a pager
+    "\\e\\[13\\;2u" = "commandline -a ' | $PAGER' && commandline -f execute";
+    # C-g to open neogit
+    "\\cg" = "nvim +Neogit";
+  };
+
+  mkKeybind = key: value:
+    let escaped = lib.escapeShellArg value;
+    in
+    ''
+      bind -M default ${key} ${escaped}
+      bind -M insert  ${key} ${escaped}
+    '';
+in
 {
   # {{{ Fzf 
   programs.fzf = {
@@ -21,6 +49,11 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      # ❄️ Fish keybinds generated using nix ^~^
+      function fish_nix_key_bindings
+        ${lib.concatStringsSep "\n" (lib.mapAttrsToList mkKeybind fishKeybinds)}
+      end
+
       ${builtins.readFile ./config.fish}
 
       # Modify nix-shell to use `fish` as it's default shell

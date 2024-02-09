@@ -20,37 +20,10 @@ set fish_greeting
 # }}}
 # {{{ Keybinds
 function fish_user_key_bindings
-  # {{{ Use vim-style keybinds
-  # Use the vim keybinds
   fish_vi_key_bindings
+  fish_nix_key_bindings
 
-  bind -e -M insert -k f10 # unbinds f10
   bind -M insert -m default -k f10 'commandline -f repaint' # Exit insert mode with <f10>
-  # }}}
-  # {{{ C-x to clear screen
-  bind -M default \cx "clear && commandline -f repaint"
-  bind -M insert  \cx "clear && commandline -f repaint"
-  # }}}
-  # {{{ C-z to run `fg`
-  bind -M default \cz "fg && commandline -f repaint"
-  bind -M insert  \cz "fg && commandline -f repaint"
-  # }}}
-  # {{{ C-enter to run command through less
-  bind -M default \e\[13\;2u "commandline -a ' | less' && commandline -f execute"
-  bind -M insert  \e\[13\;2u "commandline -a ' | less' && commandline -f execute"
-  # }}}
-  # {{{ C-g to open neogit
-  bind -M default \cg "nvim +Neogit"
-  bind -M insert  \cg "nvim +Neogit"
-  # }}}
-  # {{{ C-e to open $EDITOR
-  bind -M default \ce "$EDITOR"
-  bind -M insert  \ce "$EDITOR"
-  # }}}
-  # {{{ C-S-e to open commandline in $EDITOR
-  bind -M default \e\[69\;5u "commandline -f edit_command_buffer"
-  bind -M insert  \e\[69\;5u "commandline -f edit_command_buffer"
-  # }}}
 end
 # }}}
 # {{{ Helpers
