@@ -33,6 +33,9 @@
 
       # Print last commit's hash
       hash = "log -1 --format='%H'";
+
+      # Count the number of commits
+      count = "rev-list --count --all";
     };
     # }}}
 
