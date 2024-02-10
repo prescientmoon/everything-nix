@@ -4,11 +4,17 @@ let
   host = "warden.moonythm.dev";
 in
 {
-  sops.secrets.vaultwarden_env.sopsFile = ../secrets.yaml;
   services.nginx.virtualHosts.${host} =
     config.satellite.proxy port { proxyWebsockets = true; };
 
-  # {{{ Persistence
+  # {{{ Secrets 
+  sops.secrets.vaultwarden_env = {
+    sopsFile = ../secrets.yaml;
+    owner = config.users.users.vaultwarden.name;
+    group = config.users.users.vaultwarden.group;
+  };
+  # }}}
+  # {{{ General config
   services.vaultwarden = {
     enable = true;
     environmentFile = config.sops.secrets.vaultwarden_env.path;
@@ -32,8 +38,8 @@ in
   environment.persistence."/persist/state".directories = [{
     directory = "/var/lib/bitwarden_rs";
     mode = "u=rwx,g=,o=";
-    user = "vaultwarden";
-    group = "vaultwarden";
+    user = config.users.users.vaultwarden.name;
+    group = config.users.users.vaultwarden.group;
   }];
   # }}}
 }
