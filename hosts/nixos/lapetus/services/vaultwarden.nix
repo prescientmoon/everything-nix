@@ -30,7 +30,7 @@ in
       SMTP_PORT = 465;
       SMTP_HOST = "smtp.migadu.com";
       SMTP_FROM = "vaultwarden@orbit.moonythm.dev";
-      SMTP_USERNAME = "vaultwarden";
+      SMTP_USERNAME = "vaultwarden@orbit.moonythm.dev";
     };
   };
   # }}}
