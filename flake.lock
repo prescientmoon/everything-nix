@@ -1485,15 +1485,15 @@
         "yesod-static-remote": "yesod-static-remote"
       },
       "locked": {
-        "lastModified": 1706973531,
-        "narHash": "sha256-GvJlqUF0OXf2llL4HvNa/zosPRpizVHG2KxuKG7ehEw=",
-        "owner": "Mateiadrielrafael",
+        "lastModified": 1706973371,
+        "narHash": "sha256-9xfpX0yPGXp1QiWSCrnyKCClHEUGfaMTTUR4sdlVTSA=",
+        "owner": "NorfairKing",
         "repo": "intray",
-        "rev": "e8b37c624cc3fd92489b761897834bafb5aa2f12",
+        "rev": "01317d051f7745a02f7786a69d7fc67c3c7e86c7",
         "type": "github"
       },
       "original": {
-        "owner": "Mateiadrielrafael",
+        "owner": "NorfairKing",
         "repo": "intray",
         "type": "github"
       }

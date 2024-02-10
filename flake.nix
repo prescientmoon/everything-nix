@@ -69,8 +69,8 @@
     # smos.inputs.home-manager.follows = "home-manager";
 
     # Intray
-    intray.url = "github:Mateiadrielrafael/intray";
-    # intray.inputs.nixpkgs.follows = "nixpkgs";
+    intray.url = "github:NorfairKing/intray";
+    intray.inputs.nixpkgs.url = "github:NixOS/nixpkgs/cf28ee258fd5f9a52de6b9865cdb93a1f96d09b7";
     # intray.inputs.home-manager.follows = "home-manager";
 
     # Tickler
