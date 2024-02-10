@@ -8,6 +8,7 @@
     ./services/whoogle.nix
     ./services/pounce.nix
     ./services/intray.nix
+    ./services/vaultwarden.nix
     ./filesystems
     ./hardware
   ];
