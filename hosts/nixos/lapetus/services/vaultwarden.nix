@@ -2,14 +2,13 @@
 let
   port = 8404;
   host = "warden.moonythm.dev";
-  dataDir = "/persist/state/var/lib/vaultwarden";
 in
 {
-  systemd.tmpfiles.rules = [ "d ${dataDir} 0700 vaultwarden vaultwarden -" ];
   sops.secrets.vaultwarden_env.sopsFile = ../secrets.yaml;
   services.nginx.virtualHosts.${host} =
     config.satellite.proxy port { proxyWebsockets = true; };
 
+  # {{{ Persistence
   services.vaultwarden = {
     enable = true;
     environmentFile = config.sops.secrets.vaultwarden_env.path;
@@ -17,7 +16,6 @@ in
       DOMAIN = "https://${host}";
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = port;
-      DATA_FOLDER = dataDir;
 
       SIGNUPS_ALLOWED = true;
       SHOW_PASSWORD_HINT = false;
@@ -29,4 +27,13 @@ in
       SMTP_USERNAME = "vaultwarden";
     };
   };
+  # }}}
+  # {{{ Storage 
+  environment.persistence."/persist/state".directories = [{
+    directory = "/var/lib/bitwarden_rs";
+    mode = "u=rwx,g=,o=";
+    user = "vaultwarden";
+    group = "vaultwarden";
+  }];
+  # }}}
 }
