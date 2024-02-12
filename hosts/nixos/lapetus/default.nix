@@ -9,6 +9,7 @@
     ./services/pounce.nix
     ./services/intray.nix
     ./services/vaultwarden.nix
+    ./services/zfs.nix
     ./filesystems
     ./hardware
   ];

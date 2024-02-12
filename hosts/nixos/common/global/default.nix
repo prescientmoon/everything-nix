@@ -10,13 +10,6 @@ let
     inputs.nur.nixosModules.nur
     inputs.slambda.nixosModule
     inputs.sops-nix.nixosModules.sops
-
-    # {{{ self management 
-    # NOTE: using `pkgs.system` before `module.options` is evaluated
-    # leads to infinite recursion!
-    inputs.smos.nixosModules.x86_64-linux.default
-    inputs.tickler.nixosModules.x86_64-linux.default
-    # }}}
     # }}}
     # {{{ global configuration
     ./cli/fish.nix
