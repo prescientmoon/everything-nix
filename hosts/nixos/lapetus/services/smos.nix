@@ -55,8 +55,8 @@ in
   # }}}
   # {{{ Networking & storage
   services.nginx.virtualHosts.${docsHost} = config.satellite.proxy docsPort { };
-  services.nginx.virtualHosts.${webHost} = config.satellite.proxy webPort { };
-  services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort {
+  services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort { };
+  services.nginx.virtualHosts.${webHost} = config.satellite.proxy webPort {
     proxyWebsockets = true;
 
     # Just to make sure we don't run into 413 errors on big syncs
