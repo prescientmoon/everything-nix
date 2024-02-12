@@ -5,6 +5,7 @@ in
   # Configure ZFS
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "zroot" ];
+  boot.zfs.package = pkgs.zfs.override { inherit (config.services.zfs.zed) enableMail; };
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.kernelParams = [ "nohibernate" ];
 
