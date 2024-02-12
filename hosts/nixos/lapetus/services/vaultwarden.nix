@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  port = 8406;
+  port = 8407;
   host = "warden.moonythm.dev";
 in
 {

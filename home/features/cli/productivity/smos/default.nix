@@ -2,7 +2,7 @@
 let workflowDir = "${config.home.homeDirectory}/productivity/smos";
 in
 {
-  sops.secrets.smos_password.sopsFile = ./secrets.yaml;
+  sops.secrets.smos_password.sopsFile = ../secrets.yaml;
 
   # {{{ Smos config 
   programs.smos = {
