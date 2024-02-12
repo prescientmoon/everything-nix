@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 let
   # {{{ Global extensions
-  extensions = with inputs.firefox-addons.packages.${pkgs.system}; ([
+  extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
     buster-captcha-solver
     # REASON: returns 404 for now
     # bypass-paywalls-clean
@@ -21,15 +21,31 @@ let
     ublock-origin
     unpaywall
     user-agent-string-switcher
-  ] ++
-  # Password store support
-  lib.lists.optional config.programs.password-store.enable passff
-  );
+  ];
   # }}}
 in
 {
   programs.firefox = {
     enable = true;
+
+    policies = {
+      DisableAppUpdate = true;
+      DisableBuiltinPDFViewer = true;
+      DisableFirefoxAccounts = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DisplayBookmarksToolbar = "never";
+      DontCheckDefaultBrowser = true;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+      OfferToSaveLogins = false;
+      PasswordManagerEnabled = false;
+    };
 
     profiles.adrielus = {
       # {{{ High level user settings
@@ -41,9 +57,7 @@ in
 
       # Forcefully replace the search configuration
       search.force = true;
-
-      # Set default search engine
-      search.default = "Google";
+      search.default = "Moonythm";
 
       # Set styles applied to every website
       userContent = builtins.readFile ./userContent.css;
@@ -56,6 +70,7 @@ in
           # List of profile-specific extensions
           [
             augmented-steam # Adds more info to steam
+            bitwarden # Password manager
             blocktube # Lets you block youtube channels
             dearrow # Crowdsourced clickbait remover 💀
             lovely-forks # displays forks on github
@@ -176,6 +191,12 @@ in
             aliases = [ "@fm" "@factorio-mods" ];
           };
 
+          "Moonythm" = mkBasicSearchEngine {
+            url = "https://search.moonythm.dev/search";
+            param = "q";
+            aliases = [ "@m" "@moonythm" ];
+          };
+
           "Google".metaData.alias = "@g";
         };
       # }}}
@@ -235,9 +256,6 @@ in
         # with tiling WMs on wayland
         "privacy.webrtc.legacyGlobalIndicator" = false;
 
-        # Disable auto update checks
-        "app.update.auto" = false;
-
         # Do not include "switch to [tab]" in search results
         "browser.urlbar.suggest.openpage" = false;
 
@@ -253,12 +271,6 @@ in
 
         # Do not recommend addons
         "extensions.htmlaboutaddons.recommendations.enabled" = false;
-
-        # Link saving thingy (?)
-        "extensions.pocket.enabled" = false;
-
-        # Disable firefox accounts (?)
-        "identity.fxaccounts.enabled" = false;
       };
       # }}}
     };
