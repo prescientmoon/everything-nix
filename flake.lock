@@ -2799,15 +2799,15 @@
         "yesod-static-remote": "yesod-static-remote_2"
       },
       "locked": {
-        "lastModified": 1700921883,
-        "narHash": "sha256-qcYlOYcUBugeMu3Rx1dUWaTLgpAQ0CG7GjjoPmES+oE=",
-        "owner": "NorfairKing",
+        "lastModified": 1707756524,
+        "narHash": "sha256-6A1nR0w+N5nEiVwknUihrqRmplo/63gagSEQZ3ktLVE=",
+        "owner": "Mateiadrielrafael",
         "repo": "smos",
-        "rev": "ff112a35b90dabe9eafaa79cd4470e043670109f",
+        "rev": "99ed45b8dc0aa065617361373970497f639799ee",
         "type": "github"
       },
       "original": {
-        "owner": "NorfairKing",
+        "owner": "Mateiadrielrafael",
         "repo": "smos",
         "type": "github"
       }
