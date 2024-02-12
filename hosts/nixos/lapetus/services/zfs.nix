@@ -15,7 +15,7 @@
     enable = true;
 
     # {{{ Data
-    datasets.data = {
+    datasets."root/persist/data" = {
       autosnap = true;
       autoprune = true;
       recursive = true;
@@ -27,7 +27,7 @@
     };
     # }}}
     # {{{ State
-    datasets.state = {
+    datasets."root/persist/state" = {
       autosnap = true;
       autoprune = true;
       recursive = true;
