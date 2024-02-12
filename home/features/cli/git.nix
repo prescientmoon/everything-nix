@@ -6,7 +6,7 @@
     package = pkgs.gitFull;
 
     userName = "Matei Adriel";
-    userEmail = "rafaeladriel11@gmail.com";
+    userEmail = "git@moonythm.dev";
 
     # {{{ Globally ignored files
     ignores = [
