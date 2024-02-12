@@ -1,19 +1,8 @@
 { config, ... }: {
-  imports = [ ./msmtp.nix ];
-
   # {{{ Zfs config 
   services.zfs = {
     trim.enable = true;
     autoScrub.enable = true;
-
-    zed = {
-      enableMail = true;
-      settings = {
-        ZED_EMAIL_ADDR = [ "colimit@moonythm.dev" ];
-        ZED_EMAIL_PROG = "sendmail";
-        ZED_EMAIL_OPTS = "-a zed @ADDRESS@";
-      };
-    };
   };
   # }}}
   # {{{ Sanoid config 
@@ -45,15 +34,6 @@
       hourly = 6;
     };
     # }}}
-  };
-  # }}}
-  # {{{ Zed email config
-  # Zed allows using email notifications for events
-  sops.secrets.zed_smtp_pass.sopsFile = ../secrets.yaml;
-  programs.msmtp.accounts.zed = {
-    from = "zed@orbit.moonythm.dev";
-    user = "zed@orbit.moonythm.dev";
-    passwordeval = "cat ${config.sops.secrets.zed_smtp_pass.path}";
   };
   # }}}
 }
