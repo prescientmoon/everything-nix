@@ -8,6 +8,7 @@
     ./services/whoogle.nix
     ./services/pounce.nix
     ./services/intray.nix
+    ./services/smos.nix
     ./services/vaultwarden.nix
     ./services/zfs.nix
     ./filesystems

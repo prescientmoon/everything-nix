@@ -63,7 +63,7 @@
     # }}}
     # {{{ Self management
     # Smos
-    smos.url = "github:NorfairKing/smos";
+    smos.url = "github:Mateiadrielrafael/smos";
     # REASON: smos fails to build this way
     # smos.inputs.nixpkgs.follows = "nixpkgs";
     # smos.inputs.home-manager.follows = "home-manager";

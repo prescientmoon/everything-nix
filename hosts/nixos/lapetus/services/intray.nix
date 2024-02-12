@@ -16,13 +16,11 @@ in
     enable = true;
     api-server = {
       enable = true;
-      openFirewall = false;
       port = apiPort;
       admins = [ username ];
     };
     web-server = {
       enable = true;
-      openFirewall = false;
       port = webPort;
       api-url = "https://${apiHost}";
     };
