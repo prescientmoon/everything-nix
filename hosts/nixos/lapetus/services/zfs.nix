@@ -5,7 +5,6 @@
   services.zfs = {
     trim.enable = true;
     autoScrub.enable = true;
-    autoSnapshot = false; # We will configure this using sanoid
 
     # zed.enableMail = true;
   };
