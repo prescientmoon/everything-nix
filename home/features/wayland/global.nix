@@ -37,11 +37,20 @@
           | ${wl-copy}
         ${_ pkgs.libnotify} "Run ocr on area with output \"$(${wl-paste})\""
       '';
+
+      wl-qr = pkgs.writeShellScriptBin "wl-qr" ''
+        ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - \
+          | ${pkgs.zbar}/bin/zbarimg --quiet - \
+          | awk '{sub(/^QR-Code:/, "", $1); print $1}' \
+          | ${wl-copy}
+        ${_ pkgs.libnotify} "Scanned qr code on area with output \"$(${wl-paste})\""
+      '';
       # }}}
     in
     with pkgs; [
       libnotify # Send notifications
       wl-ocr # Custom ocr script
+      wl-qr # Custom qr scanner script
       wl-clipboard # Clipboard manager
       hyprpicker # Color picker
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast # Screenshot tool
