@@ -2799,11 +2799,11 @@
         "yesod-static-remote": "yesod-static-remote_2"
       },
       "locked": {
-        "lastModified": 1707756524,
-        "narHash": "sha256-6A1nR0w+N5nEiVwknUihrqRmplo/63gagSEQZ3ktLVE=",
+        "lastModified": 1707760469,
+        "narHash": "sha256-iTCnqUS0WouA4HEXsS7A60fUpgWTFmQiiKox0q9Qa7E=",
         "owner": "Mateiadrielrafael",
         "repo": "smos",
-        "rev": "99ed45b8dc0aa065617361373970497f639799ee",
+        "rev": "d4f0f17c72d4c12e45f37ad3cb6f5042affc8ee5",
         "type": "github"
       },
       "original": {

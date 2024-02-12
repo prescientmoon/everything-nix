@@ -23,6 +23,7 @@ in
     # {{{ Docs server 
     docs-site = {
       enable = true;
+      openFirewall = false;
       port = docsPort;
       api-url = https apiHost;
       web-url = https webHost;
@@ -31,6 +32,7 @@ in
     # {{{ Api server
     api-server = {
       enable = true;
+      openFirewall = false;
       port = apiPort;
       admin = username;
 
@@ -42,6 +44,7 @@ in
     # {{{ Web server
     web-server = {
       enable = true;
+      openFirewall = false;
       port = webPort;
       docs-url = https docsHost;
       api-url = https apiHost;
@@ -52,8 +55,15 @@ in
   # }}}
   # {{{ Networking & storage
   services.nginx.virtualHosts.${docsHost} = config.satellite.proxy docsPort { };
-  services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort { };
   services.nginx.virtualHosts.${webHost} = config.satellite.proxy webPort { };
+  services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort {
+    proxyWebsockets = true;
+
+    # Just to make sure we don't run into 413 errors on big syncs
+    extraConfig = ''
+      client_max_body_size 0;
+    '';
+  };
 
   environment.persistence."/persist/state".directories = [
     "/www/smos/production"

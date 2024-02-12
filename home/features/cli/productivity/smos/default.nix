@@ -2,12 +2,21 @@
 let workflowDir = "${config.home.homeDirectory}/productivity/smos";
 in
 {
+  sops.secrets.smos_password.sopsFile = ./secrets.yaml;
+
   # {{{ Smos config 
   programs.smos = {
     inherit workflowDir;
 
     enable = true;
     notify.enable = true;
+
+    sync = {
+      enable = true;
+      server-url = "api.smos.moonythm.dev";
+      username = "prescientmoon";
+      password-file = config.sops.secrets.smos_password.path;
+    };
 
     github = {
       enable = true;
