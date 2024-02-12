@@ -6,7 +6,14 @@
     trim.enable = true;
     autoScrub.enable = true;
 
-    # zed.enableMail = true;
+    zed = {
+      enableMail = true;
+      settings = {
+        ZED_EMAIL_ADDR = [ "colimit@moonythm.dev" ];
+        ZED_EMAIL_PROG = "sendmail";
+        ZED_EMAIL_OPTS = "-a zed @ADDRESS@";
+      };
+    };
   };
   # }}}
   # {{{ Sanoid config 
