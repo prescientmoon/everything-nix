@@ -2548,7 +2548,6 @@
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",
         "rosepine-base16": "rosepine-base16",
-        "slambda": "slambda",
         "smos": "smos",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
@@ -2742,26 +2741,6 @@
       "original": {
         "owner": "NorfairKing",
         "repo": "seocheck",
-        "type": "github"
-      }
-    },
-    "slambda": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1684623545,
-        "narHash": "sha256-aoGWkm9rxqIXuTHelBNpRje/AsG27wZHNjGNaKgvhPU=",
-        "owner": "Mateiadrielrafael",
-        "repo": "slambda",
-        "rev": "93e3a98c57044e7900980019da349b20edb6a938",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mateiadrielrafael",
-        "repo": "slambda",
         "type": "github"
       }
     },

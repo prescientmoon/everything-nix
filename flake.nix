@@ -92,10 +92,6 @@
     # Spotify client with theming support
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Keyboard configuration (to be replaced by kanata at some point)
-    slambda.url = "github:Mateiadrielrafael/slambda";
-    slambda.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Theming
     # Grub2 themes

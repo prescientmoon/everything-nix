@@ -6,9 +6,10 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 
 ## Features this repository includes:
 
-- Consistent base16 theming using [stylix](https://github.com/danth/stylix)
-- [sops-nix](https://github.com/Mic92/sops-nix) based secret management
 - Sets up all the apps I use — including git, neovim, fish, tmux, starship, hyprland, anyrun, discord, zathura, wezterm & much more.
+- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, whoogle, pounce, calico, smos, intray & more.
+- Consistent base16 theming using [stylix](https://github.com/danth/stylix)
+- Declarative secret management using [sops-nix](https://github.com/Mic92/sops-nix)
 
 The current state of this repo is a refactor of my old, messy nixos config, based on the structure of [this template](https://github.com/Misterio77/nix-starter-configs).
 
@@ -16,9 +17,10 @@ The current state of this repo is a refactor of my old, messy nixos config, base
 
 This repo's structure is based on the concept of hosts - individual machines configured by me. I'm naming each host based on things in space/mythology (_they are the same picture_). The hosts I have right now are:
 
-- [tethys](./hosts/nixos/tethys/) - my personal laptop
-- [lapetus](./hosts/nixos/lapetus/) - older laptop running as a server
-- [euporie](./hosts/nixos/euporie/) - barebones host for testing things insdie a VM
+- [tethys](./hosts/nixos/tethys/) — my personal laptop
+- [lapetus](./hosts/nixos/lapetus/) — older laptop running as a server
+- [euporie](./hosts/nixos/euporie/) — barebones host for testing things insdie a VM
+- enceladus — my android phone. Although not configured using nix, this name gets referenced in some places
 
 ## File structure
 
@@ -54,9 +56,13 @@ Here's some things you might want to check out:
 - [Home-manager](https://github.com/nix-community/home-manager) — manage user configuration using nix
 - [Impernanence](https://github.com/nix-community/impermanence) — see the article about [erasing your darlings](https://grahamc.com/blog/erase-your-darlings)
 - [Sops-nix](https://github.com/Mic92/sops-nix) — secret management
-- [Slambda](https://github.com/Mateiadrielrafael/slambda) — custom keyboard chording utility
 - [disko](https://github.com/nix-community/disko) — format disks using nix
   - [zfs](https://openzfs.org/wiki/Main_Page) — filesystem
+
+### Input handling
+
+- [kanta](https://github.com/jtroo/kanata) — software-level keyboard layout customizer. One of the few such programs with support for chording
+- [opentabletdriver](https://opentabletdriver.net/)
 
 ### Graphical
 
@@ -76,6 +82,7 @@ Here's some things you might want to check out:
 - [Firefox](https://www.mozilla.org/en-US/firefox/) — web browser
 - [Tesseract](https://github.com/tesseract-ocr/tesseract) — OCR engine
 - [Obsidian](https://obsidian.md/) — note taking software
+- [Bitwarden](https://bitwarden.com/) — client for self-hosted password manager
 
 ### Terminal
 
@@ -89,11 +96,10 @@ Here's some things you might want to check out:
 - [Fish](https://fishshell.com/) — user friendly shell
   - [Starship](https://starship.rs/) — shell prompt
 - [Ranger](https://github.com/ranger/ranger) — file manager
-- [GPG](https://gnupg.org/) + [pass](https://www.passwordstore.org/)
 - [Catgirl](https://git.causal.agency/catgirl/about/) — irc client
 - Self management:
-  - [Smos](https://github.com/NorfairKing/smos) — A comprehensive self-management System.
-  - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
+  - [Smos](https://github.com/NorfairKing/smos) — selfhosted comprehensive self-management System
+  - [Intray](https://github.com/NorfairKing/intray) — selfhosted GTD capture tool
 
 ### Services
 
@@ -102,11 +108,16 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Syncthing](https://syncthing.net/) — file synchronization
 - [Whoogle](https://github.com/benbusby/whoogle-search#manual-docker) — search engine
 - [Pounce](https://git.causal.agency/pounce/about/) & [calico](https://git.causal.agency/pounce/about/calico.1) — irc bouncer
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden/) — password manager
+- [Smos](https://github.com/NorfairKing/smos) — a comprehensive self-management System.
+- [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
 
 ## Hall of fame
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
+- [Slambda](https://github.com/Mateiadrielrafael/slambda) — custom keyboard chording utility. I retired the project in favour of [kanta](https://github.com/jtroo/kanata)
+- [GPG](https://gnupg.org/) + [pass](https://www.passwordstore.org/) — I switched to [vaultwarden](https://github.com/dani-garcia/vaultwarden/)
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) — I switched to [sops-nix](https://github.com/Mic92/sops-nix)
 - [Mind.nvim](https://github.com/phaazon/mind.nvim) — self management tree editor. The project got archived, so I switched to [Smos](https://github.com/NorfairKing/smos).
 - [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) — general purpose neovim LSP. The project got archived, so I switched to [formatter.nvim](https://github.com/mhartington/formatter.nvim).

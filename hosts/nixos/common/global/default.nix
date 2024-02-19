@@ -8,7 +8,6 @@ let
     inputs.disko.nixosModules.default
     inputs.stylix.nixosModules.stylix
     inputs.nur.nixosModules.nur
-    inputs.slambda.nixosModule
     inputs.sops-nix.nixosModules.sops
     # }}}
     # {{{ global configuration

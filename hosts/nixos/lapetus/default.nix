@@ -2,7 +2,7 @@
   imports = [
     ../common/global
     ../common/users/adrielus.nix
-    ../common/optional/services/slambda.nix
+    ../common/optional/services/kanata.nix
 
     ./services/syncthing.nix
     ./services/whoogle.nix

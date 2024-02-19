@@ -102,8 +102,7 @@ let
               (unmap "Q")
               # }}}
               # {{{ Chords
-              # Different chords get remapped to f-keys by my slambda config.
-              # See [my slambda config](../../../hosts/nixos/common/optional/services/slambda.nix) for details.
+              # Different chords get remapped to f-keys by my [my kaanta config](../../../hosts/nixos/common/optional/services/kanata.nix).
               #
               # Exit insert mode using *jk*
               (keymap "iv" "<f10>" "<esc>" "Exit insert mode")
