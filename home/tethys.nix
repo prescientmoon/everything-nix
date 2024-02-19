@@ -34,23 +34,28 @@
     # lutris # Game launcher
     # }}}
     # {{{ Clis
+    sops # Secret editing
     # sherlock # Search for usernames across different websites
     # }}}
     # {{{ Misc 
-    obsidian # Notes
-    # peek # GIF recorder
-    # mpv # Video player
+    obsidian # Note-taking
+    bitwarden # Password-manager
     # plover.dev # steno engine
     # qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
-    # obs-studio # video recorder
     # }}} 
+    # {{{ Media playing/recording
+    mpv # Video player
+    img # Image viewer
+    # peek # GIF recorder
+    # obs-studio # video recorder
+    # }}}
   ];
 
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4; # Bigger text in qt apps
 
   satellite = {
-    # Simlink some commonly modified dotfiles outside the store
+    # Symlink some commonly modified dotfiles outside the nix store
     dev.enable = true;
 
     monitors = [{

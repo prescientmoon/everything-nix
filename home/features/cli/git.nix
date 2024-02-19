@@ -5,7 +5,7 @@
     enable = true;
     package = pkgs.gitFull;
 
-    userName = "Matei Adriel";
+    userName = "prescientmoon";
     userEmail = "git@moonythm.dev";
 
     # {{{ Globally ignored files
