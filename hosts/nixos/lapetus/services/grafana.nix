@@ -21,7 +21,7 @@ in
       # {{{ Smtp
       smtp = rec {
         enabled = true;
-        host = "smtp.migadu.com:456";
+        host = "smtp.migadu.com:465";
         from_name = "Grafana";
         password = secret "grafana_smtp_pass";
         user = "grafana@orbit.moonythm.dev";
