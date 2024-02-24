@@ -31,7 +31,7 @@ in
   # {{{ Networking & storage
   services.nginx.virtualHosts.${host} =
     config.satellite.proxy
-      config.services.grafana.port
+      config.services.prometheus.port
       { proxyWebsockets = true; };
 
   environment.persistence."/persist/state".directories = [{
