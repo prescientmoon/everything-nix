@@ -43,19 +43,19 @@ in
                 name = "Vaultwarden";
                 subtitle = "Password manager";
                 logo = icon "bitwarden.png";
-                url = "warden.moonythm.dev";
+                url = "https://warden.moonythm.dev";
               }
               {
                 name = "Syncthing";
                 subtitle = "File synchronization";
                 logo = icon "syncthing.png";
-                url = "syncthing.lapetus.moonythm.dev";
+                url = "https://syncthing.lapetus.moonythm.dev";
               }
               {
                 name = "Whoogle";
                 subtitle = "Search engine";
                 logo = icon "whoogle.webp";
-                url = "search.moonythm.dev";
+                url = "https://search.moonythm.dev";
               }
             ];
           }
@@ -67,19 +67,19 @@ in
                 name = "Intray";
                 subtitle = "GTD capture tool";
                 icon = fa "cubes-stacked";
-                url = "intray.moonythm.dev";
+                url = "https://intray.moonythm.dev";
               }
               {
                 name = "Smos";
                 subtitle = "A comprehensive self-management system.";
                 icon = fa "list";
-                url = "smos.moonythm.dev";
+                url = "https://smos.moonythm.dev";
               }
               {
                 name = "Actual";
                 subtitle = "Budgeting tool";
                 logo = icon "actual.png";
-                url = "actual.moonythm.dev";
+                url = "https://actual.moonythm.dev";
               }
             ];
           }
