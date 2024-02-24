@@ -21,8 +21,7 @@ in
       # {{{ Smtp
       smtp = {
         enabled = true;
-        host = "smtp.migadu.com";
-        port = 465;
+        host = "smtp.migadu.com:456";
         from_name = "Grafana";
         from_address = "grafana@orbit.moonythm.dev";
         password = secret "grafana_smtp_pass";
@@ -33,6 +32,7 @@ in
     # {{{ Provisoning
     provision = {
       enable = true;
+
       alerting.contactPoints.settings.contactPoints = [
         { name = "email"; }
         {
