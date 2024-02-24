@@ -1,5 +1,6 @@
 { pkgs, config, ... }:
 let
+  # {{{ Colors
   colors = with config.lib.stylix.scheme.withHashtag; {
     highlight-primary = base09;
     highlight-secondary = base01;
@@ -12,6 +13,7 @@ let
     background = base00;
     card-background = base01;
   };
+  # }}}
 
   fa = name: "fas fa-${name}";
   iconPath = ../../../../common/icons;
@@ -37,6 +39,27 @@ in
         colors.dark = colors;
 
         services = [
+          # {{{ Infrastructure
+          {
+            name = "Infrastructure";
+            icon = fa "code";
+            items = [
+              {
+                name = "Prometheus";
+                subtitle = "Monitoring system";
+                logo = icon "prometheus.png";
+                url = "https://prometheus.moonythm.dev";
+              }
+              {
+                name = "Grafana";
+                subtitle = "Pretty dashboards :3";
+                logo = icon "grafana.png";
+                url = "https://grafana.moonythm.dev";
+              }
+            ];
+          }
+          # }}}
+          # {{{ Pillars
           {
             name = "Pillars";
             icon = fa "toolbox";
@@ -61,6 +84,8 @@ in
               }
             ];
           }
+          # }}}
+          # {{{ Productivity
           {
             name = "Productivity";
             icon = fa "rocket";
@@ -68,13 +93,13 @@ in
               {
                 name = "Intray";
                 subtitle = "GTD capture tool";
-                icon = fa "cubes-stacked";
+                icon = fa "inbox";
                 url = "https://intray.moonythm.dev";
               }
               {
                 name = "Smos";
                 subtitle = "A comprehensive self-management system.";
-                icon = fa "list";
+                icon = fa "cubes-stacked";
                 url = "https://smos.moonythm.dev";
               }
               {
@@ -85,6 +110,7 @@ in
               }
             ];
           }
+          # }}}
         ];
       };
     };
