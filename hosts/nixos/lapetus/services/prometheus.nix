@@ -39,7 +39,8 @@ in
   # }}}
   # {{{ Networking & storage
   services.nginx.virtualHosts.${host} =
-    config.satellite.proxy config.services.prometheus.port { };
+    config.satellite.proxy config.services.prometheus.port
+      { proxyWebsockets = true; };
 
   environment.persistence."/persist/state".directories = [{
     directory = "/var/lib/prometheus2";
