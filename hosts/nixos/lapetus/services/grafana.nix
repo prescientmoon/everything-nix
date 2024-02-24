@@ -20,8 +20,11 @@ in
     enable = true;
 
     settings = {
-      server.domain = "grafana.moonythm.dev";
-      server.http_port = 8409;
+      server = rec {
+        domain = "grafana.moonythm.dev";
+        root_url = "https://${domain}";
+        http_port = 8409;
+      };
 
       # {{{ Smtp
       smtp = rec {
