@@ -4,6 +4,8 @@ let
   host = "warden.moonythm.dev";
 in
 {
+  imports = [ ../../common/optional/services/nginx.nix ];
+
   services.nginx.virtualHosts.${host} =
     config.satellite.proxy port { proxyWebsockets = true; };
 

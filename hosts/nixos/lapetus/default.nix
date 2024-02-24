@@ -10,6 +10,7 @@
     ./services/intray.nix
     ./services/smos.nix
     ./services/vaultwarden.nix
+    ./services/actual.nix
     ./services/zfs.nix
     ./filesystems
     ./hardware
