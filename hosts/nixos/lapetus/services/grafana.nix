@@ -33,14 +33,17 @@ in
     # {{{ Provisoning
     provision = {
       enable = true;
-      notifiers = {
-        email.type = "email";
-
-        discord = {
+      notifiers = [
+        {
+          name = "email";
+          type = "email";
+        }
+        {
+          name = "discord";
           type = "discord";
           settings.webhook_url = secret "grafana_discord_webhook";
-        };
-      };
+        }
+      ];
 
       datasources.settings.datasources = [{
         name = "Prometheus";
