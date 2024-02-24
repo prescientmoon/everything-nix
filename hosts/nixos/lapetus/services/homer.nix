@@ -66,13 +66,13 @@ in
               {
                 name = "Intray";
                 subtitle = "GTD capture tool";
-                logo = icon "intray.svg";
+                icon = fa "cubes-stacked";
                 url = "https://intray.moonythm.dev";
               }
               {
                 name = "Smos";
                 subtitle = "A comprehensive self-management system.";
-                logo = icon "smos.svg";
+                icon = fa "list";
                 url = "https://smos.moonythm.dev";
               }
               {
