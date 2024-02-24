@@ -66,7 +66,7 @@ in
               {
                 name = "Intray";
                 subtitle = "GTD capture tool";
-                icon = fa "cubes-stacked";
+                logo = icon "intray.svg";
                 url = "https://intray.moonythm.dev";
               }
               {
