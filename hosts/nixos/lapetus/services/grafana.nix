@@ -4,6 +4,7 @@ let
   sopsSettings = {
     sopsFile = ../secrets.yaml;
     group = "grafana";
+    owner = "grafana";
   };
 in
 {
