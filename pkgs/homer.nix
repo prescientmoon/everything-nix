@@ -23,13 +23,15 @@ let
               text = builtins.toJSON config;
               destination = "/assets/config.yml";
             })
-          ] ++ extraAssets;
-
-          postBuid = lib.concatStringsSep "\n" (map
-            (asset: ''
-              mv $out/${asset} $out/assets/${asset}
-            '')
-            extraAssets);
+          ] ++
+          lib.optional (extraAssets != [ ])
+            (runCommandLocal "homer-assets${nameSuffix}" { }
+              (builtins.concatStringsSep "\n" (map
+                (asset: ''
+                  mkdir -p $out/assets/${dirOf asset}
+                  ln -s ${asset} $out/assets/${asset}
+                '')
+                extraAssets)));
         };
     };
   };
