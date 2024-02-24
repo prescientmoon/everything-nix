@@ -195,6 +195,7 @@ in
             url = "https://search.moonythm.dev/search";
             param = "q";
             aliases = [ "@m" "@moonythm" ];
+            icon = ../../../../common/icons/whoogle.webp;
           };
 
           "Google".metaData.alias = "@g";
@@ -282,7 +283,7 @@ in
       # {{{ Desmos
       desmos = {
         url = "https://www.desmos.com/calculator";
-        icon = ./icons/desmos.png;
+        icon = ../../../../common/icons/desmos.png;
         displayName = "Desmos";
         id = 1;
       };
@@ -290,7 +291,7 @@ in
       # {{{ Monkey type
       monkey-type = {
         url = "https://monkeytype.com/";
-        icon = ./icons/monkeytype.png;
+        icon = ../../../../common/icons/monkeytype.png;
         displayName = "Monkeytype";
         id = 2;
       };
@@ -298,7 +299,7 @@ in
       # {{{ Syncthing
       syncthing = {
         url = "http://localhost:8384/";
-        icon = ./icons/syncthing.png;
+        icon = ../../../../common/icons/syncthing.png;
         displayName = "Syncthing";
         id = 3;
       };

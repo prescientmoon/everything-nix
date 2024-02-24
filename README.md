@@ -7,7 +7,7 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 ## Features this repository includes:
 
 - Sets up all the apps I use — including git, neovim, fish, tmux, starship, hyprland, anyrun, discord, zathura, wezterm & much more.
-- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, whoogle, pounce, calico, smos, intray & more.
+- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, whoogle, pounce, calico, smos, intray, actual & more.
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)
 - Declarative secret management using [sops-nix](https://github.com/Mic92/sops-nix)
 
@@ -98,7 +98,7 @@ Here's some things you might want to check out:
 - [Ranger](https://github.com/ranger/ranger) — file manager
 - [Catgirl](https://git.causal.agency/catgirl/about/) — irc client
 - Self management:
-  - [Smos](https://github.com/NorfairKing/smos) — selfhosted comprehensive self-management System
+  - [Smos](https://github.com/NorfairKing/smos) — selfhosted comprehensive self-management system
   - [Intray](https://github.com/NorfairKing/intray) — selfhosted GTD capture tool
 
 ### Services
@@ -109,8 +109,9 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Whoogle](https://github.com/benbusby/whoogle-search#manual-docker) — search engine
 - [Pounce](https://git.causal.agency/pounce/about/) & [calico](https://git.causal.agency/pounce/about/calico.1) — irc bouncer
 - [Vaultwarden](https://github.com/dani-garcia/vaultwarden/) — password manager
-- [Smos](https://github.com/NorfairKing/smos) — a comprehensive self-management System.
+- [Smos](https://github.com/NorfairKing/smos) — a comprehensive self-management system.
 - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
+- [Actual](https://actualbudget.org/) — budgeting tool.
 
 ## Hall of fame
 

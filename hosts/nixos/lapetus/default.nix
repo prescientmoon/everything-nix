@@ -11,6 +11,7 @@
     ./services/smos.nix
     ./services/vaultwarden.nix
     ./services/actual.nix
+    ./services/homer.nix
     ./services/zfs.nix
     ./filesystems
     ./hardware
