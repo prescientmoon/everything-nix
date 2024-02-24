@@ -46,6 +46,7 @@ in
             items = [
               {
                 name = "Prometheus";
+                type = "Prometheus";
                 subtitle = "Monitoring system";
                 logo = icon "prometheus.png";
                 url = "https://prometheus.moonythm.dev";
