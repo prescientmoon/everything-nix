@@ -19,7 +19,7 @@ in
       server.http_port = 8409;
 
       # {{{ Smtp
-      smtp = {
+      smtp = rec {
         enabled = true;
         host = "smtp.migadu.com:456";
         from_name = "Grafana";
