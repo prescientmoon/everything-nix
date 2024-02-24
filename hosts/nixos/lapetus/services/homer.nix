@@ -72,7 +72,7 @@ in
               {
                 name = "Smos";
                 subtitle = "A comprehensive self-management system.";
-                icon = fa "list";
+                logo = icon "smos.svg";
                 url = "https://smos.moonythm.dev";
               }
               {

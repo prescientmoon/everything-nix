@@ -48,6 +48,7 @@ in
     type = "Application";
     exec = "smosgui";
     terminal = false;
+    icon = ../../../../../common/icons/smos.svg;
   };
   # }}}
 }
