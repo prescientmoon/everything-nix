@@ -13,6 +13,8 @@
     ./services/actual.nix
     ./services/homer.nix
     ./services/zfs.nix
+    ./services/prometheus.nix
+    ./services/grafana.nix
     ./filesystems
     ./hardware
   ];

@@ -18,6 +18,8 @@ let
   icon = file: "assets/${iconPath}/${file}";
 in
 {
+  imports = [ ../../common/optional/services/nginx.nix ];
+
   services.nginx.virtualHosts."lab.moonythm.dev" = {
     enableACME = true;
     acmeRoot = null;
