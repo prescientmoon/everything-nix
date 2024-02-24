@@ -43,28 +43,21 @@ in
       enable = true;
 
       # https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/file-provisioning/
-      alerting.contactPoints.settings = {
-        deleteContactPoints = [
-          { uid = "main_discord"; }
-          { uid = "main_email"; }
+      alerting.contactPoints.settings.contactPoints = [{
+        name = "main";
+        receivers = [
+          {
+            uid = "main_discord";
+            type = "discord";
+            settings.url = secret "grafana_discord_webhook";
+          }
+          {
+            uid = "main_email";
+            type = "email";
+            settings.addresses = "colimit@moonythm.dev";
+          }
         ];
-
-        contactPoints = [{
-          name = "main";
-          receivers = [
-            {
-              uid = "main_discord";
-              type = "discord";
-              settings.url = secret "grafana_discord_webhook";
-            }
-            {
-              uid = "main_email";
-              type = "email";
-              settings.addresses = "colimit@moonythm.dev";
-            }
-          ];
-        }];
-      };
+      }];
 
       datasources.settings.datasources = [{
         name = "Prometheus";
