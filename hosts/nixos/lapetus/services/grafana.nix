@@ -35,10 +35,12 @@ in
       enable = true;
       notifiers = [
         {
+          uid = "email";
           name = "email";
           type = "email";
         }
         {
+          uid = "discord";
           name = "discord";
           type = "discord";
           settings.webhook_url = secret "grafana_discord_webhook";
