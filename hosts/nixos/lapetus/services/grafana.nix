@@ -15,9 +15,8 @@ in
     enable = true;
 
     settings = {
-      domain = "grafana.moonythm.dev";
-      port = 8409;
-      addr = "127.0.0.1";
+      server.domain = "grafana.moonythm.dev";
+      server.http_port = 8409;
 
       # {{{ Smtp
       smtp = {
@@ -54,8 +53,8 @@ in
   };
   # }}}
   # {{{ Networking & storage
-  services.nginx.virtualHosts.${config.services.grafana.domain} =
-    config.satellite.proxy config.services.grafana.port { };
+  services.nginx.virtualHosts.${config.services.grafana.settings.server.domain} =
+    config.satellite.proxy config.services.grafana.settings.server.http_port { };
 
   environment.persistence."/persist/state".directories = [
     config.services.grafana.dataDir
