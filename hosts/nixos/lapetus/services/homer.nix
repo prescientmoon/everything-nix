@@ -16,7 +16,7 @@ let
   icon = file: ../../../../common/icons/${file};
 in
 {
-  services.nginx.virtualHosts."dashboard.moonythm.dev" = {
+  services.nginx.virtualHosts."lab.moonythm.dev" = {
     enableACME = true;
     acmeRoot = null;
     forceSSL = true;
