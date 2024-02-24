@@ -6,5 +6,6 @@
     recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
+    statusPage = true; # Necessary for prometheus exporter
   };
 }
