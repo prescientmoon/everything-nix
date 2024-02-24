@@ -21,6 +21,7 @@ in
     # https://github.com/Athou/commafeed/blob/master/commafeed-server/config.yml.example
     environment = {
       CF_APP_PUBLICURL = "https://${host}";
+      CF_APP_ALLOWREGISTRATIONS = true;
     };
   };
 }
