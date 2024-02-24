@@ -34,8 +34,10 @@ in
       config.services.grafana.port
       { proxyWebsockets = true; };
 
-  environment.persistence."/persist/state".directories = [
-    "/var/lib/prometheus2"
-  ];
+  environment.persistence."/persist/state".directories = [{
+    directory = "/var/lib/prometheus2";
+    user = "prometheus";
+    group = "prometheus";
+  }];
   # }}}
 }

@@ -58,8 +58,10 @@ in
   services.nginx.virtualHosts.${config.services.grafana.settings.server.domain} =
     config.satellite.proxy config.services.grafana.settings.server.http_port { };
 
-  environment.persistence."/persist/state".directories = [
-    config.services.grafana.dataDir
-  ];
+  environment.persistence."/persist/state".directories = [{
+    directory = config.services.grafana.dataDir;
+    user = "grafana";
+    group = "grafana";
+  }];
   # }}}
 }
