@@ -1,5 +1,11 @@
 { config, pkgs, ... }:
-let secret = name: "$__file{${config.sops.secrets.${name}.path}}";
+let
+  secret = name: "$__file{${config.sops.secrets.${name}.path}}";
+  sopsSettings = {
+    sopsFile = ../secrets.yaml;
+    user = "grafana";
+    group = "grafana";
+  };
 in
 {
   imports = [
@@ -7,8 +13,8 @@ in
     ./prometheus.nix
   ];
 
-  sops.secrets.grafana_smtp_pass.sopsFile = ../secrets.yaml;
-  sops.secrets.grafana_discord_webhook.sopsFile = ../secrets.yaml;
+  sops.secrets.grafana_smtp_pass = sopsSettings;
+  sops.secrets.grafana_discord_webhook = sopsSettings;
 
   # {{{ Main config
   services.grafana = {
@@ -21,12 +27,13 @@ in
       # {{{ Smtp
       smtp = rec {
         enabled = true;
-        host = "smtp.migadu.com:465";
-        from_name = "Grafana";
-        password = secret "grafana_smtp_pass";
+
         user = "grafana@orbit.moonythm.dev";
+        from_name = "Grafana";
         from_address = user;
-        skip_verify = true;
+
+        host = "smtp.migadu.com:465";
+        password = secret "grafana_smtp_pass";
         startTLS_policy = "NoStartTLS";
       };
       # }}}
