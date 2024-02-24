@@ -23,8 +23,9 @@ in
         enabled = true;
         host = "smtp.migadu.com:456";
         from_name = "Grafana";
-        from_address = "grafana@orbit.moonythm.dev";
         password = secret "grafana_smtp_pass";
+        user = "grafana@orbit.moonythm.dev";
+        from_address = user;
       };
       # }}}
     };
