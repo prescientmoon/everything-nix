@@ -8,7 +8,7 @@ in
   services.prometheus = {
     enable = true;
     port = 8410;
-    webExternalUrl = host;
+    webExternalUrl = "https://${host}";
 
     # {{{ Node exporter (system info)
     exporters = {
@@ -30,9 +30,7 @@ in
   # }}}
   # {{{ Networking & storage
   services.nginx.virtualHosts.${host} =
-    config.satellite.proxy
-      config.services.prometheus.port
-      { proxyWebsockets = true; };
+    config.satellite.proxy config.services.prometheus.port { };
 
   environment.persistence."/persist/state".directories = [{
     directory = "/var/lib/prometheus2";
