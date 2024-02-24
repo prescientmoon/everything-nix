@@ -50,6 +50,10 @@ in
             uid = "main_discord";
             type = "discord";
             settings.url = secret "grafana_discord_webhook";
+            settings.message = ''
+              @everyone ✨ An issue occured :O ✨
+              {{ template "default.message" . }}
+            '';
           }
           {
             uid = "main_email";
