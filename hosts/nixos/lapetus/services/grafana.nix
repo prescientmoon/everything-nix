@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let secret = name: "$__file(${config.sops.secrets.${name}.path})";
+let secret = name: "$__file{${config.sops.secrets.${name}.path}}";
 in
 {
   imports = [
