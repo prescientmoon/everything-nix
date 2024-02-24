@@ -53,7 +53,7 @@ in
               {
                 name = "Whoogle";
                 subtitle = "Search engine";
-                logo = icon "woogle.webp";
+                logo = icon "whoogle.webp";
                 url = "search.moonythm.dev";
                 keywords = "search google";
               }
