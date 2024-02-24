@@ -66,6 +66,10 @@ in
         ];
       }];
 
+      alerting.policies.settings.policies = [{
+        receiver = "main";
+      }];
+
       datasources.settings.datasources = [{
         name = "Prometheus";
         type = "prometheus";
