@@ -33,17 +33,14 @@ in
     # {{{ Provisoning
     provision = {
       enable = true;
-      notifiers = [
+      alerting.contactPoints.settings.contactPoints = [
+        { name = "email"; }
         {
-          uid = "email";
-          name = "email";
-          type = "email";
-        }
-        {
-          uid = "discord";
           name = "discord";
-          type = "discord";
-          settings.webhook_url = secret "grafana_discord_webhook";
+          webhook_configs = [{
+            send_resolved = true;
+            url = secret "grafana_discord_webhook";
+          }];
         }
       ];
 
