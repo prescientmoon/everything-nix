@@ -3,7 +3,6 @@ let
   secret = name: "$__file{${config.sops.secrets.${name}.path}}";
   sopsSettings = {
     sopsFile = ../secrets.yaml;
-    group = "grafana";
     owner = "grafana";
   };
 in

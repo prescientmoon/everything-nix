@@ -17,7 +17,6 @@ in
 {
   # Generate cert
   security.acme.certs."wildcard-irc.moonythm.dev" = {
-    owner = user;
     group = user;
     domain = "*.irc.moonythm.dev";
   };
