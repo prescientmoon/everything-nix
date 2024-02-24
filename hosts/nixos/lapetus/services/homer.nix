@@ -14,7 +14,8 @@ let
   };
 
   fa = name: "fas fa-${name}";
-  icon = file: "assets${../../../../common/icons/${file}}";
+  iconPath = ../../../../common/icons;
+  icon = file: "assets/${iconPath}/${file}";
 in
 {
   services.nginx.virtualHosts."lab.moonythm.dev" = {
@@ -22,7 +23,7 @@ in
     acmeRoot = null;
     forceSSL = true;
     root = pkgs.homer.withAssets {
-      extraAssets = [ ../../../../common/icons ];
+      extraAssets = [ iconPath ];
       config = {
         title = "✨ The celestial citadel ✨";
 
