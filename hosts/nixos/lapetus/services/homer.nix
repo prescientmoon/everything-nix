@@ -1,10 +1,10 @@
 { pkgs, config, ... }:
 let
   colors = with config.lib.stylix.scheme.withHashtag; {
-    highlight-primary = base0A;
-    highlight-secondary = base09;
-    highlight-hover = base08;
-    text-header = base00;
+    highlight-primary = base09;
+    highlight-secondary = base01;
+    highlight-hover = base00;
+    text-header = base05;
     text-title = base05;
     text-subtitle = base05;
     text = base05;
