@@ -26,6 +26,7 @@ in
         password = secret "grafana_smtp_pass";
         user = "grafana@orbit.moonythm.dev";
         from_address = user;
+        skip_verify = true;
       };
       # }}}
     };
