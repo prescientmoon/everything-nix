@@ -46,36 +46,45 @@ in
       enable = true;
 
       # https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/file-provisioning/
-      alerting.contactPoints.settings.contactPoints = [{
-        name = "main";
-        receivers = [
-          {
-            uid = "main_discord";
-            type = "discord";
-            settings.url = secret "grafana_discord_webhook";
-            settings.message = ''
-              @everyone ✨ An issue occured :O ✨
-              {{ template "default.message" . }}
-            '';
-          }
-          {
-            uid = "main_email";
-            type = "email";
-            settings.addresses = "colimit@moonythm.dev";
-          }
-        ];
-      }];
+      alerting.contactPoints.settings = {
+        apiVersion = 1;
+        contactPoints = [{
+          name = "main";
+          receivers = [
+            {
+              uid = "main_discord";
+              type = "discord";
+              settings.url = secret "grafana_discord_webhook";
+              settings.message = ''
+                @everyone ✨ An issue occured :O ✨
+                {{ template "default.message" . }}
+              '';
+            }
+            {
+              uid = "main_email";
+              type = "email";
+              settings.addresses = "colimit@moonythm.dev";
+            }
+          ];
+        }];
+      };
 
-      alerting.policies.settings.policies = [{
-        receiver = "main";
-      }];
+      alerting.policies.settings = {
+        apiVersion = 1;
+        policies = [{
+          receiver = "main";
+        }];
+      };
 
-      datasources.settings.datasources = [{
-        name = "Prometheus";
-        type = "prometheus";
-        access = "proxy";
-        url = "prometheus.moonythm.dev";
-      }];
+      datasources.settings = {
+        apiVersion = 1;
+        datasources = [{
+          name = "Prometheus";
+          type = "prometheus";
+          access = "proxy";
+          url = "https://prometheus.moonythm.dev";
+        }];
+      };
     };
     # }}}
   };
