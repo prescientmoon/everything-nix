@@ -250,23 +250,39 @@ let
         };
         # }}}
         # {{{ Language specific settings
-        "5:language-specific-settings".autocmds = [{
-          event = "FileType";
-          group = "UserNixSettings";
-          pattern = "nix";
-          action = {
-            vim.opt.commentstring = "# %s";
-            keys = {
-              mapping = "<leader>lg";
-              action = thunk /* lua */ ''
-                D.tempest.withSavedCursor(function()
-                  vim.cmd(":%!${lib.getExe pkgs.update-nix-fetchgit}")
-                end)
-              '';
-              desc = "Update all fetchgit calls";
-            };
-          };
-        }];
+        "5:language-specific-settings" = {
+          autocmds = [
+            {
+              event = "FileType";
+              group = "UserNixSettings";
+              pattern = "nix";
+              action = {
+                vim.opt.commentstring = "# %s";
+                keys = {
+                  mapping = "<leader>lg";
+                  action = thunk /* lua */ ''
+                    D.tempest.withSavedCursor(function()
+                      vim.cmd(":%!${lib.getExe pkgs.update-nix-fetchgit}")
+                    end)
+                  '';
+                  desc = "Update all fetchgit calls";
+                };
+              };
+            }
+            {
+              event = "FileType";
+              group = "UserPurescriptSettings";
+              pattern = "purs";
+              action.vim.opt = {
+                expandtab = true; # Use spaces for the tab char
+                commentstring = "-- %s";
+              };
+            }
+          ];
+
+          # Make neovim aware about the existence of the purescript datatype.
+          callback = lua ''vim.filetype.add({ extension = { purs = "purescript" } })'';
+        };
         # }}}
       };
       # }}}
@@ -310,7 +326,7 @@ let
         mini-statusline = {
           package = "echasnovski/mini.statusline";
           name = "mini.statusline";
-          dependencies.lua = [ self.lazy.web-devicons.package ];
+          dependencies.lua = [ "web-devicons" ];
 
           cond = blacklist [ "vscode" "firenvim" ];
           lazy = false;
@@ -342,7 +358,7 @@ let
         mini-files = {
           package = "echasnovski/mini.files";
           name = "mini.files";
-          dependencies.lua = [ self.lazy.web-devicons.package ];
+          dependencies.lua = [ "web-devicons" ];
 
           cond = blacklist [ "vscode" "firenvim" ];
           keys = {
@@ -411,7 +427,7 @@ let
         # {{{ neogit
         neogit = {
           package = "TimUntersberger/neogit";
-          dependencies.lua = [ self.lazy.plenary.package ];
+          dependencies.lua = [ "plenary" ];
 
           cond = blacklist [ "vscode" "firenvim" ];
           cmd = "Neogit"; # We sometimes spawn this directly from fish using a keybind
@@ -436,7 +452,7 @@ let
           dependencies = {
             nix = [ pkgs.ripgrep ];
             lua = [
-              self.lazy.plenary.package
+              "plenary"
               {
                 # We want a prebuilt version of this plugin
                 dir = pkgs.vimPlugins.telescope-fzf-native-nvim;
@@ -562,12 +578,15 @@ let
         # {{{ treesitter
         treesitter = {
           # REASON: more grammars
-          dir = upkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+          # dir = upkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+          package = "nvim-treesitter/nvim-treesitter";
+          main = "nvim-treesitter.configs";
+
           dependencies.lua = [ "nvim-treesitter/nvim-treesitter-textobjects" ];
           dependencies.nix = [ pkgs.tree-sitter ];
 
           cond = blacklist "vscode";
-          event = "BufReadPost";
+          event = "VeryLazy";
 
           #{{{ Highlighting
           opts.highlight = {
@@ -628,15 +647,16 @@ let
           event = "VeryLazy";
         };
 
+        # REASON: broken
         # show context at top of file
-        treesitter-top-context = {
-          package = "nvim-treesitter/nvim-treesitter-context";
-          dependencies.lua = [ "treesitter" ];
-
-          cond = blacklist "vscode";
-          event = "VeryLazy";
-          opts.enable = true;
-        };
+        # treesitter-top-context = {
+        #   package = "nvim-treesitter/nvim-treesitter-context";
+        #   dependencies.lua = [ "treesitter" ];
+        #
+        #   cond = blacklist "vscode";
+        #   event = "VeryLazy";
+        #   opts.enable = true;
+        # };
         # }}}
         # }}}
         # {{{ editing 
@@ -735,21 +755,22 @@ let
           opts.keymaps.replace_all = "<s-cr>";
         };
         # }}}
-        # {{{ edit-code-block (edit injections in separate buffers)
-        edit-code-block = {
-          package = "dawsers/edit-code-block.nvim";
-          dependencies.lua = [ "treesitter" ];
-          main = "ecb";
-
-          cond = blacklist "vscode";
-          config = true;
-          keys = {
-            mapping = "<leader>e";
-            action = "<cmd>EditCodeBlock<cr>";
-            desc = "[e]dit injection";
-          };
-        };
-        # }}}
+        # # {{{ edit-code-block (edit injections in separate buffers)
+        # REASON: broken
+        # edit-code-block = {
+        #   package = "dawsers/edit-code-block.nvim";
+        #   dependencies.lua = [ "treesitter" ];
+        #   main = "ecb";
+        #
+        #   cond = blacklist "vscode";
+        #   config = true;
+        #   keys = {
+        #     mapping = "<leader>e";
+        #     action = "<cmd>EditCodeBlock<cr>";
+        #     desc = "[e]dit injection";
+        #   };
+        # };
+        # # }}}
         # {{{ mini.comment 
         mini-comment = {
           package = "echasnovski/mini.comment";
@@ -890,6 +911,7 @@ let
         # {{{ ide
         # {{{ conform
         conform = {
+          dependencies.lua = [ "neovim/nvim-lspconfig" ];
           package = "stevearc/conform.nvim";
 
           cond = blacklist "vscode";
@@ -1052,7 +1074,7 @@ let
             "dmitmel/cmp-digraphs"
             # }}}
             "onsails/lspkind.nvim" # show icons in lsp completion menus
-            self.lazy.luasnip.package
+            "luasnip"
           ];
 
           cond = blacklist "vscode";
@@ -1063,7 +1085,7 @@ let
         # {{{ inc-rename
         inc-rename = {
           package = "smjonas/inc-rename.nvim";
-          dependencies.lua = [ self.lazy.dressing.package ];
+          dependencies.lua = [ "dressing" ];
 
           cond = blacklist "vscode";
           event = "VeryLazy";
@@ -1085,7 +1107,7 @@ let
         # {{{ haskell support
         haskell-tools = {
           package = "mrcjkb/haskell-tools.nvim";
-          dependencies.lua = [ self.lazy.plenary.package ];
+          dependencies.lua = [ "plenary" ];
           version = "^2";
 
           cond = blacklist "vscode";
@@ -1126,7 +1148,7 @@ let
         # {{{ crates 
         crates = {
           package = "saecki/crates.nvim";
-          dependencies.lua = [ self.lazy.plenary.package ];
+          dependencies.lua = [ "plenary" ];
 
           cond = blacklist "vscode";
           event = "BufReadPost Cargo.toml";
@@ -1203,7 +1225,7 @@ let
           package = "Julian/lean.nvim";
           name = "lean";
           dependencies.lua = [
-            self.lazy.plenary.package
+            "plenary"
             "neovim/nvim-lspconfig"
           ];
 
@@ -1229,7 +1251,7 @@ let
           package = "ShinKage/idris2-nvim";
           name = "idris";
           dependencies.lua = [
-            self.lazy.nui.package
+            "nui"
             "neovim/nvim-lspconfig"
           ];
 
@@ -1278,6 +1300,14 @@ let
           ft = "typst";
         };
         # }}}
+        # {{{ purescript support
+        # purescript = {
+        #   package = "purescript-contrib/purescript-vim";
+        #
+        #   cond = blacklist "vscode";
+        #   ft = "purescript";
+        # };
+        # }}}
         # {{{ hyprland
         hyprland = {
           package = "theRealCarneiro/hyprland-vim-syntax";
@@ -1322,7 +1352,7 @@ let
           in
           {
             package = "ruifm/gitlinker.nvim";
-            dependencies.lua = [ self.lazy.plenary.package ];
+            dependencies.lua = [ "plenary" ];
 
             cond = blacklist [ "vscode" "firenvim" ];
             opts.mappings = mapping;
@@ -1345,7 +1375,7 @@ let
           in
           {
             package = "epwalsh/obsidian.nvim";
-            dependencies.lua = [ self.lazy.plenary.package ];
+            dependencies.lua = [ "plenary" ];
 
             cond = [
               (blacklist [ "vscode" "firenvim" ])
@@ -1393,7 +1423,7 @@ let
   extraPackages = with pkgs; [
     # Language servers
     nodePackages.typescript-language-server # typescript
-    nodePackages_latest.purescript-language-server # purescript
+    # nodePackages_latest.purescript-language-server # purescript
     lua-language-server # lua
     rnix-lsp # nix
     nil # nix
@@ -1404,7 +1434,7 @@ let
 
     # Formatters
     stylua # Lua
-    nodePackages_latest.purs-tidy # Purescript
+    # nodePackages_latest.purs-tidy # Purescript
     nodePackages_latest.prettier # Js & friends
     nodePackages_latest.prettier_d_slim # Js & friends
 
@@ -1483,7 +1513,7 @@ let
     base =
       if config.satellite.toggles.neovim-nightly.enable
       then pkgs.neovim-nightly
-      else pkgs.neovim;
+      else upkgs.neovim;
     name = "nvim";
   };
 

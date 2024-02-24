@@ -150,7 +150,7 @@ M.unicode = {
 -- }}}
 
 function M.setup()
-  A.manyGlobalAbbr(scrap.expand_many(M.unicode, { capitalized = false }))
+  A.manyLocalAbbr(scrap.expand_many(M.unicode, { capitalized = false }))
 end
 
 return M

@@ -21,6 +21,8 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
 
+  services.mullvad-vpn.enable = true;
+
   # {{{ Machine ids
   networking.hostName = "tethys";
   environment.etc.machine-id.text = "08357db3540c4cd2b76d4bb7f825ec88";

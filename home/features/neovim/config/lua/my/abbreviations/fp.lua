@@ -4,7 +4,7 @@ local M = {}
 
 M.symols = {
   { "mto", ">>=" }, -- [M]onadic [t]o
-  { "oalt", "<\\|>" }, -- [O]peration [A]lternative
+  { "oalt", "<|>" }, -- [O]peration [A]lternative
   { "omono", "<>" }, -- [O]peration [M]onoid
 }
 
@@ -24,17 +24,9 @@ M.functions = {
 }
 
 function M.setup()
-  scrap.many_local_abbreviations(
-    scrap.expand_many(M.types, A.no_capitalization)
-  )
-
-  scrap.many_local_abbreviations(
-    scrap.expand_many(M.symols, A.no_capitalization)
-  )
-
-  scrap.many_local_abbreviations(
-    scrap.expand_many(M.functions, A.no_capitalization)
-  )
+  A.manyLocalAbbr(scrap.expand_many(M.types, A.no_capitalization))
+  A.manyLocalAbbr(scrap.expand_many(M.symols, A.no_capitalization))
+  A.manyLocalAbbr(scrap.expand_many(M.functions, A.no_capitalization))
 end
 
 return M
