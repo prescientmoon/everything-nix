@@ -4,8 +4,9 @@ let
     highlight-primary = base0A;
     highlight-secondary = base09;
     highlight-hover = base08;
-    text-title = base00;
-    text-subtitle = base00;
+    text-header = base00;
+    text-title = base05;
+    text-subtitle = base05;
     text = base05;
     link = base08;
     background = base00;
@@ -13,7 +14,7 @@ let
   };
 
   fa = name: "fas fa-${name}";
-  icon = file: ../../../../common/icons/${file};
+  icon = file: "./assets/${../../../../common/icons/${file}}";
 in
 {
   services.nginx.virtualHosts."lab.moonythm.dev" = {
@@ -21,11 +22,12 @@ in
     acmeRoot = null;
     forceSSL = true;
     root = pkgs.homer.withAssets {
+      extraAssets = [ ../../../../common/icons ];
       config = {
         title = "✨ The celestial citadel ✨";
         subtitle = "The home for my homelab :3";
 
-        header = false;
+        header = true;
         footer = false;
         connectivityCheck = true;
 
@@ -60,8 +62,8 @@ in
             ];
           }
           {
-            name = "Self management";
-            icon = fa "superpowers";
+            name = "Productivity";
+            icon = fa "rocket";
             items = [
               {
                 name = "Intray";

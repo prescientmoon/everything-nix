@@ -1,3 +1,4 @@
+# Taken from this comment: https://github.com/NixOS/nixpkgs/issues/152343#issuecomment-1367069827
 { lib, fetchzip, writeTextFile, runCommandLocal, symlinkJoin }:
 
 let
