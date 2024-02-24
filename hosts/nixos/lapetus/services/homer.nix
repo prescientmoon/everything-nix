@@ -14,7 +14,7 @@ let
   };
 
   fa = name: "fas fa-${name}";
-  icon = file: "./assets/${../../../../common/icons/${file}}";
+  icon = file: "assets${../../../../common/icons/${file}}";
 in
 {
   services.nginx.virtualHosts."lab.moonythm.dev" = {
@@ -25,9 +25,8 @@ in
       extraAssets = [ ../../../../common/icons ];
       config = {
         title = "✨ The celestial citadel ✨";
-        subtitle = "The home for my homelab :3";
 
-        header = true;
+        header = false;
         footer = false;
         connectivityCheck = true;
 
@@ -44,7 +43,6 @@ in
                 subtitle = "Password manager";
                 logo = icon "bitwarden.png";
                 url = "warden.moonythm.dev";
-                keywords = "pass";
               }
               {
                 name = "Syncthing";
@@ -57,7 +55,6 @@ in
                 subtitle = "Search engine";
                 logo = icon "whoogle.webp";
                 url = "search.moonythm.dev";
-                keywords = "search google";
               }
             ];
           }
