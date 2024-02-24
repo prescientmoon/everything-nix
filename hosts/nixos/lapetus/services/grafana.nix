@@ -43,12 +43,12 @@ in
         };
       };
 
-      datasources.settings.datasources.prometheus = {
+      datasources.settings.datasources = [{
         name = "Prometheus";
         type = "prometheus";
         access = "proxy";
         url = "prometheus.moonythm.dev";
-      };
+      }];
     };
     # }}}
   };
