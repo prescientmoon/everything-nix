@@ -149,6 +149,9 @@ let
               (nmap "<leader>ss"
                 (thunk /* lua */ "vim.opt.spell = not vim.o.spell")
                 "toggle [s]pell checker")
+              (nmap "<leader>yp"
+                ("<cmd>!curl --data-binary @% https://paste.rs<cr>")
+                "[y]ank [p]aste.rs link")
               # }}}
             ];
           # }}}
@@ -302,7 +305,7 @@ let
         # {{{ web-devicons
         web-devicons.package = "nvim-tree/nvim-web-devicons";
         # }}}
-        # {{{ Scrap
+        # {{{ scrap
         scrap = {
           package = "mateiadrielrafael/scrap.nvim";
 
@@ -336,7 +339,9 @@ let
             return st.combine_groups({
               { hl = mode_hl, strings = { mode } },
               { hl = "MiniStatuslineDevinfo", strings = { git } },
-              { hl = "MiniStatuslineFilename", strings = { vim.fn.expand("%:t") } },
+              { hl = "MiniStatuslineFilename", strings = { 
+                vim.fn.fnamemodify(vim.fn.expand("%:p"), ":~:.") 
+              } },
               "%=", -- End left alignment
               { hl = "MiniStatuslineFilename", strings = { diagnostics } },
               { hl = "MiniStatuslineDevinfo", strings = { vim.bo.filetype } },
@@ -365,17 +370,6 @@ let
 
           opts.windows.preview = false;
           opts.mappings.go_in_plus = "l";
-        };
-        # }}}
-        # {{{ winbar
-        winbar = {
-          package = "fgheng/winbar.nvim";
-
-          cond = [ (blacklist [ "vscode" "firenvim" ]) notmp ];
-          event = "BufReadPost";
-
-          opts.enabled = true;
-          # TODO: blacklist harpoon
         };
         # }}}
         # {{{ harpoon
@@ -610,15 +604,6 @@ let
         };
         # }}}
         # {{{ treesitter context
-        # Show context at the of closing delimiters
-        treesitter-virtual-context = {
-          package = "haringsrob/nvim_context_vt";
-          dependencies.lua = [ "treesitter" ];
-
-          cond = blacklist "vscode";
-          event = "VeryLazy";
-        };
-
         # REASON: broken
         # show context at top of file
         # treesitter-top-context = {
@@ -1314,14 +1299,6 @@ let
             opts.mappings = mapping;
             keys = mapping;
           };
-        # }}}
-        # {{{ paperplanes
-        # export to pastebin like services
-        paperlanes = {
-          package = "rktjmp/paperplanes.nvim";
-          cmd = "PP";
-          opts.provider = "paste.rs";
-        };
         # }}}
         # {{{ obsidian
         obsidian =

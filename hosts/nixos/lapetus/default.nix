@@ -15,7 +15,7 @@
     ./services/zfs.nix
     ./services/prometheus.nix
     ./services/grafana.nix
-    ./services/commarss.nix
+    ./services/commafeed.nix
     ./filesystems
     ./hardware
   ];

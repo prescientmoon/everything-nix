@@ -33,7 +33,6 @@ in
     enable = true;
     defaultOptions = [ "--no-scrollbar" ];
 
-
     changeDirWidgetOptions = [
       "--preview '${lib.getExe pkgs.eza} --icons --tree --color=always {}'"
     ];
@@ -87,7 +86,7 @@ in
 
   satellite.persistence.at.state.apps.fish.directories = [
     "${config.xdg.dataHome}/fish"
-    "${config.xdg.dataHome}/z" # The z fish plugin
+    "${config.xdg.dataHome}/z" # The z fish plugin requires this
   ];
   # }}}
 }

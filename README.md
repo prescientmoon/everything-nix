@@ -122,7 +122,10 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
-- [eww](https://github.com/elkowar/eww) - experimented with eww for a bit, but setup was painful and bars are a bit useless
+- [winbar.nvim](https://github.com/fgheng/winbar.nvim) — I mostly had this here for the looks, so I moved the path it provided to my statusbar
+- [treesitter-visual-context.nvim](https://github.com/haringsrob/nvim_context_vt) — felt like this was cluttering my screen more than anything
+- [Paperplanes.nvim](https://rktjmp/paperplanes.nvim) — replaced by a single curl call
+- [Eww](https://github.com/elkowar/eww) - experimented with eww for a bit, but setup was painful and bars are a bit useless
 - [Neogit](https://github.com/NeogitOrg/neogit) — was a bit slow / clunky, so I switched to [lazygit](https://github.com/jesseduffield/lazygit)
 - [Slambda](https://github.com/Mateiadrielrafael/slambda) — custom keyboard chording utility. I retired the project in favour of [kanta](https://github.com/jtroo/kanata)
 - [GPG](https://gnupg.org/) + [pass](https://www.passwordstore.org/) — I switched to [vaultwarden](https://github.com/dani-garcia/vaultwarden/)
