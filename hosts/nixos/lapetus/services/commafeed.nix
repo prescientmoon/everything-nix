@@ -17,7 +17,10 @@ in
 
     ports = [ "${toString port}:8082" ]; # server:docker
     volumes = [ "${dataDir}:/commafeed/data" ]; # server:docker
-    extraOptions = [ "--memory=128m" ]; # the JVM is way too hungry
+
+    # the JVM is way too hungry
+    entrypoint = builtins.toJSON
+      [ "java" "-Xmx64m" "-jar" "commafeed.jar" "server" "config.yml" ];
 
     # https://github.com/Athou/commafeed/blob/master/commafeed-server/config.yml.example
     environment = {
