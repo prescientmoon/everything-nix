@@ -17,7 +17,7 @@ in
 
     ports = [ "${toString port}:8082" ]; # server:docker
     volumes = [ "${dataDir}:/commafeed/data" ]; # server:docker
-    extraOptions = [ "--memory=64m" ]; # the JVM is way too hungry
+    extraOptions = [ "--memory=128m" ]; # the JVM is way too hungry
 
     # https://github.com/Athou/commafeed/blob/master/commafeed-server/config.yml.example
     environment = {
