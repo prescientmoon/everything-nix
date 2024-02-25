@@ -312,16 +312,6 @@ let
         # }}}
         # }}}
         # {{{ ui
-        # {{{ nvim-tree 
-        nvim-tree = {
-          package = "kyazdani42/nvim-tree.lua";
-
-          cond = blacklist [ "vscode" "firenvim" ];
-          config = true;
-
-          keys = nmap "<C-n>" "Toggle [n]vim-tree" "<cmd>NvimTreeToggle<cr>";
-        };
-        # }}}
         # {{{ mini.statusline
         mini-statusline = {
           package = "echasnovski/mini.statusline";
@@ -755,22 +745,6 @@ let
           opts.keymaps.replace_all = "<s-cr>";
         };
         # }}}
-        # # {{{ edit-code-block (edit injections in separate buffers)
-        # REASON: broken
-        # edit-code-block = {
-        #   package = "dawsers/edit-code-block.nvim";
-        #   dependencies.lua = [ "treesitter" ];
-        #   main = "ecb";
-        #
-        #   cond = blacklist "vscode";
-        #   config = true;
-        #   keys = {
-        #     mapping = "<leader>e";
-        #     action = "<cmd>EditCodeBlock<cr>";
-        #     desc = "[e]dit injection";
-        #   };
-        # };
-        # # }}}
         # {{{ mini.comment 
         mini-comment = {
           package = "echasnovski/mini.comment";
@@ -1308,7 +1282,7 @@ let
         #   ft = "purescript";
         # };
         # }}}
-        # {{{ hyprland
+        # {{{ hyprland support
         hyprland = {
           package = "theRealCarneiro/hyprland-vim-syntax";
 

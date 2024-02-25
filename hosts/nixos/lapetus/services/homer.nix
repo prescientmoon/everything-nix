@@ -57,6 +57,12 @@ in
                 logo = icon "grafana.png";
                 url = "https://grafana.moonythm.dev";
               }
+              {
+                name = "Syncthing";
+                subtitle = "File synchronization";
+                logo = icon "syncthing.png";
+                url = "https://syncthing.lapetus.moonythm.dev";
+              }
             ];
           }
           # }}}
@@ -72,16 +78,16 @@ in
                 url = "https://warden.moonythm.dev";
               }
               {
-                name = "Syncthing";
-                subtitle = "File synchronization";
-                logo = icon "syncthing.png";
-                url = "https://syncthing.lapetus.moonythm.dev";
-              }
-              {
                 name = "Whoogle";
                 subtitle = "Search engine";
                 logo = icon "whoogle.webp";
                 url = "https://search.moonythm.dev";
+              }
+              {
+                name = "Commafeed";
+                subtitle = "RSS reader";
+                logo = icon "commafeed.png";
+                url = "https://rss.moonythm.dev";
               }
             ];
           }
