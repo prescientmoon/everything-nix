@@ -91,7 +91,6 @@ Here's some things you might want to check out:
 - [Neovim](https://neovim.io/) — my editor
   - [Neovide](https://neovide.dev/index.html) — neovim gui client
   - [Vimclip](https://github.com/hrantzsch/vimclip) — vim anywhere!
-  - [Firenvim](https://github.com/glacambre/firenvim) — embed neovim in web browsers
 - [Tmux](https://github.com/tmux/tmux/wiki) — terminal multiplexer
 - [Fish](https://fishshell.com/) — user friendly shell
   - [Starship](https://starship.rs/) — shell prompt
@@ -122,6 +121,9 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
+- [firenvim](https://glacambre/firenvim) - the concept is cool, but I found the whole thing pretty annoying at times
+- [venn.nvim](https://jbyuki/venn.nvim) — the concept is cool, but I would use it about once a year
+- [hydra.nvim](https://anuvyklack/hydra.nvim) — I was rarely using it, and it was taking up precious config space
 - [winbar.nvim](https://github.com/fgheng/winbar.nvim) — I mostly had this here for the looks, so I moved the path it provided to my statusbar
 - [treesitter-visual-context.nvim](https://github.com/haringsrob/nvim_context_vt) — felt like this was cluttering my screen more than anything
 - [Paperplanes.nvim](https://rktjmp/paperplanes.nvim) — replaced by a single curl call

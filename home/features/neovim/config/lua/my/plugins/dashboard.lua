@@ -13,7 +13,7 @@ local header = runtime.helpers.split(header_string, "\n")
 
 local M = {
   "goolord/alpha-nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "web-devicons" },
   config = function()
     local theme = require("alpha.themes.dashboard")
     theme.opts.width = 70

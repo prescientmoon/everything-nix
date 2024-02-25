@@ -2,12 +2,8 @@
 let
   korora = inputs.korora.lib;
   nlib = import ../../../modules/common/korora-neovim.nix
-    {
-      inherit lib korora;
-    }
-    {
-      tempestModule = "my.tempest";
-    };
+    { inherit lib korora; }
+    { tempestModule = "my.tempest"; };
 
   # {{{ Config helpers 
   # :p => expands path
@@ -1354,36 +1350,30 @@ let
 
   # {{{ extraPackages
   extraPackages = with pkgs; [
-    # Language servers
-    nodePackages.typescript-language-server # typescript
-    # nodePackages_latest.purescript-language-server # purescript
-    lua-language-server # lua
-    rnix-lsp # nix
-    nil # nix
-    inputs.nixd.packages.${system}.nixd # nix
-    texlab # latex
-    nodePackages_latest.vscode-langservers-extracted # web stuff
-    # haskell-language-server # haskell
+    # Nix
+    rnix-lsp
+    nil
+    inputs.nixd.packages.${system}.nixd
 
-    # Formatters
-    stylua # Lua
-    # nodePackages_latest.purs-tidy # Purescript
-    nodePackages_latest.prettier # Js & friends
-    nodePackages_latest.prettier_d_slim # Js & friends
-
-    # Linters
+    # Python
     ruff # Python linter
 
-    # Languages
-    nodePackages.typescript # typescript
+    # Web
+    nodePackages.typescript
+    nodePackages_latest.prettier
+    nodePackages_latest.prettier_d_slim
+    nodePackages_latest.vscode-langservers-extracted
+    nodePackages.typescript-language-server
+
+    # Latex
+    texlab
+    # texlive.combined.scheme-full
+
+    # Lua 
+    lua-language-server
+    stylua
     lua # For repls and whatnot
 
-    # Others
-    fd # file finder
-
-    # Latex setup
-    # texlive.combined.scheme-full # Latex stuff
-    # python38Packages.pygments # required for latex syntax highlighting
   ] ++ generated.dependencies;
   # }}}
   # {{{ extraRuntime
@@ -1392,21 +1382,12 @@ let
     "lua/nix" "init"
     generated.lua);
 
-  extraRuntimePaths = [ generatedConfig ];
-
-  extraRuntimeJoinedPaths = pkgs.symlinkJoin
-    {
-      name = "nixified-neovim-lua-modules";
-      paths = extraRuntimePaths;
-    };
-
   extraRuntime =
     let snippets = config.satellite.dev.path
       "home/features/neovim/snippets";
     in
-    lib.concatStringsSep
-      ","
-      [ extraRuntimeJoinedPaths snippets ];
+    lib.concatStringsSep ","
+      [ generatedConfig snippets ];
   # }}}
   # {{{ Client wrapper
   # Wraps a neovim client, providing the dependencies
@@ -1456,13 +1437,6 @@ let
     extraArgs = "--set NEOVIDE_MULTIGRID true";
     wrapFlags = flags: "-- ${flags}";
   };
-
-  firenvim = wrapClient {
-    base = pkgs.neovim;
-    name = "firenvim";
-    binName = "nvim";
-    extraArgs = "--set GIT_DISCOVERY_ACROSS_FILESYSTEM 1";
-  };
   # }}}
 in
 {
@@ -1481,53 +1455,6 @@ in
     neovide
     pkgs.vimclip
   ];
-  # }}}
-  # {{{ Firenvim
-  home.file.".mozilla/native-messaging-hosts/firenvim.json" =
-    lib.mkIf config.programs.firefox.enable {
-      text =
-        let
-          # God knows what this does
-          # https://github.com/glacambre/firenvim/blob/87c9f70d3e6aa2790982aafef3c696dbe962d35b/autoload/firenvim.vim#L592
-          firenvim_init = pkgs.writeText "firenvim_init.vim" /* vim */ ''
-            let g:firenvim_i=[]
-            let g:firenvim_o=[]
-            let g:Firenvim_oi={i,d,e->add(g:firenvim_i,d)}
-            let g:Firenvim_oo={t->[chansend(2,t)]+add(g:firenvim_o,t)}
-            let g:firenvim_c=stdioopen({'on_stdin':{i,d,e->g:Firenvim_oi(i,d,e)},'on_print':{t->g:Firenvim_oo(t)}})
-            let g:started_by_firenvim = v:true
-          '';
-
-          firenvim_file_loaded = pkgs.writeText "firenvim_file_loaded.vim" /* vim */ ''
-            try
-              call firenvim#run()
-            catch /Unknown function/
-              call chansend(g:firenvim_c,["f\n\n\n"..json_encode({"messages":["Your plugin manager did not load the Firenvim plugin for neovim."],"version":"0.0.0"})])
-              call chansend(2,["Firenvim not in runtime path. &rtp="..&rtp])
-              qall!
-            catch
-              call chansend(g:firenvim_c,["l\n\n\n"..json_encode({"messages": ["Something went wrong when running firenvim. See troubleshooting guide."],"version":"0.0.0"})])
-              call chansend(2,[v:exception])
-              qall!
-            endtry
-          '';
-        in
-        builtins.toJSON {
-          name = "firenvim";
-          description = "Turn your browser into a Neovim GUI.";
-          type = "stdio";
-          allowed_extensions = [ "firenvim@lacamb.re" ];
-          path = pkgs.writeShellScript "firenvim.sh" ''
-            mkdir -p /run/user/$UID/firenvim
-            chmod 700 /run/user/$UID/firenvim
-            cd /run/user/$UID/firenvim
-
-            exec '${firenvim}/bin/nvim' --headless \
-              --cmd 'source "${firenvim_init}"' \
-              -S    '${firenvim_file_loaded}'
-          '';
-        };
-    };
   # }}}
   # {{{ Persistence
   satellite.persistence.at.state.apps.neovim.directories = [

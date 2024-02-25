@@ -83,8 +83,6 @@ in
             vimium-c # vim keybinds
             youtube-shorts-block
           ]
-          # summons a nvim instance inside the browser
-          (optional config.satellite.toggles.neovim.enable firenvim)
         ];
       # }}}
       # {{{ Search engines
