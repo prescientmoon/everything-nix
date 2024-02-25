@@ -8,7 +8,6 @@
   monitors = import ./monitors.nix;
   satellite-dev = import ./satellite-dev.nix;
   satellite-persistence = import ./persistence.nix;
-  eww-hyprland = import ./eww-hyprland.nix;
 
   # Should upstream
   discord = import ./discord.nix;

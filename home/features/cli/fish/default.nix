@@ -15,8 +15,8 @@ let
     "\\e\\[69\\;5u" = "edit_command_buffer";
     # C-enter to run command through a pager
     "\\e\\[13\\;2u" = "commandline -a ' | $PAGER' && commandline -f execute";
-    # C-g to open neogit
-    "\\cg" = "nvim +Neogit";
+    # C-g to open lazygit
+    "\\cg" = "lazygit";
   };
 
   mkKeybind = key: value:

@@ -23,7 +23,10 @@ This directory contains custom module definitions used throughout my config.
 
 ## Nixos modules
 
-There are no nixos modules at the moment!
+| Name                         | Attribute         | Description                              | Dependencies |
+| ---------------------------- | ----------------- | ---------------------------------------- | ------------ |
+| [pounce](./nixos/pounce.nix) | `services.pounce` | Module for pounce & calico configuration |              |
+| [nginx](./nixos/nginx.nix)   | `satellite.proxy` | Helpers for nginx configuration          |              |
 
 ## Home-manager modules
 
@@ -31,7 +34,6 @@ There are no nixos modules at the moment!
 | ------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | [discord](./home-manager/discord.nix)             | `programs.discord`      | Additional discord options                                                        |                                                               |
 | [firefox](./home-manager/firefox)                 | `programs.firefox.apps` | Hacky system for wrapping websites into desktop apps by hiding the firefox tabbar |                                                               |
-| [eww-hyprland](./home-manager/eww-hyprland.nix)   | `programs.eww-hyprland` | `eww` service for `hyprland`                                                      |                                                               |
 | [hyprpaper](./home-manager/hyprpaper.nix)         | `services.hyprpaper`    | Wallpaper service for `hyprland`                                                  |                                                               |
 | [monitors](./home-manager/monitors.nix)           | `satellite.monitors`    | WM generic monitor configuration                                                  |                                                               |
 | [persistence](./home-manager/persistence.nix)     | `satellite.persistence` | Syntactic wrapper around impermanence                                             | [impermanence](https://github.com/nix-community/impermanence) |

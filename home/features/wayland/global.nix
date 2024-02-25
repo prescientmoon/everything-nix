@@ -7,15 +7,11 @@
     ./anyrun.nix
 
     ../desktop
-    ../desktop/eww
   ];
 
   # TODO: set up
   # - volume/backlight controls
-  # - bar
-  # - configure hyprland colors using base16 stuff
   # - look into swaylock or whatever people use
-  # - multiple keyboard layouts
 
   home.sessionVariables = {
     NIXOS_OZONES_WL = "1";

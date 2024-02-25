@@ -97,6 +97,7 @@ Here's some things you might want to check out:
   - [Starship](https://starship.rs/) — shell prompt
 - [Ranger](https://github.com/ranger/ranger) — file manager
 - [Catgirl](https://git.causal.agency/catgirl/about/) — irc client
+- [lazygit](https://github.com/jesseduffield/lazygit) — git tui
 - Self management:
   - [Smos](https://github.com/NorfairKing/smos) — selfhosted comprehensive self-management system
   - [Intray](https://github.com/NorfairKing/intray) — selfhosted GTD capture tool
@@ -112,11 +113,17 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Smos](https://github.com/NorfairKing/smos) — a comprehensive self-management system.
 - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
 - [Actual](https://actualbudget.org/) — budgeting tool.
+- [Commarss](https://github.com/Athou/commafeed) — rss reader
+- [Prometheus](https://github.com/prometheus/prometheus) — metric collector
+- [Grafana](https://github.com/grafana/grafana) — pretty dashboards
+- [Homer](https://github.com/bastienwirtz/homer) — server homepage
 
 ## Hall of fame
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
+- [eww](https://github.com/elkowar/eww) - experimented with eww for a bit, but setup was painful and bars are a bit useless
+- [Neogit](https://github.com/NeogitOrg/neogit) — was a bit slow / clunky, so I switched to [lazygit](https://github.com/jesseduffield/lazygit)
 - [Slambda](https://github.com/Mateiadrielrafael/slambda) — custom keyboard chording utility. I retired the project in favour of [kanta](https://github.com/jtroo/kanata)
 - [GPG](https://gnupg.org/) + [pass](https://www.passwordstore.org/) — I switched to [vaultwarden](https://github.com/dani-garcia/vaultwarden/)
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) — I switched to [sops-nix](https://github.com/Mic92/sops-nix)
@@ -129,10 +136,3 @@ Includes links to stuff which used to be in the previous section but is not used
   - [Rofi](https://github.com/davatorium/rofi) — program launcher. I switched to [Wofi](https://sr.ht/~scoopta/wofi/).
   - [Spectacle](https://apps.kde.org/spectacle/) — screenshot tool. I switched to [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast).
 - [Chrome](https://www.google.com/chrome/) — web browser. I switched to `firefox` because it offers a better HM module.
-
-## Future
-
-Tooling I might use in the future:
-
-- [nix-darwin](https://github.com/LnL7/nix-darwin) - like nixos but for macs
-- [eww](https://github.com/elkowar/eww) - widget framework

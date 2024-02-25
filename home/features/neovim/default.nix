@@ -375,7 +375,7 @@ let
           event = "BufReadPost";
 
           opts.enabled = true;
-          # TODO: blacklist harpoon, NeogitStatus
+          # TODO: blacklist harpoon
         };
         # }}}
         # {{{ harpoon
@@ -412,24 +412,6 @@ let
               (goto "f" 8)
               (goto "z" 9)
             ];
-        };
-        # }}}
-        # {{{ neogit
-        neogit = {
-          package = "TimUntersberger/neogit";
-          dependencies.lua = [ "plenary" ];
-
-          cond = blacklist [ "vscode" "firenvim" ];
-          cmd = "Neogit"; # We sometimes spawn this directly from fish using a keybind
-          keys = nmap "<c-g>" "<cmd>Neogit<cr>" "Open neo[g]it";
-
-          opts = true; # Here so the tempest runtime will call .setup
-          config.autocmds = {
-            event = "FileType";
-            pattern = "NeogitStatus";
-            group = "NeogitStatusDisableFolds";
-            action.vim.opt.foldenable = false;
-          };
         };
         # }}}
         # {{{ telescope
