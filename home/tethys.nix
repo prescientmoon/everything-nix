@@ -52,6 +52,8 @@
     # }}}
   ];
 
+  programs.lazygit.enable = true;
+
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4; # Bigger text in qt apps
 
   satellite = {
