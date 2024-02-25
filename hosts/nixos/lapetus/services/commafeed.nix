@@ -2,7 +2,7 @@
 let
   port = 8413;
   host = "rss.moonythm.dev";
-  dataDir = "/persist/state/var/lib/commarss";
+  dataDir = "/persist/state/var/lib/commafeed";
 in
 {
   imports = [ ../../common/optional/services/nginx.nix ];
@@ -11,7 +11,7 @@ in
   services.nginx.virtualHosts.${host} = config.satellite.proxy port
     { proxyWebsockets = true; };
 
-  virtualisation.oci-containers.containers.commarss = {
+  virtualisation.oci-containers.containers.commafeed = {
     image = "athou/commafeed:latest";
     autoStart = true;
 

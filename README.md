@@ -113,7 +113,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Smos](https://github.com/NorfairKing/smos) — a comprehensive self-management system.
 - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
 - [Actual](https://actualbudget.org/) — budgeting tool.
-- [Commarss](https://github.com/Athou/commafeed) — rss reader
+- [Commafeed](https://github.com/Athou/commafeed) — rss reader
 - [Prometheus](https://github.com/prometheus/prometheus) — metric collector
 - [Grafana](https://github.com/grafana/grafana) — pretty dashboards
 - [Homer](https://github.com/bastienwirtz/homer) — server homepage

@@ -16,4 +16,4 @@ The idea is to always use consecutive ports, but never go back and try to recycl
 | 8410 | [prometheus](../hosts/nixos/lapetus/services/prometheus.nix)                |
 | 8411 | [prometheus node exporter](../hosts/nixos/lapetus/services/prometheus.nix)  |
 | 8412 | [prometheus nginx exporter](../hosts/nixos/lapetus/services/prometheus.nix) |
-| 8413 | [commarss](../hosts/nixos/lapetus/services/commarss.nix)                    |
+| 8413 | [commafeed](../hosts/nixos/lapetus/services/commafeed.nix)                  |
