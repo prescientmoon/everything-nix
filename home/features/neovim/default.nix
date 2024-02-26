@@ -106,7 +106,12 @@ let
               # Use global clipboard using *cp*
               (keymap "nv" "<f11>" ''"+'' "Use global clipboard")
               # Save using *ji*
-              (nmap "<f12>" "<cmd>silent write<cr>" "Save current file")
+              (nmap "<f12>"
+                (thunk ''
+                  -- If we don't do this, the statusbar will flash for a second...
+                  vim.cmd([[silent! write]])
+                  vim.opt.stl = vim.opt.stl
+                '') "Save current file")
               # }}}
               # {{{ Newline without comments 
               {

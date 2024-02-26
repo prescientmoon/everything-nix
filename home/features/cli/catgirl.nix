@@ -16,5 +16,6 @@ in
 {
   home.packages = [ ircgay pkgs.catgirl ];
   xdg.configFile."catgirl/tilde".text = mkCatgirlNetwork "tilde";
-  satellite.persistence.at.state.apps.catgirl.directories = [ "${config.xdg.dataHome}/catgirl" ];
+  satellite.persistence.at.state.apps.catgirl.directories =
+    [ "${config.xdg.dataHome}/catgirl" ];
 }

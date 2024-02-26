@@ -10,6 +10,7 @@
     ./features/cli/pass.nix
     ./features/cli/nix-index.nix
     ./features/cli/catgirl.nix
+    ./features/cli/lazygit.nix
     ./features/wayland/hyprland
     ./features/neovim
   ];
@@ -51,8 +52,6 @@
     # obs-studio # video recorder
     # }}}
   ];
-
-  programs.lazygit.enable = true;
 
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4; # Bigger text in qt apps
 

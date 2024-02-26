@@ -24,7 +24,12 @@ local function runLocal(functionName)
   end
 end
 
-vim.keymap.set("n", "<leader>lf", ":source %<cr>", opts("Run [l]ua [f]ile "))
+vim.keymap.set(
+  "n",
+  "<leader>lf",
+  "<cmd>source %<cr>",
+  opts("Run [l]ua [f]ile ")
+)
 vim.keymap.set(
   "n",
   "<leader>ls",
