@@ -57,6 +57,7 @@ config.window_background_opacity = colorscheme.opacity.terminal
 -- }}}
 -- {{{ Main config options
 config.automatically_reload_config = true
+config.warn_about_missing_glyphs = false
 config.check_for_updates = false
 
 -- {{{ Fonts
