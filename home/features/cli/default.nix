@@ -12,10 +12,8 @@
     ./fish
   ];
 
-  # Enable bash
   programs.bash.enable = true;
 
-  # Install clis
   home.packages = with pkgs; [
     # {{{ System information 
     acpi # Battery stats
@@ -42,7 +40,6 @@
     # }}}
   ];
 
-  # Set up common aliases
   home.shellAliases = {
     # {{{ Storage
     # -h = humans readable units
