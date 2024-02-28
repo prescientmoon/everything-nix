@@ -61,7 +61,7 @@ in
                 name = "Syncthing";
                 subtitle = "File synchronization";
                 logo = icon "syncthing.png";
-                url = "https://syncthing.lapetus.moonythm.dev";
+                url = "https://lapetus.syncthing.moonythm.dev";
               }
             ];
           }
