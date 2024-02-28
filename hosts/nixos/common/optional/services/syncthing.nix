@@ -27,6 +27,9 @@ in
     };
   };
 
+  # Syncthing seems to leak memory, so we want to restart it daily.
+  systemd.services.syncthing.serviceConfig.RuntimeMaxSec = "1d";
+
   # I'm not sure this is needed anymore, I just know I got some ownership errors at some point.
   systemd.tmpfiles.rules = [ "d ${dataDir} - ${user} ${group} -" ];
 }

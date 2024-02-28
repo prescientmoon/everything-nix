@@ -39,6 +39,10 @@ in
         inputs.neovim-nightly-overlay.overlay;
 
     config.allowUnfree = true;
+
+    config.permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
   };
   # }}}
   # {{{ Enable the home-manager and git clis
