@@ -73,6 +73,7 @@ in
             bitwarden # Password manager
             blocktube # Lets you block youtube channels
             dearrow # Crowdsourced clickbait remover 💀
+            leechblock-ng # website blocker
             lovely-forks # displays forks on github
             octolinker # github import to link thingy
             octotree # github file tree

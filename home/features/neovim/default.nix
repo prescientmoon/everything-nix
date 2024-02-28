@@ -1236,7 +1236,7 @@ let
         # {{{ typst support
         typst = {
           package = "kaarmu/typst.vim";
-          dependencies.nix = [ pkgs.typst-lsp pkgs.typst-fmt ];
+          dependencies.nix = [ pkgs.typst pkgs.typst-lsp pkgs.typstfmt ];
 
           cond = blacklist "vscode";
           ft = "typst";

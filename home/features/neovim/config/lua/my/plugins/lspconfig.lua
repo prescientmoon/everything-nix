@@ -16,6 +16,7 @@ local M = {
 -- {{{ Capabilities
 M.capabilities = function()
   local c = require("cmp_nvim_lsp").default_capabilities()
+
   -- Add folding capabilities
   c.textDocument.foldingRange = {
     dynamicRegistration = false,
@@ -115,20 +116,13 @@ function M.config()
     ---@diagnostic disable-next-line: missing-fields
     jsonls = {},
     dhall_lsp_server = {},
-    typst_lsp = {},
+    typst_lsp = {
+      exportPdf = "onType",
+    },
     ---@diagnostic disable-next-line: missing-fields
     elmls = {},
-    -- {{{ Inactive
-    -- pylsp = {},
-    -- pyright = {},
-    -- }}}
   }
   -- }}}
-
-  vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-  vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
   local capabilities = M.capabilities()
   for lsp, details in pairs(servers) do
