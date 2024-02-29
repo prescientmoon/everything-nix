@@ -37,7 +37,7 @@ let
 
     catppuccin-macchiato = {
       stylix = {
-        image = ./wallpapers/lapis_lazuli.jpg;
+        image = ./wallpapers/gabriel.jpg;
         base16Scheme = "${inputs.catppuccin-base16}/base16/macchiato.yaml";
         opacity = transparency 0.7;
         polarity = "dark";
