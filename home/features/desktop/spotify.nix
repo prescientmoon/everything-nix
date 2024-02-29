@@ -22,6 +22,8 @@ let
   });
 in
 {
+  imports = [ ./audio.nix ];
+
   programs.spicetify = {
     enable = true;
 

@@ -11,22 +11,15 @@
     jack.enable = true;
   };
 
-  # Volume controls
-  environment.shellAliases =
-    let
-      pactl = "${pkgs.pulseaudio}/bin/pactl";
-      volume = amount: "${pactl} set-sink-volume @DEFAULT_SINK@ ${amount}";
-    in
-    {
-      # Relative 
-      "v-down" = volume "-5%";
-      "v-up" = volume "+5%";
-
-      # Absolute
-      "v-min" = volume "0%";
-      "v-low" = volume "25%";
-      "v-mid" = volume "50%";
-      "v-high" = volume "75%";
-      "v-max" = volume "100%";
-    };
+  # https://nixos.wiki/wiki/PipeWire
+  environment.etc = {
+    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.enable-hw-volume"] = true,
+        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+      }
+    '';
+  };
 }
