@@ -8,6 +8,11 @@ This file tells the story of my setup throughout it's history. This document is 
 ![Neovim, zathura and anyrun](img/2023-11-08-neovim-zathura-and-anyrun.png)
 ![Poweroff screen](img/2023-11-08-poweroff.png)
 
+## 2023-01-06
+
+![Wallpaper](img/2023-01-06-wallpaper.png)
+![Neofetch](img/2023-01-06-neofetch.png)
+
 ## 2022-07-10
 
 ![Vimux](img/2022-07-10-vimux.png)
@@ -16,15 +21,23 @@ This file tells the story of my setup throughout it's history. This document is 
 
 ![Tmux](img/2022-05-31-tmux.png)
 ![Tmux workspaces](img/2022-05-30-tmux-workspaces.png)
+![Neofetch](img/2022-05-15-neofetch.png)
 
 ## 2022-05-11
 
 ![Neovim & rofi](img/2022-05-11-neovim-rofi.png)
-
-## 2022-05-10
-
 ![Tmux & neovim](img/2022-05-10.png)
 
 ## 2022-02-07
 
+![Tmux & neovim](img/2022-09-03-tmux.png)
 ![Neovim](img/2022-02-07-neovim.png)
+![Neofetch](img/2022-01-30-neofetch.png)
+
+## 2021-03-26
+
+![Various kde windows](img/2021-03-26-kde.png)
+
+## 2019-09-30
+
+![Desktop](img/2019-09-30-desktop.png)
