@@ -9,13 +9,8 @@
     ../desktop
   ];
 
-  # TODO: set up
-  # - volume/backlight controls
-  # - look into swaylock or whatever people use
-
-  home.sessionVariables = {
-    NIXOS_OZONES_WL = "1";
-  };
+  home.sessionVariables.NIXOS_OZONES_WL = "1";
+  services.swayosd.enable = true;
 
   home.packages =
     let
