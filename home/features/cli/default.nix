@@ -32,7 +32,7 @@
     httpie # Better curl
     # }}}
     # {{{ Misc  
-    ranger # Terminal file explorer
+    yazi # Terminal file explorer
     bc # Calculator
     ouch # Unified compression / decompression tool
     mkpasswd # Hash passwords

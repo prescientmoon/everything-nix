@@ -94,7 +94,7 @@ Here's some things you might want to check out:
 - [Tmux](https://github.com/tmux/tmux/wiki) — terminal multiplexer
 - [Fish](https://fishshell.com/) — user friendly shell
   - [Starship](https://starship.rs/) — shell prompt
-- [Ranger](https://github.com/ranger/ranger) — file manager
+- [yazi](https://github.com/sxyazi/yazi) — file manager
 - [Catgirl](https://git.causal.agency/catgirl/about/) — irc client
 - [lazygit](https://github.com/jesseduffield/lazygit) — git tui
 - Self management:
@@ -121,6 +121,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
+- [Ranger](https://github.com/ranger/ranger) — I switched to [Yazi](https://github.com/sxyazi/yazi)
 - [firenvim](https://glacambre/firenvim) - the concept is cool, but I found the whole thing pretty annoying at times
 - [venn.nvim](https://jbyuki/venn.nvim) — the concept is cool, but I would use it about once a year
 - [hydra.nvim](https://anuvyklack/hydra.nvim) — I was rarely using it, and it was taking up precious config space
