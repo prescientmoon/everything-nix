@@ -2,6 +2,11 @@
 
 This file tells the story of my setup throughout it's history. This document is not yet complete, and much more will get added as I dig old pictures up. Sadly, a lot of my early days on linux were lost to time (not having a good reasons to simply take pictures of my desktop back in the KDE days and all)
 
+## 2024-02-29
+
+![Lazygit](img/2024-02-29-lazygit.png)
+![Smos & intray](img/2024-02-29-smos-intray.png)
+
 ## 2023-11-08
 
 ![Neovim](img/2023-11-08-neovim.png)
