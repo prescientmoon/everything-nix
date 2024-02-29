@@ -137,10 +137,13 @@ M.unicode = {
   { "niinf", "-∞" },
   { "star", "⋆" },
   { "nabla", "∇" },
-  { "diamond", "⋄" },
+  { "minidiam", "⋄" },
   { "tto", "→" },
   { "ttoo", "⟶" },
   { "mapto", "↦" },
+  { "square", "□" },
+  { "rquare", "▢" }, -- rounded square
+  { "diam", "◇" },
   -- }}}
   -- {{{ Brackets
   { "langle", "⟨" },

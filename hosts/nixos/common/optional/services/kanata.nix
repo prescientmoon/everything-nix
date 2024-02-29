@@ -132,18 +132,18 @@ let
     ;; {{{ Blue
     (deflayer blue
       _    _    _    _    _    _    _    _    _    _    _    _    _    _
-      _    S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  grv S-grv _    _    _
+      _    S-=  S-2  S-3  S-4  S-5  S--  S-7  S-8  grv S-grv _    _    _
       _    S-,  S-[  [    S-9  S-/  S-\  -    /    =    S-;  _    _
-      _    S-.  S-]  ]    S-0  _    @em  S--  \    S-=  S-'  _
-      _    _    @purple        _              _
+      _    S-.  S-]  ]    S-0  S-1  @em  S-6  _    _    S-'  _
+      _    _    @purple        \              _
     )
     ;; }}}
     ;; {{{ Red
     (deflayer red
       _    _    _    _    _    _    _    _    _    _    _    _    _    _
-      _    1    2    3    4    _    _    _    _    _    _    _    _    _
-      _    5    6    7    8    _    left down up   rght _    _    _
-      _    9    0    _    _    _    _    _    _    _    _    _
+      _    1    2    3    4    5    home pgdn pgup end  del  _    _    _
+      _    6    7    8    9    0    left down up   rght _    _    _
+      _    _    _    _    _    _    _    _    _    _    _    _
       _    _    _              _           @purple
     )
     ;; }}}
