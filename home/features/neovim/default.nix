@@ -736,7 +736,7 @@ let
             [ "<tab>d" "<tab>f" "<tab>F" "<tab>h" "<tab>r" ]
           ];
 
-          # {{{ Keymaps
+          # {{{ Keybinds
           opts.mappings = {
             add = "<tab>s"; # Add surrounding in Normal and Visul modes
             delete = "<tab>d"; # Delete surrounding
@@ -1347,6 +1347,20 @@ let
               disable_frontmatter = true;
             };
           };
+        # }}}
+        # {{{ navigator
+        navigator = {
+          package = "numToStr/Navigator.nvim";
+          cond = blacklist [ "vscode" "firenvim" "neovide" ];
+
+          config = true;
+          keys = [
+            (nmap "<c-h>" "<cmd>NavigatorLeft<cr>" "Navigate left")
+            (nmap "<c-j>" "<cmd>NavigatorDown<cr>" "Navigate down")
+            (nmap "<c-k>" "<cmd>NavigatorUp<cr>" "Navigate up")
+            (nmap "<c-l>" "<cmd>NavigatorRight<cr>" "Navigate right")
+          ];
+        };
         # }}}
         # }}}
       };
