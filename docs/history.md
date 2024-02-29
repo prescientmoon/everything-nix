@@ -34,10 +34,6 @@ This file tells the story of my setup throughout it's history. This document is 
 ![Neovim](img/2022-02-07-neovim.png)
 ![Neofetch](img/2022-01-30-neofetch.png)
 
-## 2021-03-26
-
-![Various kde windows](img/2021-03-26-kde.png)
-
 ## 2019-09-30
 
 ![Desktop](img/2019-09-30-desktop.png)
