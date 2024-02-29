@@ -28,11 +28,23 @@ This file tells the story of my setup throughout it's history. This document is 
 ![Neovim & rofi](img/2022-05-11-neovim-rofi.png)
 ![Tmux & neovim](img/2022-05-10-tmux.png)
 
+## 2022-04-10
+
+![Neofetch](img/2022-04-10-neofetch.png)
+
 ## 2022-02-07
 
 ![Tmux & neovim](img/2022-09-03-tmux.png)
 ![Neovim](img/2022-02-07-neovim.png)
 ![Neofetch](img/2022-01-30-neofetch.png)
+
+## 2020-07-21
+
+![Vscode](img/2020-07-21-vscode.png)
+
+## 2020-01-08
+
+![Tmux](img/2020-01-08-tmux.png)
 
 ## 2019-09-30
 
