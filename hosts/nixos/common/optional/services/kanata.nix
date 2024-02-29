@@ -13,8 +13,8 @@ let
     ;; }}}
     ;; {{{ Layer & utility aliases
     (defalias
-      red (${stickTap "layer-while-held red"})
-      blue (${stickTap "layer-while-held blue"})
+      red (layer-while-held red)
+      blue (layer-while-held blue)
       purple (layer-while-held purple)
 
       em (unicode —)
@@ -149,7 +149,9 @@ let
     ;; }}}
     ;; {{{ Purple
     (defalias
-      cps (caps-word 2000) ;; revert after being idle for 2s
+      ;; Press once to active caps lock for a word (revert after being idle 
+      ;; for 2s), or twice for real caps lock.
+      cps (tap-dance 200 ((caps-word 2000) caps))
       udo (arbitrary-code 131) ;; undo
       cpy (arbitrary-code 133) ;; copy
       pst (arbitrary-code 135) ;; paste
