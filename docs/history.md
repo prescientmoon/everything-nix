@@ -26,7 +26,7 @@ This file tells the story of my setup throughout it's history. This document is 
 ## 2022-05-11
 
 ![Neovim & rofi](img/2022-05-11-neovim-rofi.png)
-![Tmux & neovim](img/2022-05-10.png)
+![Tmux & neovim](img/2022-05-10-tmux.png)
 
 ## 2022-02-07
 
