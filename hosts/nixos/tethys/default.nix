@@ -53,7 +53,7 @@
   networking.extraHosts =
     let
       blacklisted = [
-        "twitter.com"
+        # "twitter.com"
         # "www.reddit.com"
         # "minesweeper.online" 
       ];

@@ -61,7 +61,7 @@ Here's some things you might want to check out:
 
 ### Input handling
 
-- [kanta](https://github.com/jtroo/kanata) — software-level keyboard layout customizer. One of the few such programs with support for chording
+- [kanata](https://github.com/jtroo/kanata) — software-level keyboard layout customizer. One of the few such programs with support for chording
 - [opentabletdriver](https://opentabletdriver.net/)
 
 ### Graphical
@@ -130,7 +130,7 @@ Includes links to stuff which used to be in the previous section but is not used
 - [Paperplanes.nvim](https://rktjmp/paperplanes.nvim) — replaced by a single curl call
 - [Eww](https://github.com/elkowar/eww) - experimented with eww for a bit, but setup was painful and bars are a bit useless
 - [Neogit](https://github.com/NeogitOrg/neogit) — was a bit slow / clunky, so I switched to [lazygit](https://github.com/jesseduffield/lazygit)
-- [Slambda](https://github.com/Mateiadrielrafael/slambda) — custom keyboard chording utility. I retired the project in favour of [kanta](https://github.com/jtroo/kanata)
+- [Slambda](https://github.com/Mateiadrielrafael/slambda) — custom keyboard chording utility. I retired the project in favour of [kanata](https://github.com/jtroo/kanata)
 - [GPG](https://gnupg.org/) + [pass](https://www.passwordstore.org/) — I switched to [vaultwarden](https://github.com/dani-garcia/vaultwarden/)
 - [Agenix](https://github.com/ryantm/agenix) & [homeage](https://github.com/jordanisaacs/homeage) — I switched to [sops-nix](https://github.com/Mic92/sops-nix)
 - [Mind.nvim](https://github.com/phaazon/mind.nvim) — self management tree editor. The project got archived, so I switched to [Smos](https://github.com/NorfairKing/smos).
