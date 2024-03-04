@@ -6,6 +6,11 @@ let
     "slant.co"
     "nix-united.com"
     "libhunt.com"
+    "www.devopsschool.com"
+    "medevel.com"
+    "alternativeto.net"
+    "linuxiac.com"
+    "www.linuxlinks.com"
   ];
 in
 {
