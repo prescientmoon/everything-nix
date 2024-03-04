@@ -1,4 +1,6 @@
 { pkgs, ... }: {
+  home.packages = [ pkgs.josh ]; # Just One Single History
+
   # TODO: use `delta` as a pager, as highlighted here
   # https://github.com/lilyinstarlight/foosteros/blob/main/config/base.nix#L163
   programs.git = {
