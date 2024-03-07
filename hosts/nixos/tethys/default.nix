@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   # {{{ Imports
   imports = [
     ../common/global
@@ -41,7 +41,7 @@
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
   programs.extra-container.enable = true;
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
   # virtualisation.spiceUSBRedirection.enable = true; # This was required for the vm usb passthrough tomfoolery
   # }}}
   # {{{ Ad-hoc stylix targets
@@ -61,4 +61,9 @@
     in
     blacklist;
   # }}}
+
+  services.mysql = {
+    enable = true;
+    package = pkgs.mysql80;
+  };
 }

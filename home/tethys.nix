@@ -47,7 +47,7 @@
     # }}} 
     # {{{ Media playing/recording
     mpv # Video player
-    img # Image viewer
+    imv # Image viewer
     # peek # GIF recorder
     # obs-studio # video recorder
     # }}}

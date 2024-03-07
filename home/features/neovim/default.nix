@@ -1311,14 +1311,26 @@ let
             package = "epwalsh/obsidian.nvim";
             dependencies.lua = [ "plenary" ];
 
+            event = "VeryLazy";
             cond = [
               (blacklist [ "vscode" "firenvim" ])
               (lua /* lua */ "vim.loop.cwd() == ${encode vault}")
             ];
-            event = "VeryLazy";
 
-            keys.mapping = "<C-O>";
-            keys.action = "<cmd>ObsidianQuickSwitch<cr>";
+            config.keys =
+              let nmap = mapping: action: desc: {
+                inherit mapping desc;
+                action = "<cmd>Obsidian${action}<cr>";
+              };
+              in
+              [
+                (nmap "<C-O>" "QuickSwitch<cr>" "[o]pen note")
+                (nmap "<leader>ot" "Today" "[t]oday's note")
+                (nmap "<leader>oy" "Yesterday" "[y]esterday's note")
+                (nmap "<leader>oi" "Template" "[i]nstantiate template")
+                (nmap "<leader>on" "Template New note.md" "new [n]ote template")
+                (nmap "<leader>od" "Template New note.md" "new [d]ream template")
+              ];
 
             opts = {
               dir = vault;
