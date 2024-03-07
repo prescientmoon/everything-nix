@@ -1,6 +1,5 @@
-{ inputs, pkgs, config, ... }: {
-  # REASON: the unstable version crashes on launch
-  home.packages = [ inputs.wezterm.packages.${pkgs.system}.default ];
+{ inputs, upkgs, config, ... }: {
+  home.packages = [ upkgs.wezterm ];
 
   xdg.configFile."wezterm/nix".source =
     config.satellite.lib.lua.writeFile

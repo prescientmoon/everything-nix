@@ -10,7 +10,7 @@ lib.fix (self: {
   };
   "Catppuccin Latte" = fetchurl {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css";
-    sha256 = "17l8gl0sbiv9708gcbbks246qpxczkz61mjd1jzjrc48pngmzzkv";
+    sha256 = "HixxRdOTU7RynNseRWAWd4VzqYoX52n2nWlt9DX5MS8=";
   };
   "Catppuccin Macchiato" = fetchurl {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-macchiato.theme.css";

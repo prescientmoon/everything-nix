@@ -12,10 +12,10 @@ let
   });
 
   colorschemeMap = lib.fix (self: {
-    "Catppuccin Mocha" = "mocha";
-    "Catppuccin Latte" = "latte";
-    "Catppuccin Frappe" = "frappe";
-    "Catppuccin Macchiato" = "macchiato";
+    "Catppuccin Mocha" = "catppuccin-mocha";
+    "Catppuccin Latte" = "catppuccin-latte";
+    "Catppuccin Frappe" = "catppuccin-frappe";
+    "Catppuccin Macchiato" = "catppuccin-macchiato";
 
     default.light = self."Catppuccin Latte";
     default.dark = self."Catppuccin Macchiato";

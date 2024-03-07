@@ -24,9 +24,9 @@ let
 
     catppuccin-latte = {
       stylix = {
-        image = ./wallpapers/happy_phos.png;
+        image = ./wallpapers/watercag.png;
         base16Scheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
-        opacity = transparency 0.6;
+        opacity = transparency 0.7;
         polarity = "light";
       };
 
@@ -99,7 +99,7 @@ let
   };
 
   # Select your current theme here!
-  currentTheme = themes.catppuccin-macchiato;
+  currentTheme = themes.catppuccin-latte;
 in
 {
   # We apply the current theme here.
