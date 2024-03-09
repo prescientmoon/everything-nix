@@ -1,5 +1,18 @@
 { upkgs, pkgs, lib, config, inputs, ... }:
 let
+  # Toggles for including tooling related to a given language
+  packedTargets = {
+    elm = false;
+    latex = true;
+    lua = true;
+    nix = true;
+    purescript = false;
+    python = true;
+    rust = true;
+    typst = true;
+    web = true;
+  };
+
   korora = inputs.korora.lib;
   nlib = import ../../../modules/common/korora-neovim.nix
     { inherit lib korora; }
@@ -283,9 +296,6 @@ let
               };
             }
           ];
-
-          # Make neovim aware about the existence of the purescript datatype.
-          callback = lua ''vim.filetype.add({ extension = { purs = "purescript" } })'';
         };
         # }}}
       };
@@ -512,10 +522,44 @@ let
         indent-blankline = {
           package = "lukas-reineke/indent-blankline.nvim";
           main = "ibl";
-          config = true;
 
           cond = blacklist "vscode";
           event = "VeryLazy";
+          config = true;
+
+          # {{{{ Keybinds
+          keys =
+            let
+              # {{{ List of fold-related keybinds 
+              foldKeybinds = [
+                "zo"
+                "zO"
+                "zc"
+                "zC"
+                "za"
+                "zA"
+                "zv"
+                "zx"
+                "zX"
+                "zm"
+                "zM"
+                "zr"
+                "zR"
+              ];
+              # }}}
+            in
+            [
+              (nmap
+                "<leader>si"
+                "<cmd>IBLToggle<cr>"
+                "Toggle blankline indentation")
+            ] ++
+            (lib.forEach foldKeybinds (from: nmap
+              from
+              "${from}<cmd>IBLToggle<cr><cmd>IBLToggle<cr>"
+              "Overriden ${from} (fold-related thing)"
+            ));
+          # }}}}
         };
         # }}}
         # {{{ live-command
@@ -851,9 +895,60 @@ let
         # }}}
         # }}}
         # {{{ ide
+        # {{{ lspconfig
+        lspconfig = {
+          # {{{ Nix dependencies
+          dependencies.nix = with lib.lists; with packedTargets; (
+            optionals web [
+              pkgs.nodePackages.typescript
+              pkgs.nodePackages_latest.vscode-langservers-extracted
+              pkgs.nodePackages.typescript-language-server
+            ] ++
+            optionals lua [
+              pkgs.lua-language-server
+              pkgs.lua
+            ] ++
+            optionals nix [
+              pkgs.rnix-lsp
+              pkgs.nil
+              inputs.nixd.packages.${pkgs.system}.nixd
+            ] ++
+            optionals latex [
+              pkgs.texlab
+              pkgs.texlive.combined.scheme-full
+            ] ++
+            optionals elm [
+              pkgs.elmPackages.elm
+              pkgs.elmPackages.elm-format
+              pkgs.elmPackages.elm-language-server
+            ] ++
+            optionals purescript [
+              pkgs.purescript-language-server
+              pkgs.nodePackages.purs-tidy
+            ]
+          );
+          # }}}
+          dependencies.lua = [ "neoconf" "neodev" ];
+          package = "neovim/nvim-lspconfig";
+
+          cond = blacklist "vscode";
+          event = "VeryLazy";
+
+          config = importFrom ./plugins/lspconfig.lua "config";
+        };
+        # }}}
         # {{{ conform
         conform = {
-          dependencies.lua = [ "neovim/nvim-lspconfig" ];
+          dependencies.lua = [ "lspconfig" ];
+          dependencies.nix = with lib.lists; with packedTargets; (
+            [ pkgs.codespell ] ++
+            optional lua pkgs.stylua ++
+            optional python pkgs.ruff ++
+            optionals web [
+              pkgs.nodePackages_latest.prettier
+              pkgs.nodePackages_latest.prettier_d_slim
+            ]
+          );
           package = "stevearc/conform.nvim";
 
           cond = blacklist "vscode";
@@ -862,6 +957,7 @@ let
           opts.format_on_save.lsp_fallback = true;
           opts.formatters_by_ft = let prettier = [ [ "prettierd" "prettier" ] ]; in
             {
+              "*" = [ "codespell" "trim_whitespace" ];
               lua = [ "stylua" ];
               python = [ "ruff_format" ];
 
@@ -873,6 +969,12 @@ let
               css = prettier;
               markdown = prettier;
             };
+        };
+        # }}}
+        # {{{ neodev
+        neodev = {
+          package = "folke/neodev.nvim";
+          config = true;
         };
         # }}}
         # {{{ neoconf
@@ -893,7 +995,11 @@ let
         # {{{ null-ls
         null-ls = {
           package = "jose-elias-alvarez/null-ls.nvim";
-          dependencies.lua = [ "neovim/nvim-lspconfig" ];
+          dependencies.lua = [ "lspconfig" ];
+          dependencies.nix =
+            lib.lists.optional
+              packedTargets.python
+              pkgs.ruff;
 
           cond = blacklist "vscode";
           event = "VeryLazy";
@@ -1073,7 +1179,10 @@ let
         # {{{ rust-tools 
         rust-tools = {
           package = "simrat39/rust-tools.nvim";
-          dependencies.nix = [ pkgs.rust-analyzer pkgs.rustfmt ];
+          dependencies.nix =
+            lib.lists.optionals
+              packedTargets.rust
+              [ pkgs.rust-analyzer pkgs.rustfmt ];
 
           cond = blacklist "vscode";
           ft = "rust";
@@ -1168,7 +1277,7 @@ let
           name = "lean";
           dependencies.lua = [
             "plenary"
-            "neovim/nvim-lspconfig"
+            "lspconfig"
           ];
 
           cond = blacklist "vscode";
@@ -1181,7 +1290,7 @@ let
             };
 
             lsp.capabilites =
-              lua /* lua */ ''require("my.plugins.lspconfig").capabilities'';
+              importFrom ./plugins/lspconfig.lua "capabilities";
 
             lsp3 = false; # We don't want the lean 3 language server!
             mappings = true;
@@ -1194,7 +1303,7 @@ let
           name = "idris";
           dependencies.lua = [
             "nui"
-            "neovim/nvim-lspconfig"
+            "lspconfig"
           ];
 
           cond = blacklist "vscode";
@@ -1236,19 +1345,22 @@ let
         # {{{ typst support
         typst = {
           package = "kaarmu/typst.vim";
-          dependencies.nix = [ upkgs.typst upkgs.typst-lsp upkgs.typstfmt ];
+          dependencies.nix =
+            lib.lists.optionals
+              packedTargets.typst
+              [ upkgs.typst upkgs.typst-lsp upkgs.typstfmt ];
 
           cond = blacklist "vscode";
           ft = "typst";
         };
         # }}}
         # {{{ purescript support
-        # purescript = {
-        #   package = "purescript-contrib/purescript-vim";
-        #
-        #   cond = blacklist "vscode";
-        #   ft = "purescript";
-        # };
+        purescript = {
+          package = "purescript-contrib/purescript-vim";
+
+          cond = blacklist "vscode";
+          ft = "purescript";
+        };
         # }}}
         # {{{ hyprland support
         hyprland = {
@@ -1378,35 +1490,6 @@ let
       };
       # }}}
     }));
-
-  # {{{ extraPackages
-  extraPackages = with pkgs; [
-    # Nix
-    rnix-lsp
-    nil
-    inputs.nixd.packages.${system}.nixd
-
-    # Python
-    ruff # Python linter
-
-    # Web
-    nodePackages.typescript
-    nodePackages_latest.prettier
-    nodePackages_latest.prettier_d_slim
-    nodePackages_latest.vscode-langservers-extracted
-    nodePackages.typescript-language-server
-
-    # Latex
-    texlab
-    # texlive.combined.scheme-full
-
-    # Lua 
-    lua-language-server
-    stylua
-    lua # For repls and whatnot
-
-  ] ++ generated.dependencies;
-  # }}}
   # {{{ extraRuntime
   # Experimental nix module generation
   generatedConfig = (config.satellite.lib.lua.writeFile
@@ -1447,7 +1530,7 @@ let
       nativeBuildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/${binName} \
-          --prefix PATH : ${lib.makeBinPath extraPackages} \
+          --prefix PATH : ${lib.makeBinPath generated.dependencies} \
           --add-flags ${extraFlags} \
           ${extraArgs}
       '';

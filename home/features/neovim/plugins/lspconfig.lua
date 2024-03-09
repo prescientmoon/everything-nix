@@ -1,17 +1,5 @@
-local runtime = require("my.tempest")
-
-local M = {
-  "neovim/nvim-lspconfig",
-  event = "VeryLazy",
-  dependencies = {
-    "neoconf",
-    {
-      "folke/neodev.nvim",
-      config = true,
-    },
-  },
-  cond = runtime.blacklist("vscode"),
-}
+---@diagnostic disable: missing-fields
+local M = {}
 
 -- {{{ Capabilities
 M.capabilities = function()
@@ -32,10 +20,8 @@ function M.config()
 
   -- {{{ General server config
   ---@type lspconfig.options
-  ---@diagnostic disable-next-line: missing-fields
   local servers = {
     -- {{{ Typescript
-    ---@diagnostic disable-next-line: missing-fields
     tsserver = {
       on_attach = function(client)
         -- We handle formatting using null-ls and prettierd
@@ -47,7 +33,6 @@ function M.config()
     purescriptls = {
       root_dir = lspconfig.util.root_pattern("spago.yaml"),
       settings = {
-        ---@diagnostic disable-next-line: missing-fields
         purescript = {
           censorWarnings = {
             "UnusedName",
@@ -61,14 +46,8 @@ function M.config()
     -- }}}
     -- {{{ Lua
     lua_ls = {
-      cmd = {
-        "lua-language-server",
-        "--logpath=/home/adrielus/.local/share/lua-language-server/log",
-      },
       settings = {
-        ---@diagnostic disable-next-line: missing-fields
         Lua = {
-          ---@diagnostic disable-next-line: missing-fields
           format = {
             enable = true,
           },
@@ -91,7 +70,7 @@ function M.config()
               "-interaction=nonstopmode",
               "-synctex=1",
               "%f",
-              -- Required for syntax highlighting inside the generated pdf aparently
+              -- Required for syntax highlighting inside the generated pdf apparently
               "-shell-escape",
             },
             executable = "latexmk",
@@ -111,15 +90,12 @@ function M.config()
     -- nil_ls = {},
     nixd = {},
     -- }}}
-    ---@diagnostic disable-next-line: missing-fields
     cssls = {},
-    ---@diagnostic disable-next-line: missing-fields
     jsonls = {},
     dhall_lsp_server = {},
     typst_lsp = {
       exportPdf = "onType",
     },
-    ---@diagnostic disable-next-line: missing-fields
     elmls = {},
   }
   -- }}}
