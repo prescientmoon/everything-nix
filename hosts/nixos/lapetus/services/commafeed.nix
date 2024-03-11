@@ -17,6 +17,7 @@ in
 
     ports = [ "${toString port}:8082" ]; # server:docker
     volumes = [ "${dataDir}:/commafeed/data" ]; # server:docker
+    extraOptions = [ "--network=host" ]; # I want to access rss feeds from the host network
 
     # the JVM is way too hungry
     entrypoint = builtins.toJSON
