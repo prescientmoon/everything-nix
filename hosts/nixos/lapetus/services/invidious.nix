@@ -4,7 +4,11 @@
     ../../common/optional/services/postgres.nix
   ];
 
-  sops.secrets.invidious_hmac_key.sopsFile = ../secrets.yaml;
+  sops.secrets.invidious_hmac_key = {
+    sopsFile = ../secrets.yaml;
+    mode = "0444"; # I don't care about this key that much, as I'm the only user of this instance
+  };
+
   services.nginx.virtualHosts.${config.services.invidious.domain} =
     config.satellite.proxy config.services.invidious.port { };
 
