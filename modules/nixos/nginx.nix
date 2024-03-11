@@ -5,7 +5,7 @@
   };
 
   options.satellite.static = lib.mkOption {
-    type = lib.types.functionTo (lib.types.functionTo lib.types.anything);
+    type = lib.types.functionTo lib.types.anything;
     description = "Helper function for generating a quick file serving config";
   };
 
