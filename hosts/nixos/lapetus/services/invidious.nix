@@ -4,10 +4,15 @@
     ../../common/optional/services/postgres.nix
   ];
 
+  sops.secrets.invidious_hmac_key.sopsFile = ../secrets.yaml;
+  services.nginx.virtualHosts.${config.services.invidious.domain} =
+    config.satellite.proxy config.services.invidious.port { };
+
   services.invidious = {
     enable = true;
     domain = "yt.moonythm.dev";
     port = 8414;
+    keyFile = config.sops.secrets.invidious_hmac_key.path;
 
     nginx.enable = true;
 
@@ -23,7 +28,4 @@
       };
     };
   };
-
-  services.nginx.virtualHosts.${config.services.invidious.domain} =
-    config.satellite.proxy config.services.invidious.port { };
 }

@@ -17,6 +17,7 @@
     ./services/grafana.nix
     ./services/commafeed.nix
     ./services/invidious.nix
+    ./services/diptime.nix
     ./filesystems
     ./hardware
   ];

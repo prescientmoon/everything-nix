@@ -22,11 +22,8 @@ in
 {
   imports = [ ../../common/optional/services/nginx.nix ];
 
-  services.nginx.virtualHosts."lab.moonythm.dev" = {
-    enableACME = true;
-    acmeRoot = null;
-    forceSSL = true;
-    root = pkgs.homer.withAssets {
+  services.nginx.virtualHosts."lab.moonythm.dev" =
+    config.satellite.static (pkgs.homer.withAssets {
       extraAssets = [ iconPath ];
       config = {
         title = "✨ The celestial citadel ✨";
@@ -129,11 +126,16 @@ in
                 logo = icon "invidious.png";
                 url = "https://yt.moonythm.dev";
               }
+              {
+                name = "Diptime";
+                subtitle = "Diplomacy timer";
+                icon = fa "globe";
+                url = "https://diptime.moonythm.dev";
+              }
             ];
           }
           # }}}
         ];
       };
-    };
-  };
+    });
 }
