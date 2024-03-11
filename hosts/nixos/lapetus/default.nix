@@ -16,6 +16,7 @@
     ./services/prometheus.nix
     ./services/grafana.nix
     ./services/commafeed.nix
+    ./services/invidious.nix
     ./filesystems
     ./hardware
   ];

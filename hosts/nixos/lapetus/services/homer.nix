@@ -118,6 +118,20 @@ in
             ];
           }
           # }}}
+          # {{{ Entertainment
+          {
+            name = "Entertainment";
+            icon = fa "gamepad";
+            items = [
+              {
+                name = "Invidious";
+                subtitle = "Youtube client";
+                logo = icon "invidious.png";
+                url = "https://yt.moonythm.dev";
+              }
+            ];
+          }
+          # }}}
         ];
       };
     };
