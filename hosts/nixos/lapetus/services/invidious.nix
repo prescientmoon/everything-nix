@@ -12,7 +12,7 @@
     enable = true;
     domain = "yt.moonythm.dev";
     port = 8414;
-    keyFile = config.sops.secrets.invidious_hmac_key.path;
+    hmacKeyFile = config.sops.secrets.invidious_hmac_key.path;
 
     nginx.enable = true;
 
