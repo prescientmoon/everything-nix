@@ -7,7 +7,7 @@ vim.opt.conceallevel = 0
 
 local abbreviations = {
   -- Other fancy symvols
-  { "tmat", "^T" }, -- Tranpose of a matrix
+  { "tmat", "^T" }, -- Transpose of a matrix
   { "cmat", "^*" }, -- Conjugate of a matrix
   { "sneg", "^C" }, -- Set complement
   { "ortco", "^\\bot" }, -- Orthogonal complement
@@ -79,7 +79,7 @@ local abbreviations = {
 
 local abolishAbbreviations = {
   -- {{{ Special chars
-  -- System for writing special characters which need to also be easly
+  -- System for writing special characters which need to also be easily
   -- accessible as {sub/super}scripts.
   --
   -- The reason epsilon and lambda are separated out from everything else in

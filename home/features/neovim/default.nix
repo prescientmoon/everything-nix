@@ -846,20 +846,26 @@ let
         # {{{ luasnip
         # snippeting engine
         luasnip =
-          let reload = /* lua */ ''require("luasnip.loaders.from_vscode").lazy_load()'';
+          let reloadVscode = /* lua */ ''require("luasnip.loaders.from_vscode").lazy_load()'';
           in
           {
             package = "L3MON4D3/LuaSnip";
             version = "v2";
 
             cond = blacklist "vscode";
-            config = thunk reload;
+            config = thunk ''
+              require("luasnip").config.setup(${encode {
+                enable_autosnippets = true;
+                update_events = ["TextChanged" "TextChangedI"];
+              }})
+              ${reloadVscode}
+            '';
 
             # {{{ Keybinds
             keys = [
               {
                 mapping = "<leader>rs";
-                action = thunk reload;
+                action = thunk reloadVscode;
                 desc = "[R]eload [s]nippets";
               }
               {
