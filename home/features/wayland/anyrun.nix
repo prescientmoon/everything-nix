@@ -10,7 +10,6 @@
         stdin
         # symbols # Looks ugly atm
         # websearch
-        # inputs.anyrun-nixos-options.packages.${pkgs.system}.default # Idk how to set this up :(
       ];
       # }}}
       # {{{ Geometry 
@@ -83,11 +82,4 @@
       /* }}} */
     '';
   };
-
-  # # See [the readme](https://github.com/n3oney/anyrun-nixos-options) for anyrun-nixos-options.
-  # programs.anyrun.extraConfigFiles."nixos-options.ron".text = ''
-  #   Config(
-  #     options_path: "${config.system.build.manual.optionsJSON}/share/doc/nixos/options.json"
-  #   )
-  # '';
 }

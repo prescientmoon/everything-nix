@@ -3,29 +3,19 @@
 
   # {{{ Inputs
   inputs = {
-    # {{{ Nixpkgs instances 
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    # {{{ Nixpkgs instances
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # }}}
     # {{{ Additional package repositories
-    nur.url = "github:nix-community/NUR";
-
-    hyprland-contrib.url = "github:hyprwm/contrib";
-    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    # Contains a bunch of wayland stuff not on nixpkgs
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
 
     # Firefox addons
     firefox-addons.url = "git+https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Nix-related tooling
-    # {{{ Storage 
+    # {{{ Storage
     impermanence.url = "github:nix-community/impermanence";
 
     # Declarative partitioning
@@ -43,27 +33,16 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     korora.url = "github:adisbladis/korora";
-
-    # Nix language server
-    # [the docs](https://github.com/nix-community/nixd/blob/main/docs/user-guide.md#installation)
-    # tell me not to override the nixpkgs input.
-    nixd.url = "github:nix-community/nixd";
     # }}}
     # {{{ Standalone software
     # {{{ Nightly versions of things
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-
-    # https://github.com/happenslol/wezterm/blob/add-nix-flake/nix/flake.nix
-    wezterm.url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
-    wezterm.inputs.nixpkgs.follows = "nixpkgs";
-
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Self management
     # Smos
-    smos.url = "github:Mateiadrielrafael/smos";
+    smos.url = "github:NorfairKing/smos";
+    smos.inputs.nixpkgs.url = "github:NixOS/nixpkgs/b8dd8be3c790215716e7c12b247f45ca525867e2";
     # REASON: smos fails to build this way
     # smos.inputs.nixpkgs.follows = "nixpkgs";
     # smos.inputs.home-manager.follows = "home-manager";
@@ -72,22 +51,10 @@
     intray.url = "github:NorfairKing/intray";
     intray.inputs.nixpkgs.url = "github:NixOS/nixpkgs/cf28ee258fd5f9a52de6b9865cdb93a1f96d09b7";
     # intray.inputs.home-manager.follows = "home-manager";
-
-    # Tickler
-    tickler.url = "github:NorfairKing/tickler";
-    tickler.inputs.nixpkgs.follows = "nixpkgs";
-    tickler.inputs.intray.follows = "intray";
     # }}}
-    # {{{ Anyrun 
+
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
-
-    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
-    anyrun-nixos-options.inputs.nixpkgs.follows = "nixpkgs";
-    # }}}
-
-    matui.url = "github:pkulak/matui";
-    matui.inputs.nixpkgs.follows = "nixpkgs";
 
     # Spotify client with theming support
     spicetify-nix.url = "github:the-argus/spicetify-nix";
@@ -99,9 +66,9 @@
     grub2-themes.inputs.nixpkgs.follows = "nixpkgs";
 
     # Stylix
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.inputs.home-manager.follows = "home-manager";
+    stylix.url = "github:danth/stylix/a33d88cf8f75446f166f2ff4f810a389feed2d56";
+    # stylix.inputs.nixpkgs.follows = "nixpkgs";
+    # stylix.inputs.home-manager.follows = "home-manager";
 
     # Catpuccin base16 color schemes
     catppuccin-base16.url = "github:catppuccin/base16";
@@ -116,7 +83,7 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      # {{{ Common helpers 
+      # {{{ Common helpers
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
         # "aarch64-linux" TODO: purescript doesn't work on this one
@@ -128,21 +95,20 @@
       specialArgs = system: {
         inherit inputs outputs;
 
-        spkgs = inputs.nixpkgs-stable.legacyPackages.${system};
         upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       };
       # }}}
     in
     {
       # {{{ Packages
-      # Acessible through 'nix build', 'nix shell', etc
+      # Accessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
         in import ./pkgs { inherit pkgs; }
       );
       # }}}
       # {{{ Bootstrapping and other pinned devshells
-      # Acessible through 'nix develop'
+      # Accessible through 'nix develop'
       devShells = forAllSystems
         (system:
           let
@@ -253,19 +219,17 @@
   # TODO: persist trusted substituters file
   nixConfig = {
     extra-substituters = [
-      "https://nix-community.cachix.org" # I think I need this for neovim-nightly?
-      "https://nixpkgs-wayland.cachix.org"
-      "https://anyrun.cachix.org"
-      "https://smos.cachix.org"
-      "https://intray.cachix.org"
+      "https://nix-community.cachix.org"
+      # "https://anyrun.cachix.org"
+      # "https://smos.cachix.org"
+      # "https://intray.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-      "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
-      "intray.cachix.org-1:qD7I/NQLia2iy6cbzZvFuvn09iuL4AkTmHvjxrQlccQ="
+      # "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      # "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
+      # "intray.cachix.org-1:qD7I/NQLia2iy6cbzZvFuvn09iuL4AkTmHvjxrQlccQ="
     ];
   };
   # }}}

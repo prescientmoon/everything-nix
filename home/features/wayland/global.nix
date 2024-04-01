@@ -1,5 +1,5 @@
 # Common wayland stuff
-{ lib, pkgs, inputs, ... }: {
+{ lib, pkgs, ... }: {
   imports = [
     ./wlsunset.nix
     ./wlogout.nix
@@ -44,6 +44,6 @@
       wl-qr # Custom qr scanner script
       wl-clipboard # Clipboard manager
       hyprpicker # Color picker
-      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast # Screenshot tool
+      grimblast # Screenshot tool
     ];
 }

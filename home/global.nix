@@ -4,7 +4,6 @@ let
   imports = [
     # {{{ flake inputs
     inputs.stylix.homeManagerModules.stylix
-    inputs.nur.nixosModules.nur
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.anyrun.homeManagerModules.default
@@ -42,6 +41,7 @@ in
 
     config.permittedInsecurePackages = [
       "electron-25.9.0"
+      "nix-2.15.3"
     ];
   };
   # }}}

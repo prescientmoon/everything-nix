@@ -22,7 +22,6 @@
     # signal-desktop # Signal client
     element-desktop # Matrix client
     # zoom-us # Zoom client 🤮
-    # inputs.matui.packages.${pkgs.system}.matui # Matrix TUi
     # }}}
     # {{{ Editors for different formats 
     # gimp # Image editing
@@ -42,7 +41,7 @@
     obsidian # Note-taking
     bitwarden # Password-manager
     # plover.dev # steno engine
-    # qbittorrent # Torrent client
+    qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # }}} 
     # {{{ Media playing/recording

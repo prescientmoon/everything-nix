@@ -22,6 +22,10 @@ in
       enable = true;
       oauth-token-file = config.sops.secrets.smos_github_token.path;
     };
+
+    calendar = {
+      enable = true;
+    };
   };
   # }}}
   # {{{ Storage & secrets 

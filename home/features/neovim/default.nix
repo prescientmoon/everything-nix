@@ -3,12 +3,12 @@ let
   # Toggles for including tooling related to a given language
   packedTargets = {
     elm = false;
-    latex = true;
+    latex = false;
     lua = true;
     nix = true;
     purescript = false;
-    python = true;
-    rust = true;
+    python = false;
+    rust = false;
     typst = true;
     web = true;
   };
@@ -895,6 +895,18 @@ let
                 '';
                 desc = "Jump to previous snippet tabstop";
               }
+              {
+                mode = "is";
+                mapping = "<c-a>";
+                action = "<Plug>luasnip-prev-choice";
+                desc = "Previous snippet node choice";
+              }
+              {
+                mode = "is";
+                mapping = "<c-f>";
+                action = "<Plug>luasnip-next-choice";
+                desc = "Next snippet node choice";
+              }
             ];
             # }}}
           };
@@ -917,7 +929,7 @@ let
             optionals nix [
               pkgs.rnix-lsp
               pkgs.nil
-              inputs.nixd.packages.${pkgs.system}.nixd
+              pkgs.nixd
             ] ++
             optionals latex [
               pkgs.texlab

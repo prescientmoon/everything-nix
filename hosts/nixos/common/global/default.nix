@@ -4,10 +4,8 @@ let
   # {{{ Imports
   imports = [
     # {{{ flake inputs 
-    # inputs.hyprland.nixosModules.default
     inputs.disko.nixosModules.default
     inputs.stylix.nixosModules.stylix
-    inputs.nur.nixosModules.nur
     inputs.sops-nix.nixosModules.sops
     # }}}
     # {{{ global configuration

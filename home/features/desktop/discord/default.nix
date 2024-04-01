@@ -2,6 +2,7 @@
 let
   themeMap = pkgs.callPackage (import ./themes.nix) { };
 
+  # REASON: newer discord versions don't work with the one in nixpkgs
   discocss = pkgs.discocss.overrideAttrs (old: rec {
     version = "0.3.0";
     src = pkgs.fetchFromGitHub {

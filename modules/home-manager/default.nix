@@ -3,6 +3,9 @@
 {
   # example = import ./example.nix;
 
+  bemenu = import ./compat/bemenu.nix;
+  k9s = import ./compat/k9s.nix;
+
   # Personal things
   firefox = import ./firefox;
   monitors = import ./monitors.nix;
