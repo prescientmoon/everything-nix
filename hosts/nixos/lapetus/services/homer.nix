@@ -81,10 +81,10 @@ in
                 url = "https://search.moonythm.dev";
               }
               {
-                name = "Commafeed";
-                subtitle = "RSS reader";
-                logo = icon "commafeed.png";
-                url = "https://rss.moonythm.dev";
+                name = "Radicale";
+                subtitle = "Calendar server";
+                logo = icon "radicale.svg";
+                url = "https://cal.moonythm.dev";
               }
             ];
           }
@@ -131,6 +131,12 @@ in
                 subtitle = "Diplomacy timer";
                 icon = fa "globe";
                 url = "https://diptime.moonythm.dev";
+              }
+              {
+                name = "Commafeed";
+                subtitle = "RSS reader";
+                logo = icon "commafeed.png";
+                url = "https://rss.moonythm.dev";
               }
             ];
           }

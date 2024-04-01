@@ -18,6 +18,7 @@
     ./services/commafeed.nix
     ./services/invidious.nix
     ./services/diptime.nix
+    ./services/radicale.nix
     ./filesystems
     ./hardware
   ];

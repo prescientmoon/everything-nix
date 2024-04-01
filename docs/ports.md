@@ -18,3 +18,4 @@ The idea is to always use consecutive ports, but never go back and try to recycl
 | 8412 | [prometheus nginx exporter](../hosts/nixos/lapetus/services/prometheus.nix) |
 | 8413 | [commafeed](../hosts/nixos/lapetus/services/commafeed.nix)                  |
 | 8414 | [invidious](../hosts/nixos/lapetus/services/invidious.nix)                  |
+| 8415 | [radicale](../hosts/nixos/lapetus/services/radicale.nix)                    |
