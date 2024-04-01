@@ -33,7 +33,7 @@
     };
 
     # REASON: the current invidious is broken, and cannot play videos
-    packages = pkgs.invidious.overrideAttrs (_oldAttrs: {
+    package = pkgs.invidious.overrideAttrs (_oldAttrs: {
       src = pkgs.fetchFromGitHub {
         owner = "iv-org";
         repo = "invidious";
