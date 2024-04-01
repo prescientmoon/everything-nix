@@ -4,7 +4,7 @@ let
   dataDir = "/persist/data/radicale";
 in
 {
-  service.radicale = {
+  services.radicale = {
     enable = true;
 
     settings = {
