@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     ../../common/optional/services/nginx.nix
     ../../common/optional/services/postgres.nix
@@ -33,8 +33,8 @@
     };
 
     # REASON: the current invidious is broken, and cannot play videos
-    packages = prev.invidious.overrideAttrs (_oldAttrs: {
-      src = prev.fetchFromGitHub {
+    packages = pkgs.invidious.overrideAttrs (_oldAttrs: {
+      src = pkgs.fetchFromGitHub {
         owner = "iv-org";
         repo = "invidious";
         fetchSubmodules = true;
