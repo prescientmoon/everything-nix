@@ -1,3 +1,7 @@
 {
-  environment.persistence."/persist/state".directories = [ "/var/lib/postgresql" ];
+  environment.persistence."/persist/state".directories = [{
+    directory = "/var/lib/postgresql";
+    user = "postgres";
+    group = "postgres";
+  }];
 }
