@@ -8,7 +8,7 @@ in
     enable = true;
 
     settings = {
-      server.hosts = [ "localhost:${port}" ];
+      server.hosts = [ "localhost:${toString port}" ];
       storage.filesystem_folder = dataDir;
     };
   };
