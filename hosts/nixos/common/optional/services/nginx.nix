@@ -1,5 +1,5 @@
 {
-  imports = [ ./acme ];
+  imports = [ ./acme.nix ];
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;

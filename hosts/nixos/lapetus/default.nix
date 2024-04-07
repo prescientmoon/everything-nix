@@ -19,6 +19,7 @@
     ./services/invidious.nix
     ./services/diptime.nix
     ./services/radicale.nix
+    ./services/ddclient.nix
     ./filesystems
     ./hardware
   ];

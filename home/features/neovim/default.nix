@@ -3,7 +3,7 @@ let
   # Toggles for including tooling related to a given language
   packedTargets = {
     elm = false;
-    latex = false;
+    latex = true;
     lua = true;
     nix = true;
     purescript = false;
