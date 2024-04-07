@@ -11,7 +11,7 @@
 
   sops.templates."ddclient.conf".content = ''
     # General settings
-    cache=/var/lib/ddclient # See the nixos module for details
+    cache=/var/lib/ddclient/ddclient.cache # See the nixos module for details
     foreground=YES
 
     # Routers
