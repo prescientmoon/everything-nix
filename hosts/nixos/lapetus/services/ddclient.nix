@@ -1,5 +1,5 @@
 # DDClient is a dynamic dns service
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   imports = [ ../../common/optional/services/acme.nix ];
 
@@ -7,6 +7,16 @@
     enable = true;
     interval = "1m";
     configFile = config.sops.templates."ddclient.conf".path;
+
+    # REASON: latest release doesn't support explicit root-domain annotations for porkbun
+    package = pkgs.ddclient.overrideAttrs (_: {
+      src = pkgs.fetchFromGitHub {
+        owner = "ddclient";
+        repo = "ddclient";
+        rev = "9885d55a3741363ad52d3463cb846d5782efb073";
+        sha256 = "0zyi8h13y18vrlxavx1vva4v0ya5v08bxdxlr3is49in3maz2n37";
+      };
+    });
   };
 
   sops.templates."ddclient.conf".content = ''
