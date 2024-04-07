@@ -21,6 +21,7 @@
     protocol=porkbun
     apikey=${config.sops.placeholder.porkbun_api_key}
     secretapikey=${config.sops.placeholder.porkbun_secret_api_key}
+    root-domain=moonythm.dev # The root domain detection doesn't work properly
     real.lapetus.moonythm.dev
   '';
 }
