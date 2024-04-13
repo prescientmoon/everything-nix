@@ -160,9 +160,9 @@ let
 
     (deflayer purple
       _    _    _    _    _    _    _    _    _    _    _    _    _    _
-      _    _    _    _    _    _    @cps @cpy next volu brup _    _    _
-      _    _    _    _    _    _    @udo @pst pp   vold brdn _    _
-      _    _    _    _    _    _    _    @cut prev mute _    _
+      _    f1   f2   f3   f4   f5   @cps @cpy next volu brup _    _    _
+      _    f6   f7   f8   f9   f10  @udo @pst pp   vold brdn _    _
+      _    f11  f12  _    _    _    _    @cut prev mute _    _
       _    _    _              _              _
     )
     ;; }}}

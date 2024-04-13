@@ -18,19 +18,27 @@ local font_size = 20.0
 config.colors = wezterm.color.load_base16_scheme(colorscheme.source)
 
 -- {{{ Window frame
+local tab_bar_bg = colorscheme.transparency.terminal.base04
 config.window_frame = {
   font = wezterm.font({ family = colorscheme.fonts.sansSerif }),
-  font_size = font_size,
-  active_titlebar_bg = colorscheme.base00,
-  inactive_titlebar_bg = colorscheme.base00,
+  font_size = font_size - 3,
+  active_titlebar_bg = tab_bar_bg,
+  inactive_titlebar_bg = tab_bar_bg,
+}
+
+config.window_padding = {
+  left = "1cell",
+  right = "1cell",
+  top = "0.4cell",
+  bottom = "0.4cell",
 }
 -- }}}
 -- {{{ Tab bar colors
 config.colors.tab_bar = {
-  background = colorscheme.base02,
+  background = tab_bar_bg,
   active_tab = {
-    bg_color = colorscheme.base0A,
-    fg_color = colorscheme.base00,
+    bg_color = colorscheme.transparency.terminal.base00,
+    fg_color = colorscheme.base05,
   },
   inactive_tab = {
     bg_color = colorscheme.base02,
@@ -49,10 +57,13 @@ config.colors.tab_bar = {
     fg_color = colorscheme.base05,
     italic = true,
   },
+
+  -- The color of the inactive tab bar edge/divider
+  inactive_tab_edge = "none",
 }
 -- }}}
 -- {{{ Other visual things
-config.window_background_opacity = colorscheme.opacity.terminal
+config.window_background_opacity = colorscheme.transparency.terminal.value
 -- }}}
 -- }}}
 -- {{{ Main config options
@@ -66,9 +77,11 @@ config.font_size = font_size
 config.font = wezterm.font(colorscheme.fonts.monospace)
 -- }}}
 -- {{{ Tab bar
+config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = true
--- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+config.show_tab_index_in_tab_bar = false
+config.show_new_tab_button_in_tab_bar = false
 -- }}}
 -- {{{ Keycodes
 config.disable_default_key_bindings = false

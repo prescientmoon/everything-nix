@@ -11,7 +11,7 @@ function M.config()
   local bluloco = require("bluloco")
 
   bluloco.setup({
-    transparent = H.theme.opacity.terminal < 1.0,
+    transparent = H.theme.transaprency.terminal.enabled,
     style = H.theme_variant("Bluloco"),
   })
 

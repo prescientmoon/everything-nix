@@ -59,8 +59,8 @@ in
       search.force = true;
       search.default = "Moonythm";
 
-      # Set styles applied to every website
-      userContent = builtins.readFile ./userContent.css;
+      # Set styles applied to firefox itself
+      userChrome = builtins.readFile ./userChrome.css;
       # }}}
       # {{{ Extensions
       extensions =

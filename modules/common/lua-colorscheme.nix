@@ -12,6 +12,36 @@
         korora = inputs.korora.lib;
       };
 
+      mkTransparencyTarget = name:
+        let
+          color = index: "rgba(${
+              config.satellite.theming.colors.rgb "base${index}"
+            },${
+              toString config.stylix.opacity.${name}
+            })";
+        in
+        {
+          enabled = config.stylix.opacity.${name} < 1.0;
+          value = config.stylix.opacity.${name};
+
+          base00 = color "00";
+          base01 = color "01";
+          base02 = color "02";
+          base03 = color "03";
+          base04 = color "04";
+          base05 = color "05";
+          base06 = color "06";
+          base07 = color "07";
+          base08 = color "07";
+          base09 = color "09";
+          base0A = color "0A";
+          base0B = color "0B";
+          base0C = color "0C";
+          base0D = color "0D";
+          base0E = color "0E";
+          base0F = color "0F";
+        };
+
       theme = {
         name = config.lib.stylix.scheme.scheme;
         base00 = config.lib.stylix.scheme.base00;
@@ -37,18 +67,11 @@
           sansSerif = config.stylix.fonts.sansSerif.name;
           monospace = config.stylix.fonts.monospace.name;
         };
-        opacity = {
-          terminal = config.stylix.opacity.terminal;
-          applications = config.stylix.opacity.applications;
-          desktop = config.stylix.opacity.desktop;
-          popups = config.stylix.opacity.popups;
-        };
-        # Whether to enable transparency for different targets
-        transparent = {
-          terminal = config.stylix.opacity.terminal < 1.0;
-          applcations = config.stylix.opacity.applications < 1.0;
-          desktop = config.stylix.opacity.desktop < 1.0;
-          popups = config.stylix.opacity.popups < 1.0;
+        transparency = {
+          terminal = mkTransparencyTarget "terminal";
+          applications = mkTransparencyTarget "applications";
+          desktop = mkTransparencyTarget "desktop";
+          popups = mkTransparencyTarget "popups";
         };
         rounding = {
           enable = config.satellite.theming.rounding.enable;

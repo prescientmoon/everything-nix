@@ -24,7 +24,7 @@ let
 
     catppuccin-latte = {
       stylix = {
-        image = ./wallpapers/watercag.png;
+        image = ./wallpapers/field_diamond.jpg;
         base16Scheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
         opacity = transparency 0.7;
         polarity = "light";

@@ -11,6 +11,7 @@ let
     "alternativeto.net"
     "linuxiac.com"
     "www.linuxlinks.com"
+    "sourceforge.net"
   ];
 in
 {

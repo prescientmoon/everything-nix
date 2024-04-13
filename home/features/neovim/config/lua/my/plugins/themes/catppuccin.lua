@@ -12,7 +12,7 @@ function M.config()
   vim.g.catppuccin_flavour = H.theme_variant("Catppuccin")
 
   catppuccin.setup({
-    transparent_background = H.theme.transparent.terminal,
+    transparent_background = H.theme.transparency.terminal.enabled,
     integrations = {
       nvimtree = true,
       telescope = true,
@@ -25,7 +25,7 @@ function M.config()
 
   vim.cmd("colorscheme catppuccin")
 
-  if H.theme.transparent.terminal then
+  if H.theme.transparency.terminal.enabled then
     vim.cmd([[highlight FloatBorder blend=0 guibg=NONE]])
     -- vim.cmd([[highlight MiniStatuslineInactive blend=0 guibg=NONE]])
     vim.cmd([[highlight MiniStatuslineFilename blend=0 guibg=NONE]])

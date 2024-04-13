@@ -260,7 +260,7 @@ let
         "4:configure-neovide" = {
           cond = whitelist "neovide";
           vim.g = {
-            neovide_transparency = lua ''D.tempest.theme.opacity.applications'';
+            neovide_transparency = lua ''D.tempest.theme.transparency.applications.value'';
             neovide_cursor_animation_length = 0.04;
             neovide_cursor_animate_in_insert_mode = false;
           };
@@ -1573,6 +1573,8 @@ let
 in
 {
   satellite.lua.styluaConfig = ../../../stylua.toml;
+
+  imports = [ ../desktop/wakatime ];
 
   # {{{ Basic config
   # We still want other modules to know that we are using neovim!
