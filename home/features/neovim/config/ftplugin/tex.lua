@@ -78,20 +78,6 @@ local abbreviations = {
 }
 
 local abolishAbbreviations = {
-  -- {{{ Special chars
-  -- System for writing special characters which need to also be easily
-  -- accessible as {sub/super}scripts.
-  --
-  -- The reason epsilon and lambda are separated out from everything else in
-  -- the pattern is because they are the only ones where `foo` doesn't expand
-  -- to `\\foo` directly (so I saved some keystrokes by letting scrap.nvim
-  -- repeat everything for me).
-  {
-    "{,e,s}{{eps,lam},{star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega}}",
-    "{,^,_}\\\\{{epsilon,lambda},{}}",
-    options = A.no_capitalization,
-  },
-  -- }}}
   -- {{{ Set symbols
   --   - nats => naturals
   --   - ints => integers

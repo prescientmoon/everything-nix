@@ -1,0 +1,108 @@
+block start auto
+  string val
+    name value definition
+    desc Create a value-level declaration
+    snip
+      $1 :: $2
+      $1 $3 = $4
+
+  for kind <- @⟨type,newtype,data⟩
+  string @kind
+    name @kind definition
+    desc Define a @⟨@kind:type,newtype,adt⟩
+    snip data $1 = $2
+
+  string example
+    name example docstring
+    desc Provide example usage for some piece of code
+    snip
+      -- | Example:
+      -- | ```purs
+      -- | $0
+      -- | ```
+
+  string class
+    name typeclass declaration
+    desc Declare a typeclass
+    snip
+      class $1 $|2⟨
+        where
+          $2,
+        $2
+      ⟩
+
+  string instance
+    name typeclass instance
+    desc Declare a typeclass instance
+    snip
+      instance $1 $|2⟨
+        where
+          $2,
+        $2
+      ⟩
+
+  string derive
+    name derive typeclass instance
+    desc Derive a typeclass instance
+    snip
+      derive $|1⟨$1,newtype $1⟩instance $0
+
+  for typeclass <- @⟨Eq,Ord,Functor⟩
+  string d@⟨@typeclass:eq,ord,functor⟩
+    name derive @typeclass
+    snip derive @typeclass $0
+
+  for typeclass <- @⟨Newtype,Generic⟩
+  string d@⟨@typeclass:newtype,generic⟩
+    name derive @typeclass
+    snip derive @typeclass $1 _
+
+  for typeclass <- @⟨Show,Debug⟩
+  for lower <- @⟨@typeclass:show,debug⟩
+  string g@lower
+    name generic @lower instance
+    snip
+      instance @typeclass $1 where
+        @lower = generic@typeclass
+
+  string djson
+    name derive json instances
+    snip
+      derive newtype instance EncodeJson $",
+      derive newtype instance DecodeJson $1
+
+  string gjson
+    name generic json instances
+    snip
+      instance EncodeJson $1 where
+        encodeJson = genericEncodeJson
+      instance DecodeJson $1 where
+        decodeJson = genericDecodeJson
+
+block auto
+  string ite
+    name if-then-else
+    snip if $1 then $2 else $0
+
+  string caseof
+    name pattern match
+    snip
+      case $1 of
+        $2 -> $0
+
+block start
+  for module <- @⟨
+    Map,
+    HashMap,
+    Set,
+    HashSet,
+    Array,
+    List,
+    String,
+    Int,
+    Number
+  ⟩
+
+  string imp@⟨@module:map,hashmap,set,hashset,array,list,string,int,number⟩
+    name import Data.@module
+    snip import Data.@module as @module

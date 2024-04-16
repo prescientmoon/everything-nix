@@ -56,6 +56,9 @@
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
+    miros.url = "github:mateiadrielrafael/miros";
+    miros.inputs.nixpkgs.follows = "nixpkgs";
+
     # Spotify client with theming support
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";

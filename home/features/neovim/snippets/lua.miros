@@ -1,0 +1,28 @@
+block start
+  string msetup
+    name setup module
+    desc Create a lua module together with a .setup() function
+    snip
+      local M = {}
+
+      function M.setup()
+        $0
+      end
+
+      return M
+
+  string describe
+    name busted describe
+    desc Create a describe grouping for busted tests
+    snip
+      describe("$1", function ()
+        $0
+      end)
+
+  string it
+    name busted it
+    desc Create a busted test
+    snip
+      it("$1", function ()
+        $0
+      end)

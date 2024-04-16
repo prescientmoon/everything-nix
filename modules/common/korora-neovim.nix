@@ -179,6 +179,9 @@ let
         lua /* lua */  ''
           D.tempest.whitelist(${encode given})
         '';
+      # :p => expands path
+      # :h => returns the head of the path
+      notmp = lua ''vim.fn.expand("%:p:h") ~= "/tmp"'';
       # }}}
       # {{{ Main config generation entrypoint
       generateConfig = rawConfig:

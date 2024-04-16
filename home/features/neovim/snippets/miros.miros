@@ -1,0 +1,31 @@
+block auto start
+  string for
+    snip
+      for $1 <- $|2⟨\@\⟨$2\⟩,$2⟩
+      $0
+
+  for kind <- @⟨string,pattern⟩
+  string @⟨@kind:s,p⟩snip
+    snip
+      @kind $1
+        name $2
+        snip $3
+
+      $0
+
+block auto !word
+  string choice
+    name choice node
+    snip \$|$1⟨$2\⟩$0
+
+  string nonempty
+    name nonempty node
+    snip \$?$1⟨$2\⟩$0
+
+  string arrin
+    name array index
+    snip \@\⟨\@$1:$2\⟩
+
+  string nil
+    name ignore symbol
+    snip \⋄

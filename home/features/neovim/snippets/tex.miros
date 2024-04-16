@@ -1,0 +1,203 @@
+for thmenv <- @⟨theorem,lemma,exercise,definition,corollary,example⟩
+for thmprefix <- @⟨@thmenv:thm,lem,exe,def,cor,exa⟩
+
+block auto !math start
+  for env <- @⟨$1,enumerate,itemize,align*⟩
+
+  string @⟨@env:begin,olist,ulist,dm⟩
+    name @⟨@env:environment,ordered list,unordered list,display math⟩
+    snip
+      \begin{@env}
+        $0
+      \end{@env}
+
+  string proof
+    snip
+      \begin{proof}$?1⟨[Proof of @^⟨$1⟩]⟩
+        $0
+      \end{proof}
+
+  string ciff
+    name cases for ⟺
+    snip
+      \begin{enumerate}
+        \item[$\implies$]$1,
+        \item[$\impliedby$]$2,
+      \end{enumerate}
+      $0
+
+  string item
+    snip \item$|1⟨,[$1] $0⟩
+
+block text
+  string ref
+    snip \ref{$1}$0
+  string r@thmprefix
+    snip \ref{@thmprefix:$1}$0
+
+  string pref
+    snip (\ref{$1})$0
+  string pr@thmprefix
+    snip (\ref{@thmprefix:$1})$0
+
+  string quote
+    snip ``$1''$0
+  string forcecr
+    snip {\ \\\\}
+
+  pattern ([Ll]et)
+    name definition
+    snip @1 \$$1 = $2\$
+
+  block auto
+    string im
+      name inline math
+      snip \$$1\$$0
+
+block math
+  for shorthand <- @⟨sum,prod⟩
+  for symbol <- @⟨@shorthand:sigma,pi⟩
+  for operation <- @⟨@shorthand:sum,product⟩
+  string b@shorthand
+    name @symbol @operation
+    desc Write out a @operation using big @symbol notation
+    snip \\@symbol{$|1⟨$1 = $2,$1⟩}^$|2⟨{$2},\infty$2⟩ $0
+
+  for matkind <- @⟨matrix,determinant⟩
+  for matenv <- @⟨@matkind:bmatrix,vmatrix⟩
+  for shorthand <- @⟨@matkind:mat,det⟩
+
+  string 2@shorthand
+    name 2x2 @matkind
+    snip
+      \begin{@matenv}
+        $1 & $2 \\\\
+        $3 & $4
+      \end{@matenv}
+
+  string 3@shorthand
+    name 3x3 @matkind
+    snip
+      \begin{@matenv}
+        $1 & $2 & $3 \\\\
+        $4 & $5 & $6 \\\\
+        $7 & $8 & $9
+      \end{@matenv}
+
+  for operator <- @⟨eq,neq,leq,geq,lt,gt⟩
+  for symbol <- @⟨@operator:=,\neq,\leq,\geq,<,>⟩
+
+  block auto
+    string a@operator
+      name align at @operator
+      snip &@symbol $0
+
+  block auto start
+    string al@operator
+      name aligned @operator
+      snip
+        \\\\ $1 &@symbol $2
+        $0
+
+    string cr@operator
+      name start with @operator
+      snip \\\\&@symbol $0
+
+  block start
+    string eqsystem
+      name system of equations
+      snip
+        \left\{
+          \begin{array}{rl}
+            $0
+          \end{array}
+        \right\}
+
+  block end
+    for suffix <- @⟨add,sub,rmul,pow,inv⟩
+    string ex@suffix
+      snip
+        && \lrb{\square @⟨@suffix:
+          + $1,
+          - $1,
+          \cdot $1,
+          ^{$1},
+          ^{-1},
+        ⟩}$0
+
+    for prefix <- @⟨neg,mul,ln⟩
+    string ex@prefix
+      snip && \lrb{@⟨@prefix:-,$1,\ln⟩ \square}$0
+
+    string exdiv
+      snip && \lrb{\frac \square {$1}}$0
+    string exint
+      snip && \lrb{\int\square \dif $1}$0
+    string exdint
+      snip && \lrb{\int_{$1}^{$2}\square \dif $3}$0
+
+    for kind <- @⟨texpl,extrin,exbound,exdef⟩
+    string @kind
+      snip
+        && \lrb{\text{@⟨@kind:
+          $1,
+          triangle inequality on $$1$,
+          $$1$ is bounded,
+          definition of $$1$,
+        ⟩}}$0
+
+  block auto
+    for constant <- @⟨star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega⟩
+    string @constant
+      snip \\@constant
+
+    for shortconstant <- @⟨eps,lam⟩
+    string @shortconstant
+      snip \\@⟨@shortconstant:epsilon,lambda⟩
+
+    for operator <- @⟨overline,hat,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod⟩
+    string @operator
+      snip \\@operator$|1⟨{$1}, $0⟩
+
+    for bioperator <- @⟨iprod,frac,binom⟩
+    string @bioperator
+      snip \\@bioperator$|1⟨ $1,{$1}⟩$|2⟨ $2,{$2}⟩ $0
+
+    string set
+      desc Create a set by escaping the brackets
+      snip \{$1\}
+
+    pattern e([%a%d])
+      name auto exponent
+      snip ^@0
+
+    pattern s([%a%d])
+      name auto subscript
+      snip _@0
+
+    pattern (\?[%a]+)(%d)
+      name auto digt subscript
+      snip @0_@1
+
+    string ss
+      name subscript
+      snip _{$1}$0
+
+    string ee
+      name exponent
+      snip ^{$1}$0
+
+    for limtarget <- @⟨anything,zero,infinity,negative infinity⟩
+    for prefix <- @⟨@limtarget:,z,i,n⟩
+    for limtargetsymbol <- @⟨@limtarget:$2,0,\infty,-\infty⟩
+    string @prefix⋄lim
+      name limit to @limtarget
+      snip \lim_{$1 \to @limtargetsymbol} $0
+
+    string dint
+      name definite integral
+      snip \int_{$|1⟨$1,-\infty$1⟩}^$|2⟨{$2},\infty$2⟩ $3 \dif $0
+
+    string iint
+      name indefinite integral
+      snip \int $1 \dif $0

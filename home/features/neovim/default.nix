@@ -18,11 +18,7 @@ let
     { inherit lib korora; }
     { tempestModule = "my.tempest"; };
 
-  # {{{ Config helpers 
-  # :p => expands path
-  # :h => returns the head of the path
-  notmp = nlib.lua ''vim.fn.expand("%:p:h") ~= "/tmp"'';
-  # }}}
+  mirosSnippetCache = "${config.xdg.cacheHome}/miros";
 
   generated = nlib.generateConfig
     (lib.fix (self: with nlib; {
@@ -807,6 +803,7 @@ let
               b = mk true "%b()" "(" ")";
               B = mk true "%b{}" "{" "}";
               r = mk true "%b[]" "[" "]";
+              v = mk true "%b⟨⟩" "⟨" "⟩";
               q = mk false "\".-\"" "\"" "\"";
               a = mk false "'.-'" "'" "'";
             };
@@ -846,8 +843,6 @@ let
         # {{{ luasnip
         # snippeting engine
         luasnip =
-          let reloadVscode = /* lua */ ''require("luasnip.loaders.from_vscode").lazy_load()'';
-          in
           {
             package = "L3MON4D3/LuaSnip";
             version = "v2";
@@ -858,16 +853,10 @@ let
                 enable_autosnippets = true;
                 update_events = ["TextChanged" "TextChangedI"];
               }})
-              ${reloadVscode}
             '';
 
             # {{{ Keybinds
             keys = [
-              {
-                mapping = "<leader>rs";
-                action = thunk reloadVscode;
-                desc = "[R]eload [s]nippets";
-              }
               {
                 mode = "i";
                 expr = true;
@@ -910,6 +899,25 @@ let
             ];
             # }}}
           };
+        # }}}
+        # {{{ miros
+        # snippeting generation language
+        miros = with inputs.miros.packages.${pkgs.system}; {
+          dir = miros-nvim;
+          dependencies.nix = [ miros ];
+
+          cond = blacklist "vscode";
+          ft = "miros";
+
+          keys = {
+            mapping = "<leader>rm";
+            action = "<cmd>!miros generate"
+              + " -i ${config.satellite.dev.path "home/features/neovim/snippets"}"
+              + " -o ${mirosSnippetCache}/luasnippets"
+              + " luasnip -r my.luasnip <cr>";
+            desc = "[R]erun [m]iros";
+          };
+        };
         # }}}
         # }}}
         # {{{ ide
@@ -1514,20 +1522,11 @@ let
     "lua/nix" "init"
     generated.lua);
 
-  extraRuntime =
-    let snippets = config.satellite.dev.path
-      "home/features/neovim/snippets";
-    in
-    lib.concatStringsSep ","
-      [ generatedConfig snippets ];
+  extraRuntime = lib.concatStringsSep "," [ generatedConfig mirosSnippetCache ];
   # }}}
   # {{{ Client wrapper
   # Wraps a neovim client, providing the dependencies
   # and setting some flags:
-  #
-  # - NVIM_EXTRA_RUNTIME provides extra directories to add to the runtimepath. 
-  #   I cannot just install those dirs using the builtin package support because 
-  #   my package manager (lazy.nvim) disables those.
   wrapClient = { base, name, binName ? name, extraArgs ? "", wrapFlags ? lib.id }:
     let
       startupScript = config.satellite.lib.lua.writeFile
@@ -1598,6 +1597,7 @@ in
 
   satellite.persistence.at.cache.apps.neovim.directories = [
     "${config.xdg.cacheHome}/nvim"
+    mirosSnippetCache
   ];
   # }}}
 }

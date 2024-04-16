@@ -1,3 +1,5 @@
+-- This is the runtime for my custom nix-based neovim configuration system
+
 local M = {}
 local H = {}
 M.helpers = H
