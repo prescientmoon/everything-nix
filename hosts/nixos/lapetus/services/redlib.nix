@@ -9,5 +9,5 @@ in
 
   services.libreddit.enable = true;
   systemd.services.libreddit.serviceConfig.ExecStart =
-    lib.mkForce "${upkgs.redlib}/bin/redlib --port ${port}";
+    lib.mkForce "${upkgs.redlib}/bin/redlib --port ${toString port}";
 }
