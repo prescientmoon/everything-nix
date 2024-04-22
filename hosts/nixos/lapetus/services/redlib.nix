@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, upkgs, ... }: {
   imports = [ ../../common/optional/services/nginx.nix ];
 
   services.nginx.virtualHosts."redlib.moonythm.dev" =
@@ -7,6 +7,7 @@
   services.libreddit = {
     enable = true;
     port = 8416;
-    package = pkgs.redlib;
+    # REASON: not in stable yet
+    package = upkgs.redlib;
   };
 }
