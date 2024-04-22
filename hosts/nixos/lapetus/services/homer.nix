@@ -127,6 +127,12 @@ in
                 url = "https://yt.moonythm.dev";
               }
               {
+                name = "Redlib";
+                subtitle = "Reddit client";
+                logo = icon "libreddit.png";
+                url = "https://redlib.moonythm.dev";
+              }
+              {
                 name = "Diptime";
                 subtitle = "Diplomacy timer";
                 icon = fa "globe";

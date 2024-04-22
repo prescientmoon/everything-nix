@@ -20,6 +20,7 @@
     ./services/diptime.nix
     ./services/radicale.nix
     ./services/ddclient.nix
+    ./services/redlib.nix
     ./filesystems
     ./hardware
   ];

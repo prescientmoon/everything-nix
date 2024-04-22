@@ -1,6 +1,6 @@
 # Ports
 
-The idea is to always use consecutive ports, but never go back and try to recycle older no longer user ports (for the sake of keeping things clean).
+The idea is to always use consecutive ports, but never go back and try to recycle older no longer used ports (for the sake of keeping things clean).
 
 | Port | Description                                                                 |
 | ---- | --------------------------------------------------------------------------- |
@@ -19,3 +19,4 @@ The idea is to always use consecutive ports, but never go back and try to recycl
 | 8413 | [commafeed](../hosts/nixos/lapetus/services/commafeed.nix)                  |
 | 8414 | [invidious](../hosts/nixos/lapetus/services/invidious.nix)                  |
 | 8415 | [radicale](../hosts/nixos/lapetus/services/radicale.nix)                    |
+| 8416 | [redlib](../hosts/nixos/lapetus/services/redlib.nix)                        |
