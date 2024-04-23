@@ -153,16 +153,16 @@ in
             icon = fa "arrow-up-right-from-square";
             items = [
               {
-                name = "Dotfiles";
-                subtitle = "Configuration for all my machines";
-                logo = icon "github.png";
-                url = "https://github.com/mateiadrielrafael/everything-nix";
-              }
-              {
                 name = "Tailscale";
                 subtitle = "Access this homelab from anywhere";
                 logo = icon "tailscale.png";
                 url = "https://tailscale.com/";
+              }
+              {
+                name = "Dotfiles";
+                subtitle = "Configuration for all my machines";
+                logo = icon "github.png";
+                url = "https://github.com/mateiadrielrafael/everything-nix";
               }
               {
                 name = "Porkbun";
