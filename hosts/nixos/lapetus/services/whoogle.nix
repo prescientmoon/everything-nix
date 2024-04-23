@@ -29,6 +29,9 @@ in
       WHOOGLE_CONFIG_DISABLE = "0";
       WHOOGLE_CONFIG_BLOCK = lib.concatStringsSep "," websiteBlocklist;
       WHOOGLE_CONFIG_THEME = "system";
+      WHOOGLE_ALT_WIKI = ""; # disable redirecting wikipedia links
+      WHOOGLE_ALT_RD = "redlib.moonythm.dev";
+      WHOOGLE_ALT_YT = "yt.moonythm.dev";
     };
   };
 

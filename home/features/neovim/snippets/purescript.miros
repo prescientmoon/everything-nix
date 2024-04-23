@@ -10,7 +10,7 @@ block start auto
   string @kind
     name @kind definition
     desc Define a @⟨@kind:type,newtype,adt⟩
-    snip data $1 = $2
+    snip @kind $1 = $2
 
   string example
     name example docstring
@@ -44,18 +44,17 @@ block start auto
   string derive
     name derive typeclass instance
     desc Derive a typeclass instance
-    snip
-      derive $|1⟨$1,newtype $1⟩instance $0
+    snip derive instance $|1⟨$1,newtype $1⟩instance $0
 
   for typeclass <- @⟨Eq,Ord,Functor⟩
   string d@⟨@typeclass:eq,ord,functor⟩
     name derive @typeclass
-    snip derive @typeclass $0
+    snip derive instance @typeclass $0
 
   for typeclass <- @⟨Newtype,Generic⟩
   string d@⟨@typeclass:newtype,generic⟩
     name derive @typeclass
-    snip derive @typeclass $1 _
+    snip derive instance @typeclass $1 _
 
   for typeclass <- @⟨Show,Debug⟩
   for lower <- @⟨@typeclass:show,debug⟩

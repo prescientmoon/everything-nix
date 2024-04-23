@@ -1,0 +1,9 @@
+block auto
+  abbr tto ->
+  abbr ffrom <-
+  abbr iip =>
+  abbr iib <=
+  abbr leq <=
+  abbr geq >=
+  abbr land /\
+  abbr lor /\

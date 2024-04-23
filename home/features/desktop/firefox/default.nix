@@ -15,6 +15,7 @@ let
     localcdn # caches libraries locally
     privacy-badger # blocks some trackers
     privacy-pass # captcha stuff
+    privacy-redirect # allows redirecting to my own instances for certain apps
     skip-redirect # attempts to skip to the final reddirect for certain urls
     terms-of-service-didnt-read
     translate-web-pages

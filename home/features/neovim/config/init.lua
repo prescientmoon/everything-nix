@@ -1,21 +1,10 @@
--- enable experimental lua loader
+-- Enable experimental lua loader
 vim.loader.enable()
+vim.opt.runtimepath:prepend(vim.g.nix_extra_runtime)
 
--- bootstrap from github
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local tempest = require("my.tempest")
+local nix = require("nix")
 
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "git@github.com:folke/lazy.nvim.git",
-    lazypath,
-  })
-end
-
-vim.opt.runtimepath:prepend(lazypath)
-
--- Start the actual init process
-require("my.init").setup()
+tempest.configureMany(nix.pre)
+require("my.lazy").setup()
+tempest.configureMany(nix.post)

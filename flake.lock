@@ -1278,11 +1278,11 @@
         "purifix": "purifix"
       },
       "locked": {
-        "lastModified": 1713302426,
-        "narHash": "sha256-29m8oM9CtmvHKzfK1xfz2R7/Ae1GimmRyb3i27oIOw0=",
+        "lastModified": 1713852340,
+        "narHash": "sha256-4H5l6Hsg6SzhZwB8ikphlJmLtyi3xeUcPPsVh3gVd/k=",
         "owner": "mateiadrielrafael",
         "repo": "miros",
-        "rev": "45b9ce1c3fedd548d824a01608e1a5c9570b8d95",
+        "rev": "80a1cd4726b6d1b7b9d9ee4cfe850d87d524090b",
         "type": "github"
       },
       "original": {
@@ -1502,8 +1502,8 @@
       },
       "original": {
         "owner": "NixOS",
+        "ref": "nixos-23.11",
         "repo": "nixpkgs",
-        "rev": "b8dd8be3c790215716e7c12b247f45ca525867e2",
         "type": "github"
       }
     },

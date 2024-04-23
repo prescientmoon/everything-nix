@@ -147,6 +147,32 @@ in
             ];
           }
           # }}}
+          # {{{ External
+          {
+            name = "External";
+            icon = fa "arrow-up-right-from-square";
+            items = [
+              {
+                name = "Dotfiles";
+                subtitle = "Configuration for all my machines";
+                logo = icon "github.png";
+                url = "https://github.com/mateiadrielrafael/everything-nix";
+              }
+              {
+                name = "Tailscale";
+                subtitle = "Access this homelab from anywhere";
+                logo = icon "tailscale.png";
+                url = "https://tailscale.com/";
+              }
+              {
+                name = "Porkbun";
+                subtitle = "Domain management";
+                logo = icon "porkbun.png";
+                url = "https://porkbun.com/account/domainsSpeedy";
+              }
+            ];
+          }
+          # }}}
         ];
       };
     });

@@ -60,7 +60,6 @@ function M.config()
       { name = "buffers" },
       { name = "emoji" },
       { name = "path" },
-      { name = "digraphs" },
     }),
     -- }}}
   }

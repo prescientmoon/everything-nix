@@ -75,7 +75,7 @@ let
             # }}}
             # {{{ Folding
             foldmethod = "marker"; # use {{{ }}} for folding
-            foldcolumn = "1"; # show column with folds on the left
+            foldcolumn = "0"; # show no column with folds on the left
             # }}}
           };
 
@@ -262,9 +262,10 @@ let
           };
         };
         # }}}
-        # {{{ Language specific settings
+        # {{{ Language specific overrides
         "5:language-specific-settings" = {
           autocmds = [
+            # {{{ Nix
             {
               event = "FileType";
               group = "UserNixSettings";
@@ -282,6 +283,8 @@ let
                 };
               };
             }
+            # }}}
+            # {{{ Purescript
             {
               event = "FileType";
               group = "UserPurescriptSettings";
@@ -291,6 +294,7 @@ let
                 commentstring = "-- %s";
               };
             }
+            # }}}
           ];
         };
         # }}}
@@ -589,7 +593,6 @@ let
           package = "nvim-treesitter/nvim-treesitter";
           main = "nvim-treesitter.configs";
 
-          dependencies.lua = [ "nvim-treesitter/nvim-treesitter-textobjects" ];
           dependencies.nix = [ pkgs.tree-sitter ];
 
           cond = blacklist "vscode";
@@ -602,45 +605,7 @@ let
             additional_vim_regex_highlighting = false;
           };
           #}}}
-          # {{{ Textobjects
-          opts.textobjects = {
-            #{{{ Select
-            select = {
-              enable = true;
-              lookahead = true;
-              keymaps = {
-                # You can use the capture groups defined in textobjects.scm
-                af = "@function.outer";
-                "if" = "@function.inner";
-                ac = "@class.outer";
-                ic = "@class.inner";
-              };
-            };
-            #}}}
-            #{{{ Move
-            move = {
-              enable = true;
-              set_jumps = true; # whether to set jumps in the jumplist
-              goto_next_start = {
-                "]f" = "@function.outer";
-                "]t" = "@class.outer";
-              };
-              goto_next_end = {
-                "]F" = "@function.outer";
-                "]T" = "@class.outer";
-              };
-              goto_previous_start = {
-                "[f" = "@function.outer";
-                "[t" = "@class.outer";
-              };
-              goto_previous_end = {
-                "[F" = "@function.outer";
-                "[T" = "@class.outer";
-              };
-            };
-            #}}}
-          };
-          # }}}
+
           opts.indent.enable = true;
         };
         # }}}
@@ -655,6 +620,24 @@ let
         #   event = "VeryLazy";
         #   opts.enable = true;
         # };
+        # }}}
+        # {{{ mini.starter
+        mini-starter = {
+          package = "echasnovski/mini.starter";
+          name = "mini.starter";
+          cond = blacklist [ "vscode" "firenvim" ];
+          lazy = false;
+
+          opts = _: {
+            header = builtins.readFile ./header.txt;
+            footer = importFrom ./plugins/ministarter.lua "lazy_stats_item";
+            content_hooks = [
+              (lua ''require("mini.starter").gen_hook.adding_bullet()'')
+              (lua ''require("mini.starter").gen_hook.aligning('center', 'center')'')
+            ];
+            silent = true;
+          };
+        };
         # }}}
         # }}}
         # {{{ editing 
@@ -753,6 +736,29 @@ let
           opts.keymaps.replace_all = "<s-cr>";
         };
         # }}}
+        # {{{ mini.ai 
+        mini-ai = {
+          package = "echasnovski/mini.ai";
+          name = "mini.ai";
+          event = "VeryLazy";
+
+          opts = _: # lazy, as we import mini.ai inside
+            let balanced = from: [ "%b${from}" "^.().*().$" ];
+            in
+            {
+              custom_textobjects = {
+                b = balanced "()";
+                B = balanced "{}";
+                r = balanced "[]";
+                v = balanced "⟨⟩";
+                q = balanced "\"\"";
+                Q = balanced "``";
+                a = balanced "''";
+                A = lua "require('mini.ai').gen_spec.argument()";
+              };
+            };
+        };
+        # }}}
         # {{{ mini.comment 
         mini-comment = {
           package = "echasnovski/mini.comment";
@@ -805,6 +811,7 @@ let
               r = mk true "%b[]" "[" "]";
               v = mk true "%b⟨⟩" "⟨" "⟩";
               q = mk false "\".-\"" "\"" "\"";
+              Q = mk false "`.-`" "`" "`";
               a = mk false "'.-'" "'" "'";
             };
           # }}}
@@ -835,70 +842,72 @@ let
           package = "echasnovski/mini.pairs";
           name = "mini.pairs";
 
-          config = true;
           # We could specify all the generated bindings, but I don't think it's worth it
           event = [ "InsertEnter" "CmdlineEnter" ];
         };
         # }}}
         # {{{ luasnip
         # snippeting engine
-        luasnip =
-          {
-            package = "L3MON4D3/LuaSnip";
-            version = "v2";
+        luasnip = {
+          package = "L3MON4D3/LuaSnip";
+          version = "v2";
 
-            cond = blacklist "vscode";
-            config = thunk ''
-              require("luasnip").config.setup(${encode {
-                enable_autosnippets = true;
-                update_events = ["TextChanged" "TextChangedI"];
-              }})
-            '';
+          cond = blacklist "vscode";
+          config = thunk ''
+            require("luasnip").config.setup(${encode {
+              enable_autosnippets = true;
+              update_events = ["TextChanged" "TextChangedI"];
+            }})
 
-            # {{{ Keybinds
-            keys = [
-              {
-                mode = "i";
-                expr = true;
-                mapping = "<tab>";
-                action = thunk /* lua */ ''
-                  local luasnip = require("luasnip")
+            require("luasnip.loaders.from_lua").lazy_load(${encode {
+              fs_event_providers.libuv = true;
+            }})
+          '';
 
-                  if not luasnip.jumpable(1) then
-                    return "<tab>"
-                  end
+          # {{{ Keybinds
+          keys = [
+            {
+              mode = "i";
+              expr = true;
+              mapping = "<tab>";
+              action = thunk /* lua */ ''
+                local luasnip = require("luasnip")
 
-                  vim.schedule(function()
-                    luasnip.jump(1)
-                  end)
+                if not luasnip.jumpable(1) then
+                  return "<tab>"
+                end
 
-                  return "<ignore>"
-                '';
-                desc = "Jump to next snippet tabstop";
-              }
-              {
-                mode = "i";
-                mapping = "<s-tab>";
-                action = thunk /* lua */ ''
-                  require("luasnip").jump(-1)
-                '';
-                desc = "Jump to previous snippet tabstop";
-              }
-              {
-                mode = "is";
-                mapping = "<c-a>";
-                action = "<Plug>luasnip-prev-choice";
-                desc = "Previous snippet node choice";
-              }
-              {
-                mode = "is";
-                mapping = "<c-f>";
-                action = "<Plug>luasnip-next-choice";
-                desc = "Next snippet node choice";
-              }
-            ];
-            # }}}
-          };
+                vim.schedule(function()
+                  luasnip.jump(1)
+                end)
+
+                return "<ignore>"
+              '';
+              desc = "Jump to next snippet tabstop";
+            }
+            {
+              mode = "i";
+              mapping = "<s-tab>";
+              action = thunk /* lua */ ''
+                require("luasnip").jump(-1)
+              '';
+              desc = "Jump to previous snippet tabstop";
+            }
+            {
+              mode = "is";
+              mapping = "<c-a>";
+              action = "<Plug>luasnip-prev-choice";
+              desc = "Previous snippet node choice";
+            }
+            {
+              mode = "is";
+              mapping = "<c-f>";
+              action = "<Plug>luasnip-next-choice";
+              desc = "Next snippet node choice";
+            }
+          ];
+          # }}}
+        };
         # }}}
         # {{{ miros
         # snippeting generation language
@@ -1145,7 +1154,6 @@ let
             "hrsh7th/cmp-cmdline"
             "hrsh7th/cmp-path"
             "saadparwaiz1/cmp_luasnip"
-            "dmitmel/cmp-digraphs"
             # }}}
             "onsails/lspkind.nvim" # show icons in lsp completion menus
             "luasnip"
@@ -1522,7 +1530,12 @@ let
     "lua/nix" "init"
     generated.lua);
 
-  extraRuntime = lib.concatStringsSep "," [ generatedConfig mirosSnippetCache ];
+  extraRuntime = lib.concatStringsSep "," [
+    generatedConfig
+    mirosSnippetCache
+    "${pkgs.vimPlugins.lazy-nvim}"
+  ];
+
   # }}}
   # {{{ Client wrapper
   # Wraps a neovim client, providing the dependencies

@@ -1,11 +1,19 @@
 for thmenv <- @⟨theorem,lemma,exercise,definition,corollary,example⟩
 for thmprefix <- @⟨@thmenv:thm,lem,exe,def,cor,exa⟩
 
-block auto !math start
-  for env <- @⟨$1,enumerate,itemize,align*⟩
+block auto start
+  string begin
+    name environment
+    snip
+      \begin{$1}
+        $0
+      \end{$1}
 
-  string @⟨@env:begin,olist,ulist,dm⟩
-    name @⟨@env:environment,ordered list,unordered list,display math⟩
+block auto !math start
+  for env <- @⟨enumerate,itemize,align*⟩
+
+  string @⟨@env:olist,ulist,dm⟩
+    name @⟨@env:ordered list,unordered list,display math⟩
     snip
       \begin{@env}
         $0
@@ -84,10 +92,12 @@ block math
         $7 & $8 & $9
       \end{@matenv}
 
-  for operator <- @⟨eq,neq,leq,geq,lt,gt⟩
-  for symbol <- @⟨@operator:=,\neq,\leq,\geq,<,>⟩
+  for operator <- @⟨eq,neq,defas,leq,geq,lt,gt,iip,iib⟩
+  for symbol <- @⟨@operator:=,\neq,\coloneq,\leq,\geq,<,>,\implies,\impliedby⟩
 
   block auto
+    abbr @operator @symbol
+
     string a@operator
       name align at @operator
       snip &@symbol $0
@@ -147,19 +157,45 @@ block math
         ⟩}}$0
 
   block auto
-    for constant <- @⟨star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega⟩
-    string @constant
-      snip \\@constant
+    for constkind <- @⟨default,shortened⟩
+    for constant <- @⟨@constkind:
+      @⟨star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega,half,ordop,land,lor⟩,
+      @⟨lam,eps,iinf⟩
+    ⟩
+    for expansion <- @⟨@constkind:
+      @constant,
+      @⟨@constant:lambda,epsilon,ifty⟩
+    ⟩
 
-    for shortconstant <- @⟨eps,lam⟩
-    string @shortconstant
-      snip \\@⟨@shortconstant:epsilon,lambda⟩
+    for operator <- @⟨,e,s⟩
+    string @operator@constant
+      snip @⟨@operator:,^,_⟩\\@expansion
 
-    for operator <- @⟨overline,hat,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod⟩
+    abbr niinf -\ifty
+    abbr eniinf ^{-\ifty}
+    abbr sniinf _{-\ifty}
+
+    abbr frl \forall
+    abbr exs \exists
+    abbr nin \not\in
+    abbr ccup \cup
+    abbr ccap \cap
+    abbr nope \bot
+    abbr yee \top
+
+    abbr nlnl \pm
+    abbr vsm \vecspace
+    abbr oball \ball
+
+    for noperator <- @⟨ordop,land,lor⟩
+    string @noperator
+      snip \\@noperator
+
+    for operator <- @⟨overline,hat,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,diam,prob⟩
     string @operator
       snip \\@operator$|1⟨{$1}, $0⟩
 
-    for bioperator <- @⟨iprod,frac,binom⟩
+    for bioperator <- @⟨iprod,frac,binom,dist⟩
     string @bioperator
       snip \\@bioperator$|1⟨ $1,{$1}⟩$|2⟨ $2,{$2}⟩ $0
 
@@ -167,25 +203,33 @@ block math
       desc Create a set by escaping the brackets
       snip \{$1\}
 
-    pattern e([%a%d])
+    pattern (.*)e@⟨t(%a),(%d)⟩
       name auto exponent
-      snip ^@0
+      snip @0^@1 $0
 
-    pattern s([%a%d])
+    pattern (.*)so(%a)
       name auto subscript
-      snip _@0
+      snip @0_@1 $0
 
     pattern (\?[%a]+)(%d)
       name auto digt subscript
-      snip @0_@1
+      snip @0_@1 $0
 
     string ss
       name subscript
-      snip _{$1}$0
+      snip _{$1} $0
 
     string ee
       name exponent
-      snip ^{$1}$0
+      snip ^{$1} $0
+
+    pattern (%a)(.)pp
+      name auto parenthesis
+      snip @0(@1) $0
+
+    pattern (%a)d(.)p
+      name auto parenthesis
+      snip @0'(@1) $0
 
     for limtarget <- @⟨anything,zero,infinity,negative infinity⟩
     for prefix <- @⟨@limtarget:,z,i,n⟩
