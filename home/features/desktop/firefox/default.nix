@@ -149,10 +149,16 @@ in
             aliases = [ "@gh" "@github" ];
           };
 
+          "Invidious" = mkBasicSearchEngine {
+            url = "https://yt.moonythm.dev/results";
+            param = "search_query";
+            aliases = [ "@yt" "@invidious" ];
+          };
+
           "Youtube" = mkBasicSearchEngine {
             url = "https://www.youtube.com/results";
             param = "search_query";
-            aliases = [ "@yt" "@youtube" ];
+            aliases = [ "@gyt" "@youtube" ];
           };
 
           "Arcaea wiki" = mkBasicSearchEngine {

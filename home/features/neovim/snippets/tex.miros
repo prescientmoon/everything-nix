@@ -92,8 +92,8 @@ block math
         $7 & $8 & $9
       \end{@matenv}
 
-  for operator <- @⟨eq,neq,defas,leq,geq,lt,gt,iip,iib⟩
-  for symbol <- @⟨@operator:=,\neq,\coloneq,\leq,\geq,<,>,\implies,\impliedby⟩
+  for operator <- @⟨eq,neq,defas,leq,geq,lt,gt,iip,iib,iff⟩
+  for symbol <- @⟨@operator:=,\neq,\coloneq,\leq,\geq,<,>,\implies,\impliedby,\iff⟩
 
   block auto
     abbr @operator @symbol
@@ -102,16 +102,16 @@ block math
       name align at @operator
       snip &@symbol $0
 
-  block auto start
-    string al@operator
-      name aligned @operator
-      snip
-        \\\\ $1 &@symbol $2
-        $0
+    block start
+      string al@operator
+        name aligned @operator
+        snip
+          \\\\ $1 &@symbol $2
+          $0
 
-    string cr@operator
-      name start with @operator
-      snip \\\\&@symbol $0
+      string cr@operator
+        name start with @operator
+        snip \\\\&@symbol $0
 
   block start
     string eqsystem
@@ -224,12 +224,21 @@ block math
       snip ^{$1} $0
 
     pattern (%a)(.)pp
-      name auto parenthesis
+      name auto function call
       snip @0(@1) $0
 
     pattern (%a)d(.)p
-      name auto parenthesis
+      name auto derivative call
       snip @0'(@1) $0
+
+    pattern (%a)i(.)p
+      name auto preimage call
+      snip @0^{-1}(@1) $0
+
+    block !word
+      abbr .inv ^{-1}
+      abbr .neg _-
+      abbr .pos _+
 
     for limtarget <- @⟨anything,zero,infinity,negative infinity⟩
     for prefix <- @⟨@limtarget:,z,i,n⟩

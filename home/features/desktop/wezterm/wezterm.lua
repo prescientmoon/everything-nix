@@ -18,12 +18,11 @@ local font_size = 20.0
 config.colors = wezterm.color.load_base16_scheme(colorscheme.source)
 
 -- {{{ Window frame
-local tab_bar_bg = colorscheme.transparency.terminal.base04
 config.window_frame = {
   font = wezterm.font({ family = colorscheme.fonts.sansSerif }),
   font_size = font_size - 3,
-  active_titlebar_bg = tab_bar_bg,
-  inactive_titlebar_bg = tab_bar_bg,
+  active_titlebar_bg = "none",
+  inactive_titlebar_bg = "none",
 }
 
 config.window_padding = {
@@ -35,17 +34,17 @@ config.window_padding = {
 -- }}}
 -- {{{ Tab bar colors
 config.colors.tab_bar = {
-  background = tab_bar_bg,
+  background = "none",
   active_tab = {
     bg_color = colorscheme.transparency.terminal.base00,
     fg_color = colorscheme.base05,
   },
   inactive_tab = {
-    bg_color = colorscheme.base02,
+    bg_color = "none",
     fg_color = colorscheme.base05,
   },
   inactive_tab_hover = {
-    bg_color = colorscheme.base01,
+    bg_color = colorscheme.base00,
     fg_color = colorscheme.base05,
   },
   new_tab = {

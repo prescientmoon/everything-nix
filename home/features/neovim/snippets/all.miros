@@ -6,4 +6,6 @@ block auto
   abbr leq <=
   abbr geq >=
   abbr land /\
-  abbr lor /\
+  abbr lor \/
+  abbr langle ⟨
+  abbr rangle \⟩

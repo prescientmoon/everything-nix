@@ -1278,11 +1278,11 @@
         "purifix": "purifix"
       },
       "locked": {
-        "lastModified": 1713852340,
-        "narHash": "sha256-4H5l6Hsg6SzhZwB8ikphlJmLtyi3xeUcPPsVh3gVd/k=",
+        "lastModified": 1713856075,
+        "narHash": "sha256-3nmcWGRczFJAiObkG+XUK9OdY8EVjySOUbDSK6yVyVE=",
         "owner": "mateiadrielrafael",
         "repo": "miros",
-        "rev": "80a1cd4726b6d1b7b9d9ee4cfe850d87d524090b",
+        "rev": "37081c34cb04b0751527c4ed740220c57cea3151",
         "type": "github"
       },
       "original": {

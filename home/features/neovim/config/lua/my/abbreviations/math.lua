@@ -52,26 +52,8 @@ M.words = {
   -- }}}
 }
 
-M.notation = {
-  -- {{{ Exponents and subscripts:
-  --   {operation}{argument}
-  --   - operation = e (exponent) | s (subscript)
-  --   - argument = t{special} | {basic}
-  --   - basic = 0-9|n|i|t|k
-  --   - special =
-  --     - "p" => +
-  --     - "m" => -
-  --     - "i" => -1
-  {
-    "{e,s}{{0,1,2,3,4,5,6,7,8,9,n,i,t,k,m},t{i,m,p}}",
-    "{^,_}{{},{\\{-1\\},-,+}}",
-  },
-  -- }}}
-}
-
 function M.setup()
   A.manyGlobalAbbr(scrap.expand_many(M.words))
-  A.manyGlobalAbbr(scrap.expand_many(M.notation, { capitalized = false }))
 end
 
 return M

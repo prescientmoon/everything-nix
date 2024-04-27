@@ -424,6 +424,7 @@ let
           package = "nvim-telescope/telescope.nvim";
           version = "0.1.x";
           cond = blacklist "vscode";
+          event = "VeryLazy";
 
           # {{{ Dependencies
           dependencies = {
@@ -485,7 +486,6 @@ let
           # }}}
           # {{{ Options
           opts.defaults.mappings.i."<C-h>" = "which_key";
-          opts.pickers.find_files.hidden = true;
           opts.extensions.fzf = {
             fuzzy = true;
             override_generic_sorter = true;
@@ -609,18 +609,6 @@ let
           opts.indent.enable = true;
         };
         # }}}
-        # {{{ treesitter context
-        # REASON: broken
-        # show context at top of file
-        # treesitter-top-context = {
-        #   package = "nvim-treesitter/nvim-treesitter-context";
-        #   dependencies.lua = [ "treesitter" ];
-        #
-        #   cond = blacklist "vscode";
-        #   event = "VeryLazy";
-        #   opts.enable = true;
-        # };
-        # }}}
         # {{{ mini.starter
         mini-starter = {
           package = "echasnovski/mini.starter";
@@ -628,11 +616,21 @@ let
           cond = blacklist [ "vscode" "firenvim" ];
           lazy = false;
 
+          config.autocmds = {
+            event = "User";
+            pattern = "MiniStarterOpened";
+            group = "RemoveMiniStarterKeybinds";
+            action.callback = thunk /* lua */ ''
+              vim.keymap.del('n', '<C-n>', { buffer = true })
+              vim.keymap.del('n', '<C-p>', { buffer = true })
+            '';
+          };
+
           opts = _: {
             header = builtins.readFile ./header.txt;
             footer = importFrom ./plugins/ministarter.lua "lazy_stats_item";
+            items = [ ];
             content_hooks = [
-              (lua ''require("mini.starter").gen_hook.adding_bullet()'')
               (lua ''require("mini.starter").gen_hook.aligning('center', 'center')'')
             ];
             silent = true;
@@ -736,7 +734,7 @@ let
           opts.keymaps.replace_all = "<s-cr>";
         };
         # }}}
-        # {{{ mini.ai 
+        # {{{ mini.ai
         mini-ai = {
           package = "echasnovski/mini.ai";
           name = "mini.ai";
@@ -750,7 +748,7 @@ let
                 b = balanced "()";
                 B = balanced "{}";
                 r = balanced "[]";
-                v = balanced "⟨⟩";
+                v = [ "⟨.-⟩" "^⟨().*()⟩$" ];
                 q = balanced "\"\"";
                 Q = balanced "``";
                 a = balanced "''";
@@ -759,7 +757,7 @@ let
             };
         };
         # }}}
-        # {{{ mini.comment 
+        # {{{ mini.comment
         mini-comment = {
           package = "echasnovski/mini.comment";
           name = "mini.comment";
@@ -1185,7 +1183,7 @@ let
         };
         # }}}
         # }}}
-        # {{{ language support 
+        # {{{ language support
         # {{{ haskell support
         haskell-tools = {
           package = "mrcjkb/haskell-tools.nvim";
@@ -1423,7 +1421,7 @@ let
           event = "VeryLazy";
         };
         # }}}
-        # {{{ discord rich presence 
+        # {{{ discord rich presence
         discord-rich-presence = {
           package = "andweeb/presence.nvim";
           main = "presence";
@@ -1433,19 +1431,19 @@ let
           config = true;
         };
         # }}}
-        # {{{ gitlinker 
+        # {{{ gitlinker
         # generate permalinks for code
-        gitlinker =
-          let mapping = "<leader>yg";
-          in
-          {
-            package = "ruifm/gitlinker.nvim";
-            dependencies.lua = [ "plenary" ];
+        gitlinker = rec {
+          package = "ruifm/gitlinker.nvim";
+          dependencies.lua = [ "plenary" ];
 
-            cond = blacklist [ "vscode" "firenvim" ];
-            opts.mappings = mapping;
-            keys = mapping;
+          cond = blacklist [ "vscode" "firenvim" ];
+          opts.mappings = "<leader>yg";
+          keys = {
+            mapping = opts.mappings;
+            desc = "[y]ank [g]it permalink";
           };
+        };
         # }}}
         # {{{ obsidian
         obsidian =
@@ -1589,18 +1587,16 @@ in
   imports = [ ../desktop/wakatime ];
 
   # {{{ Basic config
-  # We still want other modules to know that we are using neovim!
+  # We want other modules to know that we are using neovim!
   satellite.toggles.neovim.enable = true;
 
+  # Link files in the appropriate places
   xdg.configFile.nvim.source = config.satellite.dev.path "home/features/neovim/config";
   home.sessionVariables.EDITOR = "nvim";
   home.file.".nvim_nix_runtime".source = generatedConfig;
 
-  home.packages = [
-    neovim
-    neovide
-    pkgs.vimclip
-  ];
+  # Install packages
+  home.packages = [ neovim neovide pkgs.vimclip ];
   # }}}
   # {{{ Persistence
   satellite.persistence.at.state.apps.neovim.directories = [

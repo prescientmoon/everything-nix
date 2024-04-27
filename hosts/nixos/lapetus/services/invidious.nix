@@ -38,8 +38,8 @@
         owner = "iv-org";
         repo = "invidious";
         fetchSubmodules = true;
-        rev = "08390acd0c17875fddb84cabba54197a5b5740e4";
-        sha256 = "sha256-75C/ImX/PYikVdSO4rZM/aYyEgx6pU90BHNeRFfcsDM=";
+        rev = "eda7444ca46dbc3941205316baba8030fe0b2989";
+        sha256 = "0iafxgb93jxx9ams6ll2yx8il4d7h89a630hcx9y8jj4gn3ax7v1";
       };
     });
   };

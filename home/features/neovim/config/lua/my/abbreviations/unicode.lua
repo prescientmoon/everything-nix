@@ -2,7 +2,6 @@ local A = require("my.abbreviations")
 local scrap = require("scrap")
 local M = {}
 
--- {{{ Unicode
 M.unicode = {
   -- {{{ Logic
   { "frl", "∀" }, -- [f]o[r]al[l]
@@ -13,9 +12,6 @@ M.unicode = {
   { "Lor", "⋁" }, -- [l]ogical [or]
   { "bot", "⊥" }, -- false
   { "top", "⊤" }, -- true
-  { "iip", "⟹" }, -- [i]t [i]m[p]lies
-  { "iib", "⟸" }, -- [i]t's [i]mplied [b]y
-  { "iff", "⟺" }, -- [if] and only i[f]
   { "lneg", "¬" }, -- [l]ogical [neg]ation
   -- }}}
   -- {{{ Set theory
@@ -75,22 +71,17 @@ M.unicode = {
   { "cbrt", "∛" }, -- cube root
   -- }}}
   -- {{{ Integrals
-  { "int", "∫" }, -- integral
-  { "iint", "∬" }, -- integral
-  { "iiint", "∭" }, -- integral
-  { "pint", "∮" }, -- integral
-  { "piint", "∯" }, -- integral
-  { "piiint", "∰" }, -- integral
+  { "int", "∫" },
+  { "iint", "∬" },
+  { "iiint", "∭" },
+  { "pint", "∮" },
+  { "piint", "∯" },
+  { "piiint", "∰" },
   -- }}}
   -- {{{ Common relations
   { "sim", "∼" }, -- similarity
   { "simeq", "≃" },
   { "cong", "≅" }, -- congruence
-  { "defas", "≔" }, -- defined as
-  { "eq", "=" }, -- [eq]ual
-  { "neq", "≠" }, -- [n]ot [eq]ual
-  { "leq", "≤" }, -- [l]ess than or [e][q]ual
-  { "geq", "≥" }, -- [g]reater than or [e][q]ual
 
   { "iin", "∈" }, -- [I]ncluded [i][n]
   { "nin", "∉" }, -- [n]ot included [i][n]
@@ -145,12 +136,7 @@ M.unicode = {
   { "rquare", "▢" }, -- rounded square
   { "diam", "◇" },
   -- }}}
-  -- {{{ Brackets
-  { "langle", "⟨" },
-  { "rangle", "⟩" },
-  -- }}}
 }
--- }}}
 
 function M.setup()
   A.manyLocalAbbr(scrap.expand_many(M.unicode, { capitalized = false }))

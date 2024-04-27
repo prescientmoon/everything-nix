@@ -56,23 +56,6 @@ local abolishAbbreviations = {
     options = A.no_capitalization,
   },
   -- }}}
-  -- {{{ General function calls:
-  --   {function-name}{modifier?}{argument}{argument-modifier?}
-  --
-  --   - function-name = f/g/h/P
-  --   - modifier:
-  --     - d => derivative
-  --     - 2 => squared
-  --     - 3 => cubed
-  --     - i => inverse
-  --   - argument = x/y/z/a/t/i/n/k
-  --   - argument-modifier:
-  --     - n => subscript n
-  {
-    "{f,g,h,P}{d,2,3,i,}{x,y,z,a,t,i,n,k}{n,}",
-    "{}{',^2,^3,^\\{-1\\},}({}{_n,})",
-  },
-  -- }}}
   -- {{{ Graph theory
   -- Graph theory function syntax:
   --   gt[function]{graph}{modifier}
