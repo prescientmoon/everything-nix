@@ -21,6 +21,7 @@
     ./services/radicale.nix
     ./services/ddclient.nix
     ./services/redlib.nix
+    ./services/jellyfin.nix
     ./filesystems
     ./hardware
   ];

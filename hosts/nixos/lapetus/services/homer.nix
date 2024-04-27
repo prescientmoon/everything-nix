@@ -144,6 +144,12 @@ in
                 logo = icon "commafeed.png";
                 url = "https://rss.moonythm.dev";
               }
+              {
+                name = "Jellyfin";
+                subtitle = "Media server";
+                logo = icon "jellyfin.png";
+                url = "https://media.moonythm.dev";
+              }
             ];
           }
           # }}}
