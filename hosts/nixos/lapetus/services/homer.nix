@@ -147,13 +147,13 @@ in
               {
                 name = "Qbittorrent";
                 subtitle = "Torrent client";
-                logo = icon "jellyfin.png";
+                logo = icon "qbittorrent.png";
                 url = "https://qbit.moonythm.dev";
               }
               {
                 name = "Jellyfin";
                 subtitle = "Media server";
-                logo = icon "qbittorrent.png";
+                logo = icon "jellyfin.png";
                 url = "https://media.moonythm.dev";
               }
             ];

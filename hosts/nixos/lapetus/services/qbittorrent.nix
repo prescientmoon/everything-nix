@@ -1,3 +1,6 @@
+# Sources:
+# https://github.com/nickkjolsing/dockerMullvadVPN
+# https://www.reddit.com/r/HomeServer/comments/xapl93/a_minimal_configuration_stepbystep_guide_to_media/
 { config, pkgs, ... }:
 let
   port = 8417;
