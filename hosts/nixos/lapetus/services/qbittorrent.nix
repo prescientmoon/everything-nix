@@ -29,7 +29,7 @@ in
     extraOptions = [
       "--network=bridge"
       "--cap-add=net_admin"
-      "--devices=/dev/net/tun"
+      "--device=/dev/net/tun"
     ];
 
     volumes = [ "${vpnConfigDir}:/data/vpn" ];
