@@ -12,7 +12,7 @@ in
     config.satellite.proxy port { };
 
   systemd.tmpfiles.rules = [ "d ${dataDir}" "d ${configDir}" ];
-  virtualisation.oci-containers.qbittorrent = {
+  virtualisation.oci-containers.containers.qbittorrent = {
     image = "linuxserver/qbittorrent:latest";
     extraOptions = [ "--network=container:openvpn-client" ];
     dependsOn = [ "openvpn-client" ];
@@ -24,7 +24,7 @@ in
   };
 
   # {{{ open-vpn
-  virtualisation.oci-containers.openvpn-client = {
+  virtualisation.oci-containers.containers.openvpn-client = {
     image = "ghcr.io/wfg/openvpn-client";
     extraOptions = [
       "--network=bridge"
