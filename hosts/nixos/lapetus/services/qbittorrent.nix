@@ -33,11 +33,10 @@ in
     ];
 
     volumes = [ "${vpnConfigDir}:/data/vpn" ];
-    ports = [ "${port}:${port}" ];
+    ports = [ "${toString port}:${toString port}" ];
 
     environment = {
       KILL_SWITCH = "on"; # Turns off internet access if the VPN connection drops
-      FORWARDED_PORTS = "nl-ams-59103";
     };
   };
   # }}}
