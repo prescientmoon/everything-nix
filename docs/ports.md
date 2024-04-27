@@ -20,3 +20,4 @@ The idea is to always use consecutive ports, but never go back and try to recycl
 | 8414 | [invidious](../hosts/nixos/lapetus/services/invidious.nix)                  |
 | 8415 | [radicale](../hosts/nixos/lapetus/services/radicale.nix)                    |
 | 8416 | [redlib](../hosts/nixos/lapetus/services/redlib.nix)                        |
+| 8417 | [qbittorrent](../hosts/nixos/lapetus/services/qbittorrent.nix)              |

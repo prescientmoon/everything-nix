@@ -145,9 +145,15 @@ in
                 url = "https://rss.moonythm.dev";
               }
               {
+                name = "Qbittorrent";
+                subtitle = "Torrent client";
+                logo = icon "jellyfin.png";
+                url = "https://qbit.moonythm.dev";
+              }
+              {
                 name = "Jellyfin";
                 subtitle = "Media server";
-                logo = icon "jellyfin.png";
+                logo = icon "qbittorrent.png";
                 url = "https://media.moonythm.dev";
               }
             ];
