@@ -35,7 +35,6 @@
   "mini.files": { "branch": "main", "commit": "eab771c69b787a3f042dc6505d15613c282aa786" },
   "mini.operators": { "branch": "main", "commit": "0765e4818086e96b8fb55d280e47af781a5bc56a" },
   "mini.pairs": { "branch": "main", "commit": "04f58f2545ed80ac3b52dd4826e93f33e15b2af6" },
-  "mini.starter": { "branch": "main", "commit": "4cfe09ee18390708fcdbe3bc6e7a4f4a06731db9" },
   "mini.statusline": { "branch": "main", "commit": "dfd3d2ba295473930f78f143852b9b53eb54ae2a" },
   "mini.surround": { "branch": "main", "commit": "a1b590cc3b676512de507328d6bbab5e43794720" },
   "navigator": { "branch": "master", "commit": "91d86506ac2a039504d5205d32a1d4bc7aa57072" },

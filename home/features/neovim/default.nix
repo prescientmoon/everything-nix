@@ -86,6 +86,14 @@ let
             action.vim.opt.winblend = 0;
           };
           #  }}}
+
+          # {{{ Starter page
+          callback = thunk ''
+            require("my.starter").setup(${encode {
+              header = builtins.readFile ./header.txt;
+            }})
+          '';
+          # }}}
         };
         # }}}
         # {{{ Misc keybinds
@@ -386,6 +394,7 @@ let
         # {{{ harpoon
         harpoon = {
           package = "ThePrimeagen/harpoon";
+          event = "VeryLazy";
           keys =
             let goto = key: index: {
               desc = "Goto harpoon file ${toString index}";
@@ -607,34 +616,6 @@ let
           #}}}
 
           opts.indent.enable = true;
-        };
-        # }}}
-        # {{{ mini.starter
-        mini-starter = {
-          package = "echasnovski/mini.starter";
-          name = "mini.starter";
-          cond = blacklist [ "vscode" "firenvim" ];
-          lazy = false;
-
-          config.autocmds = {
-            event = "User";
-            pattern = "MiniStarterOpened";
-            group = "RemoveMiniStarterKeybinds";
-            action.callback = thunk /* lua */ ''
-              vim.keymap.del('n', '<C-n>', { buffer = true })
-              vim.keymap.del('n', '<C-p>', { buffer = true })
-            '';
-          };
-
-          opts = _: {
-            header = builtins.readFile ./header.txt;
-            footer = importFrom ./plugins/ministarter.lua "lazy_stats_item";
-            items = [ ];
-            content_hooks = [
-              (lua ''require("mini.starter").gen_hook.aligning('center', 'center')'')
-            ];
-            silent = true;
-          };
         };
         # }}}
         # }}}

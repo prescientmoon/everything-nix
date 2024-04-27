@@ -75,7 +75,7 @@ Here's some things you might want to check out:
   - [Hyprpicker](https://github.com/hyprwm/hyprpicker) — hyprland color picker
   - [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) — screenshot tool
   - [Dunst](https://dunst-project.org/) — notification daemon
-  - [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustements
+  - [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustments
   - [Anyrun](https://github.com/Kirottu/anyrun) — program launcher
 - [Wezterm](https://wezfurlong.org/wezterm/) — terminal emulator
 - [Zathura](https://pwmt.org/projects/zathura/) — pdf viewer
