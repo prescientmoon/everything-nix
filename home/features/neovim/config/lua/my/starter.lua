@@ -126,6 +126,10 @@ end
 M.refresh = function(buf_id)
   buf_id = buf_id or vim.api.nvim_get_current_buf()
 
+  if vim.api.nvim_buf_get_option(buf_id, "ft") ~= "starter" then
+    return
+  end
+
   local config = M.config
 
   -- Normalize certain config values
