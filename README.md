@@ -43,7 +43,9 @@ This repo's structure is based on the concept of hosts - individual machines con
 
 Here's some things you might want to check out:
 
-- My [neovim config](./home/features/neovim)
+- My [neovim config](./home/features/neovim/default.nix)
+  - written using a [custom neovim config generation framework](./modules/common/korora-neovim.nix)
+  - [snippets](./home/features/neovim/snippets) written in [miros](https://github.com/mateiadrielrafael/miros) — my custom snippet generation language
 - The [flake](./flake.nix) entrypoint for this repository
 
 ## Things I use
