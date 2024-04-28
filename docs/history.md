@@ -14,7 +14,7 @@ This file tells the story of my setup throughout it's history. This document is 
 
 ## 2024-02-29
 
-- purple + yellow vibes
+- magical purple & yellow vibes
 - [Gabriel (Ultrakill) wallpaper](https://wallhaven.cc/w/3zp96d)
 - [catppuccin-macchiato](https://github.com/catppuccin/base16) colors
 - apps on display: [Lazygit](https://github.com/jesseduffield/lazygit), [Smos](https://github.com/NorfairKing/smos), [Intray](https://github.com/NorfairKing/intray)
@@ -24,7 +24,7 @@ This file tells the story of my setup throughout it's history. This document is 
 
 ## 2023-11-08
 
-- gloomy purple vibes
+- gloomy blue & purple vibes
 - [Lapis Lazuli (Land of the Lustrous) wallpaper](https://wallhaven.cc/w/xlvz8l)
 - [catppuccin-mocha](https://github.com/catppuccin/base16) colors
 - apps on display: [Neovim](https://neovim.io/), [Anyrun](https://github.com/catppuccin/base16), [Zathura](https://pwmt.org/projects/zathura/), [Wlogout](https://github.com/ArtsyMacaw/wlogout)
