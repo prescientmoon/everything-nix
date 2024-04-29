@@ -510,17 +510,10 @@ let
           cond = blacklist "vscode";
           event = "VeryLazy";
 
-          config = true;
-          init = thunk /* lua */ ''
-            vim.ui.select = function(...)
-              require("lazy").load({ plugins = { "dressing.nvim" } })
-              return vim.ui.select(...)
-            end
-            vim.ui.input = function(...)
-              require("lazy").load({ plugins = { "dressing.nvim" } })
-              return vim.ui.input(...)
-            end
-          '';
+          opts = {
+            select.backend = [ "nui" "builtin" "telescope" ];
+            input.insert_only = false;
+          };
         };
         # }}}
         # }}}

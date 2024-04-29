@@ -5,7 +5,7 @@ This file tells the story of my setup throughout it's history. This document is 
 ## 2024-04-29
 
 - sunny field vibes
-- land of the lustrous [Diamond (Land of the Lustrous) wallpaper](https://wallhaven.cc/w/vmk2e3)
+- [Diamond (Land of the Lustrous) wallpaper](https://wallhaven.cc/w/vmk2e3)
 - [catppuccin-latte](https://github.com/catppuccin/base16) colors
 - apps on display: [Yazi](https://github.com/sxyazi/yazi), [Cmatrix](https://github.com/abishekvashok/cmatrix), [Neovim](https://neovim.io/), [Anyrun](https://github.com/catppuccin/base16)
 

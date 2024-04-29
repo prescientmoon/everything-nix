@@ -64,20 +64,16 @@
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Theming
-    # Grub2 themes
-    grub2-themes.url = "github:vinceliuice/grub2-themes";
-    grub2-themes.inputs.nixpkgs.follows = "nixpkgs";
+    darkmatter-grub-theme.url = gitlab:VandalByte/darkmatter-grub-theme;
+    darkmatter-grub-theme.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Stylix
     stylix.url = "github:danth/stylix/a33d88cf8f75446f166f2ff4f810a389feed2d56";
     # stylix.inputs.nixpkgs.follows = "nixpkgs";
     # stylix.inputs.home-manager.follows = "home-manager";
 
-    # Catpuccin base16 color schemes
     catppuccin-base16.url = "github:catppuccin/base16";
     catppuccin-base16.flake = false;
 
-    # Rosepine base16 color schemes
     rosepine-base16.url = "github:edunfelt/base16-rose-pine-scheme";
     rosepine-base16.flake = false;
     # }}}

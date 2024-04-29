@@ -1,10 +1,5 @@
 { inputs, ... }: {
-  imports = [ inputs.grub2-themes.nixosModules.default ];
-
-  # Defined [here](https://github.com/vinceliuice/grub2-themes/blob/master/flake.nix#L11)
-  boot.loader.grub2-theme = {
-    enable = true;
-  };
+  imports = [ inputs.darkmatter-grub-theme.nixosModule ];
 
   # See [the wiki page](https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows)
   boot.loader = {
@@ -33,6 +28,13 @@
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
+
+      darkmatter-theme = {
+        enable = true;
+        style = "nixos";
+        icon = "color";
+        resolution = "1080p";
+      };
     };
   };
 }
