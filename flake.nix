@@ -71,11 +71,8 @@
     # stylix.inputs.nixpkgs.follows = "nixpkgs";
     # stylix.inputs.home-manager.follows = "home-manager";
 
-    catppuccin-base16.url = "github:catppuccin/base16";
-    catppuccin-base16.flake = false;
-
-    rosepine-base16.url = "github:edunfelt/base16-rose-pine-scheme";
-    rosepine-base16.flake = false;
+    base16-schemes.url = "github:tinted-theming/schemes";
+    base16-schemes.flake = false;
     # }}}
   };
   # }}}

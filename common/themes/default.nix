@@ -7,99 +7,78 @@ let
     popups = amount;
   };
 
+  base16 = name: "${inputs.base16-schemes}/base16/${name}.yaml";
+
   themes = {
-    # {{{ Catppuccin variants
+    # {{{ Catppuccin mocha
     catppuccin-mocha = {
       stylix = {
         image = ./wallpapers/breaking_phos.jpg;
-        base16Scheme = "${inputs.catppuccin-base16}/base16/mocha.yaml";
+        base16Scheme = base16 "catppuccin-mocha";
         opacity = transparency 0.7;
         polarity = "dark";
       };
-
-      satellite = {
-        rounding.radius = 8.0;
-      };
+      satellite.rounding.radius = 8.0;
     };
-
+    # }}}
+    # {{{ Catppuccin latte
     catppuccin-latte = {
       stylix = {
         image = ./wallpapers/field_diamond.jpg;
-        base16Scheme = "${inputs.catppuccin-base16}/base16/latte.yaml";
+        base16Scheme = base16 "catppuccin-latte";
         opacity = transparency 0.7;
         polarity = "light";
       };
-
-      satellite = {
-        rounding.radius = 8.0;
-      };
+      satellite.rounding.radius = 8.0;
     };
-
+    # }}}
+    # {{{ Catppuccin macchiato
     catppuccin-macchiato = {
       stylix = {
         image = ./wallpapers/gabriel.jpg;
-        base16Scheme = "${inputs.catppuccin-base16}/base16/macchiato.yaml";
+        base16Scheme = base16 "catppuccin-macchiato";
         opacity = transparency 0.7;
         polarity = "dark";
       };
-      satellite = {
-        rounding.radius = 8.0;
-      };
+      satellite.rounding.radius = 8.0;
     };
     # }}}
-    # {{{ Rosepine variants
+    # {{{ Rosepine dawn
     rosepine-dawn = {
       stylix = {
         image = ./wallpapers/rosepine_light_field.png;
-        base16Scheme = "${inputs.rosepine-base16}/rose-pine-dawn.yaml";
+        base16Scheme = base16 "rose-pine-dawn";
         polarity = "light";
       };
       satellite = { };
     };
     # }}}
-    # {{{ Bluloco variants
-    bluloco-light = {
+    # {{{ Gruvbox light
+    gruvbox-light = {
       stylix = {
-        image = ./wallpapers/watercag.png;
-        base16Scheme = ./schemes/bluloco-light.yaml;
-        opacity = transparency 0.6;
+        image = ./wallpapers/rosepine_light_field.png;
+        base16Scheme = base16 "gruvbox-light-soft";
+        opacity = transparency 0.7;
         polarity = "light";
       };
-
-      satellite = {
-        rounding.radius = 8.0;
-      };
+      satellite.rounding.radius = 8.0;
     };
     # }}}
-    # {{{ Experiment: AI generated themes
-    gpt = {
-      monopurple-light = {
-        stylix = {
-          image = ./wallpapers/auto/catppuccin-latte-city.png;
-          base16Scheme = ./schemes/gpt-themes/monopurple-light.yaml;
-          polarity = "light";
-        };
-        satellite = { };
+    # {{{ Gruvbox dark
+    gruvbox-dark = {
+      stylix = {
+        image = ./wallpapers/sad_hikari.png;
+        base16Scheme = base16 "gruvbox-dark-soft";
+        opacity = transparency 0.7;
+        polarity = "dark";
       };
-
-      purplepink-light = {
-        stylix = {
-          image = ./wallpapers/spaceship.jpg;
-          base16Scheme = ./schemes/gpt-themes/purplepink-light.yaml;
-          transparency.alpha = 0.6;
-          polarity = "light";
-        };
-
-        satellite = {
-          rounding.radius = 8.0;
-        };
-      };
+      satellite.rounding.radius = 8.0;
     };
     # }}}
   };
 
   # Select your current theme here!
-  currentTheme = themes.catppuccin-latte;
+  currentTheme = themes.gruvbox-dark;
 in
 {
   # We apply the current theme here.

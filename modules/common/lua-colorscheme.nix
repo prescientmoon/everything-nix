@@ -44,6 +44,7 @@
 
       theme = {
         name = config.lib.stylix.scheme.scheme;
+        polarity = config.stylix.polarity or null;
         base00 = config.lib.stylix.scheme.base00;
         base01 = config.lib.stylix.scheme.base01;
         base02 = config.lib.stylix.scheme.base02;

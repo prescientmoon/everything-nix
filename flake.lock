@@ -90,11 +90,11 @@
         "fromYaml": "fromYaml"
       },
       "locked": {
-        "lastModified": 1689633990,
-        "narHash": "sha256-iwvQg2Vx0IIDWZaKo8Xmzxlv1YPHg+Kp/QSv8dRv0RY=",
+        "lastModified": 1708890466,
+        "narHash": "sha256-LlrC09LoPi8OPYOGPXegD72v+//VapgAqhbOFS3i8sc=",
         "owner": "SenchoPens",
         "repo": "base16.nix",
-        "rev": "dddf2e1c04845d43c89a8e9e37d574519649a404",
+        "rev": "665b3c6748534eb766c777298721cece9453fdae",
         "type": "github"
       },
       "original": {
@@ -200,6 +200,22 @@
         "type": "github"
       }
     },
+    "base16-schemes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713388094,
+        "narHash": "sha256-wcotm0Ek2ISn8iJBzEujJQdcPLKWrPAOZ/dS/DLKafw=",
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "rev": "abcf2a055ae69f1bf047463332f83db3125aa8a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "type": "github"
+      }
+    },
     "base16-tmux": {
       "flake": false,
       "locked": {
@@ -229,22 +245,6 @@
       "original": {
         "owner": "chriskempson",
         "repo": "base16-vim",
-        "type": "github"
-      }
-    },
-    "catppuccin-base16": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1665586920,
-        "narHash": "sha256-fZDsmJ+xFjOJDoI+bPki9W7PEI5lT5aGoCYtkatcZ8A=",
-        "owner": "catppuccin",
-        "repo": "base16",
-        "rev": "ca74b4070d6ead4213e92da1273fcc1853de7af8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "base16",
         "type": "github"
       }
     },
@@ -1110,11 +1110,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700847865,
-        "narHash": "sha256-uWaOIemGl9LF813MW0AEgCBpKwFo2t1Wv3BZc6e5Frw=",
+        "lastModified": 1706001011,
+        "narHash": "sha256-J7Bs9LHdZubgNHZ6+eE/7C18lZ1P6S5/zdJSdXFItI4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8cedd63eede4c22deb192f1721dd67e7460e1ebe",
+        "rev": "3df2a80f3f85f91ea06e5e91071fa74ba92e5084",
         "type": "github"
       },
       "original": {
@@ -1918,7 +1918,7 @@
     "root": {
       "inputs": {
         "anyrun": "anyrun",
-        "catppuccin-base16": "catppuccin-base16",
+        "base16-schemes": "base16-schemes",
         "darkmatter-grub-theme": "darkmatter-grub-theme",
         "disko": "disko",
         "firefox-addons": "firefox-addons",
@@ -1932,27 +1932,10 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "rosepine-base16": "rosepine-base16",
         "smos": "smos",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix"
-      }
-    },
-    "rosepine-base16": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1669049843,
-        "narHash": "sha256-4+U8llaqsztHrmR7OYBplz2Ez7Txbi8z/r9AQjKJEBk=",
-        "owner": "edunfelt",
-        "repo": "base16-rose-pine-scheme",
-        "rev": "424c0327b8251e4662e6cbc62518273c8800f507",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edunfelt",
-        "repo": "base16-rose-pine-scheme",
-        "type": "github"
       }
     },
     "safe-coloured-text": {

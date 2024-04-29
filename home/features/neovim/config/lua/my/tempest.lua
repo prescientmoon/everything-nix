@@ -31,6 +31,11 @@ function H.split(text, sep)
   end)
   return fields
 end
+
+function H.drop_prefix(whole, prefix)
+  -- +1 for 1-indexed strings
+  return string.sub(whole, string.len(prefix) + 1)
+end
 -- }}}
 -- {{{ Tables
 function H.mergeTables(t1, t2)
@@ -326,8 +331,7 @@ function M.theme_contains(name)
 end
 
 function M.theme_variant(name)
-  -- +1 for 1-indexed strings and +1 for the space between name and variant
-  return string.lower(string.sub(theme.name, string.len(name) + 2))
+  return string.lower(H.drop_prefix(theme.name, name .. " "))
 end
 -- }}}
 

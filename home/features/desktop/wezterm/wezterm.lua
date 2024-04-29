@@ -15,7 +15,14 @@ end
 local font_size = 20.0
 
 -- {{{ Theming
-config.colors = wezterm.color.load_base16_scheme(colorscheme.source)
+local themeMap = {
+  ["Gruvbox light, soft"] = "Gruvbox light, soft (base16)",
+  ["Gruvbox dark, soft"] = "Gruvbox dark, soft (base16)",
+}
+
+config.color_scheme = themeMap[colorscheme.name]
+config.colors = {}
+-- config.colors = wezterm.color.load_base16_scheme(colorscheme.source)
 
 -- {{{ Window frame
 config.window_frame = {
