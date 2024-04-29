@@ -91,7 +91,13 @@ table.insert(M, {
         .. " guifg=#"
         .. H.theme.base00
     )
-    vim.cmd("redraw")
+    vim.cmd(
+      "hi MiniStatuslineDevInfo guibg=#"
+        .. H.theme.base06
+        .. " guifg=#"
+        .. H.theme.base00
+    )
+    vim.cmd("hi MiniStatuslineFilename guifg=#" .. H.theme.base06)
   end),
 })
 -- }}}
