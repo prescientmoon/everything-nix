@@ -4,7 +4,8 @@ This file tells the story of my setup throughout it's history. This document is 
 
 ## 2024-04-29
 
-- the vibe of sad light passing through the trees
+Warm light passing through the trees.
+
 - [Hikari (Arcaea) wallpaper](https://wallhaven.cc/w/85doxj)
 - apps on display: [pipes](https://github.com/pipeseroni/pipes.sh), [uptimes script](../home/features/cli/scripts/uptimes.sh), [bottom](https://github.com/ClementTsang/bottom), [Neovim](https://neovim.io/), [Zathura](https://pwmt.org/projects/zathura/)
 
@@ -13,7 +14,8 @@ This file tells the story of my setup throughout it's history. This document is 
 
 ## 2024-04-07
 
-- sunny field vibes
+Sunny fields.
+
 - [Diamond (Land of the Lustrous) wallpaper](https://wallhaven.cc/w/vmk2e3)
 - [catppuccin-latte](https://github.com/catppuccin/base16) colors
 - apps on display: [Yazi](https://github.com/sxyazi/yazi), [Cmatrix](https://github.com/abishekvashok/cmatrix), [Neovim](https://neovim.io/), [Anyrun](https://github.com/catppuccin/base16)
@@ -23,7 +25,8 @@ This file tells the story of my setup throughout it's history. This document is 
 
 ## 2024-02-29
 
-- magical purple & yellow vibes
+Magical purple & yellow vibes.
+
 - [Gabriel (Ultrakill) wallpaper](https://wallhaven.cc/w/3zp96d)
 - [catppuccin-macchiato](https://github.com/catppuccin/base16) colors
 - apps on display: [Lazygit](https://github.com/jesseduffield/lazygit), [Smos](https://github.com/NorfairKing/smos), [Intray](https://github.com/NorfairKing/intray)
@@ -33,7 +36,8 @@ This file tells the story of my setup throughout it's history. This document is 
 
 ## 2023-11-08
 
-- gloomy blue & purple vibes
+Gloomy blue & purple vibes.
+
 - [Lapis Lazuli (Land of the Lustrous) wallpaper](https://wallhaven.cc/w/xlvz8l)
 - [catppuccin-mocha](https://github.com/catppuccin/base16) colors
 - apps on display: [Neovim](https://neovim.io/), [Anyrun](https://github.com/catppuccin/base16), [Zathura](https://pwmt.org/projects/zathura/), [Wlogout](https://github.com/ArtsyMacaw/wlogout)
