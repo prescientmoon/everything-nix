@@ -4,12 +4,12 @@ let
 
   # REASON: newer discord versions don't work with the one in nixpkgs
   discocss = pkgs.discocss.overrideAttrs (old: rec {
-    version = "0.3.0";
+    version = "unstable-2023-09-02";
     src = pkgs.fetchFromGitHub {
       owner = "bddvlpr";
       repo = "discocss";
-      rev = "v${version}";
-      hash = "sha256-2K7SPTvORzgZ1ZiCtS5TOShuAnmtI5NYkdQPRXIBP/I=";
+      rev = "37f1520bc90822b35e60baa9036df7a05f43fab8";
+      sha256 = "1559mxmc0ppl4jxvdzszphysp1j31k2hm93qv7yz87xn9j0z2m04";
     };
   });
 in

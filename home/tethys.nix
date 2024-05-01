@@ -1,9 +1,10 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, upkgs, lib, config, ... }: {
   imports = [
     ./global.nix
 
     ./features/desktop/zathura.nix
     ./features/desktop/spotify.nix
+    ./features/desktop/obsidian.nix
     ./features/desktop/firefox
     ./features/desktop/discord
     ./features/cli/productivity
@@ -38,11 +39,13 @@
     # sherlock # Search for usernames across different websites
     # }}}
     # {{{ Misc 
-    obsidian # Note-taking
     bitwarden # Password-manager
-    # plover.dev # steno engine
     qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
+    # plover.dev # steno engine
+
+    # REASON: not available in nixpkgs-stable just yet
+    upkgs.overskride # Bluetooth client
     # }}} 
     # {{{ Media playing/recording
     mpv # Video player

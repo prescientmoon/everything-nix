@@ -23,6 +23,7 @@ let
 in
 {
   imports = [ ./audio.nix ];
+  home.packages = [ pkgs.spot ];
 
   programs.spicetify = {
     enable = true;

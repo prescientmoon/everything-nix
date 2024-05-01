@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   imports = [
     ./wezterm # terminal
     ./dunst.nix # notifaction handler
@@ -9,4 +9,9 @@
 
   # Use a base16 theme for gtk apps!
   stylix.targets.gtk.enable = true;
+
+  gtk.iconTheme = {
+    package = pkgs.papirus-icon-theme;
+    name = "Papirus";
+  };
 }
