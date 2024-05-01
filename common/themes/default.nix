@@ -56,12 +56,18 @@ let
     # {{{ Gruvbox light
     gruvbox-light = {
       stylix = {
-        image = ./wallpapers/rosepine_light_field.png;
+        image = ./wallpapers/sketchy-peaks.png;
         base16Scheme = base16 "gruvbox-light-soft";
         opacity = transparency 0.7;
         polarity = "light";
       };
       satellite.rounding.radius = 8.0;
+
+      # For this one, I went with a big size, which means the blur just adds a slight gradient to the backgrounds.
+      satellite.blur = {
+        brightness = 1.05;
+        size = 25.0;
+      };
     };
     # }}}
     # {{{ Gruvbox dark
@@ -78,7 +84,7 @@ let
   };
 
   # Select your current theme here!
-  currentTheme = themes.gruvbox-dark;
+  currentTheme = themes.gruvbox-light;
 in
 {
   # We apply the current theme here.

@@ -2,12 +2,22 @@
 
 This file tells the story of my setup throughout it's history. This document is not yet complete, and much more will get added as I dig old pictures up. Sadly, a lot of my early days on linux were lost to time (not having a good reasons to simply take pictures of my desktop back in the KDE days and all)
 
+## 2024-05-01
+
+Warm & old manuscript vibes. This is the light version of the previous theme.
+
+- Mountain gruvbox wallpaper from [this repo](https://github.com/AngelJumbo/gruvbox-wallpapers)
+- gruvbox-light colors (soft contrast variant)
+- apps on display: [spot](https://github.com/xou816/spot), [overskride](https://github.com/kaii-lb/overskride)
+
+![music apps](img/2024-05-01-music.png)
+
 ## 2024-04-29
 
 Warm light passing through the trees.
 
 - [Hikari (Arcaea) wallpaper](https://wallhaven.cc/w/85doxj)
-- gruvbox colors
+- gruvbox-dark colors (soft contrast variant)
 - apps on display: [pipes](https://github.com/pipeseroni/pipes.sh), [uptimes script](../home/features/cli/scripts/uptimes.sh), [bottom](https://github.com/ClementTsang/bottom), [Neovim](https://neovim.io/), [Zathura](https://pwmt.org/projects/zathura/)
 
 ![terminals](img/2024-04-29-terminals.png)

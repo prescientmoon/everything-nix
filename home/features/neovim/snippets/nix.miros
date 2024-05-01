@@ -4,8 +4,8 @@ block auto
     desc Fetch a GitHub repository
     snip
       pkgs.fetchFromGitHub {
-        owner = $1;
-        repo = $2;
+        owner = "$1";
+        repo = "$2";
         rev = "";
         sha256 = "";
       }$0
