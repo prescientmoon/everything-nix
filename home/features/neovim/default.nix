@@ -19,6 +19,7 @@ let
     { tempestModule = "my.tempest"; };
 
   mirosSnippetCache = "${config.xdg.cacheHome}/miros";
+  obsidianVault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum";
 
   generated = nlib.generateConfig
     (lib.fix (self: with nlib; {
@@ -88,10 +89,17 @@ let
           #  }}}
 
           # {{{ Starter page
-          callback = thunk ''
-            require("my.starter").setup(${encode {
-              header = builtins.readFile ./header.txt;
-            }})
+          callback = thunk /* lua */''
+            local cwd = vim.loop.cwd()
+            local header
+
+            if cwd == ${encode obsidianVault} then
+              header = ${encode (builtins.readFile ./headers/obsidian.txt)}
+            else
+              header = ${encode (builtins.readFile ./headers/main.txt)}
+            end
+
+            require("my.starter").setup({ header = header })
           '';
           # }}}
         };
@@ -1421,9 +1429,7 @@ let
         # }}}
         # {{{ obsidian
         obsidian =
-          let
-            vault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum";
-            dateFormat = "%Y-%m-%d";
+          let dateFormat = "%Y-%m-%d";
           in
           {
             package = "epwalsh/obsidian.nvim";
@@ -1432,7 +1438,7 @@ let
             event = "VeryLazy";
             cond = [
               (blacklist [ "vscode" "firenvim" ])
-              (lua /* lua */ "vim.loop.cwd() == ${encode vault}")
+              (lua /* lua */ "vim.loop.cwd() == ${encode obsidianVault}")
             ];
 
             config.keys =
@@ -1451,7 +1457,7 @@ let
               ];
 
             opts = {
-              dir = vault;
+              dir = obsidianVault;
               notes_subdir = "chaos";
 
               daily_notes = {

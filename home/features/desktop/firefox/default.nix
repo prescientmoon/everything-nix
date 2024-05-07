@@ -222,6 +222,9 @@ in
         # Do not restore sessions after what looks like a "crash"
         "browser.sessionstore.resume_from_crash" = false;
 
+        # Do not paste with middle mouse click
+        "middlemouse.paste" = false;
+
         # Inspired by https://github.com/TLATER/dotfiles/blob/b39af91fbd13d338559a05d69f56c5a97f8c905d/home-config/config/graphical-applications/firefox.nix
         # {{{ Performance settings
         "gfx.webrender.all" = true; # Force enable GPU acceleration

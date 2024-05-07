@@ -73,4 +73,8 @@ M.text = conditions.make_condition(function()
 end)
 -- }}}
 
+M.never = conditions.make_condition(function()
+  return false
+end)
+
 return M

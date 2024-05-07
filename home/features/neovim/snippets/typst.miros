@@ -6,7 +6,7 @@ block auto start
         $0
       ]
 
-  for proofenv <- @⟨proof,solution⟩
+  for proofenv <- @⟨proof,solution,exercise,example⟩
   string @proofenv
     snip
       #@proofenv$|1⟨$1,(name: "$1")⟩[
@@ -42,11 +42,6 @@ block auto
     name definite integral
     snip ∫_$|1⟨$1,(-∞$1)⟩^$|2⟨$2,∞$2⟩ $3 dif $0
 
-  block !word
-    abbr .inv ^(-1)
-    abbr .neg _-
-    abbr .pos _+
-
   for limtarget <- @⟨anything,zero,infinity,negative infinity⟩
   for prefix <- @⟨@limtarget:,z,i,n⟩
   for limtargetsymbol <- @⟨@limtarget:$2,0,∞,-∞⟩
@@ -73,3 +68,41 @@ block auto
     string cr@operator
       name start with @operator
       snip \ &@symbol $0
+
+  block never
+    pattern (.*)e@⟨t(%a),(%d)⟩
+      name auto exponent
+      snip @0^@1 $0
+
+    pattern (.*)so(%a)
+      name auto subscript
+      snip @0_@1 $0
+
+  pattern ([%a]+)(%d)
+    name auto digt subscript
+    snip @0_@1 $0
+
+  string ss
+    name subscript
+    snip _{$1} $0
+
+  string ee
+    name exponent
+    snip ^($1) $0
+
+  pattern (%a)(.)pp
+    name auto function call
+    snip @0(@1) $0
+
+  pattern (%a)d(.)p
+    name auto derivative call
+    snip @0'(@1) $0
+
+  pattern (%a)i(.)p
+    name auto preimage call
+    snip @0^(-1)(@1) $0
+
+  block !word
+    abbr .inv ^(-1)
+    abbr .neg _-
+    abbr .pos _+
