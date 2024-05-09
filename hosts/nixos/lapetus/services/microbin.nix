@@ -11,6 +11,7 @@ in
   services.microbin = {
     enable = true;
     dataDir = "/var/lib/microbin";
+    passwordFile = config.sops.secrets.microbin_env.path;
 
     # {{{ Settings
     settings = {
