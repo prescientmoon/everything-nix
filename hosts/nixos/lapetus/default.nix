@@ -22,6 +22,7 @@
     ./services/redlib.nix
     ./services/jellyfin.nix
     ./services/qbittorrent.nix
+    ./services/microbin.nix
     # ./services/ddclient.nix
     ./filesystems
     ./hardware
