@@ -23,7 +23,7 @@ in
       # Toggle certain features
       MICROBIN_READONLY = "true"; # Requires a password to upload
       MICROBIN_QR = "true"; # Allows generating qr codes
-      MICROBIN_ETERNAL_PASTA = "true"; # Allows marking pastas to never be deleted
+      # MICROBIN_ETERNAL_PASTA = "true"; # Allows marking pastas to never be deleted
 
       # Make UI more minimal
       MICROBIN_HIDE_FOOTER = "true";
