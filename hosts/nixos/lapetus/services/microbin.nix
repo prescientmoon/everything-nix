@@ -37,5 +37,5 @@ in
     ReadWritePaths = lib.mkForce [ ];
   };
 
-  environment.persistence."/persist/state".directories = [ "/var/lib/microbin" ];
+  environment.persistence."/persist/state".directories = [ "/var/lib/private/microbin" ];
 }
