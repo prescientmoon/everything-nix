@@ -26,9 +26,9 @@ in
       # MICROBIN_ETERNAL_PASTA = "true"; # Allows marking pastas to never be deleted
 
       # Make UI more minimal
-      MICROBIN_HIDE_FOOTER = "true";
-      MICROBIN_HIDE_HEADER = "true";
-      MICROBIN_HIDE_LOGO = "true";
+      # MICROBIN_HIDE_FOOTER = "true";
+      # MICROBIN_HIDE_HEADER = "true";
+      # MICROBIN_HIDE_LOGO = "true";
     };
     # }}}
   };
