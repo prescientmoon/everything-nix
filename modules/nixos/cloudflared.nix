@@ -16,7 +16,7 @@ in
 
   config.satellite.cloudflared.proxy = from: port: {
     ${cfg.tunnel} = {
-      ingress.${from} = "http://localhost${toString port}";
+      ingress.${from} = "http://localhost:${toString port}";
     };
   };
 }
