@@ -18,12 +18,19 @@ in
       # High level settings
       MICROBIN_ADMIN_USERNAME = "prescientmoon";
       MICROBIN_PORT = toString port;
+      MICROBIN_PUBLIC_PATH = "https://bin.moonythm.dev/";
       MICROBIN_DISABLE_TELEMETRY = "true";
+      MICROBIN_DISABLE_UPDATE_CHECKING = "true";
 
       # Toggle certain features
       MICROBIN_READONLY = "true"; # Requires a password to upload
       MICROBIN_QR = "true"; # Allows generating qr codes
-      # MICROBIN_ETERNAL_PASTA = "true"; # Allows marking pastas to never be deleted
+      MICROBIN_EDITABLE = "true";
+      MICROBIN_HIGHLIGHTSYNTAX = "true";
+      MICROBIN_SHOW_READ_STATS = "true";
+      MICROBIN_ENABLE_BURN_AFTER = "true";
+      MICROBIN_ENABLE_READONLY = "true";
+      MICROBIN_ETERNAL_PASTA = "true";
 
       # Make UI more minimal
       # MICROBIN_HIDE_FOOTER = "true";
