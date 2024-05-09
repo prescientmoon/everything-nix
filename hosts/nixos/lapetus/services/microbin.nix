@@ -11,6 +11,8 @@ in
   services.microbin = {
     enable = true;
     dataDir = "/persist/state/var/lib/microbin";
+
+    # {{{ Settings
     settings = {
       # High level settings
       MICROBIN_ADMIN_USERNAME = "prescientmoon";
@@ -27,5 +29,8 @@ in
       MICROBIN_HIDE_HEADER = "true";
       MICROBIN_HIDE_LOGO = "true";
     };
+    # }}}
   };
+
+  systemd.tmpfiles.rules = [ "d ${config.services.microbin.dataDir}" ];
 }

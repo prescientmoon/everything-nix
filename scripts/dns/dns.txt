@@ -4,7 +4,7 @@ $TTL 600 ; expiration time in ms
 ; ==========================================================================================
 ; Main dns records
 
-; Actual (internal, mostly) IPs
+; Actual (tailscale internal) IPs
 lapetus.moonythm.dev       IN A     100.93.136.59
 lapetus.moonythm.dev       IN AAAA  fd7a:115c:a1e0::e75d:883b
 
@@ -28,9 +28,14 @@ search             IN CNAME  lapetus.moonythm.dev.
 smos               IN CNAME  lapetus.moonythm.dev.
 warden             IN CNAME  lapetus.moonythm.dev.
 yt                 IN CNAME  lapetus.moonythm.dev.
-
+diptime            IN CNAME  lapetus.moonythm.dev.
 *.irc              IN CNAME  irc.moonythm.dev.
-diptime            IN CNAME  real.lapetus.moonythm.dev.
+
+; Tunnel used by lapetus
+tunnel.lapetus             IN CNAME  347d9ead-a523-4f8b-bca7-3066e31e2952.cfargotunnel.com
+
+; lapetus services using cloudflare tunnels
+bin                IN CNAME  tunnel.lapetus.moonythm.dev.
 
 ; ==========================================================================================
 ; Migadu mail setup
