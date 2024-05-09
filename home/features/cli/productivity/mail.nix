@@ -57,7 +57,7 @@
         neomutt.enable = true;
       };
       # }}}
-      # {{{ Email client
+      # {{{ Neomutt
       neomutt = {
         enable = true;
         sendMailCommand = "msmtpq --read-envelope-from --read-recipients";

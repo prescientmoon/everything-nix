@@ -19,10 +19,10 @@
     ./services/invidious.nix
     ./services/diptime.nix
     ./services/radicale.nix
-    ./services/ddclient.nix
     ./services/redlib.nix
     ./services/jellyfin.nix
     ./services/qbittorrent.nix
+    # ./services/ddclient.nix
     ./filesystems
     ./hardware
   ];
