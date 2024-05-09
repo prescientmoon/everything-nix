@@ -24,4 +24,4 @@ echo "Uptimes:"
 column --table -R 2 -s "~"
 # ^ We use the column command to align things nicely:
 # -R 2 aligns the second column to the right
-# -s ~ will split on occurences of ~
+# -s ~ will split on occurrences of ~

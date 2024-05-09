@@ -1,0 +1,58 @@
+$ORIGIN moonythm.dev. ; designates default origin
+$TTL 600 ; expiration time in ms
+
+; ==========================================================================================
+; Main dns records
+
+; Actual (internal, mostly) IPs
+lapetus.moonythm.dev       IN A     100.93.136.59
+lapetus.moonythm.dev       IN AAAA  fd7a:115c:a1e0::e75d:883b
+
+; lapetus services
+actual             IN CNAME  lapetus.moonythm.dev.
+api.intray         IN CNAME  lapetus.moonythm.dev.
+api.smos           IN CNAME  lapetus.moonythm.dev.
+cal                IN CNAME  lapetus.moonythm.dev.
+docs.smos          IN CNAME  lapetus.moonythm.dev.
+grafana            IN CNAME  lapetus.moonythm.dev.
+intray             IN CNAME  lapetus.moonythm.dev.
+irc                IN CNAME  lapetus.moonythm.dev.
+lab                IN CNAME  lapetus.moonythm.dev.
+lapetus.syncthing  IN CNAME  lapetus.moonythm.dev.
+media              IN CNAME  lapetus.moonythm.dev.
+prometheus         IN CNAME  lapetus.moonythm.dev.
+qbit               IN CNAME  lapetus.moonythm.dev.
+redlib             IN CNAME  lapetus.moonythm.dev.
+rss                IN CNAME  lapetus.moonythm.dev.
+search             IN CNAME  lapetus.moonythm.dev.
+smos               IN CNAME  lapetus.moonythm.dev.
+warden             IN CNAME  lapetus.moonythm.dev.
+yt                 IN CNAME  lapetus.moonythm.dev.
+
+*.irc              IN CNAME  irc.moonythm.dev.
+diptime            IN CNAME  real.lapetus.moonythm.dev.
+
+; ==========================================================================================
+; Migadu mail setup
+
+; Mail MX records
+orbit.moonythm.dev  IN MX 10  aspmx1.migadu.com.
+orbit.moonythm.dev  IN MX 20  aspmx2.migadu.com.
+moonythm.dev        IN MX 10  aspmx1.migadu.com.
+moonythm.dev        IN MX 20  aspmx2.migadu.com.
+
+; Mail CNAME records
+key1._domainkey        IN CNAME  key1.moonythm.dev._domainkey.migadu.com.
+key2._domainkey        IN CNAME  key2.moonythm.dev._domainkey.migadu.com.
+key3._domainkey        IN CNAME  key3.moonythm.dev._domainkey.migadu.com.
+key1._domainkey.orbit  IN CNAME  key1.orbit.moonythm.dev._domainkey.migadu.com.
+key2._domainkey.orbit  IN CNAME  key2.orbit.moonythm.dev._domainkey.migadu.com.
+key3._domainkey.orbit  IN CNAME  key3.orbit.moonythm.dev._domainkey.migadu.com.
+
+; Other mail stuff
+_dmarc.moonythm.dev       IN TXT  "v=DMARC1; p=quarantine;"
+_dmarc.orbit.moonythm.dev IN TXT  "v=DMARC1; p=quarantine;"
+moonythm.dev              IN TXT  "hosted-email-verify=kfkhyexd"
+moonythm.dev              IN TXT  "v=spf1 include:spf.migadu.com -all"
+orbit.moonythm.dev        IN TXT  "hosted-email-verify=24s7lnum"
+orbit.moonythm.dev        IN TXT  "v=spf1 include:spf.migadu.com -all"
