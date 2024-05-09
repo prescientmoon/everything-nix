@@ -17,6 +17,7 @@
   };
 
   services.cloudflared = {
+    enable = true;
     tunnels."347d9ead-a523-4f8b-bca7-3066e31e2952" = {
       credentialsFile = config.sops.secrets.cloudflare_tunnel_credentials.path;
       ingress."diptime.moonythm.dev".service = "http://localhost:80";
