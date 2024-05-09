@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let port = 8418;
 in
 {
@@ -10,7 +10,7 @@ in
 
   services.microbin = {
     enable = true;
-    dataDir = "/persist/state/var/lib/microbin";
+    dataDir = "/var/lib/microbin";
 
     # {{{ Settings
     settings = {
@@ -32,5 +32,10 @@ in
     # }}}
   };
 
-  systemd.tmpfiles.rules = [ "d ${config.services.microbin.dataDir}" ];
+  systemd.services.microbin.serviceConfig = {
+    # We want to use systemd's `StateDirectory` mechanism to fix permissions
+    ReadWritePaths = lib.mkForce [ ];
+  };
+
+  environment.persistence."/persist/state".directories = [ "/var/lib/microbin" ];
 }
