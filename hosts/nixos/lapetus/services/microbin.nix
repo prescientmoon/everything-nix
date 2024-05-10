@@ -11,7 +11,7 @@ in
   services.cloudflared.tunnels =
     config.satellite.cloudflared.proxy host;
   services.nginx.virtualHosts.${host} =
-    config.satellite.proxy port { };
+    config.satellite.proxy port { } // { forceSSL = false; };
 
   services.microbin = {
     enable = true;
