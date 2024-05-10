@@ -23,6 +23,7 @@
     ./services/jellyfin.nix
     ./services/qbittorrent.nix
     ./services/microbin.nix
+    ./services/forgejo.nix
     # ./services/ddclient.nix
     ./filesystems
     ./hardware

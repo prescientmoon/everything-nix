@@ -16,6 +16,7 @@
     ./hardware
     ./boot.nix
     ./services/syncthing.nix
+    ./services/forgejo.nix
   ];
   # }}}
 

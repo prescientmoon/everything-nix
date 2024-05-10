@@ -5,18 +5,33 @@ in
   options.satellite.cloudflared = {
     tunnel = lib.mkOption {
       type = lib.types.string;
-      description = "Cloudflare tunnel id to use for the `satellite.cloudflared.proxy` helper";
+      description = "Cloudflare tunnel id to use for the `satellite.cloudflared.targets` helper";
     };
 
-    proxy = lib.mkOption {
-      type = lib.types.functionTo lib.types.anything;
-      description = "Helper function for generating a quick proxy config";
+    targets = lib.mkOption {
+      description = "List of hosts to set up ingress rules for";
+      default = { };
+      type = lib.types.attrsOf (lib.types.submodule ({ name, ... }: {
+        options = {
+          port = lib.mkOption {
+            type = lib.types.port;
+            description = "Localhost port to point the tunnel at";
+          };
+
+          host = lib.mkOption {
+            default = name;
+            type = lib.types.string;
+            description = "Host to direct traffic from";
+          };
+        };
+      }));
     };
   };
 
-  config.satellite.cloudflared.proxy = from: {
-    ${cfg.tunnel} = {
-      ingress.${from} = "http://localhost:8418";
-    };
-  };
+  config.services.cloudflared.tunnels.${cfg.tunnel}.ingress = lib.attrsets.mapAttrs'
+    (_: { port, host }: {
+      name = host;
+      value = "http://localhost:${toString port}";
+    })
+    cfg.targets;
 }

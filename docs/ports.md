@@ -22,3 +22,4 @@ The idea is to always use consecutive ports, but never go back and try to recycl
 | 8416 | [redlib](../hosts/nixos/lapetus/services/redlib.nix)                        |
 | 8417 | [qbittorrent](../hosts/nixos/lapetus/services/qbittorrent.nix)              |
 | 8418 | [microbin](../hosts/nixos/lapetus/services/microbin.nix)                    |
+| 8419 | [forgejo](../hosts/nixos/lapetus/services/forgejo.nix)                      |

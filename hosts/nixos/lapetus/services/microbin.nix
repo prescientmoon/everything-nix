@@ -7,9 +7,7 @@ in
   imports = [ ./cloudflared.nix ];
 
   sops.secrets.microbin_env.sopsFile = ../secrets.yaml;
-
-  services.cloudflared.tunnels =
-    config.satellite.cloudflared.proxy host;
+  satellite.cloudflared.targets.${host}.port = port;
 
   services.microbin = {
     enable = true;

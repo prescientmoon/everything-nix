@@ -13,7 +13,9 @@ actual             IN CNAME  lapetus
 api.intray         IN CNAME  lapetus
 api.smos           IN CNAME  lapetus
 cal                IN CNAME  lapetus
+diptime            IN CNAME  lapetus
 docs.smos          IN CNAME  lapetus
+git                IN CNAME  lapetus
 grafana            IN CNAME  lapetus
 intray             IN CNAME  lapetus
 irc                IN CNAME  lapetus
@@ -28,7 +30,6 @@ search             IN CNAME  lapetus
 smos               IN CNAME  lapetus
 warden             IN CNAME  lapetus
 yt                 IN CNAME  lapetus
-diptime            IN CNAME  lapetus
 *.irc              IN CNAME  irc
 
 ; Tunnel used by lapetus

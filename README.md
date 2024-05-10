@@ -111,6 +111,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 - [Actual](https://actualbudget.org/) — budgeting tool.
 - [Commafeed](https://github.com/Athou/commafeed) — rss reader
+- [Forgejo](https://forgejo.org/) — git forge
 - [Grafana](https://github.com/grafana/grafana) — pretty dashboards
 - [Homer](https://github.com/bastienwirtz/homer) — server homepage
 - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.

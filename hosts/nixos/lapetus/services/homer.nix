@@ -63,6 +63,58 @@ in
             ];
           }
           # }}}
+          # {{{ External
+          {
+            name = "External";
+            icon = fa "arrow-up-right-from-square";
+            items = [
+              {
+                name = "Tailscale";
+                subtitle = "Access this homelab from anywhere";
+                logo = icon "tailscale.png";
+                url = "https://tailscale.com/";
+              }
+              {
+                name = "Dotfiles";
+                subtitle = "Configuration for all my machines";
+                logo = icon "github.png";
+                url = "https://github.com/mateiadrielrafael/everything-nix";
+              }
+              {
+                name = "Cloudflare";
+                subtitle = "Domain management";
+                logo = icon "cloudflare.png";
+                url = "https://dash.cloudflare.com/761d3e81b3e42551e33c4b73274ecc82/moonythm.dev/";
+              }
+            ];
+          }
+          # }}}
+          # {{{ Productivity
+          {
+            name = "Productivity";
+            icon = fa "rocket";
+            items = [
+              {
+                name = "Intray";
+                subtitle = "GTD capture tool";
+                icon = fa "inbox";
+                url = "https://intray.moonythm.dev";
+              }
+              {
+                name = "Smos";
+                subtitle = "A comprehensive self-management system.";
+                icon = fa "cubes-stacked";
+                url = "https://smos.moonythm.dev";
+              }
+              {
+                name = "Actual";
+                subtitle = "Budgeting tool";
+                logo = icon "actual.png";
+                url = "https://actual.moonythm.dev";
+              }
+            ];
+          }
+          # }}}
           # {{{ Pillars
           {
             name = "Tooling";
@@ -92,31 +144,11 @@ in
                 logo = icon "microbin.png";
                 url = "https://cal.moonythm.dev";
               }
-            ];
-          }
-          # }}}
-          # {{{ Productivity
-          {
-            name = "Productivity";
-            icon = fa "rocket";
-            items = [
               {
-                name = "Intray";
-                subtitle = "GTD capture tool";
-                icon = fa "inbox";
-                url = "https://intray.moonythm.dev";
-              }
-              {
-                name = "Smos";
-                subtitle = "A comprehensive self-management system.";
-                icon = fa "cubes-stacked";
-                url = "https://smos.moonythm.dev";
-              }
-              {
-                name = "Actual";
-                subtitle = "Budgeting tool";
-                logo = icon "actual.png";
-                url = "https://actual.moonythm.dev";
+                name = "Forgejo";
+                subtitle = "Git forge";
+                logo = icon "forgejo.svg";
+                url = "https://git.moonythm.dev";
               }
             ];
           }
@@ -161,32 +193,6 @@ in
                 subtitle = "Media server";
                 logo = icon "jellyfin.png";
                 url = "https://media.moonythm.dev";
-              }
-            ];
-          }
-          # }}}
-          # {{{ External
-          {
-            name = "External";
-            icon = fa "arrow-up-right-from-square";
-            items = [
-              {
-                name = "Tailscale";
-                subtitle = "Access this homelab from anywhere";
-                logo = icon "tailscale.png";
-                url = "https://tailscale.com/";
-              }
-              {
-                name = "Dotfiles";
-                subtitle = "Configuration for all my machines";
-                logo = icon "github.png";
-                url = "https://github.com/mateiadrielrafael/everything-nix";
-              }
-              {
-                name = "Cloudflare";
-                subtitle = "Domain management";
-                logo = icon "cloudflare.png";
-                url = "https://dash.cloudflare.com/761d3e81b3e42551e33c4b73274ecc82/moonythm.dev/";
               }
             ];
           }
