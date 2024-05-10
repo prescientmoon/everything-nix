@@ -65,7 +65,7 @@ in
           # }}}
           # {{{ Pillars
           {
-            name = "Pillars";
+            name = "Tooling";
             icon = fa "toolbox";
             items = [
               {
@@ -84,6 +84,12 @@ in
                 name = "Radicale";
                 subtitle = "Calendar server";
                 logo = icon "radicale.svg";
+                url = "https://cal.moonythm.dev";
+              }
+              {
+                name = "Microbin";
+                subtitle = "Code & file sharing";
+                logo = icon "microbin.png";
                 url = "https://cal.moonythm.dev";
               }
             ];
@@ -177,10 +183,10 @@ in
                 url = "https://github.com/mateiadrielrafael/everything-nix";
               }
               {
-                name = "Porkbun";
+                name = "Cloudflare";
                 subtitle = "Domain management";
-                logo = icon "porkbun.png";
-                url = "https://porkbun.com/account/domainsSpeedy";
+                logo = icon "cloudflare.png";
+                url = "https://dash.cloudflare.com/761d3e81b3e42551e33c4b73274ecc82/moonythm.dev/";
               }
             ];
           }

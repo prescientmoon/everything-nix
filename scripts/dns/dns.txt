@@ -41,10 +41,10 @@ bin                IN CNAME  tunnel.lapetus
 ; Migadu mail setup
 
 ; Mail MX records
-orbit  IN MX 10  aspmx1.migadu.com.
-orbit  IN MX 20  aspmx2.migadu.com.
 @      IN MX 10  aspmx1.migadu.com.
 @      IN MX 20  aspmx2.migadu.com.
+orbit  IN MX 10  aspmx1.migadu.com.
+orbit  IN MX 20  aspmx2.migadu.com.
 
 ; Mail CNAME records
 key1._domainkey        IN CNAME  key1.moonythm.dev._domainkey.migadu.com.
@@ -55,9 +55,9 @@ key2._domainkey.orbit  IN CNAME  key2.orbit.moonythm.dev._domainkey.migadu.com.
 key3._domainkey.orbit  IN CNAME  key3.orbit.moonythm.dev._domainkey.migadu.com.
 
 ; Other mail stuff
-_dmarc        IN TXT  "v=DMARC1; p=quarantine;"
-_dmarc.orbit  IN TXT  "v=DMARC1; p=quarantine;"
 @             IN TXT  "hosted-email-verify=kfkhyexd"
 @             IN TXT  "v=spf1 include:spf.migadu.com -all"
+_dmarc        IN TXT  "v=DMARC1; p=quarantine;"
 orbit         IN TXT  "hosted-email-verify=24s7lnum"
 orbit         IN TXT  "v=spf1 include:spf.migadu.com -all"
+_dmarc.orbit  IN TXT  "v=DMARC1; p=quarantine;"

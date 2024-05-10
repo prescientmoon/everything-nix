@@ -116,6 +116,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
 - [Invidious](https://invidious.io/) — alternate youtube client
 - [Jellyfin](https://jellyfin.org/) — media server
+- [Microbin](https://microbin.eu/) - code & file sharing service
 - [Pounce](https://git.causal.agency/pounce/about/) & [calico](https://git.causal.agency/pounce/about/calico.1) — irc bouncer
 - [Prometheus](https://github.com/prometheus/prometheus) — metric collector
 - [Qbittorrent](https://www.qbittorrent.org) — torrent client
