@@ -2,10 +2,12 @@
 let
   port = 8419;
   host = "git.moonythm.dev";
+  cfg = config.services.forgejo;
 in
 {
   sops.secrets.forgejo_mail_password.sopsFile = ../secrets.yaml;
   satellite.cloudflared.targets.${host}.port = port;
+  systemd.tmpfiles.rules = [ "d ${cfg.stateDir} 0700 ${cfg.user} ${cfg.user} -" ];
 
   services.forgejo = {
     enable = true;
