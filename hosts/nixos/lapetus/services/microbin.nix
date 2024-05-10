@@ -1,12 +1,17 @@
 { config, lib, ... }:
-let port = 8418;
+let
+  port = 8418;
+  host = "bin.moonythm.dev";
 in
 {
   imports = [ ./cloudflared.nix ];
 
   sops.secrets.microbin_env.sopsFile = ../secrets.yaml;
+
   services.cloudflared.tunnels =
-    config.satellite.cloudflared.proxy "bin.moonythm.dev" port;
+    config.satellite.cloudflared.proxy host;
+  services.nginx.virtualHosts.${host} =
+    config.satellite.proxy port { };
 
   services.microbin = {
     enable = true;

@@ -14,9 +14,9 @@ in
     };
   };
 
-  config.satellite.cloudflared.proxy = from: port: {
+  config.satellite.cloudflared.proxy = from: {
     ${cfg.tunnel} = {
-      ingress.${from} = "http://localhost:${toString port}";
+      ingress.${from} = "http://localhost:443";
     };
   };
 }
