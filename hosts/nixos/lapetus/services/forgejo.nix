@@ -5,9 +5,13 @@ let
   cfg = config.services.forgejo;
 in
 {
-  sops.secrets.forgejo_mail_password.sopsFile = ../secrets.yaml;
+  sops.secrets.forgejo_mail_password = {
+    sopsFile = ../secrets.yaml;
+    owner = cfg.user;
+    group = cfg.group;
+  };
+
   satellite.cloudflared.targets.${host}.port = port;
-  systemd.tmpfiles.rules = [ "d ${cfg.stateDir} 0700 ${cfg.user} ${cfg.user} -" ];
 
   services.forgejo = {
     enable = true;
