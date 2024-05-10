@@ -30,17 +30,17 @@ in
       # Toggle certain features
       MICROBIN_READONLY = "true"; # Requires a password to upload
       MICROBIN_QR = "true"; # Allows generating qr codes
-      MICROBIN_EDITABLE = "true";
+      MICROBIN_EDITABLE = "false";
       MICROBIN_HIGHLIGHTSYNTAX = "true";
-      MICROBIN_SHOW_READ_STATS = "true";
-      MICROBIN_ENABLE_BURN_AFTER = "true";
-      MICROBIN_ENABLE_READONLY = "true";
-      MICROBIN_ETERNAL_PASTA = "true";
+      MICROBIN_SHOW_READ_STATS = "false";
+      MICROBIN_ENABLE_BURN_AFTER = "false";
+      MICROBIN_ENABLE_READONLY = "false";
+      MICROBIN_ETERNAL_PASTA = "false";
 
       # Make UI more minimal
-      # MICROBIN_HIDE_FOOTER = "true";
-      # MICROBIN_HIDE_HEADER = "true";
-      # MICROBIN_HIDE_LOGO = "true";
+      MICROBIN_HIDE_FOOTER = "true";
+      MICROBIN_HIDE_HEADER = "true";
+      MICROBIN_HIDE_LOGO = "true";
     };
     # }}}
   };
