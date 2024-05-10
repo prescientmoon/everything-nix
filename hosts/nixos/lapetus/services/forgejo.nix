@@ -43,7 +43,7 @@ in
         ENABLED = true;
         SMTP_PORT = 465;
         SMTP_ADDR = "smtp.migadu.com";
-        USER = "git";
+        USER = "git@orbit.moonythm.dev";
       };
 
       repository = {
