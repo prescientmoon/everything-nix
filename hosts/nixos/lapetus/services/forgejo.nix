@@ -37,7 +37,7 @@ in
       };
 
       cron.ENABLED = true;
-      # service.DISABLE_REGISTRATION = true;
+      service.DISABLE_REGISTRATION = true;
 
       mailer = {
         ENABLED = true;
