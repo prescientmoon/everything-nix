@@ -19,6 +19,7 @@ git                IN CNAME  lapetus
 grafana            IN CNAME  lapetus
 intray             IN CNAME  lapetus
 irc                IN CNAME  lapetus
+jupyter            IN CNAME  lapetus
 lab                IN CNAME  lapetus
 lapetus.syncthing  IN CNAME  lapetus ; TODO: might change this to syncthing.lapetus
 media              IN CNAME  lapetus

@@ -24,6 +24,7 @@
     ./services/qbittorrent.nix
     ./services/microbin.nix
     ./services/forgejo.nix
+    ./services/jupyter.nix
     # ./services/ddclient.nix
     ./filesystems
     ./hardware
