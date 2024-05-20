@@ -4,7 +4,7 @@ in
 {
   options.satellite.cloudflared = {
     tunnel = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       description = "Cloudflare tunnel id to use for the `satellite.cloudflared.targets` helper";
     };
 
@@ -20,7 +20,7 @@ in
 
           host = lib.mkOption {
             default = name;
-            type = lib.types.string;
+            type = lib.types.str;
             description = "Host to direct traffic from";
           };
         };
