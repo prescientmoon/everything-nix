@@ -3,8 +3,8 @@
 
   programs.intray = {
     enable = true;
-    data-dir = "/persist/state/home/adrielus/intray";
-    cache-dir = "/persist/local/cache/home/adrielus/intray";
+    data-dir = "${config.satellite.persistence.at.state.home}/intray";
+    cache-dir = "${config.satellite.persistence.at.cache.home}/intray";
     config.sync = "AlwaysSync";
     sync = {
       enable = true;

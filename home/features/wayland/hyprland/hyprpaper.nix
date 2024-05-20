@@ -1,14 +1,12 @@
-{ config, pkgs, lib, ... }: {
-  home.packages = [ pkgs.hyprpaper ];
+{ config, lib, ... }: {
   services.hyprpaper = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
-
-    preload = [ config.stylix.image ];
-    wallpapers = [{ inherit (config.stylix) image; }] ++
-      lib.forEach config.satellite.monitors ({ name, ... }: {
-        monitor = name;
-        image = config.stylix.image;
-      });
+    settings = {
+      preload = [ "${config.stylix.image}" ];
+      wallpaper = [ ",${config.stylix.image}" ] ++
+        lib.forEach config.satellite.monitors ({ name, ... }:
+          "${name},${config.stylix.image}"
+        );
+    };
   };
 }

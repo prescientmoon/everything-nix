@@ -2,7 +2,7 @@
   # {{{ Imports
   imports = [
     ../common/global
-    ../common/users/adrielus.nix
+    ../common/users/pilot.nix
 
     ../common/optional/pipewire.nix
     ../common/optional/bluetooth.nix

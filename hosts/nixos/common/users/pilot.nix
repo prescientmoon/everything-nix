@@ -1,6 +1,8 @@
 { pkgs, outputs, config, lib, ... }:
 {
-  sops.secrets.adrielus_password = {
+  satellite.pilot.name = "adrielus";
+
+  sops.secrets.pilot_password = {
     sopsFile = ../secrets.yaml;
     neededForUsers = true;
   };
@@ -9,13 +11,14 @@
     # Configure users through nix only
     mutableUsers = false;
 
-    # Create an user named adrielus
-    users.adrielus = {
+    users.pilot = {
+      inherit (config.satellite.pilot) name;
+
       # Adds me to some default groups, and creates the home dir 
       isNormalUser = true;
 
       # Picked up by our persistence module
-      homeMode = "755";
+      homeMode = "700";
 
       # Add user to the following groups
       extraGroups = [
@@ -27,7 +30,7 @@
         "syncthing" # syncthing!
       ];
 
-      hashedPasswordFile = config.sops.secrets.adrielus_password.path;
+      hashedPasswordFile = config.sops.secrets.pilot_password.path;
       shell = pkgs.fish;
 
       openssh.authorizedKeys.keyFiles =

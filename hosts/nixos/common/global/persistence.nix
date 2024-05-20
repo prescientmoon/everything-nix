@@ -19,10 +19,8 @@
   # {{{ Create home directories
   systemd.tmpfiles.rules =
     let
-      users = lib.filter (v: v != null) [
-        (config.users.users.adrielus or null)
-        (config.users.users.guest or null)
-      ];
+      users = lib.filter (v: v != null && v.isNormalUser)
+        (lib.mapAttrsToList (_: u: u) config.users.users);
 
       mkHomePersistFor = location: lib.forEach users
         (user: "Q ${location}${user.home} ${user.homeMode} ${user.name} ${user.group} -");

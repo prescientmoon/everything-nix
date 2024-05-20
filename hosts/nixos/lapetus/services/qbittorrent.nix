@@ -4,7 +4,7 @@
 { config, pkgs, ... }:
 let
   port = 8417;
-  dataDir = "/persist/data/home/adrielus/media";
+  dataDir = "/persist/data/${config.users.users.pilot.home}/media";
   configDir = "/persist/state/var/lib/qbittorrent";
   vpnConfigDir = "/persist/state/var/lib/openvpn";
 in

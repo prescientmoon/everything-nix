@@ -1,5 +1,8 @@
+{ config, ... }:
 let
-  user = "adrielus";
+  # Using `config.users.users.pilot.name` causes an infinite recursion error
+  # due to the way the syncthing module is written
+  user = config.satellite.pilot.name;
   group = "syncthing";
   dataDir = "/persist/data/syncthing";
 in
@@ -9,7 +12,7 @@ in
     enable = true;
 
     openDefaultPorts = true;
-    configDir = "/persist/state/home/adrielus/syncthing/.config/syncthing";
+    configDir = "/persist/state/${config.users.users.pilot.home}/syncthing/.config/syncthing";
 
     overrideDevices = true;
     overrideFolders = true;

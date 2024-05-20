@@ -54,7 +54,7 @@ in
   # {{{ Set reasonable defaults for some settings
   home = {
     username = lib.mkDefault "adrielus";
-    homeDirectory = lib.mkDefault "/home/${config.home.username}";
+    homeDirectory = "/home/${config.home.username}";
     stateVersion = lib.mkDefault "23.05";
   };
   # }}} 
@@ -67,9 +67,6 @@ in
 
   # By default the paths given by sops contain annoying %r sections
   sops.defaultSymlinkPath = "${config.home.homeDirectory}/.nix-sops";
-
-  # Allow root to read persistent files from this user.
-  home.persistence."/persist/home/adrielus".allowOther = true;
 
   # {{{ Ad-hoc stylix targets
   stylix.targets.xresources.enable = true;

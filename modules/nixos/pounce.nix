@@ -34,8 +34,7 @@ in
   # {{{ Options
   options.services.pounce = {
     # {{{ general options
-    enable = mkEnableOption
-      (lib.mdDoc "the Pounce IRC bouncer and Calico dispatcher");
+    enable = mkEnableOption "the Pounce IRC bouncer and Calico dispatcher";
 
     user = mkOption {
       type = types.str;

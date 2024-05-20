@@ -1,35 +1,51 @@
-# My own module with nicer syntax for impernanence 
+# My own module with nicer syntax for impernanence
 { lib, config, ... }:
 let cfg = config.satellite.persistence;
 in
 {
+  # {{{ Option definition
   options.satellite.persistence = {
-    enable = lib.mkEnableOption "satellite persitence";
+    enable = lib.mkEnableOption "satellite persistence";
 
     at = lib.mkOption {
       default = { };
       description = "Record of persistent locations (eg: /persist)";
-      type = lib.types.attrsOf (lib.types.submodule (_: {
+      type = lib.types.attrsOf (lib.types.submodule (args: {
+        config = {
+          home = "${args.config.path}${config.home.homeDirectory}";
+        };
+
         options = {
+          # {{{ Location options
           path = lib.mkOption {
             type = lib.types.str;
             example = "/persist";
-            default = null;
-            description = "The location to store the files described in this record";
+            description = "The root location to store the home directory for files in this record";
+          };
+
+          home = lib.mkOption {
+            type = lib.types.str;
+            description = "The path to the home directory for files in this record";
           };
 
           prefixDirectories = lib.mkOption {
             type = lib.types.bool;
             default = true;
-            example = false;
             description = "Whether to enable gnu/stow type prefix directories";
           };
-
+          # }}}
+          # {{{ Apps
           apps = lib.mkOption {
             default = { };
-            description = "The apps to be stores in this persistent location";
-            type = lib.types.attrsOf (lib.types.submodule (_: {
+            description = "Record of gnu/stow-style apps to be stored in this location";
+            type = lib.types.attrsOf (lib.types.submodule ({ name, ... }: {
               options = {
+                name = lib.mkOption {
+                  type = lib.types.str;
+                  default = name;
+                  description = "The gnu/stow-style subdirectory name";
+                };
+
                 files = lib.mkOption {
                   type = lib.types.listOf lib.types.str;
                   default = [ ];
@@ -37,18 +53,21 @@ in
                   description = ''
                     A list of files in your home directory you want to
                     link to persistent storage. Allows both absolute paths
-                    and paths relative to the home directory. .
+                    and paths relative to the home directory.
                   '';
                 };
 
                 directories = lib.mkOption {
                   default = [ ];
-                  description = "Modified version of home.persistence.*.directories which takes in absolute paths";
+                  description = ''
+                    Modified version of `home.persistence.*.directories` which takes in absolute paths.
+                  '';
+
                   type = lib.types.listOf (lib.types.either lib.types.str (lib.types.submodule {
                     options = {
                       directory = lib.mkOption {
                         type = lib.types.str;
-                        default = null;
+                        example = "/home/username/.config/nvim";
                         description = "The directory path to be linked.";
                       };
 
@@ -68,23 +87,27 @@ in
               };
             }));
           };
+          # }}}
         };
       }));
     };
   };
-
+  # }}}
+  # {{{ Config generation
   config =
     let
       makeLocation = location:
         let
-          processPath = appName: value:
+          # {{{ Path processing
+          processPath = appName: path:
             let
-              suffix = "${lib.strings.removePrefix "${config.home.homeDirectory}/" (builtins.toString value)}";
+              suffix = "${lib.strings.removePrefix "${config.home.homeDirectory}/" (builtins.toString path)}";
               prefix = if location.prefixDirectories then "${appName}/" else "";
             in
-            # lib.debug.traceSeq "\nProcessing path at location ${location.path} and app ${appName} from original path ${value} to ${prefix + suffix}" 
+            # lib.debug.traceSeq "\nProcessing path at location ${location.path} and app ${appName} from original path ${value} to ${prefix + suffix}"
             (prefix + suffix);
-
+          # }}}
+          # {{{ Constructors
           mkDirectory = appName: directory:
             if builtins.isAttrs directory then {
               method = directory.method;
@@ -92,20 +115,24 @@ in
             }
             else processPath appName directory;
 
-          mkAppDirectory = appName: app: builtins.map (mkDirectory appName) app.directories;
-          mkAppFiles = appName: app: builtins.map (processPath appName) app.files;
+          mkAppDirectory = app: builtins.map (mkDirectory app.name) app.directories;
+          mkAppFiles = app: builtins.map (processPath app.name) app.files;
+          # }}}
         in
-        lib.attrsets.nameValuePair (location.path + config.home.homeDirectory) {
+        # {{{ Impermanence config generation
+        lib.attrsets.nameValuePair location.home {
           removePrefixDirectory = location.prefixDirectories;
           allowOther = true;
           directories = lib.lists.flatten
-            (lib.attrsets.mapAttrsToList mkAppDirectory location.apps);
+            (lib.attrsets.mapAttrsToList (_: mkAppDirectory) location.apps);
 
           files = lib.lists.flatten
-            (lib.attrsets.mapAttrsToList mkAppFiles location.apps);
+            (lib.attrsets.mapAttrsToList (_: mkAppFiles) location.apps);
         };
+      # }}}
     in
     lib.mkIf cfg.enable {
       home.persistence = lib.attrsets.mapAttrs' (_: makeLocation) cfg.at;
     };
+  # }}}
 }

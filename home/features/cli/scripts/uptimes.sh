@@ -11,7 +11,7 @@ print_uptime() {
   #
   # For awk:
   # -F: splits the input by a string
-  ssh adrielus@$HOST uptime \
+  ssh $USER@$HOST uptime \
     | awk -F '(up |,)' '{print $2}'
 }
 

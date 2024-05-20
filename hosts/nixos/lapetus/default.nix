@@ -1,7 +1,7 @@
 {
   imports = [
     ../common/global
-    ../common/users/adrielus.nix
+    ../common/users/pilot.nix
     ../common/optional/services/kanata.nix
 
     ./services/syncthing.nix

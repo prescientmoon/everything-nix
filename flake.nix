@@ -79,6 +79,9 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
+      # Main username
+      pilot = "adrielus";
+
       # {{{ Common helpers
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -127,14 +130,14 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#...
       nixosConfigurations =
-        let nixos = { system, hostname, user }: nixpkgs.lib.nixosSystem {
+        let nixos = { system, hostname }: nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = specialArgs system;
 
           modules = [
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.${user} = import ./home/${hostname}.nix;
+              home-manager.users.pilot = import ./home/${hostname}.nix;
               home-manager.extraSpecialArgs = specialArgs system // { inherit hostname; };
               home-manager.useUserPackages = true;
 
@@ -150,13 +153,11 @@
           tethys = nixos {
             system = "x86_64-linux";
             hostname = "tethys";
-            user = "adrielus";
           };
 
           lapetus = nixos {
             system = "x86_64-linux";
             hostname = "lapetus";
-            user = "adrielus";
           };
 
           # Disabled because `flake check` complains about filesystems and bootloader
@@ -165,7 +166,6 @@
           # euporie = nixos {
           #   system = "x86_64-linux";
           #   hostname = "euporie";
-          #   user = "guest";
           # };
 
         };
@@ -183,19 +183,7 @@
             };
         in
         {
-          nixd = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages."x86_64-linux";
-            modules = [
-              ({ lib, config, ... }: {
-                home = {
-                  username = "adrielus";
-                  homeDirectory = "/home/${config.home.username}";
-                  stateVersion = "23.05";
-                };
-              })
-            ];
-          };
-          "adrielus@tethys" = mkHomeConfig {
+          "${pilot}@tethys" = mkHomeConfig {
             system = "x86_64-linux";
             hostname = "tethys";
           };
@@ -203,7 +191,7 @@
             system = "x86_64-linux";
             hostname = "euporie";
           };
-          "adrielus@lapetus" = mkHomeConfig {
+          "${pilot}@lapetus" = mkHomeConfig {
             system = "x86_64-linux";
             hostname = "lapetus";
           };

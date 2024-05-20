@@ -1,3 +1,4 @@
+{ config, ... }:
 let commonVersioning = {
   type = "staggered";
   params = {
@@ -11,7 +12,7 @@ in
 
   services.syncthing.settings.folders = {
     "stellar-sanctum" = {
-      path = "/home/adrielus/projects/stellar-sanctum/";
+      path = "${config.users.users.pilot.home}/projects/stellar-sanctum/";
       devices = [ "enceladus" "lapetus" ];
       versioning = commonVersioning;
     };

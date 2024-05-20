@@ -48,7 +48,7 @@ in
       PasswordManagerEnabled = false;
     };
 
-    profiles.adrielus = {
+    profiles.${config.home.username} = {
       # {{{ High level user settings
       # Unique user id
       id = 0;
@@ -320,7 +320,7 @@ in
   # TODO: uncomment when using newer version
   # stylix.targets.firefox = {
   #   enable = true;
-  #   profileNames = [ "adrielus" "desmos" "monkey-type" "syncthing" ];
+  #   profileNames = [ config.home.username "desmos" "monkey-type" "syncthing" ];
   # };
 
   # {{{ Make firefox the default

@@ -12,7 +12,7 @@
             --remember
             --asterisks
         '';
-        user = "adrielus";
+        user = config.users.users.pilot.name;
       };
     };
   };

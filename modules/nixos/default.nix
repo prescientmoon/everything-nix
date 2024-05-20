@@ -2,7 +2,8 @@
 
 {
   # example = import ./example.nix;
-  cloudflaredd = import ./cloudflared.nix;
+  cloudflared = import ./cloudflared.nix;
   nginx = import ./nginx.nix;
+  pilot = import ./pilot.nix;
   pounce = import ./pounce.nix;
 }

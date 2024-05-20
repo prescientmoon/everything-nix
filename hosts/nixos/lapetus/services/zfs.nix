@@ -36,4 +36,12 @@
     # }}}
   };
   # }}}
+  # {{{ Syncoid 
+  # Automatically sync certain snapshot to rsync.net
+  services.syncoid = {
+    enable = true;
+    commands."zroot/root/persist/data".target = "root@rsync.net:zroot/root/persist/data";
+    commands."zroot/root/persist/state".target = "root@rsync.net:zroot/root/persist/state";
+  };
+  # }}}
 }
