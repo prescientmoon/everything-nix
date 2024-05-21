@@ -19,7 +19,7 @@ in
     # {{{ Spwaner & auth config
     extraConfig = ''
       c.Authenticator.allowed_users = {'adrielus', 'javi'}
-      c.Authenticator.admin_users = {'adrielus', 'javi'}
+      c.Authenticator.admin_users = {'adrielus'}
 
       c.Spawner.notebook_dir='${config.users.users.pilot.home}/projects/notebooks'
       c.SystemdSpawner.mem_limit = '2G'
