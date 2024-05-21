@@ -9,7 +9,6 @@ let appEnv = pkgs.python3.withPackages (p: with p; [
   # }}}
 in
 {
-
   services.jupyterhub = {
     enable = true;
     port = 8420;
@@ -17,8 +16,8 @@ in
     jupyterhubEnv = appEnv;
     jupyterlabEnv = appEnv;
 
+    # {{{ Spwaner & auth config
     extraConfig = ''
-      c.LocalAuthenticator.create_system_users = False
       c.Authenticator.allowed_users = {'adrielus', 'javi'}
       c.Authenticator.admin_users = {'adrielus', 'javi'}
 
@@ -26,7 +25,7 @@ in
       c.SystemdSpawner.mem_limit = '2G'
       c.SystemdSpawner.cpu_limit = 2.0
     '';
-
+    # }}}
     # {{{ Python 3 kernel
     kernels.python3 =
       let env = (pkgs.python3.withPackages (p: with p; [
@@ -62,13 +61,9 @@ in
     hashedPasswordFile = config.sops.secrets.javi_password.path;
   };
   # }}}
-  # {{{ Networking
-  services.nginx.virtualHosts."jupyter.moonythm.dev" =
-    config.satellite.proxy
-      config.services.jupyterhub.port
-      { proxyWebsockets = true; };
-  # }}}
-  # {{{ Storage
+  # {{{ Networking & storage
+  satellite.cloudflared.targets."jupyter.moonythm.dev".port = config.services.jupyterhub.port;
+
   environment.persistence."/persist/state".directories = [
     "/var/lib/${config.services.jupyterhub.stateDirectory}"
   ];
