@@ -1,4 +1,11 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let appEnv = pkgs.python3.withPackages (p: with p; [
+  jupyterhub
+  jupyterlab
+  jupyter-collaboration
+]);
+in
+{
   services.nginx.virtualHosts."jupyter.moonythm.dev" =
     config.satellite.proxy
       config.services.jupyterhub.port
@@ -8,8 +15,11 @@
     enable = true;
     port = 8420;
 
-    # c.Authenticator.allowed_users = {'prescientmoon'}
+    jupyterhubEnv = appEnv;
+    jupyterlabEnv = appEnv;
+
     extraConfig = ''
+      c.Authenticator.allowed_users = {'adrielus', 'prescientmoon'}
       c.Authenticator.admin_users = {'adrielus', 'prescientmoon'}
 
       c.SystemdSpawner.mem_limit = '2G'
