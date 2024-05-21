@@ -1,16 +1,14 @@
 { config, pkgs, ... }:
+# {{{ Jupyterhub/lab env
 let appEnv = pkgs.python3.withPackages (p: with p; [
   jupyterhub
   jupyterlab
   jupyterhub-systemdspawner
   jupyter-collaboration
 ]);
+  # }}}
 in
 {
-  services.nginx.virtualHosts."jupyter.moonythm.dev" =
-    config.satellite.proxy
-      config.services.jupyterhub.port
-      { proxyWebsockets = true; };
 
   services.jupyterhub = {
     enable = true;
@@ -20,25 +18,24 @@ in
     jupyterlabEnv = appEnv;
 
     extraConfig = ''
-      c.Authenticator.allowed_users = {'adrielus', 'prescientmoon'}
-      c.Authenticator.admin_users = {'adrielus', 'prescientmoon'}
+      c.Authenticator.allowed_users = {'adrielus', 'javi'}
+      c.Authenticator.admin_users = {'adrielus', 'javi'}
 
       c.Spawner.notebook_dir='${config.users.users.pilot.home}/projects/notebooks'
-
       c.SystemdSpawner.mem_limit = '2G'
       c.SystemdSpawner.cpu_limit = 2.0
     '';
 
     # {{{ Python 3 kernel
     kernels.python3 =
-      let env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
+      let env = (pkgs.python3.withPackages (p: with p; [
         ipykernel
-        pandas
-        scikit-learn
+        numpy
+        scipy
       ]));
       in
       {
-        displayName = "Python 3 for machine learning";
+        displayName = "Numerical mathematics setup";
         argv = [
           "${env.interpreter}"
           "-m"
@@ -53,7 +50,23 @@ in
     # }}}
   };
 
+  # {{{ Javi user
+  sops.secrets.javi_password = {
+    sopsFile = ../secrets.yaml;
+    neededForUsers = true;
+  };
+
+  users.users.javi.hashedPasswordFile = config.sops.secrets.javi_password.path;
+  # }}}
+  # {{{ Networking
+  services.nginx.virtualHosts."jupyter.moonythm.dev" =
+    config.satellite.proxy
+      config.services.jupyterhub.port
+      { proxyWebsockets = true; };
+  # }}}
+  # {{{ Storage
   environment.persistence."/persist/state".directories = [
     "/var/lib/${config.services.jupyterhub.stateDirectory}"
   ];
+  # }}}
 }
