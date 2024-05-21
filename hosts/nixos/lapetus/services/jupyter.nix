@@ -2,6 +2,7 @@
 let appEnv = pkgs.python3.withPackages (p: with p; [
   jupyterhub
   jupyterlab
+  jupyterhub-systemdspawner
   jupyter-collaboration
 ]);
 in
@@ -21,6 +22,8 @@ in
     extraConfig = ''
       c.Authenticator.allowed_users = {'adrielus', 'prescientmoon'}
       c.Authenticator.admin_users = {'adrielus', 'prescientmoon'}
+
+      c.Spawner.notebook_dir=${config.users.users.pilot.home}/projects/notebooks
 
       c.SystemdSpawner.mem_limit = '2G'
       c.SystemdSpawner.cpu_limit = 2.0
