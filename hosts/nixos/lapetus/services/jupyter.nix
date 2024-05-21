@@ -32,6 +32,7 @@ in
         ipykernel
         numpy
         scipy
+        matplotlib
       ]));
       in
       {
