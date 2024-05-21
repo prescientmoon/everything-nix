@@ -18,6 +18,7 @@ in
     jupyterlabEnv = appEnv;
 
     extraConfig = ''
+      c.LocalAuthenticator.create_system_users = False
       c.Authenticator.allowed_users = {'adrielus', 'javi'}
       c.Authenticator.admin_users = {'adrielus', 'javi'}
 
@@ -56,7 +57,10 @@ in
     neededForUsers = true;
   };
 
-  users.users.javi.hashedPasswordFile = config.sops.secrets.javi_password.path;
+  users.users.javi = {
+    isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets.javi_password.path;
+  };
   # }}}
   # {{{ Networking
   services.nginx.virtualHosts."jupyter.moonythm.dev" =
