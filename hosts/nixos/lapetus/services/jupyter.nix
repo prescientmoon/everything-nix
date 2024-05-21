@@ -8,9 +8,9 @@
     enable = true;
     port = 8420;
 
+    # c.Authenticator.allowed_users = {'prescientmoon'}
     extraConfig = ''
-      c.Authenticator.allowed_users = {'prescientmoon'}
-      c.Authenticator.admin_users = {'prescientmoon'}
+      c.Authenticator.admin_users = {'adrielus', 'prescientmoon'}
 
       c.SystemdSpawner.mem_limit = '2G'
       c.SystemdSpawner.cpu_limit = 2.0
