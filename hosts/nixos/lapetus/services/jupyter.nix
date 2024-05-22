@@ -11,7 +11,10 @@ let
   # }}}
 in
 {
-  systemd.services.jupyterhub.path = [ pkgs.texlive.combined.scheme-full ]; # LaTeX stuff is useful for matplotlib
+  systemd.services.jupyterhub.path = [
+    pkgs.texlive.combined.scheme-full # LaTeX stuff is useful for matplotlib
+    pkgs.git # Required by the git extension
+  ];
 
   services.jupyterhub = {
     enable = true;
