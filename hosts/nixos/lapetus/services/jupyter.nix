@@ -10,6 +10,8 @@ let
   # }}}
 in
 {
+  systemd.services.jupyterhub.path = [ pkgs.texliveSmall ]; # LaTeX stuff is useful for matplotlib
+
   services.jupyterhub = {
     enable = true;
     port = 8420;
@@ -52,8 +54,6 @@ in
       };
     # }}}
   };
-
-  environment.systemPackages = [ pkgs.texliveSmall ]; # LaTeX stuff is useful for matplotlib
 
   # {{{ Javi user
   sops.secrets.javi_password = {
