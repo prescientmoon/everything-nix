@@ -15,7 +15,6 @@ in
 
   services.forgejo = {
     enable = true;
-    appName = "moonforge";
     stateDir = "/persist/state/var/lib/forgejo";
     mailerPasswordFile = config.sops.secrets.forgejo_mail_password.path;
 
@@ -28,7 +27,8 @@ in
 
     # See [the cheatsheet](https://docs.gitea.com/next/administration/config-cheat-sheet)
     settings = {
-      session.COOKIE_SECURE = true;
+      default.APP_NAME = "moonforge";
+
       server = {
         DOMAIN = host;
         HTTP_PORT = port;
@@ -38,6 +38,7 @@ in
 
       cron.ENABLED = true;
       service.DISABLE_REGISTRATION = true;
+      session.COOKIE_SECURE = true;
 
       mailer = {
         ENABLED = true;

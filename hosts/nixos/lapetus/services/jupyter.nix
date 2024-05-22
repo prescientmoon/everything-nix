@@ -1,11 +1,24 @@
-{ config, pkgs, ... }:
-# {{{ Jupyterhub/lab env
-let appEnv = pkgs.python3.withPackages (p: with p; [
-  jupyterhub
-  jupyterlab
-  jupyterhub-systemdspawner
-  jupyter-collaboration
-]);
+{ config, lib, pkgs, ... }:
+let
+  # {{{ Jupyterhub/lab env
+  appEnv = pkgs.python3.withPackages (p: with p; [
+    jupyterhub
+    jupyterlab
+    jupyterhub-systemdspawner
+    jupyter-collaboration
+  ]);
+  # }}}
+  # {{{ Client wrapper
+  deps = [ ];
+  wrappedAppEnv = pkgs.symlinkJoin {
+    inherit (appEnv) name meta;
+    paths = [ appEnv ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/* \
+        --prefix PATH : ${lib.makeBinPath deps}
+    '';
+  };
   # }}}
 in
 {
@@ -33,6 +46,7 @@ in
         numpy
         scipy
         matplotlib
+        tabulate
       ]));
       in
       {
