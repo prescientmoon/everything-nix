@@ -8,18 +8,6 @@ let
     jupyter-collaboration
   ]);
   # }}}
-  # {{{ Client wrapper
-  deps = [ ];
-  wrappedAppEnv = pkgs.symlinkJoin {
-    inherit (appEnv) name meta;
-    paths = [ appEnv ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/* \
-        --prefix PATH : ${lib.makeBinPath deps}
-    '';
-  };
-  # }}}
 in
 {
   services.jupyterhub = {
@@ -64,6 +52,8 @@ in
       };
     # }}}
   };
+
+  environment.systemPackages = [ pkgs.texliveSmall ]; # LaTeX stuff is useful for matplotlib
 
   # {{{ Javi user
   sops.secrets.javi_password = {
