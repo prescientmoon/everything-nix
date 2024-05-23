@@ -1,7 +1,7 @@
-{ config, lib, upkgs, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   # {{{ Jupyterhub/lab env
-  appEnv = upkgs.python3.withPackages (p: with p; [
+  appEnv = pkgs.python3.withPackages (p: with p; [
     jupyterhub
     jupyterlab
     jupyterhub-systemdspawner
