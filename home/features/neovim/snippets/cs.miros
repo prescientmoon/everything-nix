@@ -1,0 +1,18 @@
+block start
+  string maxlen
+    name Maxlength annotation
+    snip [MaxLength(255)]
+
+  string keyann
+    name Key annotation
+    snip [Key]
+
+  string prop
+    name Object db property
+    snip public$|1⟨ required$1,$1⟩ $2 $3 { get; set; }
+
+  string stringprop
+    name String db property
+    snip
+      [MaxLength(255)]
+      public$|1⟨ required$1,$1⟩ string $2 { get; set; }

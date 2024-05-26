@@ -11,6 +11,7 @@ let
     rust = false;
     typst = true;
     web = true;
+    csharp = false;
   };
 
   korora = inputs.korora.lib;
@@ -940,6 +941,9 @@ let
             optionals purescript [
               pkgs.purescript-language-server
               pkgs.nodePackages.purs-tidy
+            ] ++
+            optionals csharp [
+              pkgs.csharp-ls
             ]
           );
           # }}}

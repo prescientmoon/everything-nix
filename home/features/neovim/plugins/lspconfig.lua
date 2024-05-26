@@ -97,6 +97,7 @@ function M.config()
       exportPdf = "onType",
     },
     elmls = {},
+    csharp_ls = {},
   }
   -- }}}
 
