@@ -56,7 +56,7 @@
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
-    miros.url = "github:mateiadrielrafael/miros";
+    miros.url = "github:prescientmoon/miros";
     miros.inputs.nixpkgs.follows = "nixpkgs";
 
     # Spotify client with theming support

@@ -78,7 +78,7 @@ in
                 name = "Dotfiles";
                 subtitle = "Configuration for all my machines";
                 logo = icon "github.png";
-                url = "https://github.com/mateiadrielrafael/everything-nix";
+                url = "https://github.com/prescientmoon/everything-nix";
               }
               {
                 name = "Cloudflare";

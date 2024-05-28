@@ -335,7 +335,7 @@ let
         # }}}
         # {{{ scrap
         scrap = {
-          package = "mateiadrielrafael/scrap.nvim";
+          package = "prescientmoon/scrap.nvim";
 
           event = "InsertEnter";
           config.setup."my.abbreviations" = true;

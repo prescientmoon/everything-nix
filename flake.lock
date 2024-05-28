@@ -1297,13 +1297,13 @@
       "locked": {
         "lastModified": 1713856075,
         "narHash": "sha256-3nmcWGRczFJAiObkG+XUK9OdY8EVjySOUbDSK6yVyVE=",
-        "owner": "mateiadrielrafael",
+        "owner": "prescientmoon",
         "repo": "miros",
         "rev": "37081c34cb04b0751527c4ed740220c57cea3151",
         "type": "github"
       },
       "original": {
-        "owner": "mateiadrielrafael",
+        "owner": "prescientmoon",
         "repo": "miros",
         "type": "github"
       }

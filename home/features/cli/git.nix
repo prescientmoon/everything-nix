@@ -42,7 +42,7 @@
     # }}}
 
     extraConfig = {
-      github.user = "Mateiadrielrafael";
+      github.user = "prescientmoon";
       hub.protocol = "ssh";
       core.editor = "nvim";
       init.defaultBranch = "main";

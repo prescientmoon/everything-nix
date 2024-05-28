@@ -27,7 +27,7 @@ function M.setup()
 
       -- Directory where I store my local plugin projects
       path = vim.g.nix_projects_path,
-      patterns = { "Mateiadrielrafael" },
+      patterns = { "prescientmoon" },
     },
     performance = {
       rtp = {
