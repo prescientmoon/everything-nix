@@ -4,7 +4,7 @@
 { config, pkgs, ... }:
 let
   port = 8417;
-  dataDir = "/persist/data/${config.users.users.pilot.home}/media";
+  dataDir = "/persist/data/media";
   configDir = "/persist/state/var/lib/qbittorrent";
   vpnConfigDir = "/persist/state/var/lib/openvpn";
 in
@@ -14,7 +14,10 @@ in
   services.nginx.virtualHosts."qbit.moonythm.dev" =
     config.satellite.proxy port { };
 
-  systemd.tmpfiles.rules = [ "d ${dataDir}" "d ${configDir}" ];
+  systemd.tmpfiles.rules = [
+    "d ${dataDir} 755 ${config.users.users.pilot.home} users"
+    "d ${configDir}"
+  ];
   virtualisation.oci-containers.containers.qbittorrent = {
     image = "linuxserver/qbittorrent:latest";
     extraOptions = [ "--network=container:openvpn-client" ];
