@@ -4,7 +4,7 @@ let
   # due to the way the syncthing module is written
   user = config.satellite.pilot.name;
   group = "syncthing";
-  dataDir = "/persist/data/syncthing";
+  dataDir = "/persist/state/syncthing";
 in
 {
   services.syncthing = {
