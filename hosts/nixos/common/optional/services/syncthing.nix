@@ -12,7 +12,7 @@ in
     enable = true;
 
     openDefaultPorts = true;
-    configDir = "/persist/state/${config.users.users.pilot.home}/syncthing/.config/syncthing";
+    configDir = "${dataDir}/config";
 
     overrideDevices = true;
     overrideFolders = true;
@@ -34,5 +34,5 @@ in
   systemd.services.syncthing.serviceConfig.RuntimeMaxSec = "1d";
 
   # I'm not sure this is needed anymore, I just know I got some ownership errors at some point.
-  systemd.tmpfiles.rules = [ "d ${dataDir} - ${user} ${group} -" ];
+  systemd.tmpfiles.rules = [ "d ${dataDir} - ${user} ${group}" ];
 }
