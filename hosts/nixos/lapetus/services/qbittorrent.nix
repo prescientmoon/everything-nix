@@ -18,6 +18,7 @@ in
     "d ${dataDir} 755 ${config.users.users.pilot.home} users"
     "d ${configDir}"
   ];
+
   virtualisation.oci-containers.containers.qbittorrent = {
     image = "linuxserver/qbittorrent:latest";
     extraOptions = [ "--network=container:openvpn-client" ];

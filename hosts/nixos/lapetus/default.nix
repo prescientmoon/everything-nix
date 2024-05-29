@@ -21,7 +21,7 @@
     ./services/radicale.nix
     ./services/redlib.nix
     ./services/jellyfin.nix
-    ./services/qbittorrent.nix
+    # ./services/qbittorrent.nix # turned off when I don't need the vpn
     ./services/microbin.nix
     ./services/forgejo.nix
     ./services/jupyter.nix
