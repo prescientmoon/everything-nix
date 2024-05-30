@@ -3,6 +3,7 @@
     ../common/global
     ../common/users/pilot.nix
     ../common/optional/services/kanata.nix
+    ../common/optional/services/restic
 
     ./services/syncthing.nix
     ./services/whoogle.nix

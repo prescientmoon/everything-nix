@@ -9,9 +9,10 @@
     ../common/optional/greetd.nix
     ../common/optional/quietboot.nix
     ../common/optional/desktop/steam.nix
-    ../common/optional/services/kanata.nix
     ../common/optional/desktop/xdg-portal.nix
     ../common/optional/wayland/hyprland.nix
+    ../common/optional/services/kanata.nix
+    ../common/optional/services/restic
 
     ./hardware
     ./boot.nix
