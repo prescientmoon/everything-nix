@@ -27,7 +27,7 @@ in
       "${dataDir}:/downloads"
       "${configDir}:/config/qBittorrent"
       "/persist/state/var/lib/mullvad/openvpn:/config/openvpn"
-      "/persist/state/var/lib/mullvad/wireguard:/config/openvpn"
+      "/persist/state/var/lib/mullvad/wireguard:/config/wireguard"
     ];
 
     ports = [ "${toString port}:8080" ];
