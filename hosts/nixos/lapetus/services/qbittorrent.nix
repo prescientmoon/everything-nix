@@ -6,7 +6,7 @@ let
   port = 8417;
   dataDir = "/persist/data/media";
   configDir = "/persist/state/var/lib/qbittorrent";
-  vpnConfig = "/persist/state/var/lib/mullvad/wireguard/ch-zrh-wg-001.conf";
+  vpnConfigDir = "/persist/state/var/lib/openvpn";
 in
 {
   imports = [ ../../common/optional/services/nginx.nix ];
@@ -21,8 +21,8 @@ in
 
   virtualisation.oci-containers.containers.qbittorrent = {
     image = "linuxserver/qbittorrent:latest";
-    extraOptions = [ "--network=container:wireguard-client" ];
-    dependsOn = [ "wireguard-client" ];
+    extraOptions = [ "--network=container:openvpn-client" ];
+    dependsOn = [ "openvpn-client" ];
     volumes = [ "${dataDir}:/downloads" "${configDir}:/config" ];
 
     environment = {
@@ -30,16 +30,16 @@ in
     };
   };
 
-  # {{{ wireguard-client
-  virtualisation.oci-containers.containers.wireguard-client = {
-    image = "ghcr.io/wfg/wireguard";
+  # {{{ open-vpn
+  virtualisation.oci-containers.containers.openvpn-client = {
+    image = "ghcr.io/wfg/openvpn-client";
     extraOptions = [
       "--network=bridge"
       "--cap-add=net_admin"
       "--device=/dev/net/tun"
     ];
 
-    volumes = [ "${vpnConfig}:/etc/wireguard/wg0.conf" ];
+    volumes = [ "${vpnConfigDir}:/data/vpn" ];
     ports = [ "${toString port}:${toString port}" ];
 
     environment = {
