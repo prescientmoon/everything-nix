@@ -7,7 +7,7 @@ let
     inherit pruneOpts paths;
 
     initialize = true;
-    repository = "sftp:${backupUrl}:backups/${config.networking.hostName}/${name}";
+    repository = "sftp:${backupUrl}:backups/${name}";
     passwordFile = config.sops.secrets.backup_password.path;
     extraOptions = [ "sftp.args='-i ${config.users.users.pilot.home}/.ssh/id_ed25519'" ];
 

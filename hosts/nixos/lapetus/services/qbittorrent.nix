@@ -19,7 +19,8 @@ in
     image = "trigus42/qbittorrentvpn";
     extraOptions = [
       "--cap-add=net_admin"
-      "--sysctls=net.ipv4.conf.all.src_valid_mark=1,net.ipv6.conf.all.disable_ipv6=0"
+      "--sysctl=net.ipv4.conf.all.src_valid_mark=1"
+      "--sysctl=net.ipv6.conf.all.disable_ipv6=0"
     ];
 
     volumes = [
