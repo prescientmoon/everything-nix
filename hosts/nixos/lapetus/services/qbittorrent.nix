@@ -12,7 +12,7 @@ in
   imports = [ ../../common/optional/services/nginx.nix ];
 
   services.nginx.virtualHosts."qbit.moonythm.dev" =
-    config.satellite.proxy port { };
+    config.satellite.proxy port { proxyWebsockets = true; };
 
   systemd.tmpfiles.rules = [
     "d ${dataDir} 777 ${config.users.users.pilot.name} users"
