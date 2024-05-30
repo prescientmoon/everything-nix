@@ -15,7 +15,7 @@ in
     config.satellite.proxy port { };
 
   systemd.tmpfiles.rules = [
-    "d ${dataDir} 755 ${config.users.users.pilot.home} users"
+    "d ${dataDir} 755 ${config.users.users.pilot.name} users"
     "d ${configDir}"
   ];
 
