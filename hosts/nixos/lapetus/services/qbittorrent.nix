@@ -1,12 +1,8 @@
-# Sources:
-# https://github.com/nickkjolsing/dockerMullvadVPN
-# https://www.reddit.com/r/HomeServer/comments/xapl93/a_minimal_configuration_stepbystep_guide_to_media/
 { config, pkgs, ... }:
 let
   port = 8417;
   dataDir = "/persist/data/media";
   configDir = "/persist/state/var/lib/qbittorrent";
-  vpnConfigDir = "/persist/state/var/lib/openvpn";
 in
 {
   imports = [ ../../common/optional/services/nginx.nix ];
@@ -15,19 +11,29 @@ in
     config.satellite.proxy port { proxyWebsockets = true; };
 
   systemd.tmpfiles.rules = [
-    "d ${dataDir} 777 ${config.users.users.pilot.name} users"
-    "d ${configDir}"
+    "d ${dataDir} 755 ${config.users.users.pilot.name} users"
+    "d ${configDir} 755 ${config.users.users.pilot.name} users"
   ];
 
   virtualisation.oci-containers.containers.qbittorrent = {
-    image = "linuxserver/qbittorrent:latest";
-    extraOptions = [ "--network=container:openvpn-client" ];
-    dependsOn = [ "openvpn-client" ];
-    volumes = [ "${dataDir}:/downloads" "${configDir}:/config" ];
-    ports = [ "${toString port}:${toString port}" ];
+    image = "trigus42/qbittorrentvpn";
+    extraOptions = [
+      "--cap-add=net_admin"
+      "--sysctls=net.ipv4.conf.all.src_valid_mark=1,net.ipv6.conf.all.disable_ipv6=0"
+    ];
+
+    volumes = [
+      "${dataDir}:/downloads"
+      "${configDir}:/config/qBittorrent"
+      "/persist/state/var/lib/mullvad/openvpn:/config/openvpn"
+      "/persist/state/var/lib/mullvad/wireguard:/config/openvpn"
+    ];
+
+    ports = [ "${toString port}:8080" ];
 
     environment = {
-      WEBUI_PORT = toString port;
+      VPN_TYPE = "wireguard";
+      TZ = "Europe/Amsterdam";
       PGID = "100";
       PUID = "1000";
     };
@@ -37,15 +43,13 @@ in
   virtualisation.oci-containers.containers.openvpn-client = {
     image = "ghcr.io/wfg/openvpn-client";
     extraOptions = [
-      "--network=bridge"
       "--cap-add=net_admin"
-      "--device=/dev/net/tun"
     ];
 
     volumes = [ "${vpnConfigDir}:/data/vpn" ];
 
     environment = {
-      KILL_SWITCH = "on"; # Turns off internet access if the VPN connection drops
+      # KILL_SWITCH = "on"; # Turns off internet access if the VPN connection drops
     };
   };
   # }}}
