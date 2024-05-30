@@ -38,19 +38,4 @@ in
       PUID = "1000";
     };
   };
-
-  # {{{ open-vpn
-  virtualisation.oci-containers.containers.openvpn-client = {
-    image = "ghcr.io/wfg/openvpn-client";
-    extraOptions = [
-      "--cap-add=net_admin"
-    ];
-
-    volumes = [ "${vpnConfigDir}:/data/vpn" ];
-
-    environment = {
-      # KILL_SWITCH = "on"; # Turns off internet access if the VPN connection drops
-    };
-  };
-  # }}}
 }
