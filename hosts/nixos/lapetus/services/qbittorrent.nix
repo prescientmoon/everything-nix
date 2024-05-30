@@ -28,6 +28,8 @@ in
 
     environment = {
       WEBUI_PORT = toString port;
+      PGID = "100";
+      PUID = "1000";
     };
   };
 
