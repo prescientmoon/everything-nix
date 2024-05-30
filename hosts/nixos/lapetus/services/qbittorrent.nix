@@ -24,6 +24,7 @@ in
     extraOptions = [ "--network=container:openvpn-client" ];
     dependsOn = [ "openvpn-client" ];
     volumes = [ "${dataDir}:/downloads" "${configDir}:/config" ];
+    ports = [ "${toString port}:${toString port}" ];
 
     environment = {
       WEBUI_PORT = toString port;
@@ -40,7 +41,6 @@ in
     ];
 
     volumes = [ "${vpnConfigDir}:/data/vpn" ];
-    ports = [ "${toString port}:${toString port}" ];
 
     environment = {
       KILL_SWITCH = "on"; # Turns off internet access if the VPN connection drops
