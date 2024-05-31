@@ -43,7 +43,7 @@ in
       "--device=/dev/net/tun"
     ];
 
-    environmentFile = config.sops.secrets.vpn_env.path;
+    environmentFiles = [ config.sops.secrets.vpn_env.path ];
     environment = {
       VPN_TYPE = "wireguard";
       VPN_SERVICE_PROVIDER = "mullvad";
