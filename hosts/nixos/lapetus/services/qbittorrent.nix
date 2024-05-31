@@ -1,3 +1,6 @@
+# Sources:
+# https://github.com/nickkjolsing/dockerMullvadVPN
+# https://www.reddit.com/r/HomeServer/comments/xapl93/a_minimal_configuration_stepbystep_guide_to_media/
 { config, pkgs, ... }:
 let
   port = 8417;
@@ -7,38 +10,45 @@ in
 {
   imports = [ ../../common/optional/services/nginx.nix ];
 
+  sops.secrets.vpn_env.sopsFile = ../secrets.yaml;
+
   services.nginx.virtualHosts."qbit.moonythm.dev" =
     config.satellite.proxy port { proxyWebsockets = true; };
 
   systemd.tmpfiles.rules = [
-    "d ${dataDir} 755 ${config.users.users.pilot.name} users"
-    "d ${configDir} 755 ${config.users.users.pilot.name} users"
+    "d ${dataDir} 777 ${config.users.users.pilot.name} users"
+    "d ${configDir}"
   ];
 
+  # {{{ qbit
   virtualisation.oci-containers.containers.qbittorrent = {
-    image = "trigus42/qbittorrentvpn";
-    extraOptions = [
-      "--cap-add=net_admin"
-      "--sysctl=net.ipv4.conf.all.src_valid_mark=1"
-      # "--sysctl=net.ipv6.conf.all.disable_ipv6=0"
-      "--device=/dev/net/tun"
-    ];
-
-    volumes = [
-      "${dataDir}:/downloads"
-      "${configDir}:/config/qBittorrent"
-      "/persist/state/var/lib/mullvad/openvpn:/etc/openvpn"
-      "/persist/state/var/lib/mullvad/openvpn:/config/openvpn"
-      "/persist/state/var/lib/mullvad/wireguard:/config/wireguard"
-    ];
-
-    ports = [ "${toString port}:8080" ];
+    image = "linuxserver/qbittorrent:latest";
+    extraOptions = [ "--network=container:gluetun" ];
+    dependsOn = [ "openvpn-client" ];
+    volumes = [ "${dataDir}:/downloads" "${configDir}:/config" ];
+    ports = [ "${toString port}:${toString port}" ];
 
     environment = {
-      VPN_TYPE = "openvpn";
-      TZ = "Europe/Amsterdam";
+      WEBUI_PORT = toString port;
       PGID = "100";
       PUID = "1000";
     };
   };
+  # }}}
+  # {{{ vpn
+  virtualisation.oci-containers.containers.gluetun = {
+    image = "qmcgaw/gluetun";
+    extraOptions = [
+      "--cap-add=net_admin"
+      "--device=/dev/net/tun"
+    ];
+
+    environmentFile = config.sops.secrets.vpn_env.path;
+    environment = {
+      VPN_TYPE = "wireguard";
+      VPN_SERVICE_PROVIDER = "mullvad";
+      KILL_SWITCH = "on"; # Turns off internet access if the VPN connection drops
+    };
+  };
+  # }}}
 }
