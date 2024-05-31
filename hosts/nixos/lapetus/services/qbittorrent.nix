@@ -33,7 +33,7 @@ in
     ports = [ "${toString port}:8080" ];
 
     environment = {
-      VPN_TYPE = "wireguard";
+      VPN_TYPE = "openvpn";
       TZ = "Europe/Amsterdam";
       PGID = "100";
       PUID = "1000";
