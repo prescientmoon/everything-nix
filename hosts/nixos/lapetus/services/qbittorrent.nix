@@ -24,7 +24,7 @@ in
   virtualisation.oci-containers.containers.qbittorrent = {
     image = "linuxserver/qbittorrent:latest";
     extraOptions = [ "--network=container:gluetun" ];
-    dependsOn = [ "openvpn-client" ];
+    dependsOn = [ "gluetun" ];
     volumes = [ "${dataDir}:/downloads" "${configDir}:/config" ];
     ports = [ "${toString port}:${toString port}" ];
 
