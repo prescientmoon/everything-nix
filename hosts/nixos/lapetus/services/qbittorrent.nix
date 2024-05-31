@@ -20,7 +20,7 @@ in
     extraOptions = [
       "--cap-add=net_admin"
       "--sysctl=net.ipv4.conf.all.src_valid_mark=1"
-      "--sysctl=net.ipv6.conf.all.disable_ipv6=0"
+      # "--sysctl=net.ipv6.conf.all.disable_ipv6=0"
       "--device=/dev/net/tun"
     ];
 
@@ -34,7 +34,7 @@ in
     ports = [ "${toString port}:8080" ];
 
     environment = {
-      VPN_TYPE = "wireguard";
+      VPN_TYPE = "openvpn";
       TZ = "Europe/Amsterdam";
       PGID = "100";
       PUID = "1000";
