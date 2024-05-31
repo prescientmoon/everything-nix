@@ -27,6 +27,7 @@ in
     volumes = [
       "${dataDir}:/downloads"
       "${configDir}:/config/qBittorrent"
+      "/persist/state/var/lib/mullvad/openvpn:/etc/openvpn"
       "/persist/state/var/lib/mullvad/openvpn:/config/openvpn"
       "/persist/state/var/lib/mullvad/wireguard:/config/wireguard"
     ];
