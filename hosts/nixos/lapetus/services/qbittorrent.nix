@@ -26,6 +26,7 @@ in
     extraOptions = [ "--network=container:gluetun" ];
     dependsOn = [ "gluetun" ];
     volumes = [ "${dataDir}:/downloads" "${configDir}:/config" ];
+    ports = [ "${toString port}:${toString port}" ];
 
     environment = {
       WEBUI_PORT = toString port;
@@ -42,10 +43,9 @@ in
       "--device=/dev/net/tun"
     ];
 
-    ports = [ "${toString port}:${toString port}" ];
     environmentFiles = [ config.sops.secrets.vpn_env.path ];
     environment = {
-      VPN_TYPE = "wireguard";
+      VPN_TYPE = "openvpn";
       VPN_SERVICE_PROVIDER = "mullvad";
       KILL_SWITCH = "on"; # Turns off internet access if the VPN connection drops
     };
