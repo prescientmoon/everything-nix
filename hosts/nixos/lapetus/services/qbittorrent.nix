@@ -21,6 +21,7 @@ in
       "--cap-add=net_admin"
       "--sysctl=net.ipv4.conf.all.src_valid_mark=1"
       "--sysctl=net.ipv6.conf.all.disable_ipv6=0"
+      "--device=/dev/net/tun"
     ];
 
     volumes = [
@@ -33,7 +34,7 @@ in
     ports = [ "${toString port}:8080" ];
 
     environment = {
-      VPN_TYPE = "openvpn";
+      VPN_TYPE = "wireguard";
       TZ = "Europe/Amsterdam";
       PGID = "100";
       PUID = "1000";
