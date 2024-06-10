@@ -26,7 +26,6 @@ in
     extraOptions = [ "--network=container:gluetun" ];
     dependsOn = [ "gluetun" ];
     volumes = [ "${dataDir}:/downloads" "${configDir}:/config" ];
-    ports = [ "${toString port}:${toString port}" ];
 
     environment = {
       WEBUI_PORT = toString port;
@@ -42,6 +41,7 @@ in
       "--cap-add=net_admin"
       "--device=/dev/net/tun"
     ];
+    ports = [ "${toString port}:${toString port}" ];
 
     environmentFiles = [ config.sops.secrets.vpn_env.path ];
     environment = {
