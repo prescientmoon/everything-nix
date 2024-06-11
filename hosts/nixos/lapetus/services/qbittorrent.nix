@@ -43,7 +43,11 @@ in
       "--device=/dev/net/tun"
       "--sysctl=net.ipv4.conf.all.forwarding=1"
     ];
-    ports = [ "${toString port}:${toString port}" ];
+    ports = [
+      "${toString port}:${toString port}"
+      "6881:6881"
+      "6881:6881/udp"
+    ];
 
     environmentFiles = [ config.sops.secrets.vpn_env.path ];
     environment = {
