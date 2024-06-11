@@ -13,7 +13,7 @@
     enableACME = true;
     acmeRoot = null;
     forceSSL = true;
-    locations."/" = { proxyPass = "http://127.0.0.1:${toString port}"; } // extra;
+    locations."/" = { proxyPass = "http://localhost:${toString port}"; } // extra;
   };
 
   config.satellite.static = root: {
