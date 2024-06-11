@@ -5,7 +5,7 @@
       dockerCompat = true;
     };
 
-    oci-containers.backend = "podman";
+    oci-containers.backend = "docker";
   };
 
 
