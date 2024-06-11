@@ -38,8 +38,10 @@ in
   virtualisation.oci-containers.containers.gluetun = {
     image = "qmcgaw/gluetun";
     extraOptions = [
-      "--cap-add=net_admin"
+      "--cap-add=NET_ADMIN"
+      "--cap-add=NET_RAW"
       "--device=/dev/net/tun"
+      "--sysctl=net.ipv4.conf.all.forwarding=1"
     ];
     ports = [ "${toString port}:${toString port}" ];
 
