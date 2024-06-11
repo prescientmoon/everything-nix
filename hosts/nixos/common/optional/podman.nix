@@ -1,9 +1,9 @@
 {
   virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-    };
+    # podman = {
+    #   enable = true;
+    #   dockerCompat = true;
+    # };
 
     oci-containers.backend = "docker";
   };
