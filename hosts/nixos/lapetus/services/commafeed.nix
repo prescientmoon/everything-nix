@@ -5,7 +5,10 @@ let
   dataDir = "/persist/state/var/lib/commafeed";
 in
 {
-  imports = [ ../../common/optional/services/nginx.nix ];
+  imports = [
+    ../../common/optional/services/nginx.nix
+    ../../common/optional/oci.nix
+  ];
 
   systemd.tmpfiles.rules = [ "d ${dataDir}" ];
   services.nginx.virtualHosts.${host} = config.satellite.proxy port

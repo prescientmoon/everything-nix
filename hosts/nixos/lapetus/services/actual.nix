@@ -5,7 +5,10 @@ let
   dataDir = "/persist/state/var/lib/actual";
 in
 {
-  imports = [ ../../common/optional/services/nginx.nix ];
+  imports = [
+    ../../common/optional/services/nginx.nix
+    ../../common/optional/oci.nix
+  ];
 
   services.nginx.virtualHosts.${host} = config.satellite.proxy port { };
   systemd.tmpfiles.rules = [ "d ${dataDir}" ];

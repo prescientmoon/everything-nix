@@ -1,12 +1,5 @@
 {
-  virtualisation = {
-    # podman = {
-    #   enable = true;
-    #   dockerCompat = true;
-    # };
-
-    oci-containers.backend = "docker";
-  };
+  virtualisation.oci-containers.backend = "docker";
 
 
   environment.persistence = {

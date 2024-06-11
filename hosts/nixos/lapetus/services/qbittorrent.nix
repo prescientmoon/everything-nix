@@ -8,7 +8,10 @@ let
   configDir = "/persist/state/var/lib/qbittorrent";
 in
 {
-  imports = [ ../../common/optional/services/nginx.nix ];
+  imports = [
+    ../../common/optional/services/nginx.nix
+    ../../common/optional/oci.nix
+  ];
 
   sops.secrets.vpn_env.sopsFile = ../secrets.yaml;
 

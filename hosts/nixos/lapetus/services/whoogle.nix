@@ -16,8 +16,8 @@ let
 in
 {
   imports = [
-    ../../common/optional/podman.nix
     ../../common/optional/services/nginx.nix
+    ../../common/optional/oci.nix
   ];
 
   virtualisation.oci-containers.containers.whoogle-search = {
