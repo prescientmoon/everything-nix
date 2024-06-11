@@ -19,8 +19,6 @@
     port = 8414;
     hmacKeyFile = config.sops.templates."invidious_hmac_key.json".path;
 
-    nginx.enable = true;
-
     settings = {
       captcha_enabled = false;
       admins = [ "prescientmoon" ];
