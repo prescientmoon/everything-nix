@@ -93,5 +93,3 @@ local expanded = scrap.expand_many(abolishAbbreviations)
 
 A.manyLocalAbbr(abbreviations)
 A.manyLocalAbbr(expanded)
-
-vim.opt_local.list = false -- The lsp usese tabs for formatting

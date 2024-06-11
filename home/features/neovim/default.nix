@@ -40,7 +40,7 @@ let
           vim.opt = {
             # Basic options
             joinspaces = false; # No double spaces with join (mapped to qj in my config)
-            list = true; # Show some invisible characters
+            list = false; # I don't want to show things like tabs
             cmdheight = 0; # Hide command line when it's not getting used
             spell = true; # Spell checker
 
@@ -976,7 +976,10 @@ let
           opts.format_on_save.lsp_fallback = true;
           opts.formatters_by_ft = let prettier = [ [ "prettierd" "prettier" ] ]; in
             {
-              "*" = [ "codespell" "trim_whitespace" ];
+              "*" = [
+                # "codespell" # this one causes issues sometimes
+                "trim_whitespace"
+              ];
               lua = [ "stylua" ];
               python = [ "ruff_format" ];
 
@@ -1393,6 +1396,14 @@ let
             pattern = "hyprland.conf";
             action.vim.opt.ft = "hypr";
           };
+        };
+        # }}}
+        # {{{ typescript support
+        # Required for yarn PNP to work
+        rzip = {
+          package = "lbrayner/vim-rzip";
+          cond = blacklist "vscode";
+          event = "VeryLazy";
         };
         # }}}
         # }}}
