@@ -16,11 +16,8 @@ in
     enable = true;
 
     settings = {
-      # Forbid root login through SSH.
-      PermitRootLogin = "no";
-
-      # Use keys only. Remove if you want to SSH using password (not recommended)
-      PasswordAuthentication = false;
+      PermitRootLogin = "no"; # Forbid root login through SSH.
+      PasswordAuthentication = false; # Use keys only.
     };
 
     # Automatically remove stale sockets
@@ -38,8 +35,8 @@ in
       ];
   };
 
-  # Passwordless sudo when SSH'ing with keys
   # TODO: is this safe? Can we ssh back and gain root access this way?
+  # Passwordless sudo when SSH'ing with keys
   # security.pam.enableSSHAgentAuth = true;
 
   # SSH on slow connections
