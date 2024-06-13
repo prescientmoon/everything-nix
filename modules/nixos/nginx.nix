@@ -60,7 +60,7 @@ in
       in lib.mapAttrsToList (_: assertSingleTarget) cfg.at;
 
     services.nginx.virtualHosts =
-      let mkNginxConfig = { host, port, files }: {
+      let mkNginxConfig = { host, port, files, ... }: {
         name = host;
         value =
           let extra =
