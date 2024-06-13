@@ -5,7 +5,7 @@
 
   services.guacamole-server = {
     enable = true;
-    services.guacamole-server.userMappingXml = config.sops.secrets.guacamoleUsers.path;
+    userMappingXml = config.sops.secrets.guacamoleUsers.path;
   };
 
   services.guacamole-client = {
