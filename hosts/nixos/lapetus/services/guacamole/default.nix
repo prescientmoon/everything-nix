@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  sops.secrets.guacamole-users.sopsFile = ../../secrets.yaml;
+  sops.secrets.guacamole_users.sopsFile = ../../secrets.yaml;
   satellite.nginx.at.guacamole.port = 8443; # default tomcat port
 
   services.guacamole_server = {
