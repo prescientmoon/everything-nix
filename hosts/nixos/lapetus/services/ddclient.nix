@@ -1,8 +1,6 @@
 # DDClient is a dynamic dns service
 { config, pkgs, ... }:
 {
-  imports = [ ../../common/optional/services/acme.nix ];
-
   services.ddclient = {
     enable = true;
     interval = "1m";

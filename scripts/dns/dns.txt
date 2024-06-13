@@ -16,6 +16,7 @@ cal                IN CNAME  lapetus
 diptime            IN CNAME  lapetus
 docs.smos          IN CNAME  lapetus
 grafana            IN CNAME  lapetus
+guacamole          IN CNAME  lapetus
 intray             IN CNAME  lapetus
 irc                IN CNAME  lapetus
 jupyter            IN CNAME  lapetus
@@ -37,8 +38,8 @@ tunnel.lapetus     IN CNAME  347d9ead-a523-4f8b-bca7-3066e31e2952.cfargotunnel.c
 
 ; lapetus services using cloudflare tunnels
 bin                IN CNAME  tunnel.lapetus
-jupyter            IN CNAME  tunnel.lapetus
 git                IN CNAME  tunnel.lapetus
+jupyter            IN CNAME  tunnel.lapetus
 
 ; github pages
 doffycup           IN CNAME  prescientmoon.github.io.

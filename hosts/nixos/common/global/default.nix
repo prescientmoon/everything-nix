@@ -16,6 +16,7 @@ let
     ./nix.nix
     ./locale.nix
     ./persistence.nix
+    ./ports.nix
     ./wireless
 
     ../../../../common

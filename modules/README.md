@@ -26,7 +26,8 @@ This directory contains custom module definitions used throughout my config.
 | Name                                   | Attribute               | Description                                 |
 | -------------------------------------- | ----------------------- | ------------------------------------------- |
 | [pounce](./nixos/pounce.nix)           | `services.pounce`       | Module for pounce & calico configuration    |
-| [nginx](./nixos/nginx.nix)             | `satellite.proxy`       | Helpers for nginx configuration             |
+| [nginx](./nixos/nginx.nix)             | `satellite.nginx`       | Helpers for nginx configuration             |
+| [ports](./nixos/ports.nix)             | `satellite.ports`       | Global port specification                   |
 | [cloudflared](./nixos/cloudflared.nix) | `satellite.cloudflared` | Helpers for cloudflare tunnel configuration |
 | [pilot](./nixos/pilot.nix)             | `satellite.pilot`       | Defined the concept of a "main user"        |
 

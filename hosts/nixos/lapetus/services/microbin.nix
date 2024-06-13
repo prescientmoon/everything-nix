@@ -1,11 +1,9 @@
 { config, lib, ... }:
 let
-  port = 8418;
+  port = config.satellite.ports.microbin;
   host = "bin.moonythm.dev";
 in
 {
-  imports = [ ./cloudflared.nix ];
-
   sops.secrets.microbin_env.sopsFile = ../secrets.yaml;
   satellite.cloudflared.targets.${host}.port = port;
 

@@ -1,18 +1,11 @@
 { config, ... }:
 let
-  port = 8413;
-  host = "rss.moonythm.dev";
+  port = config.satellite.ports.commafeed;
   dataDir = "/persist/state/var/lib/commafeed";
 in
 {
-  imports = [
-    ../../common/optional/services/nginx.nix
-    ../../common/optional/oci.nix
-  ];
-
   systemd.tmpfiles.rules = [ "d ${dataDir}" ];
-  services.nginx.virtualHosts.${host} = config.satellite.proxy port
-    { proxyWebsockets = true; };
+  satellite.nginx.at.rss.port = port;
 
   virtualisation.oci-containers.containers.commafeed = {
     image = "athou/commafeed:latest";
@@ -27,7 +20,7 @@ in
 
     # https://github.com/Athou/commafeed/blob/master/commafeed-server/config.yml.example
     environment = {
-      CF_APP_PUBLICURL = "https://${host}";
+      CF_APP_PUBLICURL = "https://${config.satellite.nginx.at.rss.host}";
       CF_APP_ALLOWREGISTRATIONS = "false"; # I already made an account
       CF_APP_MAXENTRIESAGEDAYS = "0"; # Fetch old entries
 

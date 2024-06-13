@@ -2,31 +2,39 @@
   imports = [
     ../common/global
     ../common/users/pilot.nix
+    ../common/optional/oci.nix
+    ../common/optional/services/acme.nix
     ../common/optional/services/kanata.nix
+    ../common/optional/services/nginx.nix
+    ../common/optional/services/postgres.nix
     ../common/optional/services/restic
 
-    ./services/syncthing.nix
-    ./services/whoogle.nix
-    ./services/pounce.nix
-    ./services/intray.nix
-    ./services/smos.nix
-    ./services/vaultwarden.nix
+    # ./services/commafeed.nix
+    # ./services/ddclient.nix
     ./services/actual.nix
-    ./services/homer.nix
-    ./services/zfs.nix
-    ./services/prometheus.nix
-    ./services/grafana.nix
-    ./services/commafeed.nix
-    ./services/invidious.nix
+    ./services/cloudflared.nix
     ./services/diptime.nix
+    ./services/forgejo.nix
+    ./services/grafana.nix
+    ./services/guacamole
+    ./services/homer.nix
+    ./services/intray.nix
+    ./services/invidious.nix
+    ./services/jellyfin.nix
+    ./services/jupyter.nix
+    ./services/microbin.nix
+    ./services/pounce.nix
+    ./services/prometheus.nix
+    ./services/prometheus.nix
+    ./services/qbittorrent.nix # turned on/off depending on whether my vpn is paid for
     ./services/radicale.nix
     ./services/redlib.nix
-    ./services/jellyfin.nix
-    ./services/qbittorrent.nix # turned on/off depending on whether my vpn is paid for
-    ./services/microbin.nix
-    ./services/forgejo.nix
-    ./services/jupyter.nix
-    # ./services/ddclient.nix
+    ./services/smos.nix
+    ./services/syncthing.nix
+    ./services/vaultwarden.nix
+    ./services/whoogle.nix
+    ./services/zfs.nix
+
     ./filesystems
     ./hardware
   ];

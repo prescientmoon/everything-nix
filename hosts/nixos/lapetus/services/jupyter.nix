@@ -18,7 +18,7 @@ in
 
   services.jupyterhub = {
     enable = true;
-    port = 8420;
+    port = config.satellite.ports.jupyterhub;
 
     jupyterhubEnv = appEnv;
     jupyterlabEnv = appEnv;

@@ -1,15 +1,11 @@
 { inputs, config, ... }:
 let
   username = "prescientmoon";
-  apiHost = "api.intray.moonythm.dev";
-  apiPort = 8402;
-  webPort = 8403;
+  apiPort = config.satellite.ports.intray-api;
+  webPort = config.satellite.ports.intray-client;
 in
 {
-  imports = [
-    ../../common/optional/services/nginx.nix
-    inputs.intray.nixosModules.x86_64-linux.default
-  ];
+  imports = [ inputs.intray.nixosModules.x86_64-linux.default ];
 
   # {{{ Configure intray 
   services.intray.production = {
@@ -22,13 +18,13 @@ in
     web-server = {
       enable = true;
       port = webPort;
-      api-url = "https://${apiHost}";
+      api-url = config.satellite.nginx.at."api.intray".url;
     };
   };
   # }}}
   # {{{ Networking & storage
-  services.nginx.virtualHosts.${apiHost} = config.satellite.proxy apiPort { };
-  services.nginx.virtualHosts."intray.moonythm.dev" = config.satellite.proxy webPort { };
+  satellite.nginx.at."intray".port = webPort;
+  satellite.nginx.at."api.intray".port = apiPort;
 
   environment.persistence."/persist/state".directories = [
     "/www/intray/production/data"

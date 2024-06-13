@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  port = 8419;
+  port = config.satellite.ports.forgejo;
   host = "git.moonythm.dev";
   cfg = config.services.forgejo;
 in

@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 let
+  port = config.satellite.ports.grafana;
   secret = name: "$__file{${config.sops.secrets.${name}.path}}";
   sopsSettings = {
     sopsFile = ../secrets.yaml;
@@ -7,11 +8,6 @@ let
   };
 in
 {
-  imports = [
-    ../../common/optional/services/nginx.nix
-    ./prometheus.nix
-  ];
-
   sops.secrets.grafana_smtp_pass = sopsSettings;
   sops.secrets.grafana_discord_webhook = sopsSettings;
 
@@ -21,9 +17,9 @@ in
 
     settings = {
       server = rec {
-        domain = "grafana.moonythm.dev";
+        domain = config.satellite.nginx.at.grafana.host;
         root_url = "https://${domain}";
-        http_port = 8409;
+        http_port = port;
       };
 
       # {{{ Smtp
@@ -90,8 +86,7 @@ in
   };
   # }}}
   # {{{ Networking & storage
-  services.nginx.virtualHosts.${config.services.grafana.settings.server.domain} =
-    config.satellite.proxy config.services.grafana.settings.server.http_port { };
+  satellite.nginx.at.grafana.port = port;
 
   environment.persistence."/persist/state".directories = [{
     directory = config.services.grafana.dataDir;

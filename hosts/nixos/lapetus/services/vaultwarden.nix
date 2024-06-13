@@ -1,13 +1,6 @@
 { config, ... }:
-let
-  port = 8407;
-  host = "warden.moonythm.dev";
-in
 {
-  imports = [ ../../common/optional/services/nginx.nix ];
-
-  services.nginx.virtualHosts.${host} =
-    config.satellite.proxy port { proxyWebsockets = true; };
+  satellite.nginx.at.warden.port = config.satellite.ports.vaultwarden;
 
   # {{{ Secrets 
   sops.secrets.vaultwarden_env = {
@@ -21,11 +14,11 @@ in
     enable = true;
     environmentFile = config.sops.secrets.vaultwarden_env.path;
     config = {
-      DOMAIN = "https://${host}";
+      DOMAIN = "https://${config.satellite.nginx.at.warden.host}";
+      ROCKET_PORT = config.satellite.nginx.at.warden.port;
       ROCKET_ADDRESS = "127.0.0.1";
-      ROCKET_PORT = port;
 
-      SIGNUPS_ALLOWED = true;
+      SIGNUPS_ALLOWED = false;
       SHOW_PASSWORD_HINT = false;
 
       SMTP_SECURITY = "force_tls";

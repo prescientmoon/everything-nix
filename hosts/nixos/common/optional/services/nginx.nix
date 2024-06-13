@@ -1,5 +1,6 @@
 {
   imports = [ ./acme.nix ];
+  satellite.nginx.domain = "moonythm.dev"; # Root domain used throughout my config
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;

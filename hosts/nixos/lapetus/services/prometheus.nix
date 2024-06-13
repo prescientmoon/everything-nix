@@ -1,14 +1,10 @@
 { config, pkgs, ... }:
-let host = "prometheus.moonythm.dev";
-in
 {
-  imports = [ ../../common/optional/services/nginx.nix ];
-
   # {{{ Main config
   services.prometheus = {
     enable = true;
-    port = 8410;
-    webExternalUrl = "https://${host}";
+    port = config.satellite.ports.prometheus;
+    webExternalUrl = config.satellite.nginx.at.prometheus.url;
 
     # {{{ Base exporters
     exporters = {
@@ -16,12 +12,12 @@ in
       node = {
         enable = true;
         enabledCollectors = [ "systemd" ];
-        port = 8411;
+        port = config.satellite.ports.prometheus-node-exporter;
       };
 
       nginx = {
         enable = true;
-        port = 8412;
+        port = config.satellite.ports.prometheus-nginx-exporter;
       };
     };
 
@@ -38,9 +34,7 @@ in
   };
   # }}}
   # {{{ Networking & storage
-  services.nginx.virtualHosts.${host} =
-    config.satellite.proxy config.services.prometheus.port
-      { proxyWebsockets = true; };
+  satellite.nginx.at.prometheus.port = config.services.prometheus.port;
 
   environment.persistence."/persist/state".directories = [{
     directory = "/var/lib/prometheus2";

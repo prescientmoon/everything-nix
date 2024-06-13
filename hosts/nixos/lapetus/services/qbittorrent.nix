@@ -3,27 +3,20 @@
 # https://www.reddit.com/r/HomeServer/comments/xapl93/a_minimal_configuration_stepbystep_guide_to_media/
 { config, pkgs, ... }:
 let
-  port = 8417;
+  port = config.satellite.ports.qbittorrent;
   dataDir = "/persist/data/media";
   configDir = "/persist/state/var/lib/qbittorrent";
 in
 {
-  imports = [
-    ../../common/optional/services/nginx.nix
-    ../../common/optional/oci.nix
-  ];
-
+  # {{{ Networking & storage
+  satellite.nginx.at.qbit.port = port;
   sops.secrets.vpn_env.sopsFile = ../secrets.yaml;
-
-  services.nginx.virtualHosts."qbit.moonythm.dev" =
-    config.satellite.proxy port { proxyWebsockets = true; };
-
   systemd.tmpfiles.rules = [
     "d ${dataDir} 777 ${config.users.users.pilot.name} users"
     "d ${configDir}"
   ];
-
-  # {{{ qbit
+  # }}}
+  # {{{ Qbit
   virtualisation.oci-containers.containers.qbittorrent = {
     image = "linuxserver/qbittorrent:latest";
     extraOptions = [ "--network=container:gluetun" ];
@@ -37,7 +30,7 @@ in
     };
   };
   # }}}
-  # {{{ vpn
+  # {{{ Vpn
   virtualisation.oci-containers.containers.gluetun = {
     image = "qmcgaw/gluetun";
     extraOptions = [

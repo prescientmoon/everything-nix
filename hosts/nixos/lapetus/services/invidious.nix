@@ -1,22 +1,16 @@
 { config, pkgs, ... }: {
-  imports = [
-    ../../common/optional/services/nginx.nix
-    ../../common/optional/services/postgres.nix
-  ];
-
   sops.secrets.invidious_hmac_key.sopsFile = ../secrets.yaml;
   sops.templates."invidious_hmac_key.json" = {
     content = ''{ "hmac_key": "${config.sops.placeholder.invidious_hmac_key}" }'';
     mode = "0444"; # I don't care about this key that much, as I'm the only user of this instance
   };
 
-  services.nginx.virtualHosts.${config.services.invidious.domain} =
-    config.satellite.proxy config.services.invidious.port { };
+  satellite.nginx.at.yt.port = config.satellite.ports.invidious;
 
   services.invidious = {
     enable = true;
-    domain = "yt.moonythm.dev";
-    port = 8414;
+    domain = config.satellite.nginx.at.yt.host;
+    port = config.satellite.nginx.at.yt.port;
     hmacKeyFile = config.sops.templates."invidious_hmac_key.json".path;
 
     settings = {

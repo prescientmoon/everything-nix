@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  port = 8415;
+  port = config.satellite.ports.radicale;
   dataDir = "/persist/data/radicale";
 in
 {
@@ -14,7 +14,5 @@ in
   };
 
   systemd.tmpfiles.rules = [ "d ${dataDir} 0700 radicale radicale" ];
-
-  services.nginx.virtualHosts."cal.moonythm.dev" =
-    config.satellite.proxy port { };
+  satellite.nginx.at.cal.port = port;
 }
