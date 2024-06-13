@@ -113,10 +113,12 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Commafeed](https://github.com/Athou/commafeed) — rss reader
 - [Forgejo](https://forgejo.org/) — git forge
 - [Grafana](https://github.com/grafana/grafana) — pretty dashboards
+- [Guacamole](https://guacamole.apache.org/) — remote desktop access
 - [Homer](https://github.com/bastienwirtz/homer) — server homepage
 - [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
 - [Invidious](https://invidious.io/) — alternate youtube client
 - [Jellyfin](https://jellyfin.org/) — media server
+- [Jupyterhub](https://jupyter.org/hub) — notebook collaboration suite
 - [Microbin](https://microbin.eu/) - code & file sharing service
 - [Pounce](https://git.causal.agency/pounce/about/) & [calico](https://git.causal.agency/pounce/about/calico.1) — irc bouncer
 - [Prometheus](https://github.com/prometheus/prometheus) — metric collector

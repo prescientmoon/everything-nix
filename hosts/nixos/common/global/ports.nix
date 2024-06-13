@@ -22,5 +22,6 @@
     microbin = 8418;
     forgejo = 8419;
     jupyterhub = 8420;
+    guacamole = 8421;
   };
 }
