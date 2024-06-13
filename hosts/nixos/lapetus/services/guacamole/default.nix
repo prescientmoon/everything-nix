@@ -3,8 +3,8 @@
   sops.secrets.guacamole_users.sopsFile = ../../secrets.yaml;
   satellite.nginx.at.guacamole.port = config.satellite.ports.guacamole;
 
-  virtualisation.oci-containers.containers.commafeed = {
-    image = "";
+  virtualisation.oci-containers.containers.guacamole = {
+    image = "flcontainers/guacamole";
     ports = [ "${toString config.satellite.nginx.at.guacamole.port}:8080" ];
     volumes = [
       "/etc/localtime:/etc/localtime"
