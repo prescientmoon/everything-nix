@@ -5,17 +5,15 @@
 
   # {{{ Storage 
   environment.persistence."/persist/state".directories = [{
+    inherit (config.services.jellyfin) user group;
     directory = "/var/lib/jellyfin";
     mode = "u=rwx,g=r,o=r";
-    user = config.services.jellyfin.user;
-    group = config.services.jellyfin.group;
   }];
 
   environment.persistence."/persist/local/cache".directories = [{
+    inherit (config.services.jellyfin) user group;
     directory = "/var/cache/jellyfin";
     mode = "u=rwx,g=,o=";
-    user = config.services.jellyfin.user;
-    group = config.services.jellyfin.group;
   }];
   # }}}
 }

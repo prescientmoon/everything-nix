@@ -5,10 +5,10 @@ in
   options.satellite.cloudflared = {
     tunnel = lib.mkOption {
       type = lib.types.str;
-      description = "Cloudflare tunnel id to use for the `satellite.cloudflared.targets` helper";
+      description = "Cloudflare tunnel id to use for the `satellite.cloudflared.at` helper";
     };
 
-    targets = lib.mkOption {
+    at = lib.mkOption {
       description = "List of hosts to set up ingress rules for";
       default = { };
       type = lib.types.attrsOf (lib.types.submodule ({ name, ... }: {
@@ -33,5 +33,5 @@ in
       name = host;
       value = "http://localhost:${toString port}";
     })
-    cfg.targets;
+    cfg.at;
 }

@@ -13,6 +13,10 @@ M.setup = function(config)
   local augroup = vim.api.nvim_create_augroup("M", {})
 
   local on_vimenter = function()
+    if vim.o.filetype ~= "" then
+      return
+    end
+
     if vim.fn.argc() > 0 then
       return
     end

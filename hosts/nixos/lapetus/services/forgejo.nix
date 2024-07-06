@@ -11,7 +11,7 @@ in
     group = cfg.group;
   };
 
-  satellite.cloudflared.targets.${host}.port = port;
+  satellite.cloudflared.at.${host}.port = port;
 
   services.forgejo = {
     enable = true;

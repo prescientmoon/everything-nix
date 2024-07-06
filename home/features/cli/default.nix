@@ -13,6 +13,7 @@
   ];
 
   programs.bash.enable = true;
+  stylix.targets.yazi.enable = true;
 
   home.packages = with pkgs; [
     # {{{ System information 
@@ -42,12 +43,12 @@
 
   home.shellAliases = {
     # {{{ Storage
-    # -h = humans readable units
+    # -h: humans readable units
     df = "df -h";
     du = "du -h";
 
-    # short for `du here`
-    # -d = depth
+    # duh: short for `du here`
+    # -d: depth
     duh = "du -hd 1";
     # }}}
   };

@@ -39,20 +39,15 @@ in
   };
   # }}}
   # {{{ Add desktop entry
-  home.packages =
-    # Start smos with a custom class so our WM can move it to the correct workspace
-    let smosgui = pkgs.writeShellScriptBin "smosgui" ''
-      wezterm start --class "org.wezfurlong.wezterm.smos" --cwd ${workflowDir} smos
-    '';
-    in
-    [ smosgui ];
-
-  xdg.desktopEntries.smosgui = {
-    name = "Smos GUI";
+  # Start smos with a custom class so our WM can move it to the correct workspace
+  xdg.desktopEntries.smostui = {
+    name = "Smos TUI";
     type = "Application";
-    exec = "smosgui";
     terminal = false;
     icon = ../../../../../common/icons/smos.svg;
+    exec = builtins.toString (pkgs.writeShellScript "smostui" ''
+      wezterm start --class "org.wezfurlong.wezterm.smos" --cwd ${workflowDir} smos
+    '');
   };
   # }}}
 }

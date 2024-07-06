@@ -17,6 +17,8 @@ let
     "\\e\\[13\\;2u" = "commandline -a ' | $PAGER' && commandline -f execute";
     # C-g to open lazygit
     "\\cg" = "lazygit";
+    # C-S-f to open mini.files
+    "\\e\\[70\\;5u" = ''nvim +":lua require('mini.files').open()"'';
   };
 
   mkKeybind = key: value:

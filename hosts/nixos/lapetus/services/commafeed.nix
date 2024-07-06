@@ -9,7 +9,6 @@ in
 
   virtualisation.oci-containers.containers.commafeed = {
     image = "athou/commafeed:latest";
-    autoStart = true;
 
     ports = [ "${toString port}:8082" ]; # server:docker
     volumes = [ "${dataDir}:/commafeed/data" ]; # server:docker

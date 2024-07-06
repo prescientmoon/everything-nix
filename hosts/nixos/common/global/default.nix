@@ -7,6 +7,7 @@ let
     inputs.disko.nixosModules.default
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
+    inputs.nixos-dns.nixosModules.dns
     # }}}
     # {{{ global configuration
     ./cli/fish.nix

@@ -12,9 +12,7 @@
       "/var/lib/guacamole:/config"
     ];
 
-    environment = {
-      TZ = config.time.timeZone;
-    };
+    environment.TZ = config.time.timeZone;
   };
 
   # Allow ssh-ing using the provided key

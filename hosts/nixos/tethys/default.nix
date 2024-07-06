@@ -43,6 +43,7 @@
   programs.firejail.enable = true;
   programs.extra-container.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.waydroid.enable = true;
   # virtualisation.spiceUSBRedirection.enable = true; # This was required for the vm usb passthrough tomfoolery
   # }}}
   # {{{ Ad-hoc stylix targets
@@ -56,7 +57,7 @@
       blacklisted = [
         # "twitter.com"
         # "www.reddit.com"
-        # "minesweeper.online" 
+        "minesweeper.online"
       ];
       blacklist = lib.concatStringsSep "\n" (lib.forEach blacklisted (host: "127.0.0.1 ${host}"));
     in

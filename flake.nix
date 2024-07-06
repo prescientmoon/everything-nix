@@ -33,6 +33,9 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     korora.url = "github:adisbladis/korora";
+
+    nixos-dns.url = "github:Janik-Haag/nixos-dns";
+    nixos-dns.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Standalone software
     # {{{ Nightly versions of things
@@ -79,9 +82,6 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      # Main username
-      pilot = "adrielus";
-
       # {{{ Common helpers
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -101,10 +101,17 @@
     {
       # {{{ Packages
       # Accessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; }
-      );
+      packages = forAllSystems
+        (system:
+          let
+            pkgs = nixpkgs.legacyPackages.${system};
+            upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+          in
+          import ./pkgs { inherit pkgs upkgs; } // {
+            octodns = upkgs.octodns.withProviders
+              (ps: [ (import ./pkgs { inherit pkgs upkgs; }).octodns-cloudflare ]);
+          }
+        );
       # }}}
       # {{{ Bootstrapping and other pinned devshells
       # Accessible through 'nix develop'
@@ -168,33 +175,6 @@
           #   hostname = "euporie";
           # };
 
-        };
-      # }}}
-      # {{{ Home manager
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#...
-      homeConfigurations =
-        let
-          mkHomeConfig = { system, hostname }:
-            home-manager.lib.homeManagerConfiguration {
-              pkgs = nixpkgs.legacyPackages.${system};
-              extraSpecialArgs = specialArgs system // { inherit hostname; };
-              modules = [ ./home/${hostname}.nix ];
-            };
-        in
-        {
-          "${pilot}@tethys" = mkHomeConfig {
-            system = "x86_64-linux";
-            hostname = "tethys";
-          };
-          "guest@euporie" = mkHomeConfig {
-            system = "x86_64-linux";
-            hostname = "euporie";
-          };
-          "${pilot}@lapetus" = mkHomeConfig {
-            system = "x86_64-linux";
-            hostname = "lapetus";
-          };
         };
       # }}}
     };

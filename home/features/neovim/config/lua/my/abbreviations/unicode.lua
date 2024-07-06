@@ -80,7 +80,7 @@ M.unicode = {
   -- }}}
   -- {{{ Common relations
   { "sim", "∼" }, -- similarity
-  { "simeq", "≃" },
+  { "simeq", "≃" }, -- isomorphism
   { "cong", "≅" }, -- congruence
 
   { "iin", "∈" }, -- [I]ncluded [i][n]

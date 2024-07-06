@@ -5,7 +5,7 @@ let
 in
 {
   sops.secrets.microbin_env.sopsFile = ../secrets.yaml;
-  satellite.cloudflared.targets.${host}.port = port;
+  satellite.cloudflared.at.${host}.port = port;
 
   services.microbin = {
     enable = true;

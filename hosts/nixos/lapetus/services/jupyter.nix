@@ -71,7 +71,7 @@ in
   };
   # }}}
   # {{{ Networking & storage
-  satellite.cloudflared.targets."jupyter.moonythm.dev".port = config.services.jupyterhub.port;
+  satellite.cloudflared.at."jupyter.moonythm.dev".port = config.services.jupyterhub.port;
 
   environment.persistence."/persist/state".directories = [
     "/var/lib/${config.services.jupyterhub.stateDirectory}"

@@ -1406,6 +1406,28 @@ let
           event = "VeryLazy";
         };
         # }}}
+        # {{{ djot support
+        djot =
+          let djot = pkgs.fetchFromGitHub {
+            owner = "jgm";
+            repo = "djot";
+            rev = "2fec440ab7a75a06a1e18c29a00de64ec7c94b9d";
+            sha256 = "1xy2x1qbmv1kjxdpj2pjm03d9l7qrl0wx96gn5m0lkfxkg766i7z";
+          };
+          in
+          {
+            dir = "${djot}/editors/vim";
+            cond = blacklist "vscode";
+            ft = "djot";
+
+            config.autocmds = {
+              event = "FileType";
+              group = "UserDjotSettings";
+              pattern = "djot";
+              action.vim.opt.commentstring = ''{\% %s \%}'';
+            };
+          };
+        # }}}
         # }}}
         # {{{ external
         # These plugins integrate neovim with external services
