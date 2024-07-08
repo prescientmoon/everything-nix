@@ -1,17 +1,12 @@
 { lib, config, ... }:
-let
-  port = config.satellite.ports.forgejo;
-  host = "git.moonythm.dev";
-  cfg = config.services.forgejo;
-in
 {
   sops.secrets.forgejo_mail_password = {
     sopsFile = ../secrets.yaml;
-    owner = cfg.user;
-    group = cfg.group;
+    owner = config.services.forgejo.user;
+    group = config.services.forgejo.group;
   };
 
-  satellite.cloudflared.at.${host}.port = port;
+  satellite.cloudflared.at.git.port = config.satellite.ports.forgejo;
 
   services.forgejo = {
     enable = true;
@@ -30,9 +25,9 @@ in
       default.APP_NAME = "moonforge";
 
       server = {
-        DOMAIN = host;
-        HTTP_PORT = port;
-        ROOT_URL = "https://${host}";
+        DOMAIN = config.satellite.cloudflared.at.git.host;
+        HTTP_PORT = config.satellite.cloudflared.at.git.port;
+        ROOT_URL = config.satellite.cloudflared.at.git.host.url;
         LANDING_PAGE = "prescientmoon"; # Make my profile the landing page
       };
 

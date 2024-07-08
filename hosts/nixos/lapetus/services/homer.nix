@@ -55,7 +55,7 @@ in
               name = "Syncthing";
               subtitle = "File synchronization";
               logo = icon "syncthing.png";
-              url = "https://lapetus.syncthing.moonythm.dev";
+              url = "https://syncthing.lapetus.moonythm.dev";
             }
             {
               name = "Guacamole";

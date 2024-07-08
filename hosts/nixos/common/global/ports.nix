@@ -23,5 +23,6 @@
     forgejo = 8419;
     jupyterhub = 8420;
     guacamole = 8421;
+    syncthing = 8422;
   };
 }

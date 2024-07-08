@@ -18,7 +18,7 @@ in
 
   services.jupyterhub = {
     enable = true;
-    port = config.satellite.ports.jupyterhub;
+    port = config.satellite.cloudflared.at.jupyter.port;
 
     jupyterhubEnv = appEnv;
     jupyterlabEnv = appEnv;
@@ -71,7 +71,7 @@ in
   };
   # }}}
   # {{{ Networking & storage
-  satellite.cloudflared.at."jupyter.moonythm.dev".port = config.services.jupyterhub.port;
+  satellite.cloudflared.at.jupyter.port = config.services.jupyterhub.port;
 
   environment.persistence."/persist/state".directories = [
     "/var/lib/${config.services.jupyterhub.stateDirectory}"

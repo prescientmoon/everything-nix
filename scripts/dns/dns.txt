@@ -34,7 +34,7 @@ yt                 IN CNAME  lapetus
 *.irc              IN CNAME  irc
 
 ; Tunnel used by lapetus
-tunnel.lapetus     IN CNAME  347d9ead-a523-4f8b-bca7-3066e31e2952.cfargotunnel.com
+tunnel.lapetus     IN CNAME  347d9ead-a523-4f8b-bca7-3066e31e2952.cfargotunnel.com.
 
 ; lapetus services using cloudflare tunnels
 bin                IN CNAME  tunnel.lapetus

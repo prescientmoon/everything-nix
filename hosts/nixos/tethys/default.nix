@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   # {{{ Imports
   imports = [
     ../common/global
@@ -72,4 +72,18 @@
   programs.dconf.enable = true;
   services.gnome.evolution-data-server.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
+
+  # Tailscale internal IP DNS records
+  satellite.dns.records = [
+    # {
+    #   at = config.networking.hostName;
+    #   type = "A";
+    #   value = "100.93.136.59";
+    # }
+    # {
+    #   at = config.networking.hostName;
+    #   type = "AAAA";
+    #   value = "fd7a:115c:a1e0::e75d:883b";
+    # }
+  ];
 }

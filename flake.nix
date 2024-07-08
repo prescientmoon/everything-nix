@@ -106,11 +106,12 @@
           let
             pkgs = nixpkgs.legacyPackages.${system};
             upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+            myPkgs = import ./pkgs { inherit pkgs upkgs; };
           in
-          import ./pkgs { inherit pkgs upkgs; } // {
+          myPkgs // {
             octodns = upkgs.octodns.withProviders
-              (ps: [ (import ./pkgs { inherit pkgs upkgs; }).octodns-cloudflare ]);
-          }
+              (ps: [ myPkgs.octodns-cloudflare ]);
+          } // (import ./dns/pkgs.nix) { inherit pkgs self system; }
         );
       # }}}
       # {{{ Bootstrapping and other pinned devshells

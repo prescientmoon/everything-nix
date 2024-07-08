@@ -54,4 +54,7 @@ in
 
     config.allowUnfree = true;
   };
+
+  # Root domain used throughout my config
+  satellite.dns.domain = "moonythm.dev";
 }

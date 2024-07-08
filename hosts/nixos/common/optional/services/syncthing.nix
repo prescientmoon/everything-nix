@@ -28,7 +28,14 @@ in
 
       extraOptions.options.crashReportingEnabled = false;
     };
+
+    guiAddress = "127.0.0.1:${toString config.satellite.ports.syncthing}";
+    settings.gui.insecureSkipHostcheck = true;
   };
+
+  # Expose gui interface via nginx
+  satellite.nginx.at."syncthing.${config.networking.hostName}".port =
+    config.satellite.ports.syncthing;
 
   # Syncthing seems to leak memory, so we want to restart it daily.
   systemd.services.syncthing.serviceConfig.RuntimeMaxSec = "1d";

@@ -1,7 +1,7 @@
 # Custom packages, that can be defined similarly to ones from nixpkgs
 # You can build them using 'nix build .#example' or (legacy) 'nix-build -A example'
 
-{ pkgs ? (import ../nixpkgs.nix) { }, upkgs ? pkgs }:
+{ pkgs ? (import ../nixpkgs.nix) { }, upkgs ? pkgs, ... }:
 let plymouthThemes = pkgs.callPackage (import ./plymouth-themes.nix) { }; in
 {
   # example = pkgs.callPackage (import ./example.nix) {};

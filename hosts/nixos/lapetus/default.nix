@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
   imports = [
     ../common/global
     ../common/users/pilot.nix
@@ -7,6 +7,7 @@
     ../common/optional/services/kanata.nix
     ../common/optional/services/nginx.nix
     ../common/optional/services/postgres.nix
+    ../common/optional/services/syncthing.nix
     ../common/optional/services/restic
 
     # ./services/commafeed.nix
@@ -30,7 +31,6 @@
     ./services/radicale.nix
     ./services/redlib.nix
     ./services/smos.nix
-    ./services/syncthing.nix
     ./services/vaultwarden.nix
     ./services/whoogle.nix
     ./services/zfs.nix
@@ -49,4 +49,18 @@
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
+
+  # Tailscale internal IP DNS records
+  satellite.dns.records = [
+    {
+      at = config.networking.hostName;
+      type = "A";
+      value = "100.93.136.59";
+    }
+    {
+      at = config.networking.hostName;
+      type = "AAAA";
+      value = "fd7a:115c:a1e0::e75d:883b";
+    }
+  ];
 }

@@ -7,4 +7,6 @@
   nginx = import ./nginx.nix;
   pilot = import ./pilot.nix;
   pounce = import ./pounce.nix;
+  dns = import ./dns.nix;
+  dns-assertions = import ./dns-assertions.nix;
 }

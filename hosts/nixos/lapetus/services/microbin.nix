@@ -1,11 +1,7 @@
 { config, lib, ... }:
-let
-  port = config.satellite.ports.microbin;
-  host = "bin.moonythm.dev";
-in
 {
   sops.secrets.microbin_env.sopsFile = ../secrets.yaml;
-  satellite.cloudflared.at.${host}.port = port;
+  satellite.cloudflared.at.bin.port = config.satellite.ports.microbin;
 
   services.microbin = {
     enable = true;
@@ -16,8 +12,8 @@ in
     settings = {
       # High level settings
       MICROBIN_ADMIN_USERNAME = "prescientmoon";
-      MICROBIN_PORT = toString port;
-      MICROBIN_PUBLIC_PATH = "https://bin.moonythm.dev/";
+      MICROBIN_PORT = toString config.satellite.cloudflared.at.bin.port;
+      MICROBIN_PUBLIC_PATH = config.satellite.cloudflared.at.bin.url;
       MICROBIN_DEFAULT_EXPIRY = "1week";
 
       # Disable online features

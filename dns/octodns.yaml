@@ -1,0 +1,20 @@
+manager:
+  max_workers: 10
+
+providers:
+  zones:
+    class: octodns.provider.yaml.YamlProvider
+    default_ttl: 300
+    enforce_order: true
+    directory: this is set by nix :3
+
+  cloudflare:
+    class: octodns_cloudflare.CloudflareProvider
+    token: 'env/CLOUDFLARE_TOKEN'
+
+zones:
+  moonythm.dev.:
+    sources:
+      - zones
+    targets:
+      - cloudflare

@@ -6,23 +6,27 @@ in
     domain = lib.mkOption {
       description = "Root domain to use as a default for configurations.";
       type = lib.types.str;
+      default = config.satellite.dns.domain;
     };
 
     at = lib.mkOption {
       description = "Per-subdomain nginx configuration";
       type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {
-        options.name = lib.mkOption {
-          description = "Attribute name leading to this submodule";
+        options.subdomain = lib.mkOption {
+          description = ''
+            Subdomain to use for host generation. 
+            Only required if `host` is not set manually.
+          '';
           type = lib.types.str;
+          default = name;
         };
-
-        config.name = name;
 
         options.host = lib.mkOption {
           description = "Host to route requests from";
           type = lib.types.str;
-          default = "${name}.${cfg.domain}";
         };
+
+        config.host = "${config.subdomain}.${cfg.domain}";
 
         options.url = lib.mkOption {
           description = "External https url used to access this host";
@@ -53,8 +57,8 @@ in
         {
           assertion = (config.port == null) == (config.files != null);
           message = ''
-            Precisely one of the options 'satellite.nginx.at.${config.name}.port'
-            and 'satellite.nginx.at.${config.name}.files' must be specified.
+            Precisely one of the options 'satellite.nginx.at.${config.subdomain}.port'
+            and 'satellite.nginx.at.${config.subdomain}.files' must be specified.
           '';
         };
       in lib.mapAttrsToList (_: assertSingleTarget) cfg.at;
@@ -81,5 +85,14 @@ in
           } // extra;
       };
       in lib.attrsets.mapAttrs' (_: mkNginxConfig) cfg.at;
+
+    satellite.dns.records =
+      let mkDnsRecord = { subdomain, ... }: {
+        type = "CNAME";
+        zone = cfg.domain;
+        at = subdomain;
+        to = config.networking.hostName;
+      };
+      in lib.attrsets.mapAttrsToList (_: mkDnsRecord) cfg.at;
   };
 }
