@@ -25,8 +25,8 @@ in
 
     environment = {
       WEBUI_PORT = toString port;
-      PUID = "1000";
-      PGID = config.users.groups.users.gid;
+      PUID = toString config.users.users.pilot.uid;
+      PGID = toString config.users.groups.users.gid;
       TZ = config.time.timeZone;
     };
   };

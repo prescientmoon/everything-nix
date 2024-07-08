@@ -14,6 +14,9 @@
     users.pilot = {
       inherit (config.satellite.pilot) name;
 
+      # This gets referenced in other parts of the config
+      uid = 1000;
+
       # Adds me to some default groups, and creates the home dir 
       isNormalUser = true;
 
@@ -29,6 +32,7 @@
         "network" # wpa_supplicant
         "syncthing" # syncthing!
       ];
+
 
       hashedPasswordFile = config.sops.secrets.pilot_password.path;
       shell = pkgs.fish;
