@@ -51,7 +51,7 @@ in
   };
 
   config.services.cloudflared.tunnels.${cfg.tunnel}.ingress = lib.attrsets.mapAttrs'
-    (_: { port, host }: {
+    (_: { port, host, ... }: {
       name = host;
       value = "http://localhost:${toString port}";
     })
