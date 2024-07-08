@@ -27,7 +27,7 @@
       server = {
         DOMAIN = config.satellite.cloudflared.at.git.host;
         HTTP_PORT = config.satellite.cloudflared.at.git.port;
-        ROOT_URL = config.satellite.cloudflared.at.git.host.url;
+        ROOT_URL = config.satellite.cloudflared.at.git.url;
         LANDING_PAGE = "prescientmoon"; # Make my profile the landing page
       };
 
