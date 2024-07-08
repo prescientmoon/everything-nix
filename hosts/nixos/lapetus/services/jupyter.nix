@@ -71,7 +71,7 @@ in
   };
   # }}}
   # {{{ Networking & storage
-  satellite.cloudflared.at.jupyter.port = config.services.jupyterhub.port;
+  satellite.cloudflared.at.jupyter.port = config.satellite.ports.jupyterhub;
 
   environment.persistence."/persist/state".directories = [
     "/var/lib/${config.services.jupyterhub.stateDirectory}"
