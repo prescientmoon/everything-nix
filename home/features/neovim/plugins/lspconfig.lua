@@ -86,8 +86,7 @@ function M.config()
     },
     -- }}}
     -- {{{ Nix
-    rnix = {},
-    -- nil_ls = {},
+    nil_ls = {},
     nixd = {},
     -- }}}
     cssls = {},

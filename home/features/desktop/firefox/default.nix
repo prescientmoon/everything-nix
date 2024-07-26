@@ -288,7 +288,6 @@ in
     # {{{ Standalone "apps" which actually run inside a browser.
     apps.extensions = extensions;
     apps.app = {
-      # TODO: auto increment ids
       # {{{ Desmos
       desmos = {
         url = "https://www.desmos.com/calculator";
@@ -305,23 +304,14 @@ in
         id = 2;
       };
       # }}}
-      # {{{ Syncthing
-      syncthing = {
-        url = "http://localhost:8384/";
-        icon = ../../../../common/icons/syncthing.png;
-        displayName = "Syncthing";
-        id = 3;
-      };
-      # }}}
     };
     # }}}
   };
 
-  # TODO: uncomment when using newer version
-  # stylix.targets.firefox = {
-  #   enable = true;
-  #   profileNames = [ config.home.username "desmos" "monkey-type" "syncthing" ];
-  # };
+  stylix.targets.firefox = {
+    enable = true;
+    profileNames = [ config.home.username "desmos" "monkey-type" ];
+  };
 
   # {{{ Make firefox the default
   # Use firefox as the default browser to open stuff.

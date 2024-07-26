@@ -18,7 +18,7 @@ let
         opacity = transparency 0.7;
         polarity = "dark";
       };
-      satellite.rounding.radius = 8.0;
+      satellite.rounding.radius = 8;
     };
     # }}}
     # {{{ Catppuccin latte
@@ -29,7 +29,7 @@ let
         opacity = transparency 0.7;
         polarity = "light";
       };
-      satellite.rounding.radius = 8.0;
+      satellite.rounding.radius = 8;
     };
     # }}}
     # {{{ Catppuccin macchiato
@@ -40,7 +40,7 @@ let
         opacity = transparency 0.7;
         polarity = "dark";
       };
-      satellite.rounding.radius = 8.0;
+      satellite.rounding.radius = 8;
     };
     # }}}
     # {{{ Rosepine dawn
@@ -61,12 +61,12 @@ let
         opacity = transparency 0.7;
         polarity = "light";
       };
-      satellite.rounding.radius = 8.0;
+      satellite.rounding.radius = 8;
 
       # For this one, I went with a big size, which means the blur just adds a slight gradient to the backgrounds.
       satellite.blur = {
         brightness = 1.05;
-        size = 25.0;
+        size = 25;
       };
     };
     # }}}
@@ -78,7 +78,7 @@ let
         opacity = transparency 0.7;
         polarity = "dark";
       };
-      satellite.rounding.radius = 8.0;
+      satellite.rounding.radius = 8;
     };
     # }}}
   };

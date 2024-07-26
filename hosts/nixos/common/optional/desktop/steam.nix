@@ -1,4 +1,3 @@
-# TODO(imperanence): handle persistence
 { lib, ... }: {
   programs.steam = {
     enable = true;

@@ -47,8 +47,6 @@
   # virtualisation.spiceUSBRedirection.enable = true; # This was required for the vm usb passthrough tomfoolery
   # }}}
   # {{{ Ad-hoc stylix targets
-  # TODO: include this on all gui hosts
-  # TODO: is this useful outside of home-manager?
   stylix.targets.gtk.enable = true;
   # }}}
   # {{{ Some ad-hoc site blocking

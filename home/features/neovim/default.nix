@@ -177,7 +177,7 @@ let
                 (thunk /* lua */ "vim.opt.spell = not vim.o.spell")
                 "toggle [s]pell checker")
               (nmap "<leader>yp"
-                ("<cmd>!curl --data-binary @% https://paste.rs<cr>")
+                "<cmd>!curl --data-binary @% https://paste.rs<cr>"
                 "[y]ank [p]aste.rs link")
               # }}}
             ];
@@ -538,7 +538,7 @@ let
           event = "VeryLazy";
           config = true;
 
-          # {{{{ Keybinds
+          # {{{ Keybinds
           keys =
             let
               # {{{ List of fold-related keybinds 
@@ -700,21 +700,6 @@ let
             "<leader>u"
             "<cmd>UndoTreeToggle<cr>"
             "[U]ndo tree";
-        };
-        # }}}
-        # {{{ ssr (structured search & replace)
-        ssr = {
-          package = "cshuaimin/ssr.nvim";
-
-          cond = blacklist "vscode";
-          keys = {
-            mode = "nx";
-            mapping = "<leader>rt";
-            action = thunk /* lua */ ''require("ssr").open()'';
-            desc = "[r]eplace [t]emplate";
-          };
-
-          opts.keymaps.replace_all = "<s-cr>";
         };
         # }}}
         # {{{ mini.ai
@@ -925,7 +910,6 @@ let
               pkgs.lua
             ] ++
             optionals nix [
-              pkgs.rnix-lsp
               pkgs.nil
               pkgs.nixd
             ] ++
@@ -1036,100 +1020,6 @@ let
           '';
         };
         # }}}
-        # {{{ gitsigns
-        gitsigns = {
-          package = "lewis6991/gitsigns.nvim";
-
-          cond = [ (blacklist [ "vscode" "firenvim" ]) notmp ];
-          event = "BufReadPost";
-
-          opts.on_attach = tempest {
-            mkContext = lua /* lua */
-              "function(bufnr) return { bufnr = bufnr } end";
-            keys =
-              let
-                prefix = m: "<leader>h${m}";
-                gs = "package.loaded.gitsigns";
-
-                # {{{ nmap helper
-                nmap = mapping: action: desc: {
-                  inherit desc;
-                  mapping = prefix "mapping";
-                  action = "${gs}.action";
-                };
-                # }}}
-                # {{{ exprmap helper
-                exprmap = mapping: action: desc: {
-                  inherit mapping desc;
-                  action = thunk /* lua */ ''
-                    if vim.wo.diff then
-                      return "${mapping}"
-                    end
-
-                    vim.schedule(function()
-                      ${gs}.${action}()
-                    end)
-
-                    return "<ignore>"
-                  '';
-                  expr = true;
-                };
-                # }}}
-              in
-              [
-                # {{{ navigation
-                (exprmap "]c" "next_hunk" "Navigate to next hunk")
-                (exprmap "[c" "prev_hunk" "Navigate to previous hunk")
-                # }}}
-                # {{{ actions
-                (nmap "s" "stage_hunk" "[s]tage hunk")
-                (nmap "r" "reset_hunk" "[s]tage hunk")
-                (nmap "S" "stage_buffer" "[s]tage hunk")
-                (nmap "u" "undo_stage_hunk" "[s]tage hunk")
-                (nmap "R" "reset_buffer" "[s]tage hunk")
-                (nmap "p" "preview_hunk" "[s]tage hunk")
-                (nmap "d" "diffthis" "[s]tage hunk")
-                {
-                  mapping = prefix "D";
-                  action = thunk ''
-                    ${gs}.diffthis("~")
-                  '';
-                  desc = "[d]iff file (?)";
-                }
-                {
-                  mapping = prefix "b";
-                  action = thunk ''
-                    ${gs}.blame_line({ full = true })
-                  '';
-                  desc = "[b]lame line";
-                }
-                # }}}
-                # {{{ Toggles
-                (nmap "tb" "toggle_current_line_blame" "[t]oggle line [b]laming")
-                (nmap "td" "toggle_deleted" "[t]oggle [d]eleted")
-                # }}}
-                # {{{ visual mappings
-                {
-                  mode = "v";
-                  mapping = prefix "s";
-                  action = thunk /* lua */ ''
-                    ${gs}.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                  '';
-                  desc = "stage visual hunk";
-                }
-                {
-                  mode = "v";
-                  mapping = prefix "r";
-                  action = thunk /* lua */ ''
-                    ${gs}.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                  '';
-                  desc = "reset visual hunk";
-                }
-                # }}}
-              ];
-          };
-        };
-        # }}}
         # {{{ cmp
         cmp = {
           package = "hrsh7th/nvim-cmp";
@@ -1149,26 +1039,6 @@ let
           cond = blacklist "vscode";
           event = [ "InsertEnter" "CmdlineEnter" ];
           config = importFrom ./plugins/cmp.lua "config";
-        };
-        # }}}
-        # {{{ inc-rename
-        inc-rename = {
-          package = "smjonas/inc-rename.nvim";
-          dependencies.lua = [ "dressing" ];
-
-          cond = blacklist "vscode";
-          event = "VeryLazy";
-
-          opts.input_buffer_type = "dressing";
-          config.autocmds = {
-            event = "LspAttach";
-            group = "CreateIncRenameKeybinds";
-            action.keys = {
-              mapping = "<leader>rn";
-              action = ":IncRename <c-r><c-w>";
-              desc = "Incremenetal [r]e[n]ame";
-            };
-          };
         };
         # }}}
         # }}}

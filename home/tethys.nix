@@ -1,14 +1,16 @@
-{ pkgs, upkgs, lib, config, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./global.nix
 
     ./features/desktop/zathura.nix
     ./features/desktop/spotify.nix
     ./features/desktop/obsidian.nix
+    ./features/desktop/foot.nix
     ./features/desktop/firefox
     ./features/desktop/discord
     ./features/cli/productivity
     ./features/cli/pass.nix
+    ./features/cli/zellij.nix
     ./features/cli/nix-index.nix
     ./features/cli/catgirl.nix
     ./features/cli/lazygit.nix
@@ -18,14 +20,14 @@
 
   # Arbitrary extra packages
   home.packages = with pkgs; [
-    # Desktop apps
+    alacritty
     # {{{ Communication
     # signal-desktop # Signal client
     element-desktop # Matrix client
     # zoom-us # Zoom client 🤮
     # }}}
     # {{{ Editors for different formats 
-    # gimp # Image editing
+    gimp # Image editing
     # lmms # Music software
     # kicad # PCB editing
     # libreoffice # Free office suite
@@ -44,8 +46,7 @@
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # plover.dev # steno engine
 
-    # REASON: not available in nixpkgs-stable just yet
-    upkgs.overskride # Bluetooth client
+    overskride # Bluetooth client
     # }}} 
     # {{{ Media playing/recording
     mpv # Video player

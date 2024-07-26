@@ -4,7 +4,7 @@
   # {{{ Inputs
   inputs = {
     # {{{ Nixpkgs instances
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # }}}
     # {{{ Additional package repositories
@@ -23,7 +23,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
 
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -33,9 +33,6 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     korora.url = "github:adisbladis/korora";
-
-    nixos-dns.url = "github:Janik-Haag/nixos-dns";
-    nixos-dns.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Standalone software
     # {{{ Nightly versions of things
@@ -45,15 +42,11 @@
     # {{{ Self management
     # Smos
     smos.url = "github:NorfairKing/smos";
-    smos.inputs.nixpkgs.url = "github:NixOS/nixpkgs/b8dd8be3c790215716e7c12b247f45ca525867e2";
-    # REASON: smos fails to build this way
-    # smos.inputs.nixpkgs.follows = "nixpkgs";
-    # smos.inputs.home-manager.follows = "home-manager";
+    # smos.inputs.nixpkgs.url = "github:NixOS/nixpkgs/b8dd8be3c790215716e7c12b247f45ca525867e2";
 
     # Intray
     intray.url = "github:NorfairKing/intray";
-    intray.inputs.nixpkgs.url = "github:NixOS/nixpkgs/cf28ee258fd5f9a52de6b9865cdb93a1f96d09b7";
-    # intray.inputs.home-manager.follows = "home-manager";
+    # intray.inputs.nixpkgs.url = "github:NixOS/nixpkgs/fc07dc3bdf2956ddd64f24612ea7fc894933eb2e";
     # }}}
 
     anyrun.url = "github:Kirottu/anyrun";
@@ -84,12 +77,7 @@
     let
       # {{{ Common helpers
       inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
-        # "aarch64-linux" TODO: purescript doesn't work on this one
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
 
       specialArgs = system: {
         inherit inputs outputs;

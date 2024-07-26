@@ -7,7 +7,7 @@ in
     rounding = {
       # Note: this is automatically set to true when the radius is strictly positive
       enable = lib.mkEnableOption "rounded corners for desktop apps";
-      radius = lib.mkOption { default = 0.0; type = lib.types.float; };
+      radius = lib.mkOption { default = 0; type = lib.types.int; };
     };
 
     # These pretty much directly map onto hypland options
@@ -18,7 +18,7 @@ in
       passes = lib.mkOption { default = 4; type = lib.types.int; };
       brightness = lib.mkOption { default = 1.0; type = lib.types.float; };
       contrast = lib.mkOption { default = 1.2; type = lib.types.float; };
-      size = lib.mkOption { default = 10.0; type = lib.types.float; };
+      size = lib.mkOption { default = 10; type = lib.types.int; };
     };
 
     get = lib.mkOption {
@@ -49,7 +49,7 @@ in
   };
 
   config.satellite.theming = {
-    rounding.enable = cfg.rounding.radius > 0.0;
+    rounding.enable = cfg.rounding.radius > 0;
     blur.enable = cfg.blur.passes > 0;
 
     get = themeMap:

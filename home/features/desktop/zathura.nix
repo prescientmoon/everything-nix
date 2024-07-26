@@ -67,7 +67,6 @@
       set statusbar-bg '${base00}'
       # }}}
       # {{{ Highlighting parts of the document (e.g. show search results)
-      # TODO: make sure these look fine on other schemes
       set highlight-color '${base03}'
       set highlight-active-color '${base06}'
       # }}}

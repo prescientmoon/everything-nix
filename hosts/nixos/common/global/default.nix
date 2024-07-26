@@ -7,7 +7,6 @@ let
     inputs.disko.nixosModules.default
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
-    inputs.nixos-dns.nixosModules.dns
     # }}}
     # {{{ global configuration
     ./cli/fish.nix
@@ -16,6 +15,7 @@ let
     ./services/tailscale.nix
     ./nix.nix
     ./locale.nix
+    ./unicode.nix
     ./persistence.nix
     ./ports.nix
     ./wireless

@@ -157,11 +157,13 @@ let
           ${context}
         )
       '';
-      tempestBufnr = given: context: lua ''
-        D.tempest.configure(
-          ${encode given},
-          { bufnr = ${context}}
-        )
+      tempestBufnr = given: lua ''
+        function(_, bufnr)
+          return D.tempest.configure(
+            ${encode given},
+            { bufnr = bufnr}
+          )
+        end
       '';
       keymap = mode: mapping: action: desc:
         { inherit mode mapping action desc; };

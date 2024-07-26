@@ -103,7 +103,6 @@
   ];
 
   satellite.persistence.at.cache.apps.qbittorrent.directories = [
-    # TODO: investigate which subdirectories/files I actually want to keep
     "${config.xdg.dataHome}/qBittorrent" # Torrent files, logs, etc
   ];
   # }}}
@@ -115,7 +114,7 @@
   # {{{ Steam
   satellite.persistence.at.state.apps.steam = {
     directories = [
-      ".factorio" # TODO: perhaps this should have it's own file?
+      ".factorio"
       # A couple of games don't play well with bindfs
       {
         directory = "${config.xdg.dataHome}/Steam";
@@ -147,6 +146,10 @@
   # {{{ Cli
   # {{{ Sops 
   satellite.persistence.at.state.apps.sops.directories = [ "${config.xdg.configHome}/sops/age" ];
+  # }}}
+  # {{{ QMK 
+  home.sessionVariables.QMK_HOME = "${config.xdg.dataHome}/qmk";
+  satellite.persistence.at.state.apps.qmk.directories = [ config.home.sessionVariables.QMK_HOME ];
   # }}}
   # }}}
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let workflowDir = "${config.home.homeDirectory}/productivity/smos";
 in
 {
@@ -7,6 +7,9 @@ in
   # {{{ Smos config 
   programs.smos = {
     inherit workflowDir;
+
+    # We don't want to use the statically-linked binary, as it requires pulling-in ghc-musl.
+    smosReleasePackages = inputs.smos.packages.${pkgs.system}.default;
 
     enable = true;
     notify.enable = true;

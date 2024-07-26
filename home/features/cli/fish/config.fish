@@ -12,7 +12,6 @@ set fish_cursor_insert line # Set the insert mode cursor to a line
 set fish_cursor_replace_one underscore # Set the replace mode cursor to an underscore
 
 # Force fish to skip some checks (I think?)
-# TODO: research why this is here
 set fish_vi_force_cursor
 # }}}
 # {{{ Disable greeting

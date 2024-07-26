@@ -1,5 +1,4 @@
 # This setups a SSH server. 
-# TODO: persistence
 { outputs, config, lib, ... }:
 let
   # Record containing all the hosts
@@ -34,10 +33,6 @@ in
         (mkKey "rsa" "/persist/state/etc/ssh/ssh_host_rsa_key" { bits = 4096; })
       ];
   };
-
-  # TODO: is this safe? Can we ssh back and gain root access this way?
-  # Passwordless sudo when SSH'ing with keys
-  # security.pam.enableSSHAgentAuth = true;
 
   # SSH on slow connections
   programs.mosh.enable = true;

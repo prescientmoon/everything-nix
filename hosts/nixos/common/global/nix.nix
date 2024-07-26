@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }: {
   nix = {
     # Flake support and whatnot
-    package = pkgs.nixUnstable;
+    package = pkgs.lix;
 
     # Weekly clean up the store, I think
     gc = {
@@ -32,7 +32,7 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "repl-flake"
+        # "repl-flake"
         "auto-allocate-uids"
         # "configurable-impure-env"
       ];

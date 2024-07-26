@@ -7,7 +7,6 @@ let
     # C-z to return to background process
     "\\cz" = "fg && ${repaint}";
     # C-y to yank current command
-    # TODO: make this work in xorg as well
     "\\cy" = "wl-copy \$(commandline)";
     # C-e to launch $EDITOR
     "\\ce" = "$EDITOR";

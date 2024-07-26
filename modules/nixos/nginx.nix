@@ -91,7 +91,7 @@ in
         type = "CNAME";
         zone = cfg.domain;
         at = subdomain;
-        to = config.networking.hostName;
+        to = "${config.networking.hostName}.${cfg.domain}.";
       };
       in lib.attrsets.mapAttrsToList (_: mkDnsRecord) cfg.at;
   };

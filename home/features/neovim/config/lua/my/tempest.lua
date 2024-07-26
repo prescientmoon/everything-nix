@@ -130,9 +130,15 @@ function M.configure(opts, context)
     opts = opts(context)
   end
 
-  if type(opts) ~= "table" then
-    -- TODO: throw
+  if opts == nil then
     return
+  end
+
+  if type(opts) ~= "table" then
+    return error(
+      "Cannot handle non-table options for tempest runtime, "
+        .. vim.inspect(opts)
+    )
   end
 
   if type(opts.mkContext) == "function" then

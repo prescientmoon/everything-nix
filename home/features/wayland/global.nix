@@ -20,7 +20,6 @@
       wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
       wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
 
-      # TODO: put this in it's own file perhaps?
       # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)
       wl-ocr = pkgs.writeShellScriptBin "wl-ocr" ''
         ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - \

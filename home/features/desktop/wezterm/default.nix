@@ -1,5 +1,5 @@
-{ inputs, upkgs, config, ... }: {
-  home.packages = [ upkgs.wezterm ];
+{ inputs, pkgs, config, ... }: {
+  home.packages = [pkgs.wezterm ];
 
   xdg.configFile."wezterm/nix".source =
     config.satellite.lib.lua.writeFile

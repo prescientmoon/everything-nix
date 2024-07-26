@@ -9,6 +9,7 @@
 
   # Use a base16 theme for gtk apps!
   stylix.targets.gtk.enable = true;
+  gtk.enable = true;
 
   gtk.iconTheme = {
     package = pkgs.papirus-icon-theme;
