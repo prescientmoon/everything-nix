@@ -18,7 +18,7 @@ let
     strictLuaLiteral = (k.struct "lua literal" {
       value = k.string;
       __luaEncoderTag = k.enum "lua literal tag" [ "lua" ];
-    }).override { unknown = false; };
+    }).override { unknown = true; };
     derivation = k.typedef "derivation" lib.isDerivation;
     path = k.typedef "path" lib.isPath;
     functionCheckedWith = arg: type:
@@ -133,22 +133,18 @@ let
     # }}}
   };
 
-  hasType = type: value:
-    let err = type.verify value; in
-    lib.assertMsg (err == null) err;
-
   mkLib = { tempestModule }:
-    assert hasType k.string tempestModule;
+    assert h.hasType k.string tempestModule;
     rec {
       inherit (e) encode;
+      inherit (h) lua;
+
       # {{{ Common generation helpers 
-      lua = value: assert hasType k.string value;
-        { inherit value; __luaEncoderTag = "lua"; };
       importFrom = path: tag:
         assert lib.isPath path;
-        assert hasType k.string tag;
+        assert h.hasType k.string tag;
         lua "dofile(${encode (toString path)}).${tag}";
-      foldedList = value: assert hasType k.attrs value;
+      foldedList = value: assert h.hasType k.attrs value;
         { inherit value; __luaEncoderTag = "foldedList"; };
       thunk = code: _: lua code;
       tempest = given: context: lua ''
@@ -172,12 +168,12 @@ let
       unmap = mapping:
         { inherit mapping; action = "<nop>"; };
       blacklist = given:
-        assert hasType (types.oneOrMany types.neovimEnv) given;
+        assert h.hasType (types.oneOrMany types.neovimEnv) given;
         lua /* lua */  ''
           D.tempest.blacklist(${encode given})
         '';
       whitelist = given:
-        assert hasType (types.oneOrMany types.neovimEnv) given;
+        assert h.hasType (types.oneOrMany types.neovimEnv) given;
         lua /* lua */  ''
           D.tempest.whitelist(${encode given})
         '';
@@ -187,7 +183,7 @@ let
       # }}}
       # {{{ Main config generation entrypoint
       generateConfig = rawConfig:
-        assert hasType types.neovimConfig rawConfig;
+        assert h.hasType types.neovimConfig rawConfig;
         let
           config = { lazy = { }; pre = { }; post = { }; } // rawConfig;
           collectNixDeps = lazyModule:

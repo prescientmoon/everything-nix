@@ -14,6 +14,17 @@ let
         (lib.concatStringsSep "\n")
       ];
 
+    hasType = type: value:
+      let err = type.verify value; in
+      lib.assertMsg (err == null) err;
+
+    lua = value: assert hasType k.string value;
+      { 
+        inherit value; 
+        __luaEncoderTag = "lua";
+        __functor = _: arg: lua "(${value})(${encode arg})"; 
+      };
+
     # {{{ Verification helpers 
     toPretty = lib.generators.toPretty { indent = "    "; };
     withError = cond: err: if cond then null else err;

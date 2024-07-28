@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   # {{{ Set up my custom imperanence wrapper
   satellite.persistence = {
     enable = true;
@@ -77,9 +78,7 @@
   # }}}
   # {{{ Python
   satellite.persistence.at.cache.apps.python = {
-    files = [
-      ".python_history"
-    ];
+    files = [ ".python_history" ];
 
     directories = [
       ".ipython"
@@ -131,23 +130,24 @@
     "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
 
     # Aparently IO intensive stuff like games prefer symlinks?
-    { directory = "media/games/lutris"; method = "symlink"; } # Lutris games
+    {
+      directory = "media/games/lutris";
+      method = "symlink";
+    } # Lutris games
   ];
   # }}}
   # {{{ Wine
   satellite.persistence.at.state.apps.wine.directories = [ ".wine" ];
   # }}}
-  # {{{ Element 
-  satellite.persistence.at.state.apps.element.directories = [
-    "${config.xdg.configHome}/Element"
-  ];
+  # {{{ Element
+  satellite.persistence.at.state.apps.element.directories = [ "${config.xdg.configHome}/Element" ];
   # }}}
   # }}}
   # {{{ Cli
-  # {{{ Sops 
+  # {{{ Sops
   satellite.persistence.at.state.apps.sops.directories = [ "${config.xdg.configHome}/sops/age" ];
   # }}}
-  # {{{ QMK 
+  # {{{ QMK
   home.sessionVariables.QMK_HOME = "${config.xdg.dataHome}/qmk";
   satellite.persistence.at.state.apps.qmk.directories = [ config.home.sessionVariables.QMK_HOME ];
   # }}}
