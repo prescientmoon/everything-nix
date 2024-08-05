@@ -6,7 +6,7 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 
 ## Features this repository includes:
 
-- Sets up all the apps I use — including git, neovim, fish, tmux, starship, hyprland, anyrun, discord, zathura, wezterm & much more.
+- Sets up all the apps I use — including git, neovim, fish, tmux, starship, hyprland, anyrun, discord, zathura, foot & much more.
 - Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, whoogle, pounce, calico, smos, intray, actual & more.
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)
 - Declarative secret management using [sops-nix](https://github.com/Mic92/sops-nix)
@@ -79,7 +79,7 @@ Here's some things you might want to check out:
   - [Dunst](https://dunst-project.org/) — notification daemon
   - [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustments
   - [Anyrun](https://github.com/Kirottu/anyrun) — program launcher
-- [Wezterm](https://wezfurlong.org/wezterm/) — terminal emulator
+- [Foot](https://codeberg.org/dnkl/foot) — terminal emulator
 - [Zathura](https://pwmt.org/projects/zathura/) — pdf viewer
 - [Firefox](https://www.mozilla.org/en-US/firefox/) — web browser
 - [Tesseract](https://github.com/tesseract-ocr/tesseract) — OCR engine
@@ -134,6 +134,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
+- [Wezterm](https://github.com/wez/wezterm) — I switched to [Foot](https://codeberg.org/dnkl/foot), as wezterm was laggy, unstable, and kept breaking between releases
 - [Ranger](https://github.com/ranger/ranger) — I switched to [Yazi](https://github.com/sxyazi/yazi)
 - [firenvim](https://glacambre/firenvim) - the concept is cool, but I found the whole thing pretty annoying at times
 - [venn.nvim](https://jbyuki/venn.nvim) — the concept is cool, but I would use it about once a year

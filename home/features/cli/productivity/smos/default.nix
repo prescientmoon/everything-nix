@@ -1,10 +1,16 @@
-{ config, pkgs, inputs, ... }:
-let workflowDir = "${config.home.homeDirectory}/productivity/smos";
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  workflowDir = "${config.home.homeDirectory}/productivity/smos";
 in
 {
   sops.secrets.smos_password.sopsFile = ../secrets.yaml;
 
-  # {{{ Smos config 
+  # {{{ Smos config
   programs.smos = {
     inherit workflowDir;
 
@@ -31,10 +37,8 @@ in
     };
   };
   # }}}
-  # {{{ Storage & secrets 
-  satellite.persistence.at.data.apps.smos.directories = [
-    config.programs.smos.workflowDir
-  ];
+  # {{{ Storage & secrets
+  satellite.persistence.at.data.apps.smos.directories = [ config.programs.smos.workflowDir ];
 
   sops.secrets.smos_github_token = {
     sopsFile = ../secrets.yaml;
@@ -48,9 +52,11 @@ in
     type = "Application";
     terminal = false;
     icon = ../../../../../common/icons/smos.svg;
-    exec = builtins.toString (pkgs.writeShellScript "smostui" ''
-      wezterm start --class "org.wezfurlong.wezterm.smos" --cwd ${workflowDir} smos
-    '');
+    exec = builtins.toString (
+      pkgs.writeShellScript "smostui" ''
+        foot -a Smos -D ${workflowDir} smos
+      ''
+    );
   };
   # }}}
 }

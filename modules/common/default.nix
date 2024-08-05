@@ -1,9 +1,9 @@
 # (https://nixos.wiki/wiki/Module).
 
 {
-  # example = import ./example.nix;
-  lua-lib = import ./lua-lib.nix;
-  lua-colorscheme = import ./lua-colorscheme.nix;
-  theming = import ./theming.nix;
-  toggles = import ./toggles.nix;
+  # example =  ./example.nix;
+  lua-lib = ./lua-lib.nix;
+  lua-colorscheme = ./lua-colorscheme.nix;
+  theming = ./theming.nix;
+  toggles = ./toggles.nix;
 }

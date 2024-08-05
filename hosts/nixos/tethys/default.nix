@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   # {{{ Imports
   imports = [
     ../common/global
@@ -34,9 +40,14 @@
   hardware.opengl.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.keyboard.qmk.enable = true;
-  powerManagement.cpuFreqGovernor = "ondemand";
-  services.tlp.enable = true;
-  services.thermald.enable = true;
+  powerManagement.cpuFreqGovernor = "performance";
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_BAT = "performance";
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    };
+  };
   # }}}
   # {{{ A few ad-hoc programs
   programs.kdeconnect.enable = true;

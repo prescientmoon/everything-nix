@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
-    ./wezterm # terminal
     ./dunst.nix # notifaction handler
   ];
 

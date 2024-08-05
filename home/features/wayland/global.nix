@@ -1,5 +1,6 @@
 # Common wayland stuff
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   imports = [
     ./wlsunset.nix
     ./wlogout.nix
@@ -35,9 +36,10 @@
           | ${wl-copy}
         ${_ pkgs.libnotify} "Scanned qr code on area with output \"$(${wl-paste})\""
       '';
-      # }}}
     in
-    with pkgs; [
+    # }}}
+    with pkgs;
+    [
       libnotify # Send notifications
       wl-ocr # Custom ocr script
       wl-qr # Custom qr scanner script

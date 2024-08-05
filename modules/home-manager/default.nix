@@ -2,11 +2,11 @@
 
 {
   # Personal things
-  dev = import ./dev.nix;
-  firefox = import ./firefox;
-  monitors = import ./monitors.nix;
-  satellite-persistence = import ./persistence.nix;
+  dev = ./dev.nix;
+  firefox = ./firefox;
+  monitors = ./monitors.nix;
+  satellite-persistence = ./persistence.nix;
 
   # Should upstream
-  discord = import ./discord.nix;
+  discord = ./discord.nix;
 }

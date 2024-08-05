@@ -1,6 +1,18 @@
-{ pkgs, lib, config, ... }:
 {
-  imports = [ ../global.nix ./hyprpaper.nix ];
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  imports = [
+    ../global.nix
+    ./hyprpaper.nix
+  ];
+
+  home.packages = [
+    pkgs.gtk3 # Contains gtk-launch
+  ];
 
   stylix.targets.hyprland.enable = true;
   wayland.windowManager.hyprland = {
@@ -23,13 +35,14 @@
           passes = config.satellite.theming.blur.passes;
           contrast = config.satellite.theming.blur.contrast;
           brightness = config.satellite.theming.blur.brightness;
-          noise = 0.05;
+          noise = 5.0e-2;
         };
       };
       # }}}
       # {{{ Monitors
       # Configure monitor properties
-      monitor = lib.forEach config.satellite.monitors (m:
+      monitor = lib.forEach config.satellite.monitors (
+        m:
         lib.concatStringsSep "," [
           m.name
           "${toString m.width}x${toString m.height}@${toString m.refreshRate}"
@@ -39,11 +52,10 @@
       );
 
       # Map monitors to workspaces
-      workspace = lib.lists.concatMap
-        (m: lib.lists.optional (m.workspace != null) "${m.name},${m.workspace}")
-        config.satellite.monitors;
+      workspace = lib.lists.concatMap (
+        m: lib.lists.optional (m.workspace != null) "${m.name},${m.workspace}"
+      ) config.satellite.monitors;
       # }}}
     };
   };
 }
-

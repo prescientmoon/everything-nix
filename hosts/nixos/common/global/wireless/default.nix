@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   sops.secrets.wireless.sopsFile = ../../secrets.yaml;
 
   # https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/services/networking/wpa_supplicant.nix
@@ -21,6 +22,7 @@
       "Ziggo1721699".psk = "@NL_PLACE_1_PASS@";
       "Konijntjes".psk = "@NL_PLACE_1_PODS_PASS@";
       "InfoEdu12".psk = "@INFOEDU_PASS@";
+      "CNU19".psk = "@INFOEDU_PASS@";
       "ZTE_F7A321".psk = "@MADALINA_PASS@";
 
       # [Working solution](https://bbs.archlinux.org/viewtopic.php?id=271336)

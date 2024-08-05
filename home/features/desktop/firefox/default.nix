@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   # {{{ Global extensions
   extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
@@ -23,8 +29,8 @@ let
     unpaywall
     user-agent-string-switcher
   ];
-  # }}}
 in
+# }}}
 {
   programs.firefox = {
     enable = true;
@@ -66,7 +72,8 @@ in
       # {{{ Extensions
       extensions =
         with inputs.firefox-addons.packages.${pkgs.system};
-        with lib.lists; flatten [
+        with lib.lists;
+        flatten [
           extensions
           # List of profile-specific extensions
           [
@@ -91,80 +98,119 @@ in
       search.engines =
         let
           # {{{ Search engine creation helpers
-          mkBasicSearchEngine = { aliases, url, param, icon ? null }: {
-            urls = [{
-              template = url;
-              params = [
-                { name = param; value = "{searchTerms}"; }
+          mkBasicSearchEngine =
+            {
+              aliases,
+              url,
+              param,
+              icon ? null,
+            }:
+            {
+              urls = [
+                {
+                  template = url;
+                  params = [
+                    {
+                      name = param;
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
               ];
-            }];
 
-            definedAliases = aliases;
-          } // (if icon == null then { } else { inherit icon; });
+              definedAliases = aliases;
+            }
+            // (if icon == null then { } else { inherit icon; });
 
-          mkNixPackagesEngine = { aliases, type }:
-            mkBasicSearchEngine
-              {
-                aliases = aliases;
-                url = "https://search.nixos.org/${type}";
-                param = "query";
-                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              };
-          # }}}
+          mkNixPackagesEngine =
+            { aliases, type }:
+            mkBasicSearchEngine {
+              aliases = aliases;
+              url = "https://search.nixos.org/${type}";
+              param = "query";
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            };
         in
+        # }}}
         # {{{ Engine declarations
         {
           "Nix Packages" = mkNixPackagesEngine {
-            aliases = [ "@np" "@nix-packages" ];
+            aliases = [
+              "@np"
+              "@nix-packages"
+            ];
             type = "packages";
           };
 
           "Nix options" = mkNixPackagesEngine {
-            aliases = [ "@no" "@nix-options" ];
+            aliases = [
+              "@no"
+              "@nix-options"
+            ];
             type = "options";
           };
 
           "Pursuit" = mkBasicSearchEngine {
             url = "https://pursuit.purescript.org/search";
             param = "q";
-            aliases = [ "@ps" "@pursuit" ];
+            aliases = [
+              "@ps"
+              "@pursuit"
+            ];
           };
 
           "Hoogle" = mkBasicSearchEngine {
             url = "https://hoogle.haskell.org";
             param = "hoogle";
-            aliases = [ "@hg" "@hoogle" ];
-
+            aliases = [
+              "@hg"
+              "@hoogle"
+            ];
           };
 
           "Wikipedia" = mkBasicSearchEngine {
             url = "https://en.wikipedia.org/wiki/Special:Search";
             param = "search";
-            aliases = [ "@wk" "@wikipedia" ];
+            aliases = [
+              "@wk"
+              "@wikipedia"
+            ];
           };
 
           "Github" = mkBasicSearchEngine {
             url = "https://github.com/search";
             param = "q";
-            aliases = [ "@gh" "@github" ];
+            aliases = [
+              "@gh"
+              "@github"
+            ];
           };
 
           "Invidious" = mkBasicSearchEngine {
             url = "https://yt.moonythm.dev/results";
             param = "search_query";
-            aliases = [ "@yt" "@invidious" ];
+            aliases = [
+              "@yt"
+              "@invidious"
+            ];
           };
 
           "Youtube" = mkBasicSearchEngine {
             url = "https://www.youtube.com/results";
             param = "search_query";
-            aliases = [ "@gyt" "@youtube" ];
+            aliases = [
+              "@gyt"
+              "@youtube"
+            ];
           };
 
           "Arcaea wiki" = mkBasicSearchEngine {
             url = "https://arcaea.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true";
             param = "query";
-            aliases = [ "@ae" "@arcaea" ];
+            aliases = [
+              "@ae"
+              "@arcaea"
+            ];
           };
 
           "Noita wiki" = mkBasicSearchEngine {
@@ -176,31 +222,46 @@ in
           "Rain world wiki" = mkBasicSearchEngine {
             url = "https://rainworld.miraheze.org/w/index.php";
             param = "search";
-            aliases = [ "@rw" "@rain-world" ];
+            aliases = [
+              "@rw"
+              "@rain-world"
+            ];
           };
 
           "Arch wiki" = mkBasicSearchEngine {
             url = "https://wiki.archlinux.org/index.php";
             param = "search";
-            aliases = [ "@aw" "@arch-wiki" ];
+            aliases = [
+              "@aw"
+              "@arch-wiki"
+            ];
           };
 
           "Factorio wiki" = mkBasicSearchEngine {
             url = "https://wiki.factorio.com/index.php";
             param = "search";
-            aliases = [ "@fw" "@factorio-wiki" ];
+            aliases = [
+              "@fw"
+              "@factorio-wiki"
+            ];
           };
 
           "Factorio mod portal" = mkBasicSearchEngine {
             url = "https://mods.factorio.com/";
             param = "query";
-            aliases = [ "@fm" "@factorio-mods" ];
+            aliases = [
+              "@fm"
+              "@factorio-mods"
+            ];
           };
 
           "Moonythm" = mkBasicSearchEngine {
             url = "https://search.moonythm.dev/search";
             param = "q";
-            aliases = [ "@m" "@moonythm" ];
+            aliases = [
+              "@m"
+              "@moonythm"
+            ];
             icon = ../../../../common/icons/whoogle.webp;
           };
 
@@ -231,16 +292,13 @@ in
         "media.ffmpeg.vaapi.enabled" = true;
         "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
         # }}}
-        # {{{ New tab page 
-        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" =
-          false;
-        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
-          false;
+        # {{{ New tab page
+        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
         "browser.newtabpage.activity-stream.feeds.snippets" = false;
         "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "";
         "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
-        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
-          false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
         "browser.newtabpage.activity-stream.showSponsored" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.pinned" = false;
@@ -310,7 +368,11 @@ in
 
   stylix.targets.firefox = {
     enable = true;
-    profileNames = [ config.home.username "desmos" "monkey-type" ];
+    profileNames = [
+      config.home.username
+      "desmos"
+      "monkey-type"
+    ];
   };
 
   # {{{ Make firefox the default
@@ -335,4 +397,3 @@ in
   ];
   # }}}
 }
-

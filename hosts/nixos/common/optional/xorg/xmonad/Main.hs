@@ -43,7 +43,7 @@ main =
       [ ("M-p", spawn "rofi -show drun"),
         ("M-g", spawn myBrowser),
         ("M-d", spawn "Discord"),
-        ("M-v", spawn "wezterm start vimclip"),
+        ("M-v", spawn "$TERMLAUNCH vimclip"),
         ("M-s", spawn "spectacle -rcb"),
         ("M-S-s", spawn "spectacle -mcb"),
         ("M-C-s", spawn "spectacle -ucb"),
@@ -61,7 +61,7 @@ main =
     myLayoutHook = spacingHook layouts
 
     startupApps = []
-    -- [ (0, "wezterm"),
+    -- [ (0, "$TERMSTART"),
     --   (1, "firefox"),
     --   (2, "Discord")
     -- ]
