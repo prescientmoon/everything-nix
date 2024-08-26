@@ -29,8 +29,8 @@
   # }}}
   # {{{ Machine ids
   networking.hostName = "calypso";
-  networking.hostId = "";
-  environment.etc.machine-id.text = "";
+  networking.hostId = "3f69ae4b";
+  environment.etc.machine-id.text = "24fe28515de243f6ae4c6aa7e4291aac";
   # }}}
   # {{{ Tailscale internal IP DNS records
   satellite.dns.records = [
