@@ -148,7 +148,7 @@
                 (
                   { lib, ... }:
                   {
-                    imports = lib.lists.optional (builtins.pathExists ./home/${hostname}.nix) [
+                    imports = lib.lists.optionals (builtins.pathExists ./home/${hostname}.nix) [
                       home-manager.nixosModules.home-manager
                       {
                         home-manager.users.pilot = import ./home/${hostname}.nix;
