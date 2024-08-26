@@ -8,13 +8,13 @@
     ../common/global
     ../common/users/pilot.nix
 
-    # ../common/optional/bluetooth.nix
+    ../common/optional/bluetooth.nix
     ../common/optional/greetd.nix
     ../common/optional/oci.nix
     ../common/optional/quietboot.nix
 
     ../common/optional/desktop
-    # ../common/optional/desktop/steam.nix
+    ../common/optional/desktop/steam.nix
     ../common/optional/wayland/hyprland.nix
 
     ../common/optional/services/kanata.nix
