@@ -12,11 +12,11 @@
     # ./features/cli/productivity
     # ./features/cli/pass.nix
     # ./features/cli/zellij.nix
-    ./features/cli/nix-index.nix
+    # ./features/cli/nix-index.nix
     # ./features/cli/catgirl.nix
-    ./features/cli/lazygit.nix
+    # ./features/cli/lazygit.nix
     ./features/wayland/hyprland
-    ./features/neovim
+    # ./features/neovim
   ];
 
   # Arbitrary extra packages

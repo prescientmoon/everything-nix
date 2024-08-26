@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./scripts
     ./eza.nix
@@ -16,13 +17,13 @@
   stylix.targets.yazi.enable = true;
 
   home.packages = with pkgs; [
-    # {{{ System information 
+    # {{{ System information
     acpi # Battery stats
     neofetch # Display system information
     tokei # Useless but fun line of code counter (sloc alternative)
     bottom # System monitor
     # }}}
-    # {{{ Storage 
+    # {{{ Storage
     ncdu # TUI disk usage
     du-dust # Similar to du and ncdu in purpose.
     # }}}
@@ -32,7 +33,7 @@
     sd # Better sed
     httpie # Better curl
     # }}}
-    # {{{ Misc  
+    # {{{ Misc
     yazi # Terminal file explorer
     bc # Calculator
     ouch # Unified compression / decompression tool
