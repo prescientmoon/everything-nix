@@ -39,7 +39,7 @@ if [ "$mode" = "mount" ] && [ "$host" = "lapetus" ]; then
 fi
 
 echo "Running disko"
-nix run disko -- --mode $MODE ./hosts/nixos/$host/filesystems/partitions.nix
+nix run disko -- --mode $mode ./hosts/nixos/$host/filesystems/partitions.nix
 
 if [ "$action" = "install" ]; then
   echo "Generating hardware config"
