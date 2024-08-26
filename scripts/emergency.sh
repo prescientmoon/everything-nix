@@ -4,18 +4,22 @@
 
 # Check if at least one argument is provided
 if [ "$#" != "1" ] && [ "$#" != "2" ]; then
-    echo "Usage: $0 $1 <disko-mode> [action]"
+    echo "Usage: $0 <host> <disko-mode> [action]"
     exit 1
 fi
 
+host=$1
+mode=$2
+action=$3
+
 # Ensure correct first argument type
-if [ "$2" != "disko" ] && [ "$2" != "mount" ]; then
+if [ "$mode" != "disko" ] && [ "$mode" != "mount" ]; then
     echo "Disko action must be either 'disko' or 'mount'"
     exit 1
 fi
 
 # Ensure correct second argument type
-if [ "$#" != "2" ] && [ "$3" != "install" ] && [ "$3" != "enter" ]; then
+if [ "$#" != "2" ] && [ "$action" != "install" ] && [ "$action" != "enter" ]; then
     echo "Action must either be empty, 'install' or 'enter'"
     exit 1
 fi
@@ -28,20 +32,26 @@ else
   mount /dev/disk/by-uuid/7FE7-CA68 /hermes
 fi
 
-echo "Running disko"
 
-if [ "$2" = "mount" ] && [ "$1" = "lapetus" ]; then
+if [ "$mode" = "mount" ] && [ "$host" = "lapetus" ]; then
+  echo "Importing zpool"
   zpool import -lfR /mnt zroot
 fi
 
-nix run disko -- --mode $1 ./hosts/nixos/lapetus/filesystems/partitions.nix
+echo "Running disko"
+nix run disko -- --mode $MODE ./hosts/nixos/$host/filesystems/partitions.nix
 
-if [ "$3" = "install" ]; then
+if [ "$action" = "install" ]; then
+  echo "Generating hardware config"
+  nixos-generate-config --no-filesystems --show-hardware-config \
+    > ./hosts/nixos/$host/hardware/generated.nix
+  git add .
+
   echo "Installing nixos"
-  nixos-install --flake ".#$1"
+  nixos-install --flake ".#$host"
 fi
 
-if [ "$3" = "enter" ]; then
+if [ "$action" = "enter" ]; then
   echo "Entering nixos"
   nixos-enter --root /mnt
 fi
