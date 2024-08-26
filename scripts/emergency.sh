@@ -49,6 +49,16 @@ if [ "$action" = "install" ]; then
 
   echo "Installing nixos"
   nixos-install --flake ".#$host"
+
+  echo "Copying user ssh keys"
+  for dir in /mnt/persist/state/home/*; do
+    mkdir -p "$dir/ssh/.ssh"
+    cp /hermes/secrets/$host/id* "$dir/ssh/.ssh"
+  done
+
+  echo "Copying host ssh keys"
+  mkdir -p /mnt/persist/state/home/
+  cp /hermes/secrets/$host/ssh* /mnt/persist/state/etc/ssh/
 fi
 
 if [ "$action" = "enter" ]; then

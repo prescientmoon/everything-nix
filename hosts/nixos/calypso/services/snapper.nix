@@ -6,7 +6,7 @@
     configs = {
       # {{{ Data
       data = {
-        SUBVOLUME = "/root/persist/data";
+        SUBVOLUME = "/persist/data";
         TIMELINE_CREATE = true;
         TIMELINE_CLEANUP = true;
         BACKGROUND_COMPARISON = "yes";
@@ -20,7 +20,7 @@
       # }}}
       # {{{ State
       state = {
-        SUBVOLUME = "/root/persist/state";
+        SUBVOLUME = "/persist/state";
         TIMELINE_CREATE = true;
         TIMELINE_CLEANUP = true;
         BACKGROUND_COMPARISON = "yes";

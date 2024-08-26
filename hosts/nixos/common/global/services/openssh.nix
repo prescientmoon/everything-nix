@@ -68,5 +68,7 @@ in
   services.fail2ban.enable = true;
 
   # Makes it easy to copy host keys at install time without messing up permissions
-  systemd.tmpfiles.rules = [ "d /persist/state/etc/ssh" ];
+  systemd.tmpfiles.rules = [
+    "d /persist/state/etc/ssh"
+  ] ++ (lib.lists.forEach config.services.openssh.hostKeys (key: "e ${key.path} 0700"));
 }
