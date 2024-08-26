@@ -33,10 +33,11 @@
               type = "btrfs";
               extraArgs = [ "-f" ];
 
+              # TODO: how do we do this properly???
               postCreateHook = ''
                 # We then take an empty *readonly* snapshot of the root subvolume,
                 # which we'll eventually rollback to on every boot.
-                btrfs subvolume snapshot -r /root /blank
+                # btrfs subvolume snapshot -r /root /blank
               '';
 
               subvolumes = {
