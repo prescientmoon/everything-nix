@@ -42,9 +42,6 @@ in
       ];
   };
 
-  # SSH on slow connections
-  programs.mosh.enable = true;
-
   # Add each host in this repo to the knownHosts list
   programs.ssh = {
     knownHosts = lib.pipe hosts [
