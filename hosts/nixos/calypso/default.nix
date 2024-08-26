@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ config, ... }:
 {
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "22.11";
+  system.stateVersion = "24.05";
 
   # {{{ Imports
   imports = [
@@ -18,29 +18,19 @@
     ../common/optional/wayland/hyprland.nix
 
     ../common/optional/services/kanata.nix
+    ../common/optional/services/syncthing.nix
     ../common/optional/services/restic
-    ./services/syncthing.nix
 
+    ./services/snapper.nix
+
+    ./filesystems
     ./hardware
-    ./boot.nix
   ];
   # }}}
   # {{{ Machine ids
-  networking.hostName = "tethys";
-  environment.etc.machine-id.text = "08357db3540c4cd2b76d4bb7f825ec88";
-  # }}}
-  # {{{ A few ad-hoc programs
-  programs.kdeconnect.enable = true;
-  programs.firejail.enable = true;
-  services.mullvad-vpn.enable = true;
-
-  services.mysql = {
-    enable = true;
-    package = pkgs.mysql80;
-  };
-  # }}}
-  # {{{ Ad-hoc stylix targets
-  stylix.targets.gtk.enable = true;
+  networking.hostName = "calypso";
+  networking.hostId = "";
+  environment.etc.machine-id.text = "";
   # }}}
   # {{{ Tailscale internal IP DNS records
   satellite.dns.records = [
@@ -56,4 +46,11 @@
     # }
   ];
   # }}}
+  # {{{ A few ad-hoc programs
+  programs.kdeconnect.enable = true;
+  programs.firejail.enable = true;
+  # }}}
+
+  satellite.pilot.name = "moon";
+  boot.loader.systemd-boot.enable = true;
 }

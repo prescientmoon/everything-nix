@@ -56,8 +56,8 @@
     # }}}
   ];
 
-  home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4; # Bigger text in qt apps
-  home.stateVersion = "23.05";
+  home.username = "moon";
+  home.stateVersion = "24.05";
 
   satellite = {
     # Symlink some commonly modified dotfiles outside the nix store

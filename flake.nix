@@ -60,7 +60,7 @@
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Theming
-    darkmatter-grub-theme.url = gitlab:VandalByte/darkmatter-grub-theme;
+    darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";
     darkmatter-grub-theme.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix/a33d88cf8f75446f166f2ff4f810a389feed2d56";
@@ -73,7 +73,13 @@
   };
   # }}}
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       # {{{ Common helpers
       inherit (self) outputs;
@@ -84,33 +90,37 @@
 
         upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       };
-      # }}}
     in
+    # }}}
     {
       # {{{ Packages
       # Accessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems
-        (system:
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-            upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-            myPkgs = import ./pkgs { inherit pkgs upkgs; };
-          in
-          myPkgs // {
-            octodns = upkgs.octodns.withProviders
-              (ps: [ myPkgs.octodns-cloudflare ]);
-          } // (import ./dns/pkgs.nix) { inherit pkgs self system; }
-        );
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+          myPkgs = import ./pkgs { inherit pkgs upkgs; };
+        in
+        myPkgs
+        // {
+          octodns = upkgs.octodns.withProviders (ps: [ myPkgs.octodns-cloudflare ]);
+        }
+        // (import ./dns/pkgs.nix) { inherit pkgs self system; }
+      );
       # }}}
       # {{{ Bootstrapping and other pinned devshells
       # Accessible through 'nix develop'
-      devShells = forAllSystems
-        (system:
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-            args = { inherit pkgs; } // specialArgs system;
-          in
-          import ./devshells args);
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          args = {
+            inherit pkgs;
+          } // specialArgs system;
+        in
+        import ./devshells args
+      );
       # }}}
       # {{{ Overlays and modules
       # Custom packages and modifications, exported as overlays
@@ -126,24 +136,38 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#...
       nixosConfigurations =
-        let nixos = { system, hostname }: nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = specialArgs system;
+        let
+          nixos =
+            { system, hostname }:
+            nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = specialArgs system;
 
-          modules = [
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.pilot = import ./home/${hostname}.nix;
-              home-manager.extraSpecialArgs = specialArgs system // { inherit hostname; };
-              home-manager.useUserPackages = true;
+              modules = [
+                # {{{ Import home manager
+                (
+                  { lib, ... }:
+                  {
+                    imports = lib.lists.optional (builtins.pathExists ./home/${hostname}.nix) [
+                      home-manager.nixosModules.home-manager
+                      {
+                        home-manager.users.pilot = import ./home/${hostname}.nix;
+                        home-manager.extraSpecialArgs = specialArgs system // {
+                          inherit hostname;
+                        };
+                        home-manager.useUserPackages = true;
 
-              stylix.homeManagerIntegration.followSystem = false;
-              stylix.homeManagerIntegration.autoImport = false;
-            }
+                        stylix.homeManagerIntegration.followSystem = false;
+                        stylix.homeManagerIntegration.autoImport = false;
+                      }
+                    ];
+                  }
+                )
+                # }}}
 
-            ./hosts/nixos/${hostname}
-          ];
-        };
+                ./hosts/nixos/${hostname}
+              ];
+            };
         in
         {
           tethys = nixos {
@@ -156,14 +180,15 @@
             hostname = "lapetus";
           };
 
-          # Disabled because `flake check` complains about filesystems and bootloader
-          # options not being set. This is not an issue in practice, as this config is
-          # supposed to be used inside a VM, but there's not much I can do about it.
-          # euporie = nixos {
-          #   system = "x86_64-linux";
-          #   hostname = "euporie";
-          # };
+          calypso = nixos {
+            system = "x86_64-linux";
+            hostname = "calypso";
+          };
 
+          iso = nixos {
+            system = "x86_64-linux";
+            hostname = "iso";
+          };
         };
       # }}}
     };

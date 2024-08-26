@@ -17,9 +17,9 @@ The current state of this repo is a refactor of my old, messy nixos config, base
 
 This repo's structure is based on the concept of hosts - individual machines configured by me. I'm naming each host based on things in space/mythology (_they are the same picture_). The hosts I have right now are:
 
-- [tethys](./hosts/nixos/tethys/) — my personal laptop
+- [calypso](./hosts/nixos/calypso/) — my personal laptop
+- [tethys](./hosts/nixos/tethys/) — my previous personal laptop
 - [lapetus](./hosts/nixos/lapetus/) — older laptop running as a server
-- [euporie](./hosts/nixos/euporie/) — barebones host for testing things insdie a VM
 - enceladus — my android phone. Although not configured using nix, this name gets referenced in some places
 
 ## File structure

@@ -1,9 +1,15 @@
 # Configuration pieces included on all (nixos) hosts
-{ inputs, lib, config, outputs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  outputs,
+  ...
+}:
 let
   # {{{ Imports
   imports = [
-    # {{{ flake inputs 
+    # {{{ flake inputs
     inputs.disko.nixosModules.default
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
@@ -23,8 +29,8 @@ let
     ../../../../common
     # }}}
   ];
-  # }}}
 in
+# }}}
 {
   # Import all modules defined in modules/nixos
   imports = builtins.attrValues outputs.nixosModules ++ imports;
@@ -44,13 +50,17 @@ in
   # Boot using systemd
   boot.initrd.systemd.enable = true;
   # }}}
+  # {{{ Disable sudo default lecture
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
+  # }}}
 
   nixpkgs = {
     # Add all overlays defined in the overlays directory
-    overlays = builtins.attrValues outputs.overlays ++
-      lib.lists.optional
-        config.satellite.toggles.neovim-nightly.enable
-        inputs.neovim-nightly-overlay.overlay;
+    overlays =
+      builtins.attrValues outputs.overlays
+      ++ lib.lists.optional config.satellite.toggles.neovim-nightly.enable inputs.neovim-nightly-overlay.overlay;
 
     config.allowUnfree = true;
   };

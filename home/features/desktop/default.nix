@@ -15,4 +15,7 @@
     package = pkgs.papirus-icon-theme;
     name = "Papirus";
   };
+
+  # Bigger text in qt apps
+  home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4;
 }

@@ -1,15 +1,22 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   # {{{ Jupyterhub/lab env
-  appEnv = pkgs.python3.withPackages (p: with p; [
-    jupyterhub
-    jupyterlab
-    jupyterhub-systemdspawner
-    jupyter-collaboration
-    jupyterlab-git
-  ]);
-  # }}}
+  appEnv = pkgs.python3.withPackages (
+    p: with p; [
+      jupyterhub
+      jupyterlab
+      jupyterhub-systemdspawner
+      jupyter-collaboration
+      jupyterlab-git
+    ]
+  );
 in
+# }}}
 {
   systemd.services.jupyterhub.path = [
     pkgs.texlive.combined.scheme-full # LaTeX stuff is useful for matplotlib
@@ -25,8 +32,8 @@ in
 
     # {{{ Spwaner & auth config
     extraConfig = ''
-      c.Authenticator.allowed_users = {'adrielus', 'javi'}
-      c.Authenticator.admin_users = {'adrielus'}
+      c.Authenticator.allowed_users = {'${config.users.users.pilot.name}', 'javi'}
+      c.Authenticator.admin_users = {'${config.users.users.pilot.name}'}
 
       c.Spawner.notebook_dir='${config.users.users.pilot.home}/projects/notebooks'
       c.SystemdSpawner.mem_limit = '2G'
@@ -35,13 +42,18 @@ in
     # }}}
     # {{{ Python 3 kernel
     kernels.python3 =
-      let env = (pkgs.python3.withPackages (p: with p; [
-        ipykernel
-        numpy
-        scipy
-        matplotlib
-        tabulate
-      ]));
+      let
+        env = (
+          pkgs.python3.withPackages (
+            p: with p; [
+              ipykernel
+              numpy
+              scipy
+              matplotlib
+              tabulate
+            ]
+          )
+        );
       in
       {
         displayName = "Numerical mathematics setup";

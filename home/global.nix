@@ -1,4 +1,10 @@
-{ inputs, lib, config, outputs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  outputs,
+  ...
+}:
 let
   # {{{ Imports
   imports = [
@@ -21,10 +27,10 @@ let
     ./features/cli
     ./features/persistence.nix
     ../common
-    # }}} 
+    # }}}
   ];
-  # }}} 
 in
+# }}}
 {
   # Import all modules defined in modules/home-manager
   imports = builtins.attrValues outputs.homeManagerModules ++ imports;
@@ -32,10 +38,9 @@ in
   # {{{ Nixpkgs
   nixpkgs = {
     # Add all overlays defined in the overlays directory
-    overlays = builtins.attrValues outputs.overlays ++
-      lib.lists.optional
-        config.satellite.toggles.neovim-nightly.enable
-        inputs.neovim-nightly-overlay.overlay;
+    overlays =
+      builtins.attrValues outputs.overlays
+      ++ lib.lists.optional config.satellite.toggles.neovim-nightly.enable inputs.neovim-nightly-overlay.overlay;
 
     config.allowUnfree = true;
 
@@ -55,10 +60,9 @@ in
   home = {
     username = lib.mkDefault "adrielus";
     homeDirectory = "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "23.05";
   };
-  # }}} 
-  # {{{ Ad-hoc settings 
+  # }}}
+  # {{{ Ad-hoc settings
   # Nicely reload system units when changing configs
   systemd.user.startServices = lib.mkForce "sd-switch";
 

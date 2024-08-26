@@ -1,11 +1,12 @@
-{ config, ... }: {
-  # {{{ Zfs config 
+{ config, ... }:
+{
+  # {{{ Zfs config
   services.zfs = {
     trim.enable = true;
     autoScrub.enable = true;
   };
   # }}}
-  # {{{ Sanoid config 
+  # {{{ Sanoid config
   # Sanoid allows me to configure snapshot frequency on a per-dataset basis.
   services.sanoid = {
     enable = true;
@@ -34,14 +35,6 @@
       hourly = 6;
     };
     # }}}
-  };
-  # }}}
-  # {{{ Syncoid 
-  # Automatically sync certain snapshot to rsync.net
-  services.syncoid = {
-    enable = true;
-    commands."zroot/root/persist/data".target = "root@rsync.net:zroot/root/persist/data";
-    commands."zroot/root/persist/state".target = "root@rsync.net:zroot/root/persist/state";
   };
   # }}}
 }

@@ -1,4 +1,9 @@
-{ config, ... }: {
+{ config, ... }:
+{
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "23.05";
+
+  # {{{ Imports
   imports = [
     ../common/global
     ../common/users/pilot.nix
@@ -38,19 +43,13 @@
     ./filesystems
     ./hardware
   ];
-
-  # Machine ids
+  # }}}
+  # {{{ Machine ids
   networking.hostName = "lapetus";
   networking.hostId = "08357db3";
   environment.etc.machine-id.text = "d9571439c8a34e34b89727b73bad3587";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-
-  # Tailscale internal IP DNS records
+  # }}}
+  # {{{ Tailscale internal IP DNS records
   satellite.dns.records = [
     {
       at = config.networking.hostName;
@@ -63,4 +62,7 @@
       value = "fd7a:115c:a1e0::e75d:883b";
     }
   ];
+  # }}}
+
+  boot.loader.systemd-boot.enable = true;
 }
