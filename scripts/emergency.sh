@@ -3,7 +3,7 @@
 #!nix-shell -i bash
 
 # Check if at least one argument is provided
-if [ "$#" != "1" ] && [ "$#" != "2" ]; then
+if [ "$#" != "2" ] && [ "$#" != "3" ]; then
     echo "Usage: $0 <host> <disko-mode> [action]"
     exit 1
 fi
