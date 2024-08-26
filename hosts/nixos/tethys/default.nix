@@ -19,6 +19,7 @@
 
     ../common/optional/services/kanata.nix
     ../common/optional/services/restic
+    ../common/optional/services/nginx.nix
     ./services/syncthing.nix
 
     ./hardware
