@@ -8,8 +8,8 @@
       ssh = "${config.satellite.persistence.at.state.home}/ssh/.ssh";
     in
     [
-      "d ${ssh}/ssh/.ssh"
-      "e ${ssh}/ssh/.ssh/id_rsa 0700"
-      "e ${ssh}/id_ed25519 0700"
+      "d ${ssh}/ssh/.ssh ${config.home.username} users 0755"
+      "e ${ssh}/ssh/.ssh/id_rsa ${config.home.username} users 0700"
+      "e ${ssh}/id_ed25519 ${config.home.username} users 0700"
     ];
 }
