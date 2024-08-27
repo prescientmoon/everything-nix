@@ -3,24 +3,32 @@ let
   backupUrl = lib.removeSuffix "\n" (builtins.readFile ./url.txt);
 
   # {{{ Backup helper
-  createBackup = { name, paths, exclude, pruneOpts }: {
-    inherit pruneOpts paths;
+  createBackup =
+    {
+      name,
+      paths,
+      exclude,
+      pruneOpts,
+    }:
+    {
+      inherit pruneOpts paths;
 
-    initialize = true;
-    repository = "sftp:${backupUrl}:backups/${name}";
-    passwordFile = config.sops.secrets.backup_password.path;
-    extraOptions = [ "sftp.args='-i ${config.users.users.pilot.home}/.ssh/id_ed25519'" ];
+      initialize = true;
+      repository = "sftp:${backupUrl}:backups/${name}";
+      passwordFile = config.sops.secrets.backup_password.path;
+      extraOptions = [ "sftp.args='-i ${config.users.users.pilot.home}/.ssh/id_ed25519'" ];
 
-    exclude = [
-      # Syncthing / direnv / git stuff
-      ".direnv"
-      ".git"
-      ".stfolder"
-      ".stversions"
-    ] ++ exclude;
-  };
-  # }}}
+      exclude = [
+        # Syncthing / direnv / git / snapper stuff
+        ".direnv"
+        ".git"
+        ".stfolder"
+        ".stversions"
+        ".snapshots"
+      ] ++ exclude;
+    };
 in
+# }}}
 {
   sops.secrets.backup_password.sopsFile = ../../../secrets.yaml;
 
@@ -54,7 +62,8 @@ in
 
       paths = [ "/persist/state" ];
       exclude =
-        let home = "/persist/state/${config.users.users.pilot.home}";
+        let
+          home = "/persist/state/${config.users.users.pilot.home}";
         in
         [
           "${home}/discord" # There's lots of cache stored in here
@@ -64,4 +73,3 @@ in
     # }}}
   };
 }
-
