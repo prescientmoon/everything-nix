@@ -5,21 +5,24 @@
 {
   modulesPath,
   inputs,
+  outputs,
   pkgs,
   ...
 }:
 {
   # {{{ Imports
-  imports = [
+  imports = builtins.attrValues outputs.nixosModules ++ [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
 
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
 
     ../../../common
+    ../common/users/pilot.nix
     ../common/global/wireless
     ../common/global/services/openssh.nix
-    ../common/users/pilot.nix
+    ../common/global/cli/fish.nix
+    ../common/global/cli/htop.nix
     ../common/optional/desktop
     ../common/optional/wayland/hyprland.nix
     ../common/optional/services/kanata.nix

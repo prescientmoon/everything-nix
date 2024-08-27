@@ -6,7 +6,7 @@ keys:
     - &tethys age1avsekqqyr62urdwtpfpt0ledzm49wy0rq7wcg3rnsprdx22er5usp0jxgs
     - &lapetus age1jem6jfkmfq54wzhqqhrnf786jsn5dmx82ewtt4vducac8m2fyukskun2p4
     - &calypso age18gengezksnt0wtc3sv28ypmx546quzeg88kw5s8sywxyje5rmqyqh9daxe
-    - &hermes age1mcn3ty34wfugvedcamz9gscn7qh5kzl4s9s7tsrpml27gum0wfpqcw3pqt
+    - &hermes age1r2vlh9tgdmf6r0xj025zun0cvudn2p6jqav84pql8k928newtepq9ttw8z
 creation_rules:
   - path_regex: hosts/nixos/common/secrets.yaml
     key_groups:
