@@ -14,23 +14,16 @@
   imports = builtins.attrValues outputs.nixosModules ++ [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
 
-    inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
 
-    ../../../common
-    ../common/users/pilot.nix
     ../common/global/wireless
-    ../common/global/services/openssh.nix
     ../common/global/cli/fish.nix
-    ../common/global/cli/htop.nix
-    ../common/optional/desktop
-    ../common/optional/wayland/hyprland.nix
     ../common/optional/services/kanata.nix
   ];
   # }}}
   # {{{ Automount hermes
   fileSystems."/hermes" = {
-    device = "/dev/disk/by-uuid/7FE7-CA68";
+    device = "/dev/disk/by-uuid/41311200-3403-4324-9ad3-4fc45a061152";
     neededForBoot = true;
     options = [
       "nofail"
@@ -54,8 +47,19 @@
   # Tell sops-nix to use the hermes keys for decrypting secrets
   sops.age.sshKeyPaths = [ "/hermes/secrets/hermes/ssh_host_ed25519_key" ];
 
-  # Set username
-  satellite.pilot.name = "moon";
+  environment.systemPackages =
+    let
+      cloneConfig = pkgs.writeShellScriptBin "liftoff" ''
+        git clone git@github.com:prescientmoon/everything-nix.git
+        cd everything-nix
+      '';
+    in
+    with pkgs;
+    [
+      sops # Secret editing
+      neovim # Text editor
+      cloneConfig # Clones my nixos config from github
+    ];
 
   # Fast but bad compression
   # isoImage.squashfsCompression = "gzip -Xcompression-level 1";
