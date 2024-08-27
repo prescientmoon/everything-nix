@@ -3,20 +3,20 @@
   imports = [
     ./global.nix
 
-    ./features/desktop/zathura.nix
-    ./features/desktop/spotify.nix
-    ./features/desktop/obsidian.nix
+    # ./features/desktop/zathura.nix
+    # ./features/desktop/spotify.nix
+    # ./features/desktop/obsidian.nix
     ./features/desktop/foot.nix
     ./features/desktop/firefox
     ./features/desktop/discord
-    ./features/cli/productivity
-    ./features/cli/pass.nix
-    ./features/cli/zellij.nix
-    ./features/cli/nix-index.nix
-    ./features/cli/catgirl.nix
-    ./features/cli/lazygit.nix
+    # ./features/cli/productivity
+    # ./features/cli/pass.nix
+    # ./features/cli/zellij.nix
+    # ./features/cli/nix-index.nix
+    # ./features/cli/catgirl.nix
+    # ./features/cli/lazygit.nix
     ./features/wayland/hyprland
-    ./features/neovim
+    # ./features/neovim
   ];
 
   # Arbitrary extra packages
@@ -27,7 +27,7 @@
     # zoom-us # Zoom client 🤮
     # }}}
     # {{{ Editors for different formats
-    gimp # Image editing
+    # gimp # Image editing
     # lmms # Music software
     # kicad # PCB editing
     # libreoffice # Free office suite
@@ -41,16 +41,15 @@
     # sherlock # Search for usernames across different websites
     # }}}
     # {{{ Misc
-    bitwarden # Password-manager
-    qbittorrent # Torrent client
+    # bitwarden # Password-manager
+    # qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # plover.dev # steno engine
-
-    overskride # Bluetooth client
+    # overskride # Bluetooth client
     # }}}
     # {{{ Media playing/recording
-    mpv # Video player
-    imv # Image viewer
+    # mpv # Video player
+    # imv # Image viewer
     # peek # GIF recorder
     # obs-studio # video recorder
     # }}}

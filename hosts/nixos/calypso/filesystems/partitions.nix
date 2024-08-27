@@ -35,7 +35,7 @@
 
               subvolumes = {
                 # {{{ /
-                "/root" = {
+                "root" = {
                   mountpoint = "/";
                   mountOptions = [
                     "compress=zstd"
@@ -44,13 +44,13 @@
                 };
                 # }}}
                 # {{{ /swap
-                "/swap" = {
+                "swap" = {
                   mountpoint = "/.swapvol";
                   swap.swapfile.size = "20G";
                 };
                 # }}}
                 # {{{ /persist/data
-                "/root/persist/data" = {
+                "persist-data" = {
                   mountpoint = "/persist/data";
                   mountOptions = [
                     "compress=zstd"
@@ -59,7 +59,7 @@
                 };
                 # }}}
                 # {{{ /persist/state
-                "/root/persist/state" = {
+                "persist-state" = {
                   mountpoint = "/persist/state";
                   mountOptions = [
                     "compress=zstd"
@@ -68,7 +68,7 @@
                 };
                 # }}}
                 # {{{ /local/nix
-                "/root/local/nix" = {
+                "local-nix" = {
                   mountpoint = "/nix";
                   mountOptions = [
                     "compress=zstd"
@@ -77,7 +77,7 @@
                 };
                 # }}}
                 # {{{ /local/cache
-                "/root/local/cache" = {
+                "local-cache" = {
                   mountpoint = "/persist/local/cache";
                   mountOptions = [
                     "compress=zstd"
