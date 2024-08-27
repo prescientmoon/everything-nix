@@ -61,8 +61,8 @@
       root = "/persist/state/${user.home}/ssh";
     in
     [
-      "d ${root} 0755 ${user.name} ${user.group}"
-      "d ${root}/.ssh 0755 ${user.name} ${user.group}"
+      "Z ${root}             0755 ${user.name} ${user.group}"
+      "d ${root}/.ssh        0755 ${user.name} ${user.group}"
       "z ${root}/.ssh/id_rsa 0700 ${user.name} ${user.group}"
       "z ${root}/.ssh/id_ed25519 0700 ${user.name} ${user.group}"
     ];
