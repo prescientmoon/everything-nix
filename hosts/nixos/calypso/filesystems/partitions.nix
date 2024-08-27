@@ -43,6 +43,16 @@
                   ];
                 };
                 # }}}
+                # {{{ /blank
+                "blank" = {
+                  mountpoint = "/blank";
+                  # should we reuse the `root` options here?
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
+                };
+                # }}}
                 # {{{ /swap
                 "swap" = {
                   mountpoint = "/.swapvol";
