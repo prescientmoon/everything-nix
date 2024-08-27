@@ -32,7 +32,6 @@
     after = [ "systemd-cryptsetup@enc.service" ];
     before = [ "sysroot.mount" ];
     script = ''
-      ls /
       btrfs subvolume delete /
       btrfs subvolume create /
     '';
