@@ -9,12 +9,13 @@
     ./features/desktop/foot.nix
     ./features/desktop/firefox
     ./features/desktop/discord
-    ./features/cli/productivity
-    ./features/cli/pass.nix
-    ./features/cli/zellij.nix
-    ./features/cli/nix-index.nix
     ./features/cli/catgirl.nix
+    ./features/cli/gpg.nix
     ./features/cli/lazygit.nix
+    ./features/cli/nix-index.nix
+    ./features/cli/pass.nix
+    ./features/cli/productivity
+    ./features/cli/zellij.nix
     ./features/wayland/hyprland
     ./features/neovim
   ];

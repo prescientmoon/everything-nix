@@ -5,7 +5,6 @@
     ./eza.nix
     ./bat.nix
     ./ssh.nix
-    ./gpg.nix
     ./git.nix
     ./starship.nix
     ./direnv.nix

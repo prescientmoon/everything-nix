@@ -33,7 +33,7 @@
 
       # We first mount the btrfs root to /mnt
       # so we can manipulate btrfs subvolumes.
-      mount -o subvol=/ /dev/mapper/enc /mnt
+      mount -o subvol=/ /dev/mapper/crypted /mnt
 
       # While we're tempted to just delete /root and create
       # a new snapshot from /root-blank, /root is already
