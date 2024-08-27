@@ -47,7 +47,7 @@ if [ "$action" = "install" ]; then
     > ./hosts/nixos/$host/hardware/generated.nix
   git add .
 
-  echo "❄️  Installing nixos"
+  echo "❄️  nstalling nixos"
   nixos-install --flake ".#$host"
 
   echo "🔑 Copying user ssh keys"

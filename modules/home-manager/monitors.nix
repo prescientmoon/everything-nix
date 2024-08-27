@@ -3,43 +3,46 @@
 { lib, ... }:
 {
   options.satellite.monitors = lib.mkOption {
-    type = lib.types.listOf (lib.types.submodule {
-      options = {
-        name = lib.mkOption {
-          type = lib.types.str;
-          example = "DP-1";
-        };
+    default = [ ];
+    type = lib.types.listOf (
+      lib.types.submodule {
+        options = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            example = "DP-1";
+          };
 
-        width = lib.mkOption {
-          type = lib.types.int;
-          example = 1920;
-        };
+          width = lib.mkOption {
+            type = lib.types.int;
+            example = 1920;
+          };
 
-        height = lib.mkOption {
-          type = lib.types.int;
-          example = 1080;
-        };
+          height = lib.mkOption {
+            type = lib.types.int;
+            example = 1080;
+          };
 
-        refreshRate = lib.mkOption {
-          type = lib.types.int;
-          default = 60;
-        };
+          refreshRate = lib.mkOption {
+            type = lib.types.int;
+            default = 60;
+          };
 
-        x = lib.mkOption {
-          type = lib.types.int;
-          default = 0;
-        };
+          x = lib.mkOption {
+            type = lib.types.int;
+            default = 0;
+          };
 
-        y = lib.mkOption {
-          type = lib.types.int;
-          default = 0;
-        };
+          y = lib.mkOption {
+            type = lib.types.int;
+            default = 0;
+          };
 
-        workspace = lib.mkOption {
-          type = lib.types.nullOr lib.types.str;
-          default = null;
+          workspace = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = null;
+          };
         };
-      };
-    });
+      }
+    );
   };
 }

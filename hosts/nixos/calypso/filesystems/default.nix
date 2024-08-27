@@ -32,8 +32,9 @@
     after = [ "systemd-cryptsetup@enc.service" ];
     before = [ "sysroot.mount" ];
     script = ''
-      btrfs subvolume delete /root
-      btrfs subvolume snapshot /blank /root
+      ls /
+      btrfs subvolume delete /
+      btrfs subvolume create /
     '';
   };
   # }}}

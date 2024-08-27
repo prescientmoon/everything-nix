@@ -34,11 +34,8 @@
               extraArgs = [ "-f" ];
 
               subvolumes = {
-                # {{{ /blank
-                "/blank" = { };
-                # }}}
-                # {{{ /root
-                "/root" = {
+                # {{{ /
+                "root" = {
                   mountpoint = "/";
                   mountOptions = [
                     "compress=zstd"
@@ -47,13 +44,13 @@
                 };
                 # }}}
                 # {{{ /swap
-                "/swap" = {
+                "swap" = {
                   mountpoint = "/.swapvol";
                   swap.swapfile.size = "20G";
                 };
                 # }}}
-                # {{{ /root/persist/data
-                "/root/persist/data" = {
+                # {{{ /persist/data
+                "persist-data" = {
                   mountpoint = "/persist/data";
                   mountOptions = [
                     "compress=zstd"
@@ -61,8 +58,8 @@
                   ];
                 };
                 # }}}
-                # {{{ /root/persist/state
-                "/root/persist/state" = {
+                # {{{ /persist/state
+                "persist-state" = {
                   mountpoint = "/persist/state";
                   mountOptions = [
                     "compress=zstd"
@@ -70,8 +67,8 @@
                   ];
                 };
                 # }}}
-                # {{{ /root/local/nix
-                "/root/local/nix" = {
+                # {{{ /local/nix
+                "local-nix" = {
                   mountpoint = "/nix";
                   mountOptions = [
                     "compress=zstd"
@@ -79,8 +76,8 @@
                   ];
                 };
                 # }}}
-                # {{{ /root/local/cache
-                "/root/local/cache" = {
+                # {{{ /local/nix
+                "local-cache" = {
                   mountpoint = "/persist/local/cache";
                   mountOptions = [
                     "compress=zstd"

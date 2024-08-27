@@ -10,14 +10,14 @@ let
   # Toggles for including tooling related to a given language
   packedTargets = {
     elm = false;
-    latex = !config.satellite.toggles.neovim-minimal.enable;
-    lua = !config.satellite.toggles.neovim-minimal.enable;
+    latex = true;
+    lua = true;
     nix = true;
     purescript = false;
     python = false;
     rust = false;
-    typst = !config.satellite.toggles.neovim-minimal.enable;
-    web = !config.satellite.toggles.neovim-minimal.enable;
+    typst = true;
+    web = true;
     csharp = false;
   };
 
@@ -1699,7 +1699,6 @@ in
   # {{{ Basic config
   # We want other modules to know that we are using neovim!
   satellite.toggles.neovim.enable = true;
-  satellite.toggles.neovim-minimal.enable = lib.mkDefault false;
 
   # Link files in the appropriate places
   xdg.configFile.nvim.source = config.satellite.dev.path "home/features/neovim/config";
@@ -1710,7 +1709,8 @@ in
   home.packages = [
     neovim
     pkgs.vimclip
-  ] ++ lib.lists.optional (!config.satellite.toggles.neovim-minimal.enable) neovide;
+    neovide
+  ];
   # }}}
   # {{{ Persistence
   satellite.persistence.at.state.apps.neovim.directories = [

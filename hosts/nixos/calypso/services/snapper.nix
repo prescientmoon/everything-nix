@@ -1,4 +1,10 @@
+{ config, lib, ... }:
 {
+  # Why is this not part of the nixos module...
+  systemd.tmpfiles.rules = lib.mapAttrsToList (
+    _: c: "Q ${c.SUBVOLUME}/.snapshots"
+  ) config.services.snapper.configs;
+
   services.snapper = {
     snapshotInterval = "hourly";
     cleanupInterval = "1d";
