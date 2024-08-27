@@ -156,6 +156,7 @@
                           inherit hostname;
                         };
                         home-manager.useUserPackages = true;
+                        home-manager.backupFileExtension = "hm-backup";
 
                         stylix.homeManagerIntegration.followSystem = false;
                         stylix.homeManagerIntegration.autoImport = false;
