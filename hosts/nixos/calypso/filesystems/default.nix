@@ -24,7 +24,7 @@
   boot.initrd.systemd.services.rollback = {
     description = "Rollback BTRFS root subvolume to a pristine state";
     wantedBy = [ "initrd.target" ];
-    after = [ "systemd-cryptsetup@enc.service" ];
+    after = [ "systemd-cryptsetup@crypted.service" ];
     before = [ "sysroot.mount" ];
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
