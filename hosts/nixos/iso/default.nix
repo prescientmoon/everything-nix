@@ -2,13 +2,23 @@
 #
 # Can be built with
 # nix build .#nixosConfigurations.iso.config.system.build.isoImage
-{ modulesPath, lib, ... }:
+{
+  modulesPath,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   # {{{ Imports
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
 
-    ../common/global
+    inputs.stylix.nixosModules.stylix
+    inputs.sops-nix.nixosModules.sops
+
+    ../../../common
+    ../common/global/wireless
+    ../common/global/services/openssh.nix
     ../common/users/pilot.nix
     ../common/optional/desktop
     ../common/optional/wayland/hyprland.nix
@@ -25,16 +35,25 @@
     ];
   };
   # }}}
+  # {{{ Nix config
+  nix = {
+    # Flake support and whatnot
+    package = pkgs.lix;
+
+    # Enable flakes and new 'nix' command
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
+  # }}}
 
   # Tell sops-nix to use the hermes keys for decrypting secrets
   sops.age.sshKeyPaths = [ "/hermes/secrets/hermes/ssh_host_ed25519_key" ];
 
-  # Override tailscale service enabled by the `global/default.nix` file
-  services.tailscale.enable = lib.mkForce false;
+  # Set username
+  satellite.pilot.name = "moon";
 
   # Fast but bad compression
   # isoImage.squashfsCompression = "gzip -Xcompression-level 1";
-
-  # Set username
-  satellite.pilot.name = "moon";
 }

@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   nix = {
     # Flake support and whatnot
     package = pkgs.lix;
@@ -43,8 +50,10 @@
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
 
-      # TODO: what is a trusted user?
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
     };
   };
 }

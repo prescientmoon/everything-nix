@@ -3,7 +3,6 @@
   # {{{ Imports
   imports = [
     ./global.nix
-    ./features/cli/lazygit.nix
     ./features/desktop/foot.nix
     ./features/wayland/hyprland
   ];
