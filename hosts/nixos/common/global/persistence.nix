@@ -3,7 +3,13 @@
 # users' home persist dir exists and has the right permissions
 #
 # It works even if / is tmpfs, btrfs snapshot, or even not ephemeral at all.
-{ lib, inputs, config, ... }: {
+{
+  lib,
+  inputs,
+  config,
+  ...
+}:
+{
   imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   environment.persistence."/persist/state".directories = [
@@ -19,11 +25,13 @@
   # {{{ Create home directories
   systemd.tmpfiles.rules =
     let
-      users = lib.filter (v: v != null && v.isNormalUser)
-        (lib.mapAttrsToList (_: u: u) config.users.users);
+      users = lib.filter (v: v != null && v.isNormalUser) (
+        lib.mapAttrsToList (_: u: u) config.users.users
+      );
 
-      mkHomePersistFor = location: lib.forEach users
-        (user: "Q ${location}${user.home} ${user.homeMode} ${user.name} ${user.group} -");
+      mkHomePersistFor =
+        location:
+        lib.forEach users (user: "d ${location}${user.home} ${user.homeMode} ${user.name} ${user.group} -");
     in
     lib.flatten [
       (mkHomePersistFor "/persist/data")
@@ -32,4 +40,3 @@
     ];
   # }}}
 }
-
