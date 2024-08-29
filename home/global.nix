@@ -96,5 +96,10 @@ in
     extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/screenshots";
     extraConfig.XDG_PROJECTS_DIR = "${config.home.homeDirectory}/projects";
   };
+
+  systemd.user.tmpfiles.rules = [
+    # Clean screenshots older than a week
+    "d ${config.xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR} - - - 7d"
+  ];
   # }}}
 }

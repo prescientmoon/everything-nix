@@ -1,5 +1,5 @@
 # This handles audio stuff
-{ pkgs, ... }: {
+{
   security.rtkit.enable = true;
   hardware.pulseaudio.enable = false;
 

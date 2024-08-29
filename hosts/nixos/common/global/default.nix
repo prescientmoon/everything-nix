@@ -18,7 +18,6 @@ let
     ./cli/fish.nix
     ./cli/htop.nix
     ./services/openssh.nix
-    ./services/tailscale.nix
     ./nix.nix
     ./locale.nix
     ./unicode.nix

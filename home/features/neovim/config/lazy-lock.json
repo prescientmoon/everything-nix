@@ -1,4 +1,5 @@
 {
+  "catppuccin": { "branch": "main", "commit": "4fd72a9ab64b393c2c22b168508fd244877fec96" },
   "clipboard-image": { "branch": "main", "commit": "4ab6f7f1fa4ea97866c0e0f6160f6a36ef174438" },
   "cmp": { "branch": "main", "commit": "7e348da6e5085ac447144a2ef4b637220ba27209" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -16,7 +17,6 @@
   "ftft": { "branch": "master", "commit": "f3e43c9584e14b27f04c27a95a9d9f0e58dfec02" },
   "github-actions": { "branch": "master", "commit": "728374ef59b11a5f5991ea2560d149a4ae33fd22" },
   "gitlinker": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
-  "gruvbox": { "branch": "main", "commit": "7a1b23e4edf73a39642e77508ee6b9cbb8c60f9e" },
   "harpoon": { "branch": "master", "commit": "ccae1b9bec717ae284906b0bf83d720e59d12b91" },
   "haskell-tools": { "branch": "master", "commit": "92e097c6832405fb64e4c44a7ce8bebe7836cae6" },
   "hyprland": { "branch": "main", "commit": "71760fe0cad972070657b0528f48456f7e0027b2" },

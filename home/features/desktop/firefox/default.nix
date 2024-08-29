@@ -286,6 +286,12 @@ in
         # Do not paste with middle mouse click
         "middlemouse.paste" = false;
 
+        # Do not include "switch to [tab]" in search results
+        "browser.urlbar.suggest.openpage" = false;
+
+        # Disable shortcut for quitting :)
+        "browser.quitShortcut.disabled" = true;
+
         # Inspired by https://github.com/TLATER/dotfiles/blob/b39af91fbd13d338559a05d69f56c5a97f8c905d/home-config/config/graphical-applications/firefox.nix
         # {{{ Performance settings
         "gfx.webrender.all" = true; # Force enable GPU acceleration
@@ -324,14 +330,8 @@ in
         # with tiling WMs on wayland
         "privacy.webrtc.legacyGlobalIndicator" = false;
 
-        # Do not include "switch to [tab]" in search results
-        "browser.urlbar.suggest.openpage" = false;
-
         # Hide random popup: https://forums.linuxmint.com/viewtopic.php?t=379164
         "browser.protections_panel.infoMessage.seen" = true;
-
-        # Disable shortcut for quitting :)
-        "browser.quitShortcut.disabled" = true;
 
         # Do not show dialog for getting panes in the addons menu (?)
         # http://kb.mozillazine.org/Extensions.getAddons.showPane

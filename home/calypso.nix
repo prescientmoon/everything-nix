@@ -7,6 +7,7 @@
     ./features/desktop/spotify.nix
     ./features/desktop/obsidian.nix
     ./features/desktop/foot.nix
+    ./features/desktop/steam.nix
     ./features/desktop/firefox
     ./features/desktop/discord
     ./features/cli/productivity
@@ -33,7 +34,7 @@
     # }}}
     # {{{ Gaming
     # wine # Windows compat layer or whatever
-    # lutris # Game launcher
+    lutris # Game launcher
     # }}}
     # {{{ Clis
     sops # Secret editing

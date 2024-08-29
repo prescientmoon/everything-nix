@@ -8,6 +8,7 @@
     ../common/global
     ../common/users/pilot.nix
     ../common/optional/oci.nix
+    ../common/optional/services/tailscale.nix
     ../common/optional/services/acme.nix
     ../common/optional/services/kanata.nix
     ../common/optional/services/nginx.nix

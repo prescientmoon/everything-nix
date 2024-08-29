@@ -24,7 +24,7 @@ let
     # {{{ Catppuccin latte
     catppuccin-latte = {
       stylix = {
-        image = ./wallpapers/field_diamond.jpg;
+        image = ./wallpapers/needygirloverdose.jpg;
         base16Scheme = base16 "catppuccin-latte";
         opacity = transparency 0.7;
         polarity = "light";
@@ -84,15 +84,17 @@ let
   };
 
   # Select your current theme here!
-  currentTheme = themes.gruvbox-light;
+  currentTheme = themes.catppuccin-latte;
 in
 {
   # We apply the current theme here.
   # The rest is handled by the respective modules!
-  imports = [{
-    stylix = currentTheme.stylix;
-    satellite.theming = currentTheme.satellite;
-  }];
+  imports = [
+    {
+      stylix = currentTheme.stylix;
+      satellite.theming = currentTheme.satellite;
+    }
+  ];
 
   # Requires me to manually turn targets on!
   stylix.autoEnable = false;

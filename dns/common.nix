@@ -2,14 +2,19 @@
 { lib, ... }:
 let
   # {{{ Github pages helper
-  ghPage = at: [{
-    inherit at; type = "CNAME";
-    value = "prescientmoon.github.io.";
-  }];
+  ghPage = at: [
+    {
+      inherit at;
+      type = "CNAME";
+      value = "prescientmoon.github.io.";
+    }
+  ];
   # }}}
   # {{{ Migadu mail DNS setup
-  migaduMail = at: verifyKey:
-    let atPrefix = prefix: if at == "" then prefix else "${prefix}.${at}";
+  migaduMail =
+    at: verifyKey:
+    let
+      atPrefix = prefix: if at == "" then prefix else "${prefix}.${at}";
     in
     [
       {
@@ -61,8 +66,8 @@ let
         ttl = 600;
       }
     ];
-  # }}}
 in
+# }}}
 {
   satellite.dns.domain = "moonythm.dev";
   satellite.dns.records = lib.flatten [

@@ -1597,10 +1597,9 @@ let
                 completion = {
                   nvim_cmp = true;
                   min_chars = 2;
-                  new_notes_location = "current_dir";
-                  prepend_note_id = true;
                 };
 
+                new_notes_location = "current_dir";
                 mappings = { };
                 disable_frontmatter = true;
               };
