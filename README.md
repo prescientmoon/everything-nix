@@ -134,6 +134,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
 
+- [htop](https://htop.dev/) — I switched to [bottom](https://github.com/ClementTsang/bottom), as the interface felt way cleaner
 - [Wezterm](https://github.com/wez/wezterm) — I switched to [Foot](https://codeberg.org/dnkl/foot), as wezterm was laggy, unstable, and kept breaking between releases
 - [Ranger](https://github.com/ranger/ranger) — I switched to [Yazi](https://github.com/sxyazi/yazi)
 - [firenvim](https://glacambre/firenvim) - the concept is cool, but I found the whole thing pretty annoying at times

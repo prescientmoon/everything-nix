@@ -19,12 +19,11 @@ let
       extraOptions = [ "sftp.args='-i ${config.users.users.pilot.home}/.ssh/id_ed25519'" ];
 
       exclude = [
-        # Syncthing / direnv / git / snapper stuff
-        ".direnv"
-        ".git"
-        ".stfolder"
-        ".stversions"
-        ".snapshots"
+        ".direnv" # Direnv
+        ".git" # Git
+        ".stfolder" # Syncthing
+        ".stversions" # Syncthing
+        ".snapshots" # Snapper
       ] ++ exclude;
     };
 in
@@ -47,6 +46,9 @@ in
       exclude = [
         # Projects are available on github and in my own forge already
         "/persist/data${config.users.users.pilot.home}/projects"
+
+        # Screenshots are usually worthless
+        "/persist/data${config.users.users.pilot.home}/media/pictures/screenshots"
       ];
     };
     # }}}

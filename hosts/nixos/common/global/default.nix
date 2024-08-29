@@ -16,7 +16,6 @@ let
     # }}}
     # {{{ global configuration
     ./cli/fish.nix
-    ./cli/htop.nix
     ./services/openssh.nix
     ./nix.nix
     ./locale.nix
