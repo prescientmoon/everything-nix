@@ -5,7 +5,7 @@
   ...
 }:
 let
-  workflowDir = "${config.home.homeDirectory}/productivity/smos";
+  workflowDir = "${config.xdg.dataHome}/smos/workflow";
 in
 {
   sops.secrets.smos_password.sopsFile = ../secrets.yaml;

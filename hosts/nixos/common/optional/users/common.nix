@@ -1,4 +1,0 @@
-{
-  authorizedKeys = { outputs, lib }:
-
-}

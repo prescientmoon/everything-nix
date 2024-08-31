@@ -25,6 +25,7 @@
     # signal-desktop # Signal client
     # element-desktop # Matrix client
     # zoom-us # Zoom client 🤮
+    whatsapp-for-linux
     # }}}
     # {{{ Editors for different formats
     gimp # Image editing

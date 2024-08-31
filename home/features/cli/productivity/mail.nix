@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   sops.secrets.moonythm_mail_pass.sopsFile = ./secrets.yaml;
 
   programs.msmtp.enable = true;
@@ -14,7 +15,7 @@
   accounts.email.accounts = {
     # {{{ Moonythm
     moonythm = rec {
-      # {{{ Primary config 
+      # {{{ Primary config
       address = "colimit@moonythm.dev";
       realName = "prescientmoon";
       userName = address;
@@ -61,10 +62,16 @@
       neomutt = {
         enable = true;
         sendMailCommand = "msmtpq --read-envelope-from --read-recipients";
-        extraMailboxes = [ "Archive" "Drafts" "Junk" "Sent" "Trash" ];
+        extraMailboxes = [
+          "Archive"
+          "Drafts"
+          "Junk"
+          "Sent"
+          "Trash"
+        ];
       };
       # }}}
-      # {{{ Aerc 
+      # {{{ Aerc
       aerc = {
         enable = true;
       };
@@ -79,9 +86,9 @@
     extraConfig.general.unsafe-accounts-conf = true;
   };
   # }}}
-  # {{{ Neomutt 
+  # {{{ Neomutt
   programs.neomutt = {
-    # {{{ Primary config 
+    # {{{ Primary config
     enable = true;
     vimKeys = true;
     checkStatsInterval = 60; # How often to check for new mail
@@ -92,30 +99,42 @@
     # }}}
 
     binds = [
-      # {{{ Toggle sidebar 
+      # {{{ Toggle sidebar
       {
-        map = [ "index" "pager" ];
+        map = [
+          "index"
+          "pager"
+        ];
         key = "B";
         action = "sidebar-toggle-visible";
       }
       # }}}
       # {{{ Highlight previous sidebar item
       {
-        map = [ "index" "pager" ];
+        map = [
+          "index"
+          "pager"
+        ];
         key = "\\CK";
         action = "sidebar-prev";
       }
       # }}}
       # {{{ Highlight next sidebar item
       {
-        map = [ "index" "pager" ];
+        map = [
+          "index"
+          "pager"
+        ];
         key = "\\CJ";
         action = "sidebar-next";
       }
       # }}}
       # {{{ Open highlighted sidebar item
       {
-        map = [ "index" "pager" ];
+        map = [
+          "index"
+          "pager"
+        ];
         key = "\\CO";
         action = "sidebar-open";
       }
@@ -144,7 +163,7 @@
     extraConfig = ''
       # Starting point: https://seniormars.com/posts/neomutt/#introduction-and-why
       # {{{ Settings
-      set pager_index_lines = 10          
+      set pager_index_lines = 10
       set pager_context = 3                # show 3 lines of context
       set pager_stop                       # stop at end of message
       set menu_scroll                      # scroll menu
@@ -334,7 +353,11 @@
         exec = "neomutt %U";
         icon = "mutt";
         terminal = true;
-        categories = [ "Network" "Email" "ConsoleOnly" ];
+        categories = [
+          "Network"
+          "Email"
+          "ConsoleOnly"
+        ];
         type = "Application";
         mimeType = [ "x-scheme-handler/mailto" ];
       };
@@ -345,10 +368,8 @@
   };
   # }}}
   # }}}
-  # {{{ Storage & persistence 
-  accounts.email.maildirBasePath = "${config.home.homeDirectory}/maildir";
-  satellite.persistence.at.data.apps.mail.directories = [
-    config.accounts.email.maildirBasePath
-  ];
+  # {{{ Storage & persistence
+  accounts.email.maildirBasePath = "${config.xdg.dataHome}/maildir";
+  satellite.persistence.at.data.apps.mail.directories = [ config.accounts.email.maildirBasePath ];
   # }}}
 }
