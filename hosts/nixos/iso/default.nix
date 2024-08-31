@@ -16,8 +16,8 @@
 
     inputs.sops-nix.nixosModules.sops
 
-    ../common/global/wireless
     ../common/global/cli/fish.nix
+    ../common/optional/services/wpa_supplicant.nix
     ../common/optional/services/kanata.nix
   ];
   # }}}

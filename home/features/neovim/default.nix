@@ -518,7 +518,7 @@ let
                 (nmap "<c-p>" "find_files" "File finder [p]alette")
                 (nmap "<leader>d" "diagnostics" "[D]iagnostics")
                 (nmap "<c-f>" "live_grep" "[F]ind in project")
-                (nmap "<leader>t" "builtin" "[T]elescope pickers")
+                (nmap "<c-t>" "builtin" "[T]elescope pickers")
                 # {{{ Files by extension
                 (findFilesByExtension "tx" "tex" "[t]ex")
                 (findFilesByExtension "ts" "ts" "[t]ypescript")
@@ -643,8 +643,14 @@ let
           # {{{ treesitter
           treesitter = {
             # REASON: more grammars
-            # dir = upkgs.vimPlugins.nvim-treesitter.withAllGrammars;
-            package = "nvim-treesitter/nvim-treesitter";
+            dir = pkgs.symlinkJoin {
+              name = "treesitter-with-parsers";
+              paths = [
+                upkgs.vimPlugins.nvim-treesitter.withAllGrammars
+                upkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
+              ];
+            };
+            # package = "nvim-treesitter/nvim-treesitter";
             main = "nvim-treesitter.configs";
 
             dependencies.nix = [ pkgs.tree-sitter ];
@@ -1216,6 +1222,43 @@ let
               "CmdlineEnter"
             ];
             config = importFrom ./plugins/cmp.lua "config";
+          };
+          # }}}
+          # {{{ neotest
+          neotest = {
+            package = "nvim-neotest/neotest";
+            dependencies.lua = [
+              # {{{ Adapters
+              "mrcjkb/neotest-haskell"
+              # }}}
+              "plenary"
+              "treesitter"
+              "nvim-neotest/nvim-nio"
+            ];
+
+            cond = blacklist "vscode";
+            config = _: {
+              setup.neotest.adapters = [
+                (require "neotest-haskell" {
+                  build_tools = [ "stack" ];
+                  frameworks = [ "hspec" ];
+                })
+              ];
+            };
+
+            # {{{ Keybinds
+            keys =
+              let
+                nmap =
+                  key: arg: desc:
+                  nlib.nmap "<leader>t${key}" (thunk "require('neotest').run.${arg}") desc;
+              in
+              [
+                (nmap "c" "run()" "Run [c]urrent [t]est")
+                (nmap "f" "run(vim.fn.expand('%'))" "Run [t]ests in [f]ile")
+                (nmap "s" "stop()" "Run [c]urrent [t]est")
+              ];
+            # }}}
           };
           # }}}
           # }}}

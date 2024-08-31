@@ -6,8 +6,8 @@
   # {{{ Imports
   imports = [
     ../common/global
-    ../common/users/pilot.nix
 
+    ../common/optional/users/pilot.nix
     ../common/optional/bluetooth.nix
     ../common/optional/greetd.nix
     ../common/optional/oci.nix
@@ -17,6 +17,7 @@
     ../common/optional/desktop/steam.nix
     ../common/optional/wayland/hyprland.nix
 
+    ../common/optional/services/iwd.nix
     ../common/optional/services/kanata.nix
     ../common/optional/services/nginx.nix
     ../common/optional/services/syncthing.nix

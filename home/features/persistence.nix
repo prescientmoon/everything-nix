@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  # {{{ Set up my custom imperanence wrapper
+  # {{{ Set up my custom imperanenceo wrapper
   satellite.persistence = {
     enable = true;
 
@@ -46,6 +46,9 @@
     "${config.xdg.cacheHome}/ghcide"
     "${config.xdg.cacheHome}/cabal"
   ];
+
+  # TODO: should I move this in it's own haskell-specific file?
+  home.file.".stack/config.yaml".text = builtins.toJSON { notify-if-nix-on-path = false; };
   # }}}
   # {{{ Nodejs
   satellite.persistence.at.cache.apps.nodejs = {
@@ -133,6 +136,12 @@
   # {{{ Bitwarden
   satellite.persistence.at.state.apps.bitwarden.directories = [
     "${config.xdg.configHome}/Bitwarden"
+  ];
+  # }}}
+  # {{{ Gnome keyring
+  services.gnome-keyring.enable = true;
+  satellite.persistence.at.state.apps.gnome-keyring.directories = [
+    "${config.xdg.dataHome}/keyrings"
   ];
   # }}}
   # }}}

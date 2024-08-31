@@ -22,7 +22,6 @@ let
     ./unicode.nix
     ./persistence.nix
     ./ports.nix
-    ./wireless
 
     ../../../../common
     # }}}
@@ -47,11 +46,6 @@ in
 
   # Boot using systemd
   boot.initrd.systemd.enable = true;
-  # }}}
-  # {{{ Disable sudo default lecture
-  security.sudo.extraConfig = ''
-    Defaults lecture = never
-  '';
   # }}}
 
   nixpkgs = {

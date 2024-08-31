@@ -22,6 +22,11 @@
   # See [the imperanence readme](https://github.com/nix-community/impermanence#home-manager)
   programs.fuse.userAllowOther = true;
 
+  # {{{ Disable sudo default lecture
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
+  # }}}
   # {{{ Create home directories
   systemd.tmpfiles.rules =
     let

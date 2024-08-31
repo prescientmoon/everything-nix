@@ -47,7 +47,26 @@
       hashedPasswordFile = config.sops.secrets.pilot_password.path;
       shell = pkgs.fish;
 
-      openssh.authorizedKeys.keyFiles = (import ./common.nix).authorizedKeys { inherit outputs lib; };
+      # {{{ Authorize ssh keys
+      openssh.authorizedKeys.keyFiles =
+        let
+          # Record containing all the hosts
+          hosts = outputs.nixosConfigurations;
+
+          # Function from hostname to relative path to public ssh key
+          idKey = host: ../../${host}/keys/id_ed25519.pub;
+        in
+        lib.pipe hosts [
+          # attrsetof host -> attrsetof path
+          (builtins.mapAttrs (name: _: idKey name)) # string -> host -> path
+
+          # attrsetof path -> path[]
+          builtins.attrValues
+
+          # path[] -> path[]
+          (builtins.filter builtins.pathExists)
+        ];
+      # }}}
     };
     # }}}
   };

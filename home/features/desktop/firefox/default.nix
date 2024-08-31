@@ -150,6 +150,15 @@ in
             type = "options";
           };
 
+          "Home-manager options" = mkBasicSearchEngine {
+            aliases = [
+              "@hm"
+              "@home-manager"
+            ];
+            param = "query";
+            url = "https://home-manager-options.extranix.com";
+          };
+
           "Pursuit" = mkBasicSearchEngine {
             url = "https://pursuit.purescript.org/search";
             param = "q";

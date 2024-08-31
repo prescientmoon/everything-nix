@@ -6,7 +6,7 @@
   # {{{ Imports
   imports = [
     ../common/global
-    ../common/users/pilot.nix
+    ../common/optional/users/pilot.nix
     ../common/optional/oci.nix
     ../common/optional/services/tailscale.nix
     ../common/optional/services/acme.nix
@@ -15,6 +15,7 @@
     ../common/optional/services/postgres.nix
     ../common/optional/services/syncthing.nix
     ../common/optional/services/restic
+    ../common/optional/services/wpa_supplicant.nix
 
     # ./services/commafeed.nix
     # ./services/ddclient.nix
