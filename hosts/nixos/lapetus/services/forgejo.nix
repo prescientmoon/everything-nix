@@ -7,6 +7,10 @@
   };
 
   satellite.cloudflared.at.git.port = config.satellite.ports.forgejo;
+  satellite.cloudflared.at."ssh.git" = {
+    protocol = "ssh";
+    port = config.satellite.ports.forgejo-ssh;
+  };
 
   services.forgejo = {
     enable = true;
@@ -29,6 +33,8 @@
         HTTP_PORT = config.satellite.cloudflared.at.git.port;
         ROOT_URL = config.satellite.cloudflared.at.git.url;
         LANDING_PAGE = "prescientmoon"; # Make my profile the landing page
+        SSH_DOMAIN = config.satellite.cloudflared.at."ssh.git".host;
+        SSH_PORT = config.satellite.ports.forgejo-ssh;
       };
 
       cron.ENABLED = true;
@@ -45,9 +51,7 @@
       repository = {
         DISABLE_STARS = true;
         DISABLED_REPO_UNITS = "";
-        DEFAULT_REPO_UNITS = lib.strings.concatStringsSep "," [
-          "repo.code"
-        ];
+        DEFAULT_REPO_UNITS = lib.strings.concatStringsSep "," [ "repo.code" ];
       };
     };
   };
