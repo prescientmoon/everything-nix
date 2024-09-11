@@ -39,11 +39,12 @@ let
         else
           "Expected function, but got ${h.toPretty f} instead"
       );
+    lazy = types.functionCheckedWith "";
     luaEagerOrLazy =
       type:
       k.union [
         type
-        (types.functionCheckedWith "" type)
+        (types.lazy type)
       ];
     luaLiteral = types.luaEagerOrLazy types.strictLuaLiteral;
     # }}}
@@ -128,10 +129,7 @@ let
       struct "tempest key"
         {
           mapping = k.string;
-          action = k.union [
-            types.luaLiteral
-            k.string
-          ];
+          action = types.luaValue;
           mode = k.string;
           desc = k.string;
           expr = k.bool;
@@ -177,7 +175,7 @@ let
       keys = types.luaEagerOrLazy (types.oneOrMany types.tempestKey);
       autocmds = types.luaEagerOrLazy (types.oneOrMany types.tempestAutocmd);
       mkContext = types.luaValue;
-      cond = types.oneOrMany types.luaLiteral;
+      cond = types.oneOrMany types.luaValue;
     } [ ];
 
     tempestConfig = lazyType "lazy tempest config" (_: types.strictTempestConfig);
@@ -219,8 +217,18 @@ let
           __luaEncoderTag = "foldedList";
         };
       thunk = code: _: lua code;
-      require = module: lua "require(${module})";
-      tempest =
+      return = code: lua "return ${encode code}";
+
+      vim = lua "vim";
+      print = lua "print";
+      require = lua "require";
+      tempest = lua "D.tempest";
+
+      do = actions: lua (lib.concatStringsSep "\n" (lib.forEach actions encode));
+      args = values: lua (lib.concatStringsSep ", " (lib.forEach values encode));
+      none = lua "";
+
+      tempestConfigure =
         given: context:
         lua ''
           D.tempest.configure(

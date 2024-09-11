@@ -84,7 +84,7 @@ let
   };
 
   # Select your current theme here!
-  currentTheme = themes.catppuccin-latte;
+  currentTheme = themes.catppuccin-macchiato;
 in
 {
   # We apply the current theme here.

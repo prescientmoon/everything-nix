@@ -130,7 +130,7 @@ let
               let
                 dmap = mapping: action: desc: {
                   inherit mapping desc;
-                  action = lua "vim.diagnostic.${action}";
+                  action = vim /diagnostic/${action};
                 };
               in
               # }}}
@@ -161,10 +161,14 @@ let
                   mode = "i";
                   mapping = "<c-cr>";
                   action =
-                    # lua
-                    thunk ''
-                      vim.paste({ "", "" }, -1)
-                    '';
+                    _:
+                    vim /paste (args [
+                      [
+                        ""
+                        ""
+                      ]
+                      (-1)
+                    ]);
                   desc = "Insert newline without continuing the current comment";
                 }
                 {
@@ -187,7 +191,7 @@ let
                 (unmap "<C-^>")
                 (nmap "Q" ":wqa<cr>" "Save all files and [q]uit")
                 (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
-                (nmap "<leader>sw" (lua ''require("my.helpers.wrap").toggle'') "toggle word [w]rap")
+                (nmap "<leader>sw" (require "my.helpers.wrap" /toggle) "toggle word [w]rap")
                 (nmap "<leader>ss" (
                   # lua
                   thunk "vim.opt.spell = not vim.o.spell"
@@ -215,7 +219,7 @@ let
                   "tex"
                 ];
                 group = "EnableWrapMovement";
-                action = lua ''require("my.helpers.wrap").enable'';
+                action = require "my.helpers.wrap" /enable;
               }
               # }}}
             ];
@@ -239,8 +243,14 @@ let
           # {{{ Lsp settings
           "3:lsp-settings" = {
             # {{{ Change lsp on-hover borders
-            vim.lsp.handlers."textDocument/hover" = lua ''vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })'';
-            vim.lsp.handlers."textDocument/signatureHelp" = lua ''vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })'';
+            vim.lsp.handlers."textDocument/hover" = vim /lsp/with (args [
+              (vim /lsp/handlers/hover)
+              { border = "single"; }
+            ]);
+            vim.lsp.handlers."textDocument/signatureHelp" = vim /lsp/with (args [
+              (vim /lsp/handlers/signature_help)
+              { border = "single"; }
+            ]);
             # }}}
             # {{{ Create on-attach keybinds
             autocmds = {
@@ -250,14 +260,12 @@ let
                 let
                   nmap =
                     mapping: action: desc:
-                    nlib.nmap mapping (lua "vim.lsp.buf.${action}") desc;
+                    nlib.nmap mapping (vim /lsp/buf/${action}) desc;
                 in
                 {
                   mkContext = event: {
-                    bufnr = lua "${event}.buf";
-                    client =
-                      # lua
-                      lua "vim.lsp.get_client_by_id(${event}.data.client_id)";
+                    bufnr = lua event /buf;
+                    client = vim /lsp/get_client_by_id (lua event /data/client_id);
                   };
                   keys = [
                     (nlib.nmap "<leader>li" "<cmd>LspInfo<cr>" "[L]sp [i]nfo")
@@ -270,18 +278,11 @@ let
                     (nmap "<leader>wa" "add_workspace_folder" "[W]orkspace [A]dd Folder")
                     (nmap "<leader>wr" "remove_workspace_folder" "[W]orkspace [R]emove Folder")
                     (nlib.nmap "<leader>wl" (
-                      # lua
-                      thunk ''
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                      ''
+                      _: print (vim /inspect (vim /ps/buf/list_workspace_folders none))
                     ) "[W]orkspace [L]ist Folders")
                   ];
                   callback = {
-                    cond =
-                      ctx:
-                      lua ''
-                        return ${ctx}.client.supports_method("textDocument/hover")
-                      '';
+                    cond = ctx: return (lua ctx /client/supports_method "textDocument/hover");
                     keys = nmap "K" "hover" "Hover";
                   };
                 };
@@ -293,7 +294,7 @@ let
           "4:configure-neovide" = {
             cond = whitelist "neovide";
             vim.g = {
-              neovide_transparency = lua ''D.tempest.theme.transparency.applications.value'';
+              neovide_transparency = tempest /theme/transparency/applications/value;
               neovide_cursor_animation_length = 4.0e-2;
               neovide_cursor_animate_in_insert_mode = false;
             };
@@ -312,12 +313,11 @@ let
                   keys = {
                     mapping = "<leader>lg";
                     action =
-                      # lua
-                      thunk ''
-                        D.tempest.withSavedCursor(function()
-                          vim.cmd(":%!${lib.getExe pkgs.update-nix-fetchgit}")
-                        end)
-                      '';
+                      _:
+                      let
+                        cmd = _: vim /cmd ":%!${lib.getExe pkgs.update-nix-fetchgit}";
+                      in
+                      tempest /withSavedCursor cmd;
                     desc = "Update all fetchgit calls";
                   };
                 };
@@ -381,12 +381,13 @@ let
             lazy = false;
 
             opts.content.inactive =
-              # lua
-              thunk ''
-                require("mini.statusline").combine_groups({
-                  { hl = "MiniStatuslineFilename", strings = { vim.fn.expand("%:t") } },
-                })
-              '';
+              _:
+              require "mini.statusline" /combine_groups [
+                {
+                  hl = "MiniStatuslineFilename";
+                  strings = [ (vim /fn/expand "%:t") ];
+                }
+              ];
 
             opts.content.active =
               # lua
@@ -446,28 +447,19 @@ let
                 goto = key: index: {
                   desc = "Goto harpoon file ${toString index}";
                   mapping = "<c-s>${key}";
-                  action =
-                    thunk
-                      # lua
-                      ''require("harpoon.ui").nav_file(${toString index})'';
+                  action = _: require "harpoon.ui" /nav_file (toString index);
                 };
               in
               [
                 {
                   desc = "Add file to [h]arpoon";
                   mapping = "<leader>H";
-                  action =
-                    thunk
-                      # lua
-                      ''require("harpoon.mark").add_file()'';
+                  action = _: require "harpoon.mark" /add_file none;
                 }
                 {
                   desc = "Toggle harpoon quickmenu";
                   mapping = "<c-a>";
-                  action =
-                    thunk
-                      # lua
-                      ''require("harpoon.ui").toggle_quick_menu()'';
+                  action = _: require "harpoon.ui" /toggle_quick_menu none;
                 }
                 (goto "q" 1)
                 (goto "w" 2)
@@ -541,11 +533,7 @@ let
             };
             # }}}
             # {{{ Load fzf extension
-            config.callback =
-              # lua
-              thunk ''
-                require("telescope").load_extension("fzf")
-              '';
+            config.callback = _: require "telescope" /load_extension "fzf";
             # }}}
             # {{{ Options
             opts.defaults.mappings.i."<C-h>" = "which_key";
@@ -681,9 +669,7 @@ let
               let
                 nmap = mode: mapping: action: desc: {
                   inherit mapping desc mode;
-                  action =
-                    # lua
-                    thunk ''require("flash").${action}()'';
+                  action = _: require "flash" /${action} none;
                 };
               in
               [
@@ -792,7 +778,7 @@ let
                   q = balanced "\"\"";
                   Q = balanced "``";
                   a = balanced "''";
-                  A = lua "require('mini.ai').gen_spec.argument()";
+                  A = require "mini.ai" /gen_spec/argument none;
                 };
               };
           };
@@ -911,19 +897,19 @@ let
             version = "v2";
 
             cond = blacklist "vscode";
-            config = thunk ''
-              require("luasnip").config.setup(${
-                encode {
+            config =
+              _:
+              do [
+                (require "luasnip" /config/setup {
                   enable_autosnippets = true;
                   update_events = [
                     "TextChanged"
                     "TextChangedI"
                   ];
-                }
-              })
+                })
 
-              require("luasnip.loaders.from_lua").lazy_load(${encode { fs_event_providers.libuv = true; }})
-            '';
+                (require "luasnip.loaders.from_lua" /lazy_load { fs_event_providers.libuv = true; })
+              ];
 
             # {{{ Keybinds
             keys = [
@@ -951,11 +937,7 @@ let
               {
                 mode = "i";
                 mapping = "<s-tab>";
-                action =
-                  # lua
-                  thunk ''
-                    require("luasnip").jump(-1)
-                  '';
+                action = _: require "luasnip" /jump (-1);
                 desc = "Jump to previous snippet tabstop";
               }
               {
@@ -1041,14 +1023,11 @@ let
             config =
               _:
               importFrom ./plugins/lspconfig.lua "config" {
-                tsserver = {
-                  on_attach = lua ''
-                    function(client)
-                      -- We handle formatting using null-ls and prettierd
-                      client.server_capabilities.documentFormattingProvider = false
-                    end
-                  '';
-                };
+                # We handle formatting using null-ls and prettierd
+                tsserver.on_attach = client: ''
+                  ${client}.server_capabilities.documentFormattingProvider = false
+                '';
+
                 purescriptls.settings.purescript = {
                   censorWarnings = [
                     "UnusedName"
@@ -1188,16 +1167,7 @@ let
             cond = blacklist "vscode";
             event = "VeryLazy";
 
-            opts =
-              # lua
-              thunk ''
-                local p = require("null-ls")
-                return {
-                  sources = {
-                    p.builtins.diagnostics.ruff
-                  }
-                }
-              '';
+            opts = _: { sources = [ (require "null-ls" /builtins/diagnostics/ruff) ]; };
           };
           # }}}
           # {{{ cmp
@@ -1238,12 +1208,16 @@ let
 
             cond = blacklist "vscode";
             config = _: {
-              setup.neotest.adapters = [
-                (require "neotest-haskell" {
-                  build_tools = [ "stack" ];
-                  frameworks = [ "hspec" ];
-                })
-              ];
+              setup.neotest = {
+                status.virtual_text = true;
+                output.open_on_run = true;
+                adapters = [
+                  (require "neotest-haskell" {
+                    build_tools = [ "stack" ];
+                    frameworks = [ "hspec" ];
+                  })
+                ];
+              };
             };
 
             # {{{ Keybinds
@@ -1333,11 +1307,7 @@ let
                 event = "InsertEnter";
                 group = "CargoCmpSource";
                 pattern = "Cargo.toml";
-                action =
-                  # lua
-                  thunk ''
-                    require("cmp").setup.buffer({ sources = { { name = "crates" } } })
-                  '';
+                action = _: require "cmp" /setup/buffer { sources = [ { name = "crates"; } ]; };
               }
               # }}}
               # {{{ Load keybinds on attach
@@ -1362,9 +1332,7 @@ let
                     # {{{ Keymap helpers
                     nmap = mapping: action: desc: {
                       inherit mapping desc;
-                      action =
-                        # lua
-                        lua ''require("crates").${action}'';
+                      action = require "crates" /${action};
                     };
 
                     keyroot = "<leader>lc";
@@ -1442,9 +1410,7 @@ let
                     keymap = mapping: action: desc: {
                       inherit desc;
                       mapping = "<leader>i${mapping}";
-                      action =
-                        # lua
-                        lua ''require("idris2.code_action").${action}'';
+                      action = require "idris2.code_action" /${action};
                     };
                   in
                   [

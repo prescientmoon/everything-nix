@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   home.packages = [ pkgs.josh ]; # Just One Single History
 
   # TODO: use `delta` as a pager, as highlighted here
@@ -28,7 +29,7 @@
       "hie.yaml"
     ];
     # }}}
-    # {{{ Aliases 
+    # {{{ Aliases
     aliases = {
       # Print history nicely
       graph = "log --decorate --oneline --graph";
@@ -65,5 +66,7 @@
     enable = true;
     settings.git_protocol = "ssh";
   };
+
+  satellite.persistence.at.state.apps.gh.files = [ "${config.xdg.configHome}/gh/hosts.yml" ];
   # }}}
 }
