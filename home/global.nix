@@ -66,6 +66,9 @@ in
   # Nicely reload system units when changing configs
   systemd.user.startServices = lib.mkForce "sd-switch";
 
+  # Enable default application management
+  xdg.mimeApps.enable = true;
+
   # Tell sops-nix to use ssh keys for decrypting secrets
   sops.age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
 

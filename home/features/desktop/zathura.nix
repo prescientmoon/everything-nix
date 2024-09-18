@@ -87,9 +87,10 @@
 
   home.shellAliases.pdf = "zathura --fork";
 
+  # Make zathura the default app for opening pdfs.
+  xdg.mimeApps.defaultApplications."application/pdf" = [ "org.pwmt.zathura.desktop" ];
+
   # {{{ Persistence
-  satellite.persistence.at.state.apps.zathura.directories = [
-    "${config.xdg.dataHome}/zathura"
-  ];
+  satellite.persistence.at.state.apps.zathura.directories = [ "${config.xdg.dataHome}/zathura" ];
   # }}}
 }
