@@ -15,7 +15,7 @@ The current state of this repo is a refactor of my old, messy nixos config, base
 
 ## Hosts
 
-This repo's structure is based on the concept of hosts - individual machines configured by me. I'm naming each host based on things in space/mythology (_they are the same picture_). The hosts I have right now are:
+This repo's structure is based on separating configuration into individual hosts - different machines configured by me. Each host is named after things in space/mythology (_they are the same picture_). The hosts I have right now are:
 
 - [calypso](./hosts/nixos/calypso/) — my personal laptop
 - [tethys](./hosts/nixos/tethys/) — my previous personal laptop
@@ -28,6 +28,7 @@ This repo's structure is based on the concept of hosts - individual machines con
 | ---------------------------- | --------------------------------------------------- |
 | [common](./common)           | Configuration loaded on both nixos and home-manager |
 | [devshells](./devshells)     | Nix shells                                          |
+| [dns](./dns)                 | Directory for parts of my octodns nix-based wrapper |
 | [docs](./docs)               | Additional documentation regarding my setup         |
 | [home](./home)               | Home manager configurations                         |
 | [hosts/nixos](./hosts/nixos) | Nixos configurations                                |
@@ -59,7 +60,8 @@ Here's some things you might want to check out:
 - [Impernanence](https://github.com/nix-community/impermanence) — see the article about [erasing your darlings](https://grahamc.com/blog/erase-your-darlings)
 - [Sops-nix](https://github.com/Mic92/sops-nix) — secret management
 - [disko](https://github.com/nix-community/disko) — format disks using nix
-  - [zfs](https://openzfs.org/wiki/Main_Page) — filesystem
+  - [zfs](https://openzfs.org/wiki/Main_Page) — filesystem (on my server)
+  - [btrfs](https://btrfs.readthedocs.io/en/latest/) — filesystem (on my laptop)
 
 ### Input handling
 
@@ -72,6 +74,7 @@ Here's some things you might want to check out:
   - [Base16 templates](https://github.com/chriskempson/base16-templates-source) — list of base16 theme templates
   - [Catpuccin](https://github.com/catppuccin/catppuccin) — base16 theme I use
   - [Rosepine](https://rosepinetheme.com/) — another theme I use
+  - [Gruvbox](https://github.com/morhetz/gruvbox) — yet another theme I use
 - [Hyprland](https://hyprland.org/) — wayland compositor
   - [Wlogout](https://github.com/ArtsyMacaw/wlogout) — wayland logout menu
   - [Hyprpicker](https://github.com/hyprwm/hyprpicker) — hyprland color picker
@@ -132,7 +135,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 ## Hall of fame
 
-Includes links to stuff which used to be in the previous section but is not used anymore. Only created this section in June 2023, so stuff I used earlier might not be here. Sorted with the most recently dropped things at the top.
+This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
 - [htop](https://htop.dev/) — I switched to [bottom](https://github.com/ClementTsang/bottom), as the interface felt way cleaner
 - [Wezterm](https://github.com/wez/wezterm) — I switched to [Foot](https://codeberg.org/dnkl/foot), as wezterm was laggy, unstable, and kept breaking between releases
