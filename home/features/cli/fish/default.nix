@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   repaint = "commandline -f repaint";
   fishKeybinds = {
@@ -20,8 +25,10 @@ let
     "\\e\\[70\\;5u" = ''nvim +":lua require('mini.files').open()"'';
   };
 
-  mkKeybind = key: value:
-    let escaped = lib.escapeShellArg value;
+  mkKeybind =
+    key: value:
+    let
+      escaped = lib.escapeShellArg value;
     in
     ''
       bind -M default ${key} ${escaped}
@@ -29,18 +36,14 @@ let
     '';
 in
 {
-  # {{{ Fzf 
+  # {{{ Fzf
   programs.fzf = {
     enable = true;
     defaultOptions = [ "--no-scrollbar" ];
 
-    changeDirWidgetOptions = [
-      "--preview '${lib.getExe pkgs.eza} --icons --tree --color=always {}'"
-    ];
+    changeDirWidgetOptions = [ "--preview '${lib.getExe pkgs.eza} --icons --tree --color=always {}'" ];
 
-    fileWidgetOptions = [
-      "--preview '${lib.getExe pkgs.bat} --number --color=always {}'"
-    ];
+    fileWidgetOptions = [ "--preview '${lib.getExe pkgs.bat} --number --color=always {}'" ];
   };
 
   stylix.targets.fzf.enable = true;
@@ -60,30 +63,24 @@ in
       ${lib.getExe pkgs.nix-your-shell} fish | source
     '';
 
-    # {{{ Plugins 
+    # {{{ Plugins
     plugins =
       let
         plugins = with pkgs.fishPlugins; [
           z # Jump to directories by typing "z <directory-name>"
-          grc # Adds color to a bunch of built in commands
           done # Trigger a notification when long commands finish execution
           puffer # Text expansion (i.e. expanding .... to ../../../)
           sponge # Remove failed commands and whatnot from history
-          forgit # Git tui thingy? (I'm still trying this one out)
-          colored-man-pages # Self explainatory:)
+          colored-man-pages
         ];
       in
       # For some reason home-manager expects a slightly different format 🤔
-      lib.forEach plugins
-        (plugin: {
-          name = plugin.pname;
-          inherit (plugin) src;
-        });
+      lib.forEach plugins (plugin: {
+        name = plugin.pname;
+        inherit (plugin) src;
+      });
     # }}}
   };
-
-  # I sometimes get errors about `grc` being missing, so I gave up and added it here.
-  home.packages = [ pkgs.grc ];
 
   satellite.persistence.at.state.apps.fish.directories = [
     "${config.xdg.dataHome}/fish"

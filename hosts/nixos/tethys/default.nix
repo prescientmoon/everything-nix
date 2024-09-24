@@ -59,4 +59,7 @@
     # }
   ];
   # }}}
+  # {{{ SSH keys
+  users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../calypso/keys/id_ed25519.pub ];
+  # }}}
 }

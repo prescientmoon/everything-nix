@@ -49,6 +49,18 @@
       init.defaultBranch = "main";
       rebase.autoStash = true;
 
+      push.default = "current";
+      push.autoSetupRemote = true;
+
+      #  {{{ URL rewriting
+      url."git@github.com:".insteadOf = [
+        # Normalize GitHub URLs to SSH to avoid authentication issues with HTTPS.
+        "https://github.com/"
+
+        # Allows typing `git clone github:owner/repo`.
+        "github:"
+      ];
+      #  }}}
       # {{{ Signing
       # Sign commits using ssh
       gpg.format = "ssh";

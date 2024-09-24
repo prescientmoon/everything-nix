@@ -26,7 +26,7 @@
     ./services/grafana.nix
     ./services/guacamole
     ./services/homer.nix
-    ./services/intray.nix
+    # ./services/intray.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
     ./services/jupyter.nix
@@ -64,6 +64,15 @@
       value = "fd7a:115c:a1e0::e75d:883b";
     }
   ];
+  # }}}
+  # {{{ SSH keys
+  users.users.pilot.openssh.authorizedKeys.keyFiles = [
+    ../calypso/keys/id_ed25519.pub
+    ../tethys/keys/id_ed25519.pub
+  ];
+
+  users.users.root.openssh.authorizedKeys.keyFiles =
+    config.users.users.pilot.openssh.authorizedKeys.keyFiles;
   # }}}
 
   boot.loader.systemd-boot.enable = true;

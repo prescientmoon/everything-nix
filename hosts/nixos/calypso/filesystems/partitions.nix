@@ -62,19 +62,13 @@
                 # {{{ /persist/data
                 "persist-data" = {
                   mountpoint = "/persist/data";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
+                  mountOptions = [ "compress=zstd" ];
                 };
                 # }}}
                 # {{{ /persist/state
                 "persist-state" = {
                   mountpoint = "/persist/state";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
+                  mountOptions = [ "compress=zstd" ];
                 };
                 # }}}
                 # {{{ /local/nix

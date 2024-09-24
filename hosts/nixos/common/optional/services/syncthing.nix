@@ -18,7 +18,7 @@ in
     overrideFolders = true;
 
     settings = {
-      # {{{ Device ids 
+      # {{{ Device ids
       devices = {
         enceladus.id = "QWOAERM-V2FNXPI-TB7NFUS-LKW7JTB-IZY4OEZ-FYDPJNP-6IKPW4Y-YREXDQM";
         lapetus.id = "VVHM7RC-ZSDOZJI-EGBIJR4-2DOGAXG-OEJZWSH-OYUK5XT-7CDMWSL-3AVM2AZ";

@@ -55,10 +55,10 @@ block text
 
   pattern ([Ll]et)
     name definition
-    snip @1 \$$1 = $2\$
+    snip @0 \$$1 = $2\$ @0
 
   block auto
-    string im
+    string $
       name inline math
       snip \$$1\$$0
 
@@ -92,11 +92,18 @@ block math
         $7 & $8 & $9
       \end{@matenv}
 
-  for operator <- @⟨eq,neq,defas,leq,geq,lt,gt,iip,iib,iff⟩
-  for symbol <- @⟨@operator:=,\neq,\coloneq,\leq,\geq,<,>,\implies,\impliedby,\iff⟩
+  for createabbr <- @⟨false,true⟩
+  for operator <- @⟨@createabbr:
+    @⟨eq,lt,gt⟩,
+    @⟨neq,defas,leq,geq,iip,iib,iff⟩
+  ⟩
+  for symbol <- @⟨@createabbr:
+    @⟨@operator:=,<,>⟩,
+    @⟨@operator:\neq,\coloneq,\leq,\geq,\implies,\impliedby,\iff⟩
+  ⟩
 
   block auto
-    abbr @operator @symbol
+    abbr @⟨@createabbr:op-@operator,@operator⟩ @symbol
 
     string a@operator
       name align at @operator
@@ -177,6 +184,7 @@ block math
 
     abbr frl \forall
     abbr exs \exists
+    abbr iin \in
     abbr nin \not\in
     abbr ccup \cup
     abbr ccap \cap
@@ -187,9 +195,8 @@ block math
     abbr vsm \vecspace
     abbr oball \ball
 
-    for noperator <- @⟨ordop,land,lor⟩
-    string @noperator
-      snip \\@noperator
+    for noperator <- @⟨ordop,land,lor,equiv,pmod⟩
+    abbr @noperator \\@noperator
 
     for operator <- @⟨overline,hat,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,diam,prob⟩
     string @operator
@@ -247,10 +254,10 @@ block math
       name limit to @limtarget
       snip \lim_{$1 \to @limtargetsymbol} $0
 
-    string dint
+    string intd
       name definite integral
       snip \int_{$|1⟨$1,-\infty$1⟩}^$|2⟨{$2},\infty$2⟩ $3 \dif $0
 
-    string iint
+    string inti
       name indefinite integral
       snip \int $1 \dif $0

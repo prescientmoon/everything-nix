@@ -74,4 +74,9 @@ in
     };
     # }}}
   };
+
+  environment.persistence."/persist/local/cache".directories = [
+    "/var/cache/restic-backups-data"
+    "/var/cache/restic-backups-state"
+  ];
 }

@@ -53,6 +53,9 @@
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
   # }}}
+  # {{{ SSH keys
+  users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../tethys/keys/id_ed25519.pub ];
+  # }}}
 
   satellite.pilot.name = "moon";
   boot.loader.systemd-boot.enable = true;

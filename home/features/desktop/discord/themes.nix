@@ -2,19 +2,19 @@
 lib.fix (self: {
   "Catppuccin Mocha" = fetchurl {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
-    sha256 = "1gafrnm5mz8zh63zvcr3jp5fkzs9l0xnpwq3b4k7sbbzwg04nzw5";
+    sha256 = "0y9vha3gb48yid65r2zfkc6l021j1s8mlac3klkbksla9gqnd9wr";
   };
   "Catppuccin Frappe" = fetchurl {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-frappe.theme.css";
-    sha256 = "05y43fcwgy4sv9q6c49r5c92jzvq8vjrk05wy2zblp5v7zrli7sl";
+    sha256 = "19kmmydkbpig14ql6zn0vqzlfykm6qg7r317vwjzq9dg092lflam";
   };
   "Catppuccin Latte" = fetchurl {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css";
-    sha256 = "1c7vwr8f6sip7lsyp770hm170pnld1ikvqdsh2fxlsdkkn6ay2k3";
+    sha256 = "0lm1mzflyxmzpsyfkbcd1v7d1xp5i683yc6npbsm12z4hqn2smf6";
   };
   "Catppuccin Macchiato" = fetchurl {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-macchiato.theme.css";
-    sha256 = "11vig9i5kwhcbblspcp928gf4mvvp3v0qsibmh82wyxyw9ddzr7d";
+    sha256 = "01zd5zf9b4a2kkwnkpzg37g1macan6201wyi7zj2crsbxy8b7j6k";
   };
   default.dark = self."Catppuccin Macchiato";
   default.light = self."Catppuccin Latte";

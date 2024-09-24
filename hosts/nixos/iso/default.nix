@@ -43,10 +43,14 @@
     ];
   };
   # }}}
-
-  # Tell sops-nix to use the hermes keys for decrypting secrets
-  sops.age.sshKeyPaths = [ "/hermes/secrets/hermes/ssh_host_ed25519_key" ];
-
+  #  {{{ SSH keys
+  users.users.pilot.openssh.authorizedKeys.keyFiles = [
+    ../calypso/keys/id_ed25519.pub
+    ../lapetus/keys/id_ed25519.pub
+    ../tethys/keys/id_ed25519.pub
+  ];
+  #  }}}
+  #  {{{ Install some packages
   environment.systemPackages =
     let
       cloneConfig = pkgs.writeShellScriptBin "liftoff" ''
@@ -60,6 +64,10 @@
       neovim # Text editor
       cloneConfig # Clones my nixos config from github
     ];
+  #  }}}
+
+  # Tell sops-nix to use the hermes keys for decrypting secrets
+  sops.age.sshKeyPaths = [ "/hermes/secrets/hermes/ssh_host_ed25519_key" ];
 
   # Fast but bad compression
   # isoImage.squashfsCompression = "gzip -Xcompression-level 1";

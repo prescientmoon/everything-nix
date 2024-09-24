@@ -26,7 +26,7 @@ function M.setup()
       fallback = true,
 
       -- Directory where I store my local plugin projects
-      path = vim.g.nix_projects_path,
+      path = vim.g.nix_projects_dir,
       patterns = { "prescientmoon" },
     },
     performance = {

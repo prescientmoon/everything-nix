@@ -21,6 +21,9 @@
     # Configure users through nix only
     mutableUsers = false;
 
+    # Sync up root and `pilot` shell
+    users.root.shell = config.users.users.pilot.shell;
+
     # {{{ Create pilot user
     users.pilot = {
       inherit (config.satellite.pilot) name;
@@ -46,27 +49,6 @@
 
       hashedPasswordFile = config.sops.secrets.pilot_password.path;
       shell = pkgs.fish;
-
-      # {{{ Authorize ssh keys
-      openssh.authorizedKeys.keyFiles =
-        let
-          # Record containing all the hosts
-          hosts = outputs.nixosConfigurations;
-
-          # Function from hostname to relative path to public ssh key
-          idKey = host: ../../${host}/keys/id_ed25519.pub;
-        in
-        lib.pipe hosts [
-          # attrsetof host -> attrsetof path
-          (builtins.mapAttrs (name: _: idKey name)) # string -> host -> path
-
-          # attrsetof path -> path[]
-          builtins.attrValues
-
-          # path[] -> path[]
-          (builtins.filter builtins.pathExists)
-        ];
-      # }}}
     };
     # }}}
   };

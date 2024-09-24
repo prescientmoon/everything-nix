@@ -113,6 +113,16 @@
     "${config.xdg.configHome}/Signal" # Why tf does signal store it's state here 💀
   ];
   # }}}
+  # {{{ What's app
+  satellite.persistence.at.state.apps.whatsapp.directories = [
+    "${config.xdg.configHome}/whatsapp-for-linux"
+    "${config.xdg.stateHome}/whatsapp-for-linux"
+  ];
+
+  satellite.persistence.at.cache.apps.whatsapp.directories = [
+    "${config.xdg.cacheHome}/whatsapp-for-linux"
+  ];
+  # }}}
   # {{{ Lutris
   # TODO: there might be more to cache in .cache/lutris
   satellite.persistence.at.state.apps.lutris.directories = [
