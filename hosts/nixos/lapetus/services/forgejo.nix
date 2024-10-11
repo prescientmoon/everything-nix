@@ -59,5 +59,5 @@
   # Clean up dumps older than a week.
   # The data is also saved in zfs snapshots and rsync backups,
   # so this is just an extra layer of safety.
-  systemd.user.tmpfiles.rules = [ "d ${config.services.forgejo.stateDir}/dump - - - 7d" ];
+  systemd.tmpfiles.rules = [ "d ${config.services.forgejo.stateDir}/dump - - - 7d" ];
 }
