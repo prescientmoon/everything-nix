@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
@@ -47,16 +47,16 @@
   # }}}
   # {{{ Tailscale internal IP DNS records
   satellite.dns.records = [
-    # {
-    #   at = config.networking.hostName;
-    #   type = "A";
-    #   value = "100.93.136.59";
-    # }
-    # {
-    #   at = config.networking.hostName;
-    #   type = "AAAA";
-    #   value = "fd7a:115c:a1e0::e75d:883b";
-    # }
+    {
+      at = config.networking.hostName;
+      type = "A";
+      value = "100.93.136.59";
+    }
+    {
+      at = config.networking.hostName;
+      type = "AAAA";
+      value = "fd7a:115c:a1e0::e75d:883b";
+    }
   ];
   # }}}
   # {{{ SSH keys

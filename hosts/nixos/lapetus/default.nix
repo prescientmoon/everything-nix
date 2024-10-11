@@ -37,7 +37,7 @@
     ./services/qbittorrent.nix # turned on/off depending on whether my vpn is paid for
     ./services/radicale.nix
     ./services/redlib.nix
-    ./services/smos.nix
+    # ./services/smos.nix
     ./services/vaultwarden.nix
     ./services/whoogle.nix
     ./services/zfs.nix

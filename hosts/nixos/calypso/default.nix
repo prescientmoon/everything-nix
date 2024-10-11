@@ -37,16 +37,16 @@
   # }}}
   # {{{ Tailscale internal IP DNS records
   satellite.dns.records = [
-    # {
-    #   at = config.networking.hostName;
-    #   type = "A";
-    #   value = "100.93.136.59";
-    # }
-    # {
-    #   at = config.networking.hostName;
-    #   type = "AAAA";
-    #   value = "fd7a:115c:a1e0::e75d:883b";
-    # }
+    {
+      at = config.networking.hostName;
+      type = "A";
+      value = "100.74.40.5";
+    }
+    {
+      at = config.networking.hostName;
+      type = "AAAA";
+      value = "fd7a:115c:a1e0::1201:2806";
+    }
   ];
   # }}}
   # {{{ A few ad-hoc programs
