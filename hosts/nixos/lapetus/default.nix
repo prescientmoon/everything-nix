@@ -19,14 +19,16 @@
 
     # ./services/commafeed.nix
     # ./services/ddclient.nix
+    # ./services/guacamole
+    # ./services/intray.nix
+    # ./services/smos.nix
+    ./services/5d-diplomacy
     ./services/actual.nix
     ./services/cloudflared.nix
     ./services/diptime.nix
     ./services/forgejo.nix
     ./services/grafana.nix
-    ./services/guacamole
     ./services/homer.nix
-    # ./services/intray.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
     ./services/jupyter.nix
@@ -34,10 +36,9 @@
     ./services/pounce.nix
     ./services/prometheus.nix
     ./services/prometheus.nix
-    ./services/qbittorrent.nix # turned on/off depending on whether my vpn is paid for
+    ./services/qbittorrent.nix
     ./services/radicale.nix
     ./services/redlib.nix
-    # ./services/smos.nix
     ./services/vaultwarden.nix
     ./services/whoogle.nix
     ./services/zfs.nix

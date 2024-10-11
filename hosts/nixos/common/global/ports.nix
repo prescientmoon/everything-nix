@@ -25,5 +25,6 @@
     guacamole = 8421;
     syncthing = 8422;
     forgejo-ssh = 8423;
+    "5d-diplomacy" = 8424;
   };
 }
