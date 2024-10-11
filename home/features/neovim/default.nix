@@ -51,6 +51,7 @@ let
             list = false; # I don't want to show things like tabs
             cmdheight = 0; # Hide command line when it's not getting used
             spell = true; # Spell checker
+            signcolumn = "yes"; # Keeps the sign column of a consistent width
 
             # tcqj are there by default, and "r" automatically continues comments on enter
             formatoptions = "tcqjr";
