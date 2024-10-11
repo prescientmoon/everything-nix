@@ -4,7 +4,6 @@
     common-cpu-intel
     common-pc-laptop
     common-pc-laptop-hdd
-    common-pc-hdd
     ./generated.nix
   ];
 

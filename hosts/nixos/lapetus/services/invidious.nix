@@ -31,6 +31,14 @@
       db.user = "invidious";
     };
 
-    package = pkgs.invidious;
+    package = pkgs.invidious.overrideAttrs (_oldAttrs: {
+      src = pkgs.fetchFromGitHub {
+        owner = "iv-org";
+        repo = "invidious";
+        fetchSubmodules = true;
+        rev = "a88a723de3a3d96d8ff748cb117ae48265ee552c";
+        sha256 = "0v5fmz6dm7s94kw7ilblad95mfydsmk5dr3f1wwgxzzynvigy2bc";
+      };
+    });
   };
 }
