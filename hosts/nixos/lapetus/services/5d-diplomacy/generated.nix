@@ -109,7 +109,7 @@
       TimeoutSec = 300;
     };
     script = ''
-      docker build -t compose2nix-5d-diplomacy-backend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git:server
+      docker build -t compose2nix-5d-diplomacy-backend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:server
     '';
     partOf = [ "docker-compose-5d-diplomacy-root.target" ];
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];
@@ -125,7 +125,7 @@
       TimeoutSec = 300;
     };
     script = ''
-      docker build -t compose2nix-5d-diplomacy-frontend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git:client
+      docker build -t compose2nix-5d-diplomacy-frontend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:client
     '';
     partOf = [ "docker-compose-5d-diplomacy-root.target" ];
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];
