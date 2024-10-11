@@ -2,6 +2,7 @@
 { pkgs, lib, ... }:
 
 {
+
   # Containers
   virtualisation.oci-containers.containers."5d-diplomacy-backend" = {
     image = "localhost/compose2nix-5d-diplomacy-backend";
@@ -34,7 +35,6 @@
   };
   virtualisation.oci-containers.containers."5d-diplomacy-frontend" = {
     image = "localhost/compose2nix-5d-diplomacy-frontend";
-    ports = [ "127.0.0.1:5173:8080/tcp" ];
     log-driver = "journald";
     extraOptions = [
       "--network-alias=frontend"
@@ -65,11 +65,6 @@
       "ACCEPT_EULA" = "y";
       "MSSQL_SA_PASSWORD" = "Passw0rd@";
     };
-    volumes = [
-      "/home/moon/projects/5d-diplomacy-with-multiverse-time-travel/mssql-data/data:/var/opt/mssql/data:rw"
-      "/home/moon/projects/5d-diplomacy-with-multiverse-time-travel/mssql-data/log:/var/opt/mssql/log:rw"
-      "/home/moon/projects/5d-diplomacy-with-multiverse-time-travel/mssql-data/secrets:/var/opt/mssql/secrets:rw"
-    ];
     user = "root";
     log-driver = "journald";
     extraOptions = [
@@ -114,8 +109,7 @@
       TimeoutSec = 300;
     };
     script = ''
-      cd /home/moon/projects/5d-diplomacy-with-multiverse-time-travel/server
-      docker build -t compose2nix-5d-diplomacy-backend .
+      docker build -t compose2nix-5d-diplomacy-backend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git:server
     '';
     partOf = [ "docker-compose-5d-diplomacy-root.target" ];
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];
@@ -131,8 +125,7 @@
       TimeoutSec = 300;
     };
     script = ''
-      cd /home/moon/projects/5d-diplomacy-with-multiverse-time-travel/client
-      docker build -t compose2nix-5d-diplomacy-frontend .
+      docker build -t compose2nix-5d-diplomacy-frontend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git:client
     '';
     partOf = [ "docker-compose-5d-diplomacy-root.target" ];
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];
