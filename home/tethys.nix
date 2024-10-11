@@ -3,19 +3,17 @@
   imports = [
     ./global.nix
 
-    ./features/desktop/zathura.nix
-    ./features/desktop/spotify.nix
-    ./features/desktop/obsidian.nix
-    ./features/desktop/foot.nix
-    ./features/desktop/firefox
-    ./features/desktop/discord
     ./features/cli/catgirl.nix
-    ./features/cli/gpg.nix
     ./features/cli/lazygit.nix
     ./features/cli/nix-index.nix
-    ./features/cli/pass.nix
     ./features/cli/productivity
     ./features/cli/zellij.nix
+    ./features/desktop/discord
+    ./features/desktop/firefox
+    ./features/desktop/foot.nix
+    ./features/desktop/obsidian.nix
+    ./features/desktop/spotify.nix
+    ./features/desktop/zathura.nix
     ./features/wayland/hyprland
     ./features/neovim
   ];
