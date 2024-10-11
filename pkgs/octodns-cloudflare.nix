@@ -1,18 +1,18 @@
-{ lib
-, buildPythonPackage
-, fetchFromGitHub
-, octodns
-, pytestCheckHook
-, pythonOlder
-, dnspython
-, setuptools
-, requests
-, requests-mock
+{
+  buildPythonPackage,
+  fetchFromGitHub,
+  octodns,
+  pytestCheckHook,
+  pythonOlder,
+  dnspython,
+  setuptools,
+  requests,
+  requests-mock,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "octodns-cloudflare";
-  version = "unstable-2024-05-31";
+  version = "unstable-2024-10-08";
   pyproject = true;
 
   disabled = pythonOlder "3.8";
@@ -20,13 +20,11 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "octodns";
     repo = "octodns-cloudflare";
-    rev = "3c01938e280767f433eb276a75d6b02c152c02af";
-    sha256 = "1dnvyvf6mlpqcsrj11192li2mhqfs8w6pvaqmsy3jsqjqczmgmf5";
+    rev = "61a4b404b15c0c14cb18d36b48b834490e743319";
+    sha256 = "0kcih4dxgl9ihh22j6d7dbd0d1ylrjp6f60w1p5gzyini1c0a0x1";
   };
 
-  nativeBuildInputs = [
-    setuptools
-  ];
+  nativeBuildInputs = [ setuptools ];
 
   propagatedBuildInputs = [
     octodns

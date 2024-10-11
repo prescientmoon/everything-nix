@@ -104,7 +104,7 @@
         in
         myPkgs
         // {
-          octodns = upkgs.octodns.withProviders (ps: [ myPkgs.octodns-cloudflare ]);
+          octodns = myPkgs.octodns.withProviders (ps: [ myPkgs.octodns-cloudflare ]);
         }
         // (import ./dns/pkgs.nix) { inherit pkgs self system; }
       );

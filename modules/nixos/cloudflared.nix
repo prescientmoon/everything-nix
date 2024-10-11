@@ -85,6 +85,7 @@ in
           at = subdomain;
           zone = cfg.domain;
           value = "${cfg.tunnel}.cfargotunnel.com.";
+          enableCloudflareProxy = true;
         };
     in
     lib.attrsets.mapAttrsToList (_: mkDnsRecord) cfg.at;

@@ -69,7 +69,6 @@ let
 in
 # }}}
 {
-  satellite.dns.domain = "moonythm.dev";
   satellite.dns.records = lib.flatten [
     (ghPage "doffycup")
     (ghPage "erratic-gate")
