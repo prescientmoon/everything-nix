@@ -16,7 +16,7 @@ let
       initialize = true;
       repository = "sftp:${backupUrl}:backups/${name}";
       passwordFile = config.sops.secrets.backup_password.path;
-      extraOptions = [ "sftp.args='-i ${config.users.users.pilot.home}/.ssh/id_ed25519'" ];
+      extraOptions = [ "sftp.args='-i /persist/state/etc/ssh/ssh_host_ed25519_key'" ];
 
       exclude = [
         ".direnv" # Direnv
@@ -35,6 +35,8 @@ in
     # {{{ Data
     data = createBackup {
       name = "data";
+
+      # Kept for at most 1 year
       pruneOpts = [
         "--keep-daily 7"
         "--keep-weekly 4"
@@ -55,6 +57,8 @@ in
     # {{{ State
     state = createBackup {
       name = "state";
+
+      # Kept for at most 1 month
       pruneOpts = [
         "--keep-daily 3"
         "--keep-weekly 1"
@@ -65,11 +69,20 @@ in
       paths = [ "/persist/state" ];
       exclude =
         let
-          home = "/persist/state/${config.users.users.pilot.home}";
+          home = "/persist/state${config.users.users.pilot.home}";
         in
         [
-          "${home}/discord" # There's lots of cache stored in here
-          "${home}/steam" # Games can be quite big
+          "/persist/state/var/log"
+          "${home}/discord"
+          "${home}/element"
+          "${home}/firefox"
+          "${home}/lutris"
+          "${home}/qmk"
+          "${home}/signal"
+          "${home}/spotify"
+          "${home}/steam"
+          "${home}/whatsapp"
+          "${home}/wine"
         ];
     };
     # }}}

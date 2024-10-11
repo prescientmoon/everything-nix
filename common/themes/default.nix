@@ -13,7 +13,7 @@ let
     # {{{ Catppuccin mocha
     catppuccin-mocha = {
       stylix = {
-        image = ./wallpapers/breaking_phos.jpg;
+        image = ./wallpapers/purplecliffs.jpg;
         base16Scheme = base16 "catppuccin-mocha";
         opacity = transparency 0.7;
         polarity = "dark";
@@ -84,7 +84,7 @@ let
   };
 
   # Select your current theme here!
-  currentTheme = themes.catppuccin-macchiato;
+  currentTheme = themes.catppuccin-mocha;
 in
 {
   # We apply the current theme here.

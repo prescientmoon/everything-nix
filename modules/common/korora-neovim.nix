@@ -86,6 +86,7 @@ let
             );
             nix = k.listOf types.derivation;
           } [ ];
+          enabled = k.bool;
           cond = types.oneOrMany types.luaLiteral;
           init = types.luaEagerOrLazy (
             k.union [

@@ -177,6 +177,12 @@ in
             ];
           };
 
+          "NPM" = mkBasicSearchEngine {
+            url = "https://www.npmjs.com/search";
+            param = "q";
+            aliases = [ "@npm" ];
+          };
+
           "Wikipedia" = mkBasicSearchEngine {
             url = "https://en.wikipedia.org/wiki/Special:Search";
             param = "search";

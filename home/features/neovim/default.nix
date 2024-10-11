@@ -1526,6 +1526,7 @@ let
         # }}}
         # {{{ discord rich presence
         discord-rich-presence = {
+          enabled = false;
           package = "andweeb/presence.nvim";
           main = "presence";
 

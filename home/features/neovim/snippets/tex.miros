@@ -55,7 +55,7 @@ block text
 
   pattern ([Ll]et)
     name definition
-    snip @0 \$$1 = $2\$ @0
+    snip @1 \$$1 = $2\$ @0
 
   block auto
     string $

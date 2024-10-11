@@ -55,7 +55,7 @@
       #  {{{ URL rewriting
       url."git@github.com:".insteadOf = [
         # Normalize GitHub URLs to SSH to avoid authentication issues with HTTPS.
-        "https://github.com/"
+        # "https://github.com/"
 
         # Allows typing `git clone github:owner/repo`.
         "github:"

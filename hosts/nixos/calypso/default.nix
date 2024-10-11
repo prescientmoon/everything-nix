@@ -52,10 +52,14 @@
   # {{{ A few ad-hoc programs
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
+  programs.nix-ld.enable = true; # Useful for running non-nix executables
   # }}}
   # {{{ SSH keys
   users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../tethys/keys/id_ed25519.pub ];
   # }}}
+
+  programs.adb.enable = true;
+  users.users.pilot.extraGroups = [ "adbusers" ];
 
   satellite.pilot.name = "moon";
   boot.loader.systemd-boot.enable = true;

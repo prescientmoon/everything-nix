@@ -8,6 +8,7 @@
     ./features/desktop/obsidian.nix
     ./features/desktop/foot.nix
     ./features/desktop/steam.nix
+    ./features/desktop/edopro.nix
     ./features/desktop/firefox
     ./features/desktop/discord
     ./features/cli/productivity
