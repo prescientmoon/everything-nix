@@ -5,7 +5,7 @@
 
   # Containers
   virtualisation.oci-containers.containers."5d-diplomacy-backend" = {
-    image = "localhost/compose2nix-5d-diplomacy-backend";
+    image = "compose2nix-5d-diplomacy-backend";
     environment = {
       "ConnectionStrings__Database" = "Server=mssql;Database=diplomacy;User=SA;Password=Passw0rd@;Encrypt=True;TrustServerCertificate=True";
     };
@@ -34,7 +34,7 @@
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];
   };
   virtualisation.oci-containers.containers."5d-diplomacy-frontend" = {
-    image = "localhost/compose2nix-5d-diplomacy-frontend";
+    image = "compose2nix-5d-diplomacy-frontend";
     log-driver = "journald";
     extraOptions = [
       "--network-alias=frontend"
