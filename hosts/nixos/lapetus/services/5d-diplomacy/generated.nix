@@ -5,7 +5,7 @@
 
   # Containers
   virtualisation.oci-containers.containers."5d-diplomacy-backend" = {
-    image = "compose2nix-5d-diplomacy-backend";
+    image = "compose2nix/5d-diplomacy-backend";
     environment = {
       "ConnectionStrings__Database" = "Server=mssql;Database=diplomacy;User=SA;Password=Passw0rd@;Encrypt=True;TrustServerCertificate=True";
     };
@@ -34,7 +34,7 @@
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];
   };
   virtualisation.oci-containers.containers."5d-diplomacy-frontend" = {
-    image = "compose2nix-5d-diplomacy-frontend";
+    image = "compose2nix/5d-diplomacy-frontend";
     log-driver = "journald";
     extraOptions = [
       "--network-alias=frontend"
@@ -109,7 +109,7 @@
       TimeoutSec = 300;
     };
     script = ''
-      docker build -t compose2nix-5d-diplomacy-backend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:server
+      docker build -t compose2nix/5d-diplomacy-backend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:server
     '';
     partOf = [ "docker-compose-5d-diplomacy-root.target" ];
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];
@@ -125,7 +125,7 @@
       TimeoutSec = 300;
     };
     script = ''
-      docker build -t compose2nix-5d-diplomacy-frontend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:client
+      docker build -t compose2nix/5d-diplomacy-frontend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:client
     '';
     partOf = [ "docker-compose-5d-diplomacy-root.target" ];
     wantedBy = [ "docker-compose-5d-diplomacy-root.target" ];

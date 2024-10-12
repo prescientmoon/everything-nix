@@ -1,5 +1,11 @@
 { config, ... }:
 {
+  # Regenerate by going to the 5d-diplomacy directory and running:
+  # nix run github:aksiksi/compose2nix -- \
+  #   -project 5d-diplomacy \
+  #   -runtime docker \
+  #   -write_nix_setup=false \
+  #   -build
   imports = [ ./generated.nix ];
 
   satellite.cloudflared.at.dip.port = config.satellite.ports."5d-diplomacy";

@@ -14,8 +14,14 @@ in
     volumes = [ "${dataDir}:/commafeed/data" ]; # server:docker
 
     # the JVM is way too hungry
-    entrypoint = builtins.toJSON
-      [ "java" "-Xmx64m" "-jar" "commafeed.jar" "server" "config.yml" ];
+    entrypoint = builtins.toJSON [
+      "java"
+      "-Xmx64m"
+      "-jar"
+      "commafeed.jar"
+      "server"
+      "config.yml"
+    ];
 
     # https://github.com/Athou/commafeed/blob/master/commafeed-server/config.yml.example
     environment = {
