@@ -491,18 +491,18 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1723521794,
-        "narHash": "sha256-mmcakr+6z7/SDg+e2p1TYQorjYvUzWqG2KUIsmikARM=",
+        "lastModified": 1728792245,
+        "narHash": "sha256-u3DIFQ26jtO9kgxSXMVYYdjSF8VArR0jA0N7ns1wWoo=",
         "ref": "refs/heads/master",
-        "rev": "abafaabfa893ac432bae898a8652bc4a83c49d27",
-        "revCount": 3727,
+        "rev": "8064396aa8c2491dcecbedf9c71140936f032056",
+        "revCount": 3842,
         "type": "git",
-        "url": "https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons"
+        "url": "https://gitlab.com/rycee/nur-expressions"
       },
       "original": {
         "dir": "pkgs/firefox-addons",
         "type": "git",
-        "url": "https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons"
+        "url": "https://gitlab.com/rycee/nur-expressions"
       }
     },
     "flake-compat": {
@@ -1274,11 +1274,11 @@
         "purifix": "purifix"
       },
       "locked": {
-        "lastModified": 1728771451,
-        "narHash": "sha256-WazYd0cPY7FqDanOfyMf9qiciSj2wEL8NJ1sV8LV4Rs=",
+        "lastModified": 1728796450,
+        "narHash": "sha256-16AGyN4HddZXQFaxYZjPVYxSd4b2pKJ7wUwiNgHHXQs=",
         "owner": "prescientmoon",
         "repo": "miros",
-        "rev": "2e49f31f22855d1428ab693cf7d0e25b839dce28",
+        "rev": "21e1332cc763049e27f6597967b3ac2f73fa7599",
         "type": "github"
       },
       "original": {

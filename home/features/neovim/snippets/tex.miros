@@ -1,3 +1,6 @@
+block text
+  import common/math-phrases
+
 for thmenv <- @⟨theorem,lemma,exercise,definition,corollary,example⟩
 for thmprefix <- @⟨@thmenv:thm,lem,exe,def,cor,exa⟩
 
@@ -164,51 +167,75 @@ block math
         ⟩}}$0
 
   block auto
-    for constkind <- @⟨default,shortened⟩
-    for constant <- @⟨@constkind:
-      @⟨star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega,half,ordop,land,lor⟩,
-      @⟨lam,eps,iinf⟩
-    ⟩
-    for expansion <- @⟨@constkind:
-      @constant,
-      @⟨@constant:lambda,epsilon,ifty⟩
-    ⟩
+    block word
+      for constkind <- @⟨default,shortened⟩
+      for constant <- @⟨@constkind:
+        @⟨star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega,half,ordop,land,lor⟩,
+        @⟨lam,eps,iinf⟩
+      ⟩
+      for expansion <- @⟨@constkind:
+        @constant,
+        @⟨@constant:lambda,epsilon,ifty⟩
+      ⟩
 
-    for operator <- @⟨,e,s⟩
-    string @operator@constant
-      snip @⟨@operator:,^,_⟩\\@expansion
+      for operator <- @⟨,e,s⟩
+      string @operator@constant
+        snip @⟨@operator:,^,_⟩\\@expansion
 
-    abbr niinf -\ifty
-    abbr eniinf ^{-\ifty}
-    abbr sniinf _{-\ifty}
+      abbr niinf -\ifty
+      abbr eniinf ^{-\ifty}
+      abbr sniinf _{-\ifty}
 
-    abbr frl \forall
-    abbr exs \exists
-    abbr iin \in
-    abbr nin \not\in
-    abbr ccup \cup
-    abbr ccap \cap
-    abbr nope \bot
-    abbr yee \top
+      abbr frl \forall
+      abbr exs \exists
 
-    abbr nlnl \pm
-    abbr vsm \vecspace
-    abbr oball \ball
+      abbr card \#
+      abbr ccap \cap
+      abbr ccup \cup
+      abbr iin \in
+      abbr nin \not\in
+      abbr nuls \varnothing
+      abbr ortco ^\bot
+      abbr sdiff \setminus
+      abbr sinter ^\circ
+      abbr smul \times
+      abbr speq \supseteq
+      abbr spt \supset
+      abbr sseq \subseteq
+      abbr sst \subset
 
-    for noperator <- @⟨ordop,land,lor,equiv,pmod⟩
-    abbr @noperator \\@noperator
+      abbr nope \bot
+      abbr yee \top
 
-    for operator <- @⟨overline,hat,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,diam,prob⟩
-    string @operator
-      snip \\@operator$|1⟨{$1}, $0⟩
+      abbr ccan \cancel
+      abbr com \circ
+      abbr limsup \lim\sup
+      abbr mangle \measuredangle
+      abbr mul \cdot
+      abbr nlnl \pm
+      abbr oball \ball
+      abbr vsm \vecspace
 
-    for bioperator <- @⟨iprod,frac,binom,dist⟩
-    string @bioperator
-      snip \\@bioperator$|1⟨ $1,{$1}⟩$|2⟨ $2,{$2}⟩ $0
+      abbr bb \mathbb
+      abbr cal \mathcal
 
-    string set
-      desc Create a set by escaping the brackets
-      snip \{$1\}
+      for set <- @⟨N,Z,Q,I,R,C,P,F⟩
+      abbr @⟨@set:nats,ints,rats,irats,rrea,comp,ppri,ffie⟩ \mathbb @set
+
+      for noperator <- @⟨ordop,land,lor,equiv,pmod,ldots,cdots,perp,lim,angle,sup⟩
+      abbr @noperator \\@noperator
+
+      for operator <- @⟨overline,hat,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,diam,prob⟩
+      string @operator
+        snip \\@operator$|1⟨{$1}, $0⟩
+
+      for bioperator <- @⟨iprod,frac,binom,dist⟩
+      string @bioperator
+        snip \\@bioperator$|1⟨ $1,{$1}⟩$|2⟨ $2,{$2}⟩ $0
+
+      string set
+        desc Create a set by escaping the brackets
+        snip \{$1\}
 
     pattern (.*)e@⟨t(%a),(%d)⟩
       name auto exponent
@@ -246,6 +273,7 @@ block math
       abbr .inv ^{-1}
       abbr .neg _-
       abbr .pos _+
+      abbr .t ^T
 
     for limtarget <- @⟨anything,zero,infinity,negative infinity⟩
     for prefix <- @⟨@limtarget:,z,i,n⟩

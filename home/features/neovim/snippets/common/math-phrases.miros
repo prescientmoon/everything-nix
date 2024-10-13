@@ -1,23 +1,36 @@
-block !word
-  for s <- @⟨,s⟩
+block auto !word
+  block capitalize
+    abbr bcla by contradiction let's assume
+    abbr wlg without loss of generality
+    abbr tits that is to say,
+    abbr wpbd we will prove the statement in both directions.
+    abbr itf it then follows
 
-  block
-    for b <- @⟨b,B⟩
-    for w <- @⟨w,W⟩
-    for t <- @⟨w,W⟩
+    for who <- @⟨which,this⟩
+    for what <- @⟨means,implies⟩
+    abbr @⟨@who:ww,tt⟩@⟨@what:m,i⟩ @who @what
 
+  abbr stam statement
+  abbr cox counterexample
+  abbr lcon linear combination
+  abbr vst vector space
 
-    abbr @b⋄cla @b⋄y contradiction let's assume
-    abbr @w⋄lg @w⋄ithout loss of generality
-    abbr @t⋄its @t⋄hat is to say,
-    abbr @w⋄pbd @w⋄e will prove the statement in both directions.
-
-    abbr stam@s statement@s
-    abbr cex@s counterexample@s
-
-  for who <- @⟨which, this⟩
-  for what <- @⟨means, implies⟩
-  abbr @who@what @⟨@who:which,this⟩@⟨@what:means,implies⟩
+  abbr vx vertex
+  abbr mx matrix
+  abbr vertexs vertices
+  abbr matrixs matrices
 
   for kind <- @⟨parts,substitution⟩
   abbr ib@⟨@kind:p,s⟩ integration by @kind
+
+  for kind <- @⟨independent,dependent⟩
+  abbr l@⟨@kind:ind,de⟩ linearly @kind
+
+  for kind <- @⟨value,vector,pair⟩
+  abbr eg@⟨@kind:va,ve,p⟩ eigen@kind
+
+  for kind <- @⟨orthogonal,orthonormal⟩
+  abbr @⟨@kind:ortg,ortn⟩ @kind
+
+  for kind <- @⟨scalar,ordinary,linear,⟩
+  abbr @⟨@kind:s,o,l,⟩deq @kind differential equation

@@ -22,6 +22,7 @@
         comments = [
           "youtube"
           "reddit"
+
         ];
         save_player_pos = true;
         automatic_instance_redirect = true;
