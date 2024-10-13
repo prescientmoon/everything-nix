@@ -23,8 +23,4 @@ function M.manyGlobalAbbr(abbreviations)
   end
 end
 
-function M.setup()
-  require("my.abbreviations.global").setup()
-end
-
 return M

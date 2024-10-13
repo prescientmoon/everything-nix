@@ -8,26 +8,6 @@ local function nocap(d)
 end
 
 M.words = {
-  -- {{{ General phrases
-  { "thrf", "therefore" },
-  { "bcla", "by contradiction let's assume" },
-  { "wlg", "without loss of generality" },
-  { "tits", "that is to say," },
-  { "wpbd", "we will prove the statement in both directions." },
-  { "stam{,s}", "statement{}" },
-  { "{ww,tt}{m,i}", "{which,this} {means,implies}" },
-  { "cex{,s}", "counterexample{}" },
-  { "er{t,s,r}", "{transitivity,symmetry,reflexivity}" },
-  -- }}}
-  -- {{{ Calculus & analysis
-  { "ib{p,s}", "integration by {parts,substitution}" },
-  { "{o,c,}nb{,h}{,s}", "{open,closed,} neighbour{,hood}{}" },
-  {
-    "{n,}{{c,}d,iv,it}ble",
-    "{non-,}{{continuously,} differentia,inverti,integra}ble",
-  },
-  nocap({ "lshiz{c,}", "Lipschitz{ condition,}" }),
-  -- }}}
   -- {{{ Linear algebra
   { "rref", "reduced row echalon form" },
   { "eg{va,ve,p}{,s}", "eigen{value,vector,pair}{}" },

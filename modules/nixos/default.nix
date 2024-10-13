@@ -7,6 +7,4 @@
   nginx = ./nginx.nix;
   pilot = ./pilot.nix;
   pounce = ./pounce.nix;
-  dns = ./dns.nix;
-  dns-assertions = ./dns-assertions.nix;
 }

@@ -6,8 +6,7 @@ end
 
 function M.setup()
   require("lazy").setup({
-    require("my.plugins.themes"),
-    require("my.plugins.whichkey"),
+    require("my.themes"),
     unpack(require("nix").lazy),
   }, {
     defaults = { lazy = true },

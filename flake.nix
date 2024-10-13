@@ -56,7 +56,7 @@
     miros.inputs.nixpkgs.follows = "nixpkgs";
 
     # Spotify client with theming support
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Theming
@@ -103,10 +103,12 @@
           myPkgs = import ./pkgs { inherit pkgs upkgs; };
         in
         myPkgs
-        // {
-          octodns = myPkgs.octodns.withProviders (ps: [ myPkgs.octodns-cloudflare ]);
+        // (import ./dns/implementation) {
+          inherit pkgs;
+          extraModules = [ ./dns/config/common.nix ];
+          octodnsConfig = ./dns/config/octodns.yaml;
+          nixosConfigurations = builtins.removeAttrs self.nixosConfigurations [ "iso" ];
         }
-        // (import ./dns/pkgs.nix) { inherit pkgs self system; }
       );
       # }}}
       # {{{ Bootstrapping and other pinned devshells

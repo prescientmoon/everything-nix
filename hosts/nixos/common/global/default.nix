@@ -14,6 +14,10 @@ let
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
     # }}}
+    # {{{ Satellite subprojects
+    ../../../../dns/implementation/nixos-module.nix
+    ../../../../dns/implementation/nixos-module-assertions.nix
+    # }}}
     # {{{ global configuration
     ./cli/fish.nix
     ./services/openssh.nix

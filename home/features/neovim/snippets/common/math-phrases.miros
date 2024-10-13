@@ -1,0 +1,23 @@
+block !word
+  for s <- @⟨,s⟩
+
+  block
+    for b <- @⟨b,B⟩
+    for w <- @⟨w,W⟩
+    for t <- @⟨w,W⟩
+
+
+    abbr @b⋄cla @b⋄y contradiction let's assume
+    abbr @w⋄lg @w⋄ithout loss of generality
+    abbr @t⋄its @t⋄hat is to say,
+    abbr @w⋄pbd @w⋄e will prove the statement in both directions.
+
+    abbr stam@s statement@s
+    abbr cex@s counterexample@s
+
+  for who <- @⟨which, this⟩
+  for what <- @⟨means, implies⟩
+  abbr @who@what @⟨@who:which,this⟩@⟨@what:means,implies⟩
+
+  for kind <- @⟨parts,substitution⟩
+  abbr ib@⟨@kind:p,s⟩ integration by @kind

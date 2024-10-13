@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, ... }:
 {
   sops.secrets.microbin_env.sopsFile = ../secrets.yaml;
   satellite.cloudflared.at.bin.port = config.satellite.ports.microbin;
 
   services.microbin = {
     enable = true;
-    dataDir = "/var/lib/microbin";
+    dataDir = "/persist/state/var/lib/microbin";
     passwordFile = config.sops.secrets.microbin_env.path;
 
     # {{{ Settings
@@ -39,11 +39,4 @@
     };
     # }}}
   };
-
-  systemd.services.microbin.serviceConfig = {
-    # We want to use systemd's `StateDirectory` mechanism to fix permissions
-    ReadWritePaths = lib.mkForce [ ];
-  };
-
-  environment.persistence."/persist/state".directories = [ "/var/lib/private/microbin" ];
 }

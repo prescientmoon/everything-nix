@@ -362,9 +362,7 @@ let
         # {{{ scrap
         scrap = {
           package = "prescientmoon/scrap.nvim";
-
           event = "InsertEnter";
-          config.setup."my.abbreviations" = true;
         };
         # }}}
         # }}}
@@ -375,10 +373,6 @@ let
           name = "mini.statusline";
           dependencies.lua = [ "web-devicons" ];
 
-          cond = blacklist [
-            "vscode"
-            "firenvim"
-          ];
           lazy = false;
 
           opts.content.inactive =
@@ -417,10 +411,6 @@ let
           name = "mini.files";
           dependencies.lua = [ "web-devicons" ];
 
-          cond = blacklist [
-            "vscode"
-            "firenvim"
-          ];
           keys = {
             mapping = "<c-s-f>";
             desc = "[S]earch [F]iles";
@@ -439,6 +429,17 @@ let
           opts.mappings.go_in_plus = "l";
         };
         # }}}
+        # {{{ quicker.nvim
+        quicker-nvim = {
+          package = "stevearc/quicker.nvim";
+          name = "quicker.nvim";
+          dependencies.lua = [ "web-devicons" ];
+          event = "FileType qf";
+
+          opts = { };
+        };
+        # }}}
+
         # {{{ harpoon
         harpoon = {
           package = "ThePrimeagen/harpoon";
@@ -478,7 +479,6 @@ let
         telescope = {
           package = "nvim-telescope/telescope.nvim";
           version = "0.1.x";
-          cond = blacklist "vscode";
           event = "VeryLazy";
 
           # {{{ Dependencies
@@ -550,7 +550,6 @@ let
         dressing = {
           package = "stevearc/dressing.nvim";
 
-          cond = blacklist "vscode";
           event = "VeryLazy";
 
           opts = {
@@ -572,7 +571,6 @@ let
           package = "lukas-reineke/indent-blankline.nvim";
           main = "ibl";
 
-          cond = blacklist "vscode";
           event = "VeryLazy";
           config = true;
 
@@ -624,7 +622,6 @@ let
           package = "j-hui/fidget.nvim";
           tag = "legacy";
 
-          cond = blacklist "vscode";
           event = "BufReadPre";
           config = true;
         };
@@ -644,7 +641,6 @@ let
 
           dependencies.nix = [ pkgs.tree-sitter ];
 
-          cond = blacklist "vscode";
           event = "VeryLazy";
 
           #{{{ Highlighting
@@ -665,7 +661,6 @@ let
         flash = {
           package = "folke/flash.nvim";
 
-          cond = blacklist "vscode";
           keys =
             let
               nmap = mode: mapping: action: desc: {
@@ -689,7 +684,6 @@ let
         ftft = {
           package = "gukz/ftFT.nvim";
 
-          cond = blacklist "vscode";
           keys = [
             "f"
             "F"
@@ -704,7 +698,6 @@ let
         clipboard-image = {
           package = "postfen/clipboard-image.nvim";
 
-          cond = blacklist "firenvim";
           cmd = "PasteImg";
 
           keys = {
@@ -734,7 +727,6 @@ let
         lastplace = {
           package = "ethanholz/nvim-lastplace";
 
-          cond = blacklist "vscode";
           event = "BufReadPre";
 
           opts.lastplace_ignore_buftype = [
@@ -748,7 +740,6 @@ let
         undotree = {
           package = "mbbill/undotree";
 
-          cond = blacklist "vscode";
           cmd = "UndotreeToggle";
           keys = nmap "<leader>u" "<cmd>UndoTreeToggle<cr>" "[U]ndo tree";
         };
@@ -897,7 +888,6 @@ let
           package = "L3MON4D3/LuaSnip";
           version = "v2";
 
-          cond = blacklist "vscode";
           config =
             _:
             do [
@@ -963,7 +953,6 @@ let
           dir = miros-nvim;
           dependencies.nix = [ miros ];
 
-          cond = blacklist "vscode";
           ft = "miros";
 
           keys = {
@@ -1018,7 +1007,6 @@ let
           ];
           package = "neovim/nvim-lspconfig";
 
-          cond = blacklist "vscode";
           event = "VeryLazy";
 
           config =
@@ -1106,7 +1094,6 @@ let
             );
           package = "stevearc/conform.nvim";
 
-          cond = blacklist "vscode";
           event = "VeryLazy";
 
           opts.format_on_save.lsp_fallback = true;
@@ -1165,7 +1152,6 @@ let
           dependencies.lua = [ "lspconfig" ];
           dependencies.nix = lib.lists.optional packedTargets.python pkgs.ruff;
 
-          cond = blacklist "vscode";
           event = "VeryLazy";
 
           opts = _: { sources = [ (require "null-ls" /builtins/diagnostics/ruff) ]; };
@@ -1187,7 +1173,6 @@ let
             "luasnip"
           ];
 
-          cond = blacklist "vscode";
           event = [
             "InsertEnter"
             "CmdlineEnter"
@@ -1207,7 +1192,6 @@ let
             "nvim-neotest/nvim-nio"
           ];
 
-          cond = blacklist "vscode";
           config = _: {
             setup.neotest = {
               status.virtual_text = true;
@@ -1245,7 +1229,6 @@ let
           dependencies.lua = [ "plenary" ];
           version = "^2";
 
-          cond = blacklist "vscode";
           ft = [
             "haskell"
             "lhaskell"
@@ -1276,7 +1259,6 @@ let
             pkgs.rustfmt
           ];
 
-          cond = blacklist "vscode";
           lazy = false; # This plugin is already lazy
 
           config.autocmds = {
@@ -1296,7 +1278,6 @@ let
           package = "saecki/crates.nvim";
           dependencies.lua = [ "plenary" ];
 
-          cond = blacklist "vscode";
           event = "BufReadPost Cargo.toml";
 
           # {{{ Set up null_ls source
@@ -1374,7 +1355,6 @@ let
             "lspconfig"
           ];
 
-          cond = blacklist "vscode";
           ft = "lean";
 
           opts = {
@@ -1399,7 +1379,6 @@ let
             "lspconfig"
           ];
 
-          cond = blacklist "vscode";
           ft = [
             "idris2"
             "lidris2"
@@ -1436,7 +1415,6 @@ let
         github-actions = {
           package = "yasuhiroki/github-actions-yaml.vim";
 
-          cond = blacklist "vscode";
           ft = [
             "yml"
             "yaml"
@@ -1452,7 +1430,6 @@ let
             upkgs.typstfmt
           ];
 
-          cond = blacklist "vscode";
           ft = "typst";
         };
         # }}}
@@ -1460,7 +1437,6 @@ let
         purescript = {
           package = "purescript-contrib/purescript-vim";
 
-          cond = blacklist "vscode";
           ft = "purescript";
         };
         # }}}
@@ -1468,7 +1444,6 @@ let
         hyprland = {
           package = "theRealCarneiro/hyprland-vim-syntax";
 
-          cond = blacklist "vscode";
           ft = "hypr";
 
           init.autocmds = {
@@ -1483,7 +1458,6 @@ let
         # Required for yarn PNP to work
         rzip = {
           package = "lbrayner/vim-rzip";
-          cond = blacklist "vscode";
           event = "VeryLazy";
         };
         # }}}
@@ -1499,7 +1473,6 @@ let
           in
           {
             dir = "${djot}/editors/vim";
-            cond = blacklist "vscode";
             ft = "djot";
 
             config.autocmds = {
@@ -1518,10 +1491,6 @@ let
           package = "wakatime/vim-wakatime";
           dependencies.nix = [ pkgs.wakatime ];
 
-          cond = blacklist [
-            "vscode"
-            "firenvim"
-          ];
           event = "VeryLazy";
         };
         # }}}
@@ -1531,10 +1500,6 @@ let
           package = "andweeb/presence.nvim";
           main = "presence";
 
-          cond = blacklist [
-            "vscode"
-            "firenvim"
-          ];
           event = "VeryLazy";
           config = true;
         };
@@ -1545,10 +1510,6 @@ let
           package = "ruifm/gitlinker.nvim";
           dependencies.lua = [ "plenary" ];
 
-          cond = blacklist [
-            "vscode"
-            "firenvim"
-          ];
           opts.mappings = "<leader>yg";
           keys = {
             mapping = opts.mappings;
@@ -1566,16 +1527,7 @@ let
             dependencies.lua = [ "plenary" ];
 
             event = "VeryLazy";
-            cond = [
-              (blacklist [
-                "vscode"
-                "firenvim"
-              ])
-              (
-                # lua
-                lua "vim.loop.cwd() == ${encode obsidianVault}"
-              )
-            ];
+            cond = lua "vim.loop.cwd() == ${encode obsidianVault}";
 
             config.keys =
               let
@@ -1623,11 +1575,7 @@ let
         # {{{ navigator
         navigator = {
           package = "numToStr/Navigator.nvim";
-          cond = blacklist [
-            "vscode"
-            "firenvim"
-            "neovide"
-          ];
+          cond = blacklist [ "neovide" ];
 
           config = true;
           keys = [

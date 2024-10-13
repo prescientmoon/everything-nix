@@ -72,6 +72,7 @@ in
   satellite.dns.records = lib.flatten [
     (ghPage "doffycup")
     (ghPage "erratic-gate")
+    (ghPage "giftstogo")
     (migaduMail "" "kfkhyexd")
     (migaduMail "orbit" "24s7lnum")
   ];

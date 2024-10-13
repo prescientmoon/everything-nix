@@ -1,11 +1,17 @@
-{ inputs, pkgs, config, lib, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
   themeMap = lib.fix (self: {
-    "Catppuccin Mocha" = spicePkgs.themes.Comfy;
-    "Catppuccin Latte" = spicePkgs.themes.Comfy;
-    "Catppuccin Frappe" = spicePkgs.themes.Comfy;
-    "Catppuccin Macchiato" = spicePkgs.themes.Comfy;
+    "Catppuccin Mocha" = spicePkgs.themes.comfy;
+    "Catppuccin Latte" = spicePkgs.themes.comfy;
+    "Catppuccin Frappe" = spicePkgs.themes.comfy;
+    "Catppuccin Macchiato" = spicePkgs.themes.comfy;
 
     default.light = self."Catppuccin Latte";
     default.dark = self."Catppuccin Macchiato";
@@ -32,34 +38,28 @@ in
     colorScheme = config.satellite.theming.get colorschemeMap;
 
     enabledExtensions = with spicePkgs.extensions; [
+      adblock
+      betterGenres
+      bookmark
+      fullAlbumDate
       fullAppDisplayMod
-      shuffle # Working shuffle
+      groupSession
       keyboardShortcut
-      skipStats # Track my skips
       listPlaylistsWithSong # Adds button to show playlists which contain a song
       playlistIntersection # Shows stuff that's in two different playlists
-      fullAlbumDate
-      bookmark
-      trashbin
-      groupSession
-      wikify # Shows an artist's wikipedia entry
-      songStats
-      showQueueDuration
-      # REASON: broken
-      # https://github.com/the-argus/spicetify-nix/issues/50
-      # genre
-      adblock
       savePlaylists # Adds a button to duplicate playlists
+      showQueueDuration
+      shuffle # Working shuffle
+      skipStats # Track my skips
+      songStats
+      trashbin
+      wikify # Shows an artist's wikipedia entry
     ];
   };
 
   # {{{ Persistence
-  satellite.persistence.at.state.apps.spotify.directories = [
-    "${config.xdg.configHome}/spotify"
-  ];
+  satellite.persistence.at.state.apps.spotify.directories = [ "${config.xdg.configHome}/spotify" ];
 
-  satellite.persistence.at.cache.apps.spotify.directories = [
-    "${config.xdg.cacheHome}/spotify"
-  ];
+  satellite.persistence.at.cache.apps.spotify.directories = [ "${config.xdg.cacheHome}/spotify" ];
   # }}}
 }
