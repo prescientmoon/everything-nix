@@ -1274,11 +1274,11 @@
         "purifix": "purifix"
       },
       "locked": {
-        "lastModified": 1728796450,
-        "narHash": "sha256-16AGyN4HddZXQFaxYZjPVYxSd4b2pKJ7wUwiNgHHXQs=",
+        "lastModified": 1728837827,
+        "narHash": "sha256-3BIeNuntiR0xrKIPNRbp7EInWRjgJ1LzWJI/HiQ68k0=",
         "owner": "prescientmoon",
         "repo": "miros",
-        "rev": "21e1332cc763049e27f6597967b3ac2f73fa7599",
+        "rev": "457414c4dd64dae05414f8e4181d8be7672fb89b",
         "type": "github"
       },
       "original": {

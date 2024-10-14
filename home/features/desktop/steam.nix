@@ -5,6 +5,7 @@
     directories = [
       ".factorio"
       "${config.xdg.dataHome}/Steam"
+      "${config.xdg.dataHome}/VVVVVV"
     ];
   };
   # }}}

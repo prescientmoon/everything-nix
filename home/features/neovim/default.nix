@@ -1025,11 +1025,13 @@ let
                 ];
                 formatter = "purs-tidy";
               };
+
               lua_ls.settings.Lua = {
                 format.enable = true;
                 # Do not send telemetry data containing a randomized but unique identifier
                 telemetry.enable = false;
               };
+
               texlab.settings.texlab = {
                 build = {
                   args = [
@@ -1050,6 +1052,8 @@ let
                   onEdit = true;
                 };
               };
+
+              nixd.offset_encoding = "utf-8";
               nixd.settings.nixd =
                 let
                   satellite = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/satellite";
@@ -1067,10 +1071,13 @@ let
                     home-manager.expr = ''(builtins.getFlake "${satellite}").homeConfigurations."${config.home.username}@${hostname}".options'';
                   };
                 };
+
+              tinymist.settings.exportPdf = "onType";
+              tinymist.offset_encoding = "utf-8";
+
               cssls = { };
               jsonls = { };
               dhall_lsp_server = { };
-              typst_lsp.exportPdf = "onType";
               elmls = { };
               csharp_ls = { };
             };
@@ -1426,7 +1433,7 @@ let
           package = "kaarmu/typst.vim";
           dependencies.nix = lib.lists.optionals packedTargets.typst [
             upkgs.typst
-            upkgs.typst-lsp
+            upkgs.tinymist
             upkgs.typstfmt
           ];
 
