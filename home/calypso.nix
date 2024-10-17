@@ -9,12 +9,12 @@
     ./features/cli/productivity
     ./features/cli/zellij.nix
     ./features/desktop/discord
-    ./features/desktop/edopro.nix
+    ./features/desktop/gaming
+    ./features/desktop/gaming/edopro.nix
     ./features/desktop/firefox
     ./features/desktop/foot.nix
     ./features/desktop/obsidian.nix
     ./features/desktop/spotify.nix
-    ./features/desktop/steam.nix
     ./features/desktop/zathura.nix
     ./features/wayland/hyprland
     ./features/neovim

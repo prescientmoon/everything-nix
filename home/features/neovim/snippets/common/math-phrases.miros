@@ -1,7 +1,7 @@
 block auto !word
   block capitalize
     abbr bcla by contradiction let's assume
-    abbr wlg without loss of generality
+    abbr wlog without loss of generality
     abbr tits that is to say,
     abbr wpbd we will prove the statement in both directions.
     abbr itf it then follows
