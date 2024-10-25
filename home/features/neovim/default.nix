@@ -1072,7 +1072,7 @@ let
                   };
                 };
 
-              tinymist.settings.exportPdf = "onType";
+              # tinymist.settings.exportPdf = "onType";
               tinymist.offset_encoding = "utf-8";
 
               cssls = { };

@@ -28,8 +28,9 @@
     # zoom-us # Zoom client 🤮
     whatsapp-for-linux
     # }}}
-    # {{{ Editors for different formats
+    # {{{ Documents & editors
     gimp # Image editing
+    okular # Useful for reading pdf annotations (which zathura does not support)
     # lmms # Music software
     # kicad # PCB editing
     # libreoffice # Free office suite
