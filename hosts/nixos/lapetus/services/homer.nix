@@ -63,14 +63,6 @@ in
               logo = icon "guacamole.png";
               url = "https://guacamole.moonythm.dev";
             }
-          ];
-        }
-        # }}}
-        # {{{ External
-        {
-          name = "External";
-          icon = fa "arrow-up-right-from-square";
-          items = [
             {
               name = "Tailscale";
               subtitle = "Access this homelab from anywhere";
@@ -80,8 +72,8 @@ in
             {
               name = "Dotfiles";
               subtitle = "Configuration for all my machines";
-              logo = icon "github.png";
-              url = "https://github.com/prescientmoon/everything-nix";
+              logo = icon "forgejo.svg";
+              url = "https://git.moonythm.dev/prescientmoon/satellite";
             }
             {
               name = "Cloudflare";

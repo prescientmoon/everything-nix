@@ -113,7 +113,12 @@
     "${config.xdg.configHome}/Signal" # Why tf does signal store it's state here 💀
   ];
   # }}}
-  # {{{ What's app
+  # {{{ Freetube
+  satellite.persistence.at.state.apps.freetube.directories = [
+    "${config.xdg.configHome}/FreeTube" # Why tf does freetube store it's state here 💀
+  ];
+  # }}}
+  # {{{ Whats app
   satellite.persistence.at.state.apps.whatsapp.directories = [
     "${config.xdg.configHome}/whatsapp-for-linux"
     "${config.xdg.stateHome}/whatsapp-for-linux"
