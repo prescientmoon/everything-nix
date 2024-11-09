@@ -53,6 +53,7 @@
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
   programs.nix-ld.enable = true; # Useful for running non-nix executables
+  services.mullvad-vpn.enable = true;
   # }}}
   # {{{ SSH keys
   users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../tethys/keys/id_ed25519.pub ];

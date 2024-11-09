@@ -15,6 +15,8 @@ function M.enable()
 
   swap("j")
   swap("k")
+  swap("<up>")
+  swap("<down>")
   swap("0")
   swap("$")
 end
@@ -24,6 +26,8 @@ function M.disable()
 
   unswap("j")
   unswap("k")
+  unswap("<up>")
+  unswap("<down>")
   unswap("0")
   unswap("$")
 end

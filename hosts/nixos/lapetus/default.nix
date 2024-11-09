@@ -17,11 +17,6 @@
     ../common/optional/services/restic
     ../common/optional/services/wpa_supplicant.nix
 
-    # ./services/commafeed.nix
-    # ./services/ddclient.nix
-    # ./services/guacamole
-    # ./services/intray.nix
-    # ./services/smos.nix
     ./services/5d-diplomacy
     ./services/actual.nix
     ./services/cloudflared.nix

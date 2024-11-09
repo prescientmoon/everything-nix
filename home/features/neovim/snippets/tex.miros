@@ -182,7 +182,7 @@ block math
     -- {{{ Constants
     for constkind <- @⟨default,shortened⟩
     for constant <- @⟨@constkind:
-      @⟨star,delta,Delta,pi,tau,psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega,half,ordop,land,lor⟩,
+      @⟨star,delta,Delta,pi,tau,psi,Psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega,half,ordop,land,lor⟩,
       @⟨lam,eps,iinf⟩
     ⟩
     for expansion <- @⟨@constkind:
@@ -248,7 +248,7 @@ block math
     for noperator <- @⟨ordop,land,lor,equiv,pmod,ldots,cdots,perp,angle,sup⟩
     abbr @noperator \\@noperator
 
-    for operator <- @⟨overline,hat,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,diam,prob⟩
+    for operator <- @⟨overline,hat,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,pmob⟩
     string @operator
       snip \\@operator$|1⟨{$1}, $0⟩
 

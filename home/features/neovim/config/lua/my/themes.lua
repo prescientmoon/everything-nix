@@ -41,9 +41,6 @@ table.insert(M, {
       },
     })
 
-    vim.cmd([[highlight NotifyINFOIcon guifg=#d6b20f]])
-    vim.cmd([[highlight NotifyINFOTitle guifg=#d6b20f]])
-
     vim.cmd("colorscheme catppuccin")
   end),
 })

@@ -150,6 +150,7 @@ let
 
               # Use global clipboard using *cp*
               (keymap "nv" "<f11>" ''"+'' "Use global clipboard")
+
               # Save using *ji*
               (nmap "<f12>" (thunk ''
                 -- If we don't do this, the statusbar will flash for a second...
@@ -181,8 +182,6 @@ let
               }
               # }}}
               # {{{ Diagnostics
-              (dmap "[d" "goto_prev" "Goto previous [d]iagnostic")
-              (dmap "]d" "goto_next" "Goto next [d]iagnostic")
               (dmap "J" "open_float" "Open current diagnostic")
               (dmap "<leader>D" "setloclist" "[D]iagnostic loclist")
               (nmap "qj" "J" "join lines")
@@ -197,7 +196,9 @@ let
                 # lua
                 thunk "vim.opt.spell = not vim.o.spell"
               ) "toggle [s]pell checker")
-              (nmap "<leader>yp" "<cmd>!curl --data-binary @% https://paste.rs<cr>" "[y]ank [p]aste.rs link")
+              (nmap "<leader>yp" "<cmd>!curl --data-binary @% https://paste.rs | wl-copy<cr>"
+                "[y]ank [p]aste.rs link to clipboard"
+              )
               # }}}
             ];
           # }}}
@@ -1072,7 +1073,7 @@ let
                   };
                 };
 
-              # tinymist.settings.exportPdf = "onType";
+              tinymist.settings.exportPdf = "onSave";
               tinymist.offset_encoding = "utf-8";
 
               cssls = { };
@@ -1489,6 +1490,12 @@ let
               action.vim.opt.commentstring = ''{\% %s \%}'';
             };
           };
+        # }}}
+        # {{{ justfile support
+        just = {
+          package = "NoahTheDuke/vim-just";
+          event = "VeryLazy";
+        };
         # }}}
         # }}}
         # {{{ external

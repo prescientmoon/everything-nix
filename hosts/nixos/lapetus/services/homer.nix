@@ -92,37 +92,17 @@ in
           ];
         }
         # }}}
-        # {{{ Productivity
+        # {{{ Tooling
         {
-          name = "Productivity";
-          icon = fa "rocket";
+          name = "Tooling";
+          icon = fa "toolbox";
           items = [
-            {
-              name = "Intray";
-              subtitle = "GTD capture tool";
-              icon = fa "inbox";
-              url = "https://intray.moonythm.dev";
-            }
-            {
-              name = "Smos";
-              subtitle = "A comprehensive self-management system.";
-              icon = fa "cubes-stacked";
-              url = "https://smos.moonythm.dev";
-            }
             {
               name = "Actual";
               subtitle = "Budgeting tool";
               logo = icon "actual.png";
               url = "https://actual.moonythm.dev";
             }
-          ];
-        }
-        # }}}
-        # {{{ Tooling
-        {
-          name = "Tooling";
-          icon = fa "toolbox";
-          items = [
             {
               name = "Vaultwarden";
               subtitle = "Password manager";
