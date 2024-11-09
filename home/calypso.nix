@@ -49,6 +49,7 @@
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # plover.dev # steno engine
     overskride # Bluetooth client
+    freetube # youtube client
     # }}}
     # {{{ Media playing/recording
     mpv # Video player

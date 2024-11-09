@@ -1491,12 +1491,6 @@ let
             };
           };
         # }}}
-        # {{{ justfile support
-        just = {
-          package = "NoahTheDuke/vim-just";
-          event = "VeryLazy";
-        };
-        # }}}
         # }}}
         # {{{ external
         # These plugins integrate neovim with external services
