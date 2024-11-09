@@ -67,6 +67,8 @@
     ../tethys/keys/id_ed25519.pub
   ];
 
+  # Trying this out for deployment, although it's a bit scary
+  services.openssh.settings.PermitRootLogin = "yes";
   users.users.root.openssh.authorizedKeys.keyFiles =
     config.users.users.pilot.openssh.authorizedKeys.keyFiles;
   # }}}
