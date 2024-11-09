@@ -71,6 +71,7 @@
   services.openssh.settings.PermitRootLogin = "yes";
   users.users.root.openssh.authorizedKeys.keyFiles =
     config.users.users.pilot.openssh.authorizedKeys.keyFiles;
+  services.fail2ban.enable = false;
   # }}}
 
   boot.loader.systemd-boot.enable = true;
