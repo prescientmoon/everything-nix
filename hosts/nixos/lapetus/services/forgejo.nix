@@ -9,7 +9,7 @@
   satellite.cloudflared.at.git.port = config.satellite.ports.forgejo;
   satellite.cloudflared.at."ssh.git" = {
     protocol = "ssh";
-    port = config.satellite.ports.forgejo-ssh;
+    port = 22; # default ssh port
   };
 
   services.forgejo = {
@@ -32,8 +32,8 @@
 
         # START_SSH_SERVER = true;
         # BUILTIN_SSH_SERVER_USER = "git";
+        # SSH_LISTEN_PORT = config.satellite.ports.forgejo-ssh;
         SSH_DOMAIN = config.satellite.cloudflared.at."ssh.git".host;
-        SSH_LISTEN_PORT = config.satellite.ports.forgejo-ssh;
       };
 
       cron.ENABLED = true;
