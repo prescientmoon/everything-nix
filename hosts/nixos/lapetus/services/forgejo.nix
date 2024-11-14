@@ -7,10 +7,17 @@
   };
 
   satellite.cloudflared.at.git.port = config.satellite.ports.forgejo;
-  satellite.cloudflared.at."ssh.git" = {
-    protocol = "ssh";
-    port = 22; # default ssh port
-  };
+
+  # Add CNAME record for ssh access. Unlike the http interface,
+  # this will only get exposed over tailscale, so it is safe.
+  satellite.dns.records = [
+    {
+      type = "CNAME";
+      zone = config.satellite.dns.domain;
+      at = "ssh.git";
+      to = config.networking.hostName;
+    }
+  ];
 
   services.forgejo = {
     enable = true;
@@ -29,11 +36,7 @@
         HTTP_PORT = config.satellite.cloudflared.at.git.port;
         ROOT_URL = config.satellite.cloudflared.at.git.url;
         LANDING_PAGE = "prescientmoon"; # Make my profile the landing page
-
-        # START_SSH_SERVER = true;
-        # BUILTIN_SSH_SERVER_USER = "git";
-        # SSH_LISTEN_PORT = config.satellite.ports.forgejo-ssh;
-        SSH_DOMAIN = config.satellite.cloudflared.at."ssh.git".host;
+        SSH_DOMAIN = "ssh.${config.satellite.cloudflared.at.git.host}";
       };
 
       cron.ENABLED = true;
