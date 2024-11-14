@@ -491,11 +491,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1728792245,
-        "narHash": "sha256-u3DIFQ26jtO9kgxSXMVYYdjSF8VArR0jA0N7ns1wWoo=",
+        "lastModified": 1731556998,
+        "narHash": "sha256-/x/j+JHTMVFLWDpWClFw3IpzJiVkHTWL5z138Jj2ec4=",
         "ref": "refs/heads/master",
-        "rev": "8064396aa8c2491dcecbedf9c71140936f032056",
-        "revCount": 3842,
+        "rev": "47a8f584cbd9f26ca18e905ec37799838babcc29",
+        "revCount": 3905,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },

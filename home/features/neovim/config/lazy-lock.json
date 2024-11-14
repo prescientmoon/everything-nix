@@ -1,5 +1,5 @@
 {
-  "catppuccin": { "branch": "main", "commit": "4fd72a9ab64b393c2c22b168508fd244877fec96" },
+  "catppuccin": { "branch": "main", "commit": "9703f227bfab20d04bcee62d2f08f1795723b4ae" },
   "clipboard-image": { "branch": "main", "commit": "4ab6f7f1fa4ea97866c0e0f6160f6a36ef174438" },
   "cmp": { "branch": "main", "commit": "7e348da6e5085ac447144a2ef4b637220ba27209" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -21,7 +21,6 @@
   "hyprland": { "branch": "main", "commit": "71760fe0cad972070657b0528f48456f7e0027b2" },
   "idris": { "branch": "main", "commit": "8bff02984a33264437e70fd9fff4359679d910da" },
   "indent-blankline": { "branch": "master", "commit": "65e20ab94a26d0e14acac5049b8641336819dfc7" },
-  "just": { "branch": "main", "commit": "cd11f4bb51ae576daae48a27c1c0f98afd59e52c" },
   "lastplace": { "branch": "main", "commit": "0bb6103c506315044872e0f84b1f736c4172bb20" },
   "lean": { "branch": "main", "commit": "182703184edb866d7bfe878be358295e189c8223" },
   "live-command": { "branch": "main", "commit": "d460067d47948725a6f25b20f31ea8bbfdfe4622" },
@@ -43,6 +42,7 @@
   "nui": { "branch": "main", "commit": "61574ce6e60c815b0a0c4b5655b8486ba58089a1" },
   "null-ls": { "branch": "main", "commit": "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" },
   "nvim-nio": { "branch": "master", "commit": "a428f309119086dc78dd4b19306d2d67be884eee" },
+  "obsidian": { "branch": "main", "commit": "6ddc2d4dbe044b8e114c52633c04391077f1f734" },
   "plenary": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "purescript": { "branch": "main", "commit": "82348352e6568fcc0385bd7c99a8ead3a479feea" },
   "quicker.nvim": { "branch": "master", "commit": "183041a46d6c908eefb1c23ea02cce9c8f41256e" },

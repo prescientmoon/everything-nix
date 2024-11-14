@@ -30,8 +30,8 @@
         ROOT_URL = config.satellite.cloudflared.at.git.url;
         LANDING_PAGE = "prescientmoon"; # Make my profile the landing page
 
-        START_SSH_SERVER = true;
-        BUILTIN_SSH_SERVER_USER = "git";
+        # START_SSH_SERVER = true;
+        # BUILTIN_SSH_SERVER_USER = "git";
         SSH_DOMAIN = config.satellite.cloudflared.at."ssh.git".host;
         SSH_LISTEN_PORT = config.satellite.ports.forgejo-ssh;
       };
