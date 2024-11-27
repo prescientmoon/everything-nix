@@ -27,6 +27,7 @@
     # }}}
     # {{{ Editors for different formats
     gimp # Image editing
+    krita # drawing
     # lmms # Music software
     # kicad # PCB editing
     # libreoffice # Free office suite

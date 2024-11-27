@@ -5,7 +5,7 @@
   ...
 }:
 let
-  workflowDir = "${config.xdg.dataHome}/smos/workflow";
+  workflowDir = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum/smos";
 in
 {
   sops.secrets.smos_password.sopsFile = ../secrets.yaml;
@@ -32,9 +32,7 @@ in
       oauth-token-file = config.sops.secrets.smos_github_token.path;
     };
 
-    calendar = {
-      enable = true;
-    };
+    calendar.enable = true;
   };
   # }}}
   # {{{ Storage & secrets
