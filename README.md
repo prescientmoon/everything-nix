@@ -6,8 +6,8 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 
 ## Features this repository includes:
 
-- Sets up all the apps I use — including git, neovim, fish, tmux, starship, hyprland, anyrun, discord, zathura, foot & much more.
-- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, whoogle, pounce, calico, smos, intray, actual & more.
+- Sets up all the apps I use — including git, neovim, fish, starship, hyprland, anyrun, discord, zathura, foot & much more.
+- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, whoogle, pounce, calico, actual & more.
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)
 - Declarative secret management using [sops-nix](https://github.com/Mic92/sops-nix)
 
@@ -20,7 +20,13 @@ This repo's structure is based on separating configuration into individual hosts
 - [calypso](./hosts/nixos/calypso/) — my personal laptop
 - [tethys](./hosts/nixos/tethys/) — my previous personal laptop
 - [lapetus](./hosts/nixos/lapetus/) — older laptop running as a server
-- enceladus — my android phone. Although not configured using nix, this name gets referenced in some places
+
+The following hosts are not configured using nix, but might be referenced in places:
+
+- chaldene — my current phone
+- enceladus — my previous phone
+- erriapus — my tablet
+- euporie — VM used for testing
 
 ## File structure
 
@@ -96,7 +102,6 @@ Here's some things you might want to check out:
 - [Neovim](https://neovim.io/) — my editor
   - [Neovide](https://neovide.dev/index.html) — neovim gui client
   - [Vimclip](https://github.com/hrantzsch/vimclip) — vim anywhere!
-- [Tmux](https://github.com/tmux/tmux/wiki) — terminal multiplexer
 - [Fish](https://fishshell.com/) — user friendly shell
   - [Starship](https://starship.rs/) — shell prompt
 - [yazi](https://github.com/sxyazi/yazi) — file manager
@@ -104,7 +109,6 @@ Here's some things you might want to check out:
 - [lazygit](https://github.com/jesseduffield/lazygit) — git tui
 - Self management:
   - [Smos](https://github.com/NorfairKing/smos) — selfhosted comprehensive self-management system
-  - [Intray](https://github.com/NorfairKing/intray) — selfhosted GTD capture tool
 
 ### Services
 
@@ -116,9 +120,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Commafeed](https://github.com/Athou/commafeed) — rss reader
 - [Forgejo](https://forgejo.org/) — git forge
 - [Grafana](https://github.com/grafana/grafana) — pretty dashboards
-- [Guacamole](https://guacamole.apache.org/) — remote desktop access
 - [Homer](https://github.com/bastienwirtz/homer) — server homepage
-- [Intray](https://github.com/NorfairKing/intray) — GTD capture tool.
 - [Invidious](https://invidious.io/) — alternate youtube client
 - [Jellyfin](https://jellyfin.org/) — media server
 - [Jupyterhub](https://jupyter.org/hub) — notebook collaboration suite
@@ -128,7 +130,6 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Qbittorrent](https://www.qbittorrent.org) — torrent client
 - [Radicale](https://radicale.org/v3.html) — calendar server
 - [Redlib](https://github.com/redlib-org/redlib) — alternate reddit client
-- [Smos](https://github.com/NorfairKing/smos) — a comprehensive self-management system.
 - [Syncthing](https://syncthing.net/) — file synchronization
 - [Vaultwarden](https://github.com/dani-garcia/vaultwarden/) — password manager
 - [Whoogle](https://github.com/benbusby/whoogle-search#manual-docker) — search engine
@@ -137,6 +138,9 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Tmux](https://github.com/tmux/tmux/wiki) — I now simply use multiple WM windows / no longer persist sessions
+- [Intray](https://github.com/NorfairKing/intray) — The server is no longer open source
+- [Guacamole](https://guacamole.apache.org/) — I had little reason to keep this around on top of tailscale
 - [htop](https://htop.dev/) — I switched to [bottom](https://github.com/ClementTsang/bottom), as the interface felt way cleaner
 - [Wezterm](https://github.com/wez/wezterm) — I switched to [Foot](https://codeberg.org/dnkl/foot), as wezterm was laggy, unstable, and kept breaking between releases
 - [Ranger](https://github.com/ranger/ranger) — I switched to [Yazi](https://github.com/sxyazi/yazi)

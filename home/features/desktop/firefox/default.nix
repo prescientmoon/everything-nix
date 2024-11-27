@@ -38,7 +38,6 @@ in
     policies = {
       DisableAppUpdate = true;
       DisableBuiltinPDFViewer = true;
-      DisableFirefoxAccounts = true;
       DisableFirefoxStudies = true;
       DisablePocket = true;
       DisableTelemetry = true;
@@ -307,6 +306,26 @@ in
         # Disable shortcut for quitting :)
         "browser.quitShortcut.disabled" = true;
 
+        # Keep the reader button enabled at all times; really don't
+        # care if it doesn't work 20% of the time, most websites are
+        # crap and unreadable without this
+        "reader.parse-on-load.force-enabled" = true;
+
+        # Hide the "sharing indicator", it's especially annoying
+        # with tiling WMs on wayland
+        "privacy.webrtc.legacyGlobalIndicator" = false;
+
+        # Hide random popup:
+        # https://forums.linuxmint.com/viewtopic.php?t=379164
+        "browser.protections_panel.infoMessage.seen" = true;
+
+        # Do not show dialog for getting panes in the addons menu (?)
+        # http://kb.mozillazine.org/Extensions.getAddons.showPane
+        "extensions.getAddons.showPane" = false;
+
+        # Do not recommend addons
+        "extensions.htmlaboutaddons.recommendations.enabled" = false;
+
         # Inspired by https://github.com/TLATER/dotfiles/blob/b39af91fbd13d338559a05d69f56c5a97f8c905d/home-config/config/graphical-applications/firefox.nix
         # {{{ Performance settings
         "gfx.webrender.all" = true; # Force enable GPU acceleration
@@ -335,25 +354,6 @@ in
         "privacy.trackingprotection.socialtracking.enabled" = true;
         "browser.discovery.enabled" = false;
         # }}}
-
-        # Keep the reader button enabled at all times; really don't
-        # care if it doesn't work 20% of the time, most websites are
-        # crap and unreadable without this
-        "reader.parse-on-load.force-enabled" = true;
-
-        # Hide the "sharing indicator", it's especially annoying
-        # with tiling WMs on wayland
-        "privacy.webrtc.legacyGlobalIndicator" = false;
-
-        # Hide random popup: https://forums.linuxmint.com/viewtopic.php?t=379164
-        "browser.protections_panel.infoMessage.seen" = true;
-
-        # Do not show dialog for getting panes in the addons menu (?)
-        # http://kb.mozillazine.org/Extensions.getAddons.showPane
-        "extensions.getAddons.showPane" = false;
-
-        # Do not recommend addons
-        "extensions.htmlaboutaddons.recommendations.enabled" = false;
       };
       # }}}
     };
@@ -390,7 +390,7 @@ in
     ];
   };
 
-  # {{{ Make firefox the default
+  # {{{ Make firefox the default browser
   # Use firefox as the default browser to open stuff.
   xdg.mimeApps.defaultApplications = {
     "text/html" = [ "firefox.desktop" ];
