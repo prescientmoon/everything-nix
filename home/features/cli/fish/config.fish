@@ -27,6 +27,6 @@ end
 # }}}
 # {{{ Helpers
 function take -d "Create a directory and cd into it"
-  mkdir $argv; and cd $argv
+  mkdir -p $argv; and cd $argv
 end
 # }}}

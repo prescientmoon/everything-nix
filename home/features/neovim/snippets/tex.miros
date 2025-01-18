@@ -39,6 +39,16 @@ block auto !math start
 
   string item
     snip \item$|1⟨,[$1] $0⟩
+
+  for kind <- @⟨chapter,section,subsection,subsubsection⟩
+
+  string @kind
+    name @kind environment
+    snip
+      \\@kind⋄{$1}
+      $0
+
+
   -- }}}
 
 block text
@@ -220,7 +230,6 @@ block math
     abbr niinf -\ifty
     abbr eniinf ^{-\ifty}
     abbr sniinf _{-\ifty}
-    abbr ccan \cancel
     abbr mul \cdot
     abbr nlnl \pm
     abbr limsup \lim\sup
@@ -248,7 +257,7 @@ block math
     for noperator <- @⟨ordop,land,lor,equiv,pmod,ldots,cdots,perp,angle,sup⟩
     abbr @noperator \\@noperator
 
-    for operator <- @⟨overline,hat,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,pmob⟩
+    for operator <- @⟨cancel,overline,hat,tilde,vec,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,pmob⟩
     string @operator
       snip \\@operator$|1⟨{$1}, $0⟩
 

@@ -4,7 +4,7 @@
   # {{{ Inputs
   inputs = {
     # {{{ Nixpkgs instances
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # }}}
     # {{{ Additional package repositories
@@ -23,7 +23,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -50,7 +50,6 @@
     # }}}
 
     anyrun.url = "github:Kirottu/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
     miros.url = "github:prescientmoon/miros";
     miros.inputs.nixpkgs.follows = "nixpkgs";
@@ -63,7 +62,7 @@
     darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";
     darkmatter-grub-theme.inputs.nixpkgs.follows = "nixpkgs";
 
-    stylix.url = "github:danth/stylix/a33d88cf8f75446f166f2ff4f810a389feed2d56";
+    stylix.url = "github:danth/stylix";
     # stylix.inputs.nixpkgs.follows = "nixpkgs";
     # stylix.inputs.home-manager.follows = "home-manager";
 
@@ -201,14 +200,14 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      # "https://anyrun.cachix.org"
+      "https://anyrun.cachix.org"
       "https://smos.cachix.org"
       "https://intray.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      # "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
       "intray.cachix.org-1:qD7I/NQLia2iy6cbzZvFuvn09iuL4AkTmHvjxrQlccQ="
     ];

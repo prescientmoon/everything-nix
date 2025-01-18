@@ -15,6 +15,7 @@ function M.setup()
     unpack(require("nix").lazy),
   }, {
     defaults = { lazy = true },
+    rocks = { enabled = false },
     install = {
       -- install missing plugins on startup. this doesn't increase startup time.
       missing = true,

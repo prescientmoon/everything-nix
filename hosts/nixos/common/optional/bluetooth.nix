@@ -2,4 +2,5 @@
 {
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  systemd.services.bluetooth.serviceConfig.ConfigurationDirectoryMode = "755";
 }

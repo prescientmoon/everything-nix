@@ -258,36 +258,13 @@ let
           autocmds = {
             event = "LspAttach";
             group = "UserLspConfig";
-            action =
-              let
-                nmap =
-                  mapping: action: desc:
-                  nlib.nmap mapping (vim /lsp/buf/${action}) desc;
-              in
-              {
-                mkContext = event: {
-                  bufnr = lua event /buf;
-                  client = vim /lsp/get_client_by_id (lua event /data/client_id);
-                };
-                keys = [
-                  (nlib.nmap "<leader>li" "<cmd>LspInfo<cr>" "[L]sp [i]nfo")
-                  (nmap "gd" "definition" "[G]o to [d]efinition")
-                  (nmap "<leader>gi" "implementation" "[G]o to [i]mplementation")
-                  (nmap "<leader>gr" "references" "[G]o to [r]eferences")
-                  (nmap "L" "signature_help" "Signature help")
-                  (nmap "<leader>c" "code_action" "[C]ode actions")
-                  (keymap "v" "<leader>c" ":'<,'> lua vim.lsp.buf.range_code_action()" "[C]ode actions")
-                  (nmap "<leader>wa" "add_workspace_folder" "[W]orkspace [A]dd Folder")
-                  (nmap "<leader>wr" "remove_workspace_folder" "[W]orkspace [R]emove Folder")
-                  (nlib.nmap "<leader>wl" (
-                    _: print (vim /inspect (vim /ps/buf/list_workspace_folders none))
-                  ) "[W]orkspace [L]ist Folders")
-                ];
-                callback = {
-                  cond = ctx: return (lua ctx /client/supports_method "textDocument/hover");
-                  keys = nmap "K" "hover" "Hover";
-                };
+            action = {
+              mkContext = event: {
+                bufnr = lua event /buf;
+                client = vim /lsp/get_client_by_id (lua event /data/client_id);
               };
+              keys = [ ];
+            };
           };
           # }}}
         };
@@ -865,6 +842,7 @@ let
             in
             lib.flatten [
               (operator "=")
+              (operator "m")
               (operator "x")
               (operator "r")
               (operator "s")
@@ -1010,11 +988,12 @@ let
 
           event = "VeryLazy";
 
+          keys = nmap "<leader>li" "<cmd>LspInfo<cr>" "[L]sp [i]nfo";
           config =
             _:
             importFrom ./plugins/lspconfig.lua "config" {
               # We handle formatting using null-ls and prettierd
-              tsserver.on_attach = client: ''
+              ts_ls.on_attach = client: ''
                 ${client}.server_capabilities.documentFormattingProvider = false
               '';
 
@@ -1081,6 +1060,7 @@ let
               dhall_lsp_server = { };
               elmls = { };
               csharp_ls = { };
+              ols = { }; # Odin
             };
         };
         # }}}
@@ -1229,6 +1209,15 @@ let
           # }}}
         };
         # }}}
+        # {{{ dap
+        dap = {
+          package = "rcarriga/nvim-dap-ui";
+          dependencies.lua = [
+            "mfussenegger/nvim-dap"
+            "nvim-neotest/nvim-nio"
+          ];
+        };
+        # }}}
         # }}}
         # {{{ language support
         # {{{ haskell support
@@ -1265,6 +1254,10 @@ let
           dependencies.nix = lib.lists.optionals packedTargets.rust [
             pkgs.rust-analyzer
             pkgs.rustfmt
+
+            # Recommended by rustacean.nvim as providing a better experience
+            # than raw lldb
+            pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter
           ];
 
           lazy = false; # This plugin is already lazy
@@ -1647,7 +1640,11 @@ let
   # }}}
   # {{{ Clients
   neovim = wrapClient {
-    base = if config.satellite.toggles.neovim-nightly.enable then pkgs.neovim-nightly else upkgs.neovim;
+    base =
+      if config.satellite.toggles.neovim-nightly.enable then
+        inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+      else
+        upkgs.neovim;
     name = "nvim";
   };
 

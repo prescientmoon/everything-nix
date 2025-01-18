@@ -1,8 +1,10 @@
 # This directory contains modules which can be loaded on both nixos and home-manager!
 {
-  imports = [ ./fonts.nix ./themes ];
+  imports = [
+    ./fonts.nix
+    ./themes
+    ./nixpkgs.nix
+  ];
 
-  # {{{ ad-hoc toggles
-  satellite.toggles.neovim-nightly.enable = false;
-  # }}}
+  satellite.toggles.neovim-nightly.enable = true;
 }

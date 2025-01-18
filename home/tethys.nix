@@ -10,6 +10,7 @@
     ./features/cli/zellij.nix
     ./features/desktop/discord
     ./features/desktop/firefox
+    ./features/desktop/gaming/edopro.nix
     ./features/desktop/foot.nix
     ./features/desktop/obsidian.nix
     ./features/desktop/spotify.nix
@@ -45,14 +46,15 @@
     qbittorrent # Torrent client
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # plover.dev # steno engine
-
     overskride # Bluetooth client
+    freetube # youtube client
     # }}}
     # {{{ Media playing/recording
     mpv # Video player
     imv # Image viewer
     # peek # GIF recorder
     # obs-studio # video recorder
+    wl-screenrec
     # }}}
   ];
 

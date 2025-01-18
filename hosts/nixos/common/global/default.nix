@@ -2,8 +2,8 @@
 {
   inputs,
   lib,
-  config,
   outputs,
+  pkgs,
   ...
 }:
 let
@@ -51,15 +51,6 @@ in
   # Boot using systemd
   boot.initrd.systemd.enable = true;
   # }}}
-
-  nixpkgs = {
-    # Add all overlays defined in the overlays directory
-    overlays =
-      builtins.attrValues outputs.overlays
-      ++ lib.lists.optional config.satellite.toggles.neovim-nightly.enable inputs.neovim-nightly-overlay.overlay;
-
-    config.allowUnfree = true;
-  };
 
   # Root domain used throughout my config
   satellite.dns.domain = "moonythm.dev";

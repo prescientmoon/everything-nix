@@ -24,7 +24,7 @@ let
     # {{{ Catppuccin latte
     catppuccin-latte = {
       stylix = {
-        image = ./wallpapers/needygirloverdose.jpg;
+        image = ./wallpapers/sketchy-peaks.png;
         base16Scheme = base16 "catppuccin-latte";
         opacity = transparency 0.7;
         polarity = "light";
@@ -95,6 +95,8 @@ in
       satellite.theming = currentTheme.satellite;
     }
   ];
+
+  stylix.enable = true;
 
   # Requires me to manually turn targets on!
   stylix.autoEnable = false;

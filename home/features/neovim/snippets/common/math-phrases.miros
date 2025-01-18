@@ -6,9 +6,9 @@ block auto !word
     abbr wpbd we will prove the statement in both directions.
     abbr itf it then follows
 
-    for who <- @⟨which,this⟩
-    for what <- @⟨means,implies⟩
-    abbr @⟨@who:ww,tt⟩@⟨@what:m,i⟩ @who @what
+    -- for who <- @⟨which,this⟩
+    -- for what <- @⟨means,implies⟩
+    -- abbr @⟨@who:ww,tt⟩@⟨@what:m,i⟩ @who @what
 
   abbr stam statement
   abbr cox counterexample

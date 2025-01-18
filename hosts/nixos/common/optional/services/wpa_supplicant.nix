@@ -8,22 +8,22 @@
     fallbackToWPA2 = false;
 
     # Declarative
-    environmentFile = config.sops.secrets.wireless.path;
+    secretsFile = config.sops.secrets.wireless.path;
     networks = {
-      "Neptune".psk = "@ENCELADUS_HOTSPOT_PASS@";
+      "Neptune".pskRaw = "ext:ENCELADUS_HOTSPOT_PASS";
 
-      "Familia-Matei-PRO".psk = "@TG_HOTSPOT_HOME_PASS@";
-      "Familia-Matei".psk = "@TG_HOTSPOT_HOME_PASS@";
+      "Familia-Matei-PRO".pskRaw = "ext:TG_HOTSPOT_HOME_PASS";
+      "Familia-Matei".pskRaw = "ext:TG_HOTSPOT_HOME_PASS";
 
-      "R15-5365 5g".psk = "@TG_WIFI_HOME_PASS@";
-      "R15-5365".psk = "@TG_WIFI_HOME_PASS@";
+      "R15-5365 5g".pskRaw = "ext:TG_WIFI_HOME_PASS";
+      "R15-5365".pskRaw = "ext:TG_WIFI_HOME_PASS";
 
-      "Sailhorse".psk = "@NL_PLACE_0_PASS@";
-      "Ziggo1721699".psk = "@NL_PLACE_1_PASS@";
-      "Konijntjes".psk = "@NL_PLACE_1_PODS_PASS@";
-      "InfoEdu12".psk = "@INFOEDU_PASS@";
-      "CNU19".psk = "@INFOEDU_PASS@";
-      "ZTE_F7A321".psk = "@MADALINA_PASS@";
+      "Sailhorse".pskRaw = "ext:NL_PLACE_0_PASS";
+      "Ziggo1721699".pskRaw = "ext:NL_PLACE_1_PASS";
+      "Konijntjes".pskRaw = "ext:NL_PLACE_1_PODS_PASS";
+      "InfoEdu12".pskRaw = "ext:INFOEDU_PASS";
+      "CNU19".pskRaw = "ext:INFOEDU_PASS";
+      "ZTE_F7A321".pskRaw = "ext:MADALINA_PASS";
 
       # [Working solution](https://bbs.archlinux.org/viewtopic.php?id=271336)
       # [Other interesting link](https://help.itc.rwth-aachen.de/en/service/b3d9a2c8ae5345b8b8f5128143ef4e3c/article/eaf6d69389a74a5a839c1f383c508df7/)
@@ -33,7 +33,7 @@
         auth = ''
           eap=PEAP
           identity="s5260329@rug.nl"
-          password="@EDUROAM_PASS@"
+          password="ext:EDUROAM_PASS"
         '';
         extraConfig = ''
           phase2="auth=MSCHAPV2"

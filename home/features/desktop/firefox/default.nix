@@ -269,6 +269,24 @@ in
             ];
           };
 
+          "Yu-Gi-Oh! wiki" = mkBasicSearchEngine {
+            url = "https://yugipedia.com/index.php";
+            param = "search";
+            aliases = [
+              "@ygo"
+              "@yugioh-wiki"
+            ];
+          };
+
+          "Yu-Gi-Oh! card prices" = mkBasicSearchEngine {
+            url = "https://www.cardmarket.com/en/YuGiOh/Products/Search";
+            param = "searchString";
+            aliases = [
+              "@cm"
+              "@cardmarket"
+            ];
+          };
+
           "Moonythm" = mkBasicSearchEngine {
             url = "https://search.moonythm.dev/search";
             param = "q";

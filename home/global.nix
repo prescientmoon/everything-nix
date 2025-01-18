@@ -35,21 +35,6 @@ in
   # Import all modules defined in modules/home-manager
   imports = builtins.attrValues outputs.homeManagerModules ++ imports;
 
-  # {{{ Nixpkgs
-  nixpkgs = {
-    # Add all overlays defined in the overlays directory
-    overlays =
-      builtins.attrValues outputs.overlays
-      ++ lib.lists.optional config.satellite.toggles.neovim-nightly.enable inputs.neovim-nightly-overlay.overlay;
-
-    config.allowUnfree = true;
-
-    config.permittedInsecurePackages = [
-      "electron-25.9.0"
-      "nix-2.15.3"
-    ];
-  };
-  # }}}
   # {{{ Enable the home-manager and git clis
   programs = {
     home-manager.enable = true;

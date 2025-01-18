@@ -11,7 +11,7 @@
   # }}}
   # {{{ Misc
   hardware.enableAllFirmware = true;
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.keyboard.qmk.enable = true;
   # }}}

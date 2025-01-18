@@ -2,8 +2,8 @@ local M = {}
 
 local function createFold(name)
   local commentstring = vim.o.commentstring
-  local start_comment = string.gsub(commentstring, "%%s", " {{{ " .. name)
-  local end_comment = string.gsub(commentstring, "%%s", " }}}")
+  local start_comment = string.gsub(commentstring, "%%s", "{{{ " .. name)
+  local end_comment = string.gsub(commentstring, "%%s", "}}}")
 
   -- Leave visual mode
   local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
