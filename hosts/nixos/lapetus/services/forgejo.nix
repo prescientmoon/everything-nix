@@ -22,7 +22,7 @@
   services.forgejo = {
     enable = true;
     stateDir = "/persist/state/var/lib/forgejo";
-    mailerPasswordFile = config.sops.secrets.forgejo_mail_password.path;
+    secrets.mailer.PASSWD = config.sops.secrets.forgejo_mail_password.path;
     dump.enable = false; # We already backup via rsync + have zfs snapshots to rollback to
 
     lfs.enable = true;
