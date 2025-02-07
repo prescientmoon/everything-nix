@@ -43,13 +43,14 @@ let
     LINKPLAY_UDP_PORT = cfg.linkPlayUDPPort;
     LINKPLAY_DISPLAY_HOST = config.networking.hostName;
 
-    WORLD_RANK_MAX = 200;
-    IS_APRILFOOLS = true;
+    DEFAULT_MEMORIES = 3141592;
+    WORLD_RANK_MAX = 5;
     UPDATE_WITH_NEW_CHARACTER_DATA = true;
-    CHARACTER_FULL_UNLOCK = true;
-    WORLD_SONG_FULL_UNLOCK = true;
-    WORLD_SCENERY_FULL_UNLOCK = true;
-    SAVE_FULL_UNLOCK = true;
+    IS_APRILFOOLS = false;
+    CHARACTER_FULL_UNLOCK = false;
+    WORLD_SONG_FULL_UNLOCK = false;
+    WORLD_SCENERY_FULL_UNLOCK = false;
+    SAVE_FULL_UNLOCK = false;
     # }}}
   };
 
