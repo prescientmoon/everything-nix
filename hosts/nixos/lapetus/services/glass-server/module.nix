@@ -9,6 +9,13 @@ let
   cfg = config.services.glass-server;
   pkg = pkgs.glassServer;
 
+  databaseRepo = pkgs.fetchFromGitHub {
+    owner = "IoIiro";
+    repo = "arcaea_database";
+    rev = "e131978a3aff706c53d5227ee27c23e8011fbb4e";
+    sha256 = "1a0gqsvajpws85ajd8qxsfskr7fkfl9b290x0v6pqxjh2ylfy6gf";
+  };
+
   glassServerConfig = {
     # {{{ Public config
     HOST = "0.0.0.0";
@@ -91,6 +98,9 @@ in
       "d ${cfg.dataDir}/bundle      0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/backup      0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/database    0700 ${cfg.user} ${cfg.user}"
+
+      "L+ ${cfg.dataDir}/pkgs/server 0755 ${cfg.user} ${cfg.user} ${pkg}"
+      "L+ ${cfg.dataDir}/pkgs/db     0755 ${cfg.user} ${cfg.user} ${databaseRepo}"
     ];
     # }}}
     # {{{ Systemd service
