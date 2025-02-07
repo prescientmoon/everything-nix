@@ -25,6 +25,8 @@ let
 
     LOG_BASE_DIR = "${cfg.dataDir}/log";
     WORLD_MAP_FOLDER_PATH = "${cfg.dataDir}/map/";
+    WORLD_MAP_LEPHON_NELL_FOLDER_PATH = "${pkg}/source/database/map_lephon_nell";
+
     SONG_FILE_FOLDER_PATH = "${cfg.dataDir}/songs/";
     SONGLIST_FILE_PATH = "${cfg.dataDir}/songs/songlist";
     CONTENT_BUNDLE_FOLDER_PATH = "${cfg.dataDir}/bundle/";
@@ -93,11 +95,12 @@ in
     systemd.tmpfiles.rules = [
       "f ${cfg.dataDir}/config.json 0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/log         0700 ${cfg.user} ${cfg.user}"
-      "d ${cfg.dataDir}/map         0700 ${cfg.user} ${cfg.user}"
-      "d ${cfg.dataDir}/songs       0700 ${cfg.user} ${cfg.user}"
-      "d ${cfg.dataDir}/bundle      0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/backup      0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/database    0700 ${cfg.user} ${cfg.user}"
+
+      "d ${cfg.dataDir}/map         0755 ${cfg.user} ${cfg.user}"
+      "d ${cfg.dataDir}/songs       0755 ${cfg.user} ${cfg.user}"
+      "d ${cfg.dataDir}/bundle      0755 ${cfg.user} ${cfg.user}"
 
       "L+ ${cfg.dataDir}/pkgs/server 0755 ${cfg.user} ${cfg.user} - ${pkg}"
       "L+ ${cfg.dataDir}/pkgs/db     0755 ${cfg.user} ${cfg.user} - ${databaseRepo}"
