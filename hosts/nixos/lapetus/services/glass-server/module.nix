@@ -99,8 +99,8 @@ in
       "d ${cfg.dataDir}/backup      0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/database    0700 ${cfg.user} ${cfg.user}"
 
-      "L+ ${cfg.dataDir}/pkgs/server 0755 ${cfg.user} ${cfg.user} ${pkg}"
-      "L+ ${cfg.dataDir}/pkgs/db     0755 ${cfg.user} ${cfg.user} ${databaseRepo}"
+      "L+ ${cfg.dataDir}/pkgs/server 0755 ${cfg.user} ${cfg.user} - ${pkg}"
+      "L+ ${cfg.dataDir}/pkgs/db     0755 ${cfg.user} ${cfg.user} - ${databaseRepo}"
     ];
     # }}}
     # {{{ Systemd service
