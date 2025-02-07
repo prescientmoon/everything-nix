@@ -18,6 +18,7 @@
     ../common/optional/services/wpa_supplicant.nix
 
     ./services/5d-diplomacy
+    ./services/glass-server
     ./services/actual.nix
     ./services/cloudflared.nix
     ./services/diptime.nix
