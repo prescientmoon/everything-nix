@@ -26,5 +26,8 @@
     syncthing = 8422;
     forgejo-ssh = 8423;
     "5d-diplomacy" = 8424;
+    glass-server = 8425;
+    glass-server-lp-tcp = 8426;
+    glass-server-lp-udp = 8427;
   };
 }

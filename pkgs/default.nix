@@ -13,4 +13,5 @@ in
   plymouthThemeCutsAlt = plymouthThemes.cuts_alt;
   vimclip = pkgs.callPackage (import ./vimclip.nix) { };
   homer = pkgs.callPackage (import ./homer.nix) { };
+  glassServer = pkgs.callPackage (import ./glass-server.nix) { };
 }

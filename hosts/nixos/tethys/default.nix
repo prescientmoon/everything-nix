@@ -23,6 +23,7 @@
     ../common/optional/services/restic
     ../common/optional/services/nginx.nix
     ./services/syncthing.nix
+    ./services/glass-server
 
     ./hardware
     ./boot.nix
@@ -62,15 +63,4 @@
   # {{{ SSH keys
   users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../calypso/keys/id_ed25519.pub ];
   # }}}
-
-  i18n.inputMethod = {
-    type = "fcitx5";
-    enable = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-mozc # for japanese input
-      fcitx5-gtk
-    ];
-    fcitx5.waylandFrontend = true;
-  };
-
 }
