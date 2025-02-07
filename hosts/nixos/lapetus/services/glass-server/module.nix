@@ -13,6 +13,7 @@ let
     # {{{ Public config
     HOST = "0.0.0.0";
     PORT = cfg.port;
+    GAME_API_PREFIX = "/join/21";
     USERNAME = cfg.adminUsername;
 
     LOG_BASE_DIR = "${cfg.dataDir}/log";

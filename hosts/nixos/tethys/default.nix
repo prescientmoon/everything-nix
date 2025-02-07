@@ -23,7 +23,6 @@
     ../common/optional/services/restic
     ../common/optional/services/nginx.nix
     ./services/syncthing.nix
-    ./services/glass-server
 
     ./hardware
     ./boot.nix
