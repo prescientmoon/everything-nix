@@ -56,6 +56,7 @@ let
     WORLD_SONG_FULL_UNLOCK = false;
     WORLD_SCENERY_FULL_UNLOCK = false;
     SAVE_FULL_UNLOCK = false;
+    STAMINA_RECOVER_TICK = 1; # Recover stamina instantly
     # }}}
   };
 

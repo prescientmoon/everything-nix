@@ -62,4 +62,7 @@
   # {{{ SSH keys
   users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../calypso/keys/id_ed25519.pub ];
   # }}}
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprland.enableGnomeKeyring = true;
 }

@@ -14,4 +14,5 @@ in
   vimclip = pkgs.callPackage (import ./vimclip.nix) { };
   homer = pkgs.callPackage (import ./homer.nix) { };
   glassServer = pkgs.callPackage (import ./glass-server.nix) { };
+  glassBundler = pkgs.callPackage (import ./glass-bundler.nix) { };
 }
