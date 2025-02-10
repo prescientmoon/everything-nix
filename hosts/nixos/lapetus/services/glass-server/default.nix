@@ -15,13 +15,20 @@
     sopsFile = ../../secrets.yaml;
   };
 
+  sops.secrets.glass_server_admin_token = {
+    owner = config.services.glass-server.user;
+    group = config.services.glass-server.user;
+    sopsFile = ../../secrets.yaml;
+  };
+
   sops.templates.glass-server-config = {
     owner = config.services.glass-server.user;
     group = config.services.glass-server.user;
     content = ''
       {
         "SECRET_KEY": "${config.sops.placeholder.glass_server_secret_key}",
-        "PASSWORD": "${config.sops.placeholder.glass_server_admin_password}"
+        "PASSWORD": "${config.sops.placeholder.glass_server_admin_password}",
+        "API_TOKEN": ${config.sops.placeholder.glass_server_admin_token}
       }
     '';
   };
