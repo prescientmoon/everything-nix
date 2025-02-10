@@ -28,7 +28,7 @@
       {
         "SECRET_KEY": "${config.sops.placeholder.glass_server_secret_key}",
         "PASSWORD": "${config.sops.placeholder.glass_server_admin_password}",
-        "API_TOKEN": ${config.sops.placeholder.glass_server_admin_token}
+        "API_TOKEN": "${config.sops.placeholder.glass_server_admin_token}"
       }
     '';
   };
