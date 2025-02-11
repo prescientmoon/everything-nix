@@ -1914,7 +1914,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "shimmeringdarknes": "shimmeringdarknes",
+        "shimmeringdarkness": "shimmeringdarkness",
         "shimmeringmoon": "shimmeringmoon",
         "smos": "smos",
         "sops-nix": "sops-nix",
@@ -2019,22 +2019,6 @@
         "type": "github"
       }
     },
-    "shimmeringdarknes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1739258921,
-        "narHash": "sha256-7EOXxJ5e2t/z6bs7Ah1CbxVcNHsZNj98iKqmX+ZBBPI=",
-        "ref": "refs/heads/main",
-        "rev": "e3abd1c997b052891a847a39f639ec87c06268dd",
-        "revCount": 69,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git"
-      }
-    },
     "shimmeringdarkness": {
       "flake": false,
       "locked": {
@@ -2058,7 +2042,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "shimmeringdarkness": "shimmeringdarkness"
+        "shimmeringdarkness": [
+          "shimmeringdarkness"
+        ]
       },
       "locked": {
         "lastModified": 1739258921,
