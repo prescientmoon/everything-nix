@@ -5,7 +5,7 @@
   ...
 }:
 let
-  user = config.services.shimmeringmoon.user;
+  user = config.services.glass-server.user;
   pkg = inputs.shimmeringmoon.packages.${pkgs.system}.default;
   dataDir = "/persist/state/var/lib/shimmeringmoon";
 in
