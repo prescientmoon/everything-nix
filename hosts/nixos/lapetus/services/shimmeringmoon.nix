@@ -36,8 +36,8 @@ in
   };
 
   sops.templates.shimmering_env_file = {
-    owner = config.services.shimmeringmoon.user;
-    group = config.services.shimmeringmoon.user;
+    owner = user;
+    group = user;
     content = ''
       SHIMMERING_DISCORD_TOKEN        = ${config.sops.placeholder.shimmering_discord_token};
       SHIMMERING_PRIVATE_SERVER_TOKEN = ${config.sops.placeholder.glass_server_admin_token};
