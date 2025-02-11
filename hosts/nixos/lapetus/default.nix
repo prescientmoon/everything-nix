@@ -35,6 +35,7 @@
     ./services/qbittorrent.nix
     ./services/radicale.nix
     ./services/redlib.nix
+    ./services/shimmeringmoon.nix
     ./services/vaultwarden.nix
     ./services/whoogle.nix
     ./services/zfs.nix

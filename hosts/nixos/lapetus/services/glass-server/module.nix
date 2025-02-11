@@ -5,7 +5,7 @@
   ...
 }:
 let
-  defaultUser = "taritsu";
+  defaultUser = "tairitsu";
   cfg = config.services.glass-server;
   pkg = pkgs.glassServer;
 
@@ -29,7 +29,6 @@ let
 
     SONG_FILE_FOLDER_PATH = "${cfg.dataDir}/songs/";
     SONGLIST_FILE_PATH = "${cfg.dataDir}/songs/songlist";
-    CONTENT_BUNDLE_FOLDER_PATH = "${cfg.dataDir}/bundle/";
     SQLITE_DATABASE_BACKUP_FOLDER_PATH = "${cfg.dataDir}/backup/";
 
     DATABASE_INIT_PATH = "${pkg}/source/database/init/";
@@ -107,7 +106,6 @@ in
 
       "d ${cfg.dataDir}/map         0755 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/songs       0755 ${cfg.user} ${cfg.user}"
-      "d ${cfg.dataDir}/bundle      0755 ${cfg.user} ${cfg.user}"
 
       "L+ ${cfg.dataDir}/pkgs/server 0755 ${cfg.user} ${cfg.user} - ${pkg}"
       "L+ ${cfg.dataDir}/pkgs/db     0755 ${cfg.user} ${cfg.user} - ${databaseRepo}"

@@ -57,6 +57,12 @@
     # Spotify client with theming support
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
+    shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
+
+    shimmeringdarknes.flake = false;
+    shimmeringdarknes.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
     # }}}
     # {{{ Theming
     darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";
