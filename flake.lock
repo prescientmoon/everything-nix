@@ -2047,11 +2047,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739265526,
-        "narHash": "sha256-zwC712TEiIUScl/uZsUVLyn+buLFoyvgdBVfEt5yADQ=",
+        "lastModified": 1739266456,
+        "narHash": "sha256-ZDm6IruZsBBnRXty7GfAboqE91lwYBobZbtlPpZlsC0=",
         "ref": "refs/heads/main",
-        "rev": "d29c214988e84219a50b0d576e37294554c49d77",
-        "revCount": 73,
+        "rev": "6a4782721a28bf217977a80baee7b2021c132b0a",
+        "revCount": 74,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git"
       },
