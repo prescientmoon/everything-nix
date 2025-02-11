@@ -32,7 +32,7 @@ in
   sops.secrets.shimmering_discord_token = {
     owner = user;
     group = user;
-    sopsFile = ../../secrets.yaml;
+    sopsFile = ../secrets.yaml;
   };
 
   sops.templates.shimmering_env_file = {
