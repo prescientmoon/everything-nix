@@ -67,6 +67,8 @@
     shimmeringmoon.inputs.shimmeringdarkness.follows = "shimmeringdarkness";
     shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
 
+    moonythm.inputs.nixpkgs.follows = "nixpkgs";
+    moonythm.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git";
     # }}}
     # {{{ Theming
     darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";

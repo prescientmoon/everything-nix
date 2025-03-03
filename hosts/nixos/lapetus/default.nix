@@ -29,6 +29,7 @@
     ./services/jellyfin.nix
     ./services/jupyter.nix
     ./services/microbin.nix
+    ./services/moonythm.nix.nix
     ./services/pounce.nix
     ./services/prometheus.nix
     ./services/prometheus.nix

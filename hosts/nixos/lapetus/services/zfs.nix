@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   # {{{ Zfs config
   services.zfs = {
