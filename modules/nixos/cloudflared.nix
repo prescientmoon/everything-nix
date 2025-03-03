@@ -40,7 +40,7 @@ in
               host = lib.mkOption {
                 description = "Host to direct traffic from";
                 type = lib.types.str;
-                default = "${config.subdomain}.${cfg.domain}";
+                default = if config.subdomain == "" then cfg.domain else "${config.subdomain}.${cfg.domain}";
               };
 
               protocol = lib.mkOption {
@@ -81,7 +81,7 @@ in
       mkDnsRecord =
         { subdomain, ... }:
         {
-          type = "CNAME";
+          type = if subdomain == "" then "ALIAS" else "CNAME";
           at = subdomain;
           zone = cfg.domain;
           value = "${cfg.tunnel}.cfargotunnel.com.";

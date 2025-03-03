@@ -41,6 +41,7 @@ in
                   "TXT"
                   "CNAME"
                   "MX"
+                  "ALIAS"
                 ];
                 description = "The type of the DNS record";
               };

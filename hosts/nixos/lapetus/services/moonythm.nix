@@ -9,7 +9,6 @@ in
 {
   satellite.cloudflared.at."".port = 8080;
 
-  satellite.nginx.at."".files = dir;
   services.nginx.virtualHosts."".extraConfig = ''
     root ${dir};
     error_page 404 /404.html;
