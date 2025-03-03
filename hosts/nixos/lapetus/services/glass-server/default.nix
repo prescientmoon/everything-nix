@@ -25,7 +25,7 @@
     owner = config.services.glass-server.user;
     group = config.services.glass-server.user;
     content = builtins.toJSON {
-      CONTENT_BUNDLE_FOLDER_PATH = "${inputs.shimmeringdarkness}/bundles";
+      CONTENT_BUNDLE_FOLDER_PATH = "${inputs.shimmeringvoid}/bundles";
       SECRET_KEY = "${config.sops.placeholder.glass_server_secret_key}";
       PASSWORD = "${config.sops.placeholder.glass_server_admin_password}";
       API_TOKEN = "${config.sops.placeholder.glass_server_admin_token}";

@@ -17,7 +17,8 @@
     ../common/optional/desktop/steam.nix
     ../common/optional/wayland/hyprland.nix
 
-    ../common/optional/services/wpa_supplicant.nix
+    # ../common/optional/services/wpa_supplicant.nix
+    ../common/optional/services/iwd
     ../common/optional/services/tailscale.nix
     ../common/optional/services/kanata.nix
     ../common/optional/services/restic

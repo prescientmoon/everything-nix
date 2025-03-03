@@ -60,6 +60,8 @@
 
     shimmeringdarkness.flake = false;
     shimmeringdarkness.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringdarkness.git";
+    shimmeringvoid.flake = false;
+    shimmeringvoid.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringvoid.git";
 
     shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
     shimmeringmoon.inputs.shimmeringdarkness.follows = "shimmeringdarkness";
