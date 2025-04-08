@@ -58,10 +58,8 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
-    shimmeringmoon.inputs.shimmeringvoid.follows = "shimmeringvoid";
-    shimmeringmoon.inputs.shimmeringdarkness.follows = "shimmeringdarkness";
     shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
+    shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
 
     moonythm.inputs.nixpkgs.follows = "nixpkgs";
     moonythm.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git";
