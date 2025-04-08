@@ -1,11 +1,12 @@
 { pkgs, lib, ... }:
-let package = pkgs.eza;
+let
+  package = pkgs.eza;
 in
 {
   home.packages = [ package ];
-
   home.shellAliases =
-    let eza = lib.getExe package;
+    let
+      eza = lib.getExe package;
     in
     rec {
       ls = "${eza} --icons --long";

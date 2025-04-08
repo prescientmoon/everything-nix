@@ -71,7 +71,6 @@ in
           done # Trigger a notification when long commands finish execution
           puffer # Text expansion (i.e. expanding .... to ../../../)
           sponge # Remove failed commands and whatnot from history
-          colored-man-pages
         ];
       in
       # For some reason home-manager expects a slightly different format 🤔

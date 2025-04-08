@@ -8,7 +8,7 @@ let
   workflowDir = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum/smos";
 in
 {
-  sops.secrets.smos_password.sopsFile = ../secrets.yaml;
+  sops.secrets.smos_password.sopsFile = ./secrets.yaml;
 
   # {{{ Smos config
   programs.smos = {
