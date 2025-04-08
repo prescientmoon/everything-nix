@@ -7,9 +7,12 @@ let
   dir = inputs.moonythm.packages.${pkgs.system}.moonythm;
 in
 {
-  satellite.cloudflared.at."".port = 8080;
+  satellite.cloudflared.at."".port = 80;
+  services.nginx.virtualHosts."moonythm.dev".extraConfig = ''
+    gzip on;
+    charset utf-8;
+    override_charset on;
 
-  services.nginx.virtualHosts."".extraConfig = ''
     root ${dir};
     error_page 404 /404.html;
 

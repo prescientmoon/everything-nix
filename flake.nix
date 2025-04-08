@@ -58,12 +58,8 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    shimmeringdarkness.flake = false;
-    shimmeringdarkness.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringdarkness.git";
-    shimmeringvoid.flake = false;
-    shimmeringvoid.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringvoid.git";
-
     shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
+    shimmeringmoon.inputs.shimmeringvoid.follows = "shimmeringvoid";
     shimmeringmoon.inputs.shimmeringdarkness.follows = "shimmeringdarkness";
     shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
 
@@ -137,7 +133,9 @@
       # }}}
       # {{{ Overlays and modules
       # Custom packages and modifications, exported as overlays
-      overlays = import ./overlays;
+      overlays = import ./overlays // {
+        shimmeringmoon = inputs.shimmeringmoon.overlays.default;
+      };
 
       # Reusable nixos modules
       nixosModules = import ./modules/nixos // import ./modules/common;

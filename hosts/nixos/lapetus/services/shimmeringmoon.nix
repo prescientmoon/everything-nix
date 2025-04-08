@@ -1,12 +1,10 @@
 {
   config,
-  inputs,
   pkgs,
   ...
 }:
 let
   user = config.services.glass-server.user;
-  pkg = inputs.shimmeringmoon.packages.${pkgs.system}.default;
   dataDir = "/persist/state/var/lib/shimmeringmoon";
 in
 {
@@ -18,7 +16,7 @@ in
     serviceConfig = {
       User = user;
       Group = user;
-      ExecStart = "${pkg}/bin/shimmering-discord-bot";
+      ExecStart = "${pkgs.shimmeringmoon}/bin/shimmering-discord-bot";
 
       Restart = "on-failure";
       LogsDirectory = "shimmeringmoon";

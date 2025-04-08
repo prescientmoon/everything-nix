@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 {
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
@@ -37,11 +37,6 @@
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
   services.mullvad-vpn.enable = true;
-
-  services.mysql = {
-    enable = true;
-    package = pkgs.mysql80;
-  };
   # }}}
   # {{{ Ad-hoc stylix targets
   stylix.targets.gtk.enable = true;

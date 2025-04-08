@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
@@ -75,6 +75,14 @@
   users.users.root.openssh.authorizedKeys.keyFiles =
     config.users.users.pilot.openssh.authorizedKeys.keyFiles;
   services.fail2ban.enable = false;
+  # }}}
+  # {{{ Misc packages
+  environment.systemPackages = [
+    pkgs.sqlite
+    pkgs.git
+    pkgs.bat
+    pkgs.yazi
+  ];
   # }}}
 
   boot.loader.systemd-boot.enable = true;
