@@ -1,0 +1,63 @@
+import common/unicode-greek
+import common/unicode-double-stroke
+import common/unicode-subperscripts
+import common/unicode-misc
+
+string loc
+  name loc parameter
+  desc Automatically passed location parameter
+  snip loc := #caller_location
+
+block auto
+  abbr anyint #any_int
+  abbr u8 ℕ₈
+  abbr v2 ℝ²
+  abbr v3 ℝ³
+  abbr v4 ℝ⁴
+
+block auto start
+  abbr private \@(private)
+  abbr reqres \@(require_results)
+
+  string const
+    snip $1 :: $0
+
+  string proc
+    snip
+      $1 :: proc ($2) -> $|3⟨$3,($3\, ok: bool)⟩ {
+        $4
+      }
+      $0
+
+  for kind <- @⟨struct,enum,bit_field⟩
+  string @⟨@kind:struct,enum,bitfield⟩
+    snip
+      $1 :: @kind $2 {
+        $3
+      }
+      $0
+
+  for kind <- @⟨when,if,else if⟩
+  string @⟨@kind:when,if,elif⟩
+    snip
+      @kind $1 {
+        $2
+      } $0
+
+  string else
+    snip
+      else {
+        $1
+      } $0
+
+  string forin
+    snip
+      for $1 in $2 {
+        $3
+      } $0
+
+  for level <- @⟨debug,info,warn,error,assert⟩
+
+  abbr f@level log.@level⋄f("$1", $2)$0
+  abbr @level  log.@level($1)$0
+

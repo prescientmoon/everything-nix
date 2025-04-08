@@ -1,0 +1,11 @@
+block auto
+  abbr sharp ♯
+  abbr flat ♭
+  abbr square □
+  abbr rquare ▢
+  abbr diam ◇
+  abbr iinf ∞
+  abbr niinf -∞
+  abbr sim ∼
+  abbr approx ≃
+  abbr cong ≅

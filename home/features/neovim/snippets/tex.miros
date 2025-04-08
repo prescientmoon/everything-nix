@@ -40,6 +40,12 @@ block auto !math start
   string item
     snip \item$|1⟨,[$1] $0⟩
 
+  string @thmenv
+    snip
+      \begin{@thmenv}$?1⟨[@^⟨$1⟩]⟩$?2⟨\label{@thmprefix:@^⟨$2⟩}⟩
+        $0
+      \end{@thmenv}
+
   for kind <- @⟨chapter,section,subsection,subsubsection⟩
 
   string @kind
@@ -48,7 +54,13 @@ block auto !math start
       \\@kind⋄{$1}
       $0
 
-
+  string frame
+    name Beamer frame
+    desc Creates a beamer slide frame
+    snip
+      \begin{frame}$?1⟨{@^⟨$1⟩}⟩
+        $0
+      \end{frame}
   -- }}}
 
 block text
@@ -75,6 +87,8 @@ block text
     string $
       name inline math
       snip \$$1\$$0
+
+    abbr pause \pause
     -- }}}
 
   string forcecr

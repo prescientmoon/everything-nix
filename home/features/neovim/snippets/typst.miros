@@ -1,4 +1,7 @@
 import common/math-phrases
+import common/unicode-greek
+import common/unicode-double-stroke
+import common/unicode-misc
 
 block auto start
   for thmenv <- @⟨lemma,theorem,corollary,definition⟩

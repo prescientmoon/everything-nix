@@ -29,3 +29,7 @@ block auto !word
   string nil
     name ignore symbol
     snip \⋄
+
+  string escape
+    name escape brackets
+    snip \@^\⟨$1\⟩

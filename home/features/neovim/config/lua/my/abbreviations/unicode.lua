@@ -36,34 +36,6 @@ M.unicode = {
   { "pspeq", "⊋" }, -- [p]roper [s]u[p]erset or [eq]ual
   -- }}}
   -- }}}
-  -- {{{ Double stroked chars
-  { "AA", "𝔸" },
-  { "BB", "𝔹" },
-  { "CC", "ℂ" },
-  { "DD", "ⅅ" },
-  { "EE", "𝔼" },
-  { "FF", "𝔽" },
-  { "GG", "𝔾" },
-  { "HH", "ℍ" },
-  { "II", "𝕀" },
-  { "JJ", "𝕁" },
-  { "KK", "𝕂" },
-  { "LL", "𝕃" },
-  { "MM", "𝕄" },
-  { "NN", "ℕ" },
-  { "OO", "𝕆" },
-  { "PP", "ℙ" },
-  { "QQ", "ℚ" },
-  { "RR", "ℝ" },
-  { "SS", "𝕊" },
-  { "TT", "𝕋" },
-  { "UU", "𝕌" },
-  { "VV", "𝕍" },
-  { "WW", "𝕎" },
-  { "XX", "𝕏" },
-  { "YY", "𝕐" },
-  { "ZZ", "ℤ" },
-  -- }}}
   -- {{{ Common operators
   { "comp", "∘" }, -- composition
   { "mul", "⋅" }, -- multiplication
@@ -88,53 +60,13 @@ M.unicode = {
   { "iic", "∋" }, -- [I]n[c]ludes
   { "nic", "∌" }, -- does'[n]t [i]n[c]lude
   -- }}}
-  -- {{{ Greek characters
-  { "alpha", "α" },
-  { "beta", "β" },
-  { "gamma", "γ" },
-  { "Gamma", "Γ" },
-  { "delta", "δ" },
-  { "Delta", "Δ" },
-  { "eps", "ε" },
-  { "zeta", "ζ" },
-  { "eta", "η" },
-  { "theta", "θ" },
-  { "Theta", "Θ" },
-  { "iota", "ι" },
-  { "kappa", "κ" },
-  { "lam", "λ" },
-  { "Lam", "Λ" },
-  { "mu", "μ" },
-  { "nu", "ν" },
-  { "xi", "ξ" },
-  { "pi", "π" },
-  { "Pi", "∏" },
-  { "rho", "ρ" },
-  { "sigma", "σ" },
-  { "Sigma", "Σ" },
-  { "tau", "τ" },
-  { "upsilon", "υ" },
-  { "phi", "ϕ" },
-  { "ophi", "φ" }, -- open phi?
-  { "Phi", "Φ" },
-  { "chi", "χ" },
-  { "psi", "ψ" },
-  { "Psi", "Ψ" },
-  { "omega", "ω" },
-  { "Omega", "Ω" },
-  -- }}}
   -- {{{ Common symbols
-  { "iinf", "∞" },
-  { "niinf", "-∞" },
   { "star", "⋆" },
   { "nabla", "∇" },
   { "minidiam", "⋄" },
   { "tto", "→" },
   { "ttoo", "⟶" },
   { "mapto", "↦" },
-  { "square", "□" },
-  { "rquare", "▢" }, -- rounded square
-  { "diam", "◇" },
   -- }}}
 }
 

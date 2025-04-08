@@ -1,0 +1,16 @@
+block auto
+  abbr s0 ₀
+  abbr s1 ₁
+  abbr s2 ₂
+  abbr s3 ₃
+  abbr s4 ₄
+  abbr s5 ₅
+  abbr s6 ₆
+  abbr s7 ₇
+  abbr s8 ₈
+  abbr s9 ₉
+  abbr s+ ₊
+  abbr s- ₋
+  abbr s= ₌
+  abbr s( ₍
+  abbr s) ₎
