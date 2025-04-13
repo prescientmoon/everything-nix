@@ -26,6 +26,14 @@ in
 
   systemd.tmpfiles.rules = [ "d ${dataDir} 0755 ${user} ${user}" ];
 
+  satellite.sqliteWeb.databases.shimmer = {
+    port = config.satellite.ports.sqlite-web-shimmer;
+    user = user;
+    group = user;
+    file = "${dataDir}/db.sqlite";
+    passwordFile = config.services.glass-server.passwordFile;
+  };
+
   # {{{ Secrets
   sops.secrets.shimmering_discord_token = {
     owner = user;

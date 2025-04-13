@@ -57,6 +57,8 @@ let
     SAVE_FULL_UNLOCK = false;
     STAMINA_RECOVER_TICK = 1; # Recover stamina instantly
     SKILL_FATALIS_WORLD_LOCKED_TIME = 1; # Recover from Fatalis instantly
+
+    CONTENT_BUNDLE_FOLDER_PATH = "${pkgs.shimmeringextra}/bundles";
     # }}}
   };
 
@@ -87,13 +89,21 @@ in
       '';
     };
 
-    secretConfig = lib.mkOption {
+    secretKeyFile = lib.mkOption {
       type = lib.types.path;
-      description = ''
-        Path to additional config that might be generated at runtime by a tool
-        like sops. This might be useful for things like the admin password
-      '';
+      description = "Path to a file containing the secret key to use for the server";
     };
+
+    passwordFile = lib.mkOption {
+      type = lib.types.path;
+      description = "Path to a file containing the admin password for the server";
+    };
+
+    apiTokenFile = lib.mkOption {
+      type = lib.types.path;
+      description = "Path to a file containing the api token for the server";
+    };
+
   };
   # }}}
 
@@ -121,15 +131,24 @@ in
         User = cfg.user;
         Group = cfg.user;
         ExecStart = pkgs.writeShellScript "glass-server-startup" ''
-          # Merge the given configs
-          ${lib.getExe pkgs.jq} -s ".[0] * .[1]" \
-            ${cfg.secretConfig} \
+          # Copy secrets into config
+          ${lib.getExe pkgs.jq} "\
+              .SECRET_KEY=\"$(cat ${cfg.secretKeyFile})\" |\
+              .PASSWORD=\"$(cat ${cfg.passwordFile})\" |\
+              .API_TOKEN=\"$(cat ${cfg.apiTokenFile})\" \
+            " \
             ${serverConfigPath} \
             > ${configPath}
+
+          # TODO: only do this if the db file already exists...
+          # Update the db
+          ${lib.getExe pkgs.glass-server-db-updater} \
+            ${glassServerConfig.SQLITE_DATABASE_PATH}
 
           # Start the server
           ARCAEA_JSON_CONFIG_PATH=${configPath} ${pkg}/bin/glass-server
         '';
+
         Restart = "on-failure";
       };
     };
@@ -144,5 +163,13 @@ in
       groups.${defaultUser} = { };
     };
     # }}}
+
+    satellite.sqliteWeb.databases.glass = {
+      port = config.satellite.ports.sqlite-web-glass;
+      user = cfg.user;
+      group = cfg.user;
+      file = glassServerConfig.SQLITE_DATABASE_PATH;
+      passwordFile = cfg.passwordFile;
+    };
   };
 }

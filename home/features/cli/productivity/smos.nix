@@ -39,7 +39,7 @@ in
   satellite.persistence.at.data.apps.smos.directories = [ config.programs.smos.workflowDir ];
 
   sops.secrets.smos_github_token = {
-    sopsFile = ../secrets.yaml;
+    sopsFile = ./secrets.yaml;
     path = "${config.xdg.dataHome}/smos/.github_token";
   };
   # }}}

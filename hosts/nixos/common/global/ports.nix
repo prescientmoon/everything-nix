@@ -29,5 +29,7 @@
     glass-server = 8425;
     glass-server-lp-tcp = 8426;
     glass-server-lp-udp = 8427;
+    sqlite-web-glass = 8428;
+    sqlite-web-shimmer = 8429;
   };
 }

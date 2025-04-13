@@ -7,4 +7,5 @@
   nginx = ./nginx.nix;
   pilot = ./pilot.nix;
   pounce = ./pounce.nix;
+  sqliteWeb = ./sqlite-web.nix;
 }
