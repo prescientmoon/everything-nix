@@ -1,36 +1,9 @@
 {
   config,
-  lib,
   pkgs,
   inputs,
   ...
 }:
-let
-  # {{{ Global extensions
-  extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-    buster-captcha-solver
-    # REASON: returns 404 for now
-    # bypass-paywalls-clean
-    clearurls # removes ugly args from urls
-    cliget # Generates curl commands for downloading account-protected things
-    don-t-fuck-with-paste # disallows certain websites from disabling pasting
-    decentraleyes # Serves local copies of a bunch of things instead of reaching a CDN
-    gesturefy # mouse gestures
-    indie-wiki-buddy # redirects fandom wiki urls to the proper wikis
-    i-dont-care-about-cookies
-    localcdn # caches libraries locally
-    privacy-badger # blocks some trackers
-    privacy-pass # captcha stuff
-    privacy-redirect # allows redirecting to my own instances for certain apps
-    skip-redirect # attempts to skip to the final reddirect for certain urls
-    terms-of-service-didnt-read
-    translate-web-pages
-    ublock-origin
-    unpaywall
-    user-agent-string-switcher
-  ];
-in
-# }}}
 {
   programs.firefox = {
     enable = true;
@@ -69,29 +42,39 @@ in
       userChrome = builtins.readFile ./userChrome.css;
       # }}}
       # {{{ Extensions
-      extensions =
-        with inputs.firefox-addons.packages.${pkgs.system};
-        with lib.lists;
-        flatten [
-          extensions
-          # List of profile-specific extensions
-          [
-            augmented-steam # Adds more info to steam
-            bitwarden # Password manager
-            blocktube # Lets you block youtube channels
-            dearrow # Crowdsourced clickbait remover 💀
-            leechblock-ng # website blocker
-            lovely-forks # displays forks on github
-            octolinker # github import to link thingy
-            octotree # github file tree
-            refined-github # a bunch of github modifications
-            return-youtube-dislikes
-            steam-database # adds info from steamdb on storepages
-            sponsorblock # skip youtube sponsors
-            vimium-c # vim keybinds
-            youtube-shorts-block
-          ]
-        ];
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        # bypass-paywalls-clean # REASON: returns 404 for now
+        augmented-steam # Adds more info to steam
+        bitwarden # Password manager
+        blocktube # Lets you block youtube channels
+        buster-captcha-solver
+        clearurls # removes ugly args from urls
+        cliget # Generates curl commands for downloading account-protected things
+        dearrow # Crowdsourced clickbait remover 💀
+        decentraleyes # Serves local copies of a bunch of things instead of reaching a CDN
+        don-t-fuck-with-paste # disallows certain websites from disabling pasting
+        gesturefy # mouse gestures
+        i-dont-care-about-cookies
+        indie-wiki-buddy # redirects fandom wiki urls to the proper wikis
+        leechblock-ng # website blocker
+        localcdn # caches libraries locally
+        octolinker # github import to link thingy
+        privacy-badger # blocks some trackers
+        privacy-pass # captcha stuff
+        privacy-redirect # allows redirecting to my own instances for certain apps
+        refined-github # a bunch of github modifications
+        return-youtube-dislikes
+        skip-redirect # attempts to skip to the final reddirect for certain urls
+        sponsorblock # skip youtube sponsors
+        steam-database # adds info from steamdb on storepages
+        terms-of-service-didnt-read
+        translate-web-pages
+        ublock-origin
+        unpaywall
+        user-agent-string-switcher
+        vimium-c # vim keybinds
+        youtube-shorts-block
+      ];
       # }}}
       # {{{ Search engines
       search.engines =
@@ -375,37 +358,11 @@ in
       };
       # }}}
     };
-
-    # {{{ Standalone "apps" which actually run inside a browser.
-    apps.extensions = extensions;
-    apps.app = {
-      # {{{ Desmos
-      desmos = {
-        url = "https://www.desmos.com/calculator";
-        icon = ../../../../common/icons/desmos.png;
-        displayName = "Desmos";
-        id = 1;
-      };
-      # }}}
-      # {{{ Monkey type
-      monkey-type = {
-        url = "https://monkeytype.com/";
-        icon = ../../../../common/icons/monkeytype.png;
-        displayName = "Monkeytype";
-        id = 2;
-      };
-      # }}}
-    };
-    # }}}
   };
 
   stylix.targets.firefox = {
     enable = true;
-    profileNames = [
-      config.home.username
-      "desmos"
-      "monkey-type"
-    ];
+    profileNames = [ config.home.username ];
   };
 
   # {{{ Make firefox the default browser

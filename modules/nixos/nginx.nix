@@ -16,6 +16,12 @@ in
         lib.types.submodule (
           { name, config, ... }:
           {
+            options.location = lib.mkOption {
+              default = "";
+              type = lib.types.str;
+              description = "Subpath to proxy to";
+            };
+
             options.subdomain = lib.mkOption {
               description = ''
                 Subdomain to use for host generation.

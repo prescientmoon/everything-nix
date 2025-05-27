@@ -1,7 +1,12 @@
-# The idea is to always use consecutive ports, but never go back and try to
-# recycle older no longer used ports (for the sake of keeping things clean).
+{ lib, ... }:
 {
-  satellite.ports = {
+  options.satellite.ports = lib.mkOption {
+    type = lib.types.lazyAttrsOf lib.types.port;
+  };
+
+  # The idea is to always use consecutive ports, but never go back and try to
+  # recycle older no longer used ports (for the sake of keeping things clean).
+  config.satellite.ports = {
     whoogle = 8401;
     intray-api = 8402;
     intray-client = 8403;

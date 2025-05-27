@@ -164,10 +164,10 @@ in
     };
     # }}}
 
-    satellite.sqliteWeb.databases.glass = {
-      port = config.satellite.ports.sqlite-web-glass;
+    services.sqliteWeb.enable = true;
+    services.sqliteWeb.databases.glass = {
       user = cfg.user;
-      group = cfg.user;
+      port = config.satellite.ports.sqlite-web-glass;
       file = glassServerConfig.SQLITE_DATABASE_PATH;
       passwordFile = cfg.passwordFile;
     };

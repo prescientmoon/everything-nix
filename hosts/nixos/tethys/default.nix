@@ -61,4 +61,12 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.hyprland.enableGnomeKeyring = true;
+
+  services.sqliteWeb.enable = true;
+  services.sqliteWeb.databases.nix = {
+    port = 8500;
+    user = "adrielus";
+    file = "/home/adrielus/projects/personal/shimmeringmoon/shimmering/data/db.sqlite";
+    passwordFile = "/persist/state/.sqlpass";
+  };
 }

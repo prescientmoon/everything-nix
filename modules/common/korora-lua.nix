@@ -179,12 +179,13 @@ let
       given.value
     else if lib.isAttrs given then
       helpers.mkRawLuaObject (
-        lib.mapAttrsToList (
+        lib.lists.map recurse (given."__list" or [ ])
+        ++ lib.mapAttrsToList (
           name: value:
           let
             result = recurse value;
           in
-          lib.optionalString (result != "nil") "${helpers.mkAttrName name} = ${result}"
+          lib.optionalString (result != "nil" && name != "__list") "${helpers.mkAttrName name} = ${result}"
         ) given
       )
     else if lib.isFunction given then

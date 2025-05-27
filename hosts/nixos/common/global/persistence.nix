@@ -18,15 +18,13 @@
     "/var/log"
   ];
 
-  # Allow non root users to specify the "allowOther" option.
-  # See [the imperanence readme](https://github.com/nix-community/impermanence#home-manager)
+  # Allow non-root users to specify the "allowOther" option. See the impermanence
+  # readme: https://github.com/nix-community/impermanence#home-manager
   programs.fuse.userAllowOther = true;
 
-  # {{{ Disable sudo default lecture
-  security.sudo.extraConfig = ''
-    Defaults lecture = never
-  '';
-  # }}}
+  # Disable the default lecture shown when first using "sudo" on a machine.
+  security.sudo.extraConfig = "Defaults lecture = never";
+
   # {{{ Create home directories
   systemd.tmpfiles.rules =
     let

@@ -27,20 +27,18 @@
   satellite.cloudflared.at.arcaea.port = 80;
 
   services.nginx.virtualHosts."arcaea.moonythm.dev" = {
-    locations."/web/".proxyPass =
-      "http://localhost:${toString config.satellite.ports.glass-server}/web/";
+    locations."/".priority = 2000; # The default is 1000
+    locations."/".proxyPass = "http://localhost:${toString config.satellite.ports.glass-server}/";
+
     locations."/db/glass/".proxyPass =
       "http://localhost:${toString config.satellite.ports.sqlite-web-glass}/db/glass/";
     locations."/db/shimmer/".proxyPass =
       "http://localhost:${toString config.satellite.ports.sqlite-web-shimmer}/db/shimmer/";
-    locations."/" = {
-      return = "301 https://arcaea.lowiro.com/en";
-      priority = 2000; # 1000 is the default for everything else
-    };
+    locations."/log/".root = "${config.services.glass-server.dataDir}/log/";
   };
 
-  satellite.sqliteWeb.databases.glass.location = "/db/glass/";
-  satellite.sqliteWeb.databases.shimmer.location = "/db/shimmer/";
+  services.sqliteWeb.databases.glass.urlPrefix = "/db/glass/";
+  services.sqliteWeb.databases.shimmer.urlPrefix = "/db/shimmer/";
   # }}}
 
   services.glass-server = {

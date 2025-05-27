@@ -1,82 +1,150 @@
 {
   config,
-  lib,
   pkgs,
+  lib,
   ...
 }:
 let
-  cfg = config.satellite.sqliteWeb;
+  cfg = config.services.sqliteWeb;
 in
 {
-  options.satellite.sqliteWeb = {
+  meta.maintainers = with lib.maintainers; [ ];
+
+  options.services.sqliteWeb = {
+    enable = lib.mkEnableOption "sqlite-web, a Web-based SQLite database browser written in Python";
+
+    package = lib.mkOption {
+      description = "sqlite-web package to use";
+      type = lib.types.package;
+      example = lib.literalExpression "pkgs.sqlite-web";
+      default = pkgs.sqlite-web;
+      defaultText = "pkgs.sqlite-web";
+    };
+
     databases = lib.mkOption {
-      description = "Per-database sqlite-web configuration";
+      description = "Configuration for multiple instances of sqlite-web";
+
       type = lib.types.attrsOf (
-        lib.types.submodule (
-          { ... }:
-          {
-            options.port = lib.mkOption {
-              description = "Port to serve UI on";
-              type = lib.types.nullOr lib.types.port;
-              default = null;
+        lib.types.submodule {
+          options = {
+            port = lib.mkOption {
+              description = "Port to serve the interface on";
+              type = lib.types.port;
+              example = 8080;
             };
 
-            options.user = lib.mkOption {
-              description = "The user the GUI should run as";
-              type = lib.types.str;
-            };
-
-            options.group = lib.mkOption {
-              description = "The group the GUI should run as";
-              type = lib.types.str;
-            };
-
-            options.file = lib.mkOption {
-              description = "Path to serve files from";
+            file = lib.mkOption {
+              description = "Path to the sqlite database";
               type = lib.types.path;
+              example = "/nix/var/nix/db/db.sqlite";
             };
 
-            options.passwordFile = lib.mkOption {
-              description = "File containing the password to use for authentication";
+            user = lib.mkOption {
+              description = ''
+                The user that owns the database file, and which
+                the service should run under
+              '';
+              type = lib.types.str;
+              example = "eve";
+            };
+
+            readOnly = lib.mkOption {
+              description = "Do not allow editing the database via the interface";
+              type = lib.types.bool;
+              default = false;
+              example = true;
+            };
+
+            passwordFile = lib.mkOption {
+              description = ''
+                File containing the password to use for authentication.
+                Set to `null` to disable authentication
+              '';
               type = lib.types.nullOr lib.types.path;
               default = null;
+              example = "/run/keys/sqlite-web-password";
             };
 
-            options.location = lib.mkOption {
-              description = "Prefix path to add to all urls";
-              type = lib.types.path;
-              default = "";
+            urlPrefix = lib.mkOption {
+              description = "Prefix for all url paths";
+              type = lib.types.nullOr lib.types.str;
+              default = null;
+              example = "/db/";
             };
-          }
-        )
+
+            extraFlags = lib.mkOption {
+              description = "Extra flags to pass to the sqlite-web command";
+              type = with lib.types; either str (listOf str);
+              default = [ ];
+              example = [
+                "--no-truncate"
+                "--foreign-keys"
+              ];
+            };
+          };
+        }
       );
 
       default = { };
+      example = {
+        "nix-store-db" = {
+          port = 8080;
+          file = "/nix/var/nix/db/db.sqlite";
+          readOnly = true;
+        };
+      };
     };
   };
 
-  config.systemd.services = lib.attrsets.mapAttrs' (name: value: {
-    name = "sqlite-web-${name}";
-    value = {
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-      description = "Sqlite web GUI";
+  config = lib.mkIf cfg.enable {
+    systemd.services = lib.attrsets.mapAttrs' (name: instance: {
+      name = "sqlite-web-${name}";
+      value = {
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        description = "Web-based SQLite database browser written in Python";
 
-      serviceConfig = {
-        User = value.user;
-        Group = value.user;
-        ExecStart = pkgs.writeShellScript "sqlite-web-startup" ''
-          export SQLITE_WEB_PASSWORD=$(cat ${value.passwordFile})
+        script = ''
+          ${lib.optionalString (instance.passwordFile != null) ''
+            export SQLITE_WEB_PASSWORD=$(cat "''${CREDENTIALS_DIRECTORY}/password")
+          ''}
 
-          ${lib.getExe pkgs.sqlite-web} \
-            --port=${toString value.port} \
-            --url-prefix=${value.location} \
-            --password \
-            --no-browser \
-            ${value.file}
+          ${lib.getExe cfg.package} ${
+            lib.escapeShellArgs (
+              [ "--port=${toString instance.port}" ]
+              ++ lib.lists.optional (instance.urlPrefix != null) "--url-prefix=${instance.urlPrefix}"
+              ++ lib.lists.optional (instance.passwordFile != null) "--password"
+              ++ instance.extraFlags
+              ++ [ instance.file ]
+            )
+          }
         '';
-        Restart = "on-failure";
+
+        serviceConfig = {
+          LoadCredential = lib.optional (instance.passwordFile != null) "password:${instance.passwordFile}";
+          ReadOnlyPaths = lib.lists.optional instance.readOnly instance.file;
+          ReadWritePaths = lib.lists.optional (!instance.readOnly) instance.file;
+          User = instance.user;
+          Restart = "on-failure";
+
+          # Hardening
+          AmbientCapabilities = "";
+          CapabilityBoundingSet = "";
+          DeviceAllow = "";
+          LockPersonality = true;
+          NoNewPrivileges = true;
+          PrivateDevices = true;
+          PrivateMounts = true;
+          PrivateTmp = true;
+          PrivateUsers = true;
+          ProtectClock = true;
+          ProtectControlGroups = true;
+          ProtectKernelLogs = true;
+          ProtectKernelModules = true;
+          ProtectKernelTunables = true;
+          ProtectSystem = "strict";
+        };
       };
-    };
-  }) cfg.databases;
+    }) cfg.databases;
+  };
 }

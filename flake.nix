@@ -1,6 +1,4 @@
 {
-  description = "Satellite";
-
   # {{{ Inputs
   inputs = {
     # {{{ Nixpkgs instances

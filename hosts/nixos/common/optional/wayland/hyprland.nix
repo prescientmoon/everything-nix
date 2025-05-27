@@ -1,6 +1,8 @@
 # The main configuration is specified by home-manager
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.hyprland.enable = true;
+  programs.hyprland.withUWSM = true;
   programs.hyprland.package = pkgs.hyprland;
   services.udev.packages = [ pkgs.swayosd ];
 }

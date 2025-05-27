@@ -138,6 +138,8 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [lovely-forks](https://github.com/musically-ut/lovely-forks) — I was rarely using this
+- [Octotree](https://www.octotree.io/) — GitHub supports this natively now
 - [Tmux](https://github.com/tmux/tmux/wiki) — I now simply use multiple WM windows / no longer persist sessions
 - [Intray](https://github.com/NorfairKing/intray) — The server is no longer open source
 - [Guacamole](https://guacamole.apache.org/) — I had little reason to keep this around on top of tailscale

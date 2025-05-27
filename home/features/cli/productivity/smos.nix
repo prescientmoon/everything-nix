@@ -49,7 +49,7 @@ in
     name = "Smos TUI";
     type = "Application";
     terminal = false;
-    icon = ../../../../../common/icons/smos.svg;
+    icon = ../../../../common/icons/smos.svg;
     exec = builtins.toString (
       pkgs.writeShellScript "smostui" ''
         foot -a Smos -D ${workflowDir} smos

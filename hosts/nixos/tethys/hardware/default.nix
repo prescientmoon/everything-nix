@@ -14,6 +14,7 @@
   hardware.graphics.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.keyboard.qmk.enable = true;
+  boot.kernelParams = [ "i915.enable_guc=2" ]; # Required by wl-screenrec for low power mode
   # }}}
   # {{{ Power management
   powerManagement.cpuFreqGovernor = "performance";

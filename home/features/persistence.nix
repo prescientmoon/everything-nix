@@ -166,7 +166,10 @@
   # }}}
   # {{{ QMK
   home.sessionVariables.QMK_HOME = "${config.xdg.dataHome}/qmk";
-  satellite.persistence.at.state.apps.qmk.directories = [ config.home.sessionVariables.QMK_HOME ];
+  satellite.persistence.at.state.apps.qmk.directories = [
+    config.home.sessionVariables.QMK_HOME
+    "${config.xdg.dataHome}/qmk-sonix"
+  ];
   # }}}
   # }}}
 }

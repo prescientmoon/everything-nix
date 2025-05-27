@@ -26,10 +26,10 @@ in
 
   systemd.tmpfiles.rules = [ "d ${dataDir} 0755 ${user} ${user}" ];
 
-  satellite.sqliteWeb.databases.shimmer = {
-    port = config.satellite.ports.sqlite-web-shimmer;
+  services.sqliteWeb.enable = true;
+  services.sqliteWeb.databases.shimmer = {
     user = user;
-    group = user;
+    port = config.satellite.ports.sqlite-web-shimmer;
     file = "${dataDir}/db.sqlite";
     passwordFile = config.services.glass-server.passwordFile;
   };

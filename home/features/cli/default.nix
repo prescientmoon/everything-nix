@@ -9,11 +9,11 @@
     ./starship.nix
     ./direnv.nix
     ./tealdeer.nix
+    ./yazi.nix
     ./fish
   ];
 
   programs.bash.enable = true;
-  stylix.targets.yazi.enable = true;
 
   home.packages = with pkgs; [
     # {{{ System information
@@ -33,7 +33,6 @@
     httpie # Better curl
     # }}}
     # {{{ Misc
-    yazi # Terminal file explorer
     bc # Calculator
     ouch # Unified compression / decompression tool
     mkpasswd # Hash passwords

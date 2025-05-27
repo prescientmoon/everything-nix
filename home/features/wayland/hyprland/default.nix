@@ -14,11 +14,13 @@
     pkgs.gtk3 # Contains gtk-launch
   ];
 
+  # TODO: systemd-xdg-autostart-generator?
   stylix.targets.hyprland.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     extraConfig = builtins.readFile ./hyprland.conf;
+    # systemd.enable = false; # Handled by uwsm
 
     settings = {
       # {{{ Decoration
@@ -57,5 +59,7 @@
       ) config.satellite.monitors;
       # }}}
     };
+
+    plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
   };
 }
