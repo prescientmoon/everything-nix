@@ -144,7 +144,7 @@ let
               (unmap "Q")
               # }}}
               # {{{ Chords
-              # Different chords get remapped to f-keys by my [my kaanta config](../../../hosts/nixos/common/optional/services/kanata.nix).
+              # Different chords get remapped to f-keys by my my kaanta config.
               #
               # Exit insert mode using *jk*
               (keymap "iv" "<f10>" "<esc>" "Exit insert mode")
