@@ -9,16 +9,18 @@
 let
   # Toggles for including tooling related to a given language
   packedTargets = {
+    csharp = false;
     elm = false;
+    tooling = true; # Stuff useful for config editing
     latex = true;
     lua = true;
     nix = true;
+    odin = false;
     purescript = false;
     python = false;
     rust = false;
     typst = true;
     web = true;
-    csharp = false;
   };
 
   korora = inputs.korora.lib;
@@ -32,7 +34,7 @@ let
   generated =
     with nlib;
     generateConfig {
-      # {{{ Pre-plugin config
+      # Pre-plugin config
       pre = {
         # {{{ General options
         "0:general-options" = {
@@ -104,7 +106,6 @@ let
             action.vim.opt.winblend = 0;
           };
           #  }}}
-
           # {{{ Starter page
           callback =
             # lua
@@ -191,15 +192,17 @@ let
               (unmap "<C-^>")
               (nmap "Q" ":wqa<cr>" "Save all files and [q]uit")
               (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
-              (nmap "<leader>sw" (require "my.helpers.wrap" /toggle) "toggle word [w]rap")
-              (nmap "<leader>ss" (
-                # lua
-                thunk "vim.opt.spell = not vim.o.spell"
-              ) "toggle [s]pell checker")
+              (nmap "<leader>sw" (tempest /wrapping/toggle) "toggle word [w]rap")
+              (nmap "<leader>ss" (thunk "vim.opt.spell = not vim.o.spell") "toggle [s]pell checker")
               (nmap "<leader>yp" "<cmd>!curl --data-binary @% https://paste.rs | wl-copy<cr>"
                 "[y]ank [p]aste.rs link to clipboard"
               )
               # }}}
+              {
+                mode = "v";
+                mapping = "<C-i>";
+                action = _: tempest /createVisualFold (vim /fn/input "Fold name: ");
+              }
             ];
           # }}}
           # {{{ Autocmds
@@ -221,7 +224,7 @@ let
                 "tex"
               ];
               group = "EnableWrapMovement";
-              action = require "my.helpers.wrap" /enable;
+              action = tempest /wrapping/enable;
             }
             # }}}
           ];
@@ -317,8 +320,8 @@ let
         };
         # }}}
       };
-      # }}}
-      # {{{ Plugins
+
+      # Plugins
       lazy = {
         # {{{ libraries
         # {{{ plenary
@@ -753,6 +756,24 @@ let
             };
         };
         # }}}
+        # {{{ mini.align
+        mini-align = {
+          package = "echasnovski/mini.align";
+          name = "mini.align";
+
+          config = true;
+          keys = [
+            {
+              mode = "nxv";
+              mapping = "ga";
+            }
+            {
+              mode = "nxv";
+              mapping = "gA";
+            }
+          ];
+        };
+        # }}}
         # {{{ mini.comment
         mini-comment = {
           package = "echasnovski/mini.comment";
@@ -978,8 +999,15 @@ let
                 pkgs.nodePackages.purs-tidy
               ]
               ++ optionals csharp [ pkgs.csharp-ls ]
+              ++ optionals odin [ pkgs.ols ]
+              ++ optionals tooling [
+                pkgs.hyprls
+                # REASON: not yet available on stable
+                upkgs.just-lsp
+              ]
             );
           # }}}
+
           dependencies.lua = [
             "neoconf"
             "neodev"
@@ -1061,6 +1089,13 @@ let
               elmls = { };
               csharp_ls = { };
               ols = { }; # Odin
+              hyprls = { };
+
+              # I have the justfile formatter
+              just.on_attach = client: ''
+                ${client}.server_capabilities.documentFormattingProvider = false
+                ${client}.server_capabilities.documentRangeFormattingProvider = false
+              '';
             };
         };
         # }}}
@@ -1110,6 +1145,8 @@ let
               nix = [ "nixfmt" ];
               css = prettier;
               markdown = prettier;
+
+              just.lsp_format = "never";
             };
         };
         # }}}
@@ -1589,7 +1626,6 @@ let
         # }}}
         # }}}
       };
-      # }}}
     };
 
   # {{{ extraRuntime
@@ -1688,4 +1724,6 @@ in
     mirosSnippetCache
   ];
   # }}}
+
+  home.sessionVariables.MANPAGER = "${lib.getExe neovim} +Man!";
 }

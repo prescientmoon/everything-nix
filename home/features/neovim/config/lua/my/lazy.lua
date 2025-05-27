@@ -1,8 +1,8 @@
 local M = {}
 
-local function importFrom(p)
-  return { import = p }
-end
+-- local function importFrom(p)
+--   return { import = p }
+-- end
 
 function M.setup()
   require("lazy").setup({

@@ -9,3 +9,4 @@ block auto
   abbr sim ∼
   abbr approx ≃
   abbr cong ≅
+  abbr fcomp ∘

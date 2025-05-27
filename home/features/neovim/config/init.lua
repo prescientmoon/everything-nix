@@ -8,5 +8,3 @@ local nix = require("nix")
 tempest.configureMany(nix.pre)
 require("my.lazy").setup()
 tempest.configureMany(nix.post)
-
-require("my.helpers.folding").setup()

@@ -87,9 +87,12 @@ block text
     string $
       name inline math
       snip \$$1\$$0
+    -- }}}
 
     abbr pause \pause
-    -- }}}
+    string emph
+      desc emphasise some text
+      snip \emph{$1}$0
 
   string forcecr
     desc Force the content onto a new line
@@ -271,7 +274,7 @@ block math
     for noperator <- @⟨ordop,land,lor,equiv,pmod,ldots,cdots,perp,angle,sup⟩
     abbr @noperator \\@noperator
 
-    for operator <- @⟨cancel,overline,hat,tilde,vec,bar,abs,norm,prob,diprod,sin,cos,sqrt,ln,lrb,zmod,gen,pmob⟩
+    for operator <- @⟨cancel,overline,hat,tilde,vec,bar,abs,norm,prob,diprod,sin,cos,sqrt,lrb,zmod,gen,pmob⟩
     string @operator
       snip \\@operator$|1⟨{$1}, $0⟩
 

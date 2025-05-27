@@ -24,6 +24,14 @@ local function runLocal(functionName)
   end
 end
 
+-- local tempest = require("my.tempest")
+-- tempest.set_keymap({
+--   mapping = "<leader>lf",
+--   action = "<cmd>source %<cr>",
+--   buffer = true,
+--   desc = "Run .[s]etup() in current file"
+-- })
+
 vim.keymap.set(
   "n",
   "<leader>lf",

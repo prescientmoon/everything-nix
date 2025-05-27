@@ -57,7 +57,8 @@ function H.mergeTables(t1, t2)
 end
 -- }}}
 -- }}}
--- {{{ API wrappers
+
+-- API wrappers
 -- {{{ Keymaps
 function M.set_keymap(opts, context)
   if context == nil then
@@ -112,7 +113,64 @@ function M.create_autocmd(opts)
   })
 end
 -- }}}
+-- {{{ Wrapping
+local function swapLinewiseKeybinds(key)
+  vim.keymap.set({ "n", "v" }, key, "g" .. key, { buffer = true })
+  vim.keymap.set({ "n", "v" }, "g" .. key, key, { buffer = true })
+end
+
+local function unswapLinewiseKeybinds(key)
+  vim.keymap.del({ "n", "v" }, key)
+  vim.keymap.del({ "n", "v" }, "g" .. key)
+end
+
+M.wrapping = {}
+
+function M.wrapping.enable()
+  vim.opt.wrap = true
+
+  swapLinewiseKeybinds("j")
+  swapLinewiseKeybinds("k")
+  swapLinewiseKeybinds("<up>")
+  swapLinewiseKeybinds("<down>")
+  swapLinewiseKeybinds("0")
+  swapLinewiseKeybinds("$")
+end
+
+function M.wrapping.disable()
+  vim.opt.wrap = false
+
+  unswapLinewiseKeybinds("j")
+  unswapLinewiseKeybinds("k")
+  unswapLinewiseKeybinds("<up>")
+  unswapLinewiseKeybinds("<down>")
+  unswapLinewiseKeybinds("0")
+  unswapLinewiseKeybinds("$")
+end
+
+function M.wrapping.toggle()
+  if vim.opt.wrap == true then
+    M.wrapping.disable()
+  else
+    M.wrapping.enable()
+  end
+end
 -- }}}
+-- {{{ Folding
+function M.createVisualFold(name)
+  local commentstring = vim.o.commentstring
+  local start_comment = string.gsub(commentstring, "%%s", "{{{ " .. name)
+  local end_comment = string.gsub(commentstring, "%%s", "}}}")
+
+  -- Leave visual mode
+  local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+  vim.api.nvim_feedkeys(esc, "x", false)
+
+  vim.cmd(":'>put='" .. end_comment .. "'")
+  vim.cmd(":'<-1put='" .. start_comment .. "'")
+end
+-- }}}
+
 -- {{{ Main config runtime
 local function recursive_assign(source, destination)
   for key, value in pairs(source) do
