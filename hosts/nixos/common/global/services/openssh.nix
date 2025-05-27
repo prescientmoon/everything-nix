@@ -5,16 +5,6 @@
   lib,
   ...
 }:
-let
-  # Record containing all the hosts
-  hosts = outputs.nixosConfigurations;
-
-  # Name of the current hostname
-  hostname = config.networking.hostName;
-
-  # Function from hostname to relative path to public ssh key
-  pubKey = host: ../../${host}/keys/ssh_host_ed25519_key.pub;
-in
 {
   services.openssh = {
     enable = true;
@@ -40,28 +30,31 @@ in
         (mkKey "ed25519" "/persist/state/etc/ssh/ssh_host_ed25519_key" { })
         (mkKey "rsa" "/persist/state/etc/ssh/ssh_host_rsa_key" { bits = 4096; })
       ];
-  };
 
-  # Add each host in this repo to the knownHosts list
-  programs.ssh = {
-    knownHosts = lib.pipe hosts [
-      # attrsetof host -> attrsetof { ... }
-      (builtins.mapAttrs
-        # string -> host -> { ... }
-        (
-          name: _: {
-            publicKeyFile = pubKey name;
-            extraHostNames = lib.optional (name == hostname) "localhost";
-          }
-        )
-      )
+    # Add each host in this repo to the knownHosts list
+    knownHosts =
+      let
+        mkKnownHost = kind: name: _: {
+          name = "${name}/${kind}";
+          value = {
+            publicKeyFile = ../../../${name}/keys/ssh_host_${kind}_key.pub;
+            hostNames = [ name ] ++ lib.lists.optional (name == config.networking.hostName) "localhost";
+          };
+        };
 
-      # attrsetof { ... } -> attrsetof { ... }
-      (lib.attrsets.filterAttrs
-        # string -> { ... } -> bool
-        (_: { publicKeyFile, ... }: builtins.pathExists publicKeyFile)
-      )
-    ];
+        mkKnownHosts =
+          kind:
+          lib.pipe outputs.nixosConfigurations [
+            # attrsetof host -> attrsetof { ... }
+            (lib.attrsets.mapAttrs' (mkKnownHost kind))
+
+            (lib.attrsets.filterAttrs
+              # Only let through hosts with a valid key file
+              (_: { publicKeyFile, ... }: builtins.pathExists publicKeyFile)
+            )
+          ];
+      in
+      mkKnownHosts "ed25519" // mkKnownHosts "rsa";
   };
 
   # By default, this will ban failed ssh attempts

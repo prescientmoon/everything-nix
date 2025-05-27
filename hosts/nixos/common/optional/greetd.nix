@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   services.greetd = {
     enable = true;
@@ -8,7 +13,7 @@
         command = ''
           ${lib.getExe pkgs.greetd.tuigreet} \
             -c ${lib.getExe config.programs.hyprland.package} \
-            -g " (.>_>.) Welcome to tethys! (.<_<.)" \
+            -g " (.>_>.) Welcome to ${config.networking.hostName}! (.<_<.)" \
             --remember
             --asterisks
         '';

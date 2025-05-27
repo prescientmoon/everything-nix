@@ -20,7 +20,6 @@
     # ../common/optional/services/wpa_supplicant.nix
     ../common/optional/services/iwd
     ../common/optional/services/tailscale.nix
-    ../common/optional/services/kanata.nix
     ../common/optional/services/restic
     ../common/optional/services/nginx.nix
     ./services/syncthing.nix

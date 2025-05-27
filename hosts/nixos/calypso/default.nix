@@ -17,7 +17,6 @@
     ../common/optional/desktop/steam.nix
     ../common/optional/wayland/hyprland.nix
 
-    ../common/optional/services/kanata.nix
     ../common/optional/services/nginx.nix
     ../common/optional/services/syncthing.nix
     ../common/optional/services/tailscale.nix

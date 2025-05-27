@@ -3,7 +3,6 @@
   inputs,
   lib,
   outputs,
-  pkgs,
   ...
 }:
 let
@@ -21,6 +20,7 @@ let
     # {{{ global configuration
     ./cli/fish.nix
     ./services/openssh.nix
+    ./services/kanata.nix
     ./nix.nix
     ./locale.nix
     ./unicode.nix
