@@ -6,3 +6,4 @@ README.html
 *.log
 .luarc.json
 *.idea
+!.envrc
