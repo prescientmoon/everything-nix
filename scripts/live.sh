@@ -2,6 +2,8 @@
 #!nix-shell ../devshells/bootstrap/shell.nix
 #!nix-shell -i bash
 
+# TODO: convert to justfile
+
 # Check if at least one argument is provided
 if [ "$#" != "2" ] && [ "$#" != "3" ]; then
     echo "❓ Usage: $0 <host> <disko-mode> [action]"
