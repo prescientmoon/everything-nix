@@ -6,5 +6,5 @@
     ./nixpkgs.nix
   ];
 
-  satellite.toggles.neovim-nightly.enable = true;
+  satellite.toggles.neovim-nightly.enable = false;
 }

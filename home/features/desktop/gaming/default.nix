@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 {
-  home.packages = [ pkgs.vvvvvv ];
+  home.packages = [
+    pkgs.vvvvvv
+  ];
 
   # {{{ Persistence
   satellite.persistence.at.state.apps.steam = {

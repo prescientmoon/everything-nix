@@ -9,17 +9,16 @@ let
   # {{{ Imports
   imports = [
     # {{{ flake inputs
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.spicetify-nix.homeManagerModules.spicetify
-    inputs.anyrun.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
 
     # {{{ self management
     # NOTE: using `pkgs.system` before `module.options` is evaluated
-    # leads to infinite recursion!
-    inputs.intray.homeManagerModules.x86_64-linux.default
+    # leads to infinite recursion! I should perhaps take system as
+    # a special argument as well...
     inputs.smos.homeManagerModules.x86_64-linux.default
     # }}}
     # }}}

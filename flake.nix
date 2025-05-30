@@ -2,7 +2,7 @@
   # {{{ Inputs
   inputs = {
     # {{{ Nixpkgs instances
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # }}}
     # {{{ Additional package repositories
@@ -13,15 +13,13 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Nix-related tooling
-    # {{{ Storage
     impermanence.url = "github:nix-community/impermanence";
 
     # Declarative partitioning
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    # }}}
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -41,13 +39,7 @@
     # Smos
     smos.url = "github:NorfairKing/smos";
     # smos.inputs.nixpkgs.url = "github:NixOS/nixpkgs/b8dd8be3c790215716e7c12b247f45ca525867e2";
-
-    # Intray
-    intray.url = "github:NorfairKing/intray";
-    # intray.inputs.nixpkgs.url = "github:NixOS/nixpkgs/fc07dc3bdf2956ddd64f24612ea7fc894933eb2e";
     # }}}
-
-    anyrun.url = "github:Kirottu/anyrun";
 
     miros.url = "github:prescientmoon/miros";
     miros.inputs.nixpkgs.follows = "nixpkgs";
@@ -206,16 +198,12 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://anyrun.cachix.org"
       "https://smos.cachix.org"
-      "https://intray.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
-      "intray.cachix.org-1:qD7I/NQLia2iy6cbzZvFuvn09iuL4AkTmHvjxrQlccQ="
     ];
   };
   # }}}

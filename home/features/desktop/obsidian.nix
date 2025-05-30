@@ -10,7 +10,7 @@
     terminal = false;
     exec =
       let
-        vaultDir = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum";
+        vaultDir = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/personal/stellar-sanctum";
       in
       builtins.toString (
         pkgs.writeShellScript "obsidiantui" ''

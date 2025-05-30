@@ -3,7 +3,7 @@
 {
   programs.zathura = {
     enable = true;
-    extraConfig = with config.lib.stylix.scheme.withHashtag; ''
+    extraConfig = with config.lib.stylix.colors.withHashtag; ''
       # {{{ Some arbitrary settings
       # Open document in fit-width mode by default
       set adjust-open "best-fit"
@@ -87,10 +87,11 @@
 
   home.shellAliases.pdf = "zathura --fork";
 
-  # Make zathura the default app for opening pdfs.
+  # Make zathura the default app for opening pdfs
   xdg.mimeApps.defaultApplications."application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
   # {{{ Persistence
+  # TODO: mark this as cache instead
   satellite.persistence.at.state.apps.zathura.directories = [ "${config.xdg.dataHome}/zathura" ];
   # }}}
 }

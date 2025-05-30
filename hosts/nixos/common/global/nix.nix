@@ -39,7 +39,7 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        # "repl-flake"
+        "repl-flake"
         "auto-allocate-uids"
         # "configurable-impure-env"
       ];

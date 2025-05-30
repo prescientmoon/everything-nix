@@ -1,7 +1,12 @@
+{ pkgs, ... }:
 {
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    # gamescopeSession.enable = true;
+    gamescopeSession.enable = true;
+    extraPackages = [
+      pkgs.gamescope
+      pkgs.gamemode
+    ];
   };
 }

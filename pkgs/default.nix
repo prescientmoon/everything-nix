@@ -3,7 +3,6 @@
 
 {
   pkgs ? (import ../nixpkgs.nix) { },
-  upkgs ? pkgs,
   ...
 }:
 let

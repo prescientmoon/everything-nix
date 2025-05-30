@@ -42,7 +42,7 @@
       userChrome = builtins.readFile ./userChrome.css;
       # }}}
       # {{{ Extensions
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         # bypass-paywalls-clean # REASON: returns 404 for now
         augmented-steam # Adds more info to steam
         bitwarden # Password manager
@@ -280,12 +280,32 @@
             icon = ../../../../common/icons/whoogle.webp;
           };
 
+          "Python documentation" = mkBasicSearchEngine {
+            url = "https://docs.python.org/3/search.html";
+            param = "q";
+            aliases = [
+              "@py"
+              "@python"
+            ];
+            icon = "https://docs.python.org/favicon.ico";
+          };
+
+          "Just documentation" = mkBasicSearchEngine {
+            url = "https://just.systems/man/en/";
+            param = "search";
+            aliases = [ "@just" ];
+            icon = "https://just.systems/favicon.ico";
+          };
+
           "Google".metaData.alias = "@g";
         };
       # }}}
       # }}}
       # {{{ Other lower level settings
       settings = {
+        # Auto enable nix provided extensions
+        "extensions.autoDisableScopes" = 0;
+
         # Required for figma to be able to export to svg
         "dom.events.asyncClipboard.clipboardItem" = true;
 

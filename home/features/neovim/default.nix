@@ -29,7 +29,7 @@ let
   };
 
   mirosSnippetCache = "${config.xdg.cacheHome}/miros";
-  obsidianVault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum";
+  obsidianVault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/personal/stellar-sanctum";
 
   generated =
     with nlib;
@@ -609,14 +609,17 @@ let
         # }}}
         # {{{ treesitter
         treesitter = {
-          # REASON: more grammars
+          # I use the nixpkgs version since the normal one can break at times
           dir = pkgs.symlinkJoin {
             name = "treesitter-with-parsers";
+            # I don't think nix likes it when we install this manually (normally
+            # we'd pass this to nixos/HM's neovim configuration modules).
             paths = [
               upkgs.vimPlugins.nvim-treesitter.withAllGrammars
               upkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
             ];
           };
+
           # package = "nvim-treesitter/nvim-treesitter";
           main = "nvim-treesitter.configs";
 
@@ -986,8 +989,8 @@ let
               ]
               ++ optionals nix [ upkgs.nixd ]
               ++ optionals latex [
-                pkgs.texlab
-                pkgs.texlive.combined.scheme-full
+                upkgs.texlab
+                upkgs.texlive.combined.scheme-full
               ]
               ++ optionals elm [
                 pkgs.elmPackages.elm
@@ -1002,8 +1005,7 @@ let
               ++ optionals odin [ pkgs.ols ]
               ++ optionals tooling [
                 pkgs.hyprls
-                # REASON: not yet available on stable
-                upkgs.just-lsp
+                pkgs.just-lsp
               ]
             );
           # }}}
@@ -1464,8 +1466,8 @@ let
           package = "kaarmu/typst.vim";
           dependencies.nix = lib.lists.optionals packedTargets.typst [
             upkgs.typst
-            upkgs.tinymist
             upkgs.typstfmt
+            upkgs.tinymist # The typst language server
           ];
 
           ft = "typst";

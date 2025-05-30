@@ -5,7 +5,7 @@
   ...
 }:
 let
-  workflowDir = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/stellar-sanctum/smos";
+  workflowDir = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/personal/stellar-sanctum/smos";
 in
 {
   sops.secrets.smos_password.sopsFile = ./secrets.yaml;

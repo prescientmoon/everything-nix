@@ -45,12 +45,12 @@
     {
       at = config.networking.hostName;
       type = "A";
-      value = "100.93.136.59";
+      value = "100.91.10.131";
     }
     {
       at = config.networking.hostName;
       type = "AAAA";
-      value = "fd7a:115c:a1e0::e75d:883b";
+      value = "fd7a:115c:a1e0:ab12:4843:cd96:625b:a83";
     }
   ];
   # }}}

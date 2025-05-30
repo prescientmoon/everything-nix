@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let
   # {{{ Colors
-  colors = with config.lib.stylix.scheme.withHashtag; {
+  colors = with config.lib.stylix.colors.withHashtag; {
     highlight-primary = base09;
     highlight-secondary = base01;
     highlight-hover = base00;
