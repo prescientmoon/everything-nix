@@ -2,7 +2,7 @@
 {
   satellite.nginx.at.warden.port = config.satellite.ports.vaultwarden;
 
-  # {{{ Secrets 
+  # {{{ Secrets
   sops.secrets.vaultwarden_env = {
     sopsFile = ../secrets.yaml;
     owner = config.users.users.vaultwarden.name;
@@ -29,12 +29,14 @@
     };
   };
   # }}}
-  # {{{ Storage 
-  environment.persistence."/persist/state".directories = [{
-    directory = "/var/lib/bitwarden_rs";
-    mode = "u=rwx,g=,o=";
-    user = config.users.users.vaultwarden.name;
-    group = config.users.users.vaultwarden.group;
-  }];
+  # {{{ Storage
+  environment.persistence."/persist/state".directories = [
+    {
+      directory = "/var/lib/bitwarden_rs";
+      mode = "u=rwx,g=,o=";
+      user = config.users.users.vaultwarden.name;
+      group = config.users.users.vaultwarden.group;
+    }
+  ];
   # }}}
 }

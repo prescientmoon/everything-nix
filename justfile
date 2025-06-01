@@ -7,7 +7,7 @@ hostname := `hostname`
 # {{{ Nixos rebuilds
 [doc("Wrapper around `nixos-rebuild`, taking care of the generic arguments")]
 [group("nix")]
-nixos-rebuild action="rebuild" host=hostname:
+nixos-rebuild action="switch" host=hostname:
   #!/usr/bin/env python3
   import subprocess
 
@@ -30,7 +30,7 @@ nixos-rebuild action="rebuild" host=hostname:
 
   if "{{host}}" == "{{hostname}}": 
     print("🧬 Switching nixos configuration (locally) for '{{BLUE + host + NORMAL}}'")
-    args.prepend("sudo")
+    args = ["sudo", *args]
   else:
     print("🧬 Switching nixos configuration (remotely) for '{{BLUE + host + NORMAL}}'")
     args.append("--use-remote-sudo")

@@ -2,11 +2,11 @@
 { lib, pkgs, ... }:
 {
   imports = [
+    ../desktop
+
     ./wlsunset.nix
     ./wlogout.nix
     ./anyrun.nix
-
-    ../desktop
   ];
 
   home.sessionVariables.NIXOS_OZONES_WL = "1";
@@ -40,10 +40,11 @@
     with pkgs;
     [
       libnotify # Send notifications
-      wl-ocr # Custom ocr script
+      wl-ocr # Custom OCR script
       wl-qr # Custom qr scanner script
       wl-clipboard # Clipboard manager
       hyprpicker # Color picker
       grimblast # Screenshot tool
+      wl-screenrec # video recorder (with daemon support!)
     ];
 }

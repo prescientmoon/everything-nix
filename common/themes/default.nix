@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let
   transparency = amount: {
     desktop = amount;
@@ -100,4 +100,10 @@ in
 
   # Requires me to manually turn targets on!
   stylix.autoEnable = false;
+
+  stylix.cursor = {
+    package = inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default;
+    name = "BreezX-RosePine-Linux";
+    size = 36;
+  };
 }

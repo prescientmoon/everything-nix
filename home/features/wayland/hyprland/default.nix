@@ -1,7 +1,7 @@
 {
+  config,
   pkgs,
   lib,
-  config,
   ...
 }:
 {
@@ -11,17 +11,22 @@
   ];
 
   home.packages = [
-    pkgs.gtk3 # Contains gtk-launch
+    # Contains gtk-launch, which I use for launching 'obsidiantui'
+    pkgs.gtk3
   ];
 
-  # TODO: systemd-xdg-autostart-generator?
   stylix.targets.hyprland.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
-    extraConfig = builtins.readFile ./hyprland.conf;
+
+    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+    package = null;
+    portalPackage = null;
+
+    # TODO: systemd-xdg-autostart-generator?
     # systemd.enable = false; # Handled by uwsm
 
+    extraConfig = builtins.readFile ./hyprland.conf;
     settings = {
       # {{{ Decoration
       decoration = {
@@ -58,6 +63,11 @@
         m: lib.lists.optional (m.workspace != null) "${m.name},${m.workspace}"
       ) config.satellite.monitors;
       # }}}
+
+      env = [
+        "HYPRCURSOR_THEME,rose-pine-hyprcursor"
+        "HYPRCURSOR_SIZE,36"
+      ];
     };
 
     plugins = [ pkgs.hyprlandPlugins.hyprexpo ];

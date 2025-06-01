@@ -1,7 +1,15 @@
 { pkgs, ... }:
 {
   imports = [
-    ./dunst.nix # notifaction handler
+    ./dunst.nix
+    ./discord
+    ./firefox
+
+    ./foot.nix
+    ./obsidian.nix
+    ./spotify.nix
+    ./zathura.nix
+    ./inlyne.nix
   ];
 
   # Notifies on low battery percentages
@@ -18,4 +26,19 @@
 
   # Bigger text in qt apps
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4;
+
+  # Base packages
+  home.packages = with pkgs; [
+    gimp # Image editing
+    krita # drawing
+    libreoffice # document editing
+
+    bitwarden # Password-manager
+    qbittorrent # Torrent client
+    overskride # Bluetooth client
+
+    mpv # Video player
+    imv # Image viewer
+    obs-studio # video recorder
+  ];
 }

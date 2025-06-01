@@ -1,6 +1,7 @@
-# Example based cli docs
+# Example-based CLI documentation
 # https://dbrgn.github.io/tealdeer/
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   home.packages = [ pkgs.tealdeer ];
 
   xdg.configFile."tealdeer/config.toml".text = ''

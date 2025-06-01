@@ -2,6 +2,7 @@
 {
   home.packages = [
     pkgs.vvvvvv
+    pkgs.lutris
   ];
 
   # {{{ Persistence

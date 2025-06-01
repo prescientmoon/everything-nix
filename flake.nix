@@ -1,5 +1,4 @@
 {
-  # {{{ Inputs
   inputs = {
     # {{{ Nixpkgs instances
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -58,15 +57,17 @@
     darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";
     darkmatter-grub-theme.inputs.nixpkgs.follows = "nixpkgs";
 
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-25.05";
     # stylix.inputs.nixpkgs.follows = "nixpkgs";
     # stylix.inputs.home-manager.follows = "home-manager";
 
     base16-schemes.url = "github:tinted-theming/schemes";
     base16-schemes.flake = false;
+
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
+    rose-pine-hyprcursor.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
   };
-  # }}}
 
   outputs =
     {

@@ -138,6 +138,9 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [ncdu](https://dev.yorhel.nl/ncdu) — A neat project I used on a regular basis. Ended up switching to [dua](https://github.com/Byron/dua-cli) (in interactive mode)
+- [peek](https://github.com/phw/peek) — Doesn't seem to work on Wayland + GIFs are not a very efficient format
+- [bc](https://github.com/gavinhoward/bc) — I was rarely using this
 - [lovely-forks](https://github.com/musically-ut/lovely-forks) — I was rarely using this
 - [Octotree](https://www.octotree.io/) — GitHub supports this natively now
 - [Tmux](https://github.com/tmux/tmux/wiki) — I now simply use multiple WM windows / no longer persist sessions

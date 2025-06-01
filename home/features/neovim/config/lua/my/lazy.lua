@@ -8,7 +8,7 @@ function M.setup()
   require("lazy").setup({
     require("my.themes"),
     {
-      dir = "/home/moon/projects/sibilantmoon/vim",
+      dir = "/home/moon/projects/personal/sibilantmoon/vim",
       ft = "sibilantmoon",
       name = "sibilantmoon",
     },

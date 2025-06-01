@@ -3,68 +3,42 @@
   imports = [
     ./global.nix
 
-    ./features/cli/catgirl.nix
-    ./features/cli/lazygit.nix
-    ./features/cli/nix-index.nix
     ./features/cli/productivity
-    ./features/cli/zellij.nix
-    ./features/desktop/discord
     ./features/desktop/gaming
     ./features/desktop/gaming/edopro.nix
-    ./features/desktop/firefox
-    ./features/desktop/foot.nix
-    ./features/desktop/obsidian.nix
-    ./features/desktop/spotify.nix
-    ./features/desktop/zathura.nix
     ./features/wayland/hyprland
+
     ./features/neovim
   ];
 
+  home.stateVersion = "24.05";
+  home.username = "moon";
+
   # Arbitrary extra packages
   home.packages = with pkgs; [
-    # {{{ Communication
+    # Communication
+    whatsapp-for-linux
     # signal-desktop # Signal client
     # element-desktop # Matrix client
     # zoom-us # Zoom client 🤮
-    whatsapp-for-linux
-    # }}}
-    # {{{ Documents & editors
-    gimp # Image editing
-    okular # Useful for reading pdf annotations (which zathura does not support)
+
+    # Documents & editors
+    libsForQt5.okular # Useful for reading pdf annotations (which zathura does not support)
     # lmms # Music software
     # kicad # PCB editing
     # libreoffice # Free office suite
-    # }}}
-    # {{{ Gaming
-    # wine # Windows compat layer or whatever
-    lutris # Game launcher
-    # }}}
-    # {{{ Clis
-    sops # Secret editing
+
+    # Clis
     # sherlock # Search for usernames across different websites
-    # }}}
-    # {{{ Misc
-    bitwarden # Password-manager
-    qbittorrent # Torrent client
+
+    # Misc
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # plover.dev # steno engine
-    overskride # Bluetooth client
     freetube # youtube client
-    # }}}
-    # {{{ Media playing/recording
-    mpv # Video player
-    imv # Image viewer
-    peek # GIF recorder
-    obs-studio # video recorder
-    # }}}
   ];
 
-  home.username = "moon";
-  home.stateVersion = "24.05";
-
   satellite = {
-    # Symlink some commonly modified dotfiles outside the nix store
-    dev.enable = true;
+    dev.enable = true; # Enable symlinks outside the nix store
 
     monitors = [
       {

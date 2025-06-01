@@ -8,21 +8,21 @@ let
   repaint = "commandline -f repaint";
   fishKeybinds = {
     # C-x to clear screen
-    "\\cx" = "clear && ${repaint}";
+    "ctrl-x" = "clear && ${repaint}";
     # C-z to return to background process
-    "\\cz" = "fg && ${repaint}";
+    "ctrl-z" = "fg && ${repaint}";
     # C-y to yank current command
-    "\\cy" = "wl-copy \$(commandline)";
+    "ctrl-y" = "wl-copy \$(commandline)";
     # C-e to launch $EDITOR
-    "\\ce" = "$EDITOR";
+    "ctrl-e" = "$EDITOR";
     # C-S-e to edit commandline using $EDITOR
-    "\\e\\[69\\;5u" = "edit_command_buffer";
+    "ctrl-E" = "edit_command_buffer";
     # C-enter to run command through a pager
-    "\\e\\[13\\;2u" = "commandline -a ' | $PAGER' && commandline -f execute";
+    "ctrl-enter" = "commandline -a ' | $PAGER' && commandline -f execute";
     # C-g to open lazygit
-    "\\cg" = "lazygit";
+    "ctrl-g" = "lazygit";
     # C-S-f to open mini.files
-    "\\e\\[70\\;5u" = ''nvim +":lua require('mini.files').open()"'';
+    "ctrl-F" = ''nvim +":lua require('mini.files').open()"'';
   };
 
   mkKeybind =
@@ -59,7 +59,7 @@ in
 
       ${builtins.readFile ./config.fish}
 
-      # Modify nix-shell to use `fish` as it's default shell
+      # Modify nix-shell to use `fish` as its default shell
       ${lib.getExe pkgs.nix-your-shell} fish | source
     '';
 

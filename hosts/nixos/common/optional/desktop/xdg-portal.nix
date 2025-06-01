@@ -6,6 +6,7 @@
 }:
 {
   services.dbus.enable = true;
+  programs.dconf.enable = true;
   environment.systemPackages = [ pkgs.xdg-utils ];
   xdg.portal = {
     enable = true;
@@ -15,9 +16,16 @@
       pkgs.xdg-desktop-portal-termfilechooser
     ];
 
-    config.hyprland.default = "hyprland";
+    config.hyprland.default = [
+      "hyprland"
+      "gtk"
+    ];
     config.hyprland."org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-    config.common.default = "hyprland";
+
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
     config.common."org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
   };
 

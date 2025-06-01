@@ -1,10 +1,12 @@
+# 'cat' alternative
 {
-  # Enabling this produces an uglier theme for some reason.
-  # options.stylix.targets.bat.enable = true;
   programs.bat = {
     enable = true;
     config.theme = "base16-256";
   };
 
   home.shellAliases.cat = "bat";
+
+  # Enabling this produces an uglier theme for some reason.
+  # options.stylix.targets.bat.enable = true;
 }
