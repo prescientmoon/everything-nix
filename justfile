@@ -45,14 +45,20 @@ nixos-rebuild action="switch" host=hostname:
 build-iso:
   nix build .#nixosConfigurations.iso.config.system.build.isoImage
 
-[doc("Bumps flake inputs that usually need to be as up to date as possible")]
+[doc("Bumps most flake inputs (not including things that are meant to be somewhat \"pinned\")")]
 [group("nix")]
 bump-common:
-  nix flake update \
+  nix flake update --accept-flake-config  \
+    nixpkgs \
     nixpkgs-unstable \
+    nix-index-database \
     neovim-nightly-overlay \
     firefox-addons \
-    base16-schemes
+    base16-schemes \
+    rose-pine-hyprcursor \
+    darkmatter-grub-theme \
+    home-manager \
+    stylix
 # }}}
 
 # {{{ Age / sops related thingies

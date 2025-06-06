@@ -21,4 +21,7 @@
       terminal = 25;
     };
   };
+
+  stylix.targets.fontconfig.enable = true;
+  stylix.targets.font-packages.enable = true;
 }
