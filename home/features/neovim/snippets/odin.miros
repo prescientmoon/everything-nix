@@ -24,7 +24,7 @@ block auto start
 
   string proc
     snip
-      $1 :: proc ($2) -> $|3⟨$3,($3\, ok: bool)⟩ {
+      $1 :: proc ($2) $?3⟨-> ⟩$|3⟨$3,($3\, ok: bool)⟩ {
         $4
       }
       $0

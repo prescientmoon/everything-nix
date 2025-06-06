@@ -75,7 +75,7 @@ in
 
     colors.rgb =
       color:
-      builtins.concatStringsSep "," [
+      lib.concatStringsSep "," [
         config.lib.stylix.colors."${color}-rgb-r"
         config.lib.stylix.colors."${color}-rgb-g"
         config.lib.stylix.colors."${color}-rgb-b"

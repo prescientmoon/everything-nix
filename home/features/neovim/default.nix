@@ -1007,6 +1007,11 @@ let
                 pkgs.hyprls
                 pkgs.just-lsp
               ]
+              ++ optionals typst [
+                upkgs.typst
+                upkgs.typstfmt
+                upkgs.tinymist # The typst language server
+              ]
             );
           # }}}
 
@@ -1092,6 +1097,7 @@ let
               csharp_ls = { };
               ols = { }; # Odin
               hyprls = { };
+              glsl_analyzer = { };
 
               # I have the justfile formatter
               just.on_attach = client: ''
@@ -1461,44 +1467,11 @@ let
           ];
         };
         # }}}
-        # {{{ typst support
-        typst = {
-          package = "kaarmu/typst.vim";
-          dependencies.nix = lib.lists.optionals packedTargets.typst [
-            upkgs.typst
-            upkgs.typstfmt
-            upkgs.tinymist # The typst language server
-          ];
-
-          ft = "typst";
-        };
-        # }}}
         # {{{ purescript support
         purescript = {
           package = "purescript-contrib/purescript-vim";
 
           ft = "purescript";
-        };
-        # }}}
-        # {{{ hyprland support
-        hyprland = {
-          package = "theRealCarneiro/hyprland-vim-syntax";
-
-          ft = "hypr";
-
-          init.autocmds = {
-            event = "BufRead";
-            group = "DetectHyprlandConfig";
-            pattern = "hyprland.conf";
-            action.vim.opt.ft = "hypr";
-          };
-        };
-        # }}}
-        # {{{ typescript support
-        # Required for yarn PNP to work
-        rzip = {
-          package = "lbrayner/vim-rzip";
-          event = "VeryLazy";
         };
         # }}}
         # {{{ djot support

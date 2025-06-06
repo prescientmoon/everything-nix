@@ -19,7 +19,6 @@
   "gitlinker": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
   "harpoon": { "branch": "master", "commit": "ccae1b9bec717ae284906b0bf83d720e59d12b91" },
   "haskell-tools": { "branch": "master", "commit": "92e097c6832405fb64e4c44a7ce8bebe7836cae6" },
-  "hyprland": { "branch": "main", "commit": "71760fe0cad972070657b0528f48456f7e0027b2" },
   "idris": { "branch": "main", "commit": "8bff02984a33264437e70fd9fff4359679d910da" },
   "indent-blankline": { "branch": "master", "commit": "65e20ab94a26d0e14acac5049b8641336819dfc7" },
   "lastplace": { "branch": "main", "commit": "0bb6103c506315044872e0f84b1f736c4172bb20" },
@@ -53,7 +52,6 @@
   "rzip": { "branch": "master", "commit": "f65400fed27b27c7cff7ef8d428c4e5ff749bf28" },
   "scrap": { "branch": "main", "commit": "cc8453ed613932c744c3d1ec42f379b78bd8b92c" },
   "telescope": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
-  "typst": { "branch": "main", "commit": "4d18ced62599ffe5b3c0e5e49566d5456121bc02" },
   "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
   "wakatime": { "branch": "master", "commit": "3cb40867cb5a3120f9bef76eff88edc7f1dc1a23" },
   "web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856" }

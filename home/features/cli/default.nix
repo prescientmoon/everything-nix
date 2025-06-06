@@ -62,4 +62,7 @@
     # -d: depth
     duh = "du -hd 1";
   };
+
+  # Disable GNU parallel citation notice
+  home.file.".parallel/will-cite".text = "";
 }

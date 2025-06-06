@@ -52,7 +52,7 @@
 
       repository = {
         DISABLE_STARS = true;
-        DEFAULT_REPO_UNITS = lib.strings.concatStringsSep "," [ "repo.code" ];
+        DEFAULT_REPO_UNITS = lib.concatStringsSep "," [ "repo.code" ];
         ENABLE_PUSH_CREATE_USER = true;
         ENABLE_PUSH_CREATE_ORG = true;
       };
