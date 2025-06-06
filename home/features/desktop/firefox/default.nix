@@ -2,12 +2,14 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 {
   programs.firefox = {
     enable = true;
 
+    # {{{ Policies
     policies = {
       DisableAppUpdate = true;
       DisableBuiltinPDFViewer = true;
@@ -25,6 +27,7 @@
       OfferToSaveLogins = false;
       PasswordManagerEnabled = false;
     };
+    # }}}
 
     profiles.${config.home.username} = {
       # {{{ High level user settings
@@ -79,15 +82,16 @@
       # {{{ Search engines
       search.engines =
         let
-          # {{{ Search engine creation helpers
           mkBasicSearchEngine =
             {
               aliases,
               url,
               param,
-              icon ? null,
+              icon,
             }:
             {
+              inherit icon;
+              definedAliases = aliases;
               urls = [
                 {
                   template = url;
@@ -99,223 +103,29 @@
                   ];
                 }
               ];
-
-              definedAliases = aliases;
-            }
-            // (if icon == null then { } else { inherit icon; });
-
-          mkNixPackagesEngine =
-            { aliases, type }:
-            mkBasicSearchEngine {
-              aliases = aliases;
-              url = "https://search.nixos.org/${type}";
-              param = "query";
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
         in
-        # }}}
-        # {{{ Engine declarations
         {
-          "Nix Packages" = mkNixPackagesEngine {
-            aliases = [
-              "@np"
-              "@nix-packages"
-            ];
-            type = "packages";
-          };
-
-          "Nix options" = mkNixPackagesEngine {
-            aliases = [
-              "@no"
-              "@nix-options"
-            ];
-            type = "options";
-          };
-
-          "Home-manager options" = mkBasicSearchEngine {
-            aliases = [
-              "@hm"
-              "@home-manager"
-            ];
-            param = "query";
-            url = "https://home-manager-options.extranix.com";
-          };
-
-          "Pursuit" = mkBasicSearchEngine {
-            url = "https://pursuit.purescript.org/search";
-            param = "q";
-            aliases = [
-              "@ps"
-              "@pursuit"
-            ];
-          };
-
-          "Hoogle" = mkBasicSearchEngine {
-            url = "https://hoogle.haskell.org";
-            param = "hoogle";
-            aliases = [
-              "@hg"
-              "@hoogle"
-            ];
-          };
-
-          "NPM" = mkBasicSearchEngine {
-            url = "https://www.npmjs.com/search";
-            param = "q";
-            aliases = [ "@npm" ];
-          };
-
-          "Wikipedia" = mkBasicSearchEngine {
-            url = "https://en.wikipedia.org/wiki/Special:Search";
-            param = "search";
-            aliases = [
-              "@wk"
-              "@wikipedia"
-            ];
-          };
-
-          "Github" = mkBasicSearchEngine {
-            url = "https://github.com/search";
-            param = "q";
-            aliases = [
-              "@gh"
-              "@github"
-            ];
-          };
-
-          "Invidious" = mkBasicSearchEngine {
-            url = "https://yt.moonythm.dev/results";
-            param = "search_query";
-            aliases = [
-              "@yt"
-              "@invidious"
-            ];
-          };
-
-          "Youtube" = mkBasicSearchEngine {
-            url = "https://www.youtube.com/results";
-            param = "search_query";
-            aliases = [
-              "@gyt"
-              "@youtube"
-            ];
-          };
-
-          "Arcaea wiki" = mkBasicSearchEngine {
-            url = "https://arcaea.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true";
-            param = "query";
-            aliases = [
-              "@ae"
-              "@arcaea"
-            ];
-          };
-
-          "Noita wiki" = mkBasicSearchEngine {
-            url = "https://noita.wiki.gg/index.php";
-            param = "search";
-            aliases = [ "@noita" ];
-          };
-
-          "Rain world wiki" = mkBasicSearchEngine {
-            url = "https://rainworld.miraheze.org/w/index.php";
-            param = "search";
-            aliases = [
-              "@rw"
-              "@rain-world"
-            ];
-          };
-
-          "Arch wiki" = mkBasicSearchEngine {
-            url = "https://wiki.archlinux.org/index.php";
-            param = "search";
-            aliases = [
-              "@aw"
-              "@arch-wiki"
-            ];
-          };
-
-          "Factorio wiki" = mkBasicSearchEngine {
-            url = "https://wiki.factorio.com/index.php";
-            param = "search";
-            aliases = [
-              "@fw"
-              "@factorio-wiki"
-            ];
-          };
-
-          "Factorio mod portal" = mkBasicSearchEngine {
-            url = "https://mods.factorio.com/";
-            param = "query";
-            aliases = [
-              "@fm"
-              "@factorio-mods"
-            ];
-          };
-
-          "Yu-Gi-Oh! wiki" = mkBasicSearchEngine {
-            url = "https://yugipedia.com/index.php";
-            param = "search";
-            aliases = [
-              "@ygo"
-              "@yugioh-wiki"
-            ];
-          };
-
-          "Yu-Gi-Oh! card prices" = mkBasicSearchEngine {
-            url = "https://www.cardmarket.com/en/YuGiOh/Products/Search";
-            param = "searchString";
-            aliases = [
-              "@cm"
-              "@cardmarket"
-            ];
-          };
-
-          "Moonythm" = mkBasicSearchEngine {
-            url = "https://search.moonythm.dev/search";
-            param = "q";
-            aliases = [
-              "@m"
-              "@moonythm"
-            ];
-            icon = ../../../../common/icons/whoogle.webp;
-          };
-
-          "Python documentation" = mkBasicSearchEngine {
-            url = "https://docs.python.org/3/search.html";
-            param = "q";
-            aliases = [
-              "@py"
-              "@python"
-            ];
-            icon = "https://docs.python.org/favicon.ico";
-          };
-
-          "Just documentation" = mkBasicSearchEngine {
-            url = "https://just.systems/man/en/";
-            param = "search";
-            aliases = [ "@just" ];
-            icon = "https://just.systems/favicon.ico";
-          };
-
           "Google".metaData.alias = "@g";
-        };
-      # }}}
+        }
+        // lib.attrsets.mapAttrs (_: mkBasicSearchEngine) (lib.importTOML ./engines.toml);
       # }}}
       # {{{ Other lower level settings
       settings = {
         # Auto enable nix provided extensions
         "extensions.autoDisableScopes" = 0;
 
-        # Required for figma to be able to export to svg
+        # Required for Figma to be able to export to SVG
         "dom.events.asyncClipboard.clipboardItem" = true;
 
-        # Allow custom css
+        # Allow custom CSS
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
-        # Set language to english
+        # Set language to English
         "general.useragent.locale" = "en-GB";
 
-        # Do not restore sessions after what looks like a "crash"
+        # Do not restore sessions after what looks like a "crash". Note that
+        # said tabs can still be recovered manually with Control+Shift+Tab.
         "browser.sessionstore.resume_from_crash" = false;
 
         # Do not paste with middle mouse click
@@ -340,20 +150,20 @@
         # https://forums.linuxmint.com/viewtopic.php?t=379164
         "browser.protections_panel.infoMessage.seen" = true;
 
-        # Do not show dialog for getting panes in the addons menu (?)
+        # Do not show dialog for getting panes in the add-ons menu (?)
         # http://kb.mozillazine.org/Extensions.getAddons.showPane
         "extensions.getAddons.showPane" = false;
 
-        # Do not recommend addons
+        # Do not recommend add-ons
         "extensions.htmlaboutaddons.recommendations.enabled" = false;
 
         # Inspired by https://github.com/TLATER/dotfiles/blob/b39af91fbd13d338559a05d69f56c5a97f8c905d/home-config/config/graphical-applications/firefox.nix
-        # {{{ Performance settings
+        # Performance settings
         "gfx.webrender.all" = true; # Force enable GPU acceleration
         "media.ffmpeg.vaapi.enabled" = true;
-        "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
-        # }}}
-        # {{{ New tab page
+        "widget.dmabuf.force-enabled" = true; # Required in recent versions
+
+        # New tab page
         "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
         "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
         "browser.newtabpage.activity-stream.feeds.snippets" = false;
@@ -363,8 +173,8 @@
         "browser.newtabpage.activity-stream.showSponsored" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.pinned" = false;
-        # }}}
-        # {{{ Privacy
+
+        # Privacy
         "browser.contentblocking.category" = "strict";
         "app.shield.optoutstudies.enabled" = false;
         "dom.security.https_only_mode" = true;
@@ -374,7 +184,6 @@
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.socialtracking.enabled" = true;
         "browser.discovery.enabled" = false;
-        # }}}
       };
       # }}}
     };
@@ -385,8 +194,8 @@
     profileNames = [ config.home.username ];
   };
 
-  # {{{ Make firefox the default browser
-  # Use firefox as the default browser to open stuff.
+  # {{{ Make Firefox the default browser
+  # Use Firefox as the default browser to open stuff.
   xdg.mimeApps.defaultApplications = {
     "text/html" = [ "firefox.desktop" ];
     "text/xml" = [ "firefox.desktop" ];
@@ -394,7 +203,7 @@
     "x-scheme-handler/https" = [ "firefox.desktop" ];
   };
 
-  # Tell apps firefox is the default browser using an env var.
+  # Tell apps Firefox is the default browser using an environment variable.
   home.sessionVariables.BROWSER = "firefox";
   # }}}
   # {{{ Persistence
@@ -403,7 +212,7 @@
   ];
 
   satellite.persistence.at.cache.apps.firefox.directories = [
-    "${config.xdg.cacheHome}/mozilla/firefox" # Non important cache
+    "${config.xdg.cacheHome}/mozilla/firefox" # Non-important cache
   ];
   # }}}
 }

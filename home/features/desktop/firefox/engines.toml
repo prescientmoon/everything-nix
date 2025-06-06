@@ -1,0 +1,136 @@
+# {{{ Nix
+["Nixpkgs packages"]
+aliases = ["@np", "@nixpkgs-packages"]
+url     = "https://search.nixos.org/packages"
+param   = "query"
+icon    = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-rainbow.svg"
+
+["Nixos options"]
+aliases = ["@no", "@nixos-options"]
+url     = "https://search.nixos.org/options"
+param   = "query"
+icon    = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-rainbow.svg"
+
+["Home-manager options"]
+aliases = ["@hm", "@home-manager"]
+url     = "https://home-manager-options.extranix.com"
+param   = "query"
+icon    = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-colours.svg"
+# }}}
+# {{{ Programming
+["Pursuit"]
+aliases = ["@ps", "@pursuit"]
+url     = "https://pursuit.purescript.org/search"
+param   = "q"
+icon    = "https://pursuit.purescript.org/static/res/favicon/favicon.ico"
+
+["Hoogle"]
+aliases = ["@hg", "@hoogle"]
+url     = "https://hoogle.haskell.org"
+param   = "hoogle"
+icon    = "https://hoogle.haskell.org/favicon.png"
+
+["NPM"]
+aliases = ["@npm"]
+url     = "https://www.npmjs.com/search"
+param   = "q"
+icon    = "https://static-00.iconduck.com/assets.00/npm-icon-2048x2048-wm0mnkz6.png"
+
+["Python documentation"]
+aliases = ["@py", "@python"]
+url     = "https://docs.python.org/3/search.html"
+param   = "q"
+icon    = "https://docs.python.org/favicon.ico"
+
+["Just documentation"]
+aliases = ["@just"]
+url     = "https://just.systems/man/en/"
+param   = "search"
+icon    = "https://just.systems/favicon.ico"
+
+["OpenGL documentation"]
+aliases = ["@gl"]
+url     = "https://docs.gl/"
+param   = "search"
+icon    = "https://www.opengl.org/favicon.ico"
+
+["Arch wiki"]
+aliases = ["@aw", "@arch-wiki"]
+url     = "https://wiki.archlinux.org/index.php"
+param   = "search"
+icon    = "https://archlinux.org/favicon.ico"
+
+["Github"]
+aliases = ["@gh", "@github"]
+url     = "https://github.com/search"
+param   = "q"
+icon    = "https://github.com/favicon.ico"
+# }}}
+# {{{ Gaming
+["Arcaea wiki"]
+aliases = ["@ae", "@arcaea"]
+url     = "https://arcaea.fandom.com/wiki/Special:Search?scope = internal&navigationSearch = true"
+param   = "query"
+icon    = "https://arcaea.lowiro.com/icon/favicon.ico"
+
+["Noita wiki"]
+aliases = ["@noita"]
+url     = "https://noita.wiki.gg/index.php"
+param   = "search"
+icon    = "https://noita.wiki.gg/favicon.ico"
+
+["Rain world wiki"]
+aliases = ["@rw", "@rain-world"]
+url     = "https://rainworld.miraheze.org/w/index.php"
+param   = "search"
+icon    = "https://rainworld.miraheze.org/favicon.ico"
+
+["Factorio wiki"]
+aliases = ["@fw", "@factorio-wiki"]
+url     = "https://wiki.factorio.com/index.php"
+param   = "search"
+icon    = "https://factorio.com/static/img/factorio-wheel.png"
+
+["Factorio mod portal"]
+aliases = ["@fm", "@factorio-mods"]
+url     = "https://mods.factorio.com/"
+param   = "query"
+icon    = "https://factorio.com/static/img/factorio-wheel.png"
+
+["Yu-Gi-Oh! wiki"]
+aliases = ["@ygo", "@yugioh-wiki"]
+url     = "https://yugipedia.com/index.php"
+param   = "search"
+icon    = "https://www.yugioh.com/favicon.ico"
+
+["Yu-Gi-Oh! card prices"]
+aliases = ["@cm", "@cardmarket"]
+url     = "https://www.cardmarket.com/en/YuGiOh/Products/Search"
+param   = "searchString"
+icon    = "https://www.yugioh.com/favicon.ico"
+# }}}
+# {{{ Misc
+["Invidious"]
+aliases = ["@yt", "@invidious"]
+url     = "https://yt.moonythm.dev/results"
+param   = "search_query"
+icon    = "http://yt.moonythm.dev/favicon.ico"
+
+["Youtube"]
+aliases = ["@gyt", "@youtube"]
+url     = "https://www.youtube.com/results"
+param   = "search_query"
+icon    = "https://www.youtube.com/favicon.ico"
+
+["Moonythm"]
+aliases = ["@m", "@moonythm"]
+url     = "https://search.moonythm.dev/search"
+param   = "q"
+icon    = "https://preview.redd.it/wg339t74xqi81.png"
+
+["Wikipedia"]
+aliases = ["@wk", "@wikipedia"]
+url     = "https://en.wikipedia.org/wiki/Special:Search"
+param   = "search"
+icon    = "https://en.wikipedia.org/favicon.ico"
+# }}}
