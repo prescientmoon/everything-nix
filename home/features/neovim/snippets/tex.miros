@@ -266,7 +266,7 @@ block math
     for set <- @⟨N,Z,Q,I,R,C,P,F⟩
     abbr @⟨@set:nats,ints,rats,irats,rrea,comp,ppri,ffie⟩ \mathbb @set
 
-    string set
+    string seet
       desc Create a set by escaping the brackets
       snip \{$1\}
     -- }}}
@@ -285,7 +285,7 @@ block math
 
   block auto
     -- {{{ Subscripts & exponents
-    pattern (.*)e@⟨t(%a),(%d)⟩
+    pattern (.*)eo@⟨t(%a),(%d)⟩
       name auto exponent
       snip @0^@1 $0
 

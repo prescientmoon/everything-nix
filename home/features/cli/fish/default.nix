@@ -42,7 +42,6 @@ in
     defaultOptions = [ "--no-scrollbar" ];
 
     changeDirWidgetOptions = [ "--preview '${lib.getExe pkgs.eza} --icons --tree --color=always {}'" ];
-
     fileWidgetOptions = [ "--preview '${lib.getExe pkgs.bat} --number --color=always {}'" ];
   };
 
@@ -75,8 +74,8 @@ in
       in
       # For some reason home-manager expects a slightly different format 🤔
       lib.forEach plugins (plugin: {
-        name = plugin.pname;
         inherit (plugin) src;
+        name = plugin.pname;
       });
     # }}}
   };

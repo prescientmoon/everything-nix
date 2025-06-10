@@ -18,6 +18,7 @@
             "#[0-9a-fA-F]{6}" # color
             "[0-9]{4,}" # numbers
             "[0-9a-f]{7,40}" # SHA
+            "(sha256-)?[A-Za-z0-9+/]{43}=" # Base 64 encoded SHA256 (nix hashes)
             "0x[0-9a-fA-F]+" # hex address
             "[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}" # IPv4
             "[A-Fa-f0-9:]+:+[A-Fa-f0-9:]+[%A-Za-z0-9_]+" # IPv6

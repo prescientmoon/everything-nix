@@ -1012,6 +1012,9 @@ let
                 upkgs.typstfmt
                 upkgs.tinymist # The typst language server
               ]
+              ++ optionals python [
+                pkgs.ruff
+              ]
             );
           # }}}
 
@@ -1098,6 +1101,7 @@ let
               ols = { }; # Odin
               hyprls = { };
               glsl_analyzer = { };
+              ruff = { };
 
               # I have the justfile formatter
               just.on_attach = client: ''
@@ -1177,17 +1181,6 @@ let
             coc = false; # global/local coc-settings.json
             nlsp = false; # global/local nlsp-settings.nvim json settings
           };
-        };
-        # }}}
-        # {{{ null-ls
-        null-ls = {
-          package = "jose-elias-alvarez/null-ls.nvim";
-          dependencies.lua = [ "lspconfig" ];
-          dependencies.nix = lib.lists.optional packedTargets.python pkgs.ruff;
-
-          event = "VeryLazy";
-
-          opts = _: { sources = [ (require "null-ls" /builtins/diagnostics/ruff) ]; };
         };
         # }}}
         # {{{ cmp

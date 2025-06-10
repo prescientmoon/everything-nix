@@ -49,7 +49,6 @@
   "purescript": { "branch": "main", "commit": "82348352e6568fcc0385bd7c99a8ead3a479feea" },
   "quicker.nvim": { "branch": "master", "commit": "183041a46d6c908eefb1c23ea02cce9c8f41256e" },
   "rustacean": { "branch": "master", "commit": "5c0c44149e43b907dae2e0fe053284ad56226eb7" },
-  "rzip": { "branch": "master", "commit": "f65400fed27b27c7cff7ef8d428c4e5ff749bf28" },
   "scrap": { "branch": "main", "commit": "cc8453ed613932c744c3d1ec42f379b78bd8b92c" },
   "telescope": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
