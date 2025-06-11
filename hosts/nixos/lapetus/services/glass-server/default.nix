@@ -39,6 +39,17 @@
 
   services.sqliteWeb.databases.glass.urlPrefix = "/db/glass/";
   services.sqliteWeb.databases.shimmer.urlPrefix = "/db/shimmer/";
+
+  # Add CNAME record to get around the 24 char encryption limit
+  # on the app patching tool (https://arcaea.moonythm.dev is too long).
+  satellite.dns.records = [
+    {
+      type = "CNAME";
+      zone = config.satellite.dns.domain;
+      at = "a";
+      to = "arcaea";
+    }
+  ];
   # }}}
 
   services.glass-server = {

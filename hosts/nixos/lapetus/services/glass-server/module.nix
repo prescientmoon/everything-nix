@@ -16,6 +16,12 @@ let
     sha256 = "1a0gqsvajpws85ajd8qxsfskr7fkfl9b290x0v6pqxjh2ylfy6gf";
   };
 
+  triplet = a: b: c: [
+    a
+    b
+    c
+  ];
+
   glassServerConfig = {
     # {{{ Public config
     HOST = "0.0.0.0";
@@ -23,7 +29,7 @@ let
     GAME_API_PREFIX = "/join/21";
     USERNAME = cfg.adminUsername;
 
-    LOG_BASE_DIR = "${cfg.dataDir}/log";
+    LOG_FOLDER_PATH = "${cfg.dataDir}/log";
     WORLD_MAP_FOLDER_PATH = "${cfg.dataDir}/map/";
     WORLD_MAP_LEPHON_NELL_FOLDER_PATH = "${pkg}/source/database/map_lephon_nell";
 
@@ -46,6 +52,7 @@ let
     ALLOW_LOGIN_SAME_DEVICE = true;
     ALLOW_BAN_MULTIDEVICE_USER_AUTO = false;
     SONG_FILE_HASH_PRE_CALCULATE = false;
+    SONG_HASH_CHECKS = false;
 
     DEFAULT_MEMORIES = 3141592;
     WORLD_RANK_MAX = 5;
@@ -57,6 +64,11 @@ let
     SAVE_FULL_UNLOCK = false;
     STAMINA_RECOVER_TICK = 1; # Recover stamina instantly
     SKILL_FATALIS_WORLD_LOCKED_TIME = 1; # Recover from Fatalis instantly
+    STEALTH_MODE_MAX_MEMS = 500;
+    PTT_FORMULA = [
+      (triplet "best" 30 (1 / 40))
+      (triplet "best" 10 (1 / 40))
+    ];
 
     CONTENT_BUNDLE_FOLDER_PATH = "${pkgs.shimmeringextra}/bundles";
     # }}}
