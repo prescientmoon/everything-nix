@@ -2,12 +2,12 @@
 { pkgs, lib, ... }:
 
 {
-
   # Containers
   virtualisation.oci-containers.containers."5d-diplomacy-backend" = {
     image = "compose2nix/5d-diplomacy-backend";
     environment = {
-      "ConnectionStrings__Database" = "Server=mssql;Database=diplomacy;User=SA;Password=Passw0rd@;Encrypt=True;TrustServerCertificate=True";
+      "ConnectionStrings__Database" =
+        "Server=mssql;Database=diplomacy;User=SA;Password=Passw0rd@;Encrypt=True;TrustServerCertificate=True";
     };
     log-driver = "journald";
     extraOptions = [
@@ -106,7 +106,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      TimeoutSec = 300;
+      TimeoutSec = 900;
     };
     script = ''
       docker build -t compose2nix/5d-diplomacy-backend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:server
@@ -122,7 +122,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      TimeoutSec = 300;
+      TimeoutSec = 900;
     };
     script = ''
       docker build -t compose2nix/5d-diplomacy-frontend https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel.git#main:client
