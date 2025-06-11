@@ -106,7 +106,7 @@
             };
         in
         {
-          "Google".metaData.alias = "@g";
+          "google".metaData.alias = "@g";
         }
         // lib.attrsets.mapAttrs (_: mkBasicSearchEngine) (lib.importTOML ./engines.toml);
       # }}}

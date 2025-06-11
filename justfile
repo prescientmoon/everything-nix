@@ -5,12 +5,13 @@ default:
 hostname := `hostname`
 
 # {{{ Nixos rebuilds
-[doc("Wrapper around `nixos-rebuild`, taking care of the generic arguments")]
+[doc("Wrapper around `nixos-rebuild`")]
 [group("nix")]
-nixos-rebuild action="switch" host=hostname:
+nixos-rebuild action="switch" host=hostname ng="1":
   #!/usr/bin/env python3
   import subprocess
 
+  ng = "{{ng}}" != "0"
   host = "{{host}}"
   users = {
     'tethys': 'adrielus',
@@ -19,25 +20,31 @@ nixos-rebuild action="switch" host=hostname:
   }
 
   args = [
-    "nixos-rebuild",
+    "nixos-rebuild-ng" if ng else "nixos-rebuild",
     "{{action}}",
     "--show-trace",
-    "--fast",
     "--accept-flake-config",
     "--flake", 
-    ".#{{host}}"
+    ".#{{host}}",
+    "--no-reexec" if ng else "--fast"
   ]
 
-  if "{{host}}" == "{{hostname}}": 
+  if host == "{{hostname}}": 
     print("🧬 Switching nixos configuration (locally) for '{{BLUE + host + NORMAL}}'")
-    args = ["sudo", *args]
+    args = [ "sudo", *args ]
   else:
     print("🧬 Switching nixos configuration (remotely) for '{{BLUE + host + NORMAL}}'")
-    args.append("--use-remote-sudo")
-    args += ["--target-host", f"{users[host]}@{host}"]
+    args += [ "--target-host", f"{users[host]}@{host}" ]
+    if ng:
+      args += [ "--sudo", "--ask-sudo-password" ]
+    else:
+      args += [ "--use-remote-sudo" ]
 
-  subprocess.run(args, check=True)
-  print("🚀 All done!")
+  try:
+    subprocess.run(args, check=True)
+    print("🚀 All done!")
+  except KeyboardInterrupt:
+    print("🪓 Command cancelled")
 # }}}
 # {{{ Miscellaneous nix commands
 [doc("Build the custom ISO provided by the flake")]
