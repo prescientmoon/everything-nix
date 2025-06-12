@@ -17,8 +17,8 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "starlitcanopy";
     repo = "ArcaeaServerFork";
-    rev = "29f6361019b3747df4bd68d24ba3a7f4fc4d6a59";
-    sha256 = "JS2U9HLmjkR4xI8KuFnGS0lxWLH4WL0KX8lb5Sub7YE=";
+    rev = "d297e264b71befd2e5917ed39a028a64a792e8be";
+    sha256 = "SYHOqzXhrlLCRd9qjkcPCISjhbUvprXZRrZkXuscPPY=";
   };
 
   buildPhase = ''

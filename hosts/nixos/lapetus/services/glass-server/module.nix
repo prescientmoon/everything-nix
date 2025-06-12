@@ -66,8 +66,8 @@ let
     SKILL_FATALIS_WORLD_LOCKED_TIME = 1; # Recover from Fatalis instantly
     STEALTH_MODE_MAX_MEMS = 500;
     PTT_FORMULA = [
-      (triplet "best" 30 (1 / 40))
-      (triplet "best" 10 (1 / 40))
+      (triplet "best" 30 (1.0 / 40))
+      (triplet "best" 10 (1.0 / 40))
     ];
 
     CONTENT_BUNDLE_FOLDER_PATH = "${pkgs.shimmeringextra}/bundles";
