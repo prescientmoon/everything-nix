@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   sops.secrets.forgejo_mail_password = {
     sopsFile = ../secrets.yaml;
@@ -7,6 +12,21 @@
   };
 
   satellite.cloudflared.at.git.port = config.satellite.ports.forgejo;
+
+  # Protect the service from crawlers via Anubis.
+  # satellite.cloudflared.at.git.port = config.satellite.ports.forgejoAnubis;
+  # services.anubis.instances.forgejo = {
+  #   enable = true;
+  #   settings = {
+  #     TARGET = "http://localhost:${toString config.satellite.ports.forgejo}";
+  #     BIND = ":${toString config.satellite.ports.forgejoAnubis}";
+  #     BIND_NETWORK = "tcp";
+  #     COOKIE_DOMAIN = "moonythm.dev";
+  #     OG_PASSTHROUGH = true;
+  #     SERVE_ROBOTS_TXT = true;
+  #     WEBMASTER_EMAIL = "hi@moonythm.dev";
+  #   };
+  # };
 
   # Add CNAME record for ssh access. Unlike the http interface,
   # this will only get exposed over tailscale, so it is safe.
@@ -21,6 +41,7 @@
 
   services.forgejo = {
     enable = true;
+    package = pkgs.forgejo; # Defaults to LTS
     stateDir = "/persist/state/var/lib/forgejo";
     secrets.mailer.PASSWD = config.sops.secrets.forgejo_mail_password.path;
     dump.enable = false; # We already backup via rsync + have zfs snapshots to rollback to
@@ -55,6 +76,10 @@
         DEFAULT_REPO_UNITS = lib.concatStringsSep "," [ "repo.code" ];
         ENABLE_PUSH_CREATE_USER = true;
         ENABLE_PUSH_CREATE_ORG = true;
+      };
+
+      ui = {
+        AMBIGUOUS_UNICODE_DETECTION = true;
       };
     };
   };

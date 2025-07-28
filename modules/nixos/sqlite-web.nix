@@ -122,8 +122,11 @@ in
 
         serviceConfig = {
           LoadCredential = lib.optional (instance.passwordFile != null) "password:${instance.passwordFile}";
-          ReadOnlyPaths = lib.lists.optional instance.readOnly instance.file;
-          ReadWritePaths = lib.lists.optional (!instance.readOnly) instance.file;
+
+          # NOTE: Giving access to the entire directory might be wrong, but
+          # I was sometimes getting errors without this.
+          ReadOnlyPaths = lib.lists.optional instance.readOnly (builtins.dirOf instance.file);
+          ReadWritePaths = lib.lists.optional (!instance.readOnly) (builtins.dirOf instance.file);
           User = instance.user;
           Restart = "on-failure";
 

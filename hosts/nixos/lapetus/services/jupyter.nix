@@ -1,6 +1,6 @@
+# This module is currently disabled, as I no longer have a use for it.
 {
   config,
-  lib,
   pkgs,
   ...
 }:

@@ -26,7 +26,6 @@
     ./services/homer.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
-    ./services/jupyter.nix
     ./services/microbin.nix
     ./services/moonythm.nix
     ./services/pounce.nix

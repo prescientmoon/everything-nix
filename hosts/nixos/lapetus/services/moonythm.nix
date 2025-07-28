@@ -14,7 +14,7 @@ in
     override_charset on;
 
     root ${dir};
-    error_page 404 /404.html;
+    error_page 404 /404;
 
     proxy_intercept_errors on;
     location / {

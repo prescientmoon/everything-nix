@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -30,11 +31,7 @@ let
     USERNAME = cfg.adminUsername;
 
     LOG_FOLDER_PATH = "${cfg.dataDir}/log";
-    WORLD_MAP_FOLDER_PATH = "${cfg.dataDir}/map/";
     WORLD_MAP_LEPHON_NELL_FOLDER_PATH = "${pkg}/source/database/map_lephon_nell";
-
-    SONG_FILE_FOLDER_PATH = "${cfg.dataDir}/songs/";
-    SONGLIST_FILE_PATH = "${cfg.dataDir}/songs/songlist";
     SQLITE_DATABASE_BACKUP_FOLDER_PATH = "${cfg.dataDir}/backup/";
 
     DATABASE_INIT_PATH = "${pkg}/source/database/init/";
@@ -71,6 +68,9 @@ let
     ];
 
     CONTENT_BUNDLE_FOLDER_PATH = "${pkgs.shimmeringextra}/bundles";
+    SONGLIST_FILE_PATH = "${pkgs.shimmering-private-config}/songlist.json";
+    SONG_FILE_FOLDER_PATH = "${pkgs.glass-charts}";
+    WORLD_MAP_FOLDER_PATH = "${pkgs.glass-maps}/maps";
     # }}}
   };
 
@@ -126,9 +126,6 @@ in
       "d ${cfg.dataDir}/log         0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/backup      0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/database    0700 ${cfg.user} ${cfg.user}"
-
-      "d ${cfg.dataDir}/map         0755 ${cfg.user} ${cfg.user}"
-      "d ${cfg.dataDir}/songs       0755 ${cfg.user} ${cfg.user}"
 
       "L+ ${cfg.dataDir}/pkgs/server 0755 ${cfg.user} ${cfg.user} - ${pkg}"
       "L+ ${cfg.dataDir}/pkgs/db     0755 ${cfg.user} ${cfg.user} - ${databaseRepo}"

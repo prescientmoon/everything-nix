@@ -52,6 +52,9 @@
 
     moonythm.inputs.nixpkgs.follows = "nixpkgs";
     moonythm.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git";
+
+    tree-sitter-odin.flake = false;
+    tree-sitter-odin.url = "git+ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/tree-sitter-odin.git";
     # }}}
     # {{{ Theming
     darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";
