@@ -178,7 +178,7 @@ M.refresh = function(buf_id)
       if unit.hl ~= nil then
         -- Use `priority` because of the regression bug (highlights are not stacked
         -- properly): https://github.com/neovim/neovim/issues/17358
-        vim.highlight.range(
+        vim.hl.range(
           buf_id,
           H.ns.general,
           unit.hl,

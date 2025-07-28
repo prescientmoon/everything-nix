@@ -209,7 +209,7 @@ block math
     -- {{{ Constants
     for constkind <- @⟨default,shortened⟩
     for constant <- @⟨@constkind:
-      @⟨star,delta,Delta,pi,tau,psi,Psi,phi,rho,sigma,alpha,beta,theta,gamma,omega,Omega,half,ordop,land,lor⟩,
+      @⟨star,delta,Delta,pi,tau,psi,Psi,phi,rho,sigma,alpha,beta,theta,gamma,Gamma,omega,Omega,half,ordop,land,lor⟩,
       @⟨lam,eps,iinf⟩
     ⟩
     for expansion <- @⟨@constkind:
@@ -226,6 +226,7 @@ block math
     abbr exs \exists
     abbr nope \bot
     abbr yee \top
+    abbr tto \to
     -- }}}
     -- {{{ Set-theory
     abbr card \#

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
@@ -53,13 +53,15 @@
   programs.firejail.enable = true;
   programs.nix-ld.enable = true; # Useful for running non-nix executables
   services.mullvad-vpn.enable = true;
+  services.usbmuxd.enable = true;
+  programs.adb.enable = true;
+  users.users.pilot.extraGroups = [ "adbusers" ];
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprland.enableGnomeKeyring = true;
   # }}}
   # {{{ SSH keys
   users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../tethys/keys/id_ed25519.pub ];
   # }}}
-
-  programs.adb.enable = true;
-  users.users.pilot.extraGroups = [ "adbusers" ];
 
   satellite.pilot.name = "moon";
   boot.loader.systemd-boot.enable = true;

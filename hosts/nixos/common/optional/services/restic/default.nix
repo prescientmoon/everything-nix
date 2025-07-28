@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  # TODO: move to key setup to some kind of oneshot service
+  # TODO: move the key setup to some kind of oneshot service
   backupUrl = lib.removeSuffix "\n" (builtins.readFile ./url.txt);
 
   # {{{ Backup helper
@@ -106,7 +106,7 @@ in
     };
 
     "restic/sha2" = {
-      publicKey = "zh4347.rsync.net ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLR2uz+YLn2KiQK0Luu8rhfWS6LHgUfGAWB1j8rM2MKn4KZ2/LhIX1CYkPKMTPxHr6mzayeL1T1hyJIylxXv0BY=";
+      publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLR2uz+YLn2KiQK0Luu8rhfWS6LHgUfGAWB1j8rM2MKn4KZ2/LhIX1CYkPKMTPxHr6mzayeL1T1hyJIylxXv0BY=";
       hostNames = [ "zh4347.rsync.net" ];
     };
   };

@@ -18,15 +18,59 @@ let
         lctl lmet ${redTrigger}           spc            ${blueTrigger}
       )
       ;; }}}
-      ;; {{{ Layer & utility aliases
-      (defalias
-        red (layer-while-held red)
-        blue (layer-while-held blue)
-        purple (layer-while-held purple)
 
-        em (unicode —)
+      (defalias
+        ;; {{{ Layers
+        red           (layer-while-held red)
+        blue          (layer-while-held blue)
+        purple        (layer-while-held purple)
+        unicode-1     (layer-while-held unicode-1)
+        double-stroke (layer-while-held double-stroke)
+        ;; }}}
+        ;; {{{ Unicode
+        em  (unicode —)
+        ⟨ (unicode ⟨)
+        ⟩ (unicode ⟩)
+        ‹ (unicode ‹)
+        › (unicode ›)
+        ⋄ (unicode ⋄)
+        ≔ (unicode ≔)
+        ≤ (unicode ≤)
+        ≥ (unicode ≥)
+        ∈ (unicode ∈)
+        ∘ (unicode ∘)
+        ¬ (unicode ¬)
+        ∃ (unicode ∃)
+        ∀ (unicode ∀)
+
+        𝔸 (unicode 𝔸)
+        𝔹 (unicode 𝔹)
+        ℂ (unicode ℂ)
+        ⅅ (unicode ⅅ)
+        𝔼 (unicode 𝔼)
+        𝔽 (unicode 𝔽)
+        𝔾 (unicode 𝔾)
+        ℍ (unicode ℍ)
+        𝕀 (unicode 𝕀)
+        𝕁 (unicode 𝕁)
+        𝕂 (unicode 𝕂)
+        𝕃 (unicode 𝕃)
+        𝕄 (unicode 𝕄)
+        ℕ (unicode ℕ)
+        𝕆 (unicode 𝕆)
+        ℙ (unicode ℙ)
+        ℚ (unicode ℚ)
+        ℝ (unicode ℝ)
+        𝕊 (unicode 𝕊)
+        𝕋 (unicode 𝕋)
+        𝕌 (unicode 𝕌)
+        𝕍 (unicode 𝕍)
+        𝕎 (unicode 𝕎)
+        𝕏 (unicode 𝕏)
+        𝕐 (unicode 𝕐)
+        ℤ (unicode ℤ)
+        ;; }}}
       )
-      ;; }}}
 
       (defchordsv2-experimental
         ;; {{{ Left modifiers
@@ -69,6 +113,12 @@ let
         (n l d) M-8 ${toString chordDelay} all-released ()
         (n l f) M-9 ${toString chordDelay} all-released ()
         (n l g) M-0 ${toString chordDelay} all-released ()
+        ;; }}}
+        ;; {{{ Extra layers
+        (u i) @unicode-1 ${toString chordDelay} all-released ()
+        (e r) @unicode-1 ${toString chordDelay} all-released ()
+        (u o) @double-stroke ${toString (chordDelay - 5)} all-released ()
+        (w r) @double-stroke ${toString (chordDelay - 5)} all-released ()
         ;; }}}
       )
 
@@ -127,10 +177,28 @@ let
         _    _    _              _              _
       )
       ;; }}}
+      ;; {{{ Unicode
+      (deflayer unicode-1
+        _    _    _    _    _    _    _    _    _    _    _    _    _    _
+        _    @⋄   _    _    _    _    _    _    @∘   _    _    _    _    _
+        _    @≤   _    @‹   @⟨   _    _    _    _    @≔   @∈   _    _
+        _    @≥   _    @›   @⟩   @¬   _    _    @∀   @∃   _    _
+        _    _    _              _              _
+      )
+
+      (deflayer double-stroke
+        _    _    _    _    _    _    _    _    _    _    _    _    _    _
+        _    @ℚ   @𝕎   @𝔼   @ℝ   @𝕋   @𝕐   @𝕌   @𝕀   @𝕆   @ℙ   _    _    _
+        _    @𝔸   @𝕊   @ⅅ   @𝔽   @𝔾   @ℍ   @𝕁   @𝕂   @𝕃   _    _    _
+        _    @ℤ   @𝕏   @ℂ   @𝕍   @𝔹   @ℕ   @𝕄   _    _    _    _
+        _    _    _              _              _
+      )
+      ;; }}}
     '';
 
   extraDefCfg = ''
     concurrent-tap-hold true ;; Required by chords
+    rapid-event-delay 20 ;; Attempt to make foot happy, I guess
   '';
 in
 {

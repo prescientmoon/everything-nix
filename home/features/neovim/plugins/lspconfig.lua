@@ -1,6 +1,7 @@
 local M = {}
 
 -- {{{ Capabilities
+-- TODO: get rid of this once I switch to blink
 M.capabilities = function()
   local c = require("cmp_nvim_lsp").default_capabilities()
 
@@ -15,12 +16,9 @@ end
 -- }}}
 -- {{{ Main config function
 function M.config(servers)
-  local lspconfig = require("lspconfig")
-
-  local capabilities = M.capabilities()
   for lsp, details in pairs(servers) do
-    details.capabilities = capabilities
-    lspconfig[lsp].setup(details)
+    vim.lsp.config(lsp, details)
+    vim.lsp.enable(lsp)
   end
 end
 --}}}

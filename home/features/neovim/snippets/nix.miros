@@ -1,3 +1,4 @@
+import common/unicode-double-stroke
 block auto
   string fetchgh
     name fetch github

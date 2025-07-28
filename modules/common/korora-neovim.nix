@@ -72,6 +72,7 @@ let
             types.derivation
             types.path
           ];
+          branch = k.string;
           version = k.string;
           tag = k.string;
           name = k.string;

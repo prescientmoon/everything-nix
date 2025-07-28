@@ -67,6 +67,18 @@ param   = "q"
 icon    = "https://github.com/favicon.ico"
 # }}}
 # {{{ Gaming
+["Steam DB"]
+aliases = ["@sdb", "@steam-db"]
+url     = "https://steamdb.info/search/?a=all"
+param   = "q"
+icon    = "https://steamdb.info/favicon.ico"
+
+["Proton DB"]
+aliases = ["@pdb", "@proton-db"]
+url     = "https://www.protondb.com/search"
+param   = "q"
+icon    = "https://www.protondb.com/favicon.ico"
+
 ["Arcaea wiki"]
 aliases = ["@ae", "@arcaea"]
 url     = "https://arcaea.fandom.com/wiki/Special:Search?scope = internal&navigationSearch = true"

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./smos.nix
+    # ./smos.nix
     ./mail.nix
   ];
 }

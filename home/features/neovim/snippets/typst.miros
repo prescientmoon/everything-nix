@@ -54,10 +54,17 @@ block auto
     name limit to @limtarget
     snip lim_($1 → @limtargetsymbol) $0
 
-  for operator <- @⟨eq,neq,defas,leq,geq,llt,ggt,iip,iib,iff⟩
-  for symbol <- @⟨@operator:=,≠,≔,≤,≥,<,>,⟹,⟸,⟺⟩
+  for createabbr <- @⟨false,true⟩
+  for operator <- @⟨@createabbr:
+    @⟨eq,lt,gt⟩,
+    @⟨neq,defas,leq,geq,iip,iib,iff⟩
+  ⟩
+  for symbol <- @⟨@createabbr:
+    @⟨@operator:=,<,>⟩,
+    @⟨@operator:≠,≔,≤,≥,⟹,⟸,⟺⟩
+  ⟩
 
-  abbr @operator @symbol
+  abbr @⟨@createabbr:op-@operator,@operator⟩ @symbol
 
   string a@operator
     name align at @operator

@@ -92,6 +92,7 @@ let
             # {{{ Splits
             splitbelow = true; # Put new windows below current
             splitright = true; # Put new windows right of current
+            inccommand = "split"; # Show off-screen ":%s" changes in their own window
             # }}}
             # {{{ Folding
             foldmethod = "marker"; # use {{{ }}} for folding
@@ -430,7 +431,7 @@ let
               goto = key: index: {
                 desc = "Goto harpoon file ${toString index}";
                 mapping = "<c-s>${key}";
-                action = _: require "harpoon.ui" /nav_file (toString index);
+                action = _: require "harpoon.ui" /nav_file index;
               };
             in
             [
@@ -459,7 +460,6 @@ let
         # {{{ telescope
         telescope = {
           package = "nvim-telescope/telescope.nvim";
-          version = "0.1.x";
           event = "VeryLazy";
 
           # {{{ Dependencies
@@ -608,35 +608,120 @@ let
         };
         # }}}
         # {{{ treesitter
-        treesitter = {
-          # I use the nixpkgs version since the normal one can break at times
-          dir = pkgs.symlinkJoin {
-            name = "treesitter-with-parsers";
-            # I don't think nix likes it when we install this manually (normally
-            # we'd pass this to nixos/HM's neovim configuration modules).
-            paths = [
-              upkgs.vimPlugins.nvim-treesitter.withAllGrammars
-              upkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
+        treesitter =
+          let
+            allGrammars =
+              with upkgs.vimPlugins;
+              (nvim-treesitter.withPlugins (
+                plugins:
+                with plugins;
+                [
+                  (upkgs.tree-sitter.buildGrammar {
+                    language = "odin";
+                    version = "unstable-2025-07-18";
+                    src = inputs.tree-sitter-odin;
+                  })
+                ]
+                ++ [
+                  ada
+                  agda
+                  awk
+                  bash
+                  bibtex
+                  c
+                  comment
+                  cpp
+                  css
+                  csv
+                  dhall
+                  editorconfig
+                  elm
+                  fish
+                  git_config
+                  git_rebase
+                  gitattributes
+                  gitcommit
+                  gitignore
+                  glsl
+                  go
+                  haskell
+                  html
+                  hyprlang
+                  idris
+                  javascript
+                  json
+                  jsonc
+                  just
+                  latex
+                  lua
+                  luadoc
+                  markdown
+                  markdown_inline
+                  nix
+                  purescript
+                  python
+                  rasi
+                  regex
+                  requirements
+                  scss
+                  sql
+                  ssh_config
+                  tmux
+                  toml
+                  tsx
+                  typescript
+                  typst
+                  vim
+                  vimdoc
+                  xml
+                  yaml
+                  zathurarc
+                  zig
+                ]
+              ));
+          in
+          {
+            # I use the nixpkgs version since the normal one can break at times
+            dir = pkgs.symlinkJoin {
+              name = "treesitter-with-parsers";
+              # I don't think nix likes it when we install this manually (normally
+              # we'd pass this to nixos/HM's neovim configuration modules).
+              paths = [
+                allGrammars
+                allGrammars.dependencies
+              ];
+            };
+
+            # package = "nvim-treesitter/nvim-treesitter";
+            main = "nvim-treesitter.configs";
+
+            dependencies.nix = [
+              pkgs.tree-sitter
+              pkgs.nodejs
             ];
+
+            event = "VeryLazy";
+
+            opts.indent.enable = true;
+            opts.highlight = {
+              enable = true;
+              disable = [ "kotlin" ]; # This one seemed a bit broken
+              additional_vim_regex_highlighting = false;
+            };
+
+            # init.callback = thunk ''
+            #   local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+            #   parser_config.odin = {
+            #     install_info = {
+            #       url = "~/projects/foreign/tree-sitter-odin",
+            #       files = {"src/parser.c", "src/scanner.c"},
+            #     },
+            #     filetype = "odin",
+            #   }
+            #
+            #   -- vim.treesitter.language.register('odin_custom', 'odin')
+            # '';
           };
-
-          # package = "nvim-treesitter/nvim-treesitter";
-          main = "nvim-treesitter.configs";
-
-          dependencies.nix = [ pkgs.tree-sitter ];
-
-          event = "VeryLazy";
-
-          #{{{ Highlighting
-          opts.highlight = {
-            enable = true;
-            disable = [ "kotlin" ]; # This one seemed a bit broken
-            additional_vim_regex_highlighting = false;
-          };
-          #}}}
-
-          opts.indent.enable = true;
-        };
         # }}}
         # }}}
         # {{{ editing
@@ -831,19 +916,24 @@ let
                   input
                   (if balanced then "^.%s*().-()%s*.$" else "^.().*().$")
                 ];
-                output = {
-                  inherit left right;
-                };
+                output = { inherit left right; };
+              };
+
+              # Make unicode
+              mu = left: right: {
+                input = [ "${left}().-()${right}" ];
+                output = { inherit left right; };
               };
             in
             {
               b = mk true "%b()" "(" ")";
               B = mk true "%b{}" "{" "}";
               r = mk true "%b[]" "[" "]";
-              v = mk true "%b⟨⟩" "⟨" "⟩";
               q = mk false "\".-\"" "\"" "\"";
               Q = mk false "`.-`" "`" "`";
               a = mk false "'.-'" "'" "'";
+              A = mk false "⟨.-⟩" "⟨" "⟩";
+              v = mu "⟨" "⟩";
             };
           # }}}
         };
@@ -856,21 +946,23 @@ let
           config = true;
           keys =
             let
-              operator = key: [
+              operator = prefix: key: [
                 {
-                  mapping = "g${key}";
+                  mapping = "${prefix}${key}";
                   mode = "nv";
                 }
-                "g${key}${key}"
+                "${prefix}${key}${key}"
               ];
             in
             lib.flatten [
-              (operator "=")
-              (operator "m")
-              (operator "x")
-              (operator "r")
-              (operator "s")
+              (operator "g" "=")
+              (operator "g" "m")
+              (operator "g" "x")
+              (operator "g" "s")
+              (operator "q" "r")
             ];
+
+          opts.replace.prefix = "qr";
         };
         # }}}
         # {{{ mini.pairs
@@ -883,6 +975,19 @@ let
             "InsertEnter"
             "CmdlineEnter"
           ];
+
+          opts.mappings = {
+            "⟨" = {
+              action = "open";
+              pair = "⟨⟩";
+              neigh_pattern = "[^\\].";
+            };
+            "⟩" = {
+              action = "close";
+              pair = "⟨⟩";
+              neigh_pattern = "[^\\].";
+            };
+          };
         };
         # }}}
         # {{{ luasnip
@@ -1091,7 +1196,8 @@ let
                 };
 
               tinymist.settings.exportPdf = "onSave";
-              tinymist.offset_encoding = "utf-8";
+              tinymist.settings.formatterMode = "typstyle";
+              # tinymist.offset_encoding = "utf-8";
 
               cssls = { };
               jsonls = { };
@@ -1131,20 +1237,21 @@ let
 
           event = "VeryLazy";
 
-          opts.format_on_save.lsp_fallback = true;
+          opts.format_on_save.lsp_format = "fallbacek";
           opts.formatters_by_ft =
             let
-              prettier = [
-                [
+              prettier = {
+                stop_after_first = true;
+                __list = [
                   "prettierd"
                   "prettier"
-                ]
-              ];
+                ];
+              };
             in
             {
               "*" = [
                 # "codespell" # this one causes issues sometimes
-                "trim_whitespace"
+                # "trim_whitespace"
               ];
               lua = [ "stylua" ];
               python = [ "ruff_format" ];
@@ -1262,26 +1369,17 @@ let
         haskell-tools = {
           package = "mrcjkb/haskell-tools.nvim";
           dependencies.lua = [ "plenary" ];
-          version = "^2";
+          version = "^6";
+          lazy = false;
 
-          ft = [
-            "haskell"
-            "lhaskell"
-            "cabal"
-            "cabalproject"
-          ];
-
-          config.vim.g.haskell_tools = {
+          init.vim.g.haskell_tools = {
             hls.settings.haskell = {
               formattingProvider = "fourmolu";
 
               # This seems to work better with custom preludes
               # See this issue https://github.com/fourmolu/fourmolu/issues/357
-              plugin.fourmolu.config.external = true;
+              # plugin.fourmolu.config.external = true;
             };
-
-            # I think this wasn't showing certain docs as I expected (?)
-            tools.hover.enable = false;
           };
         };
         # }}}
@@ -1548,7 +1646,7 @@ let
                 (nmap "<leader>oy" "Yesterday" "[y]esterday's note")
                 (nmap "<leader>oi" "Template" "[i]nstantiate template")
                 (nmap "<leader>on" "Template New note.md" "new [n]ote template")
-                (nmap "<leader>od" "Template New note.md" "new [d]ream template")
+                (nmap "<leader>od" "Template New dream.md" "new [d]ream template")
               ];
 
             opts = {

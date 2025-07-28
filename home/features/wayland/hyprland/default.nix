@@ -69,7 +69,5 @@
         "HYPRCURSOR_SIZE,36"
       ];
     };
-
-    plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
   };
 }
