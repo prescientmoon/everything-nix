@@ -1,5 +1,11 @@
 # Catgirl is a terminal based irc client
-{ config, pkgs, lib, hostname ? "hermes", ... }:
+{
+  config,
+  pkgs,
+  lib,
+  hostname ? "hermes",
+  ...
+}:
 let
   mkCatgirlNetwork = network: ''
     host = ${network}.irc.moonythm.dev
@@ -14,8 +20,13 @@ let
   '';
 in
 {
-  home.packages = [ ircgay pkgs.catgirl ];
+  home.packages = [
+    ircgay
+    pkgs.catgirl
+  ];
+
   xdg.configFile."catgirl/tilde".text = mkCatgirlNetwork "tilde";
-  satellite.persistence.at.state.apps.catgirl.directories =
-    [ "${config.xdg.dataHome}/catgirl" ];
+  xdg.configFile."catgirl/libera".text = mkCatgirlNetwork "libera";
+  xdg.configFile."catgirl/freenode".text = mkCatgirlNetwork "freenode";
+  satellite.persistence.at.state.apps.catgirl.directories = [ "${config.xdg.dataHome}/catgirl" ];
 }

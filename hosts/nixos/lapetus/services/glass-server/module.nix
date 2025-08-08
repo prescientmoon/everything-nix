@@ -27,7 +27,10 @@ let
     # {{{ Public config
     HOST = "0.0.0.0";
     PORT = cfg.port;
-    GAME_API_PREFIX = "/join/21";
+    GAME_API_PREFIX = [
+      "/join/21"
+      "/"
+    ];
     USERNAME = cfg.adminUsername;
 
     LOG_FOLDER_PATH = "${cfg.dataDir}/log";
@@ -38,6 +41,7 @@ let
     SQLITE_DATABASE_PATH = "${cfg.dataDir}/database/arcaea_database.db";
     SQLITE_LOG_DATABASE_PATH = "${cfg.dataDir}/database/arcaea_log.db";
     SQLITE_DATABASE_DELETED_PATH = "${cfg.dataDir}/database/arcaea_database_deleted.db";
+    SONG_FILE_FOLDER_PATH = "${cfg.dataDir}/songs/";
 
     SET_LINKPLAY_SERVER_AS_SUB_PROCESS = true;
     LINKPLAY_HOST = "0.0.0.0";
@@ -69,8 +73,8 @@ let
 
     CONTENT_BUNDLE_FOLDER_PATH = "${pkgs.shimmeringextra}/bundles";
     SONGLIST_FILE_PATH = "${pkgs.shimmering-private-config}/songlist.json";
-    SONG_FILE_FOLDER_PATH = "${pkgs.glass-charts}";
     WORLD_MAP_FOLDER_PATH = "${pkgs.glass-maps}/maps";
+    # SONG_FILE_FOLDER_PATH = "${pkgs.glass-charts}";
     # }}}
   };
 
@@ -126,6 +130,7 @@ in
       "d ${cfg.dataDir}/log         0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/backup      0700 ${cfg.user} ${cfg.user}"
       "d ${cfg.dataDir}/database    0700 ${cfg.user} ${cfg.user}"
+      "d ${cfg.dataDir}/songs       0700 ${cfg.user} ${cfg.user}"
 
       "L+ ${cfg.dataDir}/pkgs/server 0755 ${cfg.user} ${cfg.user} - ${pkg}"
       "L+ ${cfg.dataDir}/pkgs/db     0755 ${cfg.user} ${cfg.user} - ${databaseRepo}"

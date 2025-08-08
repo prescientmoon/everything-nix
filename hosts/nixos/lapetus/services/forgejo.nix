@@ -14,12 +14,12 @@
   satellite.cloudflared.at.git.port = config.satellite.ports.forgejo;
 
   # Protect the service from crawlers via Anubis.
-  # satellite.cloudflared.at.git.port = config.satellite.ports.forgejoAnubis;
+  # satellite.cloudflared.at.git.port = config.satellite.ports.forgejo-anubis;
   # services.anubis.instances.forgejo = {
   #   enable = true;
   #   settings = {
   #     TARGET = "http://localhost:${toString config.satellite.ports.forgejo}";
-  #     BIND = ":${toString config.satellite.ports.forgejoAnubis}";
+  #     BIND = ":${toString config.satellite.ports.forgejo-anubis}";
   #     BIND_NETWORK = "tcp";
   #     COOKIE_DOMAIN = "moonythm.dev";
   #     OG_PASSTHROUGH = true;

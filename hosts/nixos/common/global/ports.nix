@@ -36,6 +36,7 @@
     glass-server-lp-udp = 8427;
     sqlite-web-glass = 8428;
     sqlite-web-shimmer = 8429;
-    forgejoAnubis = 8430;
+    forgejo-anubis = 8430;
+    miniflux = 8431;
   };
 }

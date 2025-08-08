@@ -17,16 +17,17 @@
     ../common/optional/services/wpa_supplicant.nix
 
     ./services/5d-diplomacy
-    ./services/glass-server
     ./services/actual.nix
     ./services/cloudflared.nix
     ./services/diptime.nix
     ./services/forgejo.nix
+    ./services/glass-server
     ./services/grafana.nix
     ./services/homer.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
     ./services/microbin.nix
+    ./services/miniflux.nix
     ./services/moonythm.nix
     ./services/pounce.nix
     ./services/prometheus.nix

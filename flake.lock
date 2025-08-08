@@ -761,22 +761,6 @@
         "type": "github"
       }
     },
-    "glass-charts": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1753624794,
-        "narHash": "sha256-5iqQ23r5uPUdAfaktJ0WRFu/mU5iSOTU9Iv0hCjVk6Q=",
-        "ref": "refs/heads/main",
-        "rev": "05600792c6196674e9acf91e6ef74b87e9269487",
-        "revCount": 7,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/glass-charts.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/glass-charts.git"
-      }
-    },
     "glass-maps": {
       "flake": false,
       "locked": {
@@ -1047,11 +1031,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750334900,
-        "narHash": "sha256-LAxBBKh1hnG5XhGKTQ6xFXOsJB7VPfVN1QgJJT5gh/E=",
+        "lastModified": 1754520495,
+        "narHash": "sha256-NXudeXkIiXAOJEsk2WhMLYq0MeYcIiykOkmrUMA0xCA=",
         "ref": "refs/heads/main",
-        "rev": "d5ef2a15d117202129c3cb5e8dbef15ce42a7534",
-        "revCount": 62,
+        "rev": "00d81f7ba62f531d00f812395982648600278b6d",
+        "revCount": 67,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git"
       },
@@ -1656,11 +1640,11 @@
     "shimmeringdarkness": {
       "flake": false,
       "locked": {
-        "lastModified": 1744140510,
-        "narHash": "sha256-Z4zKy4UvHLbHGp8gNAI7Xj+8iwIIpKmzeDA9uwx3mJ8=",
+        "lastModified": 1753698968,
+        "narHash": "sha256-S0NSaDh9vZMJ80XAH0UHlMv3HOUqpjuEKdmJ6UkEUbo=",
         "ref": "refs/heads/main",
-        "rev": "7f1e025510a6ff8cf4425151661703dd213b1140",
-        "revCount": 2,
+        "rev": "6b9fdbd4c5bf8306513f1378d98f44919a47c7d6",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringdarkness.git"
       },
@@ -1673,7 +1657,6 @@
       "inputs": {
         "arcaea-ptt-data": "arcaea-ptt-data",
         "flake-utils": "flake-utils_3",
-        "glass-charts": "glass-charts",
         "glass-maps": "glass-maps",
         "nixpkgs": [
           "nixpkgs"
@@ -1682,11 +1665,11 @@
         "shimmeringvoid": "shimmeringvoid"
       },
       "locked": {
-        "lastModified": 1753660293,
-        "narHash": "sha256-dhifcU/LF905kTEWmxlEW24duRvGF0eB6IzQ8DKAo+Q=",
+        "lastModified": 1754318234,
+        "narHash": "sha256-WBYQWoaa9D7vzKEUEK16tvURsUljsqNxUL72bsDD8DI=",
         "ref": "refs/heads/main",
-        "rev": "a2b40ecfb41c0c65f81e2067ebbd9c5a286ba3c8",
-        "revCount": 120,
+        "rev": "3e0c2f2df3be2e1ab37618236398a1641b8d8a1e",
+        "revCount": 126,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git"
       },
@@ -1698,11 +1681,11 @@
     "shimmeringvoid": {
       "flake": false,
       "locked": {
-        "lastModified": 1753649369,
-        "narHash": "sha256-66SaOAK+suDKakilsGvRpHpDoCGKXhudw8tkAHgiIdk=",
+        "lastModified": 1753698903,
+        "narHash": "sha256-HkXtqvJYFVzhTECrAmZy42Rc5HU2F9mJ9UqFnuLrfb4=",
         "ref": "refs/heads/main",
-        "rev": "62373a6bd1f696bac9bcd412b714a3b240aac12d",
-        "revCount": 16,
+        "rev": "9fb883fb729f4ee2267fc7a6f19041a54e9790da",
+        "revCount": 18,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringvoid.git"
       },

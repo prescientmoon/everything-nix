@@ -6,6 +6,7 @@
   # https://github.com/lilyinstarlight/foosteros/blob/main/config/base.nix#L163
   programs.git = {
     enable = true;
+    lfs.enable = true;
     package = pkgs.gitFull;
 
     userName = "prescientmoon";

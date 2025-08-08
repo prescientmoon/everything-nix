@@ -24,32 +24,30 @@
   # {{{ Routing
   satellite.cloudflared.at."tcp.lp.arcaea".port = config.satellite.ports.glass-server-lp-tcp;
   satellite.cloudflared.at."udp.lp.arcaea".port = config.satellite.ports.glass-server-lp-udp;
+
   satellite.cloudflared.at.arcaea.port = 80;
+  satellite.cloudflared.at.a.port = 80;
 
-  services.nginx.virtualHosts."arcaea.moonythm.dev" = {
-    locations."/".priority = 2000; # The default is 1000
-    locations."/".proxyPass = "http://localhost:${toString config.satellite.ports.glass-server}/";
+  services.nginx.virtualHosts =
+    let
+      routing = {
+        locations."/".priority = 2000; # The default is 1000
+        locations."/".proxyPass = "http://localhost:${toString config.satellite.ports.glass-server}/";
 
-    locations."/db/glass/".proxyPass =
-      "http://localhost:${toString config.satellite.ports.sqlite-web-glass}/db/glass/";
-    locations."/db/shimmer/".proxyPass =
-      "http://localhost:${toString config.satellite.ports.sqlite-web-shimmer}/db/shimmer/";
-    locations."/log/".root = "${config.services.glass-server.dataDir}/log/";
-  };
+        locations."/db/glass/".proxyPass =
+          "http://localhost:${toString config.satellite.ports.sqlite-web-glass}/db/glass/";
+        locations."/db/shimmer/".proxyPass =
+          "http://localhost:${toString config.satellite.ports.sqlite-web-shimmer}/db/shimmer/";
+        locations."/log/".root = "${config.services.glass-server.dataDir}/log/";
+      };
+    in
+    {
+      "arcaea.moonythm.dev" = routing;
+      "a.moonythm.dev" = routing;
+    };
 
   services.sqliteWeb.databases.glass.urlPrefix = "/db/glass/";
   services.sqliteWeb.databases.shimmer.urlPrefix = "/db/shimmer/";
-
-  # Add CNAME record to get around the 24 char encryption limit
-  # on the app patching tool (https://arcaea.moonythm.dev is too long).
-  satellite.dns.records = [
-    {
-      type = "CNAME";
-      zone = config.satellite.dns.domain;
-      at = "a";
-      to = "arcaea";
-    }
-  ];
   # }}}
 
   services.glass-server = {
