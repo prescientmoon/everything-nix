@@ -11,4 +11,3 @@ pkgs.mkShell {
     haskellPackages.implicit-hie # Automatically generate hie.yaml!
   ];
 }
-

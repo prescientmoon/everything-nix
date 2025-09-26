@@ -31,6 +31,7 @@ table.insert(M, {
   config = theme(function()
     local catppuccin = require("catppuccin")
     vim.g.catppuccin_flavour = H.theme_variant("Catppuccin")
+    -- vim.g.catppuccin_flavour = "macchiato"
 
     catppuccin.setup({
       transparent_background = H.theme.transparency.terminal.enabled,

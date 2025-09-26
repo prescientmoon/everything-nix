@@ -50,7 +50,6 @@
   "rustacean": { "branch": "master", "commit": "5c0c44149e43b907dae2e0fe053284ad56226eb7" },
   "scrap": { "branch": "main", "commit": "cc8453ed613932c744c3d1ec42f379b78bd8b92c" },
   "telescope": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
-  "treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
   "wakatime": { "branch": "master", "commit": "3cb40867cb5a3120f9bef76eff88edc7f1dc1a23" },
   "web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856" }

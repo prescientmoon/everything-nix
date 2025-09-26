@@ -4,7 +4,7 @@
   ...
 }:
 let
-  dir = inputs.moonythm.packages.${pkgs.system}.moonythm;
+  dir = "${inputs.nihil.packages.${pkgs.system}.moonythm}/web";
 in
 {
   satellite.cloudflared.at."".port = 80;

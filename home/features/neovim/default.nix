@@ -634,6 +634,7 @@ let
                   css
                   csv
                   dhall
+                  djot
                   editorconfig
                   elm
                   fish
@@ -666,6 +667,7 @@ let
                   scss
                   sql
                   ssh_config
+                  svelte
                   tmux
                   toml
                   tsx
@@ -1087,6 +1089,8 @@ let
                 pkgs.nodePackages.typescript
                 pkgs.nodePackages_latest.vscode-langservers-extracted
                 pkgs.nodePackages.typescript-language-server
+                pkgs.svelte-language-server
+                pkgs.emmet-language-server
               ]
               ++ optionals lua [
                 pkgs.lua-language-server
@@ -1208,6 +1212,8 @@ let
               hyprls = { };
               glsl_analyzer = { };
               ruff = { };
+              svelte = { };
+              emmet_language_server = { };
 
               # I have the justfile formatter
               just.on_attach = client: ''

@@ -50,8 +50,11 @@
     shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
     shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
 
-    moonythm.inputs.nixpkgs.follows = "nixpkgs";
-    moonythm.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git";
+    nihil.inputs.nixpkgs.follows = "nixpkgs";
+    nihil.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git";
+
+    sillyring.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git";
+    sillyring.flake = false;
 
     tree-sitter-odin.flake = false;
     tree-sitter-odin.url = "git+ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/tree-sitter-odin.git";
@@ -118,7 +121,8 @@
           pkgs = nixpkgs.legacyPackages.${system};
           args = {
             inherit pkgs;
-          } // specialArgs system;
+          }
+          // specialArgs system;
         in
         import ./devshells args
       );

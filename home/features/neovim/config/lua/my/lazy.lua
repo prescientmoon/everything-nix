@@ -12,6 +12,11 @@ function M.setup()
       ft = "sibilantmoon",
       name = "sibilantmoon",
     },
+    -- {
+    --   dir = "/home/moon/projects/personal/nihil/vim",
+    --   name = "nihil",
+    --   ft = "nihil",
+    -- },
     unpack(require("nix").lazy),
   }, {
     defaults = { lazy = true },

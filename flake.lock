@@ -491,24 +491,6 @@
     },
     "flake-parts_2": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib"
-      },
-      "locked": {
-        "lastModified": 1727826117,
-        "narHash": "sha256-K5ZLCyfO/Zj9mPFldf3iwS6oZStJcU4tSpiXTMYaaL0=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "3d04084d54bedc3d6b8b736c70ef449225c361b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_3": {
-      "inputs": {
         "nixpkgs-lib": [
           "neovim-nightly-overlay",
           "nixpkgs"
@@ -528,7 +510,7 @@
         "type": "github"
       }
     },
-    "flake-parts_4": {
+    "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
           "neovim-nightly-overlay",
@@ -549,7 +531,7 @@
         "type": "indirect"
       }
     },
-    "flake-parts_5": {
+    "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": [
           "stylix",
@@ -821,7 +803,7 @@
     },
     "hercules-ci-effects": {
       "inputs": {
-        "flake-parts": "flake-parts_4",
+        "flake-parts": "flake-parts_3",
         "nixpkgs": [
           "neovim-nightly-overlay",
           "nixpkgs"
@@ -1024,18 +1006,13 @@
       }
     },
     "moonythm": {
-      "inputs": {
-        "flake-parts": "flake-parts_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
+      "flake": false,
       "locked": {
-        "lastModified": 1754520495,
-        "narHash": "sha256-NXudeXkIiXAOJEsk2WhMLYq0MeYcIiykOkmrUMA0xCA=",
+        "lastModified": 1755198659,
+        "narHash": "sha256-4MnPZQ70xpedoaffnkyXvhboDlHe+ttqpyqtwu/fCT4=",
         "ref": "refs/heads/main",
-        "rev": "00d81f7ba62f531d00f812395982648600278b6d",
-        "revCount": 67,
+        "rev": "f103e9008a4d43fe6df134c17a9235b2f0bfa610",
+        "revCount": 48,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git"
       },
@@ -1063,7 +1040,7 @@
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-compat": "flake-compat_3",
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_2",
         "git-hooks": "git-hooks",
         "hercules-ci-effects": "hercules-ci-effects",
         "neovim-src": "neovim-src",
@@ -1100,6 +1077,27 @@
         "owner": "neovim",
         "repo": "neovim",
         "type": "github"
+      }
+    },
+    "nihil": {
+      "inputs": {
+        "moonythm": "moonythm",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755464799,
+        "narHash": "sha256-a6iafF6/F7tfys7OtdVq2F4BmhYzfTm/ScHiyg5t7ZY=",
+        "ref": "refs/heads/main",
+        "rev": "7622eec8aef4676db801405a9145ed399424264c",
+        "revCount": 72,
+        "type": "git",
+        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
       }
     },
     "nix-eval-jobs": {
@@ -1170,18 +1168,6 @@
       "original": {
         "id": "nixpkgs",
         "type": "indirect"
-      }
-    },
-    "nixpkgs-lib": {
-      "locked": {
-        "lastModified": 1727825735,
-        "narHash": "sha256-0xHYkMkeLVQAMa7gvkddbPqpxph+hDzdu1XdGPJR+Os=",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/fb192fec7cc7a4c26d51779e9bab07ce6fa5597a.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/fb192fec7cc7a4c26d51779e9bab07ce6fa5597a.tar.gz"
       }
     },
     "nixpkgs-unstable": {
@@ -1568,14 +1554,15 @@
         "impermanence": "impermanence",
         "korora": "korora",
         "miros": "miros",
-        "moonythm": "moonythm",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nihil": "nihil",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "rose-pine-hyprcursor": "rose-pine-hyprcursor",
         "shimmeringmoon": "shimmeringmoon",
+        "sillyring": "sillyring",
         "smos": "smos",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
@@ -1692,6 +1679,22 @@
       "original": {
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringvoid.git"
+      }
+    },
+    "sillyring": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756662793,
+        "narHash": "sha256-EUAyOcsPiHW9/L3dkDs+0APSt58Kmtej4lIz3/vPtkA=",
+        "ref": "refs/heads/main",
+        "rev": "4f68f6e90f061137568ee3f624f1c94d63b85435",
+        "revCount": 7,
+        "type": "git",
+        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git"
       }
     },
     "slimlock": {
@@ -1813,7 +1816,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-parts": "flake-parts_5",
+        "flake-parts": "flake-parts_4",
         "gnome-shell": "gnome-shell",
         "nixpkgs": "nixpkgs_11",
         "nur": "nur",

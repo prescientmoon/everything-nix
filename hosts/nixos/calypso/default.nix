@@ -18,6 +18,7 @@
     ../common/optional/wayland/hyprland.nix
 
     ../common/optional/services/nginx.nix
+    ../common/optional/services/postgres.nix
     ../common/optional/services/syncthing.nix
     ../common/optional/services/tailscale.nix
     ../common/optional/services/restic

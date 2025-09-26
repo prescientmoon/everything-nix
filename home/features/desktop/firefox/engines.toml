@@ -91,6 +91,12 @@ url     = "https://noita.wiki.gg/index.php"
 param   = "search"
 icon    = "https://noita.wiki.gg/favicon.ico"
 
+["PC gaming wiki"]
+aliases = ["@pcgw", "@pc-gaming-wiki"]
+url     = "https://www.pcgamingwiki.com/w/index.php"
+param   = "search"
+icon    = "https://static.pcgamingwiki.com/favicons/pcgamingwiki.png"
+
 ["Rain world wiki"]
 aliases = ["@rw", "@rain-world"]
 url     = "https://rainworld.miraheze.org/w/index.php"

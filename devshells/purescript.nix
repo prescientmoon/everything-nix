@@ -1,5 +1,10 @@
-# shell containing the tools i most commonly use for purescript work!
+# shell containing the tools i most commonly use for PureScript work!
 { pkgs, ... }:
 pkgs.mkShell {
-  packages = with pkgs; [ purescript spago typescript nodejs ];
+  packages = with pkgs; [
+    purescript
+    spago
+    typescript
+    nodejs
+  ];
 }

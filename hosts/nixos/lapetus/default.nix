@@ -14,7 +14,6 @@
     ../common/optional/services/postgres.nix
     ../common/optional/services/syncthing.nix
     ../common/optional/services/restic
-    ../common/optional/services/wpa_supplicant.nix
 
     ./services/5d-diplomacy
     ./services/actual.nix
@@ -36,12 +35,14 @@
     ./services/radicale.nix
     ./services/redlib.nix
     ./services/shimmeringmoon.nix
+    ./services/sillyring.nix
     ./services/vaultwarden.nix
     ./services/whoogle.nix
     ./services/zfs.nix
 
     ./filesystems
     ./hardware
+    ./networking.nix
   ];
   # }}}
   # {{{ Machine ids

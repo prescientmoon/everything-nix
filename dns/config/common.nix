@@ -1,7 +1,7 @@
 # DNS entries which do not belong to a particular host
 { lib, ... }:
 let
-  # {{{ Github pages helper
+  # {{{ GitHub pages helper
   ghPage = at: [
     {
       inherit at;

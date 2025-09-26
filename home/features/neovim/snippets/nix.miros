@@ -1,12 +1,11 @@
 import common/unicode-double-stroke
-block auto
-  string fetchgh
-    name fetch github
-    desc Fetch a GitHub repository
-    snip
-      pkgs.fetchFromGitHub {
-        owner = "$1";
-        repo = "$2";
-        rev = "";
-        sha256 = "";
-      }$0
+string fetchFromGitHub
+  name fetch github
+  desc Fetch a GitHub repository
+  snip
+    pkgs.fetchFromGitHub {
+      owner = "$1";
+      repo = "$2";
+      rev = "";
+      sha256 = "";
+    }$0

@@ -25,6 +25,7 @@ in
     slayTheSpire = mkSteamGame "Slay the Spire" "646570";
     ultrakill = mkSteamGame "ULTRAKILL" "1229490";
     voidStranger = mkSteamGame "Void Stranger" "2121980";
+    silksong = mkSteamGame "Hollow Knight: Silksong" "1030300";
   };
 
   # {{{ Persistence
@@ -33,6 +34,7 @@ in
       ".factorio"
       "${config.xdg.dataHome}/Steam"
       "${config.xdg.dataHome}/VVVVVV"
+      "${config.xdg.configHome}/unity3d/Team Cherry"
     ];
   };
   # }}}
