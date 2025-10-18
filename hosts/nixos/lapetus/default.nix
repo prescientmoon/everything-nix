@@ -25,6 +25,7 @@
     ./services/homer.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
+    ./services/matrix
     ./services/microbin.nix
     ./services/miniflux.nix
     ./services/moonythm.nix
@@ -42,7 +43,7 @@
 
     ./filesystems
     ./hardware
-    ./networking.nix
+    ./networking
   ];
   # }}}
   # {{{ Machine ids

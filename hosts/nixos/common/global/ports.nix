@@ -38,5 +38,6 @@
     sqlite-web-shimmer = 8429;
     forgejo-anubis = 8430;
     miniflux = 8431;
+    tuwunel = 8432;
   };
 }

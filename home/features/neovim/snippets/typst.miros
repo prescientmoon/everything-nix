@@ -81,18 +81,18 @@ block auto
       name start with @operator
       snip \ &@symbol $0
 
-  block never
-    pattern (.*)e@⟨t(%a),(%d)⟩
-      name auto exponent
-      snip @0^@1 $0
-
-    pattern (.*)so(%a)
-      name auto subscript
-      snip @0_@1 $0
 
   pattern ([%a]+)(%d)
     name auto digt subscript
     snip @0_@1 $0
+
+  -- block never
+  --   pattern (.*)e⟨t(%a),(%d)⟩
+  --     name auto exponent
+  --     snip 0^1 $0
+  --   pattern (.*)so(%a)
+  --     name auto subscript
+  --     snip 0_1 $0
 
   string ss
     name subscript
@@ -102,17 +102,15 @@ block auto
     name exponent
     snip ^($1) $0
 
-  pattern (%a)(.)pp
-    name auto function call
-    snip @0(@1) $0
-
-  pattern (%a)d(.)p
-    name auto derivative call
-    snip @0'(@1) $0
-
-  pattern (%a)i(.)p
-    name auto preimage call
-    snip @0^(-1)(@1) $0
+  -- pattern (%a)(.)pp
+  --   name auto function call
+  --   snip @0(@1) $0
+  -- pattern (%a)d(.)p
+  --   name auto derivative call
+  --   snip @0'(@1) $0
+  -- pattern (%a)i(.)p
+  --   name auto preimage call
+  --   snip @0^(-1)(@1) $0
 
   block !word
     abbr .inv ^(-1)

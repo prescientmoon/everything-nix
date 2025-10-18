@@ -15,7 +15,7 @@ let
     "ctrl-y" = "wl-copy \$(commandline)";
     # C-e to launch $EDITOR
     "ctrl-e" = "$EDITOR";
-    # C-S-e to edit commandline using $EDITOR
+    # C-S-e to edit command-line using $EDITOR
     "ctrl-E" = "edit_command_buffer";
     # C-enter to run command through a pager
     "ctrl-enter" = "commandline -a ' | $PAGER' && commandline -f execute";
@@ -36,7 +36,7 @@ let
     '';
 in
 {
-  # {{{ Fzf
+  # {{{ FZF
   programs.fzf = {
     enable = true;
     defaultOptions = [ "--no-scrollbar" ];
@@ -69,7 +69,6 @@ in
           z # Jump to directories by typing "z <directory-name>"
           done # Trigger a notification when long commands finish execution
           puffer # Text expansion (i.e. expanding .... to ../../../)
-          sponge # Remove failed commands and whatnot from history
         ];
       in
       # For some reason home-manager expects a slightly different format 🤔

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     ./global.nix
@@ -12,6 +12,7 @@
   ];
 
   home.stateVersion = "23.05";
+  home.username = "adrielus";
 
   satellite = {
     dev.enable = true; # Enable symlinks outside the nix store

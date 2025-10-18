@@ -24,7 +24,10 @@
     portalPackage = null;
 
     # TODO: systemd-xdg-autostart-generator?
-    # systemd.enable = false; # Handled by uwsm
+    systemd.enable = false; # Handled by uwsm
+
+    # Make programs work in systemd services
+    systemd.variables = [ "--all" ];
 
     extraConfig = builtins.readFile ./hyprland.conf;
     settings = {
@@ -70,4 +73,6 @@
       ];
     };
   };
+
+  satellite.persistence.at.cache.apps.hyprland.directories = [ "${config.xdg.cacheHome}/hyprland" ];
 }

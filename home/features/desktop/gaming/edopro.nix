@@ -1,6 +1,11 @@
-# EDOPro is a fanmade Yu-Gi-Oh! simulator.
-# I am installing the game the traditional way, and
-# adding a desktop entry which runs it via `steam-run`.
+# EDOPro is a fan-made Yu-Gi-Oh! simulator. This module produces a nix-ified
+# version of the .desktop file EDOPro ships with.
+#
+# The game must be downloaded manually to `installPath`. As the game is not
+# built with installing on an immutable file-system in mind, packaging the
+# download using Nix feels a bit pointless.
+#
+# Download URL: https://projectignis.github.io/download.html
 {
   config,
   lib,
@@ -15,7 +20,6 @@ let
   '';
 in
 {
-  # This is a nix-ified version of the .desktop file EDOPro comes with.
   xdg.desktopEntries.edopro = {
     name = "EDOPro";
     type = "Application";

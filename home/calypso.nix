@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, upkgs, ... }:
 {
   imports = [
     ./global.nix
@@ -18,9 +18,10 @@
   home.packages = with pkgs; [
     # Communication
     whatsapp-for-linux
-    # signal-desktop # Signal client
-    # element-desktop # Matrix client
+    element-desktop # Matrix client
     # zoom-us # Zoom client 🤮
+    # NOTE: "expired" versions can no longer be used
+    upkgs.signal-desktop # Signal client
 
     # Documents & editors
     libsForQt5.okular # Useful for reading pdf annotations (which zathura does not support)
@@ -29,12 +30,14 @@
     # libreoffice # Free office suite
 
     # Clis
-    # sherlock # Search for usernames across different websites
+    sherlock # Search for usernames across different websites
+    termdown # Basic CLI timer
 
     # Misc
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # plover.dev # steno engine
     freetube # youtube client
+    pomodoro-gtk # basic pomodoro timer
   ];
 
   satellite = {

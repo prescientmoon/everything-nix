@@ -7,16 +7,21 @@ local M = {}
 function M.setup()
   require("lazy").setup({
     require("my.themes"),
-    {
-      dir = "/home/moon/projects/personal/sibilantmoon/vim",
-      ft = "sibilantmoon",
-      name = "sibilantmoon",
-    },
+    -- {
+    --   dir = "/home/moon/projects/personal/sibilantmoon/vim",
+    --   ft = "sibilantmoon",
+    --   name = "sibilantmoon",
+    -- },
     -- {
     --   dir = "/home/moon/projects/personal/nihil/vim",
     --   name = "nihil",
     --   ft = "nihil",
     -- },
+    {
+      dir = "/home/moon/projects/personal/solar-conflux/rust/shaderfurl/vim",
+      ft = "shaderfurl",
+      name = "shaderfurl",
+    },
     unpack(require("nix").lazy),
   }, {
     defaults = { lazy = true },

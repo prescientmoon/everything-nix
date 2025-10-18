@@ -26,9 +26,11 @@ let
         purple        (layer-while-held purple)
         unicode-1     (layer-while-held unicode-1)
         double-stroke (layer-while-held double-stroke)
+        lower-greek   (layer-while-held lowercase-greek)
+        upper-greek   (layer-while-held uppercase-greek)
         ;; }}}
         ;; {{{ Unicode
-        em  (unicode —)
+        em (unicode —)
         ⟨ (unicode ⟨)
         ⟩ (unicode ⟩)
         ‹ (unicode ‹)
@@ -42,6 +44,10 @@ let
         ¬ (unicode ¬)
         ∃ (unicode ∃)
         ∀ (unicode ∀)
+        ⊤ (unicode ⊤)
+        ⊥ (unicode ⊥)
+        ⊣ (unicode ⊣)
+        ⊢ (unicode ⊢)
 
         𝔸 (unicode 𝔸)
         𝔹 (unicode 𝔹)
@@ -69,6 +75,57 @@ let
         𝕏 (unicode 𝕏)
         𝕐 (unicode 𝕐)
         ℤ (unicode ℤ)
+
+        φ (unicode φ)
+        ω (unicode ω)
+        ε (unicode ε)
+        ρ (unicode ρ)
+        τ (unicode τ)
+        ψ (unicode ψ)
+        υ (unicode υ)
+        ι (unicode ι)
+        ο (unicode ο)
+        π (unicode π)
+        α (unicode α)
+        σ (unicode σ)
+        δ (unicode δ)
+        ς (unicode ς)
+        γ (unicode γ)
+        η (unicode η)
+        θ (unicode θ)
+        κ (unicode κ)
+        λ (unicode λ)
+        ζ (unicode ζ)
+        ξ (unicode ξ)
+        χ (unicode χ)
+        β (unicode β)
+        ν (unicode ν)
+        μ (unicode μ)
+
+        Φ (unicode Φ)
+        Ω (unicode Ω)
+        Ε (unicode Ε)
+        Ρ (unicode Ρ)
+        Τ (unicode Τ)
+        Ψ (unicode Ψ)
+        Υ (unicode Υ)
+        Ι (unicode Ι)
+        Ο (unicode Ο)
+        Π (unicode Π)
+        Α (unicode Α)
+        Σ (unicode Σ)
+        Δ (unicode Δ)
+        Γ (unicode Γ)
+        Η (unicode Η)
+        Θ (unicode Θ)
+        Κ (unicode Κ)
+        Λ (unicode Λ)
+        Ζ (unicode Ζ)
+        Ξ (unicode Ξ)
+        Χ (unicode Χ)
+        Β (unicode Β)
+        Ν (unicode Ν)
+        Μ (unicode Μ)
         ;; }}}
       )
 
@@ -115,10 +172,14 @@ let
         (n l g) M-0 ${toString chordDelay} all-released ()
         ;; }}}
         ;; {{{ Extra layers
-        (u i) @unicode-1 ${toString chordDelay} all-released ()
-        (e r) @unicode-1 ${toString chordDelay} all-released ()
-        (u o) @double-stroke ${toString (chordDelay - 5)} all-released ()
-        (w r) @double-stroke ${toString (chordDelay - 5)} all-released ()
+        (u i o) @upper-greek   ${toString (chordDelay - 5)} all-released ()
+        (w e r) @upper-greek   ${toString (chordDelay - 5)} all-released ()
+        (i o)   @lower-greek   ${toString (chordDelay - 5)} all-released ()
+        (w e)   @lower-greek   ${toString (chordDelay - 5)} all-released ()
+        (u i)   @unicode-1     ${toString (chordDelay - 5)} all-released ()
+        (e r)   @unicode-1     ${toString (chordDelay - 5)} all-released ()
+        (u o)   @double-stroke ${toString (chordDelay - 5)} all-released ()
+        (w r)   @double-stroke ${toString (chordDelay - 5)} all-released ()
         ;; }}}
       )
 
@@ -180,8 +241,8 @@ let
       ;; {{{ Unicode
       (deflayer unicode-1
         _    _    _    _    _    _    _    _    _    _    _    _    _    _
-        _    @⋄   _    _    _    _    _    _    @∘   _    _    _    _    _
-        _    @≤   _    @‹   @⟨   _    _    _    _    @≔   @∈   _    _
+        _    @⋄   _    _    _    _    _    _    @∘   @≔   @∈   _    _    _
+        _    @≤   _    @‹   @⟨   _    @⊢   @⊥   @⊤   @⊣   _    _    _
         _    @≥   _    @›   @⟩   @¬   _    _    @∀   @∃   _    _
         _    _    _              _              _
       )
@@ -191,6 +252,22 @@ let
         _    @ℚ   @𝕎   @𝔼   @ℝ   @𝕋   @𝕐   @𝕌   @𝕀   @𝕆   @ℙ   _    _    _
         _    @𝔸   @𝕊   @ⅅ   @𝔽   @𝔾   @ℍ   @𝕁   @𝕂   @𝕃   _    _    _
         _    @ℤ   @𝕏   @ℂ   @𝕍   @𝔹   @ℕ   @𝕄   _    _    _    _
+        _    _    _              _              _
+      )
+
+      (deflayer lowercase-greek
+        _    _    _    _    _    _    _    _    _    _    _    _    _    _
+        _    @φ   @ω   @ε   @ρ   @τ   @ψ   @υ   @ι   @ο   @π   _    _    _
+        _    @α   @σ   @δ   @ς   @γ   @η   @θ   @κ   @λ   _    _    _
+        _    @ζ   @ξ   @χ   _    @β   @ν   @μ   _    _    _    _
+        _    _    _              _              _
+      )
+
+      (deflayer uppercase-greek
+        _    _    _    _    _    _    _    _    _    _    _    _    _    _
+        _    @Φ   @Ω   @Ε   @Ρ   @Τ   @Ψ   @Υ   @Ι   @Ο   @Π   _    _    _
+        _    @Α   @Σ   @Δ   _    @Γ   @Η   @Θ   @Κ   @Λ   _    _    _
+        _    @Ζ   @Ξ   @Χ   _    @Β   @Ν   @Μ   _    _    _    _
         _    _    _              _              _
       )
       ;; }}}

@@ -6,7 +6,7 @@ block auto
   abbr diam ◇
   abbr iinf ∞
   abbr niinf -∞
-  abbr sim ∼
+  abbr ssim ∼
   abbr approx ≃
   abbr cong ≅
   abbr fcomp ∘

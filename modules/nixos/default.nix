@@ -7,4 +7,5 @@
   pilot = ./pilot.nix;
   pounce = ./pounce.nix;
   sqliteWeb = ./sqlite-web.nix;
+  tuwunel = ./tuwunel.nix;
 }

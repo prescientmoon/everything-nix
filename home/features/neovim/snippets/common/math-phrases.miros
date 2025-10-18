@@ -24,7 +24,7 @@ block auto !word
   abbr ib@⟨@kind:p,s⟩ integration by @kind
 
   for kind <- @⟨independent,dependent⟩
-  abbr l@⟨@kind:ind,de⟩ linearly @kind
+  abbr l@⟨@kind:ind,dep⟩ linearly @kind
 
   for kind <- @⟨value,vector,pair⟩
   abbr eg@⟨@kind:va,ve,p⟩ eigen@kind

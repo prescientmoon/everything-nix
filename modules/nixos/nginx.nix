@@ -91,7 +91,13 @@ in
                     };
                   }
                 else
-                  { root = args.files; };
+                  {
+                    root = args.files;
+                    locations."/" = {
+                      tryFiles = "$uri $uri/ =404";
+                      index = "index.html";
+                    };
+                  };
             in
             {
               enableACME = true;

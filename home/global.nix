@@ -6,30 +6,25 @@
   ...
 }:
 let
-  # {{{ Imports
   imports = [
     # {{{ flake inputs
     inputs.stylix.homeModules.stylix
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.spicetify-nix.homeManagerModules.spicetify
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
 
-    # {{{ self management
     # NOTE: using `pkgs.system` before `module.options` is evaluated
     # leads to infinite recursion! I should perhaps take system as
     # a special argument as well...
     inputs.smos.homeManagerModules.x86_64-linux.default
     # }}}
-    # }}}
-    # {{{ global configuration
+
     ./features/cli
     ./features/persistence.nix
     ../common
-    # }}}
   ];
 in
-# }}}
 {
   # Import all modules defined in modules/home-manager
   imports = builtins.attrValues outputs.homeManagerModules ++ imports;
@@ -42,7 +37,7 @@ in
   # }}}
   # {{{ Set reasonable defaults for some settings
   home = {
-    username = lib.mkDefault "adrielus";
+    username = lib.mkDefault "moon";
     homeDirectory = "/home/${config.home.username}";
   };
   # }}}
@@ -59,9 +54,8 @@ in
   # By default the paths given by sops contain annoying %r sections
   sops.defaultSymlinkPath = "${config.home.homeDirectory}/.nix-sops";
 
-  # {{{ Ad-hoc stylix targets
+  #  Ad-hoc stylix targets
   stylix.targets.xresources.enable = true;
-  # }}}
   # }}}
   # {{{ Xdg user directories
   # Set the xdg env vars

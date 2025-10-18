@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  # {{{ Set up my custom imperanenceo wrapper
+  # {{{ Set up my custom impermanence wrapper
   satellite.persistence = {
     enable = true;
 
@@ -47,7 +47,7 @@
     "${config.xdg.cacheHome}/cabal"
   ];
 
-  # TODO: should I move this in it's own haskell-specific file?
+  # TODO: should I move this in its own Haskell-specific file?
   home.file.".stack/config.yaml".text = builtins.toJSON { notify-if-nix-on-path = false; };
   # }}}
   # {{{ Nodejs
@@ -118,7 +118,7 @@
     "${config.xdg.configHome}/FreeTube" # Why tf does freetube store it's state here 💀
   ];
   # }}}
-  # {{{ Whats app
+  # {{{ Whatsapp
   satellite.persistence.at.state.apps.whatsapp.directories = [
     "${config.xdg.configHome}/whatsapp-for-linux"
     "${config.xdg.stateHome}/whatsapp-for-linux"
@@ -131,11 +131,11 @@
   # {{{ Lutris
   # TODO: there might be more to cache in .cache/lutris
   satellite.persistence.at.state.apps.lutris.directories = [
-    "${config.xdg.configHome}/lutris" # General config data
+    "${config.xdg.configHome}/lutris" # General configuration data
     "${config.xdg.cacheHome}/lutris/banners" # Game banners
     "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
 
-    # Aparently IO intensive stuff like games prefer symlinks?
+    # Apparently IO intensive stuff like games prefer symlinks?
     {
       directory = "media/games/lutris";
       method = "symlink";
@@ -157,6 +157,11 @@
   services.gnome-keyring.enable = true;
   satellite.persistence.at.state.apps.gnome-keyring.directories = [
     "${config.xdg.dataHome}/keyrings"
+  ];
+  # }}}
+  # {{{ Libreoffice
+  satellite.persistence.at.cache.apps.libreoffice.directories = [
+    "${config.xdg.configHome}/libreoffice"
   ];
   # }}}
   # }}}

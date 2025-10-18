@@ -25,8 +25,8 @@
       # Haskell
       # NOTE: THIS IS A BAD IDEA
       # I need to figure out a better way (this is simply here because
-      # a project I contribute to doesn't gitignore this file, nor does
-      # it have it commited).
+      # a project I contribute to doesn't git-ignore this file, nor does
+      # it have it committed).
       "hie.yaml"
     ];
     # }}}
@@ -35,7 +35,7 @@
       # Print history nicely
       graph = "log --decorate --oneline --graph";
 
-      # Print last commit's hash
+      # Print last commit' hash
       hash = "log -1 --format='%H'";
 
       # Count the number of commits
@@ -53,7 +53,7 @@
       push.default = "current";
       push.autoSetupRemote = true;
 
-      #  {{{ URL rewriting
+      # URL rewriting
       url."git@github.com:".insteadOf = [
         # Normalize GitHub URLs to SSH to avoid authentication issues with HTTPS.
         # "https://github.com/"
@@ -61,8 +61,7 @@
         # Allows typing `git clone github:owner/repo`.
         "github:"
       ];
-      #  }}}
-      # {{{ Signing
+
       # Sign commits using ssh
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
@@ -70,16 +69,14 @@
       # Sign everything by default
       commit.gpgsign = true;
       tag.gpgsign = true;
-      # }}}
     };
   };
 
-  # {{{ Github cli
+  # GitHub CLI
   programs.gh = {
     enable = true;
     settings.git_protocol = "ssh";
   };
 
   satellite.persistence.at.state.apps.gh.files = [ "${config.xdg.configHome}/gh/hosts.yml" ];
-  # }}}
 }

@@ -34,7 +34,7 @@ let
   generated =
     with nlib;
     generateConfig {
-      # Pre-plugin config
+      # Pre-plugin configuration
       pre = {
         # {{{ General options
         "0:general-options" = {
@@ -185,7 +185,8 @@ let
               # }}}
               # {{{ Diagnostics
               (dmap "J" "open_float" "Open current diagnostic")
-              (dmap "<leader>D" "setloclist" "[D]iagnostic loclist")
+              (dmap "<leader>dq" "setqflist" "[D]iagnostic qflist")
+              (dmap "<leader>dl" "setloclist" "[D]iagnostic loclist")
               (nmap "qj" "J" "join lines")
               # }}}
               # {{{ Other misc keybinds
@@ -246,9 +247,9 @@ let
           }
         ];
         # }}}
-        # {{{ Lsp settings
+        # {{{ LSP settings
         "3:lsp-settings" = {
-          # {{{ Change lsp on-hover borders
+          # {{{ Change LSP on-hover borders
           vim.lsp.handlers."textDocument/hover" = vim /lsp/with (args [
             (vim /lsp/handlers/hover)
             { border = "single"; }
@@ -348,7 +349,7 @@ let
         };
         # }}}
         # }}}
-        # {{{ ui
+        # {{{ UI
         # {{{ mini.statusline
         mini-statusline = {
           package = "echasnovski/mini.statusline";
@@ -490,7 +491,7 @@ let
             in
             [
               (nmap "<c-p>" "find_files" "File finder [p]alette")
-              (nmap "<leader>d" "diagnostics root_dir=true" "[D]iagnostics")
+              (nmap "<leader>da" "diagnostics root_dir=true" "[D]iagnostics")
               (nmap "<c-f>" "live_grep" "[F]ind in project")
               (nmap "<c-t>" "builtin" "[T]elescope pickers")
               # {{{ Files by extension
@@ -968,29 +969,29 @@ let
         };
         # }}}
         # {{{ mini.pairs
-        mini-pairs = {
-          package = "echasnovski/mini.pairs";
-          name = "mini.pairs";
-
-          # We could specify all the generated bindings, but I don't think it's worth it
-          event = [
-            "InsertEnter"
-            "CmdlineEnter"
-          ];
-
-          opts.mappings = {
-            "⟨" = {
-              action = "open";
-              pair = "⟨⟩";
-              neigh_pattern = "[^\\].";
-            };
-            "⟩" = {
-              action = "close";
-              pair = "⟨⟩";
-              neigh_pattern = "[^\\].";
-            };
-          };
-        };
+        # mini-pairs = {
+        #   package = "echasnovski/mini.pairs";
+        #   name = "mini.pairs";
+        #
+        #   # We could specify all the generated bindings, but I don't think it's worth it
+        #   event = [
+        #     "InsertEnter"
+        #     "CmdlineEnter"
+        #   ];
+        #
+        #   opts.mappings = {
+        #     "⟨" = {
+        #       action = "open";
+        #       pair = "⟨⟩";
+        #       neigh_pattern = "[^\\].";
+        #     };
+        #     "⟩" = {
+        #       action = "close";
+        #       pair = "⟨⟩";
+        #       neigh_pattern = "[^\\].";
+        #     };
+        #   };
+        # };
         # }}}
         # {{{ luasnip
         # snippeting engine
@@ -1077,7 +1078,7 @@ let
         };
         # }}}
         # }}}
-        # {{{ ide
+        # {{{ IDE
         # {{{ lspconfig
         lspconfig = {
           # {{{ Nix dependencies
@@ -1214,12 +1215,7 @@ let
               ruff = { };
               svelte = { };
               emmet_language_server = { };
-
-              # I have the justfile formatter
-              just.on_attach = client: ''
-                ${client}.server_capabilities.documentFormattingProvider = false
-                ${client}.server_capabilities.documentRangeFormattingProvider = false
-              '';
+              just = { };
             };
         };
         # }}}
@@ -1243,7 +1239,8 @@ let
 
           event = "VeryLazy";
 
-          opts.format_on_save.lsp_format = "fallbacek";
+          opts.format_on_save = { };
+          opts.default_format_opts.lsp_format = "fallback";
           opts.formatters_by_ft =
             let
               prettier = {
@@ -1271,6 +1268,7 @@ let
               css = prettier;
               markdown = prettier;
 
+              # I have the justfile formatter
               just.lsp_format = "never";
             };
         };

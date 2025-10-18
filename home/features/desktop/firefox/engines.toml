@@ -73,6 +73,12 @@ url     = "https://steamdb.info/search/?a=all"
 param   = "q"
 icon    = "https://steamdb.info/favicon.ico"
 
+["Steam Grids"]
+aliases = ["@sg", "@steam-grid"]
+url     = "https://www.steamgriddb.com/search/grids"
+param   = "term"
+icon    = "https://www.steamgriddb.com/static/favicon/16.png"
+
 ["Proton DB"]
 aliases = ["@pdb", "@proton-db"]
 url     = "https://www.protondb.com/search"

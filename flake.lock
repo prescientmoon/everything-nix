@@ -1684,11 +1684,11 @@
     "sillyring": {
       "flake": false,
       "locked": {
-        "lastModified": 1756662793,
-        "narHash": "sha256-EUAyOcsPiHW9/L3dkDs+0APSt58Kmtej4lIz3/vPtkA=",
+        "lastModified": 1759109540,
+        "narHash": "sha256-CtjFnQiDo0oMJdKPvQ4Ev1bukunz6CgeKX+mOi34AGg=",
         "ref": "refs/heads/main",
-        "rev": "4f68f6e90f061137568ee3f624f1c94d63b85435",
-        "revCount": 7,
+        "rev": "c7724248f3bfbc1fd4fa0cd5fc4de47f2a65d625",
+        "revCount": 8,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git"
       },
