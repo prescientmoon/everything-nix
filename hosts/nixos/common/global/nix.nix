@@ -10,7 +10,7 @@
     # Flake support and whatnot
     package = pkgs.lix;
 
-    # Weekly clean up the store, I think
+    # Clean up the store weekly
     gc = {
       automatic = true;
       dates = "weekly";
@@ -39,21 +39,14 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "repl-flake"
         "auto-allocate-uids"
-        # "configurable-impure-env"
       ];
 
-      # Disable warning when rebuilding before commiting
+      # Disable warning when rebuilding before committing
       warn-dirty = false;
 
-      # Deduplicate and optimize nix store
+      # De-duplicate and optimize nix store
       auto-optimise-store = true;
-
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
     };
   };
 }

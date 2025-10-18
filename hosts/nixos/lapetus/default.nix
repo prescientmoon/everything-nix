@@ -86,5 +86,6 @@
   ];
   # }}}
 
+  satellite.pilot.name = "adrielus";
   boot.loader.systemd-boot.enable = true;
 }

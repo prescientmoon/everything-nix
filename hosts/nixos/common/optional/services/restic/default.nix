@@ -25,7 +25,8 @@ let
         ".stfolder" # Syncthing
         ".stversions" # Syncthing
         ".snapshots" # Snapper
-      ] ++ exclude;
+      ]
+      ++ exclude;
     };
 in
 # }}}
@@ -59,11 +60,11 @@ in
     state = createBackup {
       name = "state";
 
-      # Kept for at most 1 month
+      # Kept for at most 3 months
       pruneOpts = [
         "--keep-daily 3"
         "--keep-weekly 1"
-        "--keep-monthly 1"
+        "--keep-monthly 3"
         "--keep-yearly 0"
       ];
 
@@ -81,7 +82,6 @@ in
           "${home}/qmk"
           "${home}/signal"
           "${home}/spotify"
-          "${home}/steam"
           "${home}/whatsapp"
           "${home}/wine"
         ];

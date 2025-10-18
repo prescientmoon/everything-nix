@@ -18,6 +18,11 @@ nixos-rebuild action="switch" host=hostname ng="1":
     'lapetus': 'adrielus',
     'calypso': 'moon',
   }
+  hosts = {
+    'tethys': 'tethys',
+    'lapetus': 'lapetus',
+    'calypso': 'calypso',
+  }
 
   args = [
     "nixos-rebuild-ng" if ng else "nixos-rebuild",
@@ -34,7 +39,7 @@ nixos-rebuild action="switch" host=hostname ng="1":
     args = [ "sudo", *args ]
   else:
     print("🧬 Switching nixos configuration (remotely) for '{{BLUE + host + NORMAL}}'")
-    args += [ "--target-host", f"{users[host]}@{host}" ]
+    args += [ "--target-host", f"{users[host]}@{hosts[host]}" ]
     if ng:
       args += [ "--sudo", "--ask-sudo-password" ]
     else:

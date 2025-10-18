@@ -7,7 +7,7 @@
     # {{{ Additional package repositories
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # Firefox addons
+    # Firefox add-ons
     firefox-addons.url = "git+https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     # }}}

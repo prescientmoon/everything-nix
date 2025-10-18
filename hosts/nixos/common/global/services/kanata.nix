@@ -36,6 +36,7 @@ let
         ‹ (unicode ‹)
         › (unicode ›)
         ⋄ (unicode ⋄)
+        ∞ (unicode ∞)
         ≔ (unicode ≔)
         ≤ (unicode ≤)
         ≥ (unicode ≥)
@@ -241,7 +242,7 @@ let
       ;; {{{ Unicode
       (deflayer unicode-1
         _    _    _    _    _    _    _    _    _    _    _    _    _    _
-        _    @⋄   _    _    _    _    _    _    @∘   @≔   @∈   _    _    _
+        _    @⋄   @∞   _    _    _    _    _    @∘   @≔   @∈   _    _    _
         _    @≤   _    @‹   @⟨   _    @⊢   @⊥   @⊤   @⊣   _    _    _
         _    @≥   _    @›   @⟩   @¬   _    _    @∀   @∃   _    _
         _    _    _              _              _
@@ -281,6 +282,10 @@ in
 {
   services.kanata = {
     enable = true;
+
+    # I called this "tethysLaptop" (since it was originally written for the
+    # tethys laptop), but seems to work for the calypso
+    # and lapetus laptops as well
     keyboards.tethysLaptop = {
       inherit extraDefCfg;
 

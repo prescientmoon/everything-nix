@@ -28,6 +28,10 @@
     before = [ "sysroot.mount" ];
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
+    # See: https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
+    #
+    # The following script is pretty much taken from the aforementioned link
+    # (I do now own any of it).
     script = ''
       mkdir -p /mnt
 

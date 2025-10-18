@@ -51,6 +51,7 @@
 
   # Ensure group exists
   users.groups.network = { };
+  users.users.pilot.extraGroups = [ "network" ];
 
   # The service seems to fail if this file does not exist
   systemd.tmpfiles.rules = [ "f /etc/wpa_supplicant.conf" ];

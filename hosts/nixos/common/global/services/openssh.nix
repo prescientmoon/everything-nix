@@ -19,7 +19,7 @@
       StreamLocalBindUnlink yes
     '';
 
-    # Generate ssh key
+    # Generate host ssh keys
     hostKeys =
       let
         mkKey =
@@ -63,5 +63,6 @@
   # Makes it easy to copy host keys at install time without messing up permissions
   systemd.tmpfiles.rules = [
     "d /persist/state/etc/ssh"
-  ] ++ (lib.lists.forEach config.services.openssh.hostKeys (key: "e ${key.path} 0700"));
+  ]
+  ++ (lib.lists.forEach config.services.openssh.hostKeys (key: "e ${key.path} 0700"));
 }

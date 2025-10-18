@@ -121,7 +121,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Forgejo](https://forgejo.org/) — git forge
 - [Grafana](https://github.com/grafana/grafana) — pretty dashboards
 - [Homer](https://github.com/bastienwirtz/homer) — server homepage
-- [Invidious](https://invidious.io/) — alternate youtube client
+- [Invidious](https://invidious.io/) — alternate YouTube client
 - [Jellyfin](https://jellyfin.org/) — media server
 - [Jupyterhub](https://jupyter.org/hub) — notebook collaboration suite
 - [Microbin](https://microbin.eu/) - code & file sharing service
@@ -129,7 +129,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Prometheus](https://github.com/prometheus/prometheus) — metric collector
 - [Qbittorrent](https://www.qbittorrent.org) — torrent client
 - [Radicale](https://radicale.org/v3.html) — calendar server
-- [Redlib](https://github.com/redlib-org/redlib) — alternate reddit client
+- [Redlib](https://github.com/redlib-org/redlib) — alternate Reddit client
 - [Syncthing](https://syncthing.net/) — file synchronization
 - [Vaultwarden](https://github.com/dani-garcia/vaultwarden/) — password manager
 - [Whoogle](https://github.com/benbusby/whoogle-search#manual-docker) — search engine
@@ -138,6 +138,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [sponge](https://github.com/meaningful-ooo/sponge) — I kept losing commands I wanted to keep in my history
 - [hyprland-vim-syntax](https://github.com/theRealCarneiro/hyprland-vim-syntax) — Neovim supports hyprlang files out of the box now
 - [typst.vim](https://github.com/kaarmu/typst.vim) — Neovim supports typst files out of the box now
 - [ncdu](https://dev.yorhel.nl/ncdu) — A neat project I used on a regular basis. Ended up switching to [dua](https://github.com/Byron/dua-cli) (in interactive mode)
