@@ -1,8 +1,29 @@
 # Zathura is the pdf reader I am using.
 { config, ... }:
 {
+  # Make `pdf foo.pdf` open the document with Zathura in a background process.
+  home.shellAliases.pdf = "zathura --fork";
+
+  # Make Zathura the default application for opening PDFs.
+  xdg.mimeApps.defaultApplications."application/pdf" = [
+    "org.pwmt.zathura.desktop"
+  ];
+
+  # Persistence:
+  # - marked as cache, as this should never be backed up
+  # - contains the current page numbers and whatnot for opened documents
+  satellite.persistence.at.cache.apps.zathura.directories = [
+    "${config.xdg.dataHome}/zathura"
+  ];
+
   programs.zathura = {
     enable = true;
+
+    # Custom base16 theme for Zathura. There are some themes out there, although
+    # they all seem to have some weak spots, so I wrote my own instead.
+    #
+    # Some features (notably tab support) are missing, since I do now use said
+    # features on a regular basis (if at all).
     extraConfig = with config.lib.stylix.colors.withHashtag; ''
       # {{{ Some arbitrary settings
       # Open document in fit-width mode by default
@@ -84,14 +105,4 @@
       # }}}
     '';
   };
-
-  home.shellAliases.pdf = "zathura --fork";
-
-  # Make zathura the default app for opening pdfs
-  xdg.mimeApps.defaultApplications."application/pdf" = [ "org.pwmt.zathura.desktop" ];
-
-  # {{{ Persistence
-  # TODO: mark this as cache instead
-  satellite.persistence.at.state.apps.zathura.directories = [ "${config.xdg.dataHome}/zathura" ];
-  # }}}
 }

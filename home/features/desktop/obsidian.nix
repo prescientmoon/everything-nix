@@ -2,17 +2,20 @@
 {
   home.packages = [ pkgs.obsidian ];
 
-  # Start nvim with a custom class so our WM can move it to the correct workspace
+  # Start neovim with a custom class so our WM can automatically move it to the
+  # correct workspace.
   xdg.desktopEntries.obsidiantui = {
     name = "Obsidian TUI";
     type = "Application";
     icon = "obsidian";
+
     terminal = false;
     exec =
       let
-        vaultDir = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/personal/stellar-sanctum";
+        projects = config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR;
+        vaultDir = "${projects}/personal/stellar-sanctum";
       in
-      builtins.toString (
+      toString (
         pkgs.writeShellScript "obsidiantui" ''
           foot -a Obsidian -D ${vaultDir} nvim
         ''

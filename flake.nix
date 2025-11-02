@@ -3,6 +3,9 @@
     # {{{ Nixpkgs instances
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # My own nixpkgs fork
+    starlitpkgs.url = "github:starlitcanopy/nixpkgs/pounce-libretls";
     # }}}
     # {{{ Additional package repositories
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -53,11 +56,9 @@
     nihil.inputs.nixpkgs.follows = "nixpkgs";
     nihil.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git";
 
+    # NOTE: we import the TOML from there into nix, thus we have to flake this ;-;
     sillyring.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git";
     sillyring.flake = false;
-
-    tree-sitter-odin.flake = false;
-    tree-sitter-odin.url = "git+ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/tree-sitter-odin.git";
     # }}}
     # {{{ Theming
     darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";
@@ -91,6 +92,7 @@
         inherit inputs outputs;
 
         upkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+        spkgs = inputs.starlitpkgs.legacyPackages.${system};
       };
     in
     # }}}

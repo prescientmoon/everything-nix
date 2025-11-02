@@ -56,10 +56,16 @@
       # URL rewriting
       url."git@github.com:".insteadOf = [
         # Normalize GitHub URLs to SSH to avoid authentication issues with HTTPS.
+        # I ended up disabling this, but I forgot why...
         # "https://github.com/"
 
         # Allows typing `git clone github:owner/repo`.
         "github:"
+      ];
+
+      url."forgejo@lapetus:".insteadOf = [
+        # Allows typing `git clone moonythm:owner/repo`.
+        "moonythm:"
       ];
 
       # Sign commits using ssh

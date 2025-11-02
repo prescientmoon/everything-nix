@@ -16,6 +16,12 @@ aliases = ["@hm", "@home-manager"]
 url     = "https://home-manager-options.extranix.com"
 param   = "query"
 icon    = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-colours.svg"
+
+["Nixos wiki"]
+aliases = ["@nw", "@nixos-wiki"]
+url     = "https://wiki.nixos.org/w/index.php"
+param   = "search"
+icon    = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-colours.svg"
 # }}}
 # {{{ Programming
 ["Pursuit"]

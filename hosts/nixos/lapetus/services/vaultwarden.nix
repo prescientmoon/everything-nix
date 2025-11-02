@@ -2,14 +2,24 @@
 {
   satellite.nginx.at.warden.port = config.satellite.ports.vaultwarden;
 
-  # {{{ Secrets
+  # Secrets
   sops.secrets.vaultwarden_env = {
     sopsFile = ../secrets.yaml;
     owner = config.users.users.vaultwarden.name;
     group = config.users.users.vaultwarden.group;
   };
-  # }}}
-  # {{{ General config
+
+  # Storage
+  environment.persistence."/persist/state".directories = [
+    {
+      directory = "/var/lib/bitwarden_rs";
+      mode = "u=rwx,g=,o=";
+      user = config.users.users.vaultwarden.name;
+      group = config.users.users.vaultwarden.group;
+    }
+  ];
+
+  # General config
   services.vaultwarden = {
     enable = true;
     environmentFile = config.sops.secrets.vaultwarden_env.path;
@@ -28,15 +38,4 @@
       SMTP_USERNAME = "vaultwarden@orbit.moonythm.dev";
     };
   };
-  # }}}
-  # {{{ Storage
-  environment.persistence."/persist/state".directories = [
-    {
-      directory = "/var/lib/bitwarden_rs";
-      mode = "u=rwx,g=,o=";
-      user = config.users.users.vaultwarden.name;
-      group = config.users.users.vaultwarden.group;
-    }
-  ];
-  # }}}
 }

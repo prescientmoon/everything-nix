@@ -17,6 +17,7 @@ let
         host = ${host}
         port = ${toString port}
         join = ${join}
+        save = /persist/state/var/lib/pounce/${host}
       '';
       owner = user;
     };
@@ -59,6 +60,7 @@ in
     externalHost = "irc.${config.satellite.dns.domain}";
     bindHost = "irc.${config.satellite.dns.domain}";
     certDir = "/var/lib/acme/wildcard-irc.moonythm.dev";
+
     networks.tilde.config = config.sops.templates."pounce-tilde.cfg".path;
     networks.freenode.config = config.sops.templates."pounce-freenode.cfg".path;
     networks.libera.config = config.sops.templates."pounce-libera.cfg".path;

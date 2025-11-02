@@ -1,46 +1,38 @@
 { config, ... }:
 {
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "22.11";
-
-  # {{{ Imports
   imports = [
-    ../common/global
-
-    ../common/optional/users/pilot.nix
-    ../common/optional/bluetooth.nix
-    ../common/optional/greetd.nix
-    ../common/optional/oci.nix
-    ../common/optional/quietboot.nix
-
-    ../common/optional/desktop
-    ../common/optional/desktop/steam.nix
-    ../common/optional/wayland/hyprland.nix
-
-    # ../common/optional/services/wpa_supplicant.nix
-    ../common/optional/services/iwd
-    ../common/optional/services/tailscale.nix
-    ../common/optional/services/restic
-    ../common/optional/services/nginx.nix
+    ../common
     ./services/syncthing.nix
-
     ./hardware
     ./boot.nix
   ];
-  # }}}
-  # {{{ Machine ids
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "22.11";
+
+  satellite.pilot.name = "adrielus";
+  satellite.machine.graphical = true;
+  satellite.machine.gaming = true;
+  satellite.wireless.backend = "wpa-supplicant";
+  satellite.hyprland.enable = true;
+
+  # Machine ids
   networking.hostName = "tethys";
   environment.etc.machine-id.text = "08357db3540c4cd2b76d4bb7f825ec88";
-  # }}}
-  # {{{ A few ad-hoc programs
+
+  # A few ad-hoc options
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
   services.mullvad-vpn.enable = true;
-  # }}}
-  # {{{ Ad-hoc stylix targets
   stylix.targets.gtk.enable = true;
-  # }}}
-  # {{{ Tailscale internal IP DNS records
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprland.enableGnomeKeyring = true;
+
+  users.users.pilot.openssh.authorizedKeys.keyFiles = [
+    ../calypso/keys/id_ed25519.pub
+  ];
+
+  # Tailscale-internal IP DNS records
   satellite.dns.records = [
     {
       at = config.networking.hostName;
@@ -53,12 +45,4 @@
       value = "fd7a:115c:a1e0:ab12:4843:cd96:625b:a83";
     }
   ];
-  # }}}
-  # {{{ SSH keys
-  users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../calypso/keys/id_ed25519.pub ];
-  # }}}
-
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.hyprland.enableGnomeKeyring = true;
-  satellite.pilot.name = "adrielus";
 }

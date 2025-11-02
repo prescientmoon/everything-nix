@@ -1,0 +1,1 @@
+Consumers of this module can pick between the [`iwd`](./iwd) or the [`wpa-supplicant`](./wpa_supplicant.nix) backends. I usually prefer the latter (since the associated NixOS module allows declaratively configuring the networks), but the network card on _calypso_ is very bad, and `iwd` seems to work slightly less terribly than `wpa-supplicant`.

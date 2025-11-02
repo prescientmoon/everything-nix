@@ -16,7 +16,7 @@
 
     inputs.sops-nix.nixosModules.sops
 
-    ../common/global/cli/fish.nix
+    ../common/cli/fish.nix
     ../common/optional/services/wpa_supplicant.nix
   ];
   # }}}

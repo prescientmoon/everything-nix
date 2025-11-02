@@ -24,6 +24,14 @@ creation_rules:
         - *prescientmoon_calypso
         - *lapetus
         - *hermes
+  - path_regex: hosts/nixos/calypso/secrets.yaml
+    key_groups:
+      - age:
+        - *prescientmoon_tethys
+        - *prescientmoon_calypso
+        - *calypso
+        - *hermes
+  # TODO: merge `wakatime` with `productivity` into a home/common thingy
   - path_regex: home/features/desktop/wakatime/secrets.yaml
     key_groups:
       - age:

@@ -74,6 +74,7 @@ let
           ];
           branch = k.string;
           version = k.string;
+          commit = k.string;
           tag = k.string;
           name = k.string;
           main = k.string;
@@ -123,6 +124,7 @@ let
           ])
           (h.propImplies "tag" "package")
           (h.propImplies "version" "package")
+          (h.propImplies "commit" "package")
         ]
     );
     # }}}
@@ -288,7 +290,8 @@ let
             lazy = { };
             pre = { };
             post = { };
-          } // rawConfig;
+          }
+          // rawConfig;
           collectNixDeps =
             lazyModule:
             if lazyModule ? dependencies then

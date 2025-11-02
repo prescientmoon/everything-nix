@@ -3,9 +3,11 @@
   # {{{ Imports
   imports = with inputs.nixos-hardware.nixosModules; [
     common-cpu-amd
+    common-cpu-amd-pstate
     common-gpu-amd
     common-pc-laptop
     common-pc-ssd
+    asus-battery
     ./generated.nix
   ];
   # }}}
@@ -18,7 +20,7 @@
   # {{{ Power management
   powerManagement.cpuFreqGovernor = "performance";
   services.tlp = {
-    enable = true;
+    enable = true; # TODO: re-enable once KDE is removed
     settings = {
       CPU_SCALING_GOVERNOR_ON_BAT = "performance";
       CPU_SCALING_GOVERNOR_ON_AC = "performance";

@@ -92,4 +92,6 @@
       value = "1048576";
     }
   ];
+
+  systemd.extraConfig = "DefaultLimitNOFILE=65536:1048576";
 }

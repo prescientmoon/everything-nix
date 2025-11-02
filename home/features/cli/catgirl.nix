@@ -2,6 +2,7 @@
 {
   config,
   pkgs,
+  spkgs,
   lib,
   hostname ? "hermes",
   ...
@@ -22,7 +23,7 @@ in
 {
   home.packages = [
     ircgay
-    pkgs.catgirl
+    spkgs.catgirl
   ];
 
   xdg.configFile."catgirl/tilde".text = mkCatgirlNetwork "tilde";

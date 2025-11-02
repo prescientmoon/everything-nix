@@ -620,7 +620,12 @@ let
                   (upkgs.tree-sitter.buildGrammar {
                     language = "odin";
                     version = "unstable-2025-07-18";
-                    src = inputs.tree-sitter-odin;
+                    src = pkgs.fetchFromGitea {
+                      domain = "git.moonythm.dev";
+                      owner = "starlitcanopy";
+                      repo = "tree-sitter-odin";
+                      sha256 = "";
+                    };
                   })
                 ]
                 ++ [
@@ -1075,6 +1080,21 @@ let
               + " luasnip -r my.luasnip <cr>";
             desc = "[R]erun [m]iros";
           };
+        };
+        # }}}
+        # {{{ sops.nvim
+        # secret editing
+        sops = {
+          package = "trixnz/sops.nvim";
+          dependencies.nix = [ pkgs.sops ];
+
+          # This plugin is security-critical. I've read through the source
+          # myself, and have pinned the respective commit.
+          commit = "dacb68c";
+          ft = [
+            "yaml"
+            "json"
+          ];
         };
         # }}}
         # }}}

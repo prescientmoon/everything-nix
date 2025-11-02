@@ -1,41 +1,65 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+  imports = [
+    ../common
+
+    ./hardware
+    ./filesystems
+
+    ./services/snapper.nix
+    ./services/syncthing.nix
+  ];
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
 
-  # {{{ Imports
-  imports = [
-    ../common/global
+  satellite.pilot.name = "moon";
+  satellite.machine.graphical = true;
+  satellite.machine.gaming = true;
 
-    ../common/optional/users/pilot.nix
-    ../common/optional/bluetooth.nix
-    ../common/optional/greetd.nix
-    ../common/optional/oci.nix
-    ../common/optional/quietboot.nix
+  satellite.wireless.backend = "iwd";
+  satellite.hyprland.enable = true;
+  satellite.greetd.enable = true;
 
-    ../common/optional/desktop
-    ../common/optional/desktop/steam.nix
-    ../common/optional/wayland/hyprland.nix
-
-    ../common/optional/services/nginx.nix
-    ../common/optional/services/postgres.nix
-    ../common/optional/services/syncthing.nix
-    ../common/optional/services/tailscale.nix
-    ../common/optional/services/restic
-    ../common/optional/services/iwd
-
-    ./services/snapper.nix
-
-    ./filesystems
-    ./hardware
-  ];
-  # }}}
-  # {{{ Machine ids
+  # Machine ids
   networking.hostName = "calypso";
   networking.hostId = "3f69ae4b";
   environment.etc.machine-id.text = "24fe28515de243f6ae4c6aa7e4291aac";
-  # }}}
-  # {{{ Tailscale internal IP DNS records
+
+  # SSH keys
+  users.users.pilot.openssh.authorizedKeys.keyFiles = [
+    ../tethys/keys/id_ed25519.pub
+  ];
+
+  # A few ad hoc options
+  boot.loader.systemd-boot.enable = true;
+  programs.kdeconnect.enable = true;
+  programs.firejail.enable = true;
+  programs.nix-ld.enable = true; # Useful for running non-nix executables
+  services.mullvad-vpn.enable = true;
+
+  services.usbmuxd.enable = true;
+  programs.adb.enable = true;
+  users.users.pilot.extraGroups = [ "adbusers" ];
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprland.enableGnomeKeyring = true;
+
+  # Use the latest kernel (the WIFI card is not seen otherwise)
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "mt7921_common.disable_clc=1" ];
+  boot.kernelPatches = [
+    {
+      name = "mediatek-wifi-fix";
+      patch = pkgs.fetchpatch {
+        name = "mediatek-wifi-fix";
+        url = "https://lore.kernel.org/linux-mediatek/20251009020158.1923429-1-mingyen.hsieh@mediatek.com/raw";
+        hash = "sha256-BhtGp4YliIIhrqkS09RQfZytKhQwDR3DXM8d7SCJw54=";
+      };
+    }
+  ];
+
+  # Tailscale-internal IP DNS records
   satellite.dns.records = [
     {
       at = config.networking.hostName;
@@ -48,22 +72,4 @@
       value = "fd7a:115c:a1e0::1201:2806";
     }
   ];
-  # }}}
-  # {{{ A few ad-hoc programs
-  programs.kdeconnect.enable = true;
-  programs.firejail.enable = true;
-  programs.nix-ld.enable = true; # Useful for running non-nix executables
-  services.mullvad-vpn.enable = true;
-  services.usbmuxd.enable = true;
-  programs.adb.enable = true;
-  users.users.pilot.extraGroups = [ "adbusers" ];
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.hyprland.enableGnomeKeyring = true;
-  # }}}
-  # {{{ SSH keys
-  users.users.pilot.openssh.authorizedKeys.keyFiles = [ ../tethys/keys/id_ed25519.pub ];
-  # }}}
-
-  satellite.pilot.name = "moon";
-  boot.loader.systemd-boot.enable = true;
 }

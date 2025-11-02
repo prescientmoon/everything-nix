@@ -15,7 +15,7 @@ nixos-rebuild action="switch" host=hostname ng="1":
   host = "{{host}}"
   users = {
     'tethys': 'adrielus',
-    'lapetus': 'adrielus',
+    'lapetus': 'root',
     'calypso': 'moon',
   }
   hosts = {
@@ -136,7 +136,7 @@ update-rsync-keys:
   fi
 
   tmpfile=$(mktemp)
-  url=$(cat hosts/nixos/common/optional/services/restic/url.txt)
+  url=$(cat hosts/nixos/common/services/restic/url.txt)
 
   echo "🔑 Copying ${#keys[@]} keys to $url"
   cat ${keys[@]} > $tmpfile

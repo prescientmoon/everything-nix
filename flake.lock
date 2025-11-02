@@ -991,11 +991,11 @@
     "moonythm": {
       "flake": false,
       "locked": {
-        "lastModified": 1755198659,
-        "narHash": "sha256-4MnPZQ70xpedoaffnkyXvhboDlHe+ttqpyqtwu/fCT4=",
+        "lastModified": 1761763708,
+        "narHash": "sha256-FID9rCMzFPzhavLhAJjmbD6HJS/5yksJqW4I4cf06zU=",
         "ref": "refs/heads/main",
-        "rev": "f103e9008a4d43fe6df134c17a9235b2f0bfa610",
-        "revCount": 48,
+        "rev": "b3e02d0dda658580c696b8f215d555545d39e8b1",
+        "revCount": 66,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git"
       },
@@ -1070,11 +1070,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755464799,
-        "narHash": "sha256-a6iafF6/F7tfys7OtdVq2F4BmhYzfTm/ScHiyg5t7ZY=",
+        "lastModified": 1761763713,
+        "narHash": "sha256-QK5PVeKgrZpsZ2ygct6sQquVnGD4Hx19CMHSC7sp3Rs=",
         "ref": "refs/heads/main",
-        "rev": "7622eec8aef4676db801405a9145ed399424264c",
-        "revCount": 72,
+        "rev": "3958d42101ca8b82e31d1c800facb493c31a62b1",
+        "revCount": 89,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
       },
@@ -1155,11 +1155,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1760524057,
-        "narHash": "sha256-EVAqOteLBFmd7pKkb0+FIUyzTF61VKi7YmvP1tw4nEw=",
+        "lastModified": 1760878510,
+        "narHash": "sha256-K5Osef2qexezUfs0alLvZ7nQFTGS9DL2oTVsIXsqLgs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "544961dfcce86422ba200ed9a0b00dd4b1486ec5",
+        "rev": "5e2a59a5b1a82f89f2c7e598302a9cacebb72a67",
         "type": "github"
       },
       "original": {
@@ -1549,8 +1549,8 @@
         "smos": "smos",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
-        "stylix": "stylix",
-        "tree-sitter-odin": "tree-sitter-odin"
+        "starlitpkgs": "starlitpkgs",
+        "stylix": "stylix"
       }
     },
     "rose-pine-hyprcursor": {
@@ -1789,6 +1789,22 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "starlitpkgs": {
+      "locked": {
+        "lastModified": 1761084940,
+        "narHash": "sha256-eutr7FmS1Amuxd/pBAN73x2v+rXQmpSCo3fRscbIU3M=",
+        "owner": "starlitcanopy",
+        "repo": "nixpkgs",
+        "rev": "9270c9cffcc545ee881942ca9e3c824457965b9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "starlitcanopy",
+        "ref": "pounce-libretls",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -2057,22 +2073,6 @@
         "owner": "NorfairKing",
         "repo": "token-limiter-concurrent",
         "type": "github"
-      }
-    },
-    "tree-sitter-odin": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1752849153,
-        "narHash": "sha256-YAuBrH4q/vHwg3oKmY1vnP06+h/TFh+bzyj5Im9C0xQ=",
-        "ref": "refs/heads/master",
-        "rev": "61e6575f73e23aff4b6b3dda55aedf0a42acc591",
-        "revCount": 42,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/tree-sitter-odin.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/tree-sitter-odin.git"
       }
     },
     "treefmt-nix": {

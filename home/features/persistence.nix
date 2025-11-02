@@ -164,6 +164,11 @@
     "${config.xdg.configHome}/libreoffice"
   ];
   # }}}
+  # {{{ Obsidian
+  satellite.persistence.at.state.apps.obsidian.directories = [
+    "${config.xdg.configHome}/obsidian"
+  ];
+  # }}}
   # }}}
   # {{{ Cli
   # {{{ Sops
