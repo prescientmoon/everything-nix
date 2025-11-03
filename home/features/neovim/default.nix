@@ -624,7 +624,8 @@ let
                       domain = "git.moonythm.dev";
                       owner = "starlitcanopy";
                       repo = "tree-sitter-odin";
-                      sha256 = "";
+                      rev = "61e6575f73e23aff4b6b3dda55aedf0a42acc591";
+                      sha256 = "sha256-YAuBrH4q/vHwg3oKmY1vnP06+h/TFh+bzyj5Im9C0xQ=";
                     };
                   })
                 ]
