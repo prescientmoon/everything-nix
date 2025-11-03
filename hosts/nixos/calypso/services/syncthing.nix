@@ -9,7 +9,7 @@
 
     settings.folders = {
       "stellar-sanctum" = {
-        path = "/persist/data${config.users.users.pilot.home}/projects";
+        path = "/persist/data${config.users.users.pilot.home}/projects/personal/stellar-sanctum";
 
         versioning = {
           type = "staggered";
