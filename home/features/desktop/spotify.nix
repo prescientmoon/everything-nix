@@ -28,7 +28,11 @@ let
   });
 in
 {
-  imports = [ ./audio.nix ];
+  imports = [
+    ./audio.nix
+    inputs.spicetify-nix.homeManagerModules.spicetify
+  ];
+
   home.packages = [ pkgs.spot ];
 
   programs.spicetify = {
@@ -57,9 +61,9 @@ in
     ];
   };
 
-  # {{{ Persistence
-  satellite.persistence.at.state.apps.spotify.directories = [ "${config.xdg.configHome}/spotify" ];
-
-  satellite.persistence.at.cache.apps.spotify.directories = [ "${config.xdg.cacheHome}/spotify" ];
-  # }}}
+  # Persistence
+  satellite.persistence = {
+    at.state.apps.spotify.directories = [ "${config.xdg.configHome}/spotify" ];
+    at.cache.apps.spotify.directories = [ "${config.xdg.cacheHome}/spotify" ];
+  };
 }

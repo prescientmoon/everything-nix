@@ -1,11 +1,19 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.discord;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.discord;
 in
 {
   options.programs.discord = {
     enable = lib.mkEnableOption "Discord";
-    disableUpdateCheck = lib.mkEnableOption "update skipping";
     enableDevtools = lib.mkEnableOption "devtools";
+    disableUpdateCheck = lib.mkEnableOption "update skipping" // {
+      default = true;
+    };
 
     package = lib.mkOption {
       type = lib.types.package;
@@ -17,11 +25,9 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [ cfg.package ];
 
-    xdg.configFile."discord/settings.json".text =
-      builtins.toJSON {
-        SKIP_HOST_UPDATE = cfg.disableUpdateCheck;
-        DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = cfg.enableDevtools;
-      };
+    xdg.configFile."discord/settings.json".text = builtins.toJSON {
+      SKIP_HOST_UPDATE = cfg.disableUpdateCheck;
+      DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = cfg.enableDevtools;
+    };
   };
 }
-

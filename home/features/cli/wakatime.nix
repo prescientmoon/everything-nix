@@ -1,6 +1,7 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   sops.secrets.wakatime_config = {
-    sopsFile = ./secrets.yaml;
+    sopsFile = ../../secrets.yaml;
     path = "${config.home.homeDirectory}/.wakatime.cfg";
   };
 

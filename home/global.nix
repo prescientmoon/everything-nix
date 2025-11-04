@@ -7,18 +7,9 @@
 }:
 let
   imports = [
-    # {{{ flake inputs
     inputs.stylix.homeModules.stylix
     inputs.impermanence.nixosModules.home-manager.impermanence
-    inputs.spicetify-nix.homeManagerModules.spicetify
-    inputs.nix-index-database.homeModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
-
-    # NOTE: using `pkgs.system` before `module.options` is evaluated
-    # leads to infinite recursion! I should perhaps take system as
-    # a special argument as well...
-    inputs.smos.homeManagerModules.x86_64-linux.default
-    # }}}
 
     ./features/cli
     ./features/persistence.nix

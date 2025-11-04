@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./bat.nix
@@ -10,7 +10,11 @@
     ./ssh.nix
     ./tealdeer.nix
     ./yazi.nix
+    ./smos.nix
+    ./mail
     ./fish
+
+    inputs.nix-index-database.homeModules.nix-index
   ];
 
   # Enable basic CLI thingies

@@ -5,6 +5,7 @@
     ./discord
     ./firefox
 
+    ./monitors.nix
     ./foot.nix
     ./obsidian.nix
     ./spotify.nix

@@ -3,11 +3,9 @@
   imports = [
     ./global.nix
 
-    ./features/cli/productivity
     ./features/desktop/gaming
     ./features/desktop/gaming/edopro.nix
     ./features/wayland/hyprland
-
     ./features/neovim
   ];
 
