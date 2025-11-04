@@ -7,10 +7,11 @@
     ./eza.nix
     ./git.nix
     ./lazygit.nix
+    ./smos.nix
     ./ssh.nix
     ./tealdeer.nix
+    ./wakatime.nix
     ./yazi.nix
-    ./smos.nix
     ./mail
     ./fish
 

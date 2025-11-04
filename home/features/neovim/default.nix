@@ -1786,8 +1786,6 @@ in
 {
   satellite.lua.styluaConfig = ../../../stylua.toml;
 
-  imports = [ ../cli/wakatime.nix ];
-
   # {{{ Basic config
   # We want other modules to know that we are using neovim!
   satellite.toggles.neovim.enable = true;
