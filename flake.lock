@@ -991,11 +991,11 @@
     "moonythm": {
       "flake": false,
       "locked": {
-        "lastModified": 1761763708,
-        "narHash": "sha256-FID9rCMzFPzhavLhAJjmbD6HJS/5yksJqW4I4cf06zU=",
+        "lastModified": 1762332285,
+        "narHash": "sha256-xyfITRBx+y5L8ptB4pOTDsh5wsuJl/HGKz5UkuPEkaQ=",
         "ref": "refs/heads/main",
-        "rev": "b3e02d0dda658580c696b8f215d555545d39e8b1",
-        "revCount": 66,
+        "rev": "d5f72fb25e423f6f8df300be47c342fbdae5991c",
+        "revCount": 68,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/moonythm.git"
       },
@@ -1070,11 +1070,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761763713,
-        "narHash": "sha256-QK5PVeKgrZpsZ2ygct6sQquVnGD4Hx19CMHSC7sp3Rs=",
+        "lastModified": 1762332293,
+        "narHash": "sha256-Q+2PeciQUnUCeoQuE+exxvJx7kpGNH4KsIs8cbJLfQc=",
         "ref": "refs/heads/main",
-        "rev": "3958d42101ca8b82e31d1c800facb493c31a62b1",
-        "revCount": 89,
+        "rev": "a83c738fd402cb85748033249a1a6e148a4eab35",
+        "revCount": 90,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
       },
