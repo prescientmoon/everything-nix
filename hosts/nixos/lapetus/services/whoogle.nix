@@ -1,20 +1,21 @@
 { lib, config, ... }:
-let websiteBlocklist = [
-  "www.saashub.com"
-  "slant.co"
-  "nix-united.com"
-  "libhunt.com"
-  "www.devopsschool.com"
-  "medevel.com"
-  "alternativeto.net"
-  "linuxiac.com"
-  "www.linuxlinks.com"
-  "sourceforge.net"
-];
+let
+  websiteBlocklist = [
+    "www.saashub.com"
+    "slant.co"
+    "nix-united.com"
+    "libhunt.com"
+    "www.devopsschool.com"
+    "medevel.com"
+    "alternativeto.net"
+    "linuxiac.com"
+    "www.linuxlinks.com"
+    "sourceforge.net"
+  ];
 in
 {
   virtualisation.oci-containers.containers.whoogle-search = {
-    image = "benbusby/whoogle-search";
+    image = "benbusby/whoogle-search:1.1.0"; # 2025-10-04
     autoStart = true;
     ports = [ "${toString config.satellite.nginx.at.search.port}:5000" ]; # server:docker
     environment = {

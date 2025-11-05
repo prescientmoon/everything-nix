@@ -18,7 +18,7 @@ in
   # }}}
   # {{{ Qbit
   virtualisation.oci-containers.containers.qbittorrent = {
-    image = "linuxserver/qbittorrent:latest";
+    image = "linuxserver/qbittorrent:5.1.2"; # 2025-11-02
     extraOptions = [ "--network=container:gluetun" ];
     dependsOn = [ "gluetun" ];
     volumes = [
@@ -36,7 +36,7 @@ in
   # }}}
   # {{{ Vpn
   virtualisation.oci-containers.containers.gluetun = {
-    image = "qmcgaw/gluetun";
+    image = "qmcgaw/gluetun:v3.40"; # 2024-12-25
     extraOptions = [
       "--cap-add=NET_ADMIN"
       "--cap-add=NET_RAW"

@@ -12,7 +12,7 @@
   };
 
   virtualisation.oci-containers.containers.picoshare = {
-    image = "mtlynch/picoshare";
+    image = "mtlynch/picoshare:1.5.1"; # 2025-08-24
     volumes = [ "/persist/state/var/lib/picoshare:/data" ];
     ports = [ "${toString config.satellite.ports.picoshare}:4001/tcp" ];
     environment.PORT = "4001";
