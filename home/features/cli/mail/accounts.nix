@@ -23,7 +23,7 @@
       primary = true;
 
       # IMAP / SMTP configuration
-      imap.hos = "imap.migadu.com";
+      imap.host = "imap.migadu.com";
       imap.port = 993;
       smtp.host = "smtp.migadu.com";
       smtp.port = 465;

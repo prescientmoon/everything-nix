@@ -6,7 +6,8 @@
   ];
 
   programs.msmtp.enable = true; # SMTP client
-  services.mbsync.enable = true; # email sync
+  programs.mbsync.enable = true;
+  services.mbsync.enable = true;
 
   # Storage & persistence
   accounts.email.maildirBasePath = "${config.xdg.dataHome}/maildir";

@@ -9,7 +9,7 @@ let
     owner = "catppuccin";
     repo = "aerc";
     rev = "3580c723ee071e512d5e41bf88cea837b4f23746";
-    sha256 = "";
+    sha256 = "1v8j8h9i473za7m8lq9ig7y3kb8rhyqijqiwxi96xfkpwvqn90cd";
   };
 
   themeMap = lib.fix (self: {
@@ -27,4 +27,6 @@ in
     enable = true;
     extraConfig.general.unsafe-accounts-conf = true;
   };
+
+  xdg.configFile."aerc/stylesets/default".source = config.satellite.theming.get themeMap;
 }
