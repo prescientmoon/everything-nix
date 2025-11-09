@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  upkgs,
+  ...
+}:
 {
   imports = [
     ../common
@@ -72,4 +77,12 @@
       value = "fd7a:115c:a1e0::1201:2806";
     }
   ];
+
+  # Waydroid
+  virtualisation.waydroid.enable = true;
+  environment.systemPackages = [ upkgs.waydroid-helper ];
+  systemd = {
+    packages = [ upkgs.waydroid-helper ];
+    services.waydroid-mount.wantedBy = [ "multi-user.target" ];
+  };
 }
