@@ -12,14 +12,7 @@ in
 
   options.services.sqliteWeb = {
     enable = lib.mkEnableOption "sqlite-web, a Web-based SQLite database browser written in Python";
-
-    package = lib.mkOption {
-      description = "sqlite-web package to use";
-      type = lib.types.package;
-      example = lib.literalExpression "pkgs.sqlite-web";
-      default = pkgs.sqlite-web;
-      defaultText = "pkgs.sqlite-web";
-    };
+    package = lib.mkPackageOption pkgs "sqlite-web" { };
 
     databases = lib.mkOption {
       description = "Configuration for multiple instances of sqlite-web";
@@ -123,8 +116,10 @@ in
         serviceConfig = {
           LoadCredential = lib.optional (instance.passwordFile != null) "password:${instance.passwordFile}";
 
-          # NOTE: Giving access to the entire directory might be wrong, but
-          # I was sometimes getting errors without this.
+          # NOTE: Giving access to the entire surrounding directory might be
+          # wrong, but I was sometimes getting errors without this. Perhaps a
+          # better long-term solution would be to specifically handle sqlite's
+          # WAL files and whatnot?
           ReadOnlyPaths = lib.lists.optional instance.readOnly (builtins.dirOf instance.file);
           ReadWritePaths = lib.lists.optional (!instance.readOnly) (builtins.dirOf instance.file);
           User = instance.user;
