@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   # {{{ Main config
   services.prometheus = {
@@ -21,25 +21,31 @@
       };
     };
 
-    scrapeConfigs = [{
-      job_name = "lapetus";
-      static_configs = [{
-        targets = [
-          "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-          "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}"
+    scrapeConfigs = [
+      {
+        job_name = "lapetus";
+        static_configs = [
+          {
+            targets = [
+              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+              "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}"
+            ];
+          }
         ];
-      }];
-    }];
+      }
+    ];
     # }}}
   };
   # }}}
   # {{{ Networking & storage
   satellite.nginx.at.prometheus.port = config.services.prometheus.port;
 
-  environment.persistence."/persist/state".directories = [{
-    directory = "/var/lib/prometheus2";
-    user = "prometheus";
-    group = "prometheus";
-  }];
+  environment.persistence."/persist/state".directories = [
+    {
+      directory = "/var/lib/prometheus2";
+      user = "prometheus";
+      group = "prometheus";
+    }
+  ];
   # }}}
 }

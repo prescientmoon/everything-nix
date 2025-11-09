@@ -40,5 +40,7 @@
     miniflux = 8431;
     tuwunel = 8432;
     picoshare = 8433;
+    gotosocial = 8434;
+    prometheus-gotosocial-exporter = 8435;
   };
 }

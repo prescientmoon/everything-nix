@@ -13,6 +13,7 @@
     ./services/diptime.nix
     ./services/forgejo.nix
     ./services/glass-server
+    ./services/gotosocial.nix
     ./services/grafana.nix
     ./services/homer.nix
     ./services/invidious.nix

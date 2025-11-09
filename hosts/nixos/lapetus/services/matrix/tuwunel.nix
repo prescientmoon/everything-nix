@@ -36,5 +36,4 @@
       group = config.services.matrix-tuwunel.group;
     }
   ];
-
 }
