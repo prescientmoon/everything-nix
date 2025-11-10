@@ -19,7 +19,6 @@
     ./services/invidious.nix
     ./services/jellyfin.nix
     ./services/matrix
-    ./services/microbin.nix
     ./services/miniflux.nix
     ./services/moonythm.nix
     ./services/picoshare.nix

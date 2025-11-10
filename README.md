@@ -138,6 +138,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [microbin](https://github.com/szabodanika/microbin) — Was fairly clunky, thus I switched to [picoshare](https://github.com/mtlynch/picoshare)
 - [sponge](https://github.com/meaningful-ooo/sponge) — I kept losing commands I wanted to keep in my history
 - [hyprland-vim-syntax](https://github.com/theRealCarneiro/hyprland-vim-syntax) — Neovim supports hyprlang files out of the box now
 - [typst.vim](https://github.com/kaarmu/typst.vim) — Neovim supports typst files out of the box now
