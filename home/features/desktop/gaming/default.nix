@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  upkgs,
+  ...
+}:
 let
   # Creates a .desktop file which launches a Steam game.
   mkSteamGame = name: id: icon: {
@@ -17,8 +22,15 @@ in
     pkgs.lutris
     pkgs.wine64
     pkgs.pegasus-frontend
+    (upkgs.heroic.override {
+      extraPkgs = pkgs: [
+        pkgs.gamescope
+        pkgs.gamemode
+      ];
+    })
   ];
 
+  # TODO: download all of these icons locally
   xdg.desktopEntries = {
     factorio = mkSteamGame "Factorio" "427520" (
       pkgs.fetchurl {
@@ -77,15 +89,42 @@ in
     );
   };
 
-  # {{{ Persistence
-  satellite.persistence.at.state.apps.steam = {
-    directories = [
-      ".factorio"
+  # Persistence
+  satellite.persistence.at.state.apps = {
+    wine.directories = [ ".wine" ];
+
+    steam.directories = [
       "${config.xdg.dataHome}/Steam"
+
+      # To be honest, these could all be moved to their own directories. They're
+      # mostly here because I am too lazy to move them hhhh.
+      ".factorio"
       "${config.xdg.dataHome}/VVVVVV"
       "${config.xdg.dataHome}/Baba_Is_You"
       "${config.xdg.configHome}/unity3d/Team Cherry"
     ];
+
+    heroic.directories = [
+      "${config.xdg.configHome}/heroic"
+      "${config.xdg.dataHome}/heroic" # I store wine prefixes here
+
+      # Apparently IO intensive stuff like games works better with symlinks?
+      {
+        directory = "media/games/heroic";
+        method = "symlink";
+      }
+    ];
+
+    # There might be more to cache in `.cache/lutris`, but this works for now
+    lutris.directories = [
+      "${config.xdg.configHome}/lutris" # General configuration data
+      "${config.xdg.cacheHome}/lutris/banners" # Game banners
+      "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
+
+      {
+        directory = "media/games/lutris";
+        method = "symlink";
+      }
+    ];
   };
-  # }}}
 }

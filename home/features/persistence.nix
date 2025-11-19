@@ -128,23 +128,6 @@
     "${config.xdg.cacheHome}/whatsapp-for-linux"
   ];
   # }}}
-  # {{{ Lutris
-  # TODO: there might be more to cache in .cache/lutris
-  satellite.persistence.at.state.apps.lutris.directories = [
-    "${config.xdg.configHome}/lutris" # General configuration data
-    "${config.xdg.cacheHome}/lutris/banners" # Game banners
-    "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
-
-    # Apparently IO intensive stuff like games prefer symlinks?
-    {
-      directory = "media/games/lutris";
-      method = "symlink";
-    } # Lutris games
-  ];
-  # }}}
-  # {{{ Wine
-  satellite.persistence.at.state.apps.wine.directories = [ ".wine" ];
-  # }}}
   # {{{ Element
   satellite.persistence.at.state.apps.element.directories = [ "${config.xdg.configHome}/Element" ];
   # }}}

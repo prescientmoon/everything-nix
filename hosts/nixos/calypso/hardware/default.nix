@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   # {{{ Imports
   imports = with inputs.nixos-hardware.nixosModules; [
@@ -20,7 +20,7 @@
   # {{{ Power management
   powerManagement.cpuFreqGovernor = "performance";
   services.tlp = {
-    enable = true; # TODO: re-enable once KDE is removed
+    enable = !config.services.desktopManager.plasma6.enable;
     settings = {
       CPU_SCALING_GOVERNOR_ON_BAT = "performance";
       CPU_SCALING_GOVERNOR_ON_AC = "performance";

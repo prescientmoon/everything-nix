@@ -25,7 +25,6 @@
     libsForQt5.okular # Useful for reading pdf annotations (which zathura does not support)
     # lmms # Music software
     # kicad # PCB editing
-    # libreoffice # Free office suite
 
     # Clis
     sherlock # Search for usernames across different websites
@@ -34,7 +33,7 @@
     # Misc
     # google-chrome # Not my primary browser, but sometimes needed in webdev
     # plover.dev # steno engine
-    freetube # youtube client
+    upkgs.freetube # youtube client
     pomodoro-gtk # basic pomodoro timer
   ];
 

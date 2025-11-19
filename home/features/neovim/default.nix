@@ -1140,7 +1140,7 @@ let
               ]
               ++ optionals typst [
                 upkgs.typst
-                upkgs.typstfmt
+                upkgs.typstyle
                 upkgs.tinymist # The typst language server
               ]
               ++ optionals python [

@@ -8,4 +8,4 @@ Total: 4€/month
 | ------------------------------- | ----------- | --------------- |
 | [Rsync.net](https://rsync.net/) | Backups     | ~18             |
 | [Migadu](https://migadu.com/)   | Mail        | ~19             |
-| [Porkbun](https://porkbun.com/) | Domain      | ~11             |
+| [Porkbun](https://porkbun.com/) | Domain      | ~13             |

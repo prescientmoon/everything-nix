@@ -51,18 +51,8 @@
   security.pam.services.hyprland.enableGnomeKeyring = true;
 
   # Use the latest kernel (the WIFI card is not seen otherwise)
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelParams = [ "mt7921_common.disable_clc=1" ];
-  boot.kernelPatches = [
-    {
-      name = "mediatek-wifi-fix";
-      patch = pkgs.fetchpatch {
-        name = "mediatek-wifi-fix";
-        url = "https://lore.kernel.org/linux-mediatek/20251009020158.1923429-1-mingyen.hsieh@mediatek.com/raw";
-        hash = "sha256-BhtGp4YliIIhrqkS09RQfZytKhQwDR3DXM8d7SCJw54=";
-      };
-    }
-  ];
 
   # Tailscale-internal IP DNS records
   satellite.dns.records = [

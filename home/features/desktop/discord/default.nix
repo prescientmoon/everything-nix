@@ -20,6 +20,8 @@ in
     package = pkgs.vesktop;
   };
 
+  home.packages = [ pkgs.discord ];
+
   # xdg.configFile."discocss/custom.css".source = config.satellite.theming.get themeMap;
 
   # Clean cache older than 10 days
