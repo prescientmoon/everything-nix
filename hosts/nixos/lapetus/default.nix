@@ -7,7 +7,7 @@
     ./networking
     ./filesystems
 
-    ./services/5d-diplomacy
+    # ./services/5d-diplomacy (currently broken)
     ./services/actual.nix
     ./services/cloudflared.nix
     ./services/diptime.nix

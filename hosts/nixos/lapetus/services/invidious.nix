@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, upkgs, ... }:
 {
   sops.secrets.invidious_hmac_key.sopsFile = ../secrets.yaml;
   sops.templates."invidious_hmac_key.json" = {
@@ -32,6 +32,6 @@
       db.user = "invidious";
     };
 
-    package = pkgs.invidious;
+    package = upkgs.invidious;
   };
 }
