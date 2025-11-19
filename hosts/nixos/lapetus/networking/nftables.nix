@@ -30,12 +30,7 @@
 
           # Filters out http(s) traffic towards the dnsmasq_ipv{4,6} sets
           chain dns_filter {
-            tcp dport {80,443} ct state new jump new_http_connection;
-            accept;
-          }
-
-          # Reached only by new http(s) connections
-          chain new_http_connection {
+            # This is overkill (blocks too much), but whatever :p
             ip  daddr @dnsmasq_blocked4 drop comment "Drop blocked domains";
             ip6 daddr @dnsmasq_blocked6 drop comment "Drop blocked domains";
             ip  daddr @dnsmasq_mobile_blocked4 ip saddr != @not_mobile4 drop \
@@ -79,7 +74,6 @@
               comment "Allow Docker to WAN";
             iifname "enp0s25" oifname "docker0" ct state { established, related } \
               accept comment "Allow established from Docker back to LAN";
-
           }
 
           # Things going away from this machine
@@ -101,5 +95,6 @@
     };
   };
 
+  # Not sure this is needed anymore, but Docker's management can be annoying...
   virtualisation.docker.daemon.settings.iptables = false;
 }

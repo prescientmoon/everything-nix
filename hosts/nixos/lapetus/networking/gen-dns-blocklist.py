@@ -20,6 +20,8 @@ def include_named(name):
         return parse_list_content(f.read())
 
 youtube = include_named("youtube")
+# Contains many wrong domains, but that's fine
+mobile_youtube = [f"m.{domain}" for domain in youtube]
 reddit = include_named("reddit")
 twitter = include_named("twitter")
 misc = [
@@ -28,7 +30,7 @@ misc = [
     "yewtu.be", # Invidious (TODO: add more instances)
 ]
 
-for domain in sum([youtube, reddit, misc], []):
+for domain in sum([youtube, mobile_youtube, reddit, misc], []):
     print(f"nftset=/{domain}/4#inet#filter#dnsmasq_blocked4")
     print(f"nftset=/{domain}/6#inet#filter#dnsmasq_blocked6")
 
