@@ -9,6 +9,7 @@
     ./lazygit.nix
     ./smos.nix
     ./ssh.nix
+    ./starship.nix
     ./tealdeer.nix
     ./wakatime.nix
     ./yazi.nix
@@ -21,7 +22,6 @@
   # Enable basic CLI thingies
   programs.bash.enable = true;
   programs.broot.enable = true;
-  programs.starship.enable = true;
 
   # Enable nix-index
   programs.nix-index-database.comma.enable = true;
