@@ -128,91 +128,91 @@ let
         # {{{ Misc keybinds
         "1:misc-keybinds" = {
           # {{{ Global keybinds
-          keys =
-            # {{{ Keybind helpers
-            let
-              dmap = mapping: action: desc: {
-                inherit mapping desc;
-                action = vim /diagnostic/${action};
-              };
-            in
+          keys = [
+            # {{{ Free up q and Q
+            (nmap "<c-q>" "q" "Record macro")
+            (nmap "<c-s-q>" "Q" "Repeat last recorded macro")
+            (unmap "q")
+            (unmap "Q")
             # }}}
-            [
-              # {{{ Free up q and Q
-              (nmap "<c-q>" "q" "Record macro")
-              (nmap "<c-s-q>" "Q" "Repeat last recorded macro")
-              (unmap "q")
-              (unmap "Q")
-              # }}}
-              # {{{ Chords
-              # Different chords get remapped to f-keys by my my kaanta config.
-              #
-              # Exit insert mode using *jk*
-              (keymap "iv" "<f10>" "<esc>" "Exit insert mode")
+            # {{{ Chords
+            # Different chords get remapped to f-keys by my my kaanta config.
+            #
+            # Exit insert mode using *jk*
+            (keymap "iv" "<f10>" "<esc>" "Exit insert mode")
 
-              # Use global clipboard using *cp*
-              (keymap "nv" "<f11>" ''"+'' "Use global clipboard")
+            # Use global clipboard using *cp*
+            (keymap "nv" "<f11>" ''"+'' "Use global clipboard")
 
-              # Save using *ji*
-              (nmap "<f12>" (thunk ''
-                -- If we don't do this, the statusbar will flash for a second...
-                vim.cmd([[silent! write]])
-                vim.opt.stl = vim.opt.stl
-              '') "Save current file")
-              # }}}
-              # {{{ Newline without comments
-              {
-                mode = "i";
-                mapping = "<c-cr>";
-                action =
-                  _:
-                  vim /paste (args [
-                    [
-                      ""
-                      ""
-                    ]
-                    (-1)
-                  ]);
-                desc = "Insert newline without continuing the current comment";
-              }
-              {
-                mode = "i";
-                mapping = "<c-s-cr>";
-                # This is a bit scuffed and might not work for all languages
-                action = "<cmd>norm O<bs><bs><bs><cr>";
-                desc = "Insert newline above without continuing the current comment";
-              }
-              # }}}
-              # {{{ Diagnostics
-              (dmap "J" "open_float" "Open current diagnostic")
-              (dmap "<leader>dq" "setqflist" "[D]iagnostic qflist")
-              (dmap "<leader>dl" "setloclist" "[D]iagnostic loclist")
-              (nmap "qj" "J" "join lines")
-              # }}}
-              # {{{ Other misc keybinds
-              (nmap "<Leader>a" "<C-^>" "[A]lternate file")
-              (unmap "<C-^>")
-              (nmap "Q" ":wqa<cr>" "Save all files and [q]uit")
-              (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
-              (nmap "<leader>sw" (tempest /wrapping/toggle) "toggle word [w]rap")
-              (nmap "<leader>ss" (thunk "vim.opt.spell = not vim.o.spell") "toggle [s]pell checker")
-              (nmap "<leader>yp" "<cmd>!curl --data-binary @% https://paste.rs | wl-copy<cr>"
-                "[y]ank [p]aste.rs link to clipboard"
-              )
-              # }}}
-              {
-                mode = "v";
-                mapping = "<C-i>";
-                action = _: tempest /createVisualFold (vim /fn/input "Fold name: ");
-              }
-            ];
+            # Save using *ji*
+            (nmap "<f12>" (thunk ''
+              -- If we don't do this, the statusbar will flash for a second...
+              vim.cmd([[silent! write]])
+              vim.opt.stl = vim.opt.stl
+            '') "Save current file")
+            # }}}
+            # {{{ Newline without comments
+            {
+              mode = "i";
+              mapping = "<c-cr>";
+              action =
+                _:
+                vim /paste (args [
+                  [
+                    ""
+                    ""
+                  ]
+                  (-1)
+                ]);
+              desc = "Insert newline without continuing the current comment";
+            }
+            {
+              mode = "i";
+              mapping = "<c-s-cr>";
+              # This is a bit scuffed and might not work for all languages
+              action = "<cmd>norm O<bs><bs><bs><cr>";
+              desc = "Insert newline above without continuing the current comment";
+            }
+            # }}}
+            # {{{ Diagnostics
+            (nmap "J" (vim /diagnostic/open_float) "Open current diagnostic")
+            (nmap "qj" "J" "join lines")
+            (nmap "<leader>dl" (thunk ''
+              vim.diagnostic.setloclist()
+              vim.cmd("lopen")
+            '') "[D]iagnostic loclist")
+            (nmap "<leader>dq" (thunk ''
+              vim.diagnostic.setqflist()
+              vim.cmd("copen")
+            '') "[D]iagnostic qflist")
+            # }}}
+            # {{{ Other misc keybinds
+            (nmap "<Leader>a" "<C-^>" "[A]lternate file")
+            (unmap "<C-^>")
+            (nmap "Q" ":wqa<cr>" "Save all files and [q]uit")
+            (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
+            (nmap "<leader>sw" (tempest /wrapping/toggle) "toggle word [w]rap")
+            (nmap "<leader>ss" (thunk "vim.opt.spell = not vim.o.spell") "toggle [s]pell checker")
+            (nmap "<leader>yp" "<cmd>!curl --data-binary @% https://paste.rs | wl-copy<cr>"
+              "[y]ank [p]aste.rs link to clipboard"
+            )
+            # }}}
+            {
+              mode = "v";
+              mapping = "<C-i>";
+              action = _: tempest /createVisualFold (vim /fn/input "Fold name: ");
+            }
+          ];
           # }}}
           # {{{ Autocmds
           autocmds = [
             # {{{ Exit certain buffers with qq
             {
               event = "FileType";
-              pattern = [ "help" ];
+              pattern = [
+                "help"
+                "qf"
+              ];
               group = "BasicBufferQuitting";
               action.keys = nmap "qq" "<cmd>close<cr>" "[q]uit current buffer";
             }
