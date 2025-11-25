@@ -43,21 +43,21 @@ in
 
     enabledExtensions = with spicePkgs.extensions; [
       adblock
-      betterGenres
-      bookmark
-      fullAlbumDate
-      fullAppDisplayMod
-      groupSession
-      keyboardShortcut
-      listPlaylistsWithSong # Adds button to show playlists which contain a song
-      playlistIntersection # Shows stuff that's in two different playlists
-      savePlaylists # Adds a button to duplicate playlists
-      showQueueDuration
+      # betterGenres
+      # bookmark
+      # fullAlbumDate
+      # fullAppDisplayMod
+      # groupSession
+      # keyboardShortcut
+      # listPlaylistsWithSong # Adds button to show playlists which contain a song
+      # playlistIntersection # Shows stuff that's in two different playlists
+      # savePlaylists # Adds a button to duplicate playlists
+      # showQueueDuration
       shuffle # Working shuffle
-      skipStats # Track my skips
-      songStats
-      trashbin
-      wikify # Shows an artist's wikipedia entry
+      # skipStats # Track my skips
+      # songStats
+      # trashbin
+      # wikify # Shows an artist's wikipedia entry
     ];
   };
 
