@@ -127,4 +127,10 @@ in
       }
     ];
   };
+
+  # TODO(2025-11-22): auto-convert Noita's GIFs to a better format
+  systemd.user.tmpfiles.rules = [
+    # Make Noita's GIFs more easily accessible
+    "L+ ${config.xdg.userDirs.videos}/noita - - - - ${config.xdg.dataHome}/heroic/prefixes/default/Noita/drive_c/users/moon/AppData/LocalLow/Nolla_Games_Noita/save_rec/screenshots_animated/"
+  ];
 }
