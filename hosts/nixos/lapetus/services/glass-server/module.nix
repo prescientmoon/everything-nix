@@ -74,6 +74,7 @@ let
     CONTENT_BUNDLE_FOLDER_PATH = "${pkgs.shimmeringextra}/bundles";
     SONGLIST_FILE_PATH = "${pkgs.shimmering-private-config}/songlist.json";
     WORLD_MAP_FOLDER_PATH = "${pkgs.glass-maps}/maps";
+    BUNDLE_STRICT_MODE = false; # WHY IS THIS TRUE BY DEFAULT
     # SONG_FILE_FOLDER_PATH = "${pkgs.glass-charts}";
     # }}}
   };
