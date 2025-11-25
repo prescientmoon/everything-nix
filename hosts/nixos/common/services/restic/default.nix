@@ -58,7 +58,9 @@ in
         paths = [ "/persist/data" ];
         exclude = [
           # Projects are available on github and in my own forge already
-          "/persist/data${config.users.users.pilot.home}/projects"
+          "/persist/data${config.users.users.pilot.home}/projects/personal"
+          "/persist/data${config.users.users.pilot.home}/projects/foreign"
+          "/persist/data${config.users.users.pilot.home}/projects/work"
 
           # Screenshots are usually worthless
           "/persist/data${config.users.users.pilot.home}/media/pictures/screenshots"
