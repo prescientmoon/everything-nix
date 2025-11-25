@@ -30,7 +30,7 @@ misc = [
     "yewtu.be", # Invidious (TODO: add more instances)
 ]
 
-for domain in sum([youtube, mobile_youtube, reddit, misc], []):
+for domain in sum([youtube, mobile_youtube, reddit, twitter, misc], []):
     print(f"nftset=/{domain}/4#inet#filter#dnsmasq_blocked4")
     print(f"nftset=/{domain}/6#inet#filter#dnsmasq_blocked6")
 
