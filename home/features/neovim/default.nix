@@ -308,6 +308,7 @@ let
             }
             # }}}
             # {{{ Purescript
+            # TODO: move this into a ftplugin
             {
               event = "FileType";
               group = "UserPurescriptSettings";
@@ -335,9 +336,6 @@ let
             "PlenaryBustedFile"
           ];
         };
-        # }}}
-        # {{{ nui
-        nui.package = "MunifTanjim/nui.nvim";
         # }}}
         # {{{ web-devicons
         web-devicons.package = "nvim-tree/nvim-web-devicons";
@@ -418,7 +416,6 @@ let
           name = "quicker.nvim";
           dependencies.lua = [ "web-devicons" ];
           event = "FileType qf";
-
           opts = { };
         };
         # }}}
@@ -1149,10 +1146,6 @@ let
             );
           # }}}
 
-          dependencies.lua = [
-            "neoconf"
-            "neodev"
-          ];
           package = "neovim/nvim-lspconfig";
 
           event = "VeryLazy";
@@ -1294,27 +1287,6 @@ let
             };
         };
         # }}}
-        # {{{ neodev
-        neodev = {
-          package = "folke/neodev.nvim";
-          config = true;
-        };
-        # }}}
-        # {{{ neoconf
-        neoconf = {
-          package = "folke/neoconf.nvim";
-
-          cmd = "Neoconf";
-
-          # Provide autocomplete for every language server
-          opts.plugins.jsonls.configure_servers_only = false;
-          opts.import = {
-            vscode = true; # local .vscode/settings.json
-            coc = false; # global/local coc-settings.json
-            nlsp = false; # global/local nlsp-settings.nvim json settings
-          };
-        };
-        # }}}
         # {{{ cmp
         cmp = {
           package = "hrsh7th/nvim-cmp";
@@ -1338,56 +1310,6 @@ let
           config = importFrom ./plugins/cmp.lua "config";
         };
         # }}}
-        # {{{ neotest
-        neotest = {
-          package = "nvim-neotest/neotest";
-          dependencies.lua = [
-            # {{{ Adapters
-            "mrcjkb/neotest-haskell"
-            # }}}
-            "plenary"
-            "treesitter"
-            "nvim-neotest/nvim-nio"
-          ];
-
-          config = _: {
-            setup.neotest = {
-              status.virtual_text = true;
-              output.open_on_run = true;
-              adapters = [
-                (require "rustaceanvim.neotest")
-                (require "neotest-haskell" {
-                  build_tools = [ "stack" ];
-                  frameworks = [ "hspec" ];
-                })
-              ];
-            };
-          };
-
-          # {{{ Keybinds
-          keys =
-            let
-              nmap =
-                key: arg: desc:
-                nlib.nmap "<leader>t${key}" (thunk "require('neotest').run.${arg}") desc;
-            in
-            [
-              (nmap "c" "run()" "Run [c]urrent [t]est")
-              (nmap "f" "run(vim.fn.expand('%'))" "Run [t]ests in [f]ile")
-              (nmap "s" "stop()" "Run [c]urrent [t]est")
-            ];
-          # }}}
-        };
-        # }}}
-        # {{{ dap
-        dap = {
-          package = "rcarriga/nvim-dap-ui";
-          dependencies.lua = [
-            "mfussenegger/nvim-dap"
-            "nvim-neotest/nvim-nio"
-          ];
-        };
-        # }}}
         # }}}
         # {{{ language support
         # {{{ haskell support
@@ -1408,17 +1330,12 @@ let
           };
         };
         # }}}
-        # {{{ rust support
         # {{{ rustacean
         rustacean = {
           package = "mrcjkb/rustaceanvim";
           dependencies.nix = lib.lists.optionals packedTargets.rust [
             pkgs.rust-analyzer
             pkgs.rustfmt
-
-            # Recommended by rustacean.nvim as providing a better experience
-            # than raw lldb
-            pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter
           ];
 
           lazy = false; # This plugin is already lazy
@@ -1434,183 +1351,6 @@ let
             };
           };
         };
-        # }}}
-        # {{{ crates
-        crates = {
-          package = "saecki/crates.nvim";
-          dependencies.lua = [ "plenary" ];
-
-          event = "BufReadPost Cargo.toml";
-
-          # {{{ Set up null_ls source
-          opts.null_ls = {
-            enabled = true;
-            name = "crates";
-          };
-          # }}}
-
-          config.autocmds = [
-            # {{{ Load cmp source on insert
-            {
-              event = "InsertEnter";
-              group = "CargoCmpSource";
-              pattern = "Cargo.toml";
-              action = _: require "cmp" /setup/buffer { sources = [ { name = "crates"; } ]; };
-            }
-            # }}}
-            # {{{ Load keybinds on attach
-            {
-              event = "BufReadPost";
-              group = "CargoKeybinds";
-              pattern = "Cargo.toml";
-              # # {{{ Register which-key info
-              # action.callback = contextThunk /* lua */ ''
-              #  require("which-key").register({
-              #    ["<leader>lc"] = {
-              #      name = "[l]ocal [c]rates",
-              #      bufnr = context.bufnr
-              #    },
-              #  })
-              # '';
-              # }}}
-
-              action.keys =
-                _:
-                let
-                  # {{{ Keymap helpers
-                  nmap = mapping: action: desc: {
-                    inherit mapping desc;
-                    action = require "crates" /${action};
-                  };
-
-                  keyroot = "<leader>lc";
-                in
-                # }}}
-                # {{{ Keybinds
-                [
-                  (nmap "${keyroot}t" "toggle" "[c]rates [t]oggle")
-                  (nmap "${keyroot}r" "reload" "[c]rates [r]efresh")
-
-                  (nmap "${keyroot}H" "open_homepage" "[c]rate [H]omephage")
-                  (nmap "${keyroot}R" "open_repository" "[c]rate [R]epository")
-                  (nmap "${keyroot}D" "open_documentation" "[c]rate [D]ocumentation")
-                  (nmap "${keyroot}C" "open_crates_io" "[c]rate [C]rates.io")
-
-                  (nmap "${keyroot}v" "show_versions_popup" "[c]rate [v]ersions")
-                  (nmap "${keyroot}f" "show_features_popup" "[c]rate [f]eatures")
-                  (nmap "${keyroot}d" "show_dependencies_popup" "[c]rate [d]eps")
-                  (nmap "K" "show_popup" "[c]rate popup")
-                ];
-              # }}}
-            }
-            # }}}
-          ];
-        };
-        # }}}
-        # }}}
-        # {{{ lean support
-        lean = {
-          package = "Julian/lean.nvim";
-          name = "lean";
-          dependencies.lua = [
-            "plenary"
-            "lspconfig"
-          ];
-
-          ft = "lean";
-
-          opts = {
-            abbreviations = {
-              builtin = true;
-              cmp = true;
-            };
-
-            lsp.capabilites = importFrom ./plugins/lspconfig.lua "capabilities";
-
-            lsp3 = false; # We don't want the lean 3 language server!
-            mappings = true;
-          };
-        };
-        # }}}
-        # {{{ idris support
-        idris = {
-          package = "ShinKage/idris2-nvim";
-          name = "idris";
-          dependencies.lua = [
-            "nui"
-            "lspconfig"
-          ];
-
-          ft = [
-            "idris2"
-            "lidris2"
-            "ipkg"
-          ];
-
-          opts = {
-            client.hover.use_split = true;
-            serve.on_attach = tempestBufnr {
-              # {{{ Keymaps
-              keys =
-                let
-                  keymap = mapping: action: desc: {
-                    inherit desc;
-                    mapping = "<leader>i${mapping}";
-                    action = require "idris2.code_action" /${action};
-                  };
-                in
-                [
-                  (keymap "C" "make_case" "Make [c]ase")
-                  (keymap "L" "make_lemma" "Make [l]emma")
-                  (keymap "c" "add_clause" "Add [c]lause")
-                  (keymap "e" "expr_search" "[E]xpression search")
-                  (keymap "d" "generate_def" "Generate [d]efinition")
-                  (keymap "s" "case_split" "Case [s]plit")
-                  (keymap "h" "refine_hole" "Refine [h]ole")
-                ];
-              # }}}
-            };
-          };
-        };
-        # }}}
-        # {{{ github actions
-        github-actions = {
-          package = "yasuhiroki/github-actions-yaml.vim";
-
-          ft = [
-            "yml"
-            "yaml"
-          ];
-        };
-        # }}}
-        # {{{ purescript support
-        purescript = {
-          package = "purescript-contrib/purescript-vim";
-
-          ft = "purescript";
-        };
-        # }}}
-        # {{{ djot support
-        djot =
-          let
-            djot = pkgs.fetchFromGitHub {
-              owner = "jgm";
-              repo = "djot";
-              rev = "2fec440ab7a75a06a1e18c29a00de64ec7c94b9d";
-              sha256 = "1xy2x1qbmv1kjxdpj2pjm03d9l7qrl0wx96gn5m0lkfxkg766i7z";
-            };
-          in
-          {
-            dir = "${djot}/editors/vim";
-            ft = "djot";
-
-            config.autocmds = {
-              event = "FileType";
-              group = "UserDjotSettings";
-              pattern = "djot";
-              action.vim.opt.commentstring = ''{\% %s \%}'';
-            };
-          };
         # }}}
         # }}}
         # {{{ external
@@ -1700,20 +1440,6 @@ let
               disable_frontmatter = true;
             };
           };
-        # }}}
-        # {{{ navigator
-        navigator = {
-          package = "numToStr/Navigator.nvim";
-          cond = blacklist [ "neovide" ];
-
-          config = true;
-          keys = [
-            (nmap "<c-h>" "<cmd>NavigatorLeft<cr>" "Navigate left")
-            (nmap "<c-j>" "<cmd>NavigatorDown<cr>" "Navigate down")
-            (nmap "<c-k>" "<cmd>NavigatorUp<cr>" "Navigate up")
-            (nmap "<c-l>" "<cmd>NavigatorRight<cr>" "Navigate right")
-          ];
-        };
         # }}}
         # }}}
       };

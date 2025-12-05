@@ -966,11 +966,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764897240,
-        "narHash": "sha256-Z9il/jS6cb4qqd0/2pXlmq6lTjcXkYenmbKjV4LHpWA=",
+        "lastModified": 1764902042,
+        "narHash": "sha256-YmR4M6FMS8wuhsXI+VyDXWoSGm77v9RjI1h1vmJsEI8=",
         "ref": "refs/heads/main",
-        "rev": "77736ca820657454202e5728509a8ea52c7e3a68",
-        "revCount": 120,
+        "rev": "255cf14fa44f7a258f95cdc3fb80e2c8b5a5f0bd",
+        "revCount": 121,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
       },

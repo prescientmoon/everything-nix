@@ -138,6 +138,15 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [crates.nvim](https://github.com/saecki/crates.nvim) — Cool plugin, but I was rarely using its functionality
+- [idris2-nvim](https://github.com/idris-community/idris2-nvim) — I haven't used Idris in a good while
+- [lean.nvim](https://github.com/Julian/lean.nvim) — I haven't used Lean in a good while
+- [github-actions-yaml.vim](https://github.com/yasuhiroki/github-actions-yaml.vim) — A yaml schema language server should do
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap) — I never got this working properly anyways. I use [Seer](https://github.com/epasveer/seer) instead.
+- [vim-djot](https://github.com/kolliemo/vim-djot) — not sure why I had this in, there's an official plugin + an unofficial treesitter grammar
+- [Purescript-vim](https://github.com/purescript-contrib/purescript-vim) — The treesitter grammar should hopefully be enough
+- [Neotest](https://github.com/nvim-neotest/neotest) — I was hardly ever using this
+- [Navigator.nvim](https://github.com/numToStr/Navigator.nvim) — I no longer use tmux, nor Wezterm, hence this was a bit useless
 - [microbin](https://github.com/szabodanika/microbin) — Was fairly clunky, thus I switched to [picoshare](https://github.com/mtlynch/picoshare)
 - [sponge](https://github.com/meaningful-ooo/sponge) — I kept losing commands I wanted to keep in my history
 - [hyprland-vim-syntax](https://github.com/theRealCarneiro/hyprland-vim-syntax) — Neovim supports hyprlang files out of the box now
