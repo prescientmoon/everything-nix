@@ -32,19 +32,6 @@
       user.name = "prescientmoon";
       user.email = "git@moonythm.dev";
 
-      # {{{ Aliases
-      settings.alias = {
-        # Print history nicely
-        graph = "log --decorate --oneline --graph";
-
-        # Print last commit' hash
-        hash = "log -1 --format='%H'";
-
-        # Count the number of commits
-        count = "rev-list --count --all";
-      };
-      # }}}
-
       github.user = "prescientmoon";
       hub.protocol = "ssh";
       core.editor = "nvim";
@@ -76,6 +63,18 @@
       # Sign everything by default
       commit.gpgsign = true;
       tag.gpgsign = true;
+
+      # Aliases
+      alias = {
+        # Print history nicely
+        graph = "log --decorate --oneline --graph";
+
+        # Print last commit' hash
+        hash = "log -1 --format='%H'";
+
+        # Count the number of commits
+        count = "rev-list --count --all";
+      };
     };
   };
 
