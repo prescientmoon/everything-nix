@@ -44,11 +44,13 @@
     package = pkgs.forgejo; # Defaults to LTS
     stateDir = "/persist/state/var/lib/forgejo";
     secrets.mailer.PASSWD = config.sops.secrets.forgejo_mail_password.path;
-    dump.enable = false; # We already backup via rsync + have zfs snapshots to rollback to
-
     lfs.enable = true;
 
-    # See [the cheatsheet](https://docs.gitea.com/next/administration/config-cheat-sheet)
+    # We already backup via rsync & we have ZFS snapshots to rollback to
+    dump.enable = false;
+
+    # See the cheat-sheet:
+    # https://docs.gitea.com/next/administration/config-cheat-sheet
     settings = {
       default.APP_NAME = "moonforge";
 
@@ -76,10 +78,15 @@
         DEFAULT_REPO_UNITS = lib.concatStringsSep "," [ "repo.code" ];
         ENABLE_PUSH_CREATE_USER = true;
         ENABLE_PUSH_CREATE_ORG = true;
+
+        # These take up way too much space. They are also part of ZFS snapshots,
+        # which only makes things worse...
+        DISABLE_DOWNLOAD_SOURCE_ARCHIVES = true;
       };
 
       ui = {
-        AMBIGUOUS_UNICODE_DETECTION = true;
+        # I do not care about ambiguous Unicode
+        AMBIGUOUS_UNICODE_DETECTION = false;
       };
     };
   };

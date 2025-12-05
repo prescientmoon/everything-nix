@@ -1,0 +1,7 @@
+block auto
+  abbr land ∧
+  abbr lor ∨
+  abbr neq ≠
+  abbr leq ≤
+  abbr geq ≥
+

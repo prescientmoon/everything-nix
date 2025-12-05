@@ -160,6 +160,11 @@ in
           ${lib.getExe pkgs.glass-server-db-updater} \
             ${glassServerConfig.SQLITE_DATABASE_PATH}
 
+          # Patch the db
+          ${lib.getExe pkgs.python3} \
+            ${./patch-db.py} \
+            ${glassServerConfig.SQLITE_DATABASE_PATH}
+
           # Start the server
           ARCAEA_JSON_CONFIG_PATH=${configPath} ${pkg}/bin/glass-server
         '';

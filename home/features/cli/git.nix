@@ -9,9 +9,6 @@
     lfs.enable = true;
     package = pkgs.gitFull;
 
-    userName = "prescientmoon";
-    userEmail = "git@moonythm.dev";
-
     # {{{ Globally ignored files
     ignores = [
       # Syncthing
@@ -30,20 +27,24 @@
       "hie.yaml"
     ];
     # }}}
-    # {{{ Aliases
-    aliases = {
-      # Print history nicely
-      graph = "log --decorate --oneline --graph";
 
-      # Print last commit' hash
-      hash = "log -1 --format='%H'";
+    settings = {
+      user.name = "prescientmoon";
+      user.email = "git@moonythm.dev";
 
-      # Count the number of commits
-      count = "rev-list --count --all";
-    };
-    # }}}
+      # {{{ Aliases
+      settings.alias = {
+        # Print history nicely
+        graph = "log --decorate --oneline --graph";
 
-    extraConfig = {
+        # Print last commit' hash
+        hash = "log -1 --format='%H'";
+
+        # Count the number of commits
+        count = "rev-list --count --all";
+      };
+      # }}}
+
       github.user = "prescientmoon";
       hub.protocol = "ssh";
       core.editor = "nvim";

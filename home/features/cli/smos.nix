@@ -6,9 +6,9 @@
 }:
 {
   imports = [
-    # NOTE: using `pkgs.system` before `module.options` is evaluated
-    # leads to infinite recursion! I should perhaps take system as
-    # a special argument as well...
+    # NOTE: using `pkgs.stdenv.hostPlatform.system` before `module.options` is
+    # evaluated leads to infinite recursion! I should perhaps take system as a
+    # special argument as well...
     inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
@@ -21,7 +21,7 @@
 
     # We don't want to use the statically-linked binary, as it requires
     # pulling-in the entirety of `ghc-musl`.
-    smosReleasePackages = inputs.smos.packages.${pkgs.system}.default;
+    smosReleasePackages = inputs.smos.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     enable = true;
     notify.enable = true;

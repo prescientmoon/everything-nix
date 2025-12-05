@@ -45,7 +45,7 @@
       userChrome = builtins.readFile ./userChrome.css;
       # }}}
       # {{{ Extensions
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         # bypass-paywalls-clean # REASON: returns 404 for now
         augmented-steam # Adds more info to steam
         bitwarden # Password manager

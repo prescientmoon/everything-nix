@@ -34,7 +34,7 @@
     krita # drawing
     libreoffice # document editing
 
-    bitwarden # Password-manager
+    bitwarden-desktop # Password-manager
     qbittorrent # Torrent client
     overskride # Bluetooth client
 

@@ -6,6 +6,7 @@
 {
   programs.anyrun = {
     enable = true;
+
     config = {
       # {{{ Plugins
       plugins = lib.lists.forEach [
@@ -30,11 +31,11 @@
     extraCss = # css
       ''
         /* {{{ Global overrides */
-        #window,
-        #entry,
-        #main,
-        #plugin,
-        #match {
+        window,
+        text,
+        .main,
+        .plugin,
+        .match {
           background: transparent;
         }
 
@@ -44,29 +45,29 @@
         }
         /* }}} */
         /* {{{ Transparent & raised surfaces */
-        #entry,
-        list#main,
-        row#match:selected {
+        text,
+        .main,
+        .match:selected {
           box-shadow: 0.5px 0.5px 1.5px 1.5px rgba(0, 0, 0, 0.5);
           border-radius: ${toString config.satellite.theming.rounding.radius}px;
         }
 
-        #entry,
-        list#main {
+        text,
+        .main {
           margin: 1rem;
           background: rgba(${config.satellite.theming.colors.rgba "base00"});
           min-height: 1rem;
         }
         /* }}} */
         /* {{{ Input */
-        #entry {
+        text {
           font-size: 2rem;
           padding: 1rem;
           border: none;
         }
         /* }}} */
         /* {{{ Matches */
-        row#match {
+        row.match {
           margin: 0.7rem;
           margin-bottom: 0.3rem;
           color: ${config.lib.stylix.colors.withHashtag.base05};
@@ -74,14 +75,18 @@
           transition: none;
         }
 
-        row#match:last-child {
+        row.match:last-child {
           margin-bottom: 0.7rem;
         }
 
-        #match:selected {
+        .match:selected {
           padding: 0.5rem;
           color: ${config.lib.stylix.colors.withHashtag.base05};
           background: rgba(${config.satellite.theming.colors.rgb "base03"}, 0.2);
+        }
+
+        .match.description {
+          font-size: 0;
         }
         /* }}} */
       '';

@@ -66,6 +66,15 @@ let
         ttl = 600;
       }
     ];
+
+  mkGoogleSiteVerification = at: key: {
+    at = "";
+    ttl = 600;
+    type = "TXT";
+    value = [
+      "google-site-verification=${key}"
+    ];
+  };
 in
 # }}}
 {
@@ -75,5 +84,6 @@ in
     (ghPage "giftstogo")
     (migaduMail "" "kfkhyexd")
     (migaduMail "orbit" "24s7lnum")
+    (mkGoogleSiteVerification "" "PLDTV1yBxSRGgDU61yK7Ed8czHgJb3t5tIacK7vM-ks")
   ];
 }

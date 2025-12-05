@@ -24,11 +24,10 @@ in
 
     services.greetd = {
       enable = true;
-      vt = 1; # NOTE: this will get removed in 25.11
       settings = {
         default_session = {
           command = ''
-            ${lib.getExe pkgs.greetd.tuigreet} \
+            ${lib.getExe pkgs.tuigreet} \
               -c ${lib.getExe config.programs.hyprland.package} \
               -g " (.>_>.) Welcome to ${config.networking.hostName}! (.<_<.)" \
               --remember

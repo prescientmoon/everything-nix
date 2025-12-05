@@ -163,4 +163,10 @@ aliases = ["@wk", "@wikipedia"]
 url     = "https://en.wikipedia.org/wiki/Special:Search"
 param   = "search"
 icon    = "https://en.wikipedia.org/favicon.ico"
+
+["Wiktionary"]
+aliases = ["@wt", "@wiktionary"]
+url     = "https://en.wiktionary.org/wiki/Special:Search"
+param   = "search"
+icon    = "https://en.wiktionary.org/favicon.ico"
 # }}}

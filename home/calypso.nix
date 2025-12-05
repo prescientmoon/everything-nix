@@ -15,14 +15,14 @@
   # Arbitrary extra packages
   home.packages = with pkgs; [
     # Communication
-    whatsapp-for-linux
+    wasistlos
     element-desktop # Matrix client
     # zoom-us # Zoom client 🤮
     # NOTE: "expired" versions can no longer be used
     upkgs.signal-desktop # Signal client
 
     # Documents & editors
-    libsForQt5.okular # Useful for reading pdf annotations (which zathura does not support)
+    kdePackages.okular # Useful for reading pdf annotations (which zathura does not support)
     # lmms # Music software
     # kicad # PCB editing
 

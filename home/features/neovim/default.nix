@@ -1066,7 +1066,7 @@ let
         # }}}
         # {{{ miros
         # snippeting generation language
-        miros = with inputs.miros.packages.${pkgs.system}; {
+        miros = with inputs.miros.packages.${pkgs.stdenv.hostPlatform.system}; {
           dir = miros-nvim;
           dependencies.nix = [ miros ];
 
@@ -1618,7 +1618,7 @@ let
         # {{{ wakatime
         wakatime = {
           package = "wakatime/vim-wakatime";
-          dependencies.nix = [ pkgs.wakatime ];
+          dependencies.nix = [ pkgs.wakatime-cli ];
 
           event = "VeryLazy";
         };
@@ -1769,7 +1769,7 @@ let
   neovim = wrapClient {
     base =
       if config.satellite.toggles.neovim-nightly.enable then
-        inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+        inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
       else
         upkgs.neovim;
     name = "nvim";

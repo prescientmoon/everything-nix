@@ -2,22 +2,11 @@
 let
 in
 # themeMap = pkgs.callPackage (import ./themes.nix) { };
-# REASON: newer discord versions don't work with the one in nixpkgs
-# discocss = pkgs.discocss.overrideAttrs (old: rec {
-#   version = "unstable-2023-09-02";
-#   src = pkgs.fetchFromGitHub {
-#     owner = "bddvlpr";
-#     repo = "discocss";
-#     rev = "37f1520bc90822b35e60baa9036df7a05f43fab8";
-#     sha256 = "1559mxmc0ppl4jxvdzszphysp1j31k2hm93qv7yz87xn9j0z2m04";
-#   };
-# });
-# vencord = pkgs.discord.override { withVencord = true; };
 {
   programs.discord = {
     enable = true;
-    enableDevtools = true;
     package = pkgs.vesktop;
+    settings.DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
   };
 
   home.packages = [ pkgs.discord ];

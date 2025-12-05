@@ -6,7 +6,7 @@
   ...
 }:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   themeMap = lib.fix (self: {
     "Catppuccin Mocha" = spicePkgs.themes.comfy;
     "Catppuccin Latte" = spicePkgs.themes.comfy;
