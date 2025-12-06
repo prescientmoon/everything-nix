@@ -1,11 +1,13 @@
 {
   lib,
   config,
+  upkgs,
   ...
 }:
 {
   programs.anyrun = {
     enable = true;
+    package = upkgs.anyrun;
 
     config = {
       # {{{ Plugins

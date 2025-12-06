@@ -15,21 +15,15 @@ let
     terminal = false;
     exec = "steam steam://rungameid/${id}";
   };
+
+  heroicGameDir = "${config.home.homeDirectory}/media/games/heroic";
+  heroicConfigDir = "${config.xdg.configHome}/heroic";
+  heroicDataDir = "${config.xdg.dataHome}/heroic";
 in
 {
-  home.packages = [
-    pkgs.vvvvvv
-    pkgs.lutris
-    pkgs.wine64
-    pkgs.pegasus-frontend
-    (upkgs.heroic.override {
-      extraPkgs = pkgs: [
-        pkgs.gamescope
-        pkgs.gamemode
-      ];
-    })
-  ];
+  imports = [ ./pegasus.nix ];
 
+  # {{{ Desktop entries
   # TODO: download all of these icons locally
   xdg.desktopEntries = {
     factorio = mkSteamGame "Factorio" "427520" (
@@ -88,8 +82,8 @@ in
       }
     );
   };
-
-  # Persistence
+  # }}}
+  # {{{ Persistence
   satellite.persistence.at.state.apps = {
     wine.directories = [ ".wine" ];
 
@@ -105,8 +99,8 @@ in
     ];
 
     heroic.directories = [
-      "${config.xdg.configHome}/heroic"
-      "${config.xdg.dataHome}/heroic" # I store wine prefixes here
+      heroicConfigDir
+      heroicDataDir # I store wine prefixes here
 
       # Apparently IO intensive stuff like games works better with symlinks?
       {
@@ -132,5 +126,55 @@ in
   systemd.user.tmpfiles.rules = [
     # Make Noita's GIFs more easily accessible
     "L+ ${config.xdg.userDirs.videos}/noita - - - - ${config.xdg.dataHome}/heroic/prefixes/default/Noita/drive_c/users/moon/AppData/LocalLow/Nolla_Games_Noita/save_rec/screenshots_animated/"
+  ];
+  # }}}
+  # {{{ Pegasus
+  programs.pegasus-frontend = {
+    enable = true;
+    collections.nix = {
+      name = "Nix";
+      shortname = "linux";
+      games.noita = {
+        name = "Noita";
+        developers = [ "Nolla Games" ];
+        release = "2020-10-15";
+        description = "Noita is a magical action roguelite set in a world where every pixel is physically simulated. Fight, explore, melt, burn, freeze and evaporate your way through the procedurally generated world using spells you've created yourself.";
+        tags = [
+          "beyond"
+          "roguelike"
+        ];
+
+        file = "${heroicGameDir}/Noita/noita.exe";
+        launch = builtins.toString (
+          pkgs.writeShellScript "noita" ''
+            PROTONPATH=${heroicConfigDir}/tools/proton/GE-Proton-latest \
+            WINEPREFIX=${heroicDataDir}/prefixes/default/Noita \
+            ${pkgs.umu-launcher}/bin/umu-run ${heroicGameDir}/Noita/noita.exe
+          ''
+        );
+
+        assets = {
+          poster = ./assets/noita/grid.png;
+          logo = ./assets/noita/logo.png;
+          title = ./assets/noita/icon.png;
+          background = ./assets/noita/background.png;
+          screenshot = ./assets/noita/screenshot.jpg;
+          # marquee = ./assets/noita/hero.png;
+        };
+      };
+    };
+  };
+  # }}}
+
+  home.packages = [
+    pkgs.vvvvvv
+    pkgs.lutris
+    pkgs.wine64
+    (upkgs.heroic.override {
+      extraPkgs = pkgs: [
+        pkgs.gamescope
+        pkgs.gamemode
+      ];
+    })
   ];
 }
