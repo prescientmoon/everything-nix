@@ -14,8 +14,10 @@
       plugins = lib.lists.forEach [
         "applications"
         "dictionary"
+        "translate"
         "rink"
         "stdin"
+        "symbols"
       ] (name: "${config.programs.anyrun.package}/lib/lib${name}.so");
       # }}}
       # {{{ Geometry
@@ -92,5 +94,13 @@
         }
         /* }}} */
       '';
+
+    extraConfigFiles."symbols.ron".text = ''
+      Config(
+        prefix: ":sym",
+        symbols: {},
+        max_entries: 5,
+      )
+    '';
   };
 }
