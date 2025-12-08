@@ -711,22 +711,12 @@ let
             opts.indent.enable = true;
             opts.highlight = {
               enable = true;
-              disable = [ "kotlin" ]; # This one seemed a bit broken
+              disable = [
+                "kotlin" # This one seemed a bit broken
+                "odin"
+              ];
               additional_vim_regex_highlighting = false;
             };
-
-            # init.callback = thunk ''
-            #   local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-            #   parser_config.odin = {
-            #     install_info = {
-            #       url = "~/projects/foreign/tree-sitter-odin",
-            #       files = {"src/parser.c", "src/scanner.c"},
-            #     },
-            #     filetype = "odin",
-            #   }
-            #
-            #   -- vim.treesitter.language.register('odin_custom', 'odin')
-            # '';
           };
         # }}}
         # }}}
