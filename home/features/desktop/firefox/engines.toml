@@ -169,4 +169,16 @@ aliases = ["@wt", "@wiktionary"]
 url     = "https://en.wiktionary.org/wiki/Special:Search"
 param   = "search"
 icon    = "https://en.wiktionary.org/favicon.ico"
+
+["Dutch dictionary"]
+aliases = ["@dutch"]
+url     = "https://www.linguee.com/english-dutch/search"
+param   = "query"
+icon    = "https://www.linguee.com/favicon.ico"
+
+["Dutch wordlist"]
+aliases = ["@dw", "@dutch-wordlist"]
+url     = "https://woordenlijst.org/zoeken/"
+param   = "q"
+icon    = "https://woordenlijst.org/favicon.ico"
 # }}}
