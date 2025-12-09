@@ -8,5 +8,5 @@
   ];
 
   # Do not suspend on lid closing
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
 }

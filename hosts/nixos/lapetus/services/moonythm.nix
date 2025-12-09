@@ -1,10 +1,11 @@
 {
   inputs,
-  pkgs,
+  upkgs,
   ...
 }:
 let
-  dir = "${inputs.nihil.packages.${pkgs.stdenv.hostPlatform.system}.moonythm}/web";
+  nihil = import inputs.nihil { pkgs = upkgs; };
+  dir = "${nihil.moonythm}/web";
 in
 {
   satellite.cloudflared.at."".port = 80;
