@@ -945,11 +945,11 @@
     "nihil": {
       "flake": false,
       "locked": {
-        "lastModified": 1765243674,
-        "narHash": "sha256-YVtNyADm9pcLmn8oOaoRTXMTqFMFb0O332Jpcs83EZw=",
+        "lastModified": 1765251525,
+        "narHash": "sha256-0j3ZDwPK8MBpEuzsVqnaVZ5jy4+AxIlKz+cmMSsiXjQ=",
         "ref": "refs/heads/main",
-        "rev": "4102a2f96c6fc03444c13fc968d99ae70fd1d37b",
-        "revCount": 126,
+        "rev": "ef7ac6c045ec727fbfb7c2842e95aa8423b53cbe",
+        "revCount": 129,
         "type": "git",
         "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
       },
