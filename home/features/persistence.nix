@@ -121,6 +121,7 @@
   # {{{ Whatsapp
   satellite.persistence.at.state.apps.whatsapp.directories = [
     "${config.xdg.configHome}/whatsapp-for-linux"
+    # TODO(2025-12-10): Am I sure this is supposed to be this instead of `dataHome`?
     "${config.xdg.stateHome}/whatsapp-for-linux"
   ];
 
@@ -150,6 +151,11 @@
   # {{{ Obsidian
   satellite.persistence.at.state.apps.obsidian.directories = [
     "${config.xdg.configHome}/obsidian"
+  ];
+  # }}}
+  # {{{ Anki
+  satellite.persistence.at.state.apps.anki.directories = [
+    "${config.xdg.dataHome}/Anki2"
   ];
   # }}}
   # }}}

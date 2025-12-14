@@ -16,9 +16,23 @@ let
     exec = "steam steam://rungameid/${id}";
   };
 
-  heroicGameDir = "${config.home.homeDirectory}/media/games/heroic";
+  gameDir = "${config.home.homeDirectory}/media/games";
+  heroicGameDir = "${gameDir}/heroic";
   heroicConfigDir = "${config.xdg.configHome}/heroic";
   heroicDataDir = "${config.xdg.dataHome}/heroic";
+
+  mkUmuScript =
+    {
+      name,
+      file,
+      prefix ? "/persist/state${config.home.homeDirectory}/${name}/prefix",
+    }:
+    pkgs.writeShellScript name ''
+      PROTONPATH=${heroicConfigDir}/tools/proton/GE-Proton-latest \
+      WINEPREFIX=${prefix} \
+      ${pkgs.umu-launcher}/bin/umu-run ${file}
+    '';
+
 in
 {
   imports = [ ./pegasus.nix ];
@@ -104,7 +118,7 @@ in
 
       # Apparently IO intensive stuff like games works better with symlinks?
       {
-        directory = "media/games/heroic";
+        directory = heroicGameDir;
         method = "symlink";
       }
     ];
@@ -116,7 +130,7 @@ in
       "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
 
       {
-        directory = "media/games/lutris";
+        directory = "${gameDir}/lutris";
         method = "symlink";
       }
     ];
@@ -128,13 +142,14 @@ in
     "L+ ${config.xdg.userDirs.videos}/noita - - - - ${config.xdg.dataHome}/heroic/prefixes/default/Noita/drive_c/users/moon/AppData/LocalLow/Nolla_Games_Noita/save_rec/screenshots_animated/"
   ];
   # }}}
-  # {{{ Pegasus
+
   programs.pegasus-frontend = {
     enable = true;
     collections.nix = {
       name = "Nix";
       shortname = "linux";
-      games.noita = {
+      # {{{ Noita
+      games.noita = rec {
         name = "Noita";
         developers = [ "Nolla Games" ];
         release = "2020-10-15";
@@ -145,13 +160,11 @@ in
         ];
 
         file = "${heroicGameDir}/Noita/noita.exe";
-        launch = builtins.toString (
-          pkgs.writeShellScript "noita" ''
-            PROTONPATH=${heroicConfigDir}/tools/proton/GE-Proton-latest \
-            WINEPREFIX=${heroicDataDir}/prefixes/default/Noita \
-            ${pkgs.umu-launcher}/bin/umu-run ${heroicGameDir}/Noita/noita.exe
-          ''
-        );
+        launch = mkUmuScript {
+          inherit file;
+          name = "noita";
+          prefix = "${heroicDataDir}/prefixes/default/Noita";
+        };
 
         assets = {
           poster = ./assets/noita/grid.png;
@@ -162,9 +175,38 @@ in
           # marquee = ./assets/noita/hero.png;
         };
       };
+      # }}}
+      # {{{ Crypt of the necrodancer
+      games.crypt-of-the-necrodancer = rec {
+        name = "Crypt of the NecroDancer";
+        developers = [
+          "Brace Yourself Games"
+          "Blitworks"
+        ];
+        release = "2015-04-23";
+        description = "Crypt of the NecroDancer is an award winning hardcore roguelike rhythm game. Move to the music and deliver beatdowns to the beat! Groove to the epic Danny Baranowsky soundtrack, or select songs from your own MP3 collection!";
+        tags = [
+          "rhythm"
+          "roguelike"
+        ];
+
+        file = "${gameDir}/freestanding/crypt-of-the-necrodancer/game/NecroDancer.exe";
+        launch = mkUmuScript {
+          inherit file;
+          name = "crypt-of-the-necrodancer";
+        };
+
+        assets = {
+          poster = ./assets/crypt/grid.png;
+          logo = ./assets/crypt/logo.png;
+          title = ./assets/crypt/icon.png;
+          background = ./assets/crypt/background.png;
+          screenshot = ./assets/crypt/screenshot.png;
+        };
+      };
+      # }}}
     };
   };
-  # }}}
 
   home.packages = [
     pkgs.vvvvvv

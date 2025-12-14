@@ -35,6 +35,7 @@
     # plover.dev # steno engine
     upkgs.freetube # youtube client
     pomodoro-gtk # basic pomodoro timer
+    anki # flashcards!
   ];
 
   satellite = {

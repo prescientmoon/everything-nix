@@ -91,6 +91,12 @@ url     = "https://www.protondb.com/search"
 param   = "q"
 icon    = "https://www.protondb.com/favicon.ico"
 
+["GOG DB"]
+aliases = ["@gdb", "@gog-db"]
+url     = "https://www.gogdb.org/products"
+param   = "search"
+icon    = "https://www.gogdb.org/favicon.ico"
+
 ["Arcaea wiki"]
 aliases = ["@ae", "@arcaea"]
 url     = "https://arcaea.fandom.com/wiki/Special:Search?scope = internal&navigationSearch = true"

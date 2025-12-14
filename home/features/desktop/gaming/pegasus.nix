@@ -18,7 +18,10 @@ let
         };
 
         file = lib.mkOption {
-          type = lib.types.str;
+          type = lib.types.oneOf [
+            lib.types.str
+            lib.types.path
+          ];
           description = "The file that belongs to this game";
         };
 
@@ -58,12 +61,19 @@ let
 
         release = lib.mkOption {
           type = lib.types.nullOr lib.types.str;
+
           default = null;
           description = "The date when the game was released, in YYYY-MM-DD format (eg. 1985-05-22). Month and day can be omitted if unknown (eg. 1985-05 or 1985 alone is also accepted)";
         };
 
         launch = lib.mkOption {
-          type = lib.types.nullOr lib.types.str;
+          type = lib.types.nullOr (
+            lib.types.oneOf [
+              lib.types.str
+              lib.types.path
+              lib.types.package
+            ]
+          );
           default = null;
           description = "If this game must be launched differently than the others in the same collection, a custom launch command can be defined for it";
         };

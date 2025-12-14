@@ -24,8 +24,8 @@ let
     # {{{ Catppuccin latte
     catppuccin-latte = {
       stylix = {
-        image = ./wallpapers/needygirloverdose2.jpg;
-        # image = ./wallpapers/nix-catppuccin-latte.png;
+        # image = ./wallpapers/needygirloverdose2.jpg;
+        image = ./wallpapers/wall.png;
         base16Scheme = base16 "catppuccin-latte";
         opacity = transparency 0.7;
         polarity = "light";
