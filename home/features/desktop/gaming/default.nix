@@ -16,6 +16,8 @@ let
     exec = "steam steam://rungameid/${id}";
   };
 
+  steamDir = "${config.xdg.dataHome}/Steam";
+  steamGameDir = "${steamDir}/steamapps/common/Rain World";
   gameDir = "${config.home.homeDirectory}/media/games";
   heroicGameDir = "${gameDir}/heroic";
   heroicConfigDir = "${config.xdg.configHome}/heroic";
@@ -27,10 +29,10 @@ let
       file,
       prefix ? "/persist/state${config.home.homeDirectory}/${name}/prefix",
     }:
-    pkgs.writeShellScript name ''
-      PROTONPATH=${heroicConfigDir}/tools/proton/GE-Proton-latest \
-      WINEPREFIX=${prefix} \
-      ${pkgs.umu-launcher}/bin/umu-run ${file}
+    pkgs.writeShellScript "umu-${name}" ''
+      PROTONPATH="${heroicConfigDir}/tools/proton/GE-Proton-latest" \
+      WINEPREFIX="${prefix}" \
+      ${pkgs.umu-launcher}/bin/umu-run "${file}"
     '';
 
 in
@@ -102,10 +104,9 @@ in
     wine.directories = [ ".wine" ];
 
     steam.directories = [
-      "${config.xdg.dataHome}/Steam"
+      steamDir
 
-      # To be honest, these could all be moved to their own directories. They're
-      # mostly here because I am too lazy to move them hhhh.
+      # TODO(2025-12-16): move these to their own directories
       ".factorio"
       "${config.xdg.dataHome}/VVVVVV"
       "${config.xdg.dataHome}/Baba_Is_You"
@@ -114,8 +115,9 @@ in
 
     heroic.directories = [
       heroicConfigDir
-      heroicDataDir # I store wine prefixes here
+      heroicDataDir # I store wine prefixes here (will try to move them out though)
 
+      # TODO(2025-12-16): This tip is probably obsolete
       # Apparently IO intensive stuff like games works better with symlinks?
       {
         directory = heroicGameDir;
@@ -134,9 +136,22 @@ in
         method = "symlink";
       }
     ];
+
+    pegasus.directories = [
+      "${config.xdg.configHome}/pegasus-frontend"
+    ];
+  };
+
+  satellite.persistence.at.cache.apps = {
+    umu.directories = [
+      "${config.xdg.dataHome}/umu"
+      "${config.xdg.cacheHome}/umu"
+      "${config.xdg.cacheHome}/umu-protonfixes"
+    ];
   };
 
   # TODO(2025-11-22): auto-convert Noita's GIFs to a better format
+  # TODO(2025-12-16): move prefix to its own subdirectory
   systemd.user.tmpfiles.rules = [
     # Make Noita's GIFs more easily accessible
     "L+ ${config.xdg.userDirs.videos}/noita - - - - ${config.xdg.dataHome}/heroic/prefixes/default/Noita/drive_c/users/moon/AppData/LocalLow/Nolla_Games_Noita/save_rec/screenshots_animated/"
@@ -169,7 +184,7 @@ in
         assets = {
           poster = ./assets/noita/grid.png;
           logo = ./assets/noita/logo.png;
-          title = ./assets/noita/icon.png;
+          icon = ./assets/noita/icon.png;
           background = ./assets/noita/background.png;
           screenshot = ./assets/noita/screenshot.jpg;
           # marquee = ./assets/noita/hero.png;
@@ -199,9 +214,37 @@ in
         assets = {
           poster = ./assets/crypt/grid.png;
           logo = ./assets/crypt/logo.png;
-          title = ./assets/crypt/icon.png;
+          icon = ./assets/crypt/icon.png;
           background = ./assets/crypt/background.png;
           screenshot = ./assets/crypt/screenshot.png;
+        };
+      };
+      # }}}
+      # {{{ Rain World
+      games.rain-world = rec {
+        name = "Rain World";
+        developers = [
+          "Videocult"
+          "Akupara Games"
+        ];
+        release = "2017-03-28";
+        description = "You are a nomadic slugcat, both predator and prey in a broken ecosystem. Grab your spear and brave the industrial wastes, hunting enough food to survive, but be wary— other, bigger creatures have the same plan... and slugcats look delicious.";
+        tags = [
+          "beyond"
+        ];
+
+        file = "${steamGameDir}/RainWorld.exe";
+        launch = mkUmuScript {
+          inherit file;
+          name = "rain-world";
+        };
+
+        assets = {
+          poster = ./assets/rain-world/grid.png;
+          logo = ./assets/rain-world/logo.png;
+          icon = ./assets/rain-world/icon.png;
+          background = ./assets/rain-world/background.png;
+          screenshot = ./assets/rain-world/screenshot.png;
         };
       };
       # }}}
@@ -209,7 +252,7 @@ in
   };
 
   home.packages = [
-    pkgs.vvvvvv
+    pkgs.vvvvvv # TODO(2025-12-16): add this to pegasus
     pkgs.lutris
     pkgs.wine64
     (upkgs.heroic.override {

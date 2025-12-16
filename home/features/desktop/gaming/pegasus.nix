@@ -108,7 +108,7 @@ let
               cabinetLeft = "Left side of the arcade machine";
               cabinetRight = "Right side of the arcade machine";
 
-              title = "A square-sized image (not the desktop icon)";
+              tile = "A square-sized image (not the desktop icon)";
               banner = "An image in 16:9 aspect ratio";
               steam = "Steam grid icon, in 460x215px or 920x430px size";
               background = "A background image, eg. artwork or selected screenshot";
@@ -116,6 +116,9 @@ let
               screenshot = "An in-game screenshot";
               titlescreen = "An in-game screenshot of the title screen or main menu of the game";
               video = "A video about the game, eg. a trailer or gameplay presentation";
+
+              # Non-standard! We'll use this for generating XDG entries
+              icon = "The desktop icon";
             };
       };
 

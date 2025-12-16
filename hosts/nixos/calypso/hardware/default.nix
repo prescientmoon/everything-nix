@@ -1,4 +1,8 @@
 { inputs, config, ... }:
+let
+  profile = "performance";
+  # profile = "powersave";
+in
 {
   # {{{ Imports
   imports = with inputs.nixos-hardware.nixosModules; [
@@ -18,12 +22,12 @@
   hardware.keyboard.qmk.enable = true;
   # }}}
   # {{{ Power management
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = profile;
   services.tlp = {
     enable = !config.services.desktopManager.plasma6.enable;
     settings = {
-      CPU_SCALING_GOVERNOR_ON_BAT = "performance";
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = profile;
+      CPU_SCALING_GOVERNOR_ON_AC = profile;
     };
   };
   # }}}

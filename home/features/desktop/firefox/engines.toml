@@ -73,6 +73,12 @@ param   = "q"
 icon    = "https://github.com/favicon.ico"
 # }}}
 # {{{ Gaming
+["Steam"]
+aliases = ["@steam"]
+url     = "https://store.steampowered.com/search"
+param   = "term"
+icon    = "https://store.steampowered.com/favicon.ico"
+
 ["Steam DB"]
 aliases = ["@sdb", "@steam-db"]
 url     = "https://steamdb.info/search/?a=all"
@@ -90,6 +96,12 @@ aliases = ["@pdb", "@proton-db"]
 url     = "https://www.protondb.com/search"
 param   = "q"
 icon    = "https://www.protondb.com/favicon.ico"
+
+["GOG"]
+aliases = ["@gog"]
+url     = "https://www.gog.com/en/games"
+param   = "query"
+icon    = "https://www.gog.com/favicon.ico"
 
 ["GOG DB"]
 aliases = ["@gdb", "@gog-db"]
