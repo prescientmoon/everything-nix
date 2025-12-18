@@ -157,6 +157,13 @@
         # Do not recommend add-ons
         "extensions.htmlaboutaddons.recommendations.enabled" = false;
 
+        # Disable the ML stuff
+        "browser.ml.enable" = false;
+        "browser.ml.chat.page" = false;
+        "browser.ml.chat.shortcuts" = false;
+        "browser.ml.linkPreview.enabled" = false;
+        "browser.tabs.groups.smart.enabled" = false;
+
         # Inspired by https://github.com/TLATER/dotfiles/blob/b39af91fbd13d338559a05d69f56c5a97f8c905d/home-config/config/graphical-applications/firefox.nix
         # Performance settings
         "gfx.webrender.all" = true; # Force enable GPU acceleration
