@@ -2,6 +2,7 @@
   config,
   pkgs,
   upkgs,
+  lib,
   ...
 }:
 let
@@ -35,6 +36,10 @@ let
       ${pkgs.umu-launcher}/bin/umu-run "${file}"
     '';
 
+  symlinkAll = lib.map (directory: {
+    inherit directory;
+    method = "symlink";
+  });
 in
 {
   imports = [ ./pegasus.nix ];
@@ -103,7 +108,7 @@ in
   satellite.persistence.at.state.apps = {
     wine.directories = [ ".wine" ];
 
-    steam.directories = [
+    steam.directories = symlinkAll [
       steamDir
 
       # TODO(2025-12-16): move these to their own directories
@@ -113,28 +118,20 @@ in
       "${config.xdg.configHome}/unity3d/Team Cherry"
     ];
 
-    heroic.directories = [
+    heroic.directories = symlinkAll [
       heroicConfigDir
-      heroicDataDir # I store wine prefixes here (will try to move them out though)
+      heroicGameDir
 
-      # TODO(2025-12-16): This tip is probably obsolete
-      # Apparently IO intensive stuff like games works better with symlinks?
-      {
-        directory = heroicGameDir;
-        method = "symlink";
-      }
+      # I store wine prefixes here (will try to move them out though)
+      heroicDataDir
     ];
 
     # There might be more to cache in `.cache/lutris`, but this works for now
-    lutris.directories = [
+    lutris.directories = symlinkAll [
       "${config.xdg.configHome}/lutris" # General configuration data
       "${config.xdg.cacheHome}/lutris/banners" # Game banners
       "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
-
-      {
-        directory = "${gameDir}/lutris";
-        method = "symlink";
-      }
+      "${gameDir}/lutris"
     ];
 
     pegasus.directories = [
@@ -143,7 +140,7 @@ in
   };
 
   satellite.persistence.at.cache.apps = {
-    umu.directories = [
+    umu.directories = symlinkAll [
       "${config.xdg.dataHome}/umu"
       "${config.xdg.cacheHome}/umu"
       "${config.xdg.cacheHome}/umu-protonfixes"
