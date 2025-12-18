@@ -18,7 +18,7 @@
   };
 
   imports = [
-    ./iwd
+    ./iwd.nix
     ./wpa_supplicant.nix
   ];
 }
