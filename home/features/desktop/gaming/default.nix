@@ -18,7 +18,7 @@ let
   };
 
   steamDir = "${config.xdg.dataHome}/Steam";
-  steamGameDir = "${steamDir}/steamapps/common/Rain World";
+  steamGameDir = "${steamDir}/steamapps/common";
   gameDir = "${config.home.homeDirectory}/media/games";
   heroicGameDir = "${gameDir}/heroic";
   heroicConfigDir = "${config.xdg.configHome}/heroic";
@@ -34,6 +34,18 @@ let
       PROTONPATH="${heroicConfigDir}/tools/proton/GE-Proton-latest" \
       WINEPREFIX="${prefix}" \
       ${pkgs.umu-launcher}/bin/umu-run "${file}"
+    '';
+
+  mkSteamRunScript =
+    {
+      name,
+      file,
+    }:
+    pkgs.writeShellScript "steam-run-${name}" ''
+      cd "$(dirname "$(realpath "${file}")")"
+      # NOTE: this doesn't work with `pkgs.steam-run`. 
+      # This could be because I add additional packages in `steam.nix`?
+      steam-run "${file}"
     '';
 
   symlinkAll = lib.map (directory: {
@@ -133,10 +145,6 @@ in
       "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
       "${gameDir}/lutris"
     ];
-
-    pegasus.directories = [
-      "${config.xdg.configHome}/pegasus-frontend"
-    ];
   };
 
   satellite.persistence.at.cache.apps = {
@@ -202,8 +210,8 @@ in
           "roguelike"
         ];
 
-        file = "${gameDir}/freestanding/crypt-of-the-necrodancer/game/NecroDancer.exe";
-        launch = mkUmuScript {
+        file = "${steamGameDir}/Crypt of the NecroDancer/NecroDancer64/NecroDancer";
+        launch = mkSteamRunScript {
           inherit file;
           name = "crypt-of-the-necrodancer";
         };
@@ -230,7 +238,7 @@ in
           "beyond"
         ];
 
-        file = "${steamGameDir}/RainWorld.exe";
+        file = "${steamGameDir}/Rain World/RainWorld.exe";
         launch = mkUmuScript {
           inherit file;
           name = "rain-world";

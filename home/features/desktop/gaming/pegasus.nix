@@ -220,5 +220,9 @@ in
     xdg.configFile."pegasus-frontend/metafiles/nix.metadata.pegasus.txt".text =
       lib.concatStringsSep "\n\n"
         (lib.mapAttrsToList (_: collection: "${collection.definition}") cfg.collections);
+
+    satellite.persistence.at.state.apps.pegasus.directories = [
+      "${config.xdg.configHome}/pegasus-frontend"
+    ];
   };
 }

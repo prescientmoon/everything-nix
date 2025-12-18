@@ -52,6 +52,7 @@
     mkpasswd # Hash passwords
     jq # JSON manipulation
     ffsend # File sharing
+    file # Filetype detection
 
     # Normally, I'd recommend against installing this globally, although
     # it seems the completions don't play nicely with direnv otherwise.
