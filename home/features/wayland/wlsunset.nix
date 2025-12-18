@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  systemctl = "${pkgs.stdenv.hostPlatform.system}/bin/systemctl";
+  systemctl = "${pkgs.systemd}/bin/systemctl";
 
   wlsunset-toggle = pkgs.writeShellScriptBin "wlsunset-toggle" ''
     if [ "active" = "$(systemctl --user is-active wlsunset.service)" ]
