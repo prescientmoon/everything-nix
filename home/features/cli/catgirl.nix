@@ -29,5 +29,6 @@ in
   xdg.configFile."catgirl/tilde".text = mkCatgirlNetwork "tilde";
   xdg.configFile."catgirl/libera".text = mkCatgirlNetwork "libera";
   xdg.configFile."catgirl/freenode".text = mkCatgirlNetwork "freenode";
+  xdg.configFile."catgirl/hackint".text = mkCatgirlNetwork "hackint";
   satellite.persistence.at.state.apps.catgirl.directories = [ "${config.xdg.dataHome}/catgirl" ];
 }

@@ -5,6 +5,4 @@
     ./themes
     ./nixpkgs.nix
   ];
-
-  satellite.toggles.neovim-nightly.enable = false;
 }

@@ -210,8 +210,8 @@ in
           "roguelike"
         ];
 
-        file = "${steamGameDir}/Crypt of the NecroDancer/NecroDancer64/NecroDancer";
-        launch = mkSteamRunScript {
+        file = "${steamGameDir}/Crypt of the NecroDancer/NecroDancer64/Necrodancer.exe";
+        launch = mkUmuScript {
           inherit file;
           name = "crypt-of-the-necrodancer";
         };

@@ -3,7 +3,10 @@ let
   cfg = config.satellite.cloudflared;
 in
 {
+  # {{{ Module options
   options.satellite.cloudflared = {
+    enable = lib.mkEnableOption "satellite's greetd integration";
+
     tunnel = lib.mkOption {
       type = lib.types.str;
       description = "Cloudflare tunnel id to use for the `satellite.cloudflared.at` helper";
@@ -13,6 +16,11 @@ in
       description = "Root domain to use as a default for configurations.";
       type = lib.types.str;
       default = config.satellite.dns.domain;
+    };
+
+    credentialsFile = lib.mkOption {
+      description = "The file containing the credentials to use for authentication.";
+      type = lib.types.path;
     };
 
     at = lib.mkOption {
@@ -61,32 +69,47 @@ in
       );
     };
   };
+  # }}}
 
-  config.services.cloudflared.tunnels.${cfg.tunnel}.ingress = lib.attrsets.mapAttrs' (
-    _:
-    {
-      port,
-      host,
-      protocol,
-      ...
-    }:
-    {
-      name = host;
-      value = "${protocol}://localhost:${toString port}";
-    }
-  ) cfg.at;
-
-  config.satellite.dns.records =
-    let
-      mkDnsRecord =
-        { subdomain, ... }:
-        {
-          type = if subdomain == "" then "ALIAS" else "CNAME";
-          at = subdomain;
-          zone = cfg.domain;
-          value = "${cfg.tunnel}.cfargotunnel.com.";
-          enableCloudflareProxy = true;
+  config = lib.mkIf cfg.enable {
+    # {{{ Cloudflare config
+    services.cloudflared =
+      let
+        mkIngressMapping =
+          {
+            port,
+            host,
+            protocol,
+            ...
+          }:
+          {
+            name = host;
+            value = "${protocol}://localhost:${toString port}";
+          };
+      in
+      {
+        enable = true;
+        tunnels.${cfg.tunnel} = {
+          default = "http_status:404";
+          ingress = lib.attrsets.mapAttrs' (_: mkIngressMapping) cfg.at;
+          credentialsFile = cfg.credentialsFile;
         };
-    in
-    lib.attrsets.mapAttrsToList (_: mkDnsRecord) cfg.at;
+      };
+    # }}}
+    # {{{ DNS records
+    satellite.dns.records =
+      let
+        mkDnsRecord =
+          { subdomain, ... }:
+          {
+            type = if subdomain == "" then "ALIAS" else "CNAME";
+            at = subdomain;
+            zone = cfg.domain;
+            value = "${cfg.tunnel}.cfargotunnel.com.";
+            enableCloudflareProxy = true;
+          };
+      in
+      lib.attrsets.mapAttrsToList (_: mkDnsRecord) cfg.at;
+    # }}}
+  };
 }

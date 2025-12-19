@@ -2,7 +2,5 @@
 
 {
   # example =  ./example.nix;
-  cloudflared = ./cloudflared.nix;
-  pounce = ./pounce.nix;
   sqliteWeb = ./sqlite-web.nix;
 }

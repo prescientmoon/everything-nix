@@ -7,6 +7,8 @@
   ...
 }:
 let
+  neovimNightly = false;
+
   # Toggles for including tooling related to a given language
   packedTargets = {
     csharp = false;
@@ -1484,7 +1486,7 @@ let
   # {{{ Clients
   neovim = wrapClient {
     base =
-      if config.satellite.toggles.neovim-nightly.enable then
+      if neovimNightly then
         inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
       else
         upkgs.neovim;
@@ -1503,9 +1505,6 @@ in
   satellite.lua.styluaConfig = ../../../stylua.toml;
 
   # {{{ Basic config
-  # We want other modules to know that we are using neovim!
-  satellite.toggles.neovim.enable = true;
-
   # Link files in the appropriate places
   xdg.configFile.nvim.source = config.satellite.dev.path "home/features/neovim/config";
   home.sessionVariables.EDITOR = "nvim";

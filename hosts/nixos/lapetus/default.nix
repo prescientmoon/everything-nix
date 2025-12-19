@@ -22,7 +22,7 @@
     ./services/miniflux.nix
     ./services/moonythm.nix
     ./services/picoshare.nix
-    ./services/pounce.nix
+    ./services/pounce
     ./services/prometheus.nix
     ./services/prometheus.nix
     ./services/qbittorrent.nix
