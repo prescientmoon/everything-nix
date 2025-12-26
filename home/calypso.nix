@@ -29,6 +29,8 @@
     # Clis
     sherlock # Search for usernames across different websites
     termdown # Basic CLI timer
+    imagemagick # Image operations
+    ffmpeg # Video operations
 
     # Misc
     # google-chrome # Not my primary browser, but sometimes needed in webdev

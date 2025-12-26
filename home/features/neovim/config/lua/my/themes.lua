@@ -40,6 +40,7 @@ table.insert(M, {
         telescope = true,
         mini = { enabled = true },
       },
+      float = { transparent = true, solid = true },
     })
 
     vim.cmd("colorscheme catppuccin")

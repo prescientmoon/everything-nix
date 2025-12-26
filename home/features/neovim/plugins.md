@@ -13,8 +13,8 @@
 - flash, ftft
 - obsidian
 - sibilantmoon
-- undotree
-- wakatime, discord-rich-presence
+- undotree (the next update will have this natively!)
+- wakatime, discord-rich-presence (do I though?)
 - indent-blankline
 
 ## Themes

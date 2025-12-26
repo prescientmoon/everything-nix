@@ -1,2 +1,0 @@
-setlocal nospell
-setlocal nospell

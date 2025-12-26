@@ -17,8 +17,7 @@ end
 -- {{{ Main config function
 function M.config(servers)
   for lsp, details in pairs(servers) do
-    vim.lsp.config(lsp, details)
-    vim.lsp.enable(lsp)
+    -- vim.lsp.config(lsp, details)
   end
 end
 --}}}

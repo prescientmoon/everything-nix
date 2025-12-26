@@ -122,7 +122,7 @@ param   = "search"
 icon    = "https://noita.wiki.gg/favicon.ico"
 
 ["PC gaming wiki"]
-aliases = ["@pcgw", "@pc-gaming-wiki"]
+aliases = ["@pcgw", "@pc-gaming"]
 url     = "https://www.pcgamingwiki.com/w/index.php"
 param   = "search"
 icon    = "https://static.pcgamingwiki.com/favicons/pcgamingwiki.png"
@@ -132,6 +132,12 @@ aliases = ["@rw", "@rain-world"]
 url     = "https://rainworld.miraheze.org/w/index.php"
 param   = "search"
 icon    = "https://rainworld.miraheze.org/favicon.ico"
+
+["Crypt of the Necrodancer wiki"]
+aliases = ["@ndw", "@necrodancer"]
+url     = "https://necrodancer.miraheze.org/w/index.php"
+param   = "search"
+icon    = "https://necrodancer.miraheze.org/favicon.ico"
 
 ["Factorio wiki"]
 aliases = ["@fw", "@factorio-wiki"]

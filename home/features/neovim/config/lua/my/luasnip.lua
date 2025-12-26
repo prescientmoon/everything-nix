@@ -1,7 +1,7 @@
 local M = {}
 local conditions = require("luasnip.extras.conditions")
 
--- {{{ Math mode detection
+-- {{{ LaTeX math mode detection
 -- Taken from: https://github.com/iurimateus/luasnip-latex-snippets.nvim/blob/main/lua/luasnip-latex-snippets/util/ts_utils.lua
 local MATH_NODES = {
   displayed_equation = true,

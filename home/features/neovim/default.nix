@@ -40,75 +40,6 @@ let
       pre = {
         # {{{ General options
         "0:general-options" = {
-          vim.g = {
-            # Disable filetype.vim
-            do_filetype_lua = true;
-            did_load_filetypes = false;
-
-            # Set leader
-            mapleader = " ";
-          };
-
-          vim.opt = {
-            # Basic options
-            joinspaces = false; # No double spaces with join (mapped to qj in my config)
-            list = false; # I don't want to show things like tabs
-            cmdheight = 0; # Hide command line when it's not getting used
-            spell = true; # Spell checker
-            signcolumn = "yes"; # Keeps the sign column of a consistent width
-
-            # tcqj are there by default, and "r" automatically continues comments on enter
-            formatoptions = "tcqjr";
-
-            scrolloff = 4; # Starts scrolling 4 lines from the edge of the screen
-            termguicolors = true; # True color support
-
-            wrap = false; # Disable line wrap (by default)
-            wildmode = [
-              "list"
-              "longest"
-            ]; # Command-line completion mode
-            completeopt = [
-              "menu"
-              "menuone"
-              "noselect"
-            ];
-
-            undofile = true; # persist undos!!
-
-            # {{{ Line numbers
-            number = true; # Show line numbers
-            relativenumber = true; # Relative line numbers
-            # }}}
-            # {{{ Indents
-            expandtab = true; # Use spaces for the tab char
-            shiftwidth = 2; # Size of an indent
-            tabstop = 2; # Size of tab character
-            shiftround = true; # When using < or >, rounds to closest multiple of shiftwidth
-            smartindent = true; # Insert indents automatically
-            # }}}
-            # {{{ Casing
-            ignorecase = true; # Ignore case
-            smartcase = true; # Do not ignore case with capitals
-            # }}}
-            # {{{ Splits
-            splitbelow = true; # Put new windows below current
-            splitright = true; # Put new windows right of current
-            inccommand = "split"; # Show off-screen ":%s" changes in their own window
-            # }}}
-            # {{{ Folding
-            foldmethod = "marker"; # use {{{ }}} for folding
-            foldcolumn = "0"; # show no column with folds on the left
-            # }}}
-          };
-
-          # {{{Disable pseudo-transparency;
-          autocmds = {
-            event = "FileType";
-            group = "WinblendSettings";
-            action.vim.opt.winblend = 0;
-          };
-          #  }}}
           # {{{ Starter page
           callback =
             # lua
@@ -129,16 +60,9 @@ let
         # }}}
         # {{{ Misc keybinds
         "1:misc-keybinds" = {
-          # {{{ Global keybinds
           keys = [
-            # {{{ Free up q and Q
-            (nmap "<c-q>" "q" "Record macro")
-            (nmap "<c-s-q>" "Q" "Repeat last recorded macro")
-            (unmap "q")
-            (unmap "Q")
-            # }}}
             # {{{ Chords
-            # Different chords get remapped to f-keys by my my kaanta config.
+            # Different chords get remapped to f-keys by my Kanata config.
             #
             # Exit insert mode using *jk*
             (keymap "iv" "<f10>" "<esc>" "Exit insert mode")
@@ -153,29 +77,6 @@ let
               vim.opt.stl = vim.opt.stl
             '') "Save current file")
             # }}}
-            # {{{ Newline without comments
-            {
-              mode = "i";
-              mapping = "<c-cr>";
-              action =
-                _:
-                vim /paste (args [
-                  [
-                    ""
-                    ""
-                  ]
-                  (-1)
-                ]);
-              desc = "Insert newline without continuing the current comment";
-            }
-            {
-              mode = "i";
-              mapping = "<c-s-cr>";
-              # This is a bit scuffed and might not work for all languages
-              action = "<cmd>norm O<bs><bs><bs><cr>";
-              desc = "Insert newline above without continuing the current comment";
-            }
-            # }}}
             # {{{ Diagnostics
             (nmap "J" (vim /diagnostic/open_float) "Open current diagnostic")
             (nmap "qj" "J" "join lines")
@@ -189,12 +90,7 @@ let
             '') "[D]iagnostic qflist")
             # }}}
             # {{{ Other misc keybinds
-            (nmap "<Leader>a" "<C-^>" "[A]lternate file")
-            (unmap "<C-^>")
-            (nmap "Q" ":wqa<cr>" "Save all files and [q]uit")
             (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
-            (nmap "<leader>sw" (tempest /wrapping/toggle) "toggle word [w]rap")
-            (nmap "<leader>ss" (thunk "vim.opt.spell = not vim.o.spell") "toggle [s]pell checker")
             (nmap "<leader>yp" "<cmd>!curl --data-binary @% https://paste.rs | wl-copy<cr>"
               "[y]ank [p]aste.rs link to clipboard"
             )
@@ -205,75 +101,7 @@ let
               action = _: tempest /createVisualFold (vim /fn/input "Fold name: ");
             }
           ];
-          # }}}
-          # {{{ Autocmds
-          autocmds = [
-            # {{{ Exit certain buffers with qq
-            {
-              event = "FileType";
-              pattern = [
-                "help"
-                "qf"
-              ];
-              group = "BasicBufferQuitting";
-              action.keys = nmap "qq" "<cmd>close<cr>" "[q]uit current buffer";
-            }
-            # }}}
-            # {{{ Enable wrap movemenets by default in certain filetypes
-            {
-              event = "FileType";
-              pattern = [
-                "markdown"
-                "typst"
-                "tex"
-              ];
-              group = "EnableWrapMovement";
-              action = tempest /wrapping/enable;
-            }
-            # }}}
-          ];
-          # }}}
-        };
-        # }}}
-        # {{{ Manage cmdheight
-        "2:manage-cmdheight".autocmds = [
-          {
-            event = "CmdlineEnter";
-            group = "SetCmdheightCmdlineEnter";
-            action.vim.opt.cmdheight = 1;
-          }
-          {
-            event = "CmdlineLeave";
-            group = "SetCmdheightCmdlineLeave";
-            action.vim.opt.cmdheight = 0;
-          }
-        ];
-        # }}}
-        # {{{ LSP settings
-        "3:lsp-settings" = {
-          # {{{ Change LSP on-hover borders
-          vim.lsp.handlers."textDocument/hover" = vim /lsp/with (args [
-            (vim /lsp/handlers/hover)
-            { border = "single"; }
-          ]);
-          vim.lsp.handlers."textDocument/signatureHelp" = vim /lsp/with (args [
-            (vim /lsp/handlers/signature_help)
-            { border = "single"; }
-          ]);
-          # }}}
-          # {{{ Create on-attach keybinds
-          autocmds = {
-            event = "LspAttach";
-            group = "UserLspConfig";
-            action = {
-              mkContext = event: {
-                bufnr = lua event /buf;
-                client = vim /lsp/get_client_by_id (lua event /data/client_id);
-              };
-              keys = [ ];
-            };
-          };
-          # }}}
+
         };
         # }}}
         # {{{ Neovide config
@@ -295,7 +123,6 @@ let
               group = "UserNixSettings";
               pattern = "nix";
               action = {
-                vim.opt.commentstring = "# %s";
                 keys = {
                   mapping = "<leader>lg";
                   action =
@@ -306,18 +133,6 @@ let
                     tempest /withSavedCursor cmd;
                   desc = "Update all fetchgit calls";
                 };
-              };
-            }
-            # }}}
-            # {{{ Purescript
-            # TODO: move this into a ftplugin
-            {
-              event = "FileType";
-              group = "UserPurescriptSettings";
-              pattern = "purs";
-              action.vim.opt = {
-                expandtab = true; # Use spaces for the tab char
-                commentstring = "-- %s";
               };
             }
             # }}}
@@ -1151,42 +966,6 @@ let
                 ${client}.server_capabilities.documentFormattingProvider = false
               '';
 
-              purescriptls.settings.purescript = {
-                censorWarnings = [
-                  "UnusedName"
-                  "ShadowedName"
-                  "UserDefinedWarning"
-                ];
-                formatter = "purs-tidy";
-              };
-
-              lua_ls.settings.Lua = {
-                format.enable = true;
-                # Do not send telemetry data containing a randomized but unique identifier
-                telemetry.enable = false;
-              };
-
-              texlab.settings.texlab = {
-                build = {
-                  args = [
-                    # Here by default:
-                    "-pdf"
-                    "-interaction=nonstopmode"
-                    "-synctex=1"
-                    "%f"
-                    # Required for syntax highlighting inside the generated pdf apparently
-                    "-shell-escape"
-                  ];
-                  executable = "latexmk";
-                  forwardSearchAfter = true;
-                  onSave = true;
-                };
-                chktex = {
-                  onOpenAndSave = true;
-                  onEdit = true;
-                };
-              };
-
               nixd.offset_encoding = "utf-8";
               nixd.settings.nixd =
                 let
@@ -1205,23 +984,6 @@ let
                     home-manager.expr = ''(builtins.getFlake "${satellite}").homeConfigurations."${config.home.username}@${hostname}".options'';
                   };
                 };
-
-              tinymist.settings.exportPdf = "onSave";
-              tinymist.settings.formatterMode = "typstyle";
-              # tinymist.offset_encoding = "utf-8";
-
-              cssls = { };
-              jsonls = { };
-              dhall_lsp_server = { };
-              elmls = { };
-              csharp_ls = { };
-              ols = { }; # Odin
-              hyprls = { };
-              glsl_analyzer = { };
-              ruff = { };
-              svelte = { };
-              emmet_language_server = { };
-              just = { };
             };
         };
         # }}}

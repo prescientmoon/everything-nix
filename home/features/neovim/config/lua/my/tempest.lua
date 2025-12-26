@@ -159,8 +159,9 @@ end
 -- {{{ Folding
 function M.createVisualFold(name)
   local commentstring = vim.o.commentstring
-  local start_comment = string.gsub(commentstring, "%%s", "{{{ " .. name)
-  local end_comment = string.gsub(commentstring, "%%s", "}}}")
+  local markers = { "{{{", "}}}" }
+  local start_comment = string.gsub(commentstring, "%%s", markers[1] .. name)
+  local end_comment = string.gsub(commentstring, "%%s", markers[2])
 
   -- Leave visual mode
   local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
@@ -396,6 +397,77 @@ end
 
 function M.theme_variant(name)
   return string.lower(H.drop_prefix(theme.name, name .. " "))
+end
+-- }}}
+
+-- API wrappers v2
+-- {{{ Keymaps
+function M.createKeymap(opts, context)
+  if context == nil then
+    context = {}
+  end
+
+  local buffer = nil
+
+  if context.bufnr ~= nil then
+    buffer = context.bufnr
+  end
+
+  local action = opts.action
+
+  if type(opts.action) == "function" then
+    action = function()
+      opts.action(context)
+    end
+  end
+
+  vim.keymap.set(
+    H.string_chars(H.with_default("n", opts.mode)),
+    opts.mapping,
+    action,
+    {
+      desc = opts.desc,
+      buffer = H.with_default(buffer, opts.buffer),
+      expr = opts.expr,
+      silent = H.with_default(true, opts.silent),
+    }
+  )
+end
+
+function M.moveKeymap(opts, context)
+  M.createKeymap(opts, context)
+  M.createKeymap({
+    mode = opts.mode,
+    mapping = opts.action,
+    action = "<nop>",
+  }, context)
+end
+-- }}}
+-- {{{ Autocmds
+function M.createAutocmd(opts, context)
+  local callback
+  if context == nil then
+    context = {}
+  end
+
+  if type(opts.action) == "function" then
+    callback = function(ev)
+      local lcontext = vim.deepcopy(context)
+      lcontext.bufnr = ev.buf
+      opts.action(lcontext)
+    end
+  end
+
+  local group = opts.group
+  if type(group) == "string" then
+    group = vim.api.nvim_create_augroup(opts.group, {})
+  end
+
+  vim.api.nvim_create_autocmd(opts.event, {
+    group = group,
+    pattern = H.with_default("*", opts.pattern),
+    callback = callback,
+  })
 end
 -- }}}
 
