@@ -12,7 +12,6 @@ vim.g.mapleader = " "
 -- Basic options
 vim.opt.joinspaces = false -- No double spaces with join (mapped to qj in my config)
 vim.opt.list = false -- I don't want to show things like tabs
-vim.opt.cmdheight = 0 -- Hide command line when it's not getting used
 vim.opt.signcolumn = "yes" -- Keeps the sign column of a consistent width
 
 -- tcqj are there by default, and "r" automatically continues comments on enter
@@ -56,32 +55,6 @@ vim.opt.inccommand = "split" -- Show off-screen ":%s" changes in their own windo
 vim.opt.foldmethod = "marker" -- use {{{ }}} for folding
 vim.opt.foldcolumn = "0" -- show no column with folds on the left
 -- }}}
--- {{{ Language servers & diagnostics
--- Display error messages inline
-vim.diagnostic.config({ virtual_text = true })
-
--- Enable language servers
--- Additional configuration can be found in `after/lsp/*.lua`
-vim.lsp.enable({
-  "purescriptls",
-  "lua_ls",
-  "texlab",
-  "nixd",
-  "tinymist",
-  "cssls",
-  "jsonls",
-  "dhall_lsp_server",
-  "elmls",
-  "csharp_ls",
-  "ols",
-  "hyprls",
-  "glsl_analyzer",
-  "ruff",
-  "svelte",
-  "emmet_language_server",
-  "just",
-})
--- }}}
 
 -- {{{ Disable window background blending / pseudo-transparency
 tempest.createAutocmd({
@@ -109,6 +82,7 @@ tempest.create_autocmd({
 -- {{{ Automatically manage cmdheight
 do
   local group = vim.api.nvim_create_augroup("ManageCmdHeight", {})
+  vim.opt.cmdheight = 0 -- Hide command line when it's not getting used
 
   tempest.createAutocmd({
     event = "CmdlineEnter",
@@ -210,3 +184,30 @@ tempest.createKeymap({
 tempest.configureMany(nix.pre)
 require("my.lazy").setup()
 tempest.configureMany(nix.post)
+
+-- {{{ Language servers & diagnostics
+-- Display error messages inline
+vim.diagnostic.config({ virtual_text = true })
+
+-- Enable language servers
+-- Additional configuration can be found in `after/lsp/*.lua`
+vim.lsp.enable({
+  "purescriptls",
+  "lua_ls",
+  "texlab",
+  "nixd",
+  "tinymist",
+  "cssls",
+  "jsonls",
+  "dhall_lsp_server",
+  "elmls",
+  "csharp_ls",
+  "ols",
+  "hyprls",
+  "glsl_analyzer",
+  "ruff",
+  "svelte",
+  "emmet_language_server",
+  "just",
+})
+-- }}}

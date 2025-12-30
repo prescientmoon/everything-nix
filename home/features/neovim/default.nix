@@ -955,8 +955,9 @@ let
 
           package = "neovim/nvim-lspconfig";
 
-          event = "VeryLazy";
+          # event = "VeryLazy";
 
+          lazy = false;
           keys = nmap "<leader>li" "<cmd>LspInfo<cr>" "[L]sp [i]nfo";
           config =
             _:

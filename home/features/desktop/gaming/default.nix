@@ -24,6 +24,9 @@ let
   heroicConfigDir = "${config.xdg.configHome}/heroic";
   heroicDataDir = "${config.xdg.dataHome}/heroic";
 
+  historia = import ./historia { inherit pkgs; };
+  historiaDbPath = "/persist/state/home/moon/historia/db.sqlite";
+
   mkUmuScript =
     {
       name,
@@ -33,7 +36,8 @@ let
     pkgs.writeShellScript "umu-${name}" ''
       PROTONPATH="${heroicConfigDir}/tools/proton/GE-Proton-latest" \
       WINEPREFIX="${prefix}" \
-      ${pkgs.umu-launcher}/bin/umu-run "${file}"
+      ${historia}/bin/historia ${historiaDbPath} "${name}" \
+        ${pkgs.umu-launcher}/bin/umu-run "${file}"
     '';
 
   mkSteamRunScript =
@@ -98,13 +102,6 @@ in
       pkgs.fetchurl {
         url = "https://cdn2.steamgriddb.com/icon/2118fa0c24a3bee8842cc54a73775d9a.png";
         sha256 = "0b54p6vssjqjljji37qzhnaafxk8lwmzkw8i7vcfgd3m070arak9";
-      }
-    );
-
-    babaIsYou = mkSteamGame "Baba Is You" "736260" (
-      pkgs.fetchurl {
-        url = "https://cdn2.steamgriddb.com/icon/81616e9ab54cc3e36260f80593a4cc33.png";
-        sha256 = "1c00mk2p8rh6dnr8zsv1fx4a3rcl174fy7pxmi29mj1d3x6h2hhw";
       }
     );
 

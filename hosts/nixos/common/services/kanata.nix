@@ -9,6 +9,7 @@ let
       blueTrigger,
       redTrigger,
       chordDelay,
+      enableChords ? true,
     }:
     ''
       ;; {{{ Source layout
@@ -134,59 +135,61 @@ let
         ;; }}}
       )
 
-      (defchordsv2-experimental
-        ;; {{{ Left modifiers
-        (a s d f) (multi lctl lalt lsft) ${toString chordDelay} all-released ()
-        (a s d  ) (multi lalt lsft) ${toString chordDelay} all-released ()
-        (  s d f) (multi lctl lsft) ${toString chordDelay} all-released ()
-        (a s    ) lalt ${toString chordDelay} all-released ()
-        (  s d  ) lsft ${toString chordDelay} all-released ()
-        (  s   f) lctl ${toString chordDelay} all-released ()
-        ;; }}}
-        ;; {{{ Right modifiers
-        (j k l ;) (multi rctl ralt rsft) ${toString chordDelay} all-released ()
-        (j k l  ) (multi rctl rsft) ${toString chordDelay} all-released ()
-        (  k l ;) (multi ralt rsft) ${toString chordDelay} all-released ()
-        (j   l  ) rctl ${toString chordDelay} all-released ()
-        (  k l  ) rsft ${toString chordDelay} all-released ()
-        (    l ;) ralt ${toString chordDelay} all-released ()
-        ;; }}}
-        ;; {{{ Special keys
-        (d f) tab ${toString chordDelay} all-released ()
-        (e f) ret ${toString chordDelay} all-released ()
-        (q w) esc ${toString chordDelay} all-released ()
+      ${lib.strings.optionalString enableChords ''
+        (defchordsv2-experimental
+          ;; {{{ Left modifiers
+          (a s d f) (multi lctl lalt lsft) ${toString chordDelay} all-released ()
+          (a s d  ) (multi lalt lsft) ${toString chordDelay} all-released ()
+          (  s d f) (multi lctl lsft) ${toString chordDelay} all-released ()
+          (a s    ) lalt ${toString chordDelay} all-released ()
+          (  s d  ) lsft ${toString chordDelay} all-released ()
+          (  s   f) lctl ${toString chordDelay} all-released ()
+          ;; }}}
+          ;; {{{ Right modifiers
+          (j k l ;) (multi rctl ralt rsft) ${toString chordDelay} all-released ()
+          (j k l  ) (multi rctl rsft) ${toString chordDelay} all-released ()
+          (  k l ;) (multi ralt rsft) ${toString chordDelay} all-released ()
+          (j   l  ) rctl ${toString chordDelay} all-released ()
+          (  k l  ) rsft ${toString chordDelay} all-released ()
+          (    l ;) ralt ${toString chordDelay} all-released ()
+          ;; }}}
+          ;; {{{ Special keys
+          (d f) tab ${toString chordDelay} all-released ()
+          (e f) ret ${toString chordDelay} all-released ()
+          (q w) esc ${toString chordDelay} all-released ()
 
-        (g h) bspc ${toString chordDelay} all-released ()
-        (n l) rmet ${toString chordDelay} all-released ()
+          (g h) bspc ${toString chordDelay} all-released ()
+          (n l) rmet ${toString chordDelay} all-released ()
 
-        (j k) f10 ${toString chordDelay} all-released ()
-        (c p) f11 ${toString chordDelay} all-released ()
-        (j i) f12 ${toString chordDelay} all-released ()
-        ;; }}}
-        ;; {{{ Wm keybinds
-        (n l k) M-p ${toString chordDelay} all-released ()
-        (n l q) M-1 ${toString chordDelay} all-released ()
-        (n l w) M-2 ${toString chordDelay} all-released ()
-        (n l e) M-3 ${toString chordDelay} all-released ()
-        (n l r) M-4 ${toString chordDelay} all-released ()
-        (n l t) M-5 ${toString chordDelay} all-released ()
-        (n l a) M-6 ${toString chordDelay} all-released ()
-        (n l s) M-7 ${toString chordDelay} all-released ()
-        (n l d) M-8 ${toString chordDelay} all-released ()
-        (n l f) M-9 ${toString chordDelay} all-released ()
-        (n l g) M-0 ${toString chordDelay} all-released ()
-        ;; }}}
-        ;; {{{ Extra layers
-        (u i o) @upper-greek   ${toString (chordDelay - 5)} all-released ()
-        (w e r) @upper-greek   ${toString (chordDelay - 5)} all-released ()
-        (i o)   @lower-greek   ${toString (chordDelay - 5)} all-released ()
-        (w e)   @lower-greek   ${toString (chordDelay - 5)} all-released ()
-        (u i)   @unicode-1     ${toString (chordDelay - 5)} all-released ()
-        (e r)   @unicode-1     ${toString (chordDelay - 5)} all-released ()
-        (u o)   @double-stroke ${toString (chordDelay - 5)} all-released ()
-        (w r)   @double-stroke ${toString (chordDelay - 5)} all-released ()
-        ;; }}}
-      )
+          (j k) f10 ${toString chordDelay} all-released ()
+          (c p) f11 ${toString chordDelay} all-released ()
+          (j i) f12 ${toString chordDelay} all-released ()
+          ;; }}}
+          ;; {{{ Wm keybinds
+          (n l k) M-p ${toString chordDelay} all-released ()
+          (n l q) M-1 ${toString chordDelay} all-released ()
+          (n l w) M-2 ${toString chordDelay} all-released ()
+          (n l e) M-3 ${toString chordDelay} all-released ()
+          (n l r) M-4 ${toString chordDelay} all-released ()
+          (n l t) M-5 ${toString chordDelay} all-released ()
+          (n l a) M-6 ${toString chordDelay} all-released ()
+          (n l s) M-7 ${toString chordDelay} all-released ()
+          (n l d) M-8 ${toString chordDelay} all-released ()
+          (n l f) M-9 ${toString chordDelay} all-released ()
+          (n l g) M-0 ${toString chordDelay} all-released ()
+          ;; }}}
+          ;; {{{ Extra layers
+          (u i o) @upper-greek   ${toString (chordDelay - 5)} all-released ()
+          (w e r) @upper-greek   ${toString (chordDelay - 5)} all-released ()
+          (i o)   @lower-greek   ${toString (chordDelay - 5)} all-released ()
+          (w e)   @lower-greek   ${toString (chordDelay - 5)} all-released ()
+          (u i)   @unicode-1     ${toString (chordDelay - 5)} all-released ()
+          (e r)   @unicode-1     ${toString (chordDelay - 5)} all-released ()
+          (u o)   @double-stroke ${toString (chordDelay - 5)} all-released ()
+          (w r)   @double-stroke ${toString (chordDelay - 5)} all-released ()
+          ;; }}}
+        )
+      ''}
 
       ;; {{{ Qwerty
       (deflayer qwerty
