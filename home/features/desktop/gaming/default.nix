@@ -54,6 +54,16 @@ let
         steam-run "${file}"
     '';
 
+  mkHistoriaScript =
+    {
+      name,
+      file,
+    }:
+    pkgs.writeShellScript "historia-${name}" ''
+      cd "$(dirname "$(realpath "${file}")")"
+      ${historia}/bin/historia ${historiaDbPath} "${name}" "${file}"
+    '';
+
   symlinkAll = lib.map (directory: {
     inherit directory;
     method = "symlink";
@@ -124,7 +134,6 @@ in
 
       # TODO(2025-12-16): move these to their own directories
       ".factorio"
-      "${config.xdg.dataHome}/VVVVVV"
       "${config.xdg.dataHome}/Baba_Is_You"
       "${config.xdg.configHome}/unity3d/Team Cherry"
     ];
@@ -148,6 +157,10 @@ in
     crypt-of-the-necrodancer.directories = symlinkAll [
       "${config.xdg.dataHome}/NecroDancer"
       "${config.xdg.configHome}/NecroDancer"
+    ];
+
+    vvvvvv.directories = symlinkAll [
+      "${config.xdg.dataHome}/VVVVVV"
     ];
   };
 
@@ -182,10 +195,6 @@ in
         developers = [ "Nolla Games" ];
         release = "2020-10-15";
         description = "Noita is a magical action roguelite set in a world where every pixel is physically simulated. Fight, explore, melt, burn, freeze and evaporate your way through the procedurally generated world using spells you've created yourself.";
-        tags = [
-          "beyond"
-          "roguelike"
-        ];
 
         file = "${heroicGameDir}/Noita/noita.exe";
         launch = mkUmuScript {
@@ -242,9 +251,6 @@ in
         ];
         release = "2017-03-28";
         description = "You are a nomadic slugcat, both predator and prey in a broken ecosystem. Grab your spear and brave the industrial wastes, hunting enough food to survive, but be wary— other, bigger creatures have the same plan... and slugcats look delicious.";
-        tags = [
-          "beyond"
-        ];
 
         file = "${steamGameDir}/Rain World/RainWorld.exe";
         launch = mkUmuScript {
@@ -261,11 +267,53 @@ in
         };
       };
       # }}}
+      # {{{ VVVVVV
+      games.vvvvvv = rec {
+        name = "VVVVVV";
+        developers = [ "Terry Cavanagh" ];
+        release = "2010-09-08";
+        description = "VVVVVV is a platform game all about exploring one simple mechanical idea - what if you reversed gravity instead of jumping?";
+
+        file = lib.getExe pkgs.vvvvvv;
+        launch = mkHistoriaScript {
+          inherit file;
+          name = "vvvvvv";
+        };
+
+        assets = {
+          poster = ./assets/vvvvvv/grid.png;
+          logo = ./assets/vvvvvv/logo.png;
+          icon = ./assets/vvvvvv/icon.png;
+          background = ./assets/vvvvvv/background.png;
+          screenshot = ./assets/vvvvvv/screenshot.jpg;
+        };
+      };
+      # }}}
+      # {{{ EDOPro
+      games.edopro = rec {
+        name = "EDOPro";
+        developers = [ "Project Ignis team" ];
+        description = "EDOPro is an automatic Yu-Gi-Oh! dueling simulator.";
+
+        file = "${persistentStateDir}/yugioh/.local/share/edopro/EDOPro";
+        launch = mkSteamRunScript {
+          inherit file;
+          name = "edopro";
+        };
+
+        assets = {
+          poster = ./assets/edopro/grid.png;
+          logo = ./assets/edopro/logo.png;
+          icon = ./assets/edopro/icon.png;
+          background = ./assets/edopro/background.png;
+          screenshot = ./assets/edopro/screenshot.png;
+        };
+      };
+      # }}}
     };
   };
 
   home.packages = [
-    pkgs.vvvvvv # TODO(2025-12-16): add this to pegasus
     pkgs.lutris
     pkgs.wine64
     (upkgs.heroic.override {
@@ -285,14 +333,18 @@ in
         workshopContent = "${steamDir}/steamapps/workshop/content/247080";
         gameDir = "${persistentStateDir}/crypt-of-the-necrodancer/state/game/";
         cryptSteamImporter = pkgs.writeShellScript "crypt-steam-importer" ''
+          set -euo pipefail # Fail on errors and whatnot
           for file in ${workshopContent}/*/*; do 
-            ${lib.getExe pkgs.unzip} -u \
-              "$file" "mods/*" \
-              -d "${gameDir}"
+            if [ -f "$file" ]; then 
+              ${lib.getExe pkgs.unzip} -u \
+                "$file" "mods/*" \
+                -d "${gameDir}"
+            fi
           done
         '';
       in
       pkgs.writeShellScript "crypt-steam-importer-runner" ''
+        set -euo pipefail # Fail on errors and whatnot
         ${lib.getExe pkgs.watchexec} \
           --watch "${workshopContent}" \
           ${cryptSteamImporter}

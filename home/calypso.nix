@@ -32,6 +32,7 @@
     imagemagick # Image operations
     ffmpeg # Video operations
     sqlite # I sometimes need to check the databases owned by various apps
+    yt-dlp # I often download live streams I can't watch in the moment
 
     # Misc
     # google-chrome # Not my primary browser, but sometimes needed in webdev
