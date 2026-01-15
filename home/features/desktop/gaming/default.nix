@@ -17,6 +17,7 @@ let
     exec = "steam steam://rungameid/${id}";
   };
 
+  persistentStateDir = "/persist/state${config.home.homeDirectory}";
   steamDir = "${config.xdg.dataHome}/Steam";
   steamGameDir = "${steamDir}/steamapps/common";
   gameDir = "${config.home.homeDirectory}/media/games";
@@ -31,7 +32,7 @@ let
     {
       name,
       file,
-      prefix ? "/persist/state${config.home.homeDirectory}/${name}/prefix",
+      prefix ? "${persistentStateDir}/${name}/prefix",
     }:
     pkgs.writeShellScript "umu-${name}" ''
       PROTONPATH="${heroicConfigDir}/tools/proton/GE-Proton-latest" \
@@ -49,7 +50,8 @@ let
       cd "$(dirname "$(realpath "${file}")")"
       # NOTE: this doesn't work with `pkgs.steam-run`. 
       # This could be because I add additional packages in `steam.nix`?
-      steam-run "${file}"
+      ${historia}/bin/historia ${historiaDbPath} "${name}" \
+        steam-run "${file}"
     '';
 
   symlinkAll = lib.map (directory: {
@@ -142,6 +144,11 @@ in
       "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
       "${gameDir}/lutris"
     ];
+
+    crypt-of-the-necrodancer.directories = symlinkAll [
+      "${config.xdg.dataHome}/NecroDancer"
+      "${config.xdg.configHome}/NecroDancer"
+    ];
   };
 
   satellite.persistence.at.cache.apps = {
@@ -149,6 +156,10 @@ in
       "${config.xdg.dataHome}/umu"
       "${config.xdg.cacheHome}/umu"
       "${config.xdg.cacheHome}/umu-protonfixes"
+    ];
+
+    crypt-of-the-necrodancer.directories = symlinkAll [
+      "${config.xdg.cacheHome}/NecroDancer"
     ];
   };
 
@@ -207,8 +218,8 @@ in
           "roguelike"
         ];
 
-        file = "${steamGameDir}/Crypt of the NecroDancer/NecroDancer64/Necrodancer.exe";
-        launch = mkUmuScript {
+        file = "${persistentStateDir}/crypt-of-the-necrodancer/state/start.sh";
+        launch = mkSteamRunScript {
           inherit file;
           name = "crypt-of-the-necrodancer";
         };
@@ -264,4 +275,28 @@ in
       ];
     })
   ];
+
+  # {{{ COTN importer
+  systemd.user.services.crypt-steam-importer = {
+    Install.WantedBy = [ "default.target" ];
+    Service.Restart = "on-failure";
+    Service.ExecStart =
+      let
+        workshopContent = "${steamDir}/steamapps/workshop/content/247080";
+        gameDir = "${persistentStateDir}/crypt-of-the-necrodancer/state/game/";
+        cryptSteamImporter = pkgs.writeShellScript "crypt-steam-importer" ''
+          for file in ${workshopContent}/*/*; do 
+            ${lib.getExe pkgs.unzip} -u \
+              "$file" "mods/*" \
+              -d "${gameDir}"
+          done
+        '';
+      in
+      pkgs.writeShellScript "crypt-steam-importer-runner" ''
+        ${lib.getExe pkgs.watchexec} \
+          --watch "${workshopContent}" \
+          ${cryptSteamImporter}
+      '';
+  };
+  # }}}
 }

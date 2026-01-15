@@ -31,6 +31,7 @@
     termdown # Basic CLI timer
     imagemagick # Image operations
     ffmpeg # Video operations
+    sqlite # I sometimes need to check the databases owned by various apps
 
     # Misc
     # google-chrome # Not my primary browser, but sometimes needed in webdev

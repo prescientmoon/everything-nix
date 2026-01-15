@@ -7,6 +7,7 @@
     ./unicode.nix
     ./quietboot.nix
     ./hyprland.nix
+    ./historia.nix
   ];
 
   config = lib.mkIf config.satellite.machine.graphical {

@@ -19,6 +19,7 @@ block auto
 
 block auto start
   abbr private \@(private)
+  abbr fprivate \@(private="file")
   abbr reqres \@(require_results)
 
   string const
@@ -39,27 +40,26 @@ block auto start
       }
       $0
 
-  for kind <- @⟨when,if,else if⟩
-  string @⟨@kind:when,if,elif⟩
-    snip
-      @kind $1 {
-        $2
-      } $0
+for kind <- @⟨when,if,else if⟩
+string @⟨@kind:when,if,elif⟩
+  snip
+    @kind $1 {
+      $2
+    } $0
 
-  string else
-    snip
-      else {
-        $1
-      } $0
+string else
+  snip
+    else {
+      $1
+    } $0
 
-  string forin
-    snip
-      for $1 in $2 {
-        $3
-      } $0
+string forin
+  snip
+    for $1 in $2 {
+      $3
+    } $0
 
-  for level <- @⟨debug,info,warn,error,assert⟩
+for level <- @⟨debug,info,warn,error,assert⟩
 
-  abbr f@level log.@level⋄f("$1", $2)$0
-  abbr @level  log.@level($1)$0
-
+abbr f@level log.@level⋄f("$1", $2)$0
+abbr @level  log.@level($1)$0

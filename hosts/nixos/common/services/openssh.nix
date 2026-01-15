@@ -1,4 +1,3 @@
-# This setups a SSH server.
 {
   outputs,
   config,
