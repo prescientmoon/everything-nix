@@ -46,7 +46,7 @@ rec {
             sops \
               --decrypt \
               --extract "[\"cloudflare_dns_api_token\"]" \
-              ./hosts/nixos/common/secrets.yaml \
+              $(git rev-parse --show-toplevel)/hosts/nixos/common/secrets.yaml \
           )' \
         --add-flags "--config-file $out/config.yaml"
     '';

@@ -37,3 +37,9 @@ creation_rules:
         - *prescientmoon_tethys
         - *prescientmoon_calypso
         - *hermes
+  - path_regex: ^.*/secrets.user.yaml$
+    key_groups:
+      - age:
+        - *prescientmoon_tethys
+        - *prescientmoon_calypso
+        - *hermes

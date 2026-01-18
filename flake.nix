@@ -113,6 +113,9 @@
           octodnsConfig = ./dns/config/octodns.yaml;
           nixosConfigurations = builtins.removeAttrs self.nixosConfigurations [ "iso" ];
         }
+        // {
+          inherit (import ./migadux { inherit pkgs; }) migadux;
+        }
       );
       # }}}
       # {{{ Bootstrapping and other pinned devshells

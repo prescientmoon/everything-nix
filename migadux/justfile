@@ -1,0 +1,15 @@
+[private]
+default:
+  @just --list
+
+sops_file := source_directory() / "secrets.user.yaml"
+
+[doc("Prints the differences between the current and desired email aliases")]
+[group("mail")]
+mail-diff:
+  nix run .#migadux -- dry-run moonythm.dev {{sops_file}}
+
+[doc("Syncs email aliases records")]
+[group("mail")]
+mail-sync:
+  nix run .#migadux -- sync moonythm.dev {{sops_file}}

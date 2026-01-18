@@ -1,3 +1,8 @@
+set allow-duplicate-recipes
+
+import 'migadux/justfile'
+import 'dns/config/justfile'
+
 [private]
 default:
   @just --list
@@ -144,34 +149,4 @@ update-rsync-keys:
 
   rm -f $tmpfile
   echo "🚀 Successfully updated rsync.net SSH keys!"
-# }}}
-
-# {{{ DNS
-[doc("Prints the differences between the current and desired DNS records")]
-[group("dns")]
-dns-diff:
-  nix run .#octodns-sync --
-
-[doc("Syncs DNS records using octodns")]
-[group("dns")]
-dns-push:
-  nix run .#octodns-sync -- --doit
-
-[doc("Clears every DNS record")]
-[group("dns")]
-dns-clear zoneid bearer:
-  #!/usr/bin/env bash
-  set -euo pipefail # Fail on errors and whatnot
-
-  # Taken from https://developers.cloudflare.com/dns/zone-setups/troubleshooting/delete-all-records/
-  curl --silent "https://api.cloudflare.com/client/v4/zones/{{zoneid}}/dns_records?per_page=50000" \
-  --header "Authorization: Bearer {{bearer}}" \
-  | jq --raw-output '.result[].id' | while read id
-  do
-    echo "🧹 Deleting '$id' record in zone '{{zoneid}}'"
-    curl --silent --request DELETE "https://api.cloudflare.com/client/v4/zones/{{zoneid}}/dns_records/$id" \
-  --header "Authorization: Bearer {{bearer}}"
-  done
-
-  echo "🚀 All done!"
 # }}}
