@@ -71,6 +71,12 @@ aliases = ["@gh", "@github"]
 url     = "https://github.com/search"
 param   = "q"
 icon    = "https://github.com/favicon.ico"
+
+["MDN"]
+aliases = ["@mdn"]
+url     = "https://developer.mozilla.org/en-US/search"
+param   = "q"
+icon    = "https://developer.mozilla.org/favicon.ico"
 # }}}
 # {{{ Gaming
 ["Steam"]
