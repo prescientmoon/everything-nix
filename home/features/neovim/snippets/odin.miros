@@ -17,7 +17,7 @@ block auto
   block !word
     abbr __ ›
 
-block auto start
+block start
   abbr private \@(private)
   abbr fprivate \@(private="file")
   abbr reqres \@(require_results)
