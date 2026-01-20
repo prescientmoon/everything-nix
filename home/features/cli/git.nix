@@ -1,6 +1,18 @@
 { config, pkgs, ... }:
 {
-  home.packages = [ pkgs.josh ]; # Just One Single History
+  home.packages = [
+    pkgs.josh # Just One Single History
+    (pkgs.writeShellScriptBin "git-large-files" ''
+      git rev-list --objects --all --missing=print \
+      | git cat-file \
+          --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+      | sed -n 's/^blob //p' \
+      | sort --numeric-sort --key=2 \
+      | cut -c 1-12,41- \
+      | numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest \
+      | $PAGER
+    '')
+  ];
 
   # TODO: use `delta` as a pager, as highlighted here
   # https://github.com/lilyinstarlight/foosteros/blob/main/config/base.nix#L163
