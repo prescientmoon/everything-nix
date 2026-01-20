@@ -23,17 +23,11 @@
     # Do not require all the interfaces to be up
     wait-online.anyInterface = true;
 
-    # Devices
-    netdevs = {
-      "20-br0" = {
-        netdevConfig = {
-          Name = "br0";
-          Kind = "bridge";
-        };
-      };
+    netdevs."20-br0".netdevConfig = {
+      Name = "br0";
+      Kind = "bridge";
     };
 
-    # Networks
     networks = {
       "30-enp0s25" = {
         # This is the laptop's ethernet interface

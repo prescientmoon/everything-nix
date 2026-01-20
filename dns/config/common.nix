@@ -1,12 +1,25 @@
 # DNS entries which do not belong to a particular host
 { lib, ... }:
 let
-  # {{{ GitHub pages helper
+  # {{{ Website helpers
   ghPage = at: [
     {
       inherit at;
       type = "CNAME";
       value = "prescientmoon.github.io.";
+    }
+  ];
+
+  picoSh = at: to: [
+    {
+      inherit at;
+      type = "ALIAS";
+      value = "pgs.sh.";
+    }
+    {
+      at = if at == "" then "_pgs" else "_pgs.${at}";
+      type = "TXT";
+      value = "prescientmoon-${to}";
     }
   ];
   # }}}
@@ -85,5 +98,6 @@ in
     (migaduMail "" "kfkhyexd")
     (migaduMail "orbit" "24s7lnum")
     (mkGoogleSiteVerification "" "PLDTV1yBxSRGgDU61yK7Ed8czHgJb3t5tIacK7vM-ks")
+    (picoSh "backup" "moonythm")
   ];
 }

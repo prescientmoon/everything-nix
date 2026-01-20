@@ -1,23 +1,28 @@
 import os
 
-def parse_list_content(list): 
+
+def parse_list_content(list):
     result = []
     for l in list.splitlines():
         l = l.strip()
-        if l == "" or l.startswith("#"): 
+        if l == "" or l.startswith("#"):
             continue
-        elif l.startswith("include:"): # We don't currently resolve imports
+        elif l.startswith("include:"):  # We don't currently resolve imports
             continue
         elif l.startswith("full:"):
             l = l.removeprefix("full:")
-        l = l.split()[0] # Drop attributes (e.g. "ggpht.cn @cn" -> "ggpht.cn")
+        l = l.split()[0]  # Drop attributes (e.g. "ggpht.cn @cn" -> "ggpht.cn")
         result.append(l)
     return result
 
-domain_list_repo = os.environ['DOMAIN_LIST_REPO']
-def include_named(name): 
+
+domain_list_repo = os.environ["DOMAIN_LIST_REPO"]
+
+
+def include_named(name):
     with open(f"{domain_list_repo}/data/{name}") as f:
         return parse_list_content(f.read())
+
 
 youtube = include_named("youtube")
 # Contains many wrong domains, but that's fine
@@ -25,9 +30,9 @@ mobile_youtube = [f"m.{domain}" for domain in youtube]
 reddit = include_named("reddit")
 twitter = include_named("twitter")
 misc = [
-    "lobste.rs", 
+    "lobste.rs",
     "news.ycombinator.com",
-    "yewtu.be", # Invidious (TODO: add more instances)
+    "yewtu.be",  # Invidious (TODO: add more instances)
 ]
 
 for domain in sum([youtube, mobile_youtube, reddit, twitter, misc], []):
@@ -38,9 +43,8 @@ blocked_mobile = [
     "factorio.com",
     "odin-lang.org",
     "users.rust-lang.org",
-    "discourse.haskell.org"
-    "discourse.nixos.org", 
-    "discourse.purescript.org"
+    "discourse.haskell.orgdiscourse.nixos.org",
+    "discourse.purescript.org",
 ]
 
 for domain in blocked_mobile:

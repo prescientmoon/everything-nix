@@ -22,7 +22,7 @@
           set not_mobile4 { # I don't have IPv6 set up for this yet!
             type ipv4_addr;
 
-            # These must be in sync with the dnmasq's static DHCP configuration 
+            # These must be in sync with dnmasq's static DHCP configuration 
             elements = {
               192.168.10.49 # calypso
             }
@@ -82,7 +82,7 @@
           }
         }
 
-        # A table that only runs on IPv4
+        # A table that only runs on IPv4 (I don't currently support IPv6)
         table ip nat {
           chain postrouting {
             type nat hook postrouting priority 100; policy accept;

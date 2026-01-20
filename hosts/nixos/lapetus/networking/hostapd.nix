@@ -1,5 +1,5 @@
 { config, ... }:
-# hostapd creates a WIFI network my other devices can connect to
+# hostapd creates a WiFi network my other devices can connect to
 let
   interface = "wlo1";
 in
