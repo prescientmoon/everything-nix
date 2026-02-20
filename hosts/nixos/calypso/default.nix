@@ -43,7 +43,6 @@
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
   services.mullvad-vpn.enable = true;
-  networking.search = [ config.satellite.dns.domain ];
   programs.nix-ld.enable = true; # Useful for running non-nix executables
 
   services.usbmuxd.enable = true;

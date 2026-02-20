@@ -98,7 +98,7 @@ in
     (migaduMail "" "kfkhyexd")
     (migaduMail "orbit" "24s7lnum")
     (mkGoogleSiteVerification "" "PLDTV1yBxSRGgDU61yK7Ed8czHgJb3t5tIacK7vM-ks")
-    (picoSh "" "moonythm")
+    # (picoSh "" "moonythm")
     (picoSh "backup" "moonythm")
   ];
 }

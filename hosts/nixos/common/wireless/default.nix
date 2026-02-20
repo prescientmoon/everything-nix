@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 {
   options.satellite.wireless = {
     enable = lib.mkEnableOption "satellite's WIFI integration" // {
@@ -27,4 +27,9 @@
     ./wpa_supplicant.nix
     ./network-manager.nix
   ];
+
+  config = {
+    # Allows typing `hostname` instead of `hostname.moonythm.dev`.
+    networking.search = [ config.satellite.dns.domain ];
+  };
 }

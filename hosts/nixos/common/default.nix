@@ -25,6 +25,7 @@ let
     ./desktop
     ./wireless
     ./persistence.nix
+    ./networking.nix
     ./users/pilot.nix
 
     # Services
@@ -49,9 +50,6 @@ in
   # Tell sops-nix to use the host keys for decrypting secrets
   sops.age.sshKeyPaths = [ "/persist/state/etc/ssh/ssh_host_ed25519_key" ];
 
-  # Root domain used throughout my config
-  satellite.dns.domain = lib.mkDefault "moonythm.dev";
-
   # Reduce the amount of storage spent for logs
   services.journald.extraConfig = lib.mkDefault ''
     SystemMaxUse=256M
@@ -60,10 +58,13 @@ in
   # Boot using systemd
   boot.initrd.systemd.enable = true;
 
-  # Customize tty colors
+  # Customize TTY colors
   stylix.targets.console.enable = lib.mkIf config.satellite.machine.interactible true;
 
   # Locales
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Amsterdam";
+
+  # Root domain used throughout my config
+  satellite.dns.domain = lib.mkDefault "moonythm.dev";
 }

@@ -4,6 +4,13 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.backend == "wpa-supplicant") {
+    assertions = [
+      {
+        assertion = cfg.active;
+        message = "The wpa_supplicant module does not support inactive mode.";
+      }
+    ];
+
     sops.secrets.wireless.sopsFile = ../secrets.yaml;
 
     networking.wireless = {
