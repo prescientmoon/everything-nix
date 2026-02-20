@@ -205,19 +205,4 @@
         };
       # }}}
     };
-
-  # {{{ Caching and whatnot
-  # TODO: persist trusted substituters file
-  nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://smos.cachix.org"
-    ];
-
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
-    ];
-  };
-  # }}}
 }

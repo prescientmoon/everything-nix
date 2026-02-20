@@ -13,7 +13,7 @@ let
   picoSh = at: to: [
     {
       inherit at;
-      type = "ALIAS";
+      type = if at == "" then "ALIAS" else "CNAME";
       value = "pgs.sh.";
     }
     {
@@ -98,6 +98,7 @@ in
     (migaduMail "" "kfkhyexd")
     (migaduMail "orbit" "24s7lnum")
     (mkGoogleSiteVerification "" "PLDTV1yBxSRGgDU61yK7Ed8czHgJb3t5tIacK7vM-ks")
+    (picoSh "" "moonythm")
     (picoSh "backup" "moonythm")
   ];
 }

@@ -20,7 +20,7 @@
     ./services/jellyfin.nix
     ./services/matrix
     ./services/miniflux.nix
-    ./services/moonythm.nix
+    # ./services/moonythm.nix # Yeah...
     ./services/picoshare.nix
     ./services/pounce
     ./services/prometheus.nix
@@ -59,6 +59,7 @@
   users.users.root.openssh.authorizedKeys.keyFiles =
     config.users.users.pilot.openssh.authorizedKeys.keyFiles;
   services.fail2ban.enable = false;
+  satellite.wireless.backend = "iwd";
 
   # Misc packages
   environment.systemPackages = [

@@ -27,25 +27,24 @@ let
         in
         symlinkJoin {
           name = "homer-root${nameSuffix}";
-          paths =
-            [
-              homer
-              (writeTextFile {
-                name = "homer-configuration${nameSuffix}";
-                text = builtins.toJSON config;
-                destination = "/assets/config.yml";
-              })
-            ]
-            ++ lib.optional (extraAssets != [ ]) (
-              runCommandLocal "homer-assets${nameSuffix}" { } (
-                lib.concatStringsSep "\n" (
-                  map (asset: ''
-                    mkdir -p $out/assets/${dirOf asset}
-                    ln -s ${asset} $out/assets/${asset}
-                  '') extraAssets
-                )
+          paths = [
+            homer
+            (writeTextFile {
+              name = "homer-configuration${nameSuffix}";
+              text = builtins.toJSON config;
+              destination = "/assets/config.yml";
+            })
+          ]
+          ++ lib.optional (extraAssets != [ ]) (
+            runCommandLocal "homer-assets${nameSuffix}" { } (
+              lib.concatStringsSep "\n" (
+                map (asset: ''
+                  mkdir -p $out/assets/${dirOf asset}
+                  ln -s ${asset} $out/assets/${asset}
+                '') extraAssets
               )
-            );
+            )
+          );
         };
     };
   };

@@ -70,7 +70,9 @@ let
   });
 in
 {
-  imports = [ ./pegasus.nix ];
+  imports = [
+    ./pegasus.nix
+  ];
 
   # {{{ Desktop entries
   # TODO: download all of these icons locally
@@ -213,7 +215,7 @@ in
         };
       };
       # }}}
-      # {{{ Crypt of the necrodancer
+      # {{{ Crypt of the Necrodancer
       games.crypt-of-the-necrodancer = rec {
         name = "Crypt of the NecroDancer";
         developers = [
@@ -307,6 +309,66 @@ in
           icon = ./assets/edopro/icon.png;
           background = ./assets/edopro/background.png;
           screenshot = ./assets/edopro/screenshot.png;
+        };
+      };
+      # }}}
+      # {{{ Steins;Gate
+      games.steins-gate = rec {
+        name = "Steins;Gate";
+        developers = [ "MAGES" ];
+        release = "2009-10-15";
+        description = "
+          -Decide The Fate Of All Mankind-\\n
+          CAN YOU CHANGE THE COURSE OF FATE?\\n
+          AND SAVE THE ONES CLOSEST TO YOU?\\n
+        ";
+        tags = [
+          "visual novel"
+          "sci-fi"
+        ];
+
+        # The files I have from my Steam copy do not work by themselves, but a
+        # bit of patching solved the issue.
+        file = "${persistentStateDir}/science-adventure/steins-gate/steam-install/Launcher.exe";
+        launch = mkUmuScript {
+          inherit file;
+          name = "steins-gate";
+          prefix = "${persistentStateDir}/science-adventure/steins-gate/prefix";
+        };
+
+        assets = {
+          poster = ./assets/steins-gate/grid.png;
+          logo = ./assets/steins-gate/logo.png;
+          icon = ./assets/steins-gate/icon.png;
+          background = ./assets/steins-gate/background.jpg;
+          screenshot = ./assets/steins-gate/screenshot.jpg;
+        };
+      };
+      # }}}
+      # {{{ Braid
+      games.braid = rec {
+        name = "Braid";
+        developers = [ "Number None" ];
+        release = "2008-08-06";
+        description = "
+          Control the flow of time to solve puzzles in this new version of the 
+          indie classic, featuring fully repainted artwork, a new world of 
+          puzzles, and seriously in-depth commentary.
+        ";
+        tags = [ "puzzle" ];
+
+        file = "${persistentStateDir}/braid/steam-install/braid64_d3d11_final.exe";
+        launch = mkUmuScript {
+          inherit file;
+          name = "braid";
+        };
+
+        assets = {
+          poster = ./assets/braid/grid.png;
+          logo = ./assets/braid/logo.png;
+          icon = ./assets/braid/icon.png;
+          background = ./assets/braid/background.jpg;
+          screenshot = ./assets/braid/screenshot.jpg;
         };
       };
       # }}}

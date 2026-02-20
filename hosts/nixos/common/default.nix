@@ -35,10 +35,11 @@ let
     ./services/nginx.nix
     ./services/oci.nix
     ./services/openssh.nix
+    ./services/postgres.nix
+    ./services/qbittorrent.nix
     ./services/restic
     ./services/syncthing.nix
     ./services/tailscale.nix
-    ./services/postgres.nix
   ];
 in
 {

@@ -28,6 +28,7 @@
     before = [ "sysroot.mount" ];
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
+
     # See: https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
     #
     # The following script is pretty much taken from the aforementioned link
@@ -44,19 +45,9 @@
       # populated at this point with a number of subvolumes,
       # which makes `btrfs subvolume delete` fail.
       # So, we remove them first.
-      #
-      # /root contains subvolumes:
-      # - /root/var/lib/portables
-      # - /root/var/lib/machines
-      #
-      # I suspect these are related to systemd-nspawn, but
-      # since I don't use it I'm not 100% sure.
-      # Anyhow, deleting these subvolumes hasn't resulted
-      # in any issues so far, except for fairly
-      # benign-looking errors from systemd-tmpfiles.
-      btrfs subvolume list -o /mnt/root |
-        cut -f9 -d' ' |
-        while read subvolume; do
+      btrfs subvolume list -o /mnt/root | # List subvolumes
+        cut -f9 -d' ' | # Select the file names only
+        while read subvolume; do # Save the path into $subvolume
           echo "deleting /$subvolume subvolume..."
           btrfs subvolume delete "/mnt/$subvolume"
         done &&

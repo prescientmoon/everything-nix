@@ -11,6 +11,7 @@
     ./hardware
     ./filesystems
 
+    ./services/beesd.nix
     ./services/snapper.nix
     ./services/syncthing.nix
   ];
@@ -25,6 +26,7 @@
   satellite.wireless.backend = "iwd";
   satellite.hyprland.enable = true;
   satellite.greetd.enable = true;
+  satellite.qbittorrent.enable = true;
 
   # Machine ids
   networking.hostName = "calypso";
@@ -76,4 +78,23 @@
     packages = [ upkgs.waydroid-helper ];
     services.waydroid-mount.wantedBy = [ "multi-user.target" ];
   };
+
+  # TEMPORARY
+  # services.nginx.virtualHosts."frog.moonythm.dev" = {
+  #   root = "/persist/data/frog";
+  #   extraConfig = ''
+  #     location / {
+  #       autoindex on;
+  #     }
+  #   '';
+  # };
+  #
+  # satellite.cloudflared.at.frog.port = 80;
+  #
+  # sops.secrets.cloudflare_tunnel_credentials.sopsFile = ./secrets.yaml;
+  # satellite.cloudflared = {
+  #   enable = true;
+  #   tunnel = "347d9ead-a523-4f8b-bca7-3066e31e2952";
+  #   credentialsFile = config.sops.secrets.cloudflare_tunnel_credentials.path;
+  # };
 }

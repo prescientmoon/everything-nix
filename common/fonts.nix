@@ -3,8 +3,8 @@
   stylix.fonts = {
     # monospace = { name = "Iosevka"; package = pkgs.iosevka; };
     monospace = {
-      name = "Cascadia Code";
-      package = pkgs.cascadia-code;
+      name = "Maple Mono NF";
+      package = pkgs.maple-mono.NF;
     };
     sansSerif = {
       name = "CMUSansSerif";

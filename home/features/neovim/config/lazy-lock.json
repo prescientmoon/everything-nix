@@ -9,6 +9,7 @@
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "conform": { "branch": "master", "commit": "5420c4b5ea0aeb99c09cfbd4fd0b70d257b44f25" },
+  "coqtail": { "branch": "main", "commit": "abd905d27e45fcb49009074aa6bcdaebb637594a" },
   "dressing": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "fidget": { "branch": "main", "commit": "0ba1e16d07627532b6cae915cc992ecac249fb97" },
   "flash": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
@@ -37,6 +38,7 @@
   "sops": { "branch": "main", "commit": "dacb68c7cb436f5ae261b266e7e4824bed6beccf" },
   "telescope": { "branch": "master", "commit": "4d0f5e0e7f69071e315515c385fab2a4eff07b3d" },
   "undotree": { "branch": "master", "commit": "0f1c9816975b5d7f87d5003a19c53c6fd2ff6f7f" },
+  "vsrocq": { "branch": "main", "commit": "dfa0e5a9e6b9fbd065fc6d9e1ec53e28f3dc11c5" },
   "wakatime": { "branch": "master", "commit": "d7973b157a632d1edeff01818f18d67e584eeaff" },
   "web-devicons": { "branch": "master", "commit": "6788013bb9cb784e606ada44206b0e755e4323d7" }
 }

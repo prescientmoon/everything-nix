@@ -236,7 +236,6 @@ let
           opts = { };
         };
         # }}}
-
         # {{{ harpoon
         harpoon = {
           package = "ThePrimeagen/harpoon";
@@ -1104,6 +1103,24 @@ let
               action = "<cmd>RustLsp openCargo<cr>";
               desc = "Open [c]argo.toml";
             };
+          };
+        };
+        # }}}
+        # {{{ rocq
+        # Do not load this plugin, but do install it for ftdetect and syntax
+        # highlighting.
+        coqtail = {
+          package = "whonore/Coqtail";
+          init.vim.g.loaded_coqtail = 1;
+          init.vim.g."coqtail#supported" = 0;
+        };
+        vsrocq = {
+          package = "tomtomjhj/vsrocq.nvim";
+          dependencies.lua = [ "coqtail" ];
+          ft = "coq";
+          opts = {
+            # vsrocq = { ... };
+            # lsp = { ... };
           };
         };
         # }}}

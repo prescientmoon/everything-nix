@@ -14,8 +14,14 @@ vim.opt.joinspaces = false -- No double spaces with join (mapped to qj in my con
 vim.opt.list = false -- I don't want to show things like tabs
 vim.opt.signcolumn = "yes" -- Keeps the sign column of a consistent width
 
--- tcqj are there by default, and "r" automatically continues comments on enter
+-- tcqj are there by default
+-- - "t" automatically wraps text
+-- - "c" automatically wraps comments
+-- - "q" allows re-flowing comments with gq
+-- - "j" removes comment leaders when joining lines
+-- - "r" automatically continues comments on enter
 vim.opt.formatoptions = "tcqjr"
+vim.opt.breakindent = true -- Indentation-aware word wrapping.
 
 vim.opt.scrolloff = 4 -- Starts scrolling 4 lines from the edge of the screen
 vim.opt.termguicolors = true -- True color support
