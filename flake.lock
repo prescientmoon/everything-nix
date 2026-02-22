@@ -875,11 +875,11 @@
         "purifix": "purifix"
       },
       "locked": {
-        "lastModified": 1728837827,
-        "narHash": "sha256-3BIeNuntiR0xrKIPNRbp7EInWRjgJ1LzWJI/HiQ68k0=",
+        "lastModified": 1771670414,
+        "narHash": "sha256-nXhk5sIUgyk+f5yhUvYhNOUbRYKqysCVJfAJOXJLP+4=",
         "owner": "prescientmoon",
         "repo": "miros",
-        "rev": "457414c4dd64dae05414f8e4181d8be7672fb89b",
+        "rev": "43347f004c5f3509585f4166dd546d5ed8fba9b5",
         "type": "github"
       },
       "original": {
