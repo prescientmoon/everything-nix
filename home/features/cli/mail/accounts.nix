@@ -22,13 +22,12 @@
       passwordCommand = "cat ${config.sops.secrets.moonythm_mail_pass.path}";
       primary = true;
 
-      # IMAP / SMTP configuration
       imap.host = "imap.migadu.com";
       imap.port = 993;
       smtp.host = "smtp.migadu.com";
       smtp.port = 465;
 
-      aerc.enable = true;
+      aerc.enable = true; # My preferred mail client
       msmtp.enable = true;
 
       # Email sync to the local maildir
