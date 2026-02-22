@@ -14,14 +14,16 @@ let
                 proxyWebsockets = true;
               };
             }
-          else
+          else if subcfg.files != null then
             {
               root = subcfg.files;
               locations."/" = {
                 tryFiles = "$uri $uri/ =404";
                 index = "index.html";
               };
-            };
+            }
+          else
+            { };
       in
       {
         enableACME = true;
@@ -107,13 +109,13 @@ in
 
   config = lib.mkIf cfg.enable {
     assertions = lib.mapAttrsToList (_: config: {
-      assertion = (config.port == null) == (config.files != null);
+      assertion = (config.port == null) || (config.files == null);
       message = ''
-        Precisely one of the options 
+        The options
           'satellite.nginx.at.${config.subdomain}.port'
         and 
           'satellite.nginx.at.${config.subdomain}.files'
-        must be specified.
+        cannot be specified at the same time.
       '';
     }) cfg.at;
 

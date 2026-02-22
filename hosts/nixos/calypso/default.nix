@@ -12,6 +12,7 @@
     ./filesystems
 
     ./services/beesd.nix
+    ./services/cgit.nix
     ./services/snapper.nix
     ./services/syncthing.nix
   ];

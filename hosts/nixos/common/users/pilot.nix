@@ -39,7 +39,7 @@
         isNormalUser = true;
 
         # Picked up by our persistence module
-        homeMode = "700";
+        homeMode = "711";
 
         # Add user to the following groups
         extraGroups = [
