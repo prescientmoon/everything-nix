@@ -14,8 +14,8 @@ block auto
   abbr v2 ℝ²
   abbr v3 ℝ³
   abbr v4 ℝ⁴
-  block !word
-    abbr __ ›
+  -- block !word
+  -- abbr __ ›
 
 block start
   abbr private \@(private)

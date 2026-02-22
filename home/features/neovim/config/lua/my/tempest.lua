@@ -160,7 +160,8 @@ end
 function M.createVisualFold(name)
   local commentstring = vim.o.commentstring
   local markers = { "{{{", "}}}" }
-  local start_comment = string.gsub(commentstring, "%%s", markers[1] .. name)
+  local start_comment =
+    string.gsub(commentstring, "%%s", markers[1] .. " " .. name)
   local end_comment = string.gsub(commentstring, "%%s", markers[2])
 
   -- Leave visual mode
