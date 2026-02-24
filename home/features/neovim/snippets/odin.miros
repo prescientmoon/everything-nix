@@ -63,3 +63,7 @@ for level <- @⟨debug,info,warn,error,assert⟩
 
 abbr f@level log.@level⋄f("$1", $2)$0
 abbr @level  log.@level($1)$0
+
+abbr todo          log.panic("todo :3")
+abbr unimplemented log.panic("unimplemented :3")
+abbr deprecated    log.panic("deprecated :3")

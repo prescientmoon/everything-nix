@@ -61,7 +61,7 @@
         indie-wiki-buddy # redirects fandom wiki urls to the proper wikis
         leechblock-ng # website blocker
         localcdn # caches libraries locally
-        octolinker # github import to link thingy
+        # octolinker # github import to link thingy # REASON: 404 for now
         privacy-badger # blocks some trackers
         privacy-pass # captcha stuff
         privacy-redirect # allows redirecting to my own instances for certain apps

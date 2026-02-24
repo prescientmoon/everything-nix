@@ -12,11 +12,10 @@ hostname := `hostname`
 # {{{ Nixos rebuilds
 [doc("Wrapper around `nixos-rebuild`")]
 [group("nix")]
-nixos-rebuild action="switch" host=hostname ng="1":
+nixos-rebuild action="switch" host=hostname:
   #!/usr/bin/env python3
   import subprocess
 
-  ng = "{{ng}}" != "0"
   host = "{{host}}"
   users = {
     'tethys': 'adrielus',
@@ -30,13 +29,13 @@ nixos-rebuild action="switch" host=hostname ng="1":
   }
 
   args = [
-    "nixos-rebuild-ng" if ng else "nixos-rebuild",
+    "nixos-rebuild",
     "{{action}}",
     "--show-trace",
     "--accept-flake-config",
     "--flake", 
     ".#{{host}}",
-    "--no-reexec" if ng else "--fast"
+    "--no-reexec"
   ]
 
   if host == "{{hostname}}": 
@@ -44,11 +43,12 @@ nixos-rebuild action="switch" host=hostname ng="1":
     args = [ "sudo", *args ]
   else:
     print("🧬 Switching nixos configuration (remotely) for '{{BLUE + host + NORMAL}}'")
-    args += [ "--target-host", f"{users[host]}@{hosts[host]}" ]
-    if ng:
-      args += [ "--sudo", "--ask-sudo-password" ]
-    else:
-      args += [ "--use-remote-sudo" ]
+    args += [
+      "--target-host",
+      f"{users[host]}@{hosts[host]}",
+      "--sudo",
+      "--ask-sudo-password"
+    ]
 
   try:
     subprocess.run(args, check=True)

@@ -433,10 +433,8 @@ let
                   (upkgs.tree-sitter.buildGrammar {
                     language = "odin";
                     version = "unstable-2025-07-18";
-                    src = pkgs.fetchFromGitea {
-                      domain = "git.moonythm.dev";
-                      owner = "starlitcanopy";
-                      repo = "tree-sitter-odin";
+                    src = pkgs.fetchgit {
+                      url = "https://git.moonythm.dev/starlitcanopy/tree-sitter-odin.git";
                       rev = "61e6575f73e23aff4b6b3dda55aedf0a42acc591";
                       sha256 = "sha256-YAuBrH4q/vHwg3oKmY1vnP06+h/TFh+bzyj5Im9C0xQ=";
                     };
@@ -471,7 +469,6 @@ let
                   idris
                   javascript
                   json
-                  jsonc
                   just
                   latex
                   lua
@@ -515,7 +512,7 @@ let
             };
 
             # package = "nvim-treesitter/nvim-treesitter";
-            main = "nvim-treesitter.configs";
+            main = "nvim-treesitter";
 
             dependencies.nix = [
               pkgs.tree-sitter
@@ -523,16 +520,6 @@ let
             ];
 
             event = "VeryLazy";
-
-            opts.indent.enable = true;
-            opts.highlight = {
-              enable = true;
-              disable = [
-                "kotlin" # This one seemed a bit broken
-                "odin"
-              ];
-              additional_vim_regex_highlighting = false;
-            };
           };
         # }}}
         # }}}
@@ -869,7 +856,7 @@ let
         # }}}
         # {{{ miros
         # snippeting generation language
-        miros = with inputs.miros.packages.${pkgs.stdenv.hostPlatform.system}; {
+        miros = with import inputs.miros { inherit pkgs; }; {
           dir = miros-nvim;
           dependencies.nix = [ miros ];
 

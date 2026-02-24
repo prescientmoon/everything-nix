@@ -133,10 +133,11 @@ for alias in allAliases:
     if command == "sync":
       migaduUpdateAlias(alias, localDest)
 
+action = "Synchronized" if command == "sync" else "Found"
 if changes == 0:
   print("No changes found")
 elif changes == 1:
-  print("1 change found")
+  print(f"{action} 1 change")
 else:
-  print(f"{changes} changes found")
+  print(f"{action} {changes} changes")
 # }}}

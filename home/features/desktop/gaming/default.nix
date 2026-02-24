@@ -276,7 +276,7 @@ in
         release = "2010-09-08";
         description = "VVVVVV is a platform game all about exploring one simple mechanical idea - what if you reversed gravity instead of jumping?";
 
-        file = lib.getExe pkgs.vvvvvv;
+        file = "${pkgs.vvvvvv}/bin/vvvvvv";
         launch = mkHistoriaScript {
           inherit file;
           name = "vvvvvv";

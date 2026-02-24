@@ -41,6 +41,7 @@
     upkgs.freetube # youtube client
     pomodoro-gtk # basic pomodoro timer
     anki # flashcards!
+    lagrange # Gemini browser
   ];
 
   satellite = {

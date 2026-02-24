@@ -9,6 +9,7 @@ in
     package = pkgs.cgit-pink;
     scanPath = "/home/moon/projects/personal";
     group = "users";
+    gitHttpBackend.enable = false; # I'll never clone local repos
 
     settings = {
       about-filter = "${pkgs.cgit-pink}/lib/cgit/filters/about-formatting.sh";

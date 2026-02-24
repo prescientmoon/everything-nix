@@ -44,7 +44,7 @@
     # }}}
 
     miros.url = "github:prescientmoon/miros";
-    miros.inputs.nixpkgs.follows = "nixpkgs";
+    miros.flake = false;
 
     # Spotify client with theming support
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
