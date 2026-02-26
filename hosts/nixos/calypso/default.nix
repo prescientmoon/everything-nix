@@ -50,8 +50,11 @@
   programs.adb.enable = true;
   users.users.pilot.extraGroups = [ "adbusers" ];
 
+  # A few gnome thingies
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.hyprland.enableGnomeKeyring = true;
+  services.gnome.evolution-data-server.enable = true;
+  services.gnome.gnome-online-accounts.enable = true;
 
   # Use the latest kernel (the WIFI card is not seen otherwise)
   boot.kernelPackages = pkgs.linuxPackages;

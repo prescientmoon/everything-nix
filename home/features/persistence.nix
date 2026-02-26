@@ -143,6 +143,11 @@
     "${config.xdg.dataHome}/keyrings"
   ];
   # }}}
+  # {{{ Gnome calendar
+  satellite.persistence.at.state.apps.gnome-calendar.directories = [
+    "${config.xdg.configHome}/evolution"
+  ];
+  # }}}
   # {{{ Libreoffice
   satellite.persistence.at.cache.apps.libreoffice.directories = [
     "${config.xdg.configHome}/libreoffice"

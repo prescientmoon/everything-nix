@@ -2,6 +2,7 @@
 {
   imports = [
     ./bat.nix
+    ./calendar.nix
     ./catgirl.nix
     ./direnv.nix
     ./eza.nix

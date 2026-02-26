@@ -42,6 +42,8 @@
     pomodoro-gtk # basic pomodoro timer
     anki # flashcards!
     lagrange # Gemini browser
+    gnome-control-center # Required for configuring calendar accounts
+    gnome-calendar
   ];
 
   satellite = {
