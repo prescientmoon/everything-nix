@@ -116,7 +116,7 @@ in
         hostNames = [ "zh4347.rsync.net" ];
       };
 
-      "restic/sha2" = {
+      "restic/ecdsa" = {
         publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLR2uz+YLn2KiQK0Luu8rhfWS6LHgUfGAWB1j8rM2MKn4KZ2/LhIX1CYkPKMTPxHr6mzayeL1T1hyJIylxXv0BY=";
         hostNames = [ "zh4347.rsync.net" ];
       };

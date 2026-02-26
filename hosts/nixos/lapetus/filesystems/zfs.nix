@@ -1,11 +1,8 @@
-{ config, pkgs, ... }:
-let secretMountpoint = "/hermes";
-in
+{ pkgs, ... }:
 {
   # Configure ZFS
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "zroot" ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.kernelParams = [ "nohibernate" ];
 
   # {{{ Rollback

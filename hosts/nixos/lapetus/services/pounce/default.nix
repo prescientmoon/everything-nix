@@ -1,4 +1,8 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 let
   user = config.services.pounce.user;
 
@@ -23,6 +27,13 @@ let
       host = "irc.hackint.org";
       join = "#hackint,#tvl";
     }
+    {
+      name = "town";
+      host = "localhost";
+      join = "#tildetown,#websiteclub,#coworking";
+      port = config.satellite.ports.tilde-town-irc;
+      insecure = true; # The SSH tunnel encrypts this already
+    }
   ];
 
   makeNetworkConfig =
@@ -31,6 +42,7 @@ let
       host,
       join,
       port ? 6697,
+      insecure ? false,
     }:
     {
       services.pounce.networks.${name}.config = config.sops.templates."pounce-${name}.cfg".path;
@@ -43,6 +55,7 @@ let
           port = ${toString port}
           join = ${join}
           save = /persist/state/var/lib/pounce/${host}
+          ${lib.optionalString insecure "insecure"}
         '';
         owner = user;
       };
@@ -51,6 +64,7 @@ in
 {
   imports = [
     ./module.nix
+    ./tilde-town.nix
     { config = lib.mkMerge (lib.forEach networks makeNetworkConfig); }
   ];
 

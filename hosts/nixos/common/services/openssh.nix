@@ -59,6 +59,9 @@
   # By default, this will ban failed ssh attempts
   services.fail2ban.enable = lib.mkDefault true;
 
+  # Helps with latency
+  programs.mosh.enable = true;
+
   # Makes it easy to copy host keys at install time without messing up permissions
   systemd.tmpfiles.rules = [
     "d /persist/state/etc/ssh"

@@ -318,3 +318,8 @@ hostname
 TTY
 MicroHS
 lookaheads
+expressivity
+ServerAliveInterval
+ExitOnForwardFailure
+tilde/!
+tilde

@@ -43,5 +43,6 @@
     gotosocial = 8434;
     prometheus-gotosocial-exporter = 8435;
     sqlite-web-historia = 8436;
+    tilde-town-irc = 8437;
   };
 }
