@@ -323,3 +323,9 @@ ServerAliveInterval
 ExitOnForwardFailure
 tilde/!
 tilde
+monorepo
+NPM
+npm
+fuckery
+OverlayFS
+proc

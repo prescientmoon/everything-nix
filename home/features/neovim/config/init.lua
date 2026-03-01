@@ -181,7 +181,7 @@ vim.opt.spell = true
 tempest.createKeymap({
   mapping = "<leader>ss",
   action = function()
-    vim.opt.spell = not vim.opt.spell
+    vim.opt.spell = not vim.o.spell
   end,
   desc = "toggle [s]pell checking",
 })

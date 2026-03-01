@@ -1,2 +1,2 @@
--- vim.treesitter.start()
+vim.treesitter.start()
 vim.opt.spell = false

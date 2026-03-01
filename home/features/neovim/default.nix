@@ -507,8 +507,8 @@ let
               # we'd pass this to nixos/HM's neovim configuration modules).
               paths = [
                 allGrammars
-                allGrammars.dependencies
-              ];
+              ]
+              ++ allGrammars.dependencies;
             };
 
             # package = "nvim-treesitter/nvim-treesitter";
@@ -519,7 +519,7 @@ let
               pkgs.nodejs
             ];
 
-            event = "VeryLazy";
+            lazy = false; # I don't want to bother figuring this out...
           };
         # }}}
         # }}}
