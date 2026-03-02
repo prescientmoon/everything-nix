@@ -120,8 +120,8 @@ local function swapLinewiseKeybinds(key)
 end
 
 local function unswapLinewiseKeybinds(key)
-  vim.keymap.del({ "n", "v" }, key)
-  vim.keymap.del({ "n", "v" }, "g" .. key)
+  vim.keymap.del({ "n", "v" }, key, { buffer = true })
+  vim.keymap.del({ "n", "v" }, "g" .. key, { buffer = true })
 end
 
 M.wrapping = {}
@@ -149,7 +149,7 @@ function M.wrapping.disable()
 end
 
 function M.wrapping.toggle()
-  if vim.opt.wrap == true then
+  if vim.o.wrap then
     M.wrapping.disable()
   else
     M.wrapping.enable()

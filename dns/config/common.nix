@@ -80,7 +80,7 @@ let
       }
     ];
 
-  mkGoogleSiteVerification = at: key: {
+  googleSiteVerification = at: key: {
     at = "";
     ttl = 600;
     type = "TXT";
@@ -88,8 +88,18 @@ let
       "google-site-verification=${key}"
     ];
   };
+  # }}}
+  # {{{ Discord domain verification
+  discordVerification = at: key: [
+    {
+      at = if at == "" then "_discord" else "_discord.${at}";
+      ttl = 600;
+      type = "TXT";
+      value = "dh=${key}";
+    }
+  ];
+  # }}}
 in
-# }}}
 {
   satellite.dns.records = lib.flatten [
     (ghPage "doffycup")
@@ -97,8 +107,9 @@ in
     (ghPage "giftstogo")
     (migaduMail "" "kfkhyexd")
     (migaduMail "orbit" "24s7lnum")
-    (mkGoogleSiteVerification "" "PLDTV1yBxSRGgDU61yK7Ed8czHgJb3t5tIacK7vM-ks")
+    (googleSiteVerification "" "PLDTV1yBxSRGgDU61yK7Ed8czHgJb3t5tIacK7vM-ks")
     # (picoSh "" "moonythm")
     (picoSh "backup" "moonythm")
+    (discordVerification "" "e0707480c4e9713e0a15ca4e39d5fa3f5764fca4")
   ];
 }
