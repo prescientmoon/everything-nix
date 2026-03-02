@@ -138,7 +138,7 @@
   ];
   # }}}
   # {{{ Gnome keyring
-  services.gnome-keyring.enable = true;
+  services.gnome-keyring.enable = true; # TODO: move this to a proper location
   satellite.persistence.at.state.apps.gnome-keyring.directories = [
     "${config.xdg.dataHome}/keyrings"
   ];
@@ -146,6 +146,7 @@
   # {{{ Gnome calendar
   satellite.persistence.at.state.apps.gnome-calendar.directories = [
     "${config.xdg.configHome}/evolution"
+    "${config.xdg.dataHome}/evolution"
   ];
   # }}}
   # {{{ Libreoffice
