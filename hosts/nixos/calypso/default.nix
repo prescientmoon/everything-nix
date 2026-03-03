@@ -27,7 +27,7 @@
   satellite.wireless.backend = "iwd";
   satellite.hyprland.enable = true;
   satellite.greetd.enable = true;
-  satellite.qbittorrent.enable = true;
+  satellite.qbittorrent.enable = false;
 
   # Machine ids
   networking.hostName = "calypso";

@@ -1,3 +1,4 @@
+# TODO: move this to nixos
 { lib, ... }:
 {
   stylix.targets.foot.enable = true;

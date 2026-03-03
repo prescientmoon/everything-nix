@@ -1,4 +1,5 @@
 # Example-based CLI documentation
+# TODO: make this wrapper-based
 # https://dbrgn.github.io/tealdeer/
 { config, pkgs, ... }:
 {

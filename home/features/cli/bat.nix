@@ -1,3 +1,4 @@
+# TODO: move this to nixos
 # 'cat' alternative
 {
   programs.bat = {

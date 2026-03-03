@@ -1,3 +1,5 @@
+# TODO: move this to nixos (it would be nice to have it as root and whatnot as
+# well)
 {
   pkgs,
   config,
@@ -6,6 +8,7 @@
 }:
 {
   # {{{ FZF
+  # NOTE: I never use this. I should probably remove it
   programs.fzf = {
     enable = true;
     defaultOptions = [ "--no-scrollbar" ];

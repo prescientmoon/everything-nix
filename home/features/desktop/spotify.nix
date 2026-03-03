@@ -1,3 +1,4 @@
+# TODO: stop using this shitty app
 {
   inputs,
   pkgs,

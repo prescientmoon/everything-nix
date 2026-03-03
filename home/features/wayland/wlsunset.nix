@@ -18,7 +18,7 @@ in
     enable = true;
     systemdTarget = "hyprland-session.target";
 
-    # Random Netherlands coordinates
+    # Randomized Netherlands coordinates
     latitude = "53.2";
     longitude = "6.5";
   };

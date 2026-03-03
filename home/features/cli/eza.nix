@@ -1,3 +1,4 @@
+# TODO: move this to the nixos config
 { pkgs, lib, ... }:
 let
   package = pkgs.eza;

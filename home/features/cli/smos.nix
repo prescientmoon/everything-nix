@@ -1,3 +1,4 @@
+# TODO: remove this (I don't use it anymore)
 {
   config,
   pkgs,

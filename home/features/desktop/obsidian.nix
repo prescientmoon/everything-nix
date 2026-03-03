@@ -1,3 +1,4 @@
+# TODO: turn this into a wrapper
 { config, pkgs, ... }:
 {
   home.packages = [ pkgs.obsidian ];

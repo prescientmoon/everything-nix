@@ -1,4 +1,4 @@
-{ config, ... }:
+# TODO: make this wrapper-based
 {
   programs.lazygit = {
     enable = true;
@@ -7,6 +7,4 @@
       disableStartupPopups = true;
     };
   };
-
-  satellite.persistence.at.state.apps.lazygit.directories = [ "${config.xdg.configHome}/lazygit" ];
 }

@@ -1,13 +1,16 @@
+# TODO: turn this into a wrapper
 # Wlogout is a logout menu. In my setup, it can be triggered using mod-q
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }:
-let bgImageSection = name: ''
-  #${name} {
-    background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/${name}.png"));
-  }
-'';
+let
+  bgImageSection = name: ''
+    #${name} {
+      background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/${name}.png"));
+    }
+  '';
 in
 {
   home.packages = [ pkgs.wlogout ];

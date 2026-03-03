@@ -15,6 +15,7 @@ let
     port = 6697
   '';
 
+  # TODO: scope this to catgirl only
   # prints an irc message in rainbow text
   ircgay = pkgs.writeShellScriptBin "ircgay" ''
     ${lib.getExe pkgs.toilet} -f term --irc --gay "$*"
@@ -23,7 +24,9 @@ in
 {
   home.packages = [
     ircgay
-    spkgs.catgirl
+    # NOTE: we could make this wrapper-based by overriding some env vars,
+    # although I'm not sure that's a good idea
+    pkgs.catgirl
   ];
 
   xdg.configFile."catgirl/tilde".text = mkCatgirlNetwork "tilde";
