@@ -62,7 +62,8 @@
   # Helps with latency
   programs.mosh.enable = true;
 
-  # Makes it easy to copy host keys at install time without messing up permissions
+  # Allow safely copying host keys at install time without messing up
+  # permissions and the like
   systemd.tmpfiles.rules = [
     "d /persist/state/etc/ssh"
   ]

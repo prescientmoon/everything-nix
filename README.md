@@ -138,6 +138,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [gitlinker](https://github.com/linrongbin16/gitlinker.nvim) — I very rarely needed this
 - [crates.nvim](https://github.com/saecki/crates.nvim) — Cool plugin, but I was rarely using its functionality
 - [idris2-nvim](https://github.com/idris-community/idris2-nvim) — I haven't used Idris in a good while
 - [lean.nvim](https://github.com/Julian/lean.nvim) — I haven't used Lean in a good while

@@ -130,7 +130,7 @@ end
 M.refresh = function(buf_id)
   buf_id = buf_id or vim.api.nvim_get_current_buf()
 
-  if vim.api.nvim_buf_get_option(buf_id, "ft") ~= "starter" then
+  if vim.o.ft ~= "starter" then
     return
   end
 
@@ -166,9 +166,9 @@ M.refresh = function(buf_id)
   -- }}}
 
   -- Add content
-  vim.api.nvim_buf_set_option(buf_id, "modifiable", true)
+  vim.bo.modifiable = true
   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, H.content_to_lines(content))
-  vim.api.nvim_buf_set_option(buf_id, "modifiable", false)
+  vim.bo.modifiable = false
 
   -- {{{ Add highlighting
   for l_num, content_line in ipairs(content) do

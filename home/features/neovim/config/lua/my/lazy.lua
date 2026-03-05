@@ -17,19 +17,20 @@ function M.setup()
     --   name = "nihil",
     --   ft = "nihil",
     -- },
-    {
-      dir = "/home/moon/projects/personal/solar-conflux/rust/shaderfurl/vim",
-      ft = "shaderfurl",
-      name = "shaderfurl",
-    },
+    -- {
+    --   dir = "/home/moon/projects/personal/solar-conflux/rust/shaderfurl/vim",
+    --   ft = "shaderfurl",
+    --   name = "shaderfurl",
+    -- },
     unpack(require("nix").lazy),
   }, {
     defaults = { lazy = true },
     rocks = { enabled = false },
     install = {
-      -- install missing plugins on startup. this doesn't increase startup time.
+      -- Install missing plugins on startup. This doesn't increase startup time.
       missing = true,
-      -- try to load one of these colorschemes when starting an installation during startup
+      -- Try to load one of these colorschemes when starting an installation
+      -- during startup.
       colorscheme = { "rose-pine", "catpuccin" },
     },
     change_detection = {

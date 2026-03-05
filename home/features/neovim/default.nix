@@ -77,41 +77,7 @@ let
               vim.opt.stl = vim.opt.stl
             '') "Save current file")
             # }}}
-            # {{{ Diagnostics
-            (nmap "J" (vim /diagnostic/open_float) "Open current diagnostic")
-            (nmap "qj" "J" "join lines")
-            (nmap "<leader>dl" (thunk ''
-              vim.diagnostic.setloclist()
-              vim.cmd("lopen")
-            '') "[D]iagnostic loclist")
-            (nmap "<leader>dq" (thunk ''
-              vim.diagnostic.setqflist()
-              vim.cmd("copen")
-            '') "[D]iagnostic qflist")
-            # }}}
-            # {{{ Other misc keybinds
-            (nmap "<leader>rw" ":%s/<C-r><C-w>/" "[R]eplace [w]ord in file")
-            (nmap "<leader>yp" "<cmd>!curl --data-binary @% https://paste.rs | wl-copy<cr>"
-              "[y]ank [p]aste.rs link to clipboard"
-            )
-            # }}}
-            {
-              mode = "v";
-              mapping = "<C-i>";
-              action = _: tempest /createVisualFold (vim /fn/input "Fold name: ");
-            }
           ];
-
-        };
-        # }}}
-        # {{{ Neovide config
-        "4:configure-neovide" = {
-          cond = whitelist "neovide";
-          vim.g = {
-            neovide_transparency = tempest /theme/transparency/applications/value;
-            neovide_cursor_animation_length = 4.0e-2;
-            neovide_cursor_animate_in_insert_mode = false;
-          };
         };
         # }}}
         # {{{ Language specific overrides
@@ -167,7 +133,7 @@ let
         # {{{ UI
         # {{{ mini.statusline
         mini-statusline = {
-          package = "echasnovski/mini.statusline";
+          package = "nvim-mini/mini.statusline";
           name = "mini.statusline";
           dependencies.lua = [ "web-devicons" ];
 
@@ -205,7 +171,7 @@ let
         # }}}
         # {{{ mini.files
         mini-files = {
-          package = "echasnovski/mini.files";
+          package = "nvim-mini/mini.files";
           name = "mini.files";
           dependencies.lua = [ "web-devicons" ];
 
@@ -362,6 +328,7 @@ let
         # The line between `ui` and `visual` is a bit rought. I currenlty mostly judge
         # it by vibe.
         # {{{ indent-blankline
+        # TODO: switch this over to mini.indentscope
         indent-blankline = {
           package = "lukas-reineke/indent-blankline.nvim";
           main = "ibl";
@@ -614,7 +581,7 @@ let
         # }}}
         # {{{ mini.ai
         mini-ai = {
-          package = "echasnovski/mini.ai";
+          package = "nvim-mini/mini.ai";
           name = "mini.ai";
           event = "VeryLazy";
 
@@ -645,7 +612,7 @@ let
         # }}}
         # {{{ mini.align
         mini-align = {
-          package = "echasnovski/mini.align";
+          package = "nvim-mini/mini.align";
           name = "mini.align";
 
           config = true;
@@ -663,7 +630,7 @@ let
         # }}}
         # {{{ mini.comment
         mini-comment = {
-          package = "echasnovski/mini.comment";
+          package = "nvim-mini/mini.comment";
           name = "mini.comment";
 
           config = true;
@@ -678,7 +645,7 @@ let
         # }}}
         # {{{ mini.surround
         mini-surround = {
-          package = "echasnovski/mini.surround";
+          package = "nvim-mini/mini.surround";
           name = "mini.surround";
 
           keys = lib.flatten [
@@ -739,7 +706,7 @@ let
         # }}}
         # {{{ mini.operators
         mini-operators = {
-          package = "echasnovski/mini.operators";
+          package = "nvim-mini/mini.operators";
           name = "mini.operators";
 
           config = true;
@@ -766,7 +733,7 @@ let
         # }}}
         # {{{ mini.pairs
         # mini-pairs = {
-        #   package = "echasnovski/mini.pairs";
+        #   package = "nvim-mini/mini.pairs";
         #   name = "mini.pairs";
         #
         #   # We could specify all the generated bindings, but I don't think it's worth it
@@ -1130,19 +1097,6 @@ let
 
           event = "VeryLazy";
           config = true;
-        };
-        # }}}
-        # {{{ gitlinker
-        # generate permalinks for code
-        gitlinker = rec {
-          package = "ruifm/gitlinker.nvim";
-          dependencies.lua = [ "plenary" ];
-
-          opts.mappings = "<leader>yg";
-          keys = {
-            mapping = opts.mappings;
-            desc = "[y]ank [g]it permalink";
-          };
         };
         # }}}
         # {{{ obsidian

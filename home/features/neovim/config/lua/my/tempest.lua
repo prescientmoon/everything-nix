@@ -156,22 +156,6 @@ function M.wrapping.toggle()
   end
 end
 -- }}}
--- {{{ Folding
-function M.createVisualFold(name)
-  local commentstring = vim.o.commentstring
-  local markers = { "{{{", "}}}" }
-  local start_comment =
-    string.gsub(commentstring, "%%s", markers[1] .. " " .. name)
-  local end_comment = string.gsub(commentstring, "%%s", markers[2])
-
-  -- Leave visual mode
-  local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
-  vim.api.nvim_feedkeys(esc, "x", false)
-
-  vim.cmd(":'>put='" .. end_comment .. "'")
-  vim.cmd(":'<-1put='" .. start_comment .. "'")
-end
--- }}}
 
 -- {{{ Main config runtime
 local function recursive_assign(source, destination)
@@ -291,7 +275,7 @@ function M.configureMany(specs, context)
 end
 -- }}}
 -- {{{ Neovim env handling
-local envs = {
+M.envs = {
   vscode = vim.g.vscode ~= nil,
   neovide = vim.g.neovide ~= nil or vim.g.nix_neovim_app == "neovide",
   firenvim = vim.g.started_by_firenvim ~= nil
@@ -304,7 +288,7 @@ M.blacklist = function(list)
   end
 
   for _, key in pairs(list) do
-    if envs[key] then
+    if M.envs[key] then
       return false
     end
   end
@@ -318,7 +302,7 @@ M.whitelist = function(list)
   end
 
   for _, key in pairs(list) do
-    if not envs[key] then
+    if not M.envs[key] then
       return false
     end
   end

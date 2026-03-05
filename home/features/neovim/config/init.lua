@@ -108,6 +108,7 @@ do
 end
 -- }}}
 
+-- Keybinds
 -- {{{ Free up q and Q
 -- Move q -> <c-q>
 tempest.moveKeymap({
@@ -130,8 +131,14 @@ tempest.createKeymap({
   desc = "Save all files and [q]uit",
 })
 -- }}}
+-- {{{ Merge lines with qj
+tempest.createKeymap({
+  mapping = "qj",
+  action = "J",
+  desc = "join lines",
+})
+-- }}}
 -- {{{ Insert mode comment tricks
-
 tempest.createKeymap({
   mode = "i",
   mapping = "<c-cr>",
@@ -151,6 +158,52 @@ tempest.createKeymap({
   desc = "Insert newline above without continuing the current comment",
 })
 -- }}}
+-- {{{ Fold creation
+tempest.createKeymap({
+  mode = "v",
+  mapping = "<c-i>",
+  action = function()
+    local name = vim.fn.input("Fold name: ")
+    local commentstring = vim.o.commentstring
+    local markers = { "{{{", "}}}" }
+    local start_comment =
+      string.gsub(commentstring, "%%s", markers[1] .. " " .. name)
+    local end_comment = string.gsub(commentstring, "%%s", markers[2])
+
+    -- Leave visual mode
+    local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+    vim.api.nvim_feedkeys(esc, "x", false)
+
+    vim.cmd(":'>put='" .. end_comment .. "'")
+    vim.cmd(":'<-1put='" .. start_comment .. "'")
+  end,
+  desc = "create fold",
+})
+-- }}}
+-- {{{ Replace word in file
+tempest.createKeymap({
+  mapping = "<leader>rw",
+  action = ":%s/<C-r><C-w>/",
+  desc = "[R]eplace [w]ord in file",
+})
+-- }}}
+-- {{{ Paste.rs integration
+-- TODO: integrate with share.moonythm.dev instead
+tempest.createKeymap({
+  mapping = "<leader>yp",
+  action = "<cmd>!curl --data-binary @% https://paste.rs | wl-copy<cr>",
+  desc = "[y]ank [p]aste.rs link to clipboard",
+})
+
+tempest.createKeymap({
+  mode = "v",
+  mapping = "<leader>yp",
+  action = "<cmd>w !curl --data-binary @- https://paste.rs | wl-copy<cr>",
+  desc = "[y]ank [p]aste.rs link to clipboard",
+})
+-- }}}
+
+-- Option toggles
 -- {{{ Color column handling
 local defaultColorColumn = table.concat(vim.fn.range(81, 1000), ",")
 vim.opt.colorcolumn = defaultColorColumn
@@ -216,4 +269,35 @@ vim.lsp.enable({
   "emmet_language_server",
   "just",
 })
+
+tempest.createKeymap({
+  mapping = "J",
+  action = vim.diagnostic.open_float,
+  desc = "Open current diagnostic",
+})
+
+tempest.createKeymap({
+  mapping = "<leader>dl",
+  action = function()
+    vim.diagnostic.setloclist()
+    vim.cmd("lopen")
+  end,
+  desc = "[D]iagnostic loclist",
+})
+
+tempest.createKeymap({
+  mapping = "<leader>dq",
+  action = function()
+    vim.diagnostic.setqflist()
+    vim.cmd("copen")
+  end,
+  desc = "[D]iagnostic qflist",
+})
+-- }}}
+-- {{{ Neovide-specific configuration
+if tempest.envs.neovide then
+  vim.g.neovide_opacity = tempest.theme.transparency.applications.value
+  vim.g.neovide_cursor_animation_length = 4.0e-2
+  vim.g.neovide_cursor_animate_in_insert_mode = false
+end
 -- }}}
