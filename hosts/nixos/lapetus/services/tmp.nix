@@ -10,16 +10,9 @@ in
 {
   satellite.cloudflared.at.tmp.port = 80;
   services.nginx.virtualHosts."tmp.${config.satellite.dns.domain}" = {
-    locations."/" = {
-      root = path;
-      extraConfig = ''
-        add_header Access-Control-Allow-Origin "*";
-        add_header Access-Control-Allow-Methods "GET, OPTIONS";
-      '';
-    };
-
     # Redirect the root page to my website
     locations."= /".return = "301 https://${config.satellite.dns.domain}";
+    locations."/".root = path;
   };
 
   # Clean files that have been there for more than a month
