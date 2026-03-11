@@ -20,7 +20,7 @@
     ./services/jellyfin.nix
     ./services/matrix
     ./services/miniflux.nix
-    ./services/moonythm.nix # Yeah...
+    ./services/moonythm.nix
     ./services/picoshare.nix
     ./services/pounce
     ./services/prometheus.nix
@@ -31,6 +31,7 @@
     ./services/shimmeringmoon.nix
     ./services/sillyring.nix
     ./services/syncthing.nix
+    ./services/tmp.nix
     ./services/vaultwarden.nix
     ./services/whoogle.nix
     ./services/zfs.nix
