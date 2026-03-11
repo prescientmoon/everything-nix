@@ -135,6 +135,8 @@ function M.wrapping.enable()
   swapLinewiseKeybinds("<down>")
   swapLinewiseKeybinds("0")
   swapLinewiseKeybinds("$")
+
+  M.colorcolumn.disable()
 end
 
 function M.wrapping.disable()
@@ -153,6 +155,27 @@ function M.wrapping.toggle()
     M.wrapping.disable()
   else
     M.wrapping.enable()
+  end
+end
+-- }}}
+-- {{{ Color columns
+local defaultColorColumn = table.concat(vim.fn.range(81, 1000), ",")
+
+M.colorcolumn = {}
+
+M.colorcolumn.disable = function()
+  vim.opt.colorcolumn = ""
+end
+
+M.colorcolumn.enable = function()
+  vim.opt.colorcolumn = defaultColorColumn
+end
+
+M.colorcolumn.toggle = function()
+  if vim.o.colorcolumn == "" then
+    M.colorcolumn.enable()
+  else
+    M.colorcolumn.disable()
   end
 end
 -- }}}

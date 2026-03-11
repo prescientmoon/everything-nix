@@ -452,6 +452,7 @@ let
                   sql
                   ssh_config
                   svelte
+                  swift
                   tmux
                   toml
                   tsx

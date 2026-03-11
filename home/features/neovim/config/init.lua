@@ -205,17 +205,9 @@ tempest.createKeymap({
 
 -- Option toggles
 -- {{{ Color column handling
-local defaultColorColumn = table.concat(vim.fn.range(81, 1000), ",")
-vim.opt.colorcolumn = defaultColorColumn
 tempest.createKeymap({
   mapping = "<leader>sc",
-  action = function()
-    if vim.o.colorcolumn == "" then
-      vim.opt.colorcolumn = defaultColorColumn
-    else
-      vim.opt.colorcolumn = ""
-    end
-  end,
+  action = tempest.colorcolumn.toggle,
   desc = "toggle the color[c]olumn",
 })
 -- }}}
@@ -223,9 +215,7 @@ tempest.createKeymap({
 vim.opt.wrap = false
 tempest.createKeymap({
   mapping = "<leader>sw",
-  action = function()
-    tempest.wrapping.toggle()
-  end,
+  action = tempest.wrapping.toggle,
   desc = "toggle word [w]rap",
 })
 -- }}}
