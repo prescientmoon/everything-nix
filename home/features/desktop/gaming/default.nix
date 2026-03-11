@@ -224,10 +224,6 @@ in
         ];
         release = "2015-04-23";
         description = "Crypt of the NecroDancer is an award winning hardcore roguelike rhythm game. Move to the music and deliver beatdowns to the beat! Groove to the epic Danny Baranowsky soundtrack, or select songs from your own MP3 collection!";
-        tags = [
-          "rhythm"
-          "roguelike"
-        ];
 
         file = "${persistentStateDir}/crypt-of-the-necrodancer/state/start.sh";
         launch = mkSteamRunScript {
@@ -322,10 +318,6 @@ in
           CAN YOU CHANGE THE COURSE OF FATE?\\n
           AND SAVE THE ONES CLOSEST TO YOU?\\n
         ";
-        tags = [
-          "visual novel"
-          "sci-fi"
-        ];
 
         # The files I have from my Steam copy do not work by themselves, but a
         # bit of patching solved the issue.
@@ -355,7 +347,6 @@ in
           indie classic, featuring fully repainted artwork, a new world of 
           puzzles, and seriously in-depth commentary.
         ";
-        tags = [ "puzzle" ];
 
         file = "${persistentStateDir}/braid/steam-install/braid64_d3d11_final.exe";
         launch = mkUmuScript {
@@ -369,6 +360,66 @@ in
           icon = ./assets/braid/icon.png;
           background = ./assets/braid/background.jpg;
           screenshot = ./assets/braid/screenshot.jpg;
+        };
+      };
+      # }}}
+      # {{{ Baba is You
+      games.baba-is-you = rec {
+        name = "Baba Is You";
+        developers = [ "Hempuli" ];
+        release = "2019-03-10";
+        description = "
+          Baba Is You is an award-winning puzzle game where you can change the
+          rules by which you play. In every level, the rules themselves are
+          present as blocks you can interact with; by manipulating them, you
+          can change how the level works and cause surprising, unexpected
+          interactions! With some simple block-pushing you can turn yourself
+          into a rock, turn patches of grass into dangerously hot obstacles,
+          and even change the goal you need to reach to something entirely
+          different.
+        ";
+
+        file = "${persistentStateDir}/baba-is-you/itch-install/run.sh";
+        launch = mkSteamRunScript {
+          inherit file;
+          name = "baba-is-you";
+        };
+
+        assets = {
+          poster = ./assets/baba-is-you/grid.jpg;
+          logo = ./assets/baba-is-you/logo.png;
+          icon = ./assets/baba-is-you/icon.jpg;
+          background = ./assets/baba-is-you/background.jpg;
+          screenshot = ./assets/baba-is-you/screenshot.jpg;
+        };
+      };
+      # }}}
+      # {{{ Ultrakill
+      games.ultrakill = rec {
+        name = "ULTRAKILL";
+        developers = [ "Arsi \"Hakita\" Patala" ];
+        release = "2020-09-03";
+        description = "
+          ULTRAKILL is a fast-paced ultraviolent retro FPS combining the
+          skill-based style scoring from character action games with
+          unadulterated carnage inspired by the best shooters of the '90s. Rip
+          apart your foes with varied destructive weapons and shower in their
+          blood to regain your health. 
+        ";
+
+        # TODO: Handle the actual launching of the game :/
+        file = "${persistentStateDir}/baba-is-you/itch-install/bin64/Chowdren";
+        launch = mkUmuScript {
+          inherit file;
+          name = "ultrakill";
+        };
+
+        assets = {
+          poster = ./assets/ultrakill/grid.jpg;
+          logo = ./assets/ultrakill/logo.png;
+          icon = ./assets/ultrakill/icon.jpg;
+          background = ./assets/ultrakill/background.jpg;
+          screenshot = ./assets/ultrakill/screenshot.jpg;
         };
       };
       # }}}
