@@ -13,7 +13,7 @@ in
     group = user;
   };
 
-  # Set up tunnel to tilde.town's IRC network
+  # Set up a tunnel to tilde.town's IRC network
   systemd.services.tilde-town-irc-tunnel = {
     enable = true;
     description = "A SSH tunnel to tilde.town's IRC network";
@@ -28,7 +28,7 @@ in
 
       # -N: do not execute a remote command
       # -T: do not allocate a remote terminal
-      # -o ServerAliveInterval=60: time out if no data is received for a 60s
+      # -o ServerAliveInterval=60: time out if no data is received for a minute
       # -o ExitOnForwardFailure=yes: error if the tunneling cannot be set up
       ExecStart = ''
         ${pkgs.openssh}/bin/ssh \
