@@ -132,6 +132,11 @@
   # {{{ Element
   satellite.persistence.at.state.apps.element.directories = [ "${config.xdg.configHome}/Element" ];
   # }}}
+  # {{{ Fluffychat
+  satellite.persistence.at.state.apps.fluffy.directories = [
+    "${config.xdg.dataHome}/chat.fluffy.fluffychat"
+  ];
+  # }}}
   # {{{ Bitwarden
   satellite.persistence.at.state.apps.bitwarden.directories = [
     "${config.xdg.configHome}/Bitwarden"

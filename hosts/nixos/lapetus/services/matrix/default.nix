@@ -1,7 +1,7 @@
 {
   imports = [
+    ./continuwuity.nix
     ./element.nix
-    ./tuwunel.nix
     ./fluffychat.nix
   ];
 }

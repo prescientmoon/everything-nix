@@ -44,5 +44,6 @@
     prometheus-gotosocial-exporter = 8435;
     sqlite-web-historia = 8436;
     tilde-town-irc = 8437;
+    continuwuity = 8438;
   };
 }

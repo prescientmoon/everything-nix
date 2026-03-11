@@ -16,7 +16,7 @@
     package = upkgs.matrix-tuwunel;
     settings.global = {
       port = [ config.satellite.ports.tuwunel ];
-      allow_registration = true;
+      allow_registration = false;
       server_name = "uwu.${config.satellite.dns.domain}";
       registration_token_file = config.sops.secrets.tuwunel_token.path;
     };

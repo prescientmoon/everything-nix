@@ -17,6 +17,7 @@
     # Communication
     wasistlos
     element-desktop # Matrix client
+    fluffychat # Matrix client
     # zoom-us # Zoom client 🤮
     # NOTE: "expired" versions can no longer be used
     upkgs.signal-desktop # Signal client

@@ -61,9 +61,17 @@ in
                 description = "External https url used to access this host";
                 type = lib.types.str;
               };
+
+              target = lib.mkOption {
+                description = "The url requests are redirected to";
+                type = lib.types.str;
+              };
             };
 
-            config.url = "https://${config.host}";
+            config = {
+              url = "https://${config.host}";
+              target = "${config.protocol}://localhost:${toString config.port}";
+            };
           }
         )
       );
@@ -75,17 +83,10 @@ in
     # {{{ Cloudflare config
     services.cloudflared =
       let
-        mkIngressMapping =
-          {
-            port,
-            host,
-            protocol,
-            ...
-          }:
-          {
-            name = host;
-            value = "${protocol}://localhost:${toString port}";
-          };
+        mkIngressMapping = cfg: {
+          name = cfg.host;
+          value = cfg.target;
+        };
       in
       {
         enable = true;

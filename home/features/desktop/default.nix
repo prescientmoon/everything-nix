@@ -19,7 +19,6 @@
   # Use a base16 theme for gtk apps!
   stylix.targets.gtk.enable = true;
   gtk.enable = true;
-
   gtk.iconTheme = {
     package = pkgs.papirus-icon-theme;
     name = "Papirus";
@@ -27,6 +26,9 @@
 
   # Bigger text in qt apps
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4;
+
+  # We technically don't want this on non TWMs, but I don't use any such WMs
+  home.sessionVariables.GTK_CSD = 0;
 
   # Base packages
   home.packages = with pkgs; [
