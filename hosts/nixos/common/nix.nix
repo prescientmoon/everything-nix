@@ -7,7 +7,6 @@
 }:
 {
   nix = {
-    # Flake support and whatnot
     package = pkgs.lix;
 
     # Clean up the store weekly

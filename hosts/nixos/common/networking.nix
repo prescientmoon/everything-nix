@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-
   # Allows typing `hostname` instead of `hostname.moonythm.dev`.
   networking.search = [ config.satellite.dns.domain ];
 
