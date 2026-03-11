@@ -4,6 +4,8 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 
 > A [visual history](./docs/history.md) of my setup is in the works!
 
+> Woah, I can't believe this repo made it to 1000 commits :O
+
 ## Features this repository includes:
 
 - Sets up all the apps I use — including git, neovim, fish, starship, hyprland, anyrun, discord, zathura, foot & much more.
