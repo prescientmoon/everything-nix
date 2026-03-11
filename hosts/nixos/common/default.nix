@@ -32,7 +32,7 @@ let
     ./services/acme.nix
     ./services/cloudflared.nix
     ./services/greetd.nix
-    ./services/kanata.nix
+    ./services/kanata
     ./services/nginx.nix
     ./services/oci.nix
     ./services/openssh.nix
