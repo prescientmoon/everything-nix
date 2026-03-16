@@ -4,6 +4,11 @@ default:
 
 sops_file := source_directory() / "secrets.user.yaml"
 
+[doc("Edits the mail configuration")]
+[group("mail")]
+mail-edit:
+  sops {{sops_file}}
+
 [doc("Prints the differences between the current and desired email aliases")]
 [group("mail")]
 mail-diff:

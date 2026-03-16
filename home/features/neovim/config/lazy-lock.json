@@ -14,7 +14,6 @@
   "fidget": { "branch": "main", "commit": "0ba1e16d07627532b6cae915cc992ecac249fb97" },
   "flash": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "ftft": { "branch": "master", "commit": "f3e43c9584e14b27f04c27a95a9d9f0e58dfec02" },
-  "gitlinker": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
   "harpoon": { "branch": "master", "commit": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3" },
   "haskell-tools": { "branch": "master", "commit": "5fb8eda3c4430cb1d473d3e2138b070bdca1c224" },
   "indent-blankline": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },

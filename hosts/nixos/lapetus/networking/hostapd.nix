@@ -6,7 +6,7 @@ let
 in
 {
   # We'll use the network card to create a network, not connect to one!
-  satellite.wireless.active = false;
+  satellite.wireless.enable = false;
 
   sops.secrets.wifi_password.sopsFile = ../secrets.yaml;
   services.hostapd = {

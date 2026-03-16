@@ -28,6 +28,7 @@ let
     at: verifyKey:
     let
       atPrefix = prefix: if at == "" then prefix else "${prefix}.${at}";
+      atSuffix = suffix: if at == "" then suffix else "${at}.${suffix}";
     in
     [
       {
@@ -63,19 +64,19 @@ let
       {
         at = atPrefix "key1._domainkey";
         type = "CNAME";
-        value = "key1.orbit.moonythm.dev._domainkey.migadu.com.";
+        value = "key1.${atSuffix "moonythm.dev"}._domainkey.migadu.com.";
         ttl = 600;
       }
       {
         at = atPrefix "key2._domainkey";
         type = "CNAME";
-        value = "key2.orbit.moonythm.dev._domainkey.migadu.com.";
+        value = "key2.${atSuffix "moonythm.dev"}._domainkey.migadu.com.";
         ttl = 600;
       }
       {
         at = atPrefix "key3._domainkey";
         type = "CNAME";
-        value = "key3.orbit.moonythm.dev._domainkey.migadu.com.";
+        value = "key3.${atSuffix "moonythm.dev"}._domainkey.migadu.com.";
         ttl = 600;
       }
     ];

@@ -24,7 +24,7 @@ def include_named(name):
         return parse_list_content(f.read())
 
 
-youtube = include_named("youtube")
+youtube = []  # include_named("youtube")
 # Contains many wrong domains, but that's fine
 mobile_youtube = [f"m.{domain}" for domain in youtube]
 reddit = include_named("reddit")
