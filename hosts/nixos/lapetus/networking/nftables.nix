@@ -73,7 +73,7 @@
             iifname "docker0" oifname "enp0s25" accept
               comment "Allow Docker to WAN";
             iifname "enp0s25" oifname "docker0" ct state { established, related } \
-              accept comment "Allow established from Docker back to LAN";
+              accept comment "Allow established from WAN back to Docker";
           }
 
           # Things going away from this machine

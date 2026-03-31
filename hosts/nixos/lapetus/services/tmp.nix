@@ -13,6 +13,10 @@ in
     # Redirect the root page to my website
     locations."= /".return = "301 https://${config.satellite.dns.domain}";
     locations."/".root = path;
+    extraConfig = ''
+      charset utf-8;
+      override_charset on;
+    '';
   };
 
   # Clean files that have been there for more than a month

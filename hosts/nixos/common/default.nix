@@ -33,6 +33,7 @@ let
     ./services/cloudflared.nix
     ./services/greetd.nix
     ./services/kanata
+    ./services/mullvad.nix
     ./services/nginx.nix
     ./services/oci.nix
     ./services/openssh.nix

@@ -28,6 +28,7 @@
   satellite.hyprland.enable = true;
   satellite.greetd.enable = true;
   satellite.qbittorrent.enable = false;
+  satellite.mullvad.enable = false;
 
   # Machine ids
   networking.hostName = "calypso";
@@ -43,7 +44,6 @@
   boot.loader.systemd-boot.enable = true;
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
-  services.mullvad-vpn.enable = true;
   programs.nix-ld.enable = true; # Useful for running non-nix executables
 
   services.usbmuxd.enable = true;
