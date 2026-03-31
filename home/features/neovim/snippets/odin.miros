@@ -1,5 +1,3 @@
-import common/unicode-greek
-import common/unicode-double-stroke
 import common/unicode-subperscripts
 import common/unicode-misc
 
@@ -10,10 +8,6 @@ string loc
 
 block auto
   abbr anyint #any_int
-  abbr u8 ℕ₈
-  abbr v2 ℝ²
-  abbr v3 ℝ³
-  abbr v4 ℝ⁴
   -- block !word
   -- abbr __ ›
 
@@ -47,23 +41,26 @@ string @⟨@kind:when,if,elif⟩
       $2
     } $0
 
-string else
-  snip
-    else {
-      $1
-    } $0
-
 string forin
   snip
     for $1 in $2 {
       $3
     } $0
 
+string foriter
+  name for iter loop
+  snip
+    for iter := iter__mk($1); $2 in iter__next(&iter) {
+      $0
+    }
+
+string foriterdo
+  name for iter do loop
+  snip
+    iter := iter__mk($1)
+    for $2 in iter__next(&iter) do $0
+
 for level <- @⟨debug,info,warn,error,assert⟩
 
 abbr f@level log.@level⋄f("$1", $2)$0
 abbr @level  log.@level($1)$0
-
-abbr todo          log.panic("todo :3")
-abbr unimplemented log.panic("unimplemented :3")
-abbr deprecated    log.panic("deprecated :3")

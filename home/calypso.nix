@@ -14,37 +14,13 @@
 
   # Arbitrary extra packages
   home.packages = with pkgs; [
-    # Communication
-    wasistlos
-    element-desktop # Matrix client
-    fluffychat # Matrix client
-    # zoom-us # Zoom client 🤮
-    # NOTE: "expired" versions can no longer be used
-    upkgs.signal-desktop # Signal client
-
-    # Documents & editors
-    kdePackages.okular # Useful for reading pdf annotations (which zathura does not support)
-    # lmms # Music software
+    # google-chrome # Not my primary browser, but sometimes needed for webdev
     # kicad # PCB editing
-
-    # Clis
-    sherlock # Search for usernames across different websites
-    termdown # Basic CLI timer
-    imagemagick # Image operations
-    ffmpeg # Video operations
-    sqlite # I sometimes need to check the databases owned by various apps
-    yt-dlp # I often download live streams I can't watch in the moment
-    dig # DNS queries
-
-    # Misc
-    # google-chrome # Not my primary browser, but sometimes needed in webdev
+    # lmms # Music software
     # plover.dev # steno engine
-    upkgs.freetube # youtube client
+    kdePackages.okular # Useful for reading pdf annotations (which Zathura does not support)
     pomodoro-gtk # basic pomodoro timer
-    anki # flashcards!
-    lagrange # Gemini browser
-    gnome-control-center # Required for configuring calendar accounts
-    gnome-calendar
+    upkgs.freetube # YouTube client
   ];
 
   satellite = {
