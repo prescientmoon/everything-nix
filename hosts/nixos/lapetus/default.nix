@@ -9,7 +9,7 @@
 
     # ./services/5d-diplomacy (currently broken)
     ./services/actual.nix
-    ./services/cloudflared.nix
+    ./services/ddns-updater.nix
     ./services/diptime.nix
     ./services/forgejo.nix
     ./services/glass-server
@@ -73,16 +73,6 @@
   boot.loader.systemd-boot.enable = true;
 
   # Tailscale-internal IP DNS records
-  satellite.dns.records = [
-    {
-      at = config.networking.hostName;
-      type = "A";
-      value = "100.93.136.59";
-    }
-    {
-      at = config.networking.hostName;
-      type = "AAAA";
-      value = "fd7a:115c:a1e0::e75d:883b";
-    }
-  ];
+  satellite.nginx.overlayAddress.ipv4 = "100.93.136.59";
+  satellite.nginx.overlayAddress.ipv6 = "fd7a:115c:a1e0::e75d:883b";
 }

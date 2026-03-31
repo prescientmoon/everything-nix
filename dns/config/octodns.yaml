@@ -12,9 +12,17 @@ providers:
     class: octodns_cloudflare.CloudflareProvider
     token: 'env/CLOUDFLARE_TOKEN'
 
+processors:
+  not-these:
+    class: octodns.processor.filter.NameRejectlistFilter
+    rejectlist:
+      - lapetus.public # DDNS
+
 zones:
   moonythm.dev.:
     sources:
       - zones
+    processors:
+      - not-these
     targets:
       - cloudflare

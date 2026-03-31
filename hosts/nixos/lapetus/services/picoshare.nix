@@ -2,7 +2,10 @@
 # https://github.com/mtlynch/picoshare
 { config, ... }:
 {
-  satellite.cloudflared.at.share.port = config.satellite.ports.picoshare;
+  satellite.nginx.at.share = {
+    port = config.satellite.ports.picoshare;
+    scope = "public";
+  };
 
   sops = {
     secrets.picoshare_pass.sopsFile = ../secrets.yaml;

@@ -11,22 +11,10 @@
     group = config.services.forgejo.group;
   };
 
-  satellite.cloudflared.at.git.port = config.satellite.ports.forgejo;
-
-  # Protect the service from crawlers via Anubis.
-  # satellite.cloudflared.at.git.port = config.satellite.ports.forgejo-anubis;
-  # services.anubis.instances.forgejo = {
-  #   enable = true;
-  #   settings = {
-  #     TARGET = "http://localhost:${toString config.satellite.ports.forgejo}";
-  #     BIND = ":${toString config.satellite.ports.forgejo-anubis}";
-  #     BIND_NETWORK = "tcp";
-  #     COOKIE_DOMAIN = "moonythm.dev";
-  #     OG_PASSTHROUGH = true;
-  #     SERVE_ROBOTS_TXT = true;
-  #     WEBMASTER_EMAIL = "hi@moonythm.dev";
-  #   };
-  # };
+  satellite.nginx.at.git = {
+    port = config.satellite.ports.forgejo;
+    scope = "public";
+  };
 
   # Add CNAME record for ssh access. Unlike the http interface,
   # this will only get exposed over tailscale, so it is safe.
@@ -35,7 +23,7 @@
       type = "CNAME";
       zone = config.satellite.dns.domain;
       at = "ssh.git";
-      to = config.networking.hostName;
+      to = "${config.networking.hostName}.overlay";
     }
   ];
 
@@ -55,11 +43,11 @@
       default.APP_NAME = "moonforge";
 
       server = {
-        DOMAIN = config.satellite.cloudflared.at.git.host;
-        HTTP_PORT = config.satellite.cloudflared.at.git.port;
-        ROOT_URL = config.satellite.cloudflared.at.git.url;
+        DOMAIN = config.satellite.nginx.at.git.host;
+        HTTP_PORT = config.satellite.nginx.at.git.port;
+        ROOT_URL = config.satellite.nginx.at.git.url;
         LANDING_PAGE = "prescientmoon"; # Make my profile the landing page
-        SSH_DOMAIN = "ssh.${config.satellite.cloudflared.at.git.host}";
+        SSH_DOMAIN = "ssh.${config.satellite.nginx.at.git.host}";
       };
 
       cron.ENABLED = true;

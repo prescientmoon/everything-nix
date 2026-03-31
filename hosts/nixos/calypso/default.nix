@@ -61,18 +61,8 @@
   boot.kernelParams = [ "mt7921_common.disable_clc=1" ];
 
   # Tailscale-internal IP DNS records
-  satellite.dns.records = [
-    {
-      at = config.networking.hostName;
-      type = "A";
-      value = "100.74.40.5";
-    }
-    {
-      at = config.networking.hostName;
-      type = "AAAA";
-      value = "fd7a:115c:a1e0::1201:2806";
-    }
-  ];
+  satellite.nginx.overlayAddress.ipv4 = "100.74.40.5";
+  satellite.nginx.overlayAddress.ipv6 = "fd7a:115c:a1e0::1201:2806";
 
   # Waydroid
   virtualisation.waydroid.enable = true;
@@ -82,22 +72,16 @@
     services.waydroid-mount.wantedBy = [ "multi-user.target" ];
   };
 
-  # TEMPORARY
-  # services.nginx.virtualHosts."frog.moonythm.dev" = {
-  #   root = "/persist/data/frog";
-  #   extraConfig = ''
-  #     location / {
-  #       autoindex on;
-  #     }
-  #   '';
-  # };
-  #
-  # satellite.cloudflared.at.frog.port = 80;
-  #
-  # sops.secrets.cloudflare_tunnel_credentials.sopsFile = ./secrets.yaml;
-  # satellite.cloudflared = {
-  #   enable = true;
-  #   tunnel = "347d9ead-a523-4f8b-bca7-3066e31e2952";
-  #   credentialsFile = config.sops.secrets.cloudflare_tunnel_credentials.path;
+  # satellite.nginx.at.frog = {
+  #   port = 80;
+  #   scope = "friends";
+  #   vhost = {
+  #     root = "/persist/data/frog";
+  #     extraConfig = ''
+  #       location / {
+  #         autoindex on;
+  #       }
+  #     '';
+  #   };
   # };
 }

@@ -850,17 +850,17 @@
     "nihil": {
       "flake": false,
       "locked": {
-        "lastModified": 1772111291,
-        "narHash": "sha256-f6ph8FOSle02Q41oBCMWZZ76ZQHW8YtQyPKeMrC2CBA=",
-        "ref": "refs/heads/main",
-        "rev": "0ff0e1f3fd4372666f33304f4929fa99bf408533",
-        "revCount": 169,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
+        "lastModified": 1774813414,
+        "narHash": "sha256-mXnK/2v5gi8h1VhD2tsOV405nRZjXhb43RyEexwGWb0=",
+        "owner": "prescientmoon",
+        "repo": "nihil",
+        "rev": "daf968305529862e5bddbf8ba3ad9a6167f62c9f",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git"
+        "owner": "prescientmoon",
+        "repo": "nihil",
+        "type": "github"
       }
     },
     "nix-index-database": {
@@ -1252,15 +1252,15 @@
       "locked": {
         "lastModified": 1766958879,
         "narHash": "sha256-rWX3ZzmEbv5e+itmyE8W36VXCNpmE7RcZ/I4lvxwPro=",
-        "ref": "refs/heads/main",
+        "owner": "prescientmoon",
+        "repo": "shimmeringmoon",
         "rev": "ea554dc8ba5dc7c30cb25b2d0125d781db4dcbca",
-        "revCount": 135,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git"
+        "owner": "prescientmoon",
+        "repo": "shimmeringmoon",
+        "type": "github"
       }
     },
     "shimmeringvoid": {
@@ -1284,15 +1284,15 @@
       "locked": {
         "lastModified": 1759109540,
         "narHash": "sha256-CtjFnQiDo0oMJdKPvQ4Ev1bukunz6CgeKX+mOi34AGg=",
-        "ref": "refs/heads/main",
+        "owner": "prescientmoon",
+        "repo": "sillyring",
         "rev": "c7724248f3bfbc1fd4fa0cd5fc4de47f2a65d625",
-        "revCount": 8,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git"
+        "owner": "prescientmoon",
+        "repo": "sillyring",
+        "type": "github"
       }
     },
     "smos": {

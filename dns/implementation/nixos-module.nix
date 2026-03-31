@@ -67,7 +67,7 @@ in
             };
 
             config.value = lib.mkIf (
-              config.type == "CNAME" && config.to != null
+              (config.type == "CNAME" || config.type == "ALIAS") && config.to != null
             ) "${config.to}.${config.zone}.";
           }
         )

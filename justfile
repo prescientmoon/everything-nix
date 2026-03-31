@@ -24,7 +24,7 @@ nixos-rebuild action="switch" host=hostname:
   }
   hosts = {
     'tethys': 'tethys',
-    'lapetus': 'lapetus',
+    'lapetus': 'lapetus.overlay.moonythm.dev',
     'calypso': 'calypso',
   }
 

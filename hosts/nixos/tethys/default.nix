@@ -33,16 +33,6 @@
   ];
 
   # Tailscale-internal IP DNS records
-  satellite.dns.records = [
-    {
-      at = config.networking.hostName;
-      type = "A";
-      value = "100.91.10.131";
-    }
-    {
-      at = config.networking.hostName;
-      type = "AAAA";
-      value = "fd7a:115c:a1e0:ab12:4843:cd96:625b:a83";
-    }
-  ];
+  satellite.nginx.overlayAddress.ipv4 = "100.91.10.131";
+  satellite.nginx.overlayAddress.ipv6 = "fd7a:115c:a1e0:ab12:4843:cd96:625b:a83";
 }

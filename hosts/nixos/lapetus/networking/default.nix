@@ -4,7 +4,6 @@
   imports = [
     ./dnsmasq.nix
     ./hostapd.nix
-    ./networkd.nix
     ./nftables.nix
   ];
 }

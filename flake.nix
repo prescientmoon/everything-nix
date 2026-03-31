@@ -50,14 +50,17 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
+    shimmeringmoon.url = "github:prescientmoon/shimmeringmoon";
+    # shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
     shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
 
-    nihil.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git";
+    nihil.url = "github:prescientmoon/nihil";
+    # nihil.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git";
     nihil.flake = false;
 
     # NOTE: we import the TOML from there into nix, thus we have to flake this ;-;
-    sillyring.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git";
+    sillyring.url = "github:prescientmoon/sillyring";
+    # sillyring.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git";
     sillyring.flake = false;
     # }}}
     # {{{ Theming

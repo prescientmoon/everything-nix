@@ -47,7 +47,7 @@ in
     content = ''
       SHIMMERING_DISCORD_TOKEN        = ${config.sops.placeholder.shimmering_discord_token}
       SHIMMERING_PRIVATE_SERVER_TOKEN = ${config.sops.placeholder.glass_server_admin_token}
-      SHIMMERING_PRIVATE_SERVER_URL   = ${config.satellite.cloudflared.at.arcaea.url}
+      SHIMMERING_PRIVATE_SERVER_URL   = ${config.satellite.nginx.at.arcaea.url}
       SHIMMERING_GLOBAL_PREFIX        = "!!"
       SHIMMERING_DEFAULT_SOURCE       = server
     '';

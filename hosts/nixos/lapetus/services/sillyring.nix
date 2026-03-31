@@ -33,17 +33,19 @@ let
   );
 in
 {
-  satellite.cloudflared.at."silly".port = 80;
-  services.nginx.virtualHosts."silly.moonythm.dev".extraConfig = ''
-    gzip on;
-    charset utf-8;
-    override_charset on;
+  satellite.nginx.at."silly" = {
+    scope = "public";
+    vhost.extraConfig = ''
+      gzip on;
+      charset utf-8;
+      override_charset on;
 
-    root ${dir};
-    location / {
-      index index.html;
-    }
+      root ${dir};
+      location / {
+        index index.html;
+      }
 
-    ${redirectConfig}
-  '';
+      ${redirectConfig}
+    '';
+  };
 }

@@ -1,6 +1,12 @@
 { config, ... }:
+let
+  serverName = config.satellite.dns.domain;
+in
 {
-  satellite.cloudflared.at.social.port = config.satellite.ports.gotosocial;
+  satellite.nginx.at.social = {
+    port = config.satellite.ports.gotosocial;
+    scope = "public";
+  };
 
   services.gotosocial = {
     enable = true;
@@ -8,8 +14,8 @@
     environmentFile = config.sops.templates."gotosocial.env".path;
     settings = {
       port = config.satellite.ports.gotosocial;
-      host = "social.moonythm.dev";
-      account-domain = "moonythm.dev";
+      host = config.satellite.nginx.at.social.host;
+      account-domain = serverName;
       landing-page-user = "prescientmoon";
 
       instance-expose-custom-emojis = true;
@@ -41,19 +47,23 @@
   };
 
   # Redirects for the split domain setup
-  services.nginx.virtualHosts."moonythm.dev".extraConfig = ''
-    location /.well-known/webfinger {
-      rewrite ^.*$ https://social.moonythm.dev/.well-known/webfinger permanent;
-    }
+  services.nginx.virtualHosts.${serverName}.extraConfig =
+    let
+      url = config.satellite.nginx.at.social.url;
+    in
+    ''
+      location /.well-known/webfinger {
+        rewrite ^.*$ ${url}/.well-known/webfinger permanent;
+      }
 
-    location /.well-known/host-meta {
-      rewrite ^.*$ https://social.moonythm.dev/.well-known/host-meta permanent;
-    }
+      location /.well-known/host-meta {
+        rewrite ^.*$ ${url}/.well-known/host-meta permanent;
+      }
 
-    location /.well-known/nodeinfo {
-      rewrite ^.*$ https://social.moonythm.dev/.well-known/nodeinfo permanent;
-    }
-  '';
+      location /.well-known/nodeinfo {
+        rewrite ^.*$ ${url}/.well-known/nodeinfo permanent;
+      }
+    '';
 
   # Persistence
   environment.persistence."/persist/state".directories = [

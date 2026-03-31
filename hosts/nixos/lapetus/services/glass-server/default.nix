@@ -1,4 +1,9 @@
 { config, ... }:
+let
+  port = config.satellite.ports.glass-server;
+  dbGlassPort = config.satellite.ports.sqlite-web-glass;
+  dbShimmerPort = config.satellite.ports.sqlite-web-shimmer;
+in
 {
   imports = [ ./module.nix ];
 
@@ -22,29 +27,31 @@
   };
   # }}}
   # {{{ Routing
-  satellite.cloudflared.at."tcp.lp.arcaea".port = config.satellite.ports.glass-server-lp-tcp;
-  satellite.cloudflared.at."udp.lp.arcaea".port = config.satellite.ports.glass-server-lp-udp;
-
-  satellite.cloudflared.at.arcaea.port = 80;
-  satellite.cloudflared.at.a.port = 80;
-
-  services.nginx.virtualHosts =
-    let
-      routing = {
-        locations."/".priority = 2000; # The default is 1000
-        locations."/".proxyPass = "http://localhost:${toString config.satellite.ports.glass-server}/";
-
-        locations."/db/glass/".proxyPass =
-          "http://localhost:${toString config.satellite.ports.sqlite-web-glass}/db/glass/";
-        locations."/db/shimmer/".proxyPass =
-          "http://localhost:${toString config.satellite.ports.sqlite-web-shimmer}/db/shimmer/";
-        locations."/log/".root = "${config.services.glass-server.dataDir}/log/";
+  satellite.nginx.at = rec {
+    "a" = arcaea;
+    "arcaea" = {
+      scope = "public";
+      vhost.locations = {
+        "/".priority = 2000; # The default is 1000
+        "/".proxyPass = "http://localhost:${toString port}/";
+        # "/log/".root = "${config.services.glass-server.dataDir}/log/";
+        "/db/glass/".proxyPass = # .
+          "http://localhost:${toString dbGlassPort}/db/glass/";
+        "/db/shimmer/".proxyPass = # .
+          "http://localhost:${toString dbShimmerPort}/db/shimmer/";
       };
-    in
-    {
-      "arcaea.moonythm.dev" = routing;
-      "a.moonythm.dev" = routing;
     };
+
+    "tcp.lp.arcaea" = {
+      port = config.satellite.ports.glass-server-lp-tcp;
+      scope = "public";
+    };
+
+    "udp.lp.arcaea" = {
+      port = config.satellite.ports.glass-server-lp-udp;
+      scope = "public";
+    };
+  };
 
   services.sqliteWeb.databases.glass.urlPrefix = "/db/glass/";
   services.sqliteWeb.databases.shimmer.urlPrefix = "/db/shimmer/";
@@ -55,7 +62,7 @@
     adminUsername = "prescientmoon";
     dataDir = "/persist/state/var/lib/arcaea/server";
 
-    port = config.satellite.ports.glass-server;
+    inherit port;
     linkPlayTCPPort = config.satellite.ports.glass-server-lp-tcp;
     linkPlayUDPPort = config.satellite.ports.glass-server-lp-udp;
 

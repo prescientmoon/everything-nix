@@ -45,5 +45,6 @@
     sqlite-web-historia = 8436;
     tilde-town-irc = 8437;
     continuwuity = 8438;
+    ddns-updater = 8439;
   };
 }

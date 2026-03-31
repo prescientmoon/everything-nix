@@ -53,11 +53,18 @@
             iifname "tailscale0" accept \
               comment "Allow Tailscale to access the router";
 
+            iifname "enp0s25" tcp dport {80, 443} accept \
+              comment "Allow HTTP(S) traffic";
             iifname "enp0s25" ct state  { established, related } accept \
               comment "Allow established traffic";
-            iifname "enp0s25" icmp type { echo-request, destination-unreachable, time-exceeded } counter accept \
+            iifname "enp0s25" icmp \
+              type { echo-request, destination-unreachable, time-exceeded } \
+              limit rate 10/second counter accept \
               comment "Allow select ICMP";
-            iifname "enp0s25" counter drop \
+            iifname "enp0s25" ip6 nexthdr icmpv6 \
+              limit rate 10/second counter accept \
+              comment "Allow select ICMPv6";
+            iifname "enp0s25" log prefix "WAN DROP:" counter drop \
               comment "Drop all other unsolicited traffic from wan";
           }
 
@@ -80,10 +87,7 @@
           chain output {
             type filter hook output priority 0; policy accept;
           }
-        }
 
-        # A table that only runs on IPv4 (I don't currently support IPv6)
-        table ip nat {
           chain postrouting {
             type nat hook postrouting priority 100; policy accept;
 

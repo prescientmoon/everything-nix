@@ -30,7 +30,6 @@ let
 
     # Services
     ./services/acme.nix
-    ./services/cloudflared.nix
     ./services/greetd.nix
     ./services/kanata
     ./services/mullvad.nix
