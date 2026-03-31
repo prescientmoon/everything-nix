@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, upkgs, ... }:
 {
   imports = [
     ./dunst.nix
@@ -11,6 +11,7 @@
     ./spotify.nix
     ./zathura.nix
     ./inlyne.nix
+    ./mpv.nix
   ];
 
   # Notifies on low battery percentages
@@ -32,16 +33,32 @@
 
   # Base packages
   home.packages = with pkgs; [
-    gimp # Image editing
-    krita # drawing
-    libreoffice # document editing
-
+    amberol # Music player
+    anki # flashcards!
+    aseprite # pixel art
     bitwarden-desktop # Password-manager
-    qbittorrent # Torrent client
-    overskride # Bluetooth client
-
-    mpv # Video player
+    dig # DNS queries
+    element-desktop # Matrix client
+    ffmpeg # Video operations
+    fluffychat # Matrix client
+    gimp # Image editing
+    gnome-calendar
+    gnome-control-center # Required for configuring calendar accounts
+    imagemagick # Image operations
     imv # Image viewer
+    krita # drawing
+    lagrange # Gemini browser
+    libreoffice # document editing
     obs-studio # video recorder
+    overskride # Bluetooth client
+    qbittorrent # Torrent client
+    sherlock # Search for usernames across different websites
+    sqlite # I sometimes need to check the databases owned by various apps
+    termdown # Basic CLI timer
+    wasistlos # Whatsapp
+    yt-dlp # I often download live streams I can't watch in the moment
+
+    # NOTE: "expired" versions can no longer be used
+    upkgs.signal-desktop # Signal client
   ];
 }
