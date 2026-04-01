@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  overlay0Port = config.satellite.ports.wireguard-overlay;
+in
 {
   networking = {
     # No local firewall.
@@ -52,6 +56,12 @@
               comment "Allow Docker to access the router";
             iifname "tailscale0" accept \
               comment "Allow Tailscale to access the router";
+            iifname "overlay0" accept \
+              comment "Allow overlay network to access the router";
+            iifname "enp0s25" tcp dport {80, 443} accept \
+              comment "Allow HTTP(S) traffic";
+            iifname "enp0s25" udp dport ${toString overlay0Port} accept \
+              comment "Allow wireguard traffic";
 
             iifname "enp0s25" tcp dport {80, 443} accept \
               comment "Allow HTTP(S) traffic";
@@ -81,6 +91,9 @@
               comment "Allow Docker to WAN";
             iifname "enp0s25" oifname "docker0" ct state { established, related } \
               accept comment "Allow established from WAN back to Docker";
+
+            iifname "overlay0" oifname "overlay0" accept \
+              comment "Allow overlay network traffic to pass through";
           }
 
           # Things going away from this machine

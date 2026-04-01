@@ -31,8 +31,4 @@
   users.users.pilot.openssh.authorizedKeys.keyFiles = [
     ../calypso/keys/id_ed25519.pub
   ];
-
-  # Tailscale-internal IP DNS records
-  satellite.nginx.overlayAddress.ipv4 = "100.91.10.131";
-  satellite.nginx.overlayAddress.ipv6 = "fd7a:115c:a1e0:ab12:4843:cd96:625b:a83";
 }

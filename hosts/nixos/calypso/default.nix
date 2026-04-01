@@ -60,10 +60,6 @@
   boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelParams = [ "mt7921_common.disable_clc=1" ];
 
-  # Tailscale-internal IP DNS records
-  satellite.nginx.overlayAddress.ipv4 = "100.74.40.5";
-  satellite.nginx.overlayAddress.ipv6 = "fd7a:115c:a1e0::1201:2806";
-
   # Waydroid
   virtualisation.waydroid.enable = true;
   environment.systemPackages = [ upkgs.waydroid-helper ];

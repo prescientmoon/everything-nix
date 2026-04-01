@@ -46,5 +46,6 @@
     tilde-town-irc = 8437;
     continuwuity = 8438;
     ddns-updater = 8439;
+    wireguard-overlay = 8440;
   };
 }

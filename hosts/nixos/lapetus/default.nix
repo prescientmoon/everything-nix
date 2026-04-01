@@ -20,7 +20,7 @@
     ./services/jellyfin.nix
     ./services/matrix
     ./services/miniflux.nix
-    ./services/moonythm.nix
+    # ./services/moonythm.nix
     ./services/picoshare.nix
     ./services/pounce
     ./services/prometheus.nix
@@ -71,8 +71,4 @@
   ];
 
   boot.loader.systemd-boot.enable = true;
-
-  # Tailscale-internal IP DNS records
-  satellite.nginx.overlayAddress.ipv4 = "100.93.136.59";
-  satellite.nginx.overlayAddress.ipv6 = "fd7a:115c:a1e0::e75d:883b";
 }

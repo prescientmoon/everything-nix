@@ -91,7 +91,7 @@ in
     {
       type = "CNAME";
       at = "irc";
-      to = "overlay.${config.networking.hostName}";
+      to = "${config.networking.hostName}.overlay";
     }
   ];
 }

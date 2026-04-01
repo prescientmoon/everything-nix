@@ -41,6 +41,7 @@ let
     ./services/restic
     ./services/syncthing.nix
     ./services/tailscale.nix
+    ./services/wireguard.nix
   ];
 in
 {
