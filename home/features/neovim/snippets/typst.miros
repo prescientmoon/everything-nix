@@ -44,11 +44,11 @@ block auto
 
   for createabbr <- @⟨false,true⟩
   for operator <- @⟨@createabbr:
-    @⟨eq,lt,gt⟩,
+    @⟨eq⟩,
     @⟨neq,defas,leq,geq,iip,iib,iff⟩
   ⟩
   for symbol <- @⟨@createabbr:
-    @⟨@operator:=,<,>⟩,
+    @⟨@operator:=⟩,
     @⟨@operator:≠,≔,≤,≥,⟹,⟸,⟺⟩
   ⟩
 

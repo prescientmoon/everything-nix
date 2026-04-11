@@ -169,12 +169,7 @@
     "${config.xdg.dataHome}/Anki2"
   ];
   # }}}
-  # {{{ Amberol
-  satellite.persistence.at.cache.apps.amberol.directories = [
-    "${config.xdg.cacheHome}/amberol"
-  ];
-  # }}}
-  # {{{ Amberol
+  # {{{ Aseprite
   satellite.persistence.at.state.apps.aseprite.directories = [
     "${config.xdg.configHome}/aseprite"
   ];

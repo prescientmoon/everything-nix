@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   sops.secrets.syncthing_key.sopsFile = ../secrets.yaml;
   sops.secrets.syncthing_cert.sopsFile = ../secrets.yaml;
@@ -19,12 +19,18 @@
           };
         };
 
-        devices = [
-          "enceladus"
-          "calypso"
-          "tethys"
-        ];
+        devices = [ "calypso" ];
       };
     };
+  };
+
+  # Expose my phone's web UI via nginx
+  satellite.nginx.at."syncthing.chaldene".vhost.locations."/" = {
+    proxyWebsockets = true;
+    proxyPass = lib.concatStrings [
+      "http://chaldene.overlay"
+      ".${config.satellite.dns.domain}"
+      ":${toString config.satellite.ports.syncthing}"
+    ];
   };
 }

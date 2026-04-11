@@ -58,9 +58,8 @@ in
               comment "Allow Tailscale to access the router";
             iifname "overlay0" accept \
               comment "Allow overlay network to access the router";
-            iifname "enp0s25" tcp dport {80, 443} accept \
-              comment "Allow HTTP(S) traffic";
-            iifname "enp0s25" udp dport ${toString overlay0Port} accept \
+
+            udp dport ${toString overlay0Port} accept \
               comment "Allow wireguard traffic";
 
             iifname "enp0s25" tcp dport {80, 443} accept \
@@ -74,6 +73,8 @@ in
             iifname "enp0s25" ip6 nexthdr icmpv6 \
               limit rate 10/second counter accept \
               comment "Allow select ICMPv6";
+            iifname "enp0s25" ip6 daddr fe80::/64 udp dport dhcpv6-client \
+              accept comment "Allow DHCP6";
             iifname "enp0s25" log prefix "WAN DROP:" counter drop \
               comment "Drop all other unsolicited traffic from wan";
           }
@@ -81,6 +82,9 @@ in
           # Things going through this machine
           chain forward {
             type filter hook forward priority filter; policy drop;
+
+            udp dport ${toString overlay0Port} accept \
+              comment "Allow wireguard traffic";
 
             iifname "br0" oifname "enp0s25" jump dns_filter \
               comment "Allow LAN to WAN";
@@ -92,6 +96,11 @@ in
             iifname "enp0s25" oifname "docker0" ct state { established, related } \
               accept comment "Allow established from WAN back to Docker";
 
+            iifname "overlay0" oifname {"br0", "enp0s25"} accept \
+              comment "Allow overlay to LAN/WAN";
+            iifname {"br0", "enp0s25"} oifname "overlay0" \
+              ct state { established, related } \
+              accept comment "Allow established from LAN/WAN back to overlay";
             iifname "overlay0" oifname "overlay0" accept \
               comment "Allow overlay network traffic to pass through";
           }
@@ -100,11 +109,14 @@ in
           chain output {
             type filter hook output priority 0; policy accept;
           }
+        }
 
+        table ip nat {
           chain postrouting {
             type nat hook postrouting priority 100; policy accept;
 
-            iifname {"br0", "docker0"} oifname "enp0s25" masquerade \
+            oifname "enp0s25" \
+              masquerade \
               comment "Mask all traffic going towards the ethernet interface";
           }
         }

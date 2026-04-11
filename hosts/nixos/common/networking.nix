@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   # Allows typing `hostname` instead of `hostname.overlay.moonythm.dev`.
-  networking.search = [ "overlay.${config.satellite.dns.domain}" ];
+  # networking.search = [ "overlay.${config.satellite.dns.domain}" ];
 
   # Packages that are useful when debugging network issues. I'm install these
   # globally since the internet might be out when this happens.
@@ -9,6 +9,8 @@
     pkgs.nmap
     pkgs.dig # DNS queries
     pkgs.unixtools.arp
+    pkgs.tcpdump
+    pkgs.wireguard-tools
   ];
 
   boot.kernel.sysctl = {

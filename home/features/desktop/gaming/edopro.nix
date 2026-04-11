@@ -6,31 +6,25 @@
 # download using Nix feels a bit pointless.
 #
 # Download URL: https://projectignis.github.io/download.html
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, ... }:
 let
-  persistState = config.satellite.persistence.at.state.home;
-  installPath = "${persistState}/yugioh/.local/share/edopro";
-  launchScript = pkgs.writeShellScript "start-edopro" ''
-    ${lib.getExe pkgs.steam-run} ${installPath}/EDOPro
-  '';
+  persistentStateDir = "/persist/state${config.home.homeDirectory}";
 in
 {
-  xdg.desktopEntries.edopro = {
+  satellite.games.entries.edopro = {
     name = "EDOPro";
-    type = "Application";
-    comment = "The bleeding-edge automatic duel simulator";
-    icon = "${installPath}/textures/AppIcon.png";
-    categories = [ "Game" ];
+    developers = [ "Project Ignis team" ];
+    description = "EDOPro is an automatic Yu-Gi-Oh! dueling simulator.";
 
-    settings.StartupWMClass = "EDOPro";
-    settings.Path = installPath;
+    file = "${persistentStateDir}/yugioh/.local/share/edopro/EDOPro";
+    script = "steam-run";
 
-    terminal = false;
-    exec = builtins.toString launchScript;
+    assets = {
+      poster = ./assets/edopro/grid.png;
+      logo = ./assets/edopro/logo.png;
+      icon = ./assets/edopro/icon.png;
+      background = ./assets/edopro/background.png;
+      screenshot = ./assets/edopro/screenshot.png;
+    };
   };
 }

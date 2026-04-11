@@ -14,8 +14,9 @@
     ./tealdeer.nix
     ./wakatime.nix
     ./yazi.nix
-    ./mail
+    ./beets
     ./fish
+    ./mail
 
     inputs.nix-index-database.homeModules.nix-index
   ];

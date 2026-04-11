@@ -9,13 +9,13 @@ let
 
   listenAddresses = {
     overlay = lib.filter (v: v != null) [
-      cfg.overlayAddress.ipv4
-      "[${cfg.overlayAddress.ipv6}]"
+      cfg.address.overlay.v4
+      "[${cfg.address.overlay.v6}]"
     ];
 
     friends = lib.filter [
-      cfg.friendsOverlayAddress.ipv4
-      "[${cfg.friendsOverlayAddress.ipv6}]"
+      cfg.address.friends.v4
+      "[${cfg.address.friends.v6}]"
     ];
 
     public = [
@@ -76,7 +76,6 @@ let
       type = lib.types.nullOr lib.types.str;
       default = null;
     };
-
 in
 {
   options.satellite.nginx = {
@@ -90,10 +89,10 @@ in
       default = config.satellite.dns.domain;
     };
 
-    overlayAddress.ipv4 = mkAddressOption 4 "my overlay network";
-    overlayAddress.ipv6 = mkAddressOption 6 "my overlay network";
-    friendsOverlayAddress.ipv4 = mkAddressOption 4 "my friends' overlay network";
-    friendsOverlayAddress.ipv6 = mkAddressOption 6 "my friends' overlay network";
+    address.overlay.v4 = mkAddressOption 4 "my overlay network";
+    address.overlay.v6 = mkAddressOption 6 "my overlay network";
+    address.friends.v4 = mkAddressOption 4 "my friends' overlay network";
+    address.friends.v6 = mkAddressOption 6 "my friends' overlay network";
 
     at = lib.mkOption {
       description = "Per-subdomain nginx configuration";
@@ -191,9 +190,9 @@ in
           }
           {
             assertion =
-              (config.scope != "overlay")
-              || (cfg.overlayAddress.ipv4 != null)
-              || (cfg.overlayAddress.ipv6 != null);
+              (config.scope != "overlay") # .
+              || (cfg.address.overlay.v4 != null)
+              || (cfg.address.overlay.v6 != null);
             message = ''
               The option
                 'satellite.nginx.at.${config.subdomain}.scope'
@@ -203,10 +202,12 @@ in
             '';
           }
           {
+            # This is mostly a duplicate of the above. If I ever need a third
+            # network then I will abstract it away :p
             assertion =
-              (config.scope != "friends")
-              || (cfg.friendsOverlayAddress.ipv4 != null)
-              || (cfg.friendsOverlayAddress.ipv6 != null);
+              (config.scope != "friends") # .
+              || (cfg.address.friends.v4 != null)
+              || (cfg.address.friends.v6 != null);
             message = ''
               The option
                 'satellite.nginx.at.${config.subdomain}.scope'
@@ -234,28 +235,12 @@ in
       }) cfg.at;
     };
 
-    satellite.dns.records = [
-      (lib.mkIf (cfg.overlayAddress.ipv4 != null) {
-        at = "${config.networking.hostName}.overlay";
-        type = "A";
-        value = cfg.overlayAddress.ipv4;
-      })
-      (lib.mkIf (cfg.overlayAddress.ipv6 != null) {
-        at = "${config.networking.hostName}.overlay";
-        type = "AAAA";
-        value = cfg.overlayAddress.ipv6;
-      })
-      (lib.mkIf (cfg.friendsOverlayAddress.ipv4 != null) {
-        at = "${config.networking.hostName}.friends";
-        type = "A";
-        value = cfg.friendsOverlayAddress.ipv4;
-      })
-      (lib.mkIf (cfg.friendsOverlayAddress.ipv6 != null) {
-        at = "${config.networking.hostName}.friends";
-        type = "AAAA";
-        value = cfg.friendsOverlayAddress.ipv6;
-      })
-    ]
-    ++ lib.attrsets.mapAttrsToList (_: mkDnsRecord) cfg.at;
+    satellite.dns.records = lib.attrsets.mapAttrsToList (_: mkDnsRecord) cfg.at;
+
+    services.nginx.commonHttpConfig = ''
+      log_format with_the_host '$host | $remote_addr - $remote_user [$time_local] '
+        '"$request" $status $body_bytes_sent '
+        '"$http_referer" "$http_user_agent"';
+    '';
   };
 }

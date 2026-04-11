@@ -15,6 +15,9 @@
     ./services/cgit.nix
     ./services/snapper.nix
     ./services/syncthing.nix
+    ./services/soulseek.nix
+    # ./services/continuwuity.nix
+    # ./services/nftables.nix
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -80,4 +83,5 @@
   #     '';
   #   };
   # };
+
 }

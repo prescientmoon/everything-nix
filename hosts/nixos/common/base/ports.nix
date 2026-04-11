@@ -47,5 +47,7 @@
     continuwuity = 8438;
     ddns-updater = 8439;
     wireguard-overlay = 8440;
+    soulseek = 8441;
+    soulseek-web = 8442;
   };
 }

@@ -20,7 +20,7 @@
     ./services/jellyfin.nix
     ./services/matrix
     ./services/miniflux.nix
-    # ./services/moonythm.nix
+    ./services/moonythm.nix
     ./services/picoshare.nix
     ./services/pounce
     ./services/prometheus.nix

@@ -52,7 +52,7 @@
         url="https://tmp.moonythm.dev/$name"
 
         ${wl-paste} > "$path"
-        scp "$path" "root@lapetus:/persist/state/var/lib/tmp/$name"
+        scp "$path" "root@lapetus.overlay.moonythm.dev:/persist/state/var/lib/tmp/$name"
         echo "$url" | ${wl-copy}
 
         ${_ pkgs.libnotify} "Uploaded file to $url"

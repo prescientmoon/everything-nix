@@ -14,6 +14,7 @@ in
       gzip on;
       charset utf-8;
       override_charset on;
+      access_log /var/log/nginx/access.log with_the_host;
 
       root ${dir};
       error_page 404 /404/index.html;

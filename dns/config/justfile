@@ -5,7 +5,7 @@ default:
 [doc("Prints the differences between the current and desired DNS records")]
 [group("dns")]
 dns-diff:
-  nix run .#octodns-sync -- --force
+  nix run .#octodns-sync --show-trace -- --force
 
 [doc("Syncs DNS records using octodns")]
 [group("dns")]

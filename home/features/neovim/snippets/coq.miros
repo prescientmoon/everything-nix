@@ -1,0 +1,7 @@
+block !word auto
+  abbr .sum ∑
+  abbr .prod ∏
+  abbr .weq ≃
+  abbr .to →
+  abbr .comp ∘
+  abbr .pp ╝

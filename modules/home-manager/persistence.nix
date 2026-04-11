@@ -62,6 +62,7 @@ in
                         '';
                       };
 
+                      # TODO: revamp this please! Specifying synlinks is too annoying.
                       directories = lib.mkOption {
                         default = [ ];
                         description = ''

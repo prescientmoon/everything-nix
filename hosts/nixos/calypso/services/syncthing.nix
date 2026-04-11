@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  home = "/persist/data${config.users.users.pilot.home}";
+in
 {
   sops.secrets.syncthing_key.sopsFile = ../secrets.yaml;
   sops.secrets.syncthing_cert.sopsFile = ../secrets.yaml;
@@ -8,8 +11,15 @@
     cert = config.sops.secrets.syncthing_cert.path;
 
     settings.folders = {
+      "pebbles" = {
+        path = "${home}/media/music/pebbles";
+        devices = [
+          "chaldene"
+        ];
+      };
+
       "stellar-sanctum" = {
-        path = "/persist/data${config.users.users.pilot.home}/projects/personal/stellar-sanctum";
+        path = "${home}/projects/personal/stellar-sanctum";
 
         versioning = {
           type = "staggered";
@@ -20,9 +30,8 @@
         };
 
         devices = [
-          "enceladus"
           "lapetus"
-          "tethys"
+          "chaldene"
         ];
       };
     };

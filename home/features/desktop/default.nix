@@ -1,17 +1,19 @@
 { pkgs, upkgs, ... }:
 {
   imports = [
-    ./dunst.nix
     ./discord
     ./firefox
+    ./elisa
 
-    ./monitors.nix
+    ./amberol.nix
+    ./dunst.nix
     ./foot.nix
+    ./inlyne.nix
+    ./monitors.nix
+    ./mpv.nix
     ./obsidian.nix
     ./spotify.nix
     ./zathura.nix
-    ./inlyne.nix
-    ./mpv.nix
   ];
 
   # Notifies on low battery percentages
@@ -33,7 +35,6 @@
 
   # Base packages
   home.packages = with pkgs; [
-    amberol # Music player
     anki # flashcards!
     aseprite # pixel art
     bitwarden-desktop # Password-manager

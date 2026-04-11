@@ -7,12 +7,12 @@
 let
   port = config.satellite.ports.continuwuity;
   cfg = config.services.matrix-continuwuity;
-  ngx = config.satellite.nginx.at.continuwuity;
-  serverName = config.satellite.dns.domain;
+  ngx = config.satellite.nginx.at.continowoity;
+  serverName = "owo.${config.satellite.dns.domain}";
 in
 {
   sops.secrets.continuwuity_token = {
-    sopsFile = ../../secrets.yaml;
+    sopsFile = ../secrets.yaml;
     owner = cfg.user;
     group = cfg.group;
   };
@@ -42,31 +42,9 @@ in
     };
   };
 
-  satellite.nginx.at.continuwuity = {
+  satellite.nginx.at.continowoity = {
     inherit port;
-    subdomain = "uwu";
-    scope = "public";
-    vhost.extraConfig = ''
-      access_log /var/log/nginx/access.log with_the_host;
-    '';
-  };
-
-  satellite.nginx.at.continuwuity-debug = {
-    # inherit port;
-    subdomain = "debug.uwu";
-    scope = "public";
-    vhost.locations."/.well-known/matrix/" = {
-      proxyPass = "http://localhost:${toString port}/.well-known/matrix/";
-    };
-  };
-
-  # Redirects for the split domain setup
-  satellite.nginx.at."".vhost = {
-    locations."/.well-known/matrix/" = {
-      proxyPass =
-        # Redirecting to uwu.moonythm.dev causes errors
-        "http://localhost:${toString port}/.well-known/matrix/";
-    };
+    subdomain = "owo";
   };
 
   # HACK: https://github.com/nix-community/impermanence/issues/254

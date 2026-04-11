@@ -67,5 +67,5 @@
   systemd.tmpfiles.rules = [
     "d /persist/state/etc/ssh"
   ]
-  ++ (lib.lists.forEach config.services.openssh.hostKeys (key: "e ${key.path} 0700"));
+  ++ (lib.lists.forEach config.services.openssh.hostKeys (key: "f ${key.path} 0700"));
 }

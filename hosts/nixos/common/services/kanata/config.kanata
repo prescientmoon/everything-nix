@@ -68,14 +68,15 @@
   (j i) f12  $CHORD_DELAY all-released ()
   ;; }}}
   ;; {{{ Extra layers
-  (u i o) @upper-greek   $CHORD_DELAY all-released ()
-  (w e r) @upper-greek   $CHORD_DELAY all-released ()
-  (i o)   @lower-greek   $CHORD_DELAY all-released ()
-  (w e)   @lower-greek   $CHORD_DELAY all-released ()
-  (u i)   @unicode-1     $CHORD_DELAY all-released ()
-  (e r)   @unicode-1     $CHORD_DELAY all-released ()
-  (u o)   @double-stroke $CHORD_DELAY all-released ()
-  (w r)   @double-stroke $CHORD_DELAY all-released ()
+  (u i  o)             @upper-greek $CHORD_DELAY all-released ()
+  (w e  r)             @upper-greek $CHORD_DELAY all-released ()
+  (i o) @lower-greek   $CHORD_DELAY all-released ()
+  (w e) @lower-greek   $CHORD_DELAY all-released ()
+  (u i) @unicode-1     $CHORD_DELAY all-released ()
+  (e r) @unicode-1     $CHORD_DELAY all-released ()
+  (u o) @double-stroke $CHORD_DELAY all-released ()
+  (w r) @double-stroke $CHORD_DELAY all-released ()
+  (f j) @diacritics    $CHORD_DELAY all-released ()
   ;; }}}
 )
 
@@ -155,9 +156,10 @@
 ;; {{{ Aliases
 (defalias
   unicode-1     (layer-while-held unicode-1)
-  double-stroke (layer-while-held double-stroke)
   lower-greek   (layer-while-held lowercase-greek)
   upper-greek   (layer-while-held uppercase-greek)
+  double-stroke (one-shot-release 1000 (layer-while-held double-stroke))
+  diacritics    (one-shot-release 1000 (layer-while-held diacritics))
 )
 ;; }}}
 ;; {{{ Misc
@@ -309,6 +311,28 @@
   _    @ℚ   @𝕎   @𝔼   @ℝ   @𝕋   @𝕐   @𝕌   @𝕀   @𝕆   @ℙ   _    _    _
   _    @𝔸   @𝕊   @ⅅ   @𝔽   @𝔾   @ℍ   @𝕁   @𝕂   @𝕃   _    _    _
   _    @ℤ   @𝕏   @ℂ   @𝕍   @𝔹   @ℕ   @𝕄   _    _    _    _
+  _    _    _              _              _
+)
+;; }}}
+;; {{{ Diacritics
+(defalias
+  ă (unicode ă)
+  â (unicode â)
+  ș (unicode ș)
+  î (unicode î)
+  ț (unicode ț)
+  Ă (unicode Ă)
+  Â (unicode Â)
+  Ș (unicode Ș)
+  Î (unicode Î)
+  Ț (unicode Ț)
+)
+
+(deflayer diacritics
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    @Ă   @Â   @Ș   _    _    _    _    @Î   @Ț   _    _    _    _
+  _    @ă   @â   @ș   _    _    _    _    @î   @ț   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _              _              _
 )
 ;; }}}
