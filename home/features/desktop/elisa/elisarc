@@ -2,7 +2,7 @@
 RootPath[$e]=$HOME/media/music/pebbles
 
 [UiSettings]
-ColorScheme=BreezeDark
+ColorScheme=BreezeLight
 
 [Views]
 InitialFilesViewPath=/home/moon/media/music/pebbles

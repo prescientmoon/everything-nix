@@ -4,6 +4,7 @@
 
     ./baba-is-you.nix
     ./braid.nix
+    ./bobbys-bounce.nix
     ./crypt-of-the-necrodancer.nix
     ./edopro.nix
     ./noita.nix
