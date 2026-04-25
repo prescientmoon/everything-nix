@@ -1,10 +1,10 @@
-{ config, ... }:
 {
   imports = [
     ../common
-    ./services/syncthing.nix
     ./hardware
     ./boot.nix
+
+    ./services/syncthing.nix
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -13,7 +13,7 @@
   satellite.pilot.name = "adrielus";
   satellite.machine.graphical = true;
   satellite.machine.gaming = true;
-  satellite.wireless.backend = "wpa-supplicant";
+  satellite.wireless.backend = "iwd";
   satellite.hyprland.enable = true;
 
   # Machine ids
@@ -24,7 +24,6 @@
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
   services.mullvad-vpn.enable = true;
-  stylix.targets.gtk.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.hyprland.enableGnomeKeyring = true;
 

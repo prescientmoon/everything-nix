@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  upkgs,
-  ...
-}:
+{ pkgs, upkgs, ... }:
 {
   imports = [
     ../common
@@ -16,7 +11,6 @@
     ./services/snapper.nix
     ./services/syncthing.nix
     ./services/soulseek.nix
-    # ./services/continuwuity.nix
     # ./services/nftables.nix
   ];
 

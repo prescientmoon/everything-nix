@@ -31,6 +31,13 @@ creation_rules:
         - *prescientmoon_calypso
         - *calypso
         - *hermes
+  - path_regex: hosts/nixos/tethys/secrets.yaml
+    key_groups:
+      - age:
+        - *prescientmoon_tethys
+        - *prescientmoon_calypso
+        - *tethys
+        - *hermes
   - path_regex: home/secrets.yaml
     key_groups:
       - age:

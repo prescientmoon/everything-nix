@@ -8,7 +8,7 @@
     ./eza.nix
     ./git.nix
     ./lazygit.nix
-    ./smos.nix
+    # ./smos.nix
     ./ssh.nix
     ./starship.nix
     ./tealdeer.nix
@@ -36,7 +36,7 @@
     neofetch # Display system information
     tokei # Useless but fun line of code counter (sloc alternative)
     bottom # System monitor
-    bandwhich # Network bandwhich info
+    bandwhich # Network bandwidth info
 
     # Storage
     dua # du + ncdu replacement
