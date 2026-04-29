@@ -13,8 +13,10 @@
   satellite.pilot.name = "adrielus";
   satellite.machine.graphical = true;
   satellite.machine.gaming = true;
+
   satellite.wireless.backend = "iwd";
   satellite.hyprland.enable = true;
+  satellite.mullvad.enable = false;
 
   # Machine ids
   networking.hostName = "tethys";
@@ -23,7 +25,6 @@
   # A few ad-hoc options
   programs.kdeconnect.enable = true;
   programs.firejail.enable = true;
-  services.mullvad-vpn.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.hyprland.enableGnomeKeyring = true;
 

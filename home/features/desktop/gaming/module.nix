@@ -10,7 +10,7 @@ let
 
   steamDir = "${config.xdg.dataHome}/Steam";
   historia = import ./historia { inherit pkgs; };
-  historiaDbPath = "/persist/state/home/moon/historia/db.sqlite";
+  historiaDbPath = "/persist/state${config.home.homeDirectory}/historia/db.sqlite";
   persistentStateDir = lib.concatStrings [
     config.satellite.persistence.at.state.path
     config.home.homeDirectory
@@ -20,7 +20,8 @@ let
   heroicGameDir = "${gameDir}/heroic";
   heroicConfigDir = "${config.xdg.configHome}/heroic";
   heroicDataDir = "${config.xdg.dataHome}/heroic";
-  protonPath = "${heroicConfigDir}/tools/proton/GE-Proton-latest";
+  # protonPath = "${heroicConfigDir}/tools/proton/GE-Proton-latest";
+  protonPath = "UMU-Proton";
 
   gameOptions =
     { config, name, ... }:
@@ -119,9 +120,9 @@ let
           envVars =
             if config.script == "umu" then
               {
-                PROTONPATH = protonPath;
                 WINEPREFIX = config.winePrefix;
               }
+              // (if protonPath == "UMU-Proton" then { } else { PROTONPATH = protonPath; })
             else
               { };
 
@@ -238,6 +239,12 @@ in
         "${config.xdg.cacheHome}/umu-protonfixes"
       ];
     };
+
+    systemd.user.tmpfiles.rules = [
+      "d /persist/local/cache/umu${config.xdg.dataHome}/umu"
+      "d /persist/local/cache/umu${config.xdg.cacheHome}/umu"
+      "d /persist/local/cache/umu${config.xdg.cacheHome}/umu-protonfixes"
+    ];
 
     xdg.desktopEntries = lib.mapAttrs (_: entry: {
       inherit (entry) name;

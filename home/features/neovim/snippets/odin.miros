@@ -8,12 +8,12 @@ string loc
 
 block auto
   abbr anyint #any_int
-  -- block !word
-  -- abbr __ ›
+  block !word
+    abbr __ ›
 
 block start
   abbr private \@(private)
-  abbr fprivate \@(private="file")
+  abbr fprivate \@(private = "file")
   abbr reqres \@(require_results)
 
   string const

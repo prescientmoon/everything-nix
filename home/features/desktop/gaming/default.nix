@@ -9,6 +9,7 @@
     ./noita.nix
     ./rain-world.nix
     ./steins-gate.nix
+    ./touhou.nix
     ./ultrakill.nix
     ./vvvvvv.nix
   ];

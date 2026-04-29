@@ -5,7 +5,7 @@ in
 {
   options.satellite.tailscale = {
     enable = lib.mkEnableOption "satellite's tailscale integration" // {
-      default = true;
+      default = false;
     };
   };
 

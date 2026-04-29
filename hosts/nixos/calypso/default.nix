@@ -23,7 +23,6 @@
 
   satellite.wireless.backend = "iwd";
   satellite.hyprland.enable = true;
-  satellite.greetd.enable = true;
   satellite.qbittorrent.enable = false;
   satellite.mullvad.enable = false;
 

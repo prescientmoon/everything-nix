@@ -62,6 +62,7 @@ in
       dhcp-range = [ "br0,192.168.10.50,192.168.10.254,24h" ];
       dhcp-host = [
         "14:ac:60:56:be:97,192.168.10.49,static" # calypso
+        "3c:f0:11:1a:b2:b5,192.168.10.48,static" # lapetus
       ];
     };
   };

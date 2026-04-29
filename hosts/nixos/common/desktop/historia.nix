@@ -8,7 +8,7 @@ in
     services.sqliteWeb.databases.historia = {
       inherit port;
       user = config.users.users.pilot.name;
-      file = "/persist/state/home/moon/historia/db.sqlite";
+      file = "/persist/state${config.users.users.pilot.home}/historia/db.sqlite";
     };
 
     satellite.nginx.at."historia.${config.networking.hostName}".port = port;

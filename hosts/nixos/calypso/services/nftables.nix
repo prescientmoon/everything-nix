@@ -16,7 +16,7 @@ in
           set trusted_ifaces {
             type ifname;
             flags interval
-            elements = { "lo", "docker0", "veth*", "overlay0", "tailscale0" }
+            elements = { "lo", "docker0", "veth*", "overlay0" }
           }
 
           chain input {
