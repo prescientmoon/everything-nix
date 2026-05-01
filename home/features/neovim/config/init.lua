@@ -220,6 +220,9 @@ tempest.createKeymap({
 })
 -- }}}
 -- {{{ Spell-checker handling
+vim.opt.spellfile =
+  "~/projects/personal/satellite/home/features/neovim/config/spell/en.utf-8.add"
+
 vim.opt.spell = true
 tempest.createKeymap({
   mapping = "<leader>ss",

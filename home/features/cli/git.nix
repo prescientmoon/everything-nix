@@ -63,7 +63,7 @@
         "github:"
       ];
 
-      url."forgejo@lapetus:".insteadOf = [
+      url."forgejo@lapetus.overlay.moonythm.dev:".insteadOf = [
         # Allows typing `git clone moonythm:owner/repo`.
         "moonythm:"
       ];
