@@ -55,6 +55,7 @@
     jq # JSON manipulation
     ffsend # File sharing
     file # Filetype detection
+    moreutils # Contains some useful commands
 
     # Normally, I'd recommend against installing this globally, although
     # it seems the completions don't play nicely with direnv otherwise.
