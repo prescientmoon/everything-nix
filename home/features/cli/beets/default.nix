@@ -6,6 +6,7 @@
       pluginOverrides.fetchart.enable = true;
       pluginOverrides.lyrics.enable = true;
       pluginOverrides.lastgenre.enable = true;
+      pluginOverrides.embedart.enable = true;
     })
   ];
 

@@ -8,6 +8,7 @@
     ./amberol.nix
     ./dunst.nix
     ./foot.nix
+    ./gimp.nix
     ./inlyne.nix
     ./monitors.nix
     ./mpv.nix

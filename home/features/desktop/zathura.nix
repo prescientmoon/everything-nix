@@ -31,6 +31,9 @@
 
       # Inject font
       set font "${config.stylix.fonts.sansSerif.name}"
+
+      # Make copying do the right thing
+      set selection-clipboard clipboard
       # }}}
       # {{{ Default foreground/background color
       set default-bg rgba(${config.satellite.theming.colors.rgba "base00"})

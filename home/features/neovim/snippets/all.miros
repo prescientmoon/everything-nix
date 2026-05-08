@@ -5,8 +5,8 @@ block auto
   abbr iib <=
   abbr leq <=
   abbr geq >=
-  abbr land /\
-  abbr lor \/
+  abbr lland /\
+  abbr llor \/
   abbr langle ⟨
   abbr rangle \⟩
   abbr thrf therefore

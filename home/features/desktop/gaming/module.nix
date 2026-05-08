@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.satellite.games;
+  wine = pkgs.wineWow64Packages.waylandFull;
 
   steamDir = "${config.xdg.dataHome}/Steam";
   historia = import ./historia { inherit pkgs; };
@@ -62,6 +63,7 @@ let
             lib.types.enum [
               "steam-run"
               "umu"
+              "wine"
             ]
           );
         };
@@ -123,6 +125,8 @@ let
                 WINEPREFIX = config.winePrefix;
               }
               // (if protonPath == "UMU-Proton" then { } else { PROTONPATH = protonPath; })
+            else if config.script == "wine" then
+              { WINEPREFIX = config.winePrefix; }
             else
               { };
 
@@ -130,6 +134,11 @@ let
             if config.script == "umu" then
               [
                 "${pkgs.umu-launcher}/bin/umu-run"
+                config.file
+              ]
+            else if config.script == "wine" then
+              [
+                "${wine}/bin/wine"
                 config.file
               ]
             else if config.script == "steam-run" then
@@ -257,7 +266,7 @@ in
 
     home.packages = [
       pkgs.lutris
-      pkgs.wine64
+      wine
       pkgs.pegasus-frontend
       (upkgs.heroic.override {
         extraPkgs = pkgs: [

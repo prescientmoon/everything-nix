@@ -12,6 +12,7 @@ in
     script = "steam-run";
 
     assets = {
+      poster = ./assets/bobbys-bounce/grid.png;
       icon = ./assets/bobbys-bounce/icon.png;
       background = ./assets/bobbys-bounce/background.jpg;
       screenshot = ./assets/bobbys-bounce/screenshot.jpg;
