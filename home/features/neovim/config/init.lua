@@ -42,7 +42,7 @@ vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Relative line numbers
 
 -- Indents
-vim.opt.expandtab = true -- Use spaces for the tab char
+vim.opt.expandtab = false -- Do not use spaces for the tab char
 vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.tabstop = 2 -- Size of tab character
 vim.opt.shiftround = true -- When using < or >, rounds to closest multiple of shiftwidth
@@ -202,6 +202,13 @@ tempest.createKeymap({
   desc = "[y]ank [p]aste.rs link to clipboard",
 })
 -- }}}
+-- {{{ Clear search highlighting
+tempest.createKeymap({
+  mapping = "<leader>s/",
+  action = "<cmd>noh<cr>",
+  desc = "hide the search highlight",
+})
+-- }}}
 
 -- Option toggles
 -- {{{ Color column handling
@@ -220,10 +227,11 @@ tempest.createKeymap({
 })
 -- }}}
 -- {{{ Spell-checker handling
-vim.opt.spellfile =
-  "~/projects/personal/satellite/home/features/neovim/config/spell/en.utf-8.add"
-
+local spellfilePrefix =
+  "/home/moon/projects/personal/satellite/home/features/neovim/config/spell"
+vim.opt.spellfile = spellfilePrefix .. "/en.utf-8.add"
 vim.opt.spell = true
+
 tempest.createKeymap({
   mapping = "<leader>ss",
   action = function()
@@ -231,6 +239,32 @@ tempest.createKeymap({
   end,
   desc = "toggle [s]pell checking",
 })
+
+local function regenSpellfile()
+  local add_file = spellfilePrefix .. "/en.utf-8.add"
+  local spl_file = spellfilePrefix .. "/en.utf-8.add.spl"
+
+  if vim.fn.filereadable(add_file) == 1 then
+    local add_mtime = vim.fn.getftime(add_file)
+    local spl_mtime = vim.fn.getftime(spl_file)
+
+    -- Run "mkspell!" if .add is newer than .add.spl or .add.spl doesn't exist
+    if add_mtime > spl_mtime or spl_mtime == -1 then
+      vim.cmd("silent! mkspell! " .. spl_file .. " " .. add_file)
+    end
+  end
+end
+
+-- Ensure that the binary spl file is up-to-date with the source add file
+-- Modified version of:
+-- https://www.lorenzobettini.it/2025/01/automatically-regenerating-neovim-spell-files/
+tempest.createAutocmd({
+  event = "FocusGained",
+  group = "SpellfileGeneration",
+  action = regenSpellfile,
+})
+
+regenSpellfile() -- Handle new installations!
 -- }}}
 
 tempest.configureMany(nix.pre)

@@ -9,9 +9,9 @@ in
     developers = [ "MAGES" ];
     release = "2009-10-15";
     description = ''
-      -Decide The Fate Of All Mankind-\\n
-      CAN YOU CHANGE THE COURSE OF FATE?\\n
-      AND SAVE THE ONES CLOSEST TO YOU?\\n
+      -Decide The Fate Of All Mankind-\n
+      CAN YOU CHANGE THE COURSE OF FATE?\n
+      AND SAVE THE ONES CLOSEST TO YOU?\n
     '';
 
     # The files I have from my Steam copy do not work by themselves, but a

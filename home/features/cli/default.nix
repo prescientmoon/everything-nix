@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  upkgs,
+  ...
+}:
 {
   imports = [
     ./bat.nix
@@ -50,12 +55,15 @@
     httpie # Better curl
 
     # Misc
-    ouch # Unified compression / decompression tool
+    # NOTE: only available from 26.05
+    # ouch-rar # Unified compression / decompression tool
+    ouch
     mkpasswd # Hash passwords
     jq # JSON manipulation
     ffsend # File sharing
     file # Filetype detection
     moreutils # Contains some useful commands
+    alsa-utils # alsamixer is very useful!
 
     # Normally, I'd recommend against installing this globally, although
     # it seems the completions don't play nicely with direnv otherwise.

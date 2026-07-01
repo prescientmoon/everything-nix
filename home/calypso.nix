@@ -18,7 +18,7 @@
     # kicad # PCB editing
     # lmms # Music software
     # plover.dev # steno engine
-    kdePackages.okular # Useful for reading pdf annotations (which Zathura does not support)
+    # kdePackages.okular # Useful for reading pdf annotations (which Zathura does not support)
     pomodoro-gtk # basic pomodoro timer
     upkgs.freetube # YouTube client
   ];

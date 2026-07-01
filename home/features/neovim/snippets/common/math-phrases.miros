@@ -8,6 +8,10 @@ block word auto capitalize
   -- for what <- @⟨means,implies⟩
   -- abbr @⟨@who:ww,tt⟩@⟨@what:m,i⟩ @who @what
 
+block auto word
+  for kind <- @⟨independent,dependent⟩
+  abbr l@⟨@kind:ind,dep⟩ linearly @kind
+
 block auto !word
   abbr stam statement
   abbr cox counterexample
@@ -21,9 +25,6 @@ block auto !word
 
   for kind <- @⟨parts,substitution⟩
   abbr ib@⟨@kind:p,s⟩ integration by @kind
-
-  for kind <- @⟨independent,dependent⟩
-  abbr l@⟨@kind:ind,dep⟩ linearly @kind
 
   for kind <- @⟨value,vector,pair⟩
   abbr eg@⟨@kind:va,ve,p⟩ eigen@kind

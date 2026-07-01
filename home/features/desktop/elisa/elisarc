@@ -1,9 +1,7 @@
 [ElisaFileIndexer]
 RootPath[$e]=$HOME/media/music/pebbles
 
-[UiSettings]
-ColorScheme=BreezeLight
-
 [Views]
 InitialFilesViewPath=/home/moon/media/music/pebbles
 SortRolePreferences=Album==ArtistRole
+ViewStylePreferences=Album==GridStyle

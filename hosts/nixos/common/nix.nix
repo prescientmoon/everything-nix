@@ -1,13 +1,13 @@
 {
   config,
   lib,
-  pkgs,
+  upkgs,
   inputs,
   ...
 }:
 {
   nix = {
-    package = pkgs.lix;
+    package = upkgs.lix;
 
     # Clean up the store weekly
     gc = {

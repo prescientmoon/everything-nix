@@ -1,8 +1,11 @@
 { config, ... }:
 {
   sops.secrets.miniflux_admin_credentials.sopsFile = ../secrets.yaml;
-  satellite.nginx.at.miniflux.port = config.satellite.ports.miniflux;
-  satellite.nginx.at.miniflux.subdomain = "rss";
+  satellite.nginx.at.miniflux = {
+    port = config.satellite.ports.miniflux;
+    subdomain = "rss";
+    scope = "public";
+  };
 
   services.miniflux = {
     enable = true;

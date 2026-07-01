@@ -250,9 +250,9 @@ in
     };
 
     systemd.user.tmpfiles.rules = [
-      "d /persist/local/cache/umu${config.xdg.dataHome}/umu"
-      "d /persist/local/cache/umu${config.xdg.cacheHome}/umu"
-      "d /persist/local/cache/umu${config.xdg.cacheHome}/umu-protonfixes"
+      "d /persist/local/cache${config.xdg.dataHome}/umu"
+      "d /persist/local/cache${config.xdg.cacheHome}/umu"
+      "d /persist/local/cache${config.xdg.cacheHome}/umu-protonfixes"
     ];
 
     xdg.desktopEntries = lib.mapAttrs (_: entry: {

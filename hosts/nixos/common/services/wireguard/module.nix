@@ -179,7 +179,6 @@ let
           foreign = peer.subnet != network.subnet.id;
         in
         {
-          Endpoint = peer.endpoint;
           PublicKey = peer.publicKey;
           AllowedIPs =
             with lib.lists;
@@ -192,7 +191,8 @@ let
                 "${peer.address.v4}/${if foreign then "24" else "32"}"
               )
             ];
-        };
+        }
+        // (if peer.endpoint != null then { Endpoint = peer.endpoint; } else { });
     in
     lib.mkIf (host != null) {
       networks."50-${name}" = {

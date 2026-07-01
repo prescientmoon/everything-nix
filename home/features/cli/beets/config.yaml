@@ -2,16 +2,23 @@ directory: ~/media/music/pebbles
 library: ~/.local/share/beets/pebbles
 
 import:
-  copy: yes #
+  copy: yes
+  languages: en # In order of preference
 
 plugins:
   - musicbrainz
+  # - mbpseudo
+  # - lyrics
   - fish
   - fetchart
   - lastgenre
   - convert
   - embedart
-  # - lyrics
+  - VGMplug
+
+# mbpseudo:
+#   scripts:
+#     - Latn
 
 convert:
   auto: yes
@@ -24,7 +31,7 @@ convert:
 fetchart:
   auto: yes
   cover_format: JPEG
-  max_filesize: 1048576 # 1MiB
+  max_filesize: 4194304 # 4MiB
 
 embedart:
   auto: no

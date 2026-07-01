@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   upkgs,
   lib,
   ...
@@ -19,12 +20,7 @@ in
 
   services.matrix-continuwuity = {
     enable = true;
-    package = upkgs.matrix-continuwuity.overrideAttrs (og: {
-      cargoBuildFlags = [
-        "--no-default-features"
-        "--features=bindgen-runtime,standard"
-      ];
-    });
+    package = pkgs.matrix-continuwuity;
     settings.global = {
       # This is safe because registrations require having my private
       # registration token!

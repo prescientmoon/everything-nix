@@ -9,10 +9,11 @@
     ./edopro.nix
     ./noita.nix
     ./rain-world.nix
+    ./seventh-beat-games.nix
     ./steins-gate.nix
+    ./system-erasure.nix
     ./touhou.nix
     ./ultrakill.nix
-    ./void-stranger.nix
     ./vvvvvv.nix
   ];
 
