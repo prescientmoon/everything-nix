@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   upkgs,
   lib,
   ...
@@ -20,7 +19,7 @@ in
 
   services.matrix-continuwuity = {
     enable = true;
-    package = pkgs.matrix-continuwuity;
+    package = upkgs.matrix-continuwuity;
     settings.global = {
       # This is safe because registrations require having my private
       # registration token!
@@ -45,15 +44,6 @@ in
     vhost.extraConfig = ''
       access_log /var/log/nginx/access.log with_the_host;
     '';
-  };
-
-  satellite.nginx.at.continuwuity-debug = {
-    # inherit port;
-    subdomain = "debug.uwu";
-    scope = "public";
-    vhost.locations."/.well-known/matrix/" = {
-      proxyPass = "http://localhost:${toString port}/.well-known/matrix/";
-    };
   };
 
   # Redirects for the split domain setup

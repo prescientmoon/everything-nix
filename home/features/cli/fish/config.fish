@@ -52,6 +52,6 @@ function take -d "Create a directory and cd into it"
     return 1
   end
 
-  mkdir -p $argv 
+  mkdir -p $argv
   and cd $argv
 end

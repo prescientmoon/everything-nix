@@ -11,7 +11,7 @@
     subnet.leader = "lapetus";
     subnet.id = 1;
 
-    # TODO: regen
+    # TODO: regen these?
     hosts.calypso = {
       id = 1;
       publicKey = "WEAwF03ZtrTmRx56ZOXmcpE/vFytPVVyZYwpr+bu9iA=";

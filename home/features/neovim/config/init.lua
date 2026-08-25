@@ -295,6 +295,7 @@ vim.lsp.enable({
   "svelte",
   "emmet_language_server",
   "just",
+  "zls",
 })
 
 tempest.createKeymap({

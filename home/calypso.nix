@@ -19,6 +19,7 @@
     # lmms # Music software
     # plover.dev # steno engine
     # kdePackages.okular # Useful for reading pdf annotations (which Zathura does not support)
+    kdePackages.kdenlive # Video editor
     pomodoro-gtk # basic pomodoro timer
     upkgs.freetube # YouTube client
   ];

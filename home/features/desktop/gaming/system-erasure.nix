@@ -45,4 +45,47 @@ in
       # screenshot = ./assets/void-stranger/screenshot.jpg;
     };
   };
+
+  satellite.games.entries.zero-ranger-trainer = {
+    inherit (config.satellite.games.entries.zero-ranger)
+      historiaId
+      file
+      winePrefix
+      script
+      assets
+      ;
+
+    pegasus = false;
+    name = "Zero Ranger (ZeroTrainer)";
+    args = [
+      "-game"
+      "${dir}/zero-ranger/data-steam-zt.win"
+    ];
+  };
+
+  satellite.games.entries.zero-ranger-dora = {
+    inherit (config.satellite.games.entries.zero-ranger)
+      historiaId
+      file
+      script
+      assets
+      ;
+
+    pegasus = false;
+    name = "Zero Ranger (Dora)";
+    winePrefix = "${dir}/prefix-dora";
+  };
+
+  satellite.games.entries.zero-ranger-mara-iuli = {
+    inherit (config.satellite.games.entries.zero-ranger)
+      historiaId
+      file
+      script
+      assets
+      ;
+
+    pegasus = false;
+    name = "Zero Ranger (Mara / Iuli)";
+    winePrefix = "${dir}/prefix-mara-iuli";
+  };
 }

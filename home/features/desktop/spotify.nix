@@ -34,8 +34,6 @@ in
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
-  home.packages = [ pkgs.spot ];
-
   programs.spicetify = {
     enable = true;
 

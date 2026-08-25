@@ -14,7 +14,7 @@ plugins:
   - lastgenre
   - convert
   - embedart
-  - VGMplug
+  # - VGMplug
 
 # mbpseudo:
 #   scripts:

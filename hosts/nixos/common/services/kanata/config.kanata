@@ -3,7 +3,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lsft lsgt z    x    c    v    b    n    m    ,    .    /    rsft
   lctl lmet $RED                    spc             $BLUE
 )
 ;; }}}
@@ -12,7 +12,7 @@
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _
-;;   _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _              _              _
 ;; )
 ;; }}}
@@ -85,6 +85,7 @@
 (defalias
   qwe           (layer-switch qwerty)
   cdh           (layer-switch colemak-dh)
+  stu           (layer-switch sturdy)
 )
 ;; }}}
 ;; {{{ Qwerty
@@ -92,16 +93,25 @@
   @cdh XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   q    w    e    r    t    y    u    i    o    p    XX   XX   XX
   XX   a    s    d    f    g    h    j    k    l    ;    XX   XX
-  lsft z    x    c    v    b    n    m    ,    .    '    XX
+  lsft _    z    x    c    v    b    n    m    ,    .    '    XX
   XX   lmet @red           spc            @blue
 )
 ;; }}}
 ;; {{{ Colemak-DH
 (deflayer colemak-dh
-  @qwe XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  @stu XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   q    w    f    p    b    j    l    u    y    ;    XX   XX   XX
   XX   a    r    s    t    g    m    n    e    i    o    XX   XX
-  XX   z    c    d    v    x    k    h    ,    .    '    XX
+  XX   x    z    c    d    v    _    k    h    ,    .    '    XX
+  XX   lmet @red           spc            @blue
+)
+;; }}}
+;; {{{ Sturdy
+(deflayer sturdy
+  @qwe XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   v    m    l    c    p    x    f    o    u    j    XX   XX   XX
+  XX   s    t    r    d    y    .    n    a    e    i    XX   XX
+  XX   z    k    q    g    w    _    b    h    '    ;    ,    XX
   XX   lmet @red           spc            @blue
 )
 ;; }}}
@@ -119,7 +129,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    S-=  S-2  S-3  S-4  S-5  S--  S-7  S-8  grv S-grv _    _    _
   _    S-,  S-[  [    S-9  S-/  S-\  -    /    =    S-;  _    _
-  _    S-.  S-]  ]    S-0  S-1  @em  S-6  _    _    S-'  _
+  _    S-.  S-]  ]    S-0  S-1  _    @em  S-6  _    _    S-'  _
   _    _    @purple        \              _
 )
 ;; }}}
@@ -128,7 +138,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    1    2    3    4    5    home pgdn pgup end  del  _    _    _
   _    6    7    8    9    0    left down up   rght _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _              _           @purple
 )
 ;; }}}
@@ -147,7 +157,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    f1   f2   f3   f4   f5   @cps @cpy next volu brup _    _    _
   _    f6   f7   f8   f9   f10  @udo @pst pp   vold brdn _    _
-  _    f11  f12  _    _    _    _    @cut prev mute _    _
+  _    f11  f12  _    _    _    _    _    @cut prev mute _    _
   _    _    _              _              _
 )
 ;; }}}
@@ -191,7 +201,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    @⋄   @∞   _    _    _    _    _    @∘   @≔   _    _    _    _
   _    @≤   @∧   @‹   @⟨   _    @⊢   @⊥   @⊤   @⊣   _    _    _
-  _    @≥   @∨   @›   @⟩   @¬   _    _    @∀   @∃   _    _
+  _    @≥   @∨   @›   @⟩   @¬   _    _    _    @∀   @∃   _    _
   _    _    _              _              _
 )
 
@@ -199,7 +209,7 @@
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    @⊆   @⊂   @∈   _    _    _    _    _    _    _    _    _
-;;   _    @⊇   @⊃   _    _    _    _    _    _    _    _    _
+;;   _    @⊇   @⊃   _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _              _              _
 ;; )
 ;; }}}
@@ -236,7 +246,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    @φ   @ω   @ε   @ρ   @τ   @ψ   @υ   @ι   @ο   @π   _    _    _
   _    @α   @σ   @δ   @ς   @γ   @η   @θ   @κ   @λ   _    _    _
-  _    @ζ   @ξ   @χ   _    @β   @ν   @μ   _    _    _    _
+  _    _    @ζ   @ξ   @χ   _    @β   @ν   @μ   _    _    _    _
   _    _    _              _              _
 )
 ;; }}}
@@ -272,7 +282,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    @Φ   @Ω   @Ε   @Ρ   @Τ   @Ψ   @Υ   @Ι   @Ο   @Π   _    _    _
   _    @Α   @Σ   @Δ   _    @Γ   @Η   @Θ   @Κ   @Λ   _    _    _
-  _    @Ζ   @Ξ   @Χ   _    @Β   @Ν   @Μ   _    _    _    _
+  _    _    @Ζ   @Ξ   @Χ   _    @Β   @Ν   @Μ   _    _    _    _
   _    _    _              _              _
 )
 ;; }}}
@@ -310,7 +320,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    @ℚ   @𝕎   @𝔼   @ℝ   @𝕋   @𝕐   @𝕌   @𝕀   @𝕆   @ℙ   _    _    _
   _    @𝔸   @𝕊   @ⅅ   @𝔽   @𝔾   @ℍ   @𝕁   @𝕂   @𝕃   _    _    _
-  _    @ℤ   @𝕏   @ℂ   @𝕍   @𝔹   @ℕ   @𝕄   _    _    _    _
+  _    _    @ℤ   @𝕏   @ℂ   @𝕍   @𝔹   @ℕ   @𝕄   _    _    _    _
   _    _    _              _              _
 )
 ;; }}}
@@ -332,7 +342,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    @Ă   @Â   @Ș   _    _    _    _    @Î   @Ț   _    _    _    _
   _    @ă   @â   @ș   _    _    _    _    @î   @ț   _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _              _              _
 )
 ;; }}}

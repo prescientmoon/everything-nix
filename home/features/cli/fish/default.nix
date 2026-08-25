@@ -9,6 +9,7 @@
 {
   # {{{ FZF
   # NOTE: I never use this. I should probably remove it
+  # NOTE: Never mind, searching through history is somewhat useful
   programs.fzf = {
     enable = true;
     defaultOptions = [ "--no-scrollbar" ];

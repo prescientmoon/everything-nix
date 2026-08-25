@@ -28,10 +28,20 @@ let
     { config, name, ... }:
     {
       options = {
+        pegasus = lib.mkEnableOption "pegasus integration" // {
+          default = true;
+        };
+
         id = lib.mkOption {
           type = lib.types.str;
           default = name;
           description = "The internal name for use in places like file paths.";
+        };
+
+        historiaId = lib.mkOption {
+          type = lib.types.str;
+          default = name;
+          description = "The internal name for use in the historia database.";
         };
 
         name = lib.mkOption {
@@ -46,6 +56,17 @@ let
             lib.types.path
           ];
           description = "The file that belongs to this game.";
+        };
+
+        args = lib.mkOption {
+          type = lib.types.listOf (
+            lib.types.oneOf [
+              lib.types.str
+              lib.types.path
+            ]
+          );
+          default = [ ];
+          description = "Additional arguments to pass to the game executable.";
         };
 
         winePrefix = lib.mkOption {
@@ -159,8 +180,8 @@ let
               (lib.mapAttrsToList (k: v: ''${k}="${v}"''))
               (lib.concatStringsSep " ")
             ]
-          } ${historia}/bin/historia ${historiaDbPath} "${config.id}" \
-            ${lib.escapeShellArgs command}
+          } ${historia}/bin/historia ${historiaDbPath} "${config.historiaId}" \
+            ${lib.escapeShellArgs (command ++ config.args)}
         '';
     };
 
@@ -186,6 +207,7 @@ in
         shortname: linux
 
         ${lib.pipe cfg.entries [
+          (lib.filterAttrs (_: entry: entry.pegasus))
           (lib.mapAttrsToList (
             _: entry:
             let
@@ -274,6 +296,23 @@ in
           pkgs.gamemode
         ];
       })
+
+      (pkgs.writeShellScriptBin "historia-stats" ''
+        if [ $# -eq 0 ]; then
+          sqlite3 ${historiaDbPath} -table \
+            "SELECT app, round(SUM(end - start) / 3600.0, 1) AS hours
+             FROM timespans 
+             GROUP BY app
+             ORDER BY hours DESC"
+        else
+          sqlite3 ${historiaDbPath} -table \
+            "SELECT datetime(start, 'auto') AS date,
+                    round((end - start) / 60.0, 0) AS minutes
+             FROM timespans
+             WHERE app='$1'
+             AND minutes >= 5"
+        fi
+      '')
     ];
   };
 }

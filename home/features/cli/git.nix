@@ -31,6 +31,10 @@
       ".direnv"
       ".envrc"
 
+      # Nix
+      "result"
+      ".nixos-test-history"
+
       # Haskell
       # NOTE: THIS IS A BAD IDEA
       # I need to figure out a better way (this is simply here because

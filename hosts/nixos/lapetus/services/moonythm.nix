@@ -1,10 +1,11 @@
 {
   inputs,
   upkgs,
+  pkgs,
   ...
 }:
 let
-  nihil = import inputs.nihil { pkgs = upkgs; };
+  nihil = import inputs.nihil { pkgs = pkgs; };
   dir = "${nihil.moonythm}/web";
 in
 {

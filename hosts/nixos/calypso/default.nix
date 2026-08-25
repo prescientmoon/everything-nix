@@ -64,6 +64,9 @@
     services.waydroid-mount.wantedBy = [ "multi-user.target" ];
   };
 
+  services.joycond.enable = true;
+  services.blueman.enable = true;
+
   # satellite.nginx.at.frog = {
   #   port = 80;
   #   scope = "friends";

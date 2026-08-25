@@ -183,7 +183,7 @@ in
             message = ''
               The options
                 'satellite.nginx.at.${config.subdomain}.port'
-              and 
+              and
                 'satellite.nginx.at.${config.subdomain}.files'
               cannot be specified at the same time.
             '';
