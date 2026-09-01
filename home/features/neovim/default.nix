@@ -11,17 +11,8 @@ let
 
   # Toggles for including tooling related to a given language
   packedTargets = {
-    csharp = false;
-    elm = false;
-    tooling = true; # Stuff useful for config editing
-    latex = true;
     lua = true;
     nix = true;
-    odin = false;
-    purescript = false;
-    python = false;
-    rust = false;
-    typst = true;
     web = true;
   };
 
@@ -453,7 +444,6 @@ let
                   ssh_config
                   svelte
                   swift
-                  tmux
                   toml
                   tsx
                   typescript
@@ -462,7 +452,6 @@ let
                   vimdoc
                   xml
                   yaml
-                  zathurarc
                   zig
                 ]
               ));
@@ -877,33 +866,6 @@ let
                 pkgs.lua
               ]
               ++ optionals nix [ upkgs.nixd ]
-              ++ optionals latex [
-                upkgs.texlab
-                upkgs.texlive.combined.scheme-full
-              ]
-              ++ optionals elm [
-                pkgs.elmPackages.elm
-                pkgs.elmPackages.elm-format
-                pkgs.elmPackages.elm-language-server
-              ]
-              ++ optionals purescript [
-                pkgs.purescript-language-server
-                pkgs.nodePackages.purs-tidy
-              ]
-              ++ optionals csharp [ pkgs.csharp-ls ]
-              ++ optionals odin [ pkgs.ols ]
-              ++ optionals tooling [
-                pkgs.hyprls
-                pkgs.just-lsp
-              ]
-              ++ optionals typst [
-                upkgs.typst
-                upkgs.typstyle
-                upkgs.tinymist # The typst language server
-              ]
-              ++ optionals python [
-                pkgs.ruff
-              ]
             );
           # }}}
 
@@ -951,7 +913,6 @@ let
             (
               [ pkgs.codespell ]
               ++ optional lua pkgs.stylua
-              ++ optional python pkgs.ruff
               ++ optionals web [
                 pkgs.nodePackages_latest.prettier
                 pkgs.nodePackages_latest.prettier_d_slim
@@ -1042,11 +1003,6 @@ let
         # {{{ rustacean
         rustacean = {
           package = "mrcjkb/rustaceanvim";
-          dependencies.nix = lib.lists.optionals packedTargets.rust [
-            pkgs.rust-analyzer
-            pkgs.rustfmt
-          ];
-
           lazy = false; # This plugin is already lazy
 
           config.autocmds = {
@@ -1235,8 +1191,8 @@ in
   # Install packages
   home.packages = [
     neovim
-    pkgs.vimclip
     neovide
+    (pkgs.callPackage ./vimclip.nix { })
   ];
   # }}}
   # {{{ Persistence

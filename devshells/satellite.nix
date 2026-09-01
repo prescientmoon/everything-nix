@@ -9,5 +9,6 @@ pkgs.mkShell {
     upkgs.nixos-rebuild-ng
     # TODO: move this to historia's directory once I no longer use flakes
     pkgs.ruff
+    pkgs.hyprls
   ];
 }

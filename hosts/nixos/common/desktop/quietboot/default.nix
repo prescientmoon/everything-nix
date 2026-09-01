@@ -8,8 +8,10 @@
   config = lib.mkIf config.satellite.machine.graphical {
     boot.plymouth = {
       enable = true;
-      themePackages = [ pkgs.plymouthThemeCutsAlt ];
       theme = "cuts_alt";
+      themePackages = [
+        (import ./plymouth-themes.nix { inherit pkgs; }).cuts_alt
+      ];
     };
 
     console = {

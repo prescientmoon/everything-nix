@@ -16,11 +16,12 @@ let
   # }}}
 
   fa = name: "fas fa-${name}";
-  iconPath = ../../../../common/icons;
+  iconPath = ../../../../../common/icons;
   icon = file: "assets/${iconPath}/${file}";
+  homer = pkgs.callPackage ./homer.nix { };
 in
 {
-  satellite.nginx.at.lab.files = pkgs.homer.withAssets {
+  satellite.nginx.at.lab.files = homer.withAssets {
     extraAssets = [ iconPath ];
     config = {
       title = "✨ The celestial citadel ✨";

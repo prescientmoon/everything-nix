@@ -5,12 +5,6 @@
   pkgs ? (import ../nixpkgs.nix) { },
   ...
 }:
-let
-  plymouthThemes = pkgs.callPackage (import ./plymouth-themes.nix) { };
-in
 {
-  plymouthThemeCutsAlt = plymouthThemes.cuts_alt;
-  vimclip = pkgs.callPackage (import ./vimclip.nix) { };
-  homer = pkgs.callPackage (import ./homer.nix) { };
   glassServer = pkgs.callPackage (import ./glass-server.nix) { };
 }

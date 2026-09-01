@@ -1,11 +1,11 @@
 { config, lib, ... }:
 {
   imports = [
+    ./quietboot
     ./pipewire.nix
     ./xdg-portal.nix
     ./steam.nix
     ./unicode.nix
-    ./quietboot.nix
     ./hyprland.nix
     ./historia.nix
   ];
