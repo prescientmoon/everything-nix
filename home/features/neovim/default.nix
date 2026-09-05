@@ -1180,6 +1180,8 @@ let
 in
 # }}}
 {
+  imports = [ ./vim ];
+
   satellite.lua.styluaConfig = ../../../stylua.toml;
 
   # {{{ Basic config

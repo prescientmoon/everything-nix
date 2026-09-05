@@ -1,0 +1,111 @@
+let mapleader = " " " <leader>
+
+set history=1000 " How many commands neovim should remember
+
+set ignorecase " Ignore case when searching...
+set smartcase " ...but not when there's uppercase characters
+
+set foldmethod=marker " The best way to fold :3
+
+set number " Line numbers
+set relativenumber " Relative line numbers
+set nuw=1 " Do not make the number column thicker than it needs to be
+
+set nojoinspaces " No double spaces when joining lines
+set list " Explicitly display characters like \t
+set listchars=tab:>\ ,trail:-,nbsp:+ " What characters to display explicitly
+" tcqj is the default
+" - "t" automatically wraps text
+" - "c" automatically wraps comments
+" - "q" allows re-flowing comments with gq
+" - "j" removes comment leaders when joining lines
+" - "r" automatically continues comments on enter
+set formatoptions=tcqjr
+
+set breakindent " Indentation-aware word wrapping.
+set expandtab " Use spaces by default. Configured on a per-filetype basis
+set shiftwidth=2 " Size of an indent
+set tabstop=2 " Size of tab character
+set shiftround " When using < or >, rounds to closest multiple of shiftwidth
+set smartindent " Insert indents automatically
+
+set splitbelow " Put new windows below current
+set splitright " Put new windows right of current
+
+set scrolloff=4 " Starts scrolling 4 lines from the edge of the screen
+
+set termguicolors " True color support
+set term=xterm-256color " Probably bad, but the above doesn't work otherwise
+syntax enable
+
+set lazyredraw " Don't redraw while executing macros
+set autoread " Detect changes from the outside
+au FocusGained,BufEnter * silent! checktime
+
+set wildmenu " Autocomplete menu
+set undofile " Preserve undo history
+set undodir=~/.cache/vim/undo
+
+" Let backspace delete over more stuff
+set backspace=eol,start,indent
+
+set incsearch " Incremental search
+set hlsearch " Highlight search results
+nnoremap <leader>s/ :noh<cr> " Hide search results
+
+set nowrap
+nnoremap <leader>sw :set wrap!<cr>
+
+set spell
+nnoremap <leader>ss :set spell!<cr>
+
+" Exit help menus with qq
+au FileType help,qf silent! nnoremap <buffer> qq :close<cr>
+
+" Replace word in file
+nnoremap <leader>rw :%s/<C-r><C-w>/
+
+" Toggle the color column
+let default_colorcolumn=join(range(81,999),",")
+nnoremap <leader>sc :execute "set colorcolumn=" . (&colorcolumn == "" ? default_colorcolumn : "")<CR>
+
+" Free up q & Q
+nnoremap <C-q> q
+nnoremap <C-S-q> Q
+nnoremap q <nop>
+nnoremap Q <nop>
+
+" Save with Q
+nnoremap Q :wqa<cr>
+
+" Merge lines with qj
+nnoremap qj J
+
+" Different chords get remapped to f-keys by my Kanata config.
+" Exit insert mode using *jk*
+inoremap <f10> <esc>
+vnoremap <f10> <esc>
+
+" Use global clipboard using *cp*
+nnoremap <f11> "+
+vnoremap <f11> "+
+
+" Save using *ji*
+nnoremap <f12> :silent! write<cr>
+
+" Set cursor shapes based on the mode we're in.
+"
+" I can't believe I'm saying this, but I found this fix in a YouTube video of
+" all places! (https://www.youtube.com/watch?v=FcQjTXLrVUU)
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+let &t_SR = "\e[4 q"
+set noshowmode " The cursor shape is enough for me
+
+" These should make undercurl work
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
+
+let g:netrw_banner=0
+
+colorscheme meow
