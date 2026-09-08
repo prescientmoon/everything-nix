@@ -1,4 +1,6 @@
-let mapleader = " " " <leader>
+let mapleader = " " " <leader> = <space>
+
+set packpath^=~/.local/share/vim " This is where the plugins I add with Nix will go
 
 set history=1000 " How many commands neovim should remember
 
@@ -14,6 +16,7 @@ set nuw=1 " Do not make the number column thicker than it needs to be
 set nojoinspaces " No double spaces when joining lines
 set list " Explicitly display characters like \t
 set listchars=tab:>\ ,trail:-,nbsp:+ " What characters to display explicitly
+
 " tcqj is the default
 " - "t" automatically wraps text
 " - "c" automatically wraps comments
@@ -36,6 +39,8 @@ set scrolloff=4 " Starts scrolling 4 lines from the edge of the screen
 
 set termguicolors " True color support
 set term=xterm-256color " Probably bad, but the above doesn't work otherwise
+
+filetype plugin on
 syntax enable
 
 set lazyredraw " Don't redraw while executing macros
@@ -55,9 +60,6 @@ nnoremap <leader>s/ :noh<cr> " Hide search results
 
 set nowrap
 nnoremap <leader>sw :set wrap!<cr>
-
-set spell
-nnoremap <leader>ss :set spell!<cr>
 
 " Exit help menus with qq
 au FileType help,qf silent! nnoremap <buffer> qq :close<cr>
@@ -91,7 +93,7 @@ nnoremap <f11> "+
 vnoremap <f11> "+
 
 " Save using *ji*
-nnoremap <f12> :silent! write<cr>
+nnoremap <silent> <f12> :silent! write<cr>
 
 " Set cursor shapes based on the mode we're in.
 "
@@ -106,6 +108,65 @@ set noshowmode " The cursor shape is enough for me
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 
-let g:netrw_banner=0
+" Scuffed spell file auto-regeneration.
+"
+" I say scuffed because this sort of conflicts with Neovim's spellfiles (I
+" have no idea whether the two use the same format for the binary version).
+let s:spell_prefix="~/projects/personal/satellite/home/features/neovim/config/spell"
+let s:spell_file=s:spell_prefix . "/en.utf-8.add.spl"
+let s:add_file=s:spell_prefix . "/en.utf-8.add"
 
+execute "set" "spellfile=".s:add_file
+function! s:regen_spellfile()
+	execute "silent!" "mkspell!" s:spell_file s:add_file
+endfunction
+
+call s:regen_spellfile()
+au FocusGained * call s:regen_spellfile()
+
+set spell
+nnoremap <leader>ss :set spell!<cr>
+
+au BufEnter .gitignore setlocal nospell
+
+" Quickfix window management
+function! ToggleQuickFix()
+	if empty(filter(getwininfo(), 'v:val.quickfix'))
+		copen
+	else
+		cclose
+	endif
+endfunction
+nnoremap <silent> <leader>q :call ToggleQuickFix()<cr>
+
+" Netrw
+let g:netrw_list_hide="^\./$"
+
+function! HidePat(pat)
+	let g:netrw_list_hide.=",".a:pat
+	execute "set wildignore+=".a:pat
+endfunction
+
+function! HideDir(dir)
+	let g:netrw_list_hide.=",".a:dir
+	execute "set wildignore+=".a:dir."/**"
+endfunction
+
+call HideDir("build")
+call HideDir("dist")
+call HideDir("target")
+call HideDir("zig-pkg")
+call HideDir("zig-out")
+call HideDir(".zig-cache")
+call HideDir(".xwin-cache")
+call HideDir("result")
+call HideDir(".direnv")
+call HideDir(".git")
+call HidePat("*.swp")
+
+let g:netrw_banner=0
+let g:netrw_altfile=1 " Keep netrw out of the alt file
+nnoremap <C-S-f> :Explore<cr>
+
+" Finally, my custom theme :3
 colorscheme meow

@@ -1208,6 +1208,4 @@ in
     mirosSnippetCache
   ];
   # }}}
-
-  home.sessionVariables.MANPAGER = "${lib.getExe neovim} +Man!";
 }
