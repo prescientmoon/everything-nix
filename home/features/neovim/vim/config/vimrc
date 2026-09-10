@@ -2,6 +2,9 @@ let mapleader = " " " <leader> = <space>
 
 set packpath^=~/.local/share/vim " This is where the plugins I add with Nix will go
 
+filetype plugin on
+syntax enable
+
 set history=1000 " How many commands neovim should remember
 
 set ignorecase " Ignore case when searching...
@@ -26,7 +29,7 @@ set listchars=tab:>\ ,trail:-,nbsp:+ " What characters to display explicitly
 set formatoptions=tcqjr
 
 set breakindent " Indentation-aware word wrapping.
-set expandtab " Use spaces by default. Configured on a per-filetype basis
+set noexpandtab " Use tabs by default. Configured on a per-filetype basis
 set shiftwidth=2 " Size of an indent
 set tabstop=2 " Size of tab character
 set shiftround " When using < or >, rounds to closest multiple of shiftwidth
@@ -40,9 +43,6 @@ set scrolloff=4 " Starts scrolling 4 lines from the edge of the screen
 set termguicolors " True color support
 set term=xterm-256color " Probably bad, but the above doesn't work otherwise
 
-filetype plugin on
-syntax enable
-
 set lazyredraw " Don't redraw while executing macros
 set autoread " Detect changes from the outside
 au FocusGained,BufEnter * silent! checktime
@@ -50,6 +50,7 @@ au FocusGained,BufEnter * silent! checktime
 set wildmenu " Autocomplete menu
 set undofile " Preserve undo history
 set undodir=~/.cache/vim/undo
+set directory=~/.cache/vim/swap
 
 " Let backspace delete over more stuff
 set backspace=eol,start,indent
@@ -61,15 +62,28 @@ nnoremap <leader>s/ :noh<cr> " Hide search results
 set nowrap
 nnoremap <leader>sw :set wrap!<cr>
 
-" Exit help menus with qq
+" Exit help menus
 au FileType help,qf silent! nnoremap <buffer> qq :close<cr>
 
 " Replace word in file
 nnoremap <leader>rw :%s/<C-r><C-w>/
 
-" Toggle the color column
+" Open file in project's directory
+nnoremap <C-p> :find! ./**/
+
+" Toggle the color column via <leader>sc
 let default_colorcolumn=join(range(81,999),",")
-nnoremap <leader>sc :execute "set colorcolumn=" . (&colorcolumn == "" ? default_colorcolumn : "")<CR>
+nnoremap <leader>sc :execute
+	\ "set colorcolumn=" . (&colorcolumn == "" ? default_colorcolumn : "")<CR>
+
+" Since vim-classic does not have the -indentonly option of :retab!, we have
+" to reproduce it manually.
+function! RetabIndentonly()
+	let l:state = winsaveview()
+	execute "%!unexpand --first-only --tabs=".&tabstop
+	call winrestview(l:state)
+endfunction
+nnoremap <leader>lt :call RetabIndentonly()<cr>
 
 " Free up q & Q
 nnoremap <C-q> q
@@ -143,30 +157,32 @@ nnoremap <silent> <leader>q :call ToggleQuickFix()<cr>
 let g:netrw_list_hide="^\./$"
 
 function! HidePat(pat)
-	let g:netrw_list_hide.=",".a:pat
-	execute "set wildignore+=".a:pat
+	let g:netrw_list_hide.=",^".a:pat."$"
+	execute "set wildignore+=**/".a:pat
 endfunction
 
 function! HideDir(dir)
-	let g:netrw_list_hide.=",".a:dir
-	execute "set wildignore+=".a:dir."/**"
+	let g:netrw_list_hide.=",^".a:dir."$"
+	execute "set wildignore+=**/".a:dir."**"
 endfunction
 
-call HideDir("build")
-call HideDir("dist")
-call HideDir("target")
-call HideDir("zig-pkg")
-call HideDir("zig-out")
-call HideDir(".zig-cache")
-call HideDir(".xwin-cache")
-call HideDir("result")
-call HideDir(".direnv")
-call HideDir(".git")
+call HideDir("build/")
+call HideDir("dist/")
+call HideDir("target/")
+call HideDir("zig-pkg/")
+call HideDir("zig-out/")
+call HideDir(".zig-cache/")
+call HideDir(".xwin-cache/")
+call HideDir(".direnv/")
+call HideDir(".git/")
+call HidePat("result@")
 call HidePat("*.swp")
 
 let g:netrw_banner=0
 let g:netrw_altfile=1 " Keep netrw out of the alt file
-nnoremap <C-S-f> :Explore<cr>
+" This is better than :Explore, since :Explore removes the overridden file
+" from being the altfile, which is super problematic.
+nnoremap <C-S-f> :execute "edit" expand("%:h")<cr>
 
 " Finally, my custom theme :3
 colorscheme meow
