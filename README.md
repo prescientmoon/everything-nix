@@ -54,49 +54,48 @@ The following hosts are not configured using nix, but might be referenced in pla
 
 Here's some things you might want to check out:
 
-- My [neovim config](./home/features/neovim/default.nix)
-  - written using a [custom neovim config generation framework](./modules/common/korora-neovim.nix)
-  - [snippets](./home/features/neovim/snippets) written in [miros](https://github.com/prescientmoon/miros) — my custom snippet generation language
-- The [flake](./flake.nix) entrypoint for this repository
+	- My [neovim config](./home/features/neovim/default.nix)
+- written using a [custom neovim config generation framework](./modules/common/korora-neovim.nix)
+	- [snippets](./home/features/neovim/snippets) written in [miros](https://github.com/prescientmoon/miros) — my custom snippet generation language
+	- The [flake](./flake.nix) entrypoint for this repository
 
 ## Things I use
 
-> This does not include links to every plugin I use for every program here. You can see more details in the respective configurations.
+	> This does not include links to every plugin I use for every program here. You can see more details in the respective configurations.
 
 ### Fundamentals
 
-- [Nixos](http://nixos.org/) — nix based operating system
-- [Home-manager](https://github.com/nix-community/home-manager) — manage user configuration using nix
-- [Impernanence](https://github.com/nix-community/impermanence) — see the article about [erasing your darlings](https://grahamc.com/blog/erase-your-darlings)
-- [Sops-nix](https://github.com/Mic92/sops-nix) — secret management
-- [disko](https://github.com/nix-community/disko) — format disks using nix
-  - [zfs](https://openzfs.org/wiki/Main_Page) — filesystem (on my server)
-  - [btrfs](https://btrfs.readthedocs.io/en/latest/) — filesystem (on my laptop)
+	- [Nixos](http://nixos.org/) — nix based operating system
+	- [Home-manager](https://github.com/nix-community/home-manager) — manage user configuration using nix
+	- [Impernanence](https://github.com/nix-community/impermanence) — see the article about [erasing your darlings](https://grahamc.com/blog/erase-your-darlings)
+	- [Sops-nix](https://github.com/Mic92/sops-nix) — secret management
+	- [disko](https://github.com/nix-community/disko) — format disks using nix
+	- [zfs](https://openzfs.org/wiki/Main_Page) — filesystem (on my server)
+	- [btrfs](https://btrfs.readthedocs.io/en/latest/) — filesystem (on my laptop)
 
 ### Input handling
 
-- [kanata](https://github.com/jtroo/kanata) — software-level keyboard layout customizer. One of the few such programs with support for chording
-- [opentabletdriver](https://opentabletdriver.net/)
+	- [kanata](https://github.com/jtroo/kanata) — software-level keyboard layout customizer. One of the few such programs with support for chording
+	- [opentabletdriver](https://opentabletdriver.net/)
 
 ### Graphical
 
-- [Stylix](https://github.com/danth/stylix) — base16 module for nix
-  - [Base16 templates](https://github.com/chriskempson/base16-templates-source) — list of base16 theme templates
-  - [Catpuccin](https://github.com/catppuccin/catppuccin) — base16 theme I use
-  - [Rosepine](https://rosepinetheme.com/) — another theme I use
-  - [Gruvbox](https://github.com/morhetz/gruvbox) — yet another theme I use
-- [Hyprland](https://hyprland.org/) — wayland compositor
-  - [Wlogout](https://github.com/ArtsyMacaw/wlogout) — wayland logout menu
-  - [Hyprpicker](https://github.com/hyprwm/hyprpicker) — hyprland color picker
-  - [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) — screenshot tool
-  - [Dunst](https://dunst-project.org/) — notification daemon
-  - [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustments
-  - [Anyrun](https://github.com/Kirottu/anyrun) — program launcher
-- [Foot](https://codeberg.org/dnkl/foot) — terminal emulator
-- [Zathura](https://pwmt.org/projects/zathura/) — pdf viewer
-- [Firefox](https://www.mozilla.org/en-US/firefox/) — web browser
-- [Tesseract](https://github.com/tesseract-ocr/tesseract) — OCR engine
-- [Obsidian](https://obsidian.md/) — note taking software
+	- [Stylix](https://github.com/danth/stylix) — base16 module for nix
+	- [Base16 templates](https://github.com/chriskempson/base16-templates-source) — list of base16 theme templates
+	- [Catpuccin](https://github.com/catppuccin/catppuccin) — base16 theme I use
+	- [Rosepine](https://rosepinetheme.com/) — another theme I use
+	- [Gruvbox](https://github.com/morhetz/gruvbox) — yet another theme I use
+	- [Hyprland](https://hyprland.org/) — wayland compositor
+	- [Wlogout](https://github.com/ArtsyMacaw/wlogout) — wayland logout menu
+	- [Hyprpicker](https://github.com/hyprwm/hyprpicker) — hyprland color picker
+	- [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) — screenshot tool
+	- [Dunst](https://dunst-project.org/) — notification daemon
+	- [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustments
+	- [Anyrun](https://github.com/Kirottu/anyrun) — program launcher
+	- [Foot](https://codeberg.org/dnkl/foot) — terminal emulator
+	- [Zathura](https://pwmt.org/projects/zathura/) — pdf viewer
+	- [Firefox](https://www.mozilla.org/en-US/firefox/) — web browser
+	- [Tesseract](https://github.com/tesseract-ocr/tesseract) — OCR engine
 - [Bitwarden](https://bitwarden.com/) — client for self-hosted password manager
 
 ### Terminal
@@ -140,6 +139,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Obsidian](https://obsidian.md/) — I switched to my own markup language.
 - [Smos](https://github.com/NorfairKing/smos) — Too complicated for my taste (I switched to simple text files)
 - [gitlinker](https://github.com/linrongbin16/gitlinker.nvim) — I very rarely needed this
 - [crates.nvim](https://github.com/saecki/crates.nvim) — Cool plugin, but I was rarely using its functionality

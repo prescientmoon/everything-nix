@@ -1,8 +1,5 @@
-# TODO: turn this into a wrapper
 { config, pkgs, ... }:
 {
-  home.packages = [ pkgs.obsidian ];
-
   # Start neovim with a custom class so our WM can automatically move it to the
   # correct workspace.
   xdg.desktopEntries.obsidiantui = {

@@ -1056,61 +1056,6 @@ let
           config = true;
         };
         # }}}
-        # {{{ obsidian
-        obsidian =
-          let
-            dateFormat = "%Y-%m-%d";
-          in
-          {
-            package = "epwalsh/obsidian.nvim";
-            dependencies.lua = [ "plenary" ];
-
-            event = "VeryLazy";
-            cond = lua "vim.loop.cwd() == ${encode obsidianVault}";
-
-            config.keys =
-              let
-                nmap = mapping: action: desc: {
-                  inherit mapping desc;
-                  action = "<cmd>Obsidian${action}<cr>";
-                };
-              in
-              [
-                (nmap "<C-O>" "QuickSwitch<cr>" "[o]pen note")
-                (nmap "<leader>ot" "Today" "[t]oday's note")
-                (nmap "<leader>oy" "Yesterday" "[y]esterday's note")
-                (nmap "<leader>oi" "Template" "[i]nstantiate template")
-                (nmap "<leader>on" "Template New note.md" "new [n]ote template")
-                (nmap "<leader>od" "Template New dream.md" "new [d]ream template")
-              ];
-
-            opts = {
-              dir = obsidianVault;
-              notes_subdir = "chaos";
-
-              daily_notes = {
-                folder = "daily";
-                date_format = dateFormat;
-                template = "New daily note.md";
-              };
-
-              templates = {
-                subdir = "templates";
-                date_format = dateFormat;
-                time_format = "%H:%M";
-              };
-
-              completion = {
-                nvim_cmp = true;
-                min_chars = 2;
-              };
-
-              new_notes_location = "current_dir";
-              mappings = { };
-              disable_frontmatter = true;
-            };
-          };
-        # }}}
         # }}}
       };
     };
