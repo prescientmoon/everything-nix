@@ -10,8 +10,8 @@ In case you are not familiar with nix/nixos, this is a collection of configurati
 
 ## Features this repository includes:
 
-- Sets up all the apps I use — including git, neovim, fish, starship, hyprland, anyrun, discord, zathura, foot & much more.
-- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, whoogle, pounce, calico, actual & more.
+- Sets up all the apps I use — including git, neovim, fish, starship, hyprland, anyrun, discord, Zathura, foot & much more.
+- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, tailscale, syncthing, vaultwarden, pounce, calico, actual & more.
 - Consistent base16 theming using [stylix](https://github.com/danth/stylix)
 - Declarative secret management using [sops-nix](https://github.com/Mic92/sops-nix)
 
@@ -132,12 +132,12 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Redlib](https://github.com/redlib-org/redlib) — alternate Reddit client
 - [Syncthing](https://syncthing.net/) — file synchronization
 - [Vaultwarden](https://github.com/dani-garcia/vaultwarden/) — password manager
-- [Whoogle](https://github.com/benbusby/whoogle-search#manual-docker) — search engine
 
 ## Hall of fame
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Whoogle](https://github.com/benbusby/whoogle-search#manual-docker) — Google killed this project long ago.
 - [Homer](https://github.com/bastienwirtz/homer) — I almost never went to this page. I plan to make my own similar page as part of my website.
 - [Obsidian](https://obsidian.md/) — I switched to my own markup language.
 - [Smos](https://github.com/NorfairKing/smos) — Too complicated for my taste (I switched to simple text files)

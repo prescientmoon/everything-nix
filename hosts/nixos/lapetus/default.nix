@@ -32,7 +32,6 @@
     ./services/syncthing.nix
     ./services/tmp.nix
     ./services/vaultwarden.nix
-    ./services/whoogle.nix
     ./services/zfs.nix
   ];
 

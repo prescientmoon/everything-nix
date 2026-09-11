@@ -215,8 +215,8 @@ function! YaziEdit()
 		" We don't want these to influence future runs
 		silent !rm /tmp/vim-yazi-chosen
 		execute "edit!" l:path
-		redraw!
 	endif
+	redraw!
 endfunction
 
 nnoremap <C-S-f> :call YaziEdit()<cr>
