@@ -54,8 +54,6 @@ in
               comment "Allow the local network to access the router";
             iifname {"docker0", "veth*"} accept \
               comment "Allow Docker to access the router";
-            iifname "tailscale0" accept \
-              comment "Allow Tailscale to access the router";
             iifname "overlay0" accept \
               comment "Allow overlay network to access the router";
 

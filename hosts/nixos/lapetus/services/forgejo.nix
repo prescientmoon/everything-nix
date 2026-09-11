@@ -17,7 +17,7 @@
   };
 
   # Add CNAME record for ssh access. Unlike the http interface,
-  # this will only get exposed over tailscale, so it is safe.
+  # this will only get exposed over wireguard, so it is safe.
   satellite.dns.records = [
     {
       type = "CNAME";

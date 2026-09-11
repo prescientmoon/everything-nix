@@ -16,7 +16,6 @@
 
   satellite.wireless.backend = "iwd";
   satellite.hyprland.enable = true;
-  satellite.mullvad.enable = false;
 
   # Machine ids
   networking.hostName = "tethys";
