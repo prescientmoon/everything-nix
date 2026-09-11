@@ -607,3 +607,6 @@ zpools
 comptime
 MathML
 utils
+hashable
+Yazi
+CLI's

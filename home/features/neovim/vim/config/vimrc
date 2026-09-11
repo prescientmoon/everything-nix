@@ -47,6 +47,7 @@ set lazyredraw " Don't redraw while executing macros
 set autoread " Detect changes from the outside
 au FocusGained,BufEnter * silent! checktime
 
+set noruler " Do not show the cursor position in the bottom-right
 set wildmenu " Autocomplete menu
 set undofile " Preserve undo history
 set undodir=~/.cache/vim/undo
@@ -141,9 +142,11 @@ au FocusGained * call s:regen_spellfile()
 set spell
 nnoremap <leader>ss :set spell!<cr>
 
+" I don't think this would be needed if using a version of Vim that has the
+" gitignore filetype!
 au BufEnter .gitignore setlocal nospell
 
-" Quickfix window management
+" Quickfix
 function! ToggleQuickFix()
 	if empty(filter(getwininfo(), 'v:val.quickfix'))
 		copen
@@ -177,12 +180,43 @@ call HideDir(".direnv/")
 call HideDir(".git/")
 call HidePat("result@")
 call HidePat("*.swp")
+call HidePat("*.spl")
+
+set wildignore+=**/*.png
+set wildignore+=**/*.jpg
+set wildignore+=**/*.ico
+set wildignore+=**/*.webp
+set wildignore+=**/*.gif
+set wildignore+=**/*.pdf
+set wildignore+=**/secrets*.yaml
+set wildignore+=**/flake.lock
 
 let g:netrw_banner=0
 let g:netrw_altfile=1 " Keep netrw out of the alt file
 " This is better than :Explore, since :Explore removes the overridden file
 " from being the altfile, which is super problematic.
-nnoremap <C-S-f> :execute "edit" expand("%:h")<cr>
+nnoremap <leader>f :execute "edit" expand("%:h")<cr>
 
 " Finally, my custom theme :3
 colorscheme meow
+
+" Note that this will run into race conditions if run in multiple instances of
+" Vim at once, but that's ok :3
+"
+" A "better" implementation would generate some unique filename at the start.
+" Unfortunately, they call me a Haskell expression, for I am very lazy.
+function! YaziEdit()
+	execute "silent" "!yazi"
+		\ "--chooser-file /tmp/vim-yazi-chosen"
+		\ expand("%:h")
+
+	if filereadable("/tmp/vim-yazi-chosen")
+		let l:path=readfile("/tmp/vim-yazi-chosen")[0]
+		" We don't want these to influence future runs
+		silent !rm /tmp/vim-yazi-chosen
+		execute "edit!" l:path
+		redraw!
+	endif
+endfunction
+
+nnoremap <C-S-f> :call YaziEdit()<cr>
