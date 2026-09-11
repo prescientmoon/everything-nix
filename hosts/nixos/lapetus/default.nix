@@ -7,7 +7,6 @@
     ./networking
     ./filesystems
 
-    # ./services/5d-diplomacy (currently broken)
     ./services/actual.nix
     ./services/ddns-updater.nix
     ./services/diptime.nix
