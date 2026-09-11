@@ -26,12 +26,10 @@ let
             );
 
             ttl = builtins.foldl' (ttl: entry: lib.trivial.max ttl entry.ttl) 0 entries;
-            enableCloudflareProxy = builtins.foldl' (x: entry: x || entry.enableCloudflareProxy) false entries;
-            cloudflare = if enableCloudflareProxy then { octodns.cloudflare.proxied = true; } else { };
             content =
               if builtins.length values == 1 then { value = builtins.elemAt values 0; } else { inherit values; };
           in
-          { inherit ttl type; } // content // cloudflare
+          { inherit ttl type; } // content
         ) grouped
       ) grouped;
       file = format.generate "${zone}.yaml" contents;
