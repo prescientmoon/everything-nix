@@ -40,7 +40,7 @@
   # {{{ Networking & storage
   satellite.nginx.at.prometheus.port = config.services.prometheus.port;
 
-  environment.persistence."/persist/state".directories = [
+  environment.persistence."/persist/local/cache".directories = [
     {
       directory = "/var/lib/prometheus2";
       user = "prometheus";

@@ -37,11 +37,6 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
-    # {{{ Self management
-    # Smos
-    smos.url = "github:NorfairKing/smos";
-    # smos.inputs.nixpkgs.url = "github:NixOS/nixpkgs/b8dd8be3c790215716e7c12b247f45ca525867e2";
-    # }}}
 
     miros.url = "github:prescientmoon/miros";
     miros.flake = false;

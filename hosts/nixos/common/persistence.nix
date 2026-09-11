@@ -16,9 +16,9 @@
   environment.persistence."/persist/state".directories = [
     "/var/lib/systemd"
     "/var/lib/nixos"
+  ];
 
-    # NOTE: I'm not sure whether these are worth considering "state". Perhaps
-    # these should be saved as "cache" instead.
+  environment.persistence."/persist/local/cache".directories = [
     "/var/log"
   ];
 

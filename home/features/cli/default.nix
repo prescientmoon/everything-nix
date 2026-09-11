@@ -13,7 +13,6 @@
     ./eza.nix
     ./git.nix
     ./lazygit.nix
-    # ./smos.nix
     ./ssh.nix
     ./starship.nix
     ./tealdeer.nix

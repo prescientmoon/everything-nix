@@ -85,7 +85,6 @@ in
             home = "/persist/state${config.users.users.pilot.home}";
           in
           [
-            "/persist/state/var/log"
             "${home}/discord"
             "${home}/element"
             "${home}/firefox"

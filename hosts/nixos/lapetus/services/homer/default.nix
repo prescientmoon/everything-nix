@@ -73,7 +73,7 @@ in
             {
               name = "Dotfiles";
               subtitle = "Configuration for all my machines";
-              logo = icon "forgejo.svg";
+              logo = icon "forgejo.png";
               url = "https://git.moonythm.dev/prescientmoon/satellite";
             }
             {
@@ -123,7 +123,7 @@ in
             {
               name = "Forgejo";
               subtitle = "Git forge";
-              logo = icon "forgejo.svg";
+              logo = icon "forgejo.png";
               url = "https://git.moonythm.dev";
             }
             {

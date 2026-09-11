@@ -1,5 +1,7 @@
 # Welcome to _the Satellite_
 
+> Note: a lot of the info in this README might be a bit outdated. I plan to document things on my website once I finish rebuilding it.
+
 In case you are not familiar with nix/nixos, this is a collection of configuration files which build all my systems in a declarative manner. The tool used to configure the global system is called [nixos](https://nixos.org/), and the one used to configure the individual users is called [home-manager](https://github.com/nix-community/home-manager).
 
 > A [visual history](./docs/history.md) of my setup is in the works!
@@ -109,8 +111,6 @@ Here's some things you might want to check out:
 - [yazi](https://github.com/sxyazi/yazi) — file manager
 - [Catgirl](https://git.causal.agency/catgirl/about/) — irc client
 - [lazygit](https://github.com/jesseduffield/lazygit) — git tui
-- Self management:
-  - [Smos](https://github.com/NorfairKing/smos) — selfhosted comprehensive self-management system
 
 ### Services
 
@@ -140,6 +140,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Smos](https://github.com/NorfairKing/smos) — Too complicated for my taste (I switched to simple text files)
 - [gitlinker](https://github.com/linrongbin16/gitlinker.nvim) — I very rarely needed this
 - [crates.nvim](https://github.com/saecki/crates.nvim) — Cool plugin, but I was rarely using its functionality
 - [idris2-nvim](https://github.com/idris-community/idris2-nvim) — I haven't used Idris in a good while
