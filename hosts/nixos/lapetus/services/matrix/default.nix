@@ -1,10 +1,6 @@
 { upkgs, ... }:
 {
-  imports = [
-    ./continuwuity.nix
-    ./element.nix
-    ./fluffychat.nix
-  ];
+  imports = [ ./continuwuity.nix ];
 
   satellite.nginx.at = {
     element = {

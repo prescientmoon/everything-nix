@@ -856,7 +856,7 @@ let
           config =
             _:
             importFrom ./plugins/lspconfig.lua "config" {
-              # We handle formatting using null-ls and prettierd
+              # We handle formatting using conform
               ts_ls.on_attach = client: ''
                 ${client}.server_capabilities.documentFormattingProvider = false
               '';
@@ -1102,7 +1102,6 @@ in
   # {{{ Basic config
   # Link files in the appropriate places
   xdg.configFile.nvim.source = config.satellite.dev.path "home/features/neovim/config";
-  home.sessionVariables.EDITOR = "nvim";
   home.file.".nvim_nix_runtime".source = generatedConfig;
 
   # Install packages

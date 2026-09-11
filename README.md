@@ -135,6 +135,8 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [neoconf.nvim](https://github.com/folke/neoconf.nvim) one can use `:h exrc`
+- [neodev.nvim](https://github.com/folke/neodev.nvim) — one can do without this.
 - [quicker.nvim](https://github.com/stevearc/quicker.nvim) — I rarely reached for this.
 - [ftFT.nvim](https://github.com/gukz/ftFT.nvim) — one can do without this.
 - [vim-wakatime](https://github.com/wakatime/vim-wakatime) — see below.
