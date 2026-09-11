@@ -121,7 +121,6 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 - [Commafeed](https://github.com/Athou/commafeed) — rss reader
 - [Forgejo](https://forgejo.org/) — git forge
 - [Grafana](https://github.com/grafana/grafana) — pretty dashboards
-- [Homer](https://github.com/bastienwirtz/homer) — server homepage
 - [Invidious](https://invidious.io/) — alternate YouTube client
 - [Jellyfin](https://jellyfin.org/) — media server
 - [Jupyterhub](https://jupyter.org/hub) — notebook collaboration suite
@@ -139,6 +138,7 @@ Most services are served over [tailscale](https://tailscale.com/), using certifi
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Homer](https://github.com/bastienwirtz/homer) — I almost never went to this page. I plan to make my own similar page as part of my website.
 - [Obsidian](https://obsidian.md/) — I switched to my own markup language.
 - [Smos](https://github.com/NorfairKing/smos) — Too complicated for my taste (I switched to simple text files)
 - [gitlinker](https://github.com/linrongbin16/gitlinker.nvim) — I very rarely needed this

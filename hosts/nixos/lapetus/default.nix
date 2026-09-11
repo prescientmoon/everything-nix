@@ -15,7 +15,6 @@
     ./services/glass-server
     ./services/gotosocial.nix
     ./services/grafana.nix
-    ./services/homer.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
     ./services/matrix
