@@ -1038,14 +1038,6 @@ let
         # }}}
         # {{{ external
         # These plugins integrate neovim with external services
-        # {{{ wakatime
-        wakatime = {
-          package = "wakatime/vim-wakatime";
-          dependencies.nix = [ pkgs.wakatime-cli ];
-
-          event = "VeryLazy";
-        };
-        # }}}
         # {{{ discord rich presence
         discord-rich-presence = {
           enabled = false;

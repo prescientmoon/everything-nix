@@ -11,10 +11,9 @@
 - treesitter
 - clipboard-image
 - flash, ftft
-- obsidian
 - sibilantmoon
 - undotree (the next update will have this natively!)
-- wakatime, discord-rich-presence (do I though?)
+- discord-rich-presence (do I though?)
 - indent-blankline
 
 ## Themes

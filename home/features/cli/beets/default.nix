@@ -13,12 +13,14 @@
       pluginOverrides.lyrics.enable = true;
       pluginOverrides.lastgenre.enable = true;
       pluginOverrides.embedart.enable = true;
-      pluginOverrides.VGMdb = {
-        enable = true;
-        propagatedBuildInputs = [
-          (upkgs.python3Packages.callPackage ./beets-vgmdb.nix { })
-        ];
-      };
+
+      # This is how one can add additional plugins:
+      # pluginOverrides.example = {
+      #   enable = true;
+      #   propagatedBuildInputs = [
+      #     (upkgs.python3Packages.callPackage ./example.nix { })
+      #   ];
+      # };
     })
   ];
 

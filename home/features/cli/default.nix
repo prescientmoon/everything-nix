@@ -16,7 +16,6 @@
     ./ssh.nix
     ./starship.nix
     ./tealdeer.nix
-    ./wakatime.nix
     ./yazi.nix
     ./beets
     ./fish

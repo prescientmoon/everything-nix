@@ -135,6 +135,9 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [vim-wakatime](https://github.com/wakatime/vim-wakatime) — see below.
+- [Wakatime](https://wakatime.com/) — I hadn't used this in years, but forgot to remove it.
+- [Beets VGMdb](https://github.com/HOZHENWAI/Beets-Plugin_VGMdb/) — this plugin hardly worked in practice.
 - [Cloudflare tunnels](https://developers.cloudflare.com/tunnel/) — Cloudflare sucks. I switched to simply port forwarding on my router.
 - [5d diplomacy](https://github.com/Oliveriver/5d-diplomacy-with-multiverse-time-travel) — I never had anyone to play this with.
 - [Tailscale](https://tailscale.com/) — I switched to [Wireguard](https://www.wireguard.com/).
