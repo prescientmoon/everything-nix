@@ -10,7 +10,7 @@
 - rustacean, haskell-tools, djot, github-actions, purescript
 - treesitter
 - clipboard-image
-- flash, ftft
+- flash
 - sibilantmoon
 - undotree (the next update will have this natively!)
 - discord-rich-presence (do I though?)

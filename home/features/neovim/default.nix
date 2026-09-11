@@ -505,19 +505,6 @@ let
           opts.modes.char.enabled = false;
         };
         # }}}
-        # {{{ ftft (quickscope but written in lua)
-        ftft = {
-          package = "gukz/ftFT.nvim";
-
-          keys = [
-            "f"
-            "F"
-            "t"
-            "T"
-          ];
-          config = true;
-        };
-        # }}}
         # }}}
         # {{{ clipboard-image
         clipboard-image = {
