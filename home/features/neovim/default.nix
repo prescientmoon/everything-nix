@@ -184,15 +184,6 @@ let
           opts.mappings.go_in_plus = "l";
         };
         # }}}
-        # {{{ quicker.nvim
-        quicker-nvim = {
-          package = "stevearc/quicker.nvim";
-          name = "quicker.nvim";
-          dependencies.lua = [ "web-devicons" ];
-          event = "FileType qf";
-          opts = { };
-        };
-        # }}}
         # {{{ harpoon
         harpoon = {
           package = "ThePrimeagen/harpoon";

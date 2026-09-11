@@ -51,4 +51,3 @@
 - nvim-dap
 - nvim-nio
 - navigator
-- quicker.nvim

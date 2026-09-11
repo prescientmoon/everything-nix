@@ -30,7 +30,6 @@
   "mini.surround": { "branch": "main", "commit": "2715e04bea3ec9244f15b421dc5b18c0fe326210" },
   "obsidian": { "branch": "main", "commit": "6ddc2d4dbe044b8e114c52633c04391077f1f734" },
   "plenary": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
-  "quicker.nvim": { "branch": "master", "commit": "063cc44da1eef8681bbd653b29d3bc961780886a" },
   "rustacean": { "branch": "master", "commit": "a244210b28f9055c2b4cfa85c92c8a71c13671c9" },
   "scrap": { "branch": "main", "commit": "cc8453ed613932c744c3d1ec42f379b78bd8b92c" },
   "sops": { "branch": "main", "commit": "dacb68c7cb436f5ae261b266e7e4824bed6beccf" },
