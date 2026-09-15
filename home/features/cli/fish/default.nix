@@ -35,8 +35,9 @@
       let
         plugins = with pkgs.fishPlugins; [
           z # Jump to directories by typing "z <directory-name>"
-          done # Trigger a notification when long commands finish execution
           puffer # Text expansion (i.e. expanding .... to ../../../)
+          # This one doesn't work on River :(
+          # done # Trigger a notification when long commands finish execution
         ];
       in
       # For some reason home-manager expects a slightly different format 🤔

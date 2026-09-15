@@ -151,7 +151,7 @@ let
           command =
             if config.script == "umu" then
               [
-                "${pkgs.umu-launcher}/bin/umu-run"
+                "${pkgs.umu-launcher-unwrapped}/bin/umu-run"
                 config.file
               ]
             else if config.script == "wine" then

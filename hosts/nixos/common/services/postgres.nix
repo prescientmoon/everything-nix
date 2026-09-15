@@ -14,9 +14,9 @@ in
 
   config = lib.mkIf cfg.enable {
     services.postgresql.enable = true;
-    satellite.persistence.at.state.directories = [
+    satellite.persistence.at.state.on."/var/lib".directories = [
       {
-        base = "/var/lib/postgresql";
+        base = "postgresql";
         group = "postgres";
         user = "postgres";
       }

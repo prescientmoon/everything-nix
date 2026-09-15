@@ -13,9 +13,9 @@ in
   };
 
   # Storage
-  satellite.persistence.at.state.directories = [
+  satellite.persistence.at.state.on."/var/lib".directories = [
     {
-      base = "/var/lib/bitwarden_rs";
+      base = "bitwarden_rs";
       mode = "700";
       user = user.name;
       group = user.group;

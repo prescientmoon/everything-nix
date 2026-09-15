@@ -1,9 +1,13 @@
 # Common wayland stuff
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ../desktop
-
     ./wlsunset.nix
     ./wlogout.nix
     ./anyrun.nix
@@ -12,13 +16,15 @@
   home.sessionVariables.NIXOS_OZONES_WL = "1";
   services.swayosd.enable = true;
 
+  xdg.configFile.wallpaper.source = config.stylix.image;
+
   home.packages =
     let
       _ = lib.getExe;
       wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
       wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
 
-      # {{{ OCR script
+      # {{{ OCR & QR scripts
       # Taken from [here](https://github.com/fufexan/dotfiles/blob/3b0075fa7a5d38de13c8c32140c4b020b6b32761/home/wayland/default.nix#L14)
       wl-ocr = pkgs.writeShellScriptBin "wl-ocr" ''
         set -euo pipefail # Fail on errors and whatnot
@@ -37,7 +43,26 @@
         ${_ pkgs.libnotify} "Scanned qr code on area with output \"$(${wl-paste})\""
       '';
       # }}}
+      # {{{ Screenshotting
+      wl-ss-area = pkgs.writeShellScriptBin "wl-ss-area" ''
+        set -euo pipefail # Fail on errors and whatnot
+        filename="$(date --iso-8601=seconds).png"
+        path="${config.xdg.userDirs.extraConfig.SCREENSHOTS}/$filename"
+        ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" "$path"
+        cat "$path" | ${wl-copy}
+        ${_ pkgs.libnotify} "Successfully captured $filename"
+      '';
+      wl-ss-screen = pkgs.writeShellScriptBin "wl-ss-screen" ''
+        set -euo pipefail # Fail on errors and whatnot
+        filename="$(date --iso-8601=seconds).png"
+        path="${config.xdg.userDirs.extraConfig.SCREENSHOTS}/$filename"
+        ${_ pkgs.grim} "$path"
+        cat "$path" | ${wl-copy}
+        ${_ pkgs.libnotify} "Successfully captured $filename"
+      '';
+      # }}}
       # {{{ File uploader
+      # Custom script for getting an URL to the contents of the clipboard
       wl-tmp = pkgs.writeShellScriptBin "wl-tmp" ''
         set -euo pipefail # Fail on errors and whatnot
 
@@ -62,12 +87,13 @@
     with pkgs;
     [
       libnotify # Send notifications
-      wl-ocr # Custom OCR script
-      wl-qr # Custom qr scanner script
-      wl-tmp # Custom script for getting an URL to the image in the clipboard
-      wl-clipboard # Clipboard manager
+      wl-tmp
+      wl-ocr
+      wl-qr
+      wl-ss-area
+      wl-ss-screen
+      wl-clipboard
       hyprpicker # Color picker
-      grimblast # Screenshot tool
       wl-screenrec # video recorder (with daemon support!)
     ];
 }

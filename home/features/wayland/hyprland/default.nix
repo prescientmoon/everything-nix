@@ -1,7 +1,7 @@
 {
   config,
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -11,8 +11,7 @@
   ];
 
   home.packages = [
-    # Contains gtk-launch, which I use for launching 'obsidiantui'
-    pkgs.gtk3
+    pkgs.grimblast # Screenshot tool
   ];
 
   stylix.targets.hyprland.enable = true;

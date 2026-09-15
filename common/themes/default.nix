@@ -27,10 +27,10 @@ let
         image = ./wallpapers/needygirloverdose2.jpg;
         # image = ./wallpapers/nix-catppuccin-latte.png;
         base16Scheme = base16 "catppuccin-latte";
-        opacity = transparency 0.7;
+        opacity = transparency 1.0;
         polarity = "light";
       };
-      satellite.rounding.radius = 8;
+      satellite.rounding.radius = 0;
     };
     # }}}
     # {{{ Catppuccin macchiato

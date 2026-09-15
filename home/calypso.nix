@@ -5,7 +5,7 @@
 
     ./features/desktop/gaming
     ./features/desktop/gaming/edopro.nix
-    ./features/wayland/hyprland
+    ./features/wayland/global.nix
     ./features/neovim
   ];
 

@@ -5,20 +5,17 @@
   lib,
   ...
 }:
-let
-  # NOTE: not in 25.11 yet! Non-unstable packages can be used once I'm on 26.05
-  pkg = import ./package.nix {
-    inherit lib;
-    pkgs = upkgs;
-  };
-in
 {
-  home.packages = [ pkg ];
+  home.packages = [
+    upkgs.vim-classic # Not in 26.05
+    pkgs.update-nix-fetchgit
+  ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
     # Running "man <foo>" will open the manpage inside vim.
-    MANPAGER = "${lib.getExe pkg} -M +MANPAGER -";
+    # I'm not using vim-classic here since that's broken for some reason...
+    MANPAGER = "${lib.getExe pkgs.vim} -M +MANPAGER -";
   };
 
   # Make the vim config directory a symlink to ./config. Note that this version

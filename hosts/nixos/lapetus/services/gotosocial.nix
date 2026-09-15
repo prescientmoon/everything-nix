@@ -66,9 +66,9 @@ in
     '';
 
   # Persistence
-  satellite.persistence.at.state.directories = [
+  satellite.persistence.at.state.on."/var/lib".directories = [
     {
-      base = "/var/lib/gotosocial";
+      base = "gotosocial";
       user = "gotosocial";
       group = "gotosocial";
     }

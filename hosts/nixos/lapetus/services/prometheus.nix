@@ -40,9 +40,9 @@
   # {{{ Networking & storage
   satellite.nginx.at.prometheus.port = config.services.prometheus.port;
 
-  satellite.persistence.at.cache.directories = [
+  satellite.persistence.at.cache.on."/var/lib".directories = [
     {
-      base = "/var/lib/prometheus2";
+      base = "prometheus2";
       user = "prometheus";
       group = "prometheus";
     }

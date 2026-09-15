@@ -58,7 +58,6 @@ in
         type = lib.types.functionTo lib.types.str;
         description = ''
           Returns comma separated rgba values for a color.
-          The transparency is taken from `options.satellite.theming.transparency`.
         '';
       };
     };

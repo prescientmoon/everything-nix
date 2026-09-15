@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   upkgs,
   ...
@@ -11,7 +10,6 @@
     ./elisa
 
     ./amberol.nix
-    ./dunst.nix
     ./foot.nix
     ./gimp.nix
     ./inlyne.nix
@@ -31,6 +29,9 @@
     package = pkgs.papirus-icon-theme;
     name = "Papirus";
   };
+
+  # The actual service is enabled by the NixOS module
+  stylix.targets.dunst.enable = true;
 
   # Bigger text in qt apps
   home.sessionVariables.QT_SCREEN_SCALE_FACTORS = 1.4;

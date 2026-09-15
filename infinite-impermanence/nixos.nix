@@ -17,6 +17,8 @@ let
     lib.zipAttrsWith (_: lib.flatten) (
       [ { inherit (mod) directories files scaffolding; } ] # .
       ++ lib.mapAttrsToList (_: mergeBinds) mod.at
+      ++ lib.mapAttrsToList (_: mergeBinds) mod.by
+      ++ lib.mapAttrsToList (_: mergeBinds) mod.on
     );
 
   everything =

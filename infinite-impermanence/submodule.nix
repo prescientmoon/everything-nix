@@ -123,6 +123,61 @@ lib.fix (
       { config.mode = lib.mkDefault "755"; }
     ];
     # }}}
+    # {{{ Nesting option
+    nest =
+      args:
+      lib.mkOption {
+        type = lib.types.attrsOf (
+          lib.types.submodule [
+            self
+            (
+              { name, config, ... }:
+              {
+                permissions = {
+                  mode = lib.mkDefault outerConfig.permissions.mode;
+                  user = lib.mkDefault outerConfig.permissions.user;
+                  group = lib.mkDefault outerConfig.permissions.group;
+                };
+
+                bounds = {
+                  target = lib.mkDefault (
+                    if args.target then
+                      elib.concatPaths [
+                        outerConfig.bounds.target
+                        name
+                      ]
+                    else
+                      outerConfig.bounds.target
+                  );
+                  source = lib.mkDefault (
+                    if args.source then
+                      elib.concatPaths [
+                        outerConfig.bounds.source
+                        name
+                      ]
+                    else
+                      outerConfig.bounds.source
+                  );
+                };
+
+                scaffolding = lib.mkIf outerConfig.autoScaffold [
+                  {
+                    inherit (config.permissions) user group mode;
+                    path = config.bounds.source;
+                    bound = outerConfig.bounds.source;
+                  }
+                  {
+                    inherit (config.permissions) user group mode;
+                    path = config.bounds.target;
+                    bound = outerConfig.bounds.target;
+                  }
+                ];
+              }
+            )
+          ]
+        );
+      };
+    # }}}
 
     fromSource = base: { inherit base; };
   in
@@ -202,43 +257,21 @@ lib.fix (
       };
       # }}}
       # {{{ Nesting
-      at = lib.mkOption {
-        type = lib.types.attrsOf (
-          lib.types.submodule [
-            self
-            (
-              { name, config, ... }:
-              {
-                permissions = {
-                  mode = lib.mkDefault outerConfig.permissions.mode;
-                  user = lib.mkDefault outerConfig.permissions.user;
-                  group = lib.mkDefault outerConfig.permissions.group;
-                };
-
-                bounds = {
-                  target = lib.mkDefault outerConfig.bounds.target;
-                  source = lib.mkDefault (
-                    elib.concatPaths [
-                      outerConfig.bounds.source
-                      name
-                    ]
-                  );
-                };
-
-                scaffolding = lib.mkIf outerConfig.autoScaffold [
-                  {
-                    inherit (config.permissions) user group mode;
-                    path = config.bounds.source;
-                    bound = outerConfig.bounds.source;
-                  }
-                ];
-              }
-            )
-          ]
-        );
+      at = nest {
+        source = true;
+        target = false;
       };
+      by = nest {
+        source = false;
+        target = true;
+      };
+      on = nest {
+        source = true;
+        target = true;
+      };
+      # }}}
     };
-    # }}}
+
     # {{{ Entry scaffolding
     config.scaffolding =
       lib.map (entry: {

@@ -2,12 +2,15 @@
 {
   imports = [
     ./quietboot
+    ./sway
+    ./river
+    ./dunst.nix
+    ./historia.nix
+    ./hyprland.nix
     ./pipewire.nix
-    ./xdg-portal.nix
     ./steam.nix
     ./unicode.nix
-    ./hyprland.nix
-    ./historia.nix
+    ./xdg-portal.nix
   ];
 
   config = lib.mkIf config.satellite.machine.graphical {

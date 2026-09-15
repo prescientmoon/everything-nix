@@ -6,17 +6,17 @@
 }:
 {
   config = lib.mkIf config.satellite.machine.graphical {
-    services.dbus.enable = true;
-    programs.dconf.enable = true;
+    # services.dbus.enable = true;
+    # programs.dconf.enable = true;
     environment.systemPackages = [ pkgs.xdg-utils ];
 
     xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-        # pkgs.xdg-desktop-portal-termfilechooser
-      ];
+      # enable = true;
+      # xdgOpenUsePortal = true;
+      # extraPortals = [
+      #   pkgs.xdg-desktop-portal-gtk
+      #   # pkgs.xdg-desktop-portal-termfilechooser
+      # ];
 
       # config.hyprland.default = [
       #   "hyprland"

@@ -440,6 +440,22 @@
         "type": "github"
       }
     },
+    "river-next": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789386174,
+        "narHash": "sha256-C2XzZah2g2DuDUbA9bIZWSU5Lu53P6uLexyQsU/Z/Do=",
+        "owner": "dmkhitaryan",
+        "repo": "river-next-nix-module",
+        "rev": "722b17f31747a207fab7e764bb5b0b154a1cb367",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dmkhitaryan",
+        "repo": "river-next-nix-module",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "base16-schemes": "base16-schemes",
@@ -453,6 +469,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "river-next": "river-next",
         "shimmeringmoon": "shimmeringmoon",
         "sillyring": "sillyring",
         "sops-nix": "sops-nix",

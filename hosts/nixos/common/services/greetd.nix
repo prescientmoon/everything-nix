@@ -28,7 +28,6 @@ in
         default_session = {
           command = ''
             ${lib.getExe pkgs.tuigreet} \
-              -c ${lib.getExe config.programs.hyprland.package} \
               -g " (.>_>.) Welcome to ${config.networking.hostName}! (.<_<.)" \
               --remember
               --asterisks
