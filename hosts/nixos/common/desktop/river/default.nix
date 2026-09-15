@@ -33,10 +33,16 @@ in
 
     environment.systemPackages = [
       pkgs.grim # Screenshotting tool
+      pkgs.awww # Wallpaper thingy :p
     ];
 
     services.udev.packages = [ pkgs.swayosd ];
 
-    home-manager.users.pilot.xdg.configFile."river/config.rh".source = ./config.rh;
+    home-manager.users.pilot = {config, ...}: {
+      xdg.configFile."river/config.rh".source = ./config.rh;
+      satellite.persistence.at.cache.files = [
+        "${config.xdg.cacheHome}/rhine.restore"
+      ];
+    };
   };
 }

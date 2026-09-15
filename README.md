@@ -137,7 +137,7 @@ This section contains links to things which used to be in the previous section b
 - [Spotify](https://spotify.com/) — I switched to a local-first music setup a few months back.
 - [Spicetify](https://spicetify.app/) — I no longer use Spotify.
 - [Spicetify-nix](https://github/Gerg-L/spicetify-nix) — I no longer use Spicetify.
-- [Neofetch](https://github.com/dylanaraps/neofetch) is no longer maintained; switched to [macchina](https://github.com/Macchina-CLI/macchina).
+- [Neofetch](https://github.com/dylanaraps/neofetch) is no longer maintained; switched to [nerdfetch](https://github.com/thatonecalculator/nerdfetch).
 - [WasIstLos](https://github.com/xeco23/WasIstLos) is no longer maintained.
 - [neovim-nightly-overlay](https://github.com/nix-community/neovim-nightly-overlay) — I haven't used the nightly version in a long while.
 - [darkmatter-grub-theme](https://gitlab.com/VandalByte/darkmatter-grub-theme) — I no longer care about Grub theming.

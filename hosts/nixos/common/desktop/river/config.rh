@@ -32,11 +32,6 @@ animations {
     }
 }
 
-xcursor {
-    theme Breeze_Hacked
-    size 24
-}
-
 keybinds [
     super, c, close, Focus
     super, f, fullscreen, toggle, Focus
@@ -122,6 +117,8 @@ startup [
     fcitx5
     anyrun daemon
     foot --server
+    awww-daemon
+    awww img $XDG_CONFIG_HOME/wallpaper
 ]
 
 env {
