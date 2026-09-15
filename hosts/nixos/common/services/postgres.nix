@@ -14,11 +14,11 @@ in
 
   config = lib.mkIf cfg.enable {
     services.postgresql.enable = true;
-    environment.persistence."/persist/state".directories = [
+    satellite.persistence.at.state.directories = [
       {
-        directory = "/var/lib/postgresql";
-        user = "postgres";
+        base = "/var/lib/postgresql";
         group = "postgres";
+        user = "postgres";
       }
     ];
   };

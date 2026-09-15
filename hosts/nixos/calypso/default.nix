@@ -1,4 +1,4 @@
-{ pkgs, upkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../common
@@ -42,7 +42,6 @@
   programs.nix-ld.enable = true; # Useful for running non-nix executables
 
   services.usbmuxd.enable = true;
-  programs.adb.enable = true;
   users.users.pilot.extraGroups = [ "adbusers" ];
 
   # A few gnome thingies
@@ -55,16 +54,12 @@
   boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelParams = [ "mt7921_common.disable_clc=1" ];
 
-  # Waydroid
-  virtualisation.waydroid.enable = true;
-  environment.systemPackages = [ upkgs.waydroid-helper ];
-  systemd = {
-    packages = [ upkgs.waydroid-helper ];
-    services.waydroid-mount.wantedBy = [ "multi-user.target" ];
-  };
-
-  services.joycond.enable = true;
+  services.joycond.enable = false; # Toggle when connecting joycons, I guess
   services.blueman.enable = true;
+
+  environment.systemPackages = [
+    pkgs.android-tools # adb and the like
+  ];
 
   # satellite.nginx.at.frog = {
   #   port = 80;
@@ -78,5 +73,4 @@
   #     '';
   #   };
   # };
-
 }

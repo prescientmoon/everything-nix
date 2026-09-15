@@ -12,10 +12,7 @@ let
   steamDir = "${config.xdg.dataHome}/Steam";
   historia = import ./historia { inherit pkgs; };
   historiaDbPath = "/persist/state${config.home.homeDirectory}/historia/db.sqlite";
-  persistentStateDir = lib.concatStrings [
-    config.satellite.persistence.at.state.path
-    config.home.homeDirectory
-  ];
+  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
 
   gameDir = "${config.home.homeDirectory}/media/games";
   heroicGameDir = "${gameDir}/heroic";
@@ -184,11 +181,6 @@ let
             ${lib.escapeShellArgs (command ++ config.args)}
         '';
     };
-
-  symlinkAll = lib.map (directory: {
-    inherit directory;
-    method = "symlink";
-  });
 in
 {
   options.satellite.games = {
@@ -238,15 +230,15 @@ in
       '';
     };
 
-    satellite.persistence.at.state.apps = {
+    satellite.persistence.at.state.at = {
       wine.directories = [ ".wine" ];
       pegasus.directories = [
         "${config.xdg.configHome}/pegasus-frontend"
       ];
 
-      steam.directories = symlinkAll [ steamDir ];
+      steam.directories = [ steamDir ];
 
-      heroic.directories = symlinkAll [
+      heroic.directories = [
         heroicConfigDir
         heroicGameDir
 
@@ -255,7 +247,7 @@ in
       ];
 
       # There might be more to cache in `.cache/lutris`, but this works for now
-      lutris.directories = symlinkAll [
+      lutris.directories = [
         "${config.xdg.configHome}/lutris" # General configuration data
         "${config.xdg.cacheHome}/lutris/banners" # Game banners
         "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
@@ -263,8 +255,8 @@ in
       ];
     };
 
-    satellite.persistence.at.cache.apps = {
-      umu.directories = symlinkAll [
+    satellite.persistence.at.cache.at = {
+      umu.directories = [
         "${config.xdg.dataHome}/umu"
         "${config.xdg.cacheHome}/umu"
         "${config.xdg.cacheHome}/umu-protonfixes"

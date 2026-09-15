@@ -32,13 +32,6 @@
       # Nix
       "result"
       ".nixos-test-history"
-
-      # Haskell
-      # NOTE: THIS IS A BAD IDEA
-      # I need to figure out a better way (this is simply here because
-      # a project I contribute to doesn't git-ignore this file, nor does
-      # it have it committed).
-      "hie.yaml"
     ];
     # }}}
 
@@ -98,5 +91,7 @@
     settings.git_protocol = "ssh";
   };
 
-  satellite.persistence.at.state.apps.gh.files = [ "${config.xdg.configHome}/gh/hosts.yml" ];
+  satellite.persistence.at.state.at.gh.files = [
+    "${config.xdg.configHome}/gh/hosts.yml"
+  ];
 }

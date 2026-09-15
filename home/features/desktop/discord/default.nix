@@ -19,7 +19,7 @@ in
     "d ${config.xdg.configHome}/vesktop/sessionData/Cache/Cache_Data - - - 10d"
   ];
 
-  satellite.persistence.at.state.apps.discord.directories = [
+  satellite.persistence.at.state.at.discord.directories = [
     "${config.xdg.configHome}/discord" # Why tf does discord store its state here 💀
     "${config.xdg.configHome}/vesktop"
   ];

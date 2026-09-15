@@ -1,7 +1,7 @@
 {
   inputs = {
     # {{{ Nixpkgs instances
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # My own nixpkgs fork
@@ -15,13 +15,11 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
     # {{{ Nix-related tooling
-    impermanence.url = "github:nix-community/impermanence";
-
     # Declarative partitioning
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -33,21 +31,12 @@
     korora.url = "github:adisbladis/korora";
     # }}}
     # {{{ Standalone software
-    # {{{ Nightly versions of things
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    # }}}
-
     miros.url = "github:prescientmoon/miros";
     miros.flake = false;
 
-    # Spotify client with theming support
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     shimmeringmoon.url = "github:prescientmoon/shimmeringmoon";
     # shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
-    shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs";
+    shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nihil.url = "github:prescientmoon/nihil";
     # nihil.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git";
@@ -59,28 +48,17 @@
     sillyring.flake = false;
     # }}}
     # {{{ Theming
-    darkmatter-grub-theme.url = "gitlab:VandalByte/darkmatter-grub-theme";
-    darkmatter-grub-theme.inputs.nixpkgs.follows = "nixpkgs";
-
-    stylix.url = "github:danth/stylix/release-25.11";
+    stylix.url = "github:danth/stylix/release-26.05";
     # stylix.inputs.nixpkgs.follows = "nixpkgs";
     # stylix.inputs.home-manager.follows = "home-manager";
 
     base16-schemes.url = "github:tinted-theming/schemes";
     base16-schemes.flake = false;
-
-    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    rose-pine-hyprcursor.inputs.nixpkgs.follows = "nixpkgs";
     # }}}
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
+    { self, nixpkgs, ... }@inputs:
     let
       # {{{ Common helpers
       inherit (self) outputs;
@@ -109,7 +87,7 @@
           inherit pkgs;
           extraModules = [ ./dns/config/common.nix ];
           octodnsConfig = ./dns/config/octodns.yaml;
-          nixosConfigurations = builtins.removeAttrs self.nixosConfigurations [ "iso" ];
+          nixosConfigurations = removeAttrs self.nixosConfigurations [ "iso" ];
         }
         // {
           inherit (import ./migadux { inherit pkgs; }) migadux;
@@ -139,9 +117,6 @@
 
       # Reusable nixos modules
       nixosModules = import ./modules/nixos // import ./modules/common;
-
-      # Reusable home-manager modules
-      homeManagerModules = import ./modules/home-manager // import ./modules/common;
       # }}}
       # {{{ Nixos
       # NixOS configuration entrypoint
@@ -160,7 +135,7 @@
                   { lib, ... }:
                   {
                     imports = lib.lists.optionals (builtins.pathExists ./home/${hostname}.nix) [
-                      home-manager.nixosModules.home-manager
+                      inputs.home-manager.nixosModules.home-manager
                       {
                         home-manager.users.pilot = ./home/${hostname}.nix;
                         home-manager.extraSpecialArgs = specialArgs system // {

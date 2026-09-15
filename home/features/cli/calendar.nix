@@ -16,17 +16,17 @@ in
     settings.default.default_calendar = "Main";
   };
 
-  satellite.persistence.at.data.apps = {
-    calendar.directories = [ config.accounts.calendar.basePath ];
-    contact.directories = [ config.accounts.contact.basePath ];
-  };
+  satellite.persistence.at.data.directories = [
+    config.accounts.calendar.basePath
+    config.accounts.contact.basePath
+  ];
 
   systemd.user.tmpfiles.rules = [
     "d ${cal.local.path}"
     "d ${con.local.path}"
   ];
 
-  satellite.persistence.at.state.apps = {
+  satellite.persistence.at.state.at = {
     calendar.directories = [ "${config.xdg.dataHome}/pimsync" ];
   };
 

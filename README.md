@@ -67,7 +67,6 @@ Here's some things you might want to check out:
 
 - [Nixos](http://nixos.org/) — nix based operating system
 - [Home-manager](https://github.com/nix-community/home-manager) — manage user configuration using nix
-- [Impernanence](https://github.com/nix-community/impermanence) — see the article about [erasing your darlings](https://grahamc.com/blog/erase-your-darlings)
 - [Sops-nix](https://github.com/Mic92/sops-nix) — secret management
 - [disko](https://github.com/nix-community/disko) — format disks using nix
 - [zfs](https://openzfs.org/wiki/Main_Page) — filesystem (on my server)
@@ -135,7 +134,15 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
-- [neoconf.nvim](https://github.com/folke/neoconf.nvim) one can use `:h exrc`
+- [Spotify](https://spotify.com/) — I switched to a local-first music setup a few months back.
+- [Spicetify](https://spicetify.app/) — I no longer use Spotify.
+- [Spicetify-nix](https://github/Gerg-L/spicetify-nix) — I no longer use Spicetify.
+- [Neofetch](https://github.com/dylanaraps/neofetch) is no longer maintained; switched to [macchina](https://github.com/Macchina-CLI/macchina).
+- [WasIstLos](https://github.com/xeco23/WasIstLos) is no longer maintained.
+- [neovim-nightly-overlay](https://github.com/nix-community/neovim-nightly-overlay) — I haven't used the nightly version in a long while.
+- [darkmatter-grub-theme](https://gitlab.com/VandalByte/darkmatter-grub-theme) — I no longer care about Grub theming.
+- [impermanence](https://github.com/nix-community/impermanence) removed a feature I relied upon, so I rewrote the module for personal use.
+- [neoconf.nvim](https://github.com/folke/neoconf.nvim) one can use `:h exrc`.
 - [neodev.nvim](https://github.com/folke/neodev.nvim) — one can do without this.
 - [quicker.nvim](https://github.com/stevearc/quicker.nvim) — I rarely reached for this.
 - [ftFT.nvim](https://github.com/gukz/ftFT.nvim) — one can do without this.

@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  persistentStateDir = "/persist/state${config.home.homeDirectory}";
+  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
 in
 {
   satellite.games.entries.ultrakill = rec {

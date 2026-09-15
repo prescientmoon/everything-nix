@@ -24,7 +24,7 @@ in
       };
     };
 
-    environment.persistence."/persist/state".directories = [ "/var/lib/iwd" ];
+    satellite.persistence.at.state.directories = [ "/var/lib/iwd" ];
 
     sops.secrets.eduroam_pass.sopsFile = ../secrets.yaml;
     sops.templates."eduroam.8021x".content = ''

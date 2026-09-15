@@ -66,9 +66,9 @@ in
     '';
 
   # Persistence
-  environment.persistence."/persist/state".directories = [
+  satellite.persistence.at.state.directories = [
     {
-      directory = "/var/lib/gotosocial";
+      base = "/var/lib/gotosocial";
       user = "gotosocial";
       group = "gotosocial";
     }

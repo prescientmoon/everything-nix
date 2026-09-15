@@ -32,6 +32,31 @@ let
     in
     lib.zipAttrsWith (_: lib.flatten) ([ nixos ] ++ homeManager);
   # }}}
+  # {{{ Home manager module
+  homeManagerModule =
+    { config, ... }:
+    let
+      user =
+        lib.findFirst (u: u.name == config.home.username)
+          (throw "Cannot find user with name ${config.home.username}")
+          (lib.attrValues outerConfig.users.users);
+    in
+    {
+      options.satellite.persistence = lib.mkOption {
+        type = lib.types.submodule [
+          (lib.modules.importApply ./submodule.nix { inherit pkgs lib; })
+          {
+            permissions.user = user.name;
+            permissions.group = user.group;
+            permissions.mode = user.homeMode;
+            bounds.target = user.home;
+            bounds.source = lib.mkDefault "/";
+            autoScaffold = false;
+          }
+        ];
+      };
+    };
+  # }}}
 in
 {
   # {{{ Options
@@ -52,36 +77,9 @@ in
   # }}}
 
   config = lib.mkMerge [
-    # {{{ Home manager setup
     (lib.optionalAttrs (options ? home-manager.sharedModules) {
-      home-manager.sharedModules = [
-        {
-          options.satellite.persistence = lib.mkOption {
-            type = lib.types.submodule [
-              (lib.modules.importApply ./submodule.nix { inherit pkgs lib; })
-              (
-                { config, ... }:
-                let
-                  user =
-                    lib.findFirst (u: u.name == config.home.username)
-                      (throw "Cannot find user with name ${config.home.username}")
-                      (lib.attrValues outerConfig.users.users);
-                in
-                {
-                  permissions.user = user.name;
-                  permissions.group = user.group;
-                  permissions.mode = user.homeMode;
-                  bounds.target = user.home;
-                  bounds.source = lib.mkDefault "/";
-                  autoScaffold = false;
-                }
-              )
-            ];
-          };
-        }
-      ];
+      home-manager.sharedModules = [ homeManagerModule ];
     })
-    # }}}
     (lib.mkIf cfg.enable {
       # {{{ Create file mounting services
       systemd.services =
@@ -109,7 +107,7 @@ in
                     lib.escapeShellArgs [
                       args.paths.source
                       args.paths.target
-                      args.permissions.mode
+                      args.mode
                     ]
                   }";
                   ExecStop = pkgs.writeShellScript "unbindOrUnlink-${escaped}" ''

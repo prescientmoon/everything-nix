@@ -13,7 +13,7 @@ in
   xdg.configFile.elisarc.source = # .
     config.satellite.dev.path "home/features/desktop/elisa/elisarc";
 
-  satellite.persistence.at.cache.apps.elisa.directories = [
+  satellite.persistence.at.cache.at.elisa.directories = [
     "${config.xdg.dataHome}/elisa"
     "${config.xdg.cacheHome}/elisa"
   ];

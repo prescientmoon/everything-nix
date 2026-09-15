@@ -1,7 +1,5 @@
 { inputs, pkgs, ... }:
 {
-  imports = [ inputs.darkmatter-grub-theme.nixosModule ];
-
   # https://github.com/NixOS/nixpkgs/issues/314425
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 

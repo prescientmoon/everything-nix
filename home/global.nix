@@ -2,23 +2,19 @@
   inputs,
   lib,
   config,
-  outputs,
   ...
 }:
-let
-  imports = [
+{
+  # Import all modules defined in modules/home-manager
+  imports = lib.attrValues (import ../modules/common) ++ [
     inputs.stylix.homeModules.stylix
-    inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.sops-nix.homeManagerModules.sops
 
     ./features/cli
     ./features/persistence.nix
+    ./features/dev.nix
     ../common
   ];
-in
-{
-  # Import all modules defined in modules/home-manager
-  imports = builtins.attrValues outputs.homeManagerModules ++ imports;
 
   # {{{ Enable the home-manager and git clis
   programs = {
@@ -55,6 +51,7 @@ in
   xdg.userDirs = {
     enable = lib.mkDefault true;
     createDirectories = lib.mkDefault false;
+    setSessionVariables = true;
 
     desktop = null;
     templates = null;
@@ -65,13 +62,16 @@ in
     videos = "${config.home.homeDirectory}/media/videos";
     documents = "${config.home.homeDirectory}/media/documents";
 
-    extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/screenshots";
-    extraConfig.XDG_PROJECTS_DIR = "${config.home.homeDirectory}/projects";
+    extraConfig.SCREENSHOTS = "${config.xdg.userDirs.pictures}/screenshots";
+    extraConfig.PROJECTS = "${config.home.homeDirectory}/projects";
   };
 
   systemd.user.tmpfiles.rules = [
     # Clean screenshots older than a week
-    "d ${config.xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR} - - - 7d"
+    "d ${config.xdg.userDirs.extraConfig.SCREENSHOTS} - - - 7d"
   ];
+
+  # Don't make the dev symlinks go through the bind mounts for no reason!
+  satellite.dev.root = "/persist/data${config.xdg.userDirs.extraConfig.PROJECTS}/personal/satellite";
   # }}}
 }

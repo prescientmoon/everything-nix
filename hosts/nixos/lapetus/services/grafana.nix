@@ -94,7 +94,7 @@ in
   # {{{ Networking & storage
   satellite.nginx.at.grafana.port = port;
 
-  environment.persistence."/persist/state".directories = [
+  satellite.persistence.at.state.directories = [
     {
       directory = config.services.grafana.dataDir;
       user = "grafana";

@@ -12,7 +12,7 @@
   # Persistence:
   # - marked as cache, as this should never be backed up
   # - contains the current page numbers and whatnot for opened documents
-  satellite.persistence.at.cache.apps.zathura.directories = [
+  satellite.persistence.at.cache.at.zathura.directories = [
     "${config.xdg.dataHome}/zathura"
   ];
 

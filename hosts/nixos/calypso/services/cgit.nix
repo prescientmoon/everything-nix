@@ -6,15 +6,14 @@ in
   satellite.nginx.at.${host} = { };
   services.cgit."${config.satellite.nginx.at.${host}.host}" = {
     enable = true;
-    package = pkgs.cgit-pink;
     scanPath = "/home/moon/projects/personal";
     group = "users";
     gitHttpBackend.enable = false; # I'll never clone local repos
 
     settings = {
-      about-filter = "${pkgs.cgit-pink}/lib/cgit/filters/about-formatting.sh";
-      commit-filter = "${pkgs.cgit-pink}/lib/cgit/filters/commit-links.sh";
-      source-filter = "${pkgs.cgit-pink}/lib/cgit/filters/syntax-highlighting.py";
+      about-filter = "${pkgs.cgit}/lib/cgit/filters/about-formatting.sh";
+      commit-filter = "${pkgs.cgit}/lib/cgit/filters/commit-links.sh";
+      source-filter = "${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py";
       enable-blame = true;
       enable-commit-graph = true;
       enable-follow-links = true;

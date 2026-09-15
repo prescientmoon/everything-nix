@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  persistentStateDir = "/persist/state${config.home.homeDirectory}";
+  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
 in
 {
   satellite.games.entries.bobbys-bounce = {
@@ -19,10 +19,7 @@ in
     };
   };
 
-  satellite.persistence.at.state.apps.bobbys-bounce.directories = [
-    {
-      directory = "${config.xdg.dataHome}/godot/app_userdata/bobbys-bounce";
-      method = "symlink";
-    }
+  satellite.persistence.at.state.at.bobbys-bounce.directories = [
+    "${config.xdg.dataHome}/godot/app_userdata/bobbys-bounce"
   ];
 }

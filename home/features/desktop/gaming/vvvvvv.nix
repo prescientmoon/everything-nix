@@ -19,10 +19,7 @@
     };
   };
 
-  satellite.persistence.at.state.apps.vvvvvv.directories = [
-    {
-      directory = "${config.xdg.dataHome}/VVVVVV";
-      method = "symlink";
-    }
+  satellite.persistence.at.state.at.vvvvvv.directories = [
+    "${config.xdg.dataHome}/VVVVVV"
   ];
 }

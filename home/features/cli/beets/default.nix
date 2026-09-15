@@ -27,7 +27,7 @@
   xdg.configFile."beets/config.yaml".source =
     config.satellite.dev.path "home/features/cli/beets/config.yaml";
 
-  satellite.persistence.at.state.apps.beets.directories = [
+  satellite.persistence.at.state.at.beets.directories = [
     "${config.xdg.dataHome}/beets"
   ];
 }

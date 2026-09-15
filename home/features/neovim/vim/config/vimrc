@@ -72,10 +72,17 @@ nnoremap <leader>rw :%s/<C-r><C-w>/
 " Open file in project's directory
 nnoremap <C-p> :find! ./**/
 
+" Open file using fzf
+function! FzfGit()
+	execute "edit!" system("fd --type f --strip-cwd-prefix | fzf")
+	redraw!
+endfunction
+nnoremap <C-t> :call FzfGit()<cr>
+
 " Toggle the color column via <leader>sc
-let default_colorcolumn=join(range(81,999),",")
+let g:default_colorcolumn=join(range(81,999),",")
 nnoremap <leader>sc :execute
-	\ "set colorcolumn=" . (&colorcolumn == "" ? default_colorcolumn : "")<CR>
+	\ "set colorcolumn=" . (&colorcolumn == "" ? g:default_colorcolumn : "")<CR>
 
 " Since vim-classic does not have the -indentonly option of :retab!, we have
 " to reproduce it manually.

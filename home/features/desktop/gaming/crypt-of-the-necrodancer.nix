@@ -5,7 +5,7 @@
   ...
 }:
 let
-  persistentStateDir = "/persist/state${config.home.homeDirectory}";
+  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
   steamDir = "${config.xdg.dataHome}/Steam";
 in
 {
@@ -35,27 +35,20 @@ in
     };
   };
 
-  satellite.persistence.at.state.apps.crypt-of-the-necrodancer.directories = [
-    {
-      directory = "${config.xdg.dataHome}/NecroDancer";
-      method = "symlink";
-    }
-    {
-      directory = "${config.xdg.configHome}/NecroDancer";
-      method = "symlink";
-    }
+  satellite.persistence.at.state.at.crypt-of-the-necrodancer.directories = [
+    "${config.xdg.dataHome}/NecroDancer"
+    "${config.xdg.configHome}/NecroDancer"
   ];
 
-  satellite.persistence.at.cache.apps.crypt-of-the-necrodancer.directories = [
-    {
-      directory = "${config.xdg.cacheHome}/NecroDancer";
-      method = "symlink";
-    }
+  satellite.persistence.at.cache.at.crypt-of-the-necrodancer.directories = [
+    "${config.xdg.cacheHome}/NecroDancer"
   ];
 
   # This service is responsible for unpacking mods dowlnoaded from the Steam
   # workshop into the correct location the GOG version of the game can access.
   # TODO(2026-04-11): make this able to handle downloadable dungeons
+  # TODO(2026-09-15): generalize this to unpacking workshop content for other
+  # games
   systemd.user.services.crypt-steam-importer = {
     Install.WantedBy = [ "default.target" ];
     Service.Restart = "on-failure";

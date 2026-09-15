@@ -1,6 +1,7 @@
 { lib }:
 {
-  # ["/home/user/" "/.screenrc"] -> "/home/user/.screenrc"
+  # I left this here to keep this module self contained, even though I might
+  # have copies of it in other parts of the repo already.
   concatPaths =
     paths:
     lib.optionalString (lib.hasPrefix "/" (lib.head paths)) "/"

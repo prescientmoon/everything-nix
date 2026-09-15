@@ -22,10 +22,10 @@
       gamescopeSession.enable = true;
       extraPackages = [
         # https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338
-        pkgs.xorg.libXcursor
-        pkgs.xorg.libXi
-        pkgs.xorg.libXinerama
-        pkgs.xorg.libXScrnSaver
+        pkgs.libxcursor
+        pkgs.libxi
+        pkgs.libxinerama
+        pkgs.libxscrnsaver
         pkgs.libpng
         pkgs.libpulseaudio
         pkgs.libvorbis

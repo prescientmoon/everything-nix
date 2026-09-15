@@ -8,6 +8,7 @@
 {
   programs.firefox = {
     enable = true;
+    configPath = ".mozilla/firefox"; # Change this to math the XDG spec once I'm ready to migrate my devices!
 
     # {{{ Policies
     policies = {
@@ -46,27 +47,16 @@
       # }}}
       # {{{ Extensions
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-        # bypass-paywalls-clean # REASON: returns 404 for now
         augmented-steam # Adds more info to steam
         bitwarden # Password manager
         blocktube # Lets you block youtube channels
-        buster-captcha-solver
-        clearurls # removes ugly args from urls
         cliget # Generates curl commands for downloading account-protected things
         dearrow # Crowdsourced clickbait remover 💀
-        decentraleyes # Serves local copies of a bunch of things instead of reaching a CDN
         don-t-fuck-with-paste # disallows certain websites from disabling pasting
-        gesturefy # mouse gestures
         i-dont-care-about-cookies
         indie-wiki-buddy # redirects fandom wiki urls to the proper wikis
-        leechblock-ng # website blocker
-        localcdn # caches libraries locally
-        # octolinker # github import to link thingy # REASON: 404 for now
         privacy-badger # blocks some trackers
-        privacy-pass # captcha stuff
         privacy-redirect # allows redirecting to my own instances for certain apps
-        refined-github # a bunch of github modifications
-        return-youtube-dislikes
         skip-redirect # attempts to skip to the final reddirect for certain urls
         sponsorblock # skip youtube sponsors
         steam-database # adds info from steamdb on storepages
@@ -214,11 +204,11 @@
   home.sessionVariables.BROWSER = "firefox";
   # }}}
   # {{{ Persistence
-  satellite.persistence.at.state.apps.firefox.directories = [
+  satellite.persistence.at.state.at.firefox.directories = [
     ".mozilla/firefox" # More important stuff
   ];
 
-  satellite.persistence.at.cache.apps.firefox.directories = [
+  satellite.persistence.at.cache.at.firefox.directories = [
     "${config.xdg.cacheHome}/mozilla/firefox" # Non-important cache
   ];
   # }}}

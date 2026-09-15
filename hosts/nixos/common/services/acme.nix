@@ -20,7 +20,7 @@ in
       environmentFile = config.sops.templates."acme.env".path;
     };
 
-    environment.persistence."/persist/state".directories = [
+    satellite.persistence.at.state.directories = [
       "/var/lib/acme"
     ];
   };

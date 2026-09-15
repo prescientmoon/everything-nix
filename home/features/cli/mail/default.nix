@@ -11,7 +11,7 @@
 
   # Storage & persistence
   accounts.email.maildirBasePath = "${config.xdg.dataHome}/maildir";
-  satellite.persistence.at.data.apps.mail.directories = [
+  satellite.persistence.at.data.directories = [
     config.accounts.email.maildirBasePath
   ];
 }

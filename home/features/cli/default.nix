@@ -36,7 +36,7 @@
   home.packages = with pkgs; [
     # System information
     acpi # Battery stats
-    neofetch # Display system information
+    macchina # Display system information
     tokei # Useless but fun line of code counter (sloc alternative)
     bottom # System monitor
     bandwhich # Network bandwidth info

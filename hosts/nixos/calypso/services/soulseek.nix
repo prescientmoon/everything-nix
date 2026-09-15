@@ -39,10 +39,10 @@ in
     "d ${cfg.settings.directories.incomplete} 0755 ${cfg.user} ${cfg.group}"
   ];
 
-  environment.persistence."/persist/state".directories = [
+  satellite.persistence.at.state.directories = [
     {
       inherit (cfg) group user;
-      directory = "/var/lib/soulseek";
+      base = "/var/lib/soulseek";
     }
   ];
 }

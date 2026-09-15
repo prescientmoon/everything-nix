@@ -1,4 +1,9 @@
-{ pkgs, upkgs, ... }:
+{
+  config,
+  pkgs,
+  upkgs,
+  ...
+}:
 {
   imports = [
     ./discord
@@ -13,7 +18,6 @@
     ./monitors.nix
     ./mpv.nix
     ./obsidian.nix
-    ./spotify.nix
     ./zathura.nix
   ];
 
@@ -57,7 +61,7 @@
     sherlock # Search for usernames across different websites
     sqlite # I sometimes need to check the databases owned by various apps
     termdown # Basic CLI timer
-    wasistlos # Whatsapp
+    karere # Whatsapp
     yt-dlp # I often download live streams I can't watch in the moment
 
     # NOTE: "expired" versions can no longer be used

@@ -47,7 +47,7 @@
     # }}}
   };
 
-  satellite.persistence.at.state.apps.fish.directories = [
+  satellite.persistence.at.state.at.fish.directories = [
     "${config.xdg.dataHome}/fish"
     "${config.xdg.dataHome}/z" # The z fish plugin requires this
   ];

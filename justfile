@@ -70,11 +70,8 @@ bump-common:
     nixpkgs \
     nixpkgs-unstable \
     nix-index-database \
-    neovim-nightly-overlay \
     firefox-addons \
     base16-schemes \
-    rose-pine-hyprcursor \
-    darkmatter-grub-theme \
     home-manager \
     stylix
 # }}}

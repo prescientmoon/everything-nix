@@ -10,7 +10,7 @@
     terminal = false;
     exec =
       let
-        projects = config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR;
+        projects = config.xdg.userDirs.extraConfig.PROJECTS;
         vaultDir = "${projects}/personal/stellar-sanctum";
       in
       toString (

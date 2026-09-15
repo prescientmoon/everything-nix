@@ -9,5 +9,5 @@ in
 
   # Only save allowed paths for 30d
   systemd.user.tmpfiles.rules = [ "d ${statePath} - - - 30d" ];
-  satellite.persistence.at.state.apps.direnv.directories = [ statePath ];
+  satellite.persistence.at.state.at.direnv.directories = [ statePath ];
 }

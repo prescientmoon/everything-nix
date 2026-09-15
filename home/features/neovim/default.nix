@@ -7,8 +7,6 @@
   ...
 }:
 let
-  neovimNightly = false;
-
   # Toggles for including tooling related to a given language
   packedTargets = {
     lua = true;
@@ -22,7 +20,7 @@ let
   };
 
   mirosSnippetCache = "${config.xdg.cacheHome}/miros";
-  obsidianVault = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/personal/stellar-sanctum";
+  obsidianVault = "${config.xdg.userDirs.extraConfig.PROJECTS}/personal/stellar-sanctum";
 
   generated =
     with nlib;
@@ -833,9 +831,9 @@ let
             with packedTargets;
             (
               optionals web [
-                pkgs.nodePackages.typescript
-                pkgs.nodePackages_latest.vscode-langservers-extracted
-                pkgs.nodePackages.typescript-language-server
+                pkgs.typescript
+                pkgs.vscode-langservers-extracted
+                pkgs.typescript-language-server
                 pkgs.svelte-language-server
                 pkgs.emmet-language-server
               ]
@@ -864,7 +862,7 @@ let
               nixd.offset_encoding = "utf-8";
               nixd.settings.nixd =
                 let
-                  satellite = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/satellite";
+                  satellite = "${config.xdg.userDirs.extraConfig.PROJECTS}/satellite";
                   hostname = "tethys"; # not sure how to get this dynamically in HM
                 in
                 {
@@ -892,10 +890,10 @@ let
               [ pkgs.codespell ]
               ++ optional lua pkgs.stylua
               ++ optionals web [
-                pkgs.nodePackages_latest.prettier
-                pkgs.nodePackages_latest.prettier_d_slim
+                pkgs.prettier
+                pkgs.prettier-d-slim
               ]
-              ++ optionals nix [ pkgs.nixfmt-rfc-style ]
+              ++ optionals nix [ pkgs.nixfmt ]
             );
           package = "stevearc/conform.nvim";
 
@@ -1056,7 +1054,7 @@ let
         config.satellite.lib.lua.writeFile "." "startup" # lua
           ''
             vim.g.nix_extra_runtime = ${nlib.encode extraRuntime}
-            vim.g.nix_projects_dir = ${nlib.encode config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}
+            vim.g.nix_projects_dir = ${nlib.encode config.xdg.userDirs.extraConfig.PROJECTS}
             vim.g.nix_theme = ${config.satellite.colorscheme.lua}
             -- Provide hints as to what app we are running in
             -- (Useful because neovide does not provide the info itself right away)
@@ -1078,11 +1076,7 @@ let
   # }}}
   # {{{ Clients
   neovim = wrapClient {
-    base =
-      if neovimNightly then
-        inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
-      else
-        upkgs.neovim;
+    base = upkgs.neovim;
     name = "nvim";
   };
 
@@ -1112,12 +1106,12 @@ in
   ];
   # }}}
   # {{{ Persistence
-  satellite.persistence.at.state.apps.neovim.directories = [
+  satellite.persistence.at.state.at.neovim.directories = [
     ".local/state/nvim"
     "${config.xdg.dataHome}/nvim"
   ];
 
-  satellite.persistence.at.cache.apps.neovim.directories = [
+  satellite.persistence.at.cache.at.neovim.directories = [
     "${config.xdg.cacheHome}/nvim"
     mirosSnippetCache
   ];

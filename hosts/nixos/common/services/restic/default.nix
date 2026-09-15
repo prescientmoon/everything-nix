@@ -91,7 +91,7 @@ in
             "${home}/lutris"
             "${home}/qmk"
             "${home}/signal"
-            "${home}/spotify"
+            "${home}/spotify" # TODO: remove once I deleted this
             "${home}/whatsapp"
             "${home}/wine"
           ];
@@ -99,7 +99,7 @@ in
       # }}}
     };
 
-    environment.persistence."/persist/local/cache".directories = [
+    satellite.persistence.at.cache.directories = [
       "/var/cache/restic-backups-data"
       "/var/cache/restic-backups-state"
     ];

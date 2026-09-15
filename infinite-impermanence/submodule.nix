@@ -57,7 +57,7 @@ lib.fix (
         noPrefix = lib.removePrefix config.bounds.target config.base;
       in
       {
-        options = {
+        options = permissionOpts.options // {
           base = lib.mkOption {
             type = lib.types.pathWith { absolute = null; };
             description = ''
@@ -67,7 +67,6 @@ lib.fix (
           };
 
           bounds = boundsOpts.options;
-          permissions = permissionOpts.options;
 
           paths.source = lib.mkOption {
             type = lib.types.path;
@@ -90,10 +89,10 @@ lib.fix (
       };
     # }}}
     # {{{ Files
-    file = lib.types.submodule [
-      commonOpts
+    fileOpts =
+      { config, ... }:
       {
-        options.parent.permissions = lib.mkOption {
+        options.parent = lib.mkOption {
           type = lib.types.submodule permissionOpts;
           description = ''
             The permissions to be used when creating the parent directory.
@@ -105,19 +104,23 @@ lib.fix (
           '';
         };
 
-        config.permissions.mode = lib.mkDefault "644";
-        config.parent.permissions = {
-          user = lib.mkDefault config.permissions.user;
-          group = lib.mkDefault config.permissions.group;
+        config.mode = lib.mkDefault "644";
+        config.parent = {
+          user = lib.mkDefault config.user;
+          group = lib.mkDefault config.group;
           mode = lib.mkDefault "755";
         };
-      }
+      };
+
+    file = lib.types.submodule [
+      commonOpts
+      fileOpts
     ];
     # }}}
     # {{{ Directories
     dir = lib.types.submodule [
       commonOpts
-      { config.permissions.mode = lib.mkDefault "755"; }
+      { config.mode = lib.mkDefault "755"; }
     ];
     # }}}
 
@@ -239,22 +242,22 @@ lib.fix (
     # {{{ Entry scaffolding
     config.scaffolding =
       lib.map (entry: {
-        inherit (entry.parent.permissions) user group mode;
+        inherit (entry.parent) user group mode;
         path = dirOf entry.paths.source;
         bound = entry.bounds.source;
       }) config.files
       ++ lib.map (entry: {
-        inherit (entry.permissions) user group mode;
+        inherit (entry) user group mode;
         path = entry.paths.source;
         bound = entry.bounds.source;
       }) config.directories
       ++ lib.map (entry: {
-        inherit (entry.parent.permissions) user group mode;
+        inherit (entry.parent) user group mode;
         path = dirOf entry.paths.target;
         bound = entry.bounds.target;
       }) config.files
       ++ lib.map (entry: {
-        inherit (entry.permissions) user group mode;
+        inherit (entry) user group mode;
         path = entry.paths.target;
         bound = entry.bounds.target;
       }) config.directories;

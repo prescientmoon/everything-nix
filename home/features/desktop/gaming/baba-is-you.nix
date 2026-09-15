@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  persistentStateDir = "/persist/state${config.home.homeDirectory}";
+  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
 in
 {
   satellite.games.entries.baba-is-you = {
@@ -30,10 +30,7 @@ in
     };
   };
 
-  satellite.persistence.at.state.apps.baba-is-you.directories = [
-    {
-      directory = "${config.xdg.dataHome}/Baba_Is_You";
-      method = "symlink";
-    }
+  satellite.persistence.at.state.at.baba-is-you.directories = [
+    "${config.xdg.dataHome}/Baba_Is_You"
   ];
 }

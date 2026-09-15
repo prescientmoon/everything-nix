@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   options.satellite.dev = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -8,7 +9,7 @@
 
     root = lib.mkOption {
       type = lib.types.str;
-      default = "${config.xdg.userDirs.extraConfig.XDG_PROJECTS_DIR}/personal/satellite";
+      default = "${config.xdg.userDirs.extraConfig.PROJECTS}/personal/satellite";
       description = "Where the satellite repo is cloned";
     };
 
@@ -18,8 +19,10 @@
     };
   };
 
-  config.satellite.dev.path = path:
+  config.satellite.dev.path =
+    path:
     if config.satellite.dev.enable then
       config.lib.file.mkOutOfStoreSymlink "${config.satellite.dev.root}/${path}"
-    else "${../..}/${path}";
+    else
+      "${../..}/${path}";
 }

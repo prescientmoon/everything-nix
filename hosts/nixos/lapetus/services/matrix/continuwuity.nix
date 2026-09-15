@@ -55,13 +55,18 @@ in
     };
   };
 
-  # HACK: https://github.com/nix-community/impermanence/issues/254
+  # This was the original issue I bumped into:
+  # https://github.com/nix-community/impermanence/issues/254
+  #
+  # I now no longer use the impermanence module (I use my own rewrite). My
+  # rewrite would allow me to work around this issue, but I don't want to break
+  # a past setup that worked :) I will no longer need to do this in the future,
+  # though!
   systemd.services.continuwuity.serviceConfig.DynamicUser = lib.mkForce false;
-  environment.persistence."/persist/state".directories = [
+  satellite.persistence.at.state.directories = [
     {
       directory = cfg.settings.global.database_path;
-      user = cfg.user;
-      group = cfg.group;
+      inherit (cfg) user group;
     }
   ];
 }

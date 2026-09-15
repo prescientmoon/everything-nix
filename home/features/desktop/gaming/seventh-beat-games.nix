@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  persistentStateDir = "/persist/state${config.home.homeDirectory}";
+  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
   dir = "${persistentStateDir}/seventh-beat-games";
 in
 {
@@ -17,9 +17,6 @@ in
 
     file = "${dir}/rhythm-doctor/Rhythm Doctor";
     script = "steam-run";
-    # file = "${dir}/rhythm-doctor/windows/Rhythm Doctor.exe";
-    # winePrefix = "${dir}/prefix";
-    # script = "wine";
 
     assets = {
       poster = ./assets/rhythm-doctor/grid.jpg;
@@ -28,10 +25,7 @@ in
     };
   };
 
-  satellite.persistence.at.state.apps.seventh-beat-games.directories = [
-    {
-      directory = "${config.xdg.configHome}/unity3d/7th Beat Games/Rhythm Doctor";
-      method = "symlink";
-    }
+  satellite.persistence.at.state.at.seventh-beat-games.directories = [
+    "${config.xdg.configHome}/unity3d/7th Beat Games/Rhythm Doctor"
   ];
 }

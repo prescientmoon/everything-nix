@@ -85,7 +85,7 @@ in
   # {{{ Networking & storage
   satellite.nginx.at.jupyter.port = config.satellite.ports.jupyterhub;
 
-  environment.persistence."/persist/state".directories = [
+  satellite.persistence.at.state.directories = [
     "/var/lib/${config.services.jupyterhub.stateDirectory}"
   ];
   # }}}

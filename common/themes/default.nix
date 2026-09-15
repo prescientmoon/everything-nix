@@ -103,7 +103,7 @@ in
   stylix.autoEnable = false;
 
   stylix.cursor = {
-    package = inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = pkgs.rose-pine-hyprcursor;
     name = "BreezX-RosePine-Linux";
     size = 36;
   };

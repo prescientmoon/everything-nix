@@ -1,21 +1,24 @@
 { config, ... }:
+let
+  user = config.users.users.vaultwarden;
+in
 {
   satellite.nginx.at.warden.port = config.satellite.ports.vaultwarden;
 
   # Secrets
   sops.secrets.vaultwarden_env = {
     sopsFile = ../secrets.yaml;
-    owner = config.users.users.vaultwarden.name;
-    group = config.users.users.vaultwarden.group;
+    owner = user.name;
+    group = user.group;
   };
 
   # Storage
-  environment.persistence."/persist/state".directories = [
+  satellite.persistence.at.state.directories = [
     {
-      directory = "/var/lib/bitwarden_rs";
-      mode = "u=rwx,g=,o=";
-      user = config.users.users.vaultwarden.name;
-      group = config.users.users.vaultwarden.group;
+      base = "/var/lib/bitwarden_rs";
+      mode = "700";
+      user = user.name;
+      group = user.group;
     }
   ];
 
