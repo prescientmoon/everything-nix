@@ -13,7 +13,6 @@
     ./services/forgejo.nix
     ./services/glass-server
     ./services/gotosocial.nix
-    # ./services/grafana.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
     ./services/matrix
@@ -21,7 +20,6 @@
     # ./services/moonythm.nix
     ./services/picoshare.nix
     ./services/pounce
-    # ./services/prometheus.nix
     ./services/qbittorrent.nix
     ./services/radicale.nix
     ./services/redlib.nix

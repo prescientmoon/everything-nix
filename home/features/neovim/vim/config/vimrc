@@ -69,15 +69,18 @@ au FileType help,qf silent! nnoremap <buffer> qq :close<cr>
 " Replace word in file
 nnoremap <leader>rw :%s/<C-r><C-w>/
 
-" Open file in project's directory
-nnoremap <C-p> :find! ./**/
-
-" Open file using fzf
-function! FzfGit()
-	execute "edit!" system("fd --type f --strip-cwd-prefix | fzf")
+" Open file using fzy
+function! OpenFileFuzzy()
+	execute "edit!" system("fd --type f --strip-cwd-prefix | fzy")
 	redraw!
 endfunction
-nnoremap <C-t> :call FzfGit()<cr>
+nnoremap <C-p> :call OpenFileFuzzy()<cr>
+
+" Open file using Vim's built in completion
+nnoremap <C-t> :find! ./**/
+
+" Search through project
+nnoremap <C-f> :execute "vimgrep" input("Pattern: ") "**/*" <cr>
 
 " Toggle the color column via <leader>sc
 let g:default_colorcolumn=join(range(81,999),",")

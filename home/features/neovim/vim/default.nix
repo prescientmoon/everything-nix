@@ -9,6 +9,7 @@
   home.packages = [
     upkgs.vim-classic # Not in 26.05
     pkgs.update-nix-fetchgit
+    pkgs.fzy # Fuzzy finder
   ];
 
   home.sessionVariables = {

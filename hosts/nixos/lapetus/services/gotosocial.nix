@@ -73,25 +73,4 @@ in
       group = "gotosocial";
     }
   ];
-
-  # Prometheus metrics
-  systemd.services.gotosocial.environment = {
-    OTEL_METRICS_PRODUCERS = "prometheus";
-    OTEL_METRICS_EXPORTER = "prometheus";
-    OTEL_EXPORTER_PROMETHEUS_HOST = "127.0.0.1";
-    OTEL_EXPORTER_PROMETHEUS_PORT = toString config.satellite.ports.prometheus-gotosocial-exporter;
-  };
-
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "gotosocial";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:${toString config.satellite.ports.prometheus-gotosocial-exporter}"
-          ];
-        }
-      ];
-    }
-  ];
 }

@@ -117,13 +117,11 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 - [Actual](https://actualbudget.org/) — budgeting tool.
 - [Commafeed](https://github.com/Athou/commafeed) — rss reader
 - [Forgejo](https://forgejo.org/) — git forge
-- [Grafana](https://github.com/grafana/grafana) — pretty dashboards
 - [Invidious](https://invidious.io/) — alternate YouTube client
 - [Jellyfin](https://jellyfin.org/) — media server
 - [Jupyterhub](https://jupyter.org/hub) — notebook collaboration suite
 - [Microbin](https://microbin.eu/) - code & file sharing service
 - [Pounce](https://git.causal.agency/pounce/about/) & [calico](https://git.causal.agency/pounce/about/calico.1) — irc bouncer
-- [Prometheus](https://github.com/prometheus/prometheus) — metric collector
 - [Qbittorrent](https://www.qbittorrent.org) — torrent client
 - [Radicale](https://radicale.org/v3.html) — calendar server
 - [Redlib](https://github.com/redlib-org/redlib) — alternate Reddit client
@@ -134,6 +132,10 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Prometheus](https://github.com/prometheus/prometheus) — I dropped this once I dropped grafana.
+- [Grafana](https://github.com/grafana/grafana) — was too complicated for my needs, so I dropped it the moment breaking changes were introduced.
+- [done](https://github.com/franciscolourenco/done) — doesn't work with [River](https://codeberg.org/river/river).
+- [fzf](https://github.com/junegunn/fzf) — I switched to [fzy](https://github.com/jhawthorn/fzy).
 - [Spotify](https://spotify.com/) — I switched to a local-first music setup a few months back.
 - [Spicetify](https://spicetify.app/) — I no longer use Spotify.
 - [Spicetify-nix](https://github/Gerg-L/spicetify-nix) — I no longer use Spicetify.
