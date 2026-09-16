@@ -14,7 +14,8 @@
   ];
 
   home.sessionVariables.NIXOS_OZONES_WL = "1";
-  services.swayosd.enable = true;
+  # services.swayosd.enable = true;
+  # services.avizo.enable = true;
 
   xdg.configFile.wallpaper.source = config.stylix.image;
 

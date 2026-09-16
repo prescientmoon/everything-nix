@@ -91,7 +91,7 @@
     settings.git_protocol = "ssh";
   };
 
-  satellite.persistence.at.state.at.gh.files = [
-    "${config.xdg.configHome}/gh/hosts.yml"
+  satellite.persistence.at.state.at.gh.directories = [
+    "${config.xdg.configHome}/gh"
   ];
 }

@@ -2,6 +2,7 @@
 {
   imports = [
     ../common
+    ../common/desktop/river
 
     ./hardware
     ./filesystems
@@ -54,6 +55,12 @@
   # Use the latest kernel (the WIFI card is not seen otherwise)
   boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelParams = [ "mt7921_common.disable_clc=1" ];
+  # boot.kernelPatches = [
+  #   {
+  #     name = "foo";
+  #     patch = ./wg-debug.patch;
+  #   }
+  # ];
 
   services.joycond.enable = false; # Toggle when connecting joycons, I guess
   services.blueman.enable = true;

@@ -3,7 +3,7 @@
   imports = [
     ./quietboot
     ./sway
-    ./river
+    # ./river <- The fact this uses HM causes issues...
     ./dunst.nix
     ./historia.nix
     ./hyprland.nix

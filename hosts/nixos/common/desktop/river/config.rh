@@ -56,12 +56,11 @@ keybinds [
     super+shift, Down, moveWindow, Down
     super+shift, Up, moveWindow, Up
 
-    none, XF86AudioMicMute,      launch, swayosd-client --input-volume  mute-toggle
-    none, XF86AudioMute,         launch, swayosd-client --output-volume mute-toggle
-    none, XF86AudioLowerVolume,  launch, swayosd-client --output-volume lower
-    none, XF86AudioRaiseVolume,  launch, swayosd-client --output-volume raise
-    none, XF86MonBrightnessUp,   launch, swayosd-client --brightness    raise
-    none, XF86MonBrightnessDown, launch, swayosd-client --brightness    lower
+    none, XF86AudioRaiseVolume,  launch, pamixer --increase 5
+    none, XF86AudioLowerVolume,  launch, pamixer --decrease 5
+    none, XF86AudioMute,         launch, pamixer --toggle-mute
+    none, XF86MonBrightnessUp,   launch, brightnessctl set 5%+
+    none, XF86MonBrightnessDown, launch, brightnessctl set 5%-
     none, XF86AudioPlay,         launch, playerctl play-pause
     none, XF86AudioPause,        launch, playerctl play-pause
     none, XF86AudioPrev,         launch, playerctl previous
@@ -122,7 +121,6 @@ startup [
 ]
 
 env {
-    SDL_VIDEODRIVER wayland,x11
     QT_QPA_PLATFORM wayland
     ELECTRON_OZONE_PLATFORM_HINT wayland
     QT_QPA_PLATFORMTHEME qt6ct
@@ -132,6 +130,9 @@ env {
     XDG_SESSION_DESKTOP river
 }
 
+xcursor {
+  size 30
+}
 
 input {
     profiles {

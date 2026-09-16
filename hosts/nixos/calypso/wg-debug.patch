@@ -1,0 +1,35 @@
+diff --git a/drivers/net/wireguard/cookie.c b/drivers/net/wireguard/cookie.c
+index 08731b3fa..56d14acc1 100644
+--- a/drivers/net/wireguard/cookie.c
++++ b/drivers/net/wireguard/cookie.c
+@@ -129,8 +129,10 @@ enum cookie_mac_state wg_cookie_validate_packet(struct cookie_checker *checker,
+ 	ret = INVALID_MAC;
+ 	compute_mac1(computed_mac, skb->data, skb->len,
+ 		     checker->message_mac1_key);
+-	if (crypto_memneq(computed_mac, macs->mac1, COOKIE_LEN))
++	if (crypto_memneq(computed_mac, macs->mac1, COOKIE_LEN)) {
++		net_dbg_ratelimited("Missmatching MACs, skipping\n");
+ 		goto out;
++	}
+ 
+ 	ret = VALID_MAC_BUT_NO_COOKIE;
+ 
+@@ -140,12 +142,16 @@ enum cookie_mac_state wg_cookie_validate_packet(struct cookie_checker *checker,
+ 	make_cookie(cookie, skb, checker);
+ 
+ 	compute_mac2(computed_mac, skb->data, skb->len, cookie);
+-	if (crypto_memneq(computed_mac, macs->mac2, COOKIE_LEN))
++	if (crypto_memneq(computed_mac, macs->mac2, COOKIE_LEN)) {
++		net_dbg_ratelimited("Missmatching MAC2s, skipping\n");
+ 		goto out;
++	}
+ 
+ 	ret = VALID_MAC_WITH_COOKIE_BUT_RATELIMITED;
+-	if (!wg_ratelimiter_allow(skb, dev_net(checker->device->dev)))
++	if (!wg_ratelimiter_allow(skb, dev_net(checker->device->dev))) {
++		net_dbg_ratelimited("Rate limited during the cookie validation");
+ 		goto out;
++	}
+ 
+ 	ret = VALID_MAC_WITH_COOKIE;
+ 

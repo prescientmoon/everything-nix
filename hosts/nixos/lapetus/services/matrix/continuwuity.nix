@@ -63,10 +63,10 @@ in
   # a past setup that worked :) I will no longer need to do this in the future,
   # though!
   systemd.services.continuwuity.serviceConfig.DynamicUser = lib.mkForce false;
-  satellite.persistence.at.state.directories = [
+  satellite.persistence.at.state.on."/var/lib".directories = [
     {
-      directory = cfg.settings.global.database_path;
       inherit (cfg) user group;
+      base = "continuwuity";
     }
   ];
 }
