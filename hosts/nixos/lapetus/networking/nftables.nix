@@ -113,7 +113,7 @@ in
           chain postrouting {
             type nat hook postrouting priority 100; policy accept;
 
-            iifname {"docker0", "veth*", "br0"} oifname "enp0s25" \
+            iifname {"docker0", "veth*", "br0", "overlay0", "enp0s25"} oifname "enp0s25" \
               masquerade \
               comment "Mask all traffic going towards the ethernet interface";
           }

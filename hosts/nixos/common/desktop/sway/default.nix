@@ -35,7 +35,5 @@ in
       pkgs.grim # Screenshotting tool
       pkgs.xrandr
     ];
-
-    services.udev.packages = [ pkgs.swayosd ];
   };
 }

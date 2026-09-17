@@ -24,17 +24,30 @@ in
 
     services.greetd = {
       enable = true;
+      useTextGreeter = true;
       settings = {
         default_session = {
           command = ''
             ${lib.getExe pkgs.tuigreet} \
               -g " (.>_>.) Welcome to ${config.networking.hostName}! (.<_<.)" \
-              --remember
-              --asterisks
+              --user ${config.users.users.pilot.name} \
+              --background doom \
+              --remember-user-session \
+              --remember \
+              --asterisks \
+              --debug
           '';
-          user = config.users.users.pilot.name;
+          user = "greeter";
         };
       };
     };
+
+    satellite.persistence.at.cache.on."/var/cache".directories = [
+      {
+        base = "tuigreet";
+        user = "greeter";
+        group = "greeter";
+      }
+    ];
   };
 }

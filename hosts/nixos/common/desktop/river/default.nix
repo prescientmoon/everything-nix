@@ -31,7 +31,6 @@ in
     };
 
     environment.systemPackages = [
-      pkgs.grim # Screenshotting tool
       pkgs.awww # Wallpaper thingy :p
       pkgs.pamixer # Volume control
       pkgs.brightnessctl # Brightness control
