@@ -1,166 +1,166 @@
 workspacerules [
-    id, -1, onEmpty, launch, footclient vimclip
-    id, [1-2], layout, bsp
-    id, [3], layout, monocle
-    id, [4-10], layout, bsp
+	id, -1, onEmpty, launch, footclient vimclip
+	id, [1-2], layout, bsp
+	id, [3], layout, monocle
+	id, [4-10], layout, bsp
 ]
 
 layout_config {
-    bsp {
-        gaps 0
-    }
+	bsp {
+		gaps 0
+	}
 
-    scrolling {
-        gaps 5
-        initial_width 0.85
-        center_only_one true
-    }
+	scrolling {
+		gaps 5
+		initial_width 0.85
+		center_only_one true
+	}
 }
 
 animations {
-    move {
-      duration 0
-      easing linear
-    }
-    resize {
-      duration 0
-      easing linear
-    }
-    workspace {
-        duration 150_000
-        easing cubicInOut
-    }
+	move {
+		duration 0
+		easing linear
+	}
+	resize {
+		duration 0
+		easing linear
+	}
+	workspace {
+		duration 150_000
+		easing cubicInOut
+	}
 }
 
 keybinds [
-    super, c, close, Focus
-    super, f, fullscreen, toggle, Focus
-    super, space, floating, toggle, Focus
-    super, x, overlay, toggle, -1
-    super+shift, x, sendToWorkspace, -1
+	super, c, close, Focus
+	super, f, fullscreen, toggle, Focus
+	super, space, floating, toggle, Focus
+	super, x, overlay, toggle, -1
+	super+shift, x, sendToWorkspace, -1
 
-    super, Return, launch, footclient
-    super, q, launch, wlogout
-    super, p, launch, anyrun
-    super, v, launch, footclient vimclip
-    super, s, launch, wl-ss-area
-    super+shift, s, launch, wl-ss-screen
+	super, Return, launch, footclient
+	super, q, launch, wlogout
+	super, p, launch, anyrun
+	super, v, launch, footclient vimclip
+	super, s, launch, wl-ss-area
+	super+shift, s, launch, wl-ss-screen
 
-    super, h, moveFocus, Left
-    super, l, moveFocus, Right
-    super, j, moveFocus, Down
-    super, k, moveFocus, Up
+	super, h, moveFocus, Left
+	super, l, moveFocus, Right
+	super, j, moveFocus, Down
+	super, k, moveFocus, Up
 
-    super+shift, Left, moveWindow, Left
-    super+shift, Right, moveWindow, Right
-    super+shift, Down, moveWindow, Down
-    super+shift, Up, moveWindow, Up
+	super+shift, Left, moveWindow, Left
+	super+shift, Right, moveWindow, Right
+	super+shift, Down, moveWindow, Down
+	super+shift, Up, moveWindow, Up
 
-    none, XF86AudioRaiseVolume,  launch, pamixer --increase 5
-    none, XF86AudioLowerVolume,  launch, pamixer --decrease 5
-    none, XF86AudioMute,         launch, pamixer --toggle-mute
-    none, XF86MonBrightnessUp,   launch, brightnessctl set 5%+
-    none, XF86MonBrightnessDown, launch, brightnessctl set 5%-
-    none, XF86AudioPlay,         launch, playerctl play-pause
-    none, XF86AudioPause,        launch, playerctl play-pause
-    none, XF86AudioPrev,         launch, playerctl previous
-    none, XF86AudioNext,         launch, playerctl next
-    none, XF86AudioStop,         launch, playerctl stop
+	none, XF86AudioRaiseVolume,  launch, pamixer --increase 5
+	none, XF86AudioLowerVolume,  launch, pamixer --decrease 5
+	none, XF86AudioMute,         launch, pamixer --toggle-mute
+	none, XF86MonBrightnessUp,   launch, brightnessctl set 5%+
+	none, XF86MonBrightnessDown, launch, brightnessctl set 5%-
+	none, XF86AudioPlay,         launch, playerctl play-pause
+	none, XF86AudioPause,        launch, playerctl play-pause
+	none, XF86AudioPrev,         launch, playerctl previous
+	none, XF86AudioNext,         launch, playerctl next
+	none, XF86AudioStop,         launch, playerctl stop
 
-    super, 1, focusWorkspace, 1
-    super, 2, focusWorkspace, 2
-    super, 3, focusWorkspace, 3
-    super, 4, focusWorkspace, 4
-    super, 5, focusWorkspace, 5
-    super, 6, focusWorkspace, 6
-    super, 7, focusWorkspace, 7
-    super, 8, focusWorkspace, 8
-    super, 9, focusWorkspace, 9
-    super, 0, focusWorkspace, 10
+	super, 1, focusWorkspace, 1
+	super, 2, focusWorkspace, 2
+	super, 3, focusWorkspace, 3
+	super, 4, focusWorkspace, 4
+	super, 5, focusWorkspace, 5
+	super, 6, focusWorkspace, 6
+	super, 7, focusWorkspace, 7
+	super, 8, focusWorkspace, 8
+	super, 9, focusWorkspace, 9
+	super, 0, focusWorkspace, 10
 
-    super+shift, 1, moveToWorkspace, 1
-    super+shift, 2, moveToWorkspace, 2
-    super+shift, 3, moveToWorkspace, 3
-    super+shift, 4, moveToWorkspace, 4
-    super+shift, 5, moveToWorkspace, 5
-    super+shift, 6, moveToWorkspace, 6
-    super+shift, 7, moveToWorkspace, 7
-    super+shift, 8, moveToWorkspace, 8
-    super+shift, 9, moveToWorkspace, 9
-    super+shift, 0, moveToWorkspace, 10
+	super+shift, 1, moveToWorkspace, 1
+	super+shift, 2, moveToWorkspace, 2
+	super+shift, 3, moveToWorkspace, 3
+	super+shift, 4, moveToWorkspace, 4
+	super+shift, 5, moveToWorkspace, 5
+	super+shift, 6, moveToWorkspace, 6
+	super+shift, 7, moveToWorkspace, 7
+	super+shift, 8, moveToWorkspace, 8
+	super+shift, 9, moveToWorkspace, 9
+	super+shift, 0, moveToWorkspace, 10
 ]
 
 pointer_binds [
-    super,       Left, pointerOp, move
-    super+shift, Left, pointerOp, resize
+	super,       Left, pointerOp, move
+	super+shift, Left, pointerOp, resize
 ]
 
 window_management {
-    follow_cursor true
-    float_move 0.1
-    border {
-        width 1
-    }
+	follow_cursor true
+	float_move 0.1
+	border {
+			width 1
+	}
 }
 
 windowrules [
-    title, *Firefox*, workspace, 2
-    title, *Element*, workspace, 3
-    title, *Signal*, workspace, 3
-    title, *Discord*, workspace, 3
-    title, *Elisa.*, workspace, 6
+	title, *Firefox*, workspace, 2
+	title, *Element*, workspace, 3
+	title, *Signal*, workspace, 3
+	title, *Discord*, workspace, 3
+	title, *Elisa.*, workspace, 6
 ]
 
 startup [
-    dbus-update-activation-environment --all --systemd
-    fcitx5
-    anyrun daemon
-    foot --server
-    awww-daemon
-    awww img $XDG_CONFIG_HOME/wallpaper
+	dbus-update-activation-environment --all --systemd
+	fcitx5
+	anyrun daemon
+	foot --server
+	awww-daemon
+	awww img $XDG_CONFIG_HOME/wallpaper
 ]
 
 env {
-    QT_QPA_PLATFORM wayland
-    ELECTRON_OZONE_PLATFORM_HINT wayland
-    QT_QPA_PLATFORMTHEME qt6ct
-    GTK_CSD 0
-    XDG_CURRENT_DESKTOP wlr
-    XDG_SESSION_TYPE wayland
-    XDG_SESSION_DESKTOP river
+	QT_QPA_PLATFORM wayland
+	ELECTRON_OZONE_PLATFORM_HINT wayland
+	QT_QPA_PLATFORMTHEME qt6ct
+	GTK_CSD 0
+	XDG_CURRENT_DESKTOP wlr
+	XDG_SESSION_TYPE wayland
+	XDG_SESSION_DESKTOP river
 }
 
 xcursor {
-  size 30
+	size 30
 }
 
 input {
-    profiles {
-        keyboard {
-            keyboard {
-                layout us
-            }
-        }
+	profiles {
+		keyboard {
+			keyboard {
+				layout us
+			}
+		}
 
-        touchpad {
-            pointer {
-                scroll_factor 1
-                # map_to rect, 0, 0, 200, 200
-            }
+		touchpad {
+			pointer {
+				scroll_factor 1
+				# map_to rect, 0, 0, 200, 200
+			}
 
-            libinput {
-                natural_scroll true
-                scroll_method two_finger
-                tap_to_click true
-                click_method clickfinger
-                disable_while_typing true
-            }
-        }
-    }
+			libinput {
+				natural_scroll true
+				scroll_method two_finger
+				tap_to_click true
+				click_method clickfinger
+				disable_while_typing true
+			}
+		}
+	}
 
-    rules [
-        type, keyboard, keyboard
-        name, *ouchpad, touchpad
-    ]
+	rules [
+		type, keyboard, keyboard
+		name, *ouchpad, touchpad
+	]
 }
 
