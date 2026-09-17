@@ -152,10 +152,6 @@ au FocusGained * call s:regen_spellfile()
 set spell
 nnoremap <leader>ss :set spell!<cr>
 
-" I don't think this would be needed if using a version of Vim that has the
-" gitignore filetype!
-au BufEnter .gitignore setlocal nospell
-
 " Quickfix
 function! ToggleQuickFix()
 	if empty(filter(getwininfo(), 'v:val.quickfix'))
@@ -207,9 +203,6 @@ let g:netrw_altfile=1 " Keep netrw out of the alt file
 " from being the altfile, which is super problematic.
 nnoremap <leader>f :execute "edit" expand("%:h")<cr>
 
-" Finally, my custom theme :3
-colorscheme meow
-
 " Note that this will run into race conditions if run in multiple instances of
 " Vim at once, but that's ok :3
 "
@@ -230,3 +223,6 @@ function! YaziEdit()
 endfunction
 
 nnoremap <C-S-f> :call YaziEdit()<cr>
+
+" Finally, my custom theme :3
+colorscheme meow
