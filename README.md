@@ -132,6 +132,7 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [swayosd](https://github.com/ErikReider/SwayOSD) kind of stopped working at some point, and I was too lazy to investigate further.
 - [Prometheus](https://github.com/prometheus/prometheus) — I dropped this once I dropped grafana.
 - [Grafana](https://github.com/grafana/grafana) — was too complicated for my needs, so I dropped it the moment breaking changes were introduced.
 - [done](https://github.com/franciscolourenco/done) — doesn't work with [River](https://codeberg.org/river/river).
