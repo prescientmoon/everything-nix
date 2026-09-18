@@ -21,7 +21,7 @@ in
   sops.templates."ddns-updater.json".content = builtins.toJSON {
     settings = [
       (mkConfig "ipv4")
-      (mkConfig "ipv6")
+      # (mkConfig "ipv6") (I don't even know why this breaks...)
     ];
   };
 

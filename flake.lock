@@ -304,11 +304,11 @@
     "nihil": {
       "flake": false,
       "locked": {
-        "lastModified": 1774813414,
-        "narHash": "sha256-mXnK/2v5gi8h1VhD2tsOV405nRZjXhb43RyEexwGWb0=",
+        "lastModified": 1789747025,
+        "narHash": "sha256-3Ji7bRdoGSdUAqRUFeWZWhJBatZ8BlE/ObWMDdYb2Fk=",
         "owner": "prescientmoon",
         "repo": "nihil",
-        "rev": "daf968305529862e5bddbf8ba3ad9a6167f62c9f",
+        "rev": "4abf0a194ef4bc66df18f5d98b91cd1fa3293dbd",
         "type": "github"
       },
       "original": {

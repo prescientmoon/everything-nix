@@ -63,6 +63,11 @@
         "moonythm:"
       ];
 
+      url."forgejo@192.168.10.1:".insteadOf = [
+        # Allows pushing to the server/router of the local network
+        "direct:"
+      ];
+
       # Sign commits using ssh
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
