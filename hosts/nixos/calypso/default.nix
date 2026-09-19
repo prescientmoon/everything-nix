@@ -24,7 +24,6 @@
 
   satellite.wireless.backend = "iwd";
   satellite.qbittorrent.enable = false;
-  satellite.sway.enable = true;
   satellite.river.enable = true;
 
   # Machine ids
