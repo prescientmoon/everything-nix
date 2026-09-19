@@ -49,24 +49,10 @@
       push.autoSetupRemote = true;
 
       # URL rewriting
-      url."git@github.com:".insteadOf = [
-        # Normalize GitHub URLs to SSH to avoid authentication issues with HTTPS.
-        # I ended up disabling this, but I forgot why...
-        # "https://github.com/"
-
-        # Allows typing `git clone github:owner/repo`.
-        "github:"
-      ];
-
-      url."forgejo@lapetus.overlay.moonythm.dev:".insteadOf = [
-        # Allows typing `git clone moonythm:owner/repo`.
-        "moonythm:"
-      ];
-
-      url."forgejo@192.168.10.1:".insteadOf = [
-        # Allows pushing to the server/router of the local network
-        "direct:"
-      ];
+      url."git@github.com:".insteadOf = [ "github:" ];
+      url."forgejo@lapetus.overlay.moonythm.dev:".insteadOf = [ "moonythm:" ];
+      url."forgejo@192.168.10.1:".insteadOf = [ "direct:" ];
+      url."ssh://git@codeberg.org:".insteadOf = [ "codeberg:" ];
 
       # Sign commits using ssh
       gpg.format = "ssh";
