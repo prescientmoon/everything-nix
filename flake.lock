@@ -443,15 +443,16 @@
     "river-next": {
       "flake": false,
       "locked": {
-        "lastModified": 1789386174,
-        "narHash": "sha256-C2XzZah2g2DuDUbA9bIZWSU5Lu53P6uLexyQsU/Z/Do=",
-        "owner": "dmkhitaryan",
+        "lastModified": 1789559002,
+        "narHash": "sha256-eC4Pd5iaVyunSQcfy5XS3Yd81683iA/HPz+2ttdj7x8=",
+        "owner": "starlitcanopy",
         "repo": "river-next-nix-module",
-        "rev": "722b17f31747a207fab7e764bb5b0b154a1cb367",
+        "rev": "003ea504eb728bbe40a9c13b318798790d75789b",
         "type": "github"
       },
       "original": {
-        "owner": "dmkhitaryan",
+        "owner": "starlitcanopy",
+        "ref": "bump",
         "repo": "river-next-nix-module",
         "type": "github"
       }

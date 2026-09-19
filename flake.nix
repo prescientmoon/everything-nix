@@ -47,7 +47,7 @@
     # sillyring.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/sillyring.git";
     sillyring.flake = false;
 
-    river-next.url = "github:dmkhitaryan/river-next-nix-module";
+    river-next.url = "github:starlitcanopy/river-next-nix-module/bump";
     river-next.flake = false;
     # }}}
     # {{{ Theming

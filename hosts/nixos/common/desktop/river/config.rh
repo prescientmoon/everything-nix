@@ -45,16 +45,9 @@ keybinds [
 	super, v, launch, footclient vimclip
 	super, s, launch, wl-ss-area
 	super+shift, s, launch, wl-ss-screen
+	super, s, launch, wl-tmp
 
-	super, h, moveFocus, Left
-	super, l, moveFocus, Right
-	super, j, moveFocus, Down
-	super, k, moveFocus, Up
-
-	super+shift, Left, moveWindow, Left
-	super+shift, Right, moveWindow, Right
-	super+shift, Down, moveWindow, Down
-	super+shift, Up, moveWindow, Up
+	super, k, cycleFocus
 
 	none, XF86AudioRaiseVolume,  launch, pamixer --increase 5
 	none, XF86AudioLowerVolume,  launch, pamixer --decrease 5
@@ -99,7 +92,7 @@ window_management {
 	follow_cursor true
 	float_move 0.1
 	border {
-			width 1
+		width 1
 	}
 }
 
@@ -163,4 +156,3 @@ input {
 		name, *ouchpad, touchpad
 	]
 }
-
