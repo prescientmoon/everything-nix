@@ -94,7 +94,6 @@
         }
         // {
           inherit (import ./migadux { inherit pkgs; }) migadux;
-          temp = upkgs.python3Packages.callPackage ./home/features/cli/beets/beets-vgmdb.nix { };
         }
       );
       # }}}
