@@ -30,13 +30,6 @@
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
-
-      darkmatter-theme = {
-        enable = true;
-        style = "nixos";
-        icon = "color";
-        resolution = "1080p";
-      };
     };
   };
 }
