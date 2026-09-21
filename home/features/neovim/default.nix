@@ -1079,13 +1079,6 @@ let
     base = upkgs.neovim;
     name = "nvim";
   };
-
-  neovide = wrapClient {
-    base = pkgs.neovide;
-    name = "neovide";
-    extraArgs = "--set NEOVIDE_MULTIGRID true";
-    wrapFlags = flags: "-- ${flags}";
-  };
 in
 # }}}
 {
@@ -1101,7 +1094,6 @@ in
   # Install packages
   home.packages = [
     neovim
-    neovide
     (pkgs.callPackage ./vimclip.nix { })
   ];
   # }}}

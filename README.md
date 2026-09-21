@@ -102,7 +102,6 @@ Here's some things you might want to check out:
 > There are many clis I use which I did not include here, for the sake of brevity.
 
 - [Neovim](https://neovim.io/) — my editor
-  - [Neovide](https://neovide.dev/index.html) — neovim gui client
   - [Vimclip](https://github.com/hrantzsch/vimclip) — vim anywhere!
 - [Fish](https://fishshell.com/) — user friendly shell
   - [Starship](https://starship.rs/) — shell prompt
@@ -132,6 +131,7 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Neovide](https://neovide.dev/index.html) — I haven't seriously used this in 3 years.
 - [swayosd](https://github.com/ErikReider/SwayOSD) kind of stopped working at some point, and I was too lazy to investigate further.
 - [Prometheus](https://github.com/prometheus/prometheus) — I dropped this once I dropped grafana.
 - [Grafana](https://github.com/grafana/grafana) — was too complicated for my needs, so I dropped it the moment breaking changes were introduced.

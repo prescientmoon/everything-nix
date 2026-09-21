@@ -322,10 +322,3 @@ tempest.createKeymap({
   desc = "[D]iagnostic qflist",
 })
 -- }}}
--- {{{ Neovide-specific configuration
-if tempest.envs.neovide then
-  vim.g.neovide_opacity = tempest.theme.transparency.applications.value
-  vim.g.neovide_cursor_animation_length = 4.0e-2
-  vim.g.neovide_cursor_animate_in_insert_mode = false
-end
--- }}}

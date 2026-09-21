@@ -175,14 +175,17 @@ function! HideDir(dir)
 	execute "set wildignore+=**/".a:dir."**"
 endfunction
 
+call HideDir("node_modules/")
 call HideDir("build/")
 call HideDir("dist/")
 call HideDir("target/")
+call HideDir("output/")
 call HideDir("zig-pkg/")
 call HideDir("zig-out/")
 call HideDir(".zig-cache/")
 call HideDir(".xwin-cache/")
 call HideDir(".direnv/")
+call HideDir(".spago/")
 call HideDir(".git/")
 call HidePat("result@")
 call HidePat("*.swp")

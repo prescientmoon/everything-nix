@@ -300,7 +300,6 @@ end
 -- {{{ Neovim env handling
 M.envs = {
   vscode = vim.g.vscode ~= nil,
-  neovide = vim.g.neovide ~= nil or vim.g.nix_neovim_app == "neovide",
   firenvim = vim.g.started_by_firenvim ~= nil
     or vim.g.nix_neovim_app == "firenvim",
 }
