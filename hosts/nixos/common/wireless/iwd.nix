@@ -26,20 +26,17 @@ in
 
     satellite.persistence.at.state.directories = [ "/var/lib/iwd" ];
 
-    sops.secrets.eduroam_pass.sopsFile = ../secrets.yaml;
+    sops.secrets.eduroam_config.sopsFile = ../secrets.yaml;
     sops.templates."eduroam.8021x".content = ''
       [Security]
       EAP-Method=PEAP
-      EAP-Identity=s5260329@rug.nl
-      EAP-PEAP-CACert=${./eduroam.pem}
+      EAP-Identity=anonymous@ru.nl
       EAP-PEAP-Phase2-Method=MSCHAPV2
-      EAP-PEAP-Phase2-Identity=adriel.matei@ru.nl
-      EAP-PEAP-Phase2-Password=${config.sops.placeholder.eduroam_pass}
+      ${config.sops.placeholder.eduroam_config}
 
       [Settings]
       AutoConnect=true
     '';
-    # EAP-PEAP-ServerDomainMask=radius.ru.nl
 
     systemd.tmpfiles.rules = [
       "L+ /persist/state/var/lib/iwd/eduroam.8021x - - - - ${config.sops.templates."eduroam.8021x".path}"

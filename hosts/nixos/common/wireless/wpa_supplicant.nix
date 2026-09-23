@@ -43,7 +43,7 @@ in
           authProtocols = [ "WPA-EAP" ];
           auth = ''
             eap=PEAP
-            identity="s5260329@rug.nl"
+            identity="ext:EDUROAM_IDENTITY"
             password="ext:EDUROAM_PASS"
           '';
           extraConfig = ''
