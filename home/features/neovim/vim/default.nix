@@ -13,7 +13,7 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "vim";
     # Running "man <foo>" will open the manpage inside vim.
     # I'm not using vim-classic here since that's broken for some reason...
     MANPAGER = "${lib.getExe pkgs.vim} -M +MANPAGER -";

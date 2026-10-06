@@ -1,1 +1,1 @@
-set nospell
+setlocal nospell

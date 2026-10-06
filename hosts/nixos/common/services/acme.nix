@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  # upkgs,
+  ...
+}:
 let
   cfg = config.satellite.acme;
 in
@@ -8,6 +13,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # The NixOS acme module doesn't otherwise allow overriding the logo
+    # package...
+    # nixpkgs.overlays = [
+    #   (_: _: { lego = upkgs.lego; })
+    # ];
+
     sops.secrets.cloudflare_dns_api_token.sopsFile = ../secrets.yaml;
     sops.templates."acme.env".content = ''
       CF_DNS_API_TOKEN=${config.sops.placeholder.cloudflare_dns_api_token}
@@ -20,7 +31,7 @@ in
       environmentFile = config.sops.templates."acme.env".path;
     };
 
-    satellite.persistence.at.state.directories = [
+    satellite.persistence.at.cache.directories = [
       "/var/lib/acme"
     ];
   };

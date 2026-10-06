@@ -2,7 +2,9 @@ workspacerules [
 	id, -1, onEmpty, launch, footclient vimclip
 	id, [1-2], layout, bsp
 	id, [3], layout, monocle
-	id, [4-10], layout, bsp
+	id, [5], layout, monocle
+	id, [4], layout, bsp
+	id, [6-10], layout, bsp
 ]
 
 layout_config {

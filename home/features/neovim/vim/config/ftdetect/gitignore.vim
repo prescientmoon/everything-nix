@@ -1,3 +1,3 @@
 augroup filetypedetect
-au BufNewFile,BufRead .gitignore setf gitignore
+au BufNewFile,BufRead .gitignore,*.git/info/exclude setf gitignore
 augroup END

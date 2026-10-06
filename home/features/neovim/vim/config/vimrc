@@ -190,6 +190,9 @@ call HideDir(".git/")
 call HidePat("result@")
 call HidePat("*.swp")
 call HidePat("*.spl")
+call HidePat("*.woff2")
+call HidePat("*.otf")
+call HidePat("package-lock.json")
 
 set wildignore+=**/*.png
 set wildignore+=**/*.jpg

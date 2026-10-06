@@ -1,8 +1,8 @@
 # Configure for the audio stack.
 { config, lib, ... }:
 {
-  config = lib.mkIf config.satellite.machine.graphical {
-    security.rtkit.enable = true;
+  config = lib.mkIf config.satellite.machine.interactible {
+    security.rtkit.enable = config.satellite.machine.graphical;
     services.pulseaudio.enable = false;
 
     services.pipewire = {
@@ -11,6 +11,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+      systemWide = !config.satellite.machine.graphical;
     };
 
     # https://nixos.wiki/wiki/PipeWire
