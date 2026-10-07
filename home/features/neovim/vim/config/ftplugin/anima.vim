@@ -1,3 +1,5 @@
+setlocal nosmartindent
+setlocal autoindent
 setlocal iskeyword=a-z,A-Z,48-57,.,\
 
 " We avoid :r! because that inserts a leading newline. We similarly use [:-2]
