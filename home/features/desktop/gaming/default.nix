@@ -7,6 +7,7 @@
     ./braid.nix
     ./crypt-of-the-necrodancer.nix
     ./edopro.nix
+    ./gridsage.nix
     ./misc.nix
     ./noita.nix
     ./rain-world.nix

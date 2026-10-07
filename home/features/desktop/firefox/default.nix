@@ -47,26 +47,18 @@
       # }}}
       # {{{ Extensions
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-        augmented-steam # Adds more info to steam
         bitwarden # Password manager
-        blocktube # Lets you block youtube channels
-        cliget # Generates curl commands for downloading account-protected things
+        ublock-origin
         dearrow # Crowdsourced clickbait remover 💀
+        sponsorblock # skip youtube sponsors
         don-t-fuck-with-paste # disallows certain websites from disabling pasting
-        i-dont-care-about-cookies
+
         indie-wiki-buddy # redirects fandom wiki urls to the proper wikis
         privacy-badger # blocks some trackers
         privacy-redirect # allows redirecting to my own instances for certain apps
-        skip-redirect # attempts to skip to the final reddirect for certain urls
-        sponsorblock # skip youtube sponsors
-        steam-database # adds info from steamdb on storepages
-        terms-of-service-didnt-read
-        translate-web-pages
-        ublock-origin
-        unpaywall
         user-agent-string-switcher
-        vimium-c # vim keybinds
-        youtube-shorts-block
+        i-dont-care-about-cookies
+        unpaywall
       ];
       # }}}
       # {{{ Search engines

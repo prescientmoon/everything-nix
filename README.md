@@ -131,6 +131,17 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Terms of service; Didn't read](https://addons.mozilla.org/en-US/firefox/addon/terms-of-service-didnt-read/) — I forgot I even had this installed.
+- [cliget](https://addons.mozilla.org/en-US/firefox/addon/cliget/) — I hadn't realised the devtools already have something similar.
+- [Translate Web Pages](https://addons.mozilla.org/en-US/firefox/addon/traduzir-paginas-web/) — Firefox seems to have built-in functionality for this now.
+- [Gesturefy](https://addons.mozilla.org/en-US/firefox/addon/gesturefy/) — Sort of useless with a touchpad, which where I am most of the time.
+- [RefinedGitHub](https://addons.mozilla.org/en-US/firefox/addon/refined-github-/) — I don't spend enough time on ShitHub for this to matter.
+- [Return YouTube dislike](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/) — Good concept, but I almost never look at the numbers.
+- [Vimium C](https://addons.mozilla.org/en-US/firefox/addon/vimium-c/) — cool concept. Have used it on-and-off for years, but in the end, it interacts with site-specific keybinds way too often. Might come back to it some day...
+- [Skip Redirect](https://addons.mozilla.org/en-US/firefox/addon/skip-redirect/) — It often breaks websites.
+- [BlockTube](https://addons.mozilla.org/nl/firefox/addon/blocktube/) — I forgot I even had this installed.
+- [AugumentedSteam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/) — likewise.
+- [SteamDB](https://addons.mozilla.org/en-US/firefox/addon/steam-database/) — I wasn't visiting Steam on the web often enough to care.
 - [Neovide](https://neovide.dev/index.html) — I haven't seriously used this in 3 years.
 - [swayosd](https://github.com/ErikReider/SwayOSD) kind of stopped working at some point, and I was too lazy to investigate further.
 - [Prometheus](https://github.com/prometheus/prometheus) — I dropped this once I dropped grafana.
