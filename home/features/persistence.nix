@@ -94,6 +94,11 @@
     ".rustup"
   ];
   # }}}
+  # {{{ Zig
+  satellite.persistence.at.cache.at.zig.directories = [ 
+    "${config.xdg.cacheHome}/zig"
+  ];
+  # }}}
   # }}}
   # {{{ Desktop apps
   # {{{ QBittorrent
