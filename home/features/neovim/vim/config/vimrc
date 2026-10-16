@@ -120,6 +120,9 @@ vnoremap <f11> "+
 " Save using *ji*
 nnoremap <silent> <f12> :silent! write<cr>
 
+" Sort lines using *gs*
+vnoremap gs :!sort<cr>
+
 " Set cursor shapes based on the mode we're in.
 "
 " I can't believe I'm saying this, but I found this fix in a YouTube video of

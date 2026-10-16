@@ -30,6 +30,7 @@ let
 
     # Services
     ./services/acme.nix
+    ./services/graphical.nix
     ./services/greetd.nix
     ./services/kanata
     ./services/nginx.nix

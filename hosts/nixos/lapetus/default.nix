@@ -9,7 +9,6 @@
 
     ./services/actual.nix
     ./services/ddns-updater.nix
-    ./services/diptime.nix
     ./services/forgejo.nix
     ./services/glass-server
     ./services/gotosocial.nix
