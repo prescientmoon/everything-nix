@@ -230,5 +230,11 @@ endfunction
 
 nnoremap <C-S-f> :call YaziEdit()<cr>
 
+" Paste.rs integration
+function! PastersUpload()
+	execute "!echo curl --data-binary @% https://paste.rs | wl-copy"
+endfunction
+nnoremap <leader>yp :call PastersUpload()<cr>
+
 " Finally, my custom theme :3
 colorscheme meow

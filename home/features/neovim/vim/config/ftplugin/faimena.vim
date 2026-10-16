@@ -1,2 +1,2 @@
-runtime ftplugin/anima.vim
+runtime ftplugin/nihil.vim
 setlocal nospell

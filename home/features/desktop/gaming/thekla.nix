@@ -1,6 +1,8 @@
 { config, ... }:
 let
   persistentStateDir = config.satellite.persistence.at.state.bounds.source;
+  dir = "${persistentStateDir}/thekla";
+  winePrefix = "${dir}/prefix";
 in
 {
   satellite.games.entries.braid = {
@@ -13,8 +15,9 @@ in
       puzzles, and seriously in-depth commentary.
     '';
 
-    file = "${persistentStateDir}/braid/steam-install/braid64_d3d11_final.exe";
     script = "umu";
+    file = "${dir}/braid-steam-install/braid64_d3d11_final.exe";
+    inherit winePrefix;
 
     assets = {
       poster = ./assets/braid/grid.png;
@@ -22,6 +25,21 @@ in
       icon = ./assets/braid/icon.png;
       background = ./assets/braid/background.jpg;
       screenshot = ./assets/braid/screenshot.jpg;
+    };
+  };
+
+  satellite.games.entries.ootss = {
+    name = "Order of the Sinking Star";
+
+    script = "umu";
+    file = "${winePrefix}/drive_c/users/moon/Games/Order of the Sinking Star/sinking_star.exe";
+    inherit winePrefix;
+
+    assets = {
+      poster = ./assets/ootss/grid.jpg;
+      icon = ./assets/ootss/icon.png;
+      background = ./assets/ootss/background.jpg;
+      screenshot = ./assets/ootss/screenshot.jpg;
     };
   };
 }

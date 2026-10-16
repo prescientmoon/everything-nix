@@ -4,7 +4,6 @@
 
     ./baba-is-you.nix
     ./bobbys-bounce.nix
-    ./braid.nix
     ./crypt-of-the-necrodancer.nix
     ./edopro.nix
     ./gridsage.nix
@@ -14,6 +13,7 @@
     ./seventh-beat-games.nix
     ./steins-gate.nix
     ./system-erasure.nix
+    ./thekla.nix
     ./touhou.nix
     ./ultrakill.nix
     ./vvvvvv.nix

@@ -4,11 +4,16 @@ endif
 let b:current_syn = "anima"
 
 syn match animaApparition /\v\\[a-zA-Z0-9\-]*!?/ contains=@NoSpell
-
-" https://stackoverflow.com/questions/24543887/how-to-match-rfc3339-timestamp-using-regex
-syn match animaTimestamp /\v\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?[A-Z]?([+.-](\d\d:\d\d|\d\d[A-X]))?/ contains=@NoSpell
-syn match animaUrl /\vhttps?:\/\/[a-zA-Z0-9%#.+/-]+/ contains=@NoSpell
-
+syn match animaRef /\v\$[a-zA-Z0-9\-]*!?/ contains=@NoSpell
+syn match animaBuiltin /\v_[a-zA-Z0-9\-]*!?/ contains=@NoSpell
+syn match animaToken /\v#[a-zA-Z0-9\-]*!?/ contains=@NoSpell
+syn match animaVariant /\v- /
+syn match animaPattern /\v`.*`/ contains=@NoSpell
+syn match animaComment /\v;;.*$/ contains=@Spell
 hi link animaApparition Keyword
-hi link animaTimestamp Special
-hi link animaUrl Special
+hi link animaRef Type
+hi link animaBuiltin Constant
+hi link animaToken Special
+hi link animaVariant Keyword
+hi link animaPattern String
+hi link animaComment Comment
