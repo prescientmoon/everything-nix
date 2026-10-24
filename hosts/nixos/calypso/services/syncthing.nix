@@ -15,6 +15,7 @@ in
         path = "${home}/media/music/pebbles";
         devices = [
           "chaldene"
+          "tethys"
         ];
       };
 
@@ -30,8 +31,9 @@ in
         };
 
         devices = [
-          "lapetus"
           "chaldene"
+          "lapetus"
+          "tethys"
         ];
       };
     };

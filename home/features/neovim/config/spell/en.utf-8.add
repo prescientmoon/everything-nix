@@ -1,13 +1,17 @@
 3x3
+3x3x3
 aaaa
 Aaaa
 Aaaaa
+aaaaaa
 Aaaaaaaa
 aaaaaaaaaaaa
 aaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaa
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Aaanyway
+AABB
+AABBs
 Aang
 abelian
 abelianization
@@ -27,6 +31,7 @@ Adriel
 Aegleseeker
 aerc
 AerynOS
+af
 Affine2
 Agda
 agenix
@@ -45,6 +50,7 @@ angelzorn
 anihil
 Anki
 Apachiței
+AppImage
 Arcaea
 Arcaea's
 Ari
@@ -58,6 +64,7 @@ atapi
 atomless
 attrset
 Attrset
+Augh
 Auth
 authed
 Autoload
@@ -75,6 +82,7 @@ base16
 basepoint
 basepoints
 Basic
+bg
 BG
 bidegree
 bigraded
@@ -82,6 +90,7 @@ bilinearity
 bitfield
 bitfields
 bitset
+bitshifts
 Bitwarden
 Blåhaj
 Blåhaj's
@@ -90,9 +99,11 @@ BlueGhost
 bmarkup
 Boogaloo
 Borşa
+Bosca
 BPMs
 brainer
 Breda
+brickfest
 Brighspace
 Bruijn
 btrfs
@@ -105,6 +116,8 @@ Cardmarket
 cartesian
 catamorphism
 Cătina
+CCCs
+Ceoil
 cereștieer
 cereștieers
 Cereștieers
@@ -157,6 +170,7 @@ collider
 colliders
 colorschemes
 commandline
+compat
 composable
 comptime
 config
@@ -181,10 +195,12 @@ Covector
 Covid
 ctags
 datetime
+DDG
 DDNS
 Deepseek
 deflink
 Deleni
+Deltarune
 deref
 desugar
 desugaring
@@ -194,9 +210,11 @@ DHCP
 diffeomorphism
 diffeomorphisms
 direnv
+Disko
 DLC
 DLCs
 DM
+DMs
 dnsmasq
 Dogmatika
 doomscrolled
@@ -215,6 +233,7 @@ eeping
 eepy
 effectful
 ehhh
+ehhhh
 ehhhhhhh
 Eindbass
 elaborator
@@ -229,6 +248,7 @@ env var
 env vars
 EOF
 epimorphisms
+epu
 erroring
 esbuild
 ethernet
@@ -275,6 +295,7 @@ Fortissimole
 Fosdem
 foundedness
 FP
+framerate
 freeform
 Frum's
 Frums
@@ -297,9 +318,11 @@ fzf
 fzy
 GADT
 GADTs
+Gam
 gamedev
 GameMaker
 gamescope
+Gam's
 GBP
 gemini
 gemtext
@@ -315,6 +338,7 @@ Gitlab
 glamourisation
 GLSL
 GMTK
+Godhand
 golem
 golems
 goooo
@@ -327,6 +351,8 @@ Groningen
 Grothendieck
 groupoid
 groupoids
+grr
+grrr
 Grrr
 Grrrr
 Grrrrr
@@ -358,10 +384,12 @@ hhhhhhh
 hhhhhhhh
 hhhhhhhhhh
 hhhhhhhhhhh
+Hiiii
 hiisi
 HiTNEX ViRTUAL SHiFTERZ
 Hmmm
 Hmph
+hoc
 Hololive
 hom
 homelab
@@ -379,6 +407,7 @@ HRT
 _Hurewicz
 Hurewicz
 Hurewicz's
+Hylo
 hypotheticals
 hyprland
 Hyprland
@@ -389,9 +418,11 @@ ilist
 imarkup
 implementor
 impredicative
+ing
 injectively
 injectivity
 inlyne
+inperceptible
 insta
 intuitionistic
 IPv4
@@ -425,6 +456,7 @@ keybinds
 keymash
 keypresses
 kicad
+Kingett
 Kleisli
 KLM
 knownHosts
@@ -455,6 +487,7 @@ LLM
 LLMs
 lmao
 lmms
+lokesh
 lol
 lookaheads
 LSP
@@ -470,6 +503,7 @@ Magdiel
 maildir
 Maimai
 mained
+Manadium
 manpage
 manpages
 manusya's
@@ -479,6 +513,7 @@ MasterMath
 Matei
 MathML
 matroid
+maxie
 Maxie
 Mayara
 MBT
@@ -505,6 +540,7 @@ monoids
 monomorphisms
 monorepo
 monorepos
+Moonberry
 moonythm
 moreso
 Morty
@@ -525,6 +561,7 @@ necrodancing
 Neovide
 neovim
 Neovim's
+ness
 Netlify
 Netpunk
 netrw
@@ -553,6 +590,7 @@ Noita
 Noita's
 NOOOOO
 NPC
+npins
 npm
 NPM
 nullary
@@ -565,9 +603,11 @@ Okie
 omg
 OMG
 Ongeki
+Oof
 OOTSS
 orderable
 OST
+OTK'd
 OV
 overanalyzing
 OverlayFS
@@ -589,6 +629,7 @@ playset
 plex
 pointwise
 ponens
+POPL
 portuguese
 poset
 posets
@@ -643,13 +684,16 @@ Riemannian
 Rijke
 ripgrep
 Roblox
+RockeTrush
 rocq
 Rocq's
 roguelike
+ROLAD
 rsync
 ruladă
 rysutlrysultryuslt
 sadge
+salamandra
 scaredness
 Schur's
 Scraptown
@@ -672,6 +716,7 @@ shader
 shaderfurl
 shaders
 Shaders
+Shadoll
 shaorma
 sheafification
 Sheafification
@@ -699,6 +744,7 @@ speedrunner
 speedrunning
 Splatoon
 spoilery
+spritesheets
 SQLite
 SSG
 Standup
@@ -720,6 +766,7 @@ submodule
 submodules
 subparsers
 subpixel
+subpixels
 subpresheaf
 subring
 subslice
@@ -727,6 +774,7 @@ subtrees
 subvolume
 subvolumes
 sudo
+sumi
 Sunnexo
 Sunseed
 superboss
@@ -746,9 +794,11 @@ Talos
 Târgovişte
 Târgoviște
 TBD
+TBH
 TCG
 Teodora
 tethys
+Teto
 Tetr.io
 Tetris
 TFS's
@@ -767,6 +817,7 @@ TODO
 TODOs
 Tokaku
 Tokaku's
+toslaw
 Touhou
 treemap
 Treemap
@@ -814,6 +865,7 @@ UwU
 uxn
 uxntal
 Vaush
+Vec2
 Vect
 Vendread
 vimgrep
@@ -822,6 +874,7 @@ VLANs
 vocaloid
 Voltex
 VSCode
+vyc
 Wacca
 Waow
 webdev
@@ -865,11 +918,5 @@ zornima
 Zornima
 zornlib
 zpools
+λ
 Ω
-Disko
-Oof
-hoc
-npins
-TBH
-grrr
-ing

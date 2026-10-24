@@ -104,7 +104,7 @@
   @stu XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   q    w    f    p    b    j    l    u    y    ;    XX   XX   XX
   XX   a    r    s    t    g    m    n    e    i    o    XX   XX
-  XX   x    z    c    d    v    x    k    h    ,    .    '    XX
+  x    x    z    c    d    v    x    k    h    ,    .    '    XX
   XX   lmet @red           spc            @blue
 )
 ;; }}}
@@ -131,7 +131,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    S-=  S-2  S-3  S-4  S-5  S--  S-7  S-8  grv S-grv _    _    _
   _    S-,  S-[  [    S-9  S-/  S-\  -    /    =    S-;  _    _
-  _    S-.  S-]  ]    S-0  S-1  _    @em  S-6  _    _    S-'  _
+  S-.  S-.  S-]  ]    S-0  S-1  S-.  @em  S-6  _    _    S-'  _
   _    _    @purple        \              _
 )
 ;; }}}
@@ -159,7 +159,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    f1   f2   f3   f4   f5   @cps @cpy next volu brup _    _    _
   _    f6   f7   f8   f9   f10  @udo @pst pp   vold brdn _    _
-  _    f11  f12  _    _    _    _    _    @cut prev mute _    _
+  f11  f11  f12  _    _    _    f11  _    @cut prev mute _    _
   _    _    _              _              _
 )
 ;; }}}

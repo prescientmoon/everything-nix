@@ -8,7 +8,9 @@
 {
   programs.firefox = {
     enable = true;
-    configPath = ".mozilla/firefox"; # Change this to math the XDG spec once I'm ready to migrate my devices!
+
+# Change this to math the XDG spec once I'm ready to migrate my devices!
+    configPath = ".mozilla/firefox";
 
     # {{{ Policies
     policies = {
@@ -50,12 +52,11 @@
         bitwarden # Password manager
         ublock-origin
         dearrow # Crowdsourced clickbait remover 💀
-        sponsorblock # skip youtube sponsors
+        sponsorblock # skip YouTube sponsors
         don-t-fuck-with-paste # disallows certain websites from disabling pasting
 
         indie-wiki-buddy # redirects fandom wiki urls to the proper wikis
         privacy-badger # blocks some trackers
-        privacy-redirect # allows redirecting to my own instances for certain apps
         user-agent-string-switcher
         i-dont-care-about-cookies
         unpaywall
@@ -94,6 +95,8 @@
       # }}}
       # {{{ Other lower level settings
       settings = {
+        "sidebar.verticalTabs" = true;
+
         # Auto enable nix provided extensions
         "extensions.autoDisableScopes" = 0;
 
