@@ -7,7 +7,6 @@ in
   satellite.games.entries.cogmind = {
     name = "Cogmind";
     file = "${dir}/cogmind/COGMIND.exe";
-    winePrefix = "${dir}/prefix";
     script = "umu";
 
     assets = {

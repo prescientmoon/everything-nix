@@ -15,8 +15,10 @@ in
     '';
 
     file = "${dir}/grapplehook-midpoint-teleport-killer/GMTK.exe";
-    winePrefix = "${dir}/prefix";
     script = "wine";
+
+    wine.state = "${dir}/grapplehook-midpoint-teleport-killer/prefix";
+    wine.paths = [ "AppData/Local/GMTK" ];
 
     assets = {
       icon = ./assets/grapplehook-midpoint-teleport-killer/icon.png;

@@ -6,8 +6,8 @@
     # ./bobbys-bounce.nix
     # ./crypt-of-the-necrodancer.nix
     ./edopro.nix
-    # ./gridsage.nix
-    # ./misc.nix
+    ./gridsage.nix
+    ./misc.nix
     # ./noita.nix
     # ./rain-world.nix
     # ./seventh-beat-games.nix
