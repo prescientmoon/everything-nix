@@ -1,4 +1,3 @@
-# TODO: remove all references to Heroic
 {
   config,
   lib,
@@ -19,10 +18,6 @@ let
   gamingStateDir = "${persistentStateDir}/gaming";
 
   gameDir = "${config.home.homeDirectory}/media/games";
-  heroicGameDir = "${gameDir}/heroic";
-  heroicConfigDir = "${config.xdg.configHome}/heroic";
-  heroicDataDir = "${config.xdg.dataHome}/heroic";
-  # protonPath = "${heroicConfigDir}/tools/proton/GE-Proton-latest";
   protonPath = "UMU-Proton";
   wineUser = "moon";
 
@@ -356,14 +351,6 @@ in
 
       at.steam.directories = [ steamDir ];
 
-      at.heroic.directories = [
-        heroicConfigDir
-        heroicGameDir
-
-        # I store wine prefixes here (will try to move them out though)
-        heroicDataDir
-      ];
-
       directories = persistentDirectories;
     };
     # }}}
@@ -400,12 +387,6 @@ in
       # {{{ Packages
       wine
       pkgs.pegasus-frontend
-      (upkgs.heroic.override {
-        extraPkgs = pkgs: [
-          pkgs.gamescope
-          pkgs.gamemode
-        ];
-      })
       # }}}
       # {{{ historia-stats
       (pkgs.writeShellScriptBin "historia-stats" ''
