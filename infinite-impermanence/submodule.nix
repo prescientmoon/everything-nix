@@ -45,7 +45,7 @@ lib.fix (
     permissionOpts.options = {
       mode = lib.mkOption {
         type = lib.types.str;
-        example = "0700";
+        example = "700";
       };
     }
     // userGroupOpts.options;

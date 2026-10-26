@@ -31,16 +31,16 @@ def mkdirs(path, bound, user, group, mode, isbound=False):
 	for parent in parents:
 		actual = (user, group, mode)
 		if parent in existing:
-			expected = existing[parent]
+			existingPath, expected = existing[parent]
 			if expected == actual:
 				log.debug(f"Path {parent} already handled, skipping...")
 				continue
 			else:
 				fmt = lambda x: (x[0], x[1], f"{x[2]:o}")
-				log.error(f"Contradictory permissions for parent {parent}: {fmt(expected)} vs {fmt(actual)}")
+				log.error(f"Contradictory permissions for parent {parent}: {existingPath} {fmt(expected)} vs {path} {fmt(actual)}")
 				sys.exit(1)
 		else:
-			existing[parent] = (user, group, mode)
+			existing[parent] = (path, (user, group, mode))
 
 		if not parent.exists():
 			log.debug(f"Creating {parent} with mode {mode:o}.")

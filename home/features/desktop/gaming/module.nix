@@ -1,3 +1,4 @@
+# TODO: remove all references to Heroic and Lutris
 {
   config,
   lib,
@@ -9,10 +10,12 @@ let
   cfg = config.satellite.games;
   wine = pkgs.wineWow64Packages.waylandFull;
 
+  # {{{ Paths / other constants
   steamDir = "${config.xdg.dataHome}/Steam";
   historia = import ./historia { inherit pkgs; };
   historiaDbPath = "/persist/state${config.home.homeDirectory}/historia/db.sqlite";
   persistentStateDir = config.satellite.persistence.at.state.bounds.source;
+  persistentCacheDir = config.satellite.persistence.at.cache.bounds.source;
 
   gameDir = "${config.home.homeDirectory}/media/games";
   heroicGameDir = "${gameDir}/heroic";
@@ -20,7 +23,21 @@ let
   heroicDataDir = "${config.xdg.dataHome}/heroic";
   # protonPath = "${heroicConfigDir}/tools/proton/GE-Proton-latest";
   protonPath = "UMU-Proton";
+  wineUser = "moon";
 
+  wineBase = "${config.xdg.dataHome}/satellite/gaming/prefixes";
+
+  # I really need to abstract this away somewhere...
+  concatPaths =
+    paths:
+    lib.optionalString (lib.hasPrefix "/" (lib.head paths)) "/"
+    + lib.pipe paths [
+      (lib.concatMap (builtins.split "/"))
+      (lib.filter (s: builtins.typeOf s == "string" && s != ""))
+      (lib.concatStringsSep "/")
+    ];
+  # }}}
+  # {{{ Game options
   gameOptions =
     { config, name, ... }:
     {
@@ -66,24 +83,42 @@ let
           description = "Additional arguments to pass to the game executable.";
         };
 
-        winePrefix = lib.mkOption {
-          type = lib.types.oneOf [
-            lib.types.str
-            lib.types.path
+        wine.prefix = lib.mkOption {
+          type = lib.types.str;
+          default = config.script;
+          description = "The name of the prefix to use for Windows games.";
+        };
+
+        wine.subprefix = lib.mkOption {
+          type = lib.types.str;
+          default = config.id;
+          description = "The name of the subprefix to use for Windows games.";
+        };
+
+        wine.state = lib.mkOption {
+          type = lib.types.str;
+          description = ''
+            Path to the directory where the state of the prefix should be kept.
+          '';
+          default = concatPaths [
+            persistentStateDir
+            config.id
+            "prefix"
           ];
-          description = "The prefix location for games that run inside WINE.";
-          default = "${persistentStateDir}/${config.id}/prefix";
+        };
+
+        wine.paths = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [];
+          description = ''
+            List of paths inside the wine prefix' main user that must be backed
+            up.
+          '';
         };
 
         script = lib.mkOption {
           default = null;
-          type = lib.types.nullOr (
-            lib.types.enum [
-              "steam-run"
-              "umu"
-              "wine"
-            ]
-          );
+          type = lib.types.nullOr (lib.types.enum [ "steam-run" "umu" "wine" ]);
         };
 
         launch = lib.mkOption {
@@ -137,14 +172,20 @@ let
 
       config.launch =
         let
+          protonOpts = lib.optionalAttrs
+            (protonPath == "UMU-Proton")
+            { PROTONPATH = protonPath; };
+
+          wineVars = {
+            WINEPREFIX = "${wineBase}/${config.wine.subprefix}";
+            USER = wineUser;
+          };
+
           envVars =
             if config.script == "umu" then
-              {
-                WINEPREFIX = config.winePrefix;
-              }
-              // (if protonPath == "UMU-Proton" then { } else { PROTONPATH = protonPath; })
+              wineVars // protonOpts
             else if config.script == "wine" then
-              { WINEPREFIX = config.winePrefix; }
+              wineVars
             else
               { };
 
@@ -181,6 +222,47 @@ let
             ${lib.escapeShellArgs (command ++ config.args)}
         '';
     };
+  # }}}
+  # {{{ Wine state persistence
+  winePersistentDirectories = lib.concatMap (entry:
+    lib.forEach entry.wine.paths (path: {
+      paths.source = concatPaths [
+        entry.wine.state
+        path
+      ];
+
+      paths.target = concatPaths [
+        wineBase
+        entry.wine.subprefix
+        "drive_c/users"
+        wineUser
+        path
+      ];
+    })
+  ) (builtins.attrValues cfg.entries);
+  # }}}
+  # {{{ Wine prefix construction
+  winePrefixDirectories = lib.pipe cfg.entries [
+    builtins.attrValues
+    (lib.filter (entry: entry.script == "umu" || entry.script == "wine"))
+    (lib.map (entry: { inherit (entry.wine) prefix subprefix; }))
+    lib.lists.unique
+    (lib.map ({ prefix, subprefix }: {
+      paths.source = concatPaths [
+        persistentCacheDir
+        "gaming/prefixes"
+        prefix
+        "drive_c/windows"
+      ];
+
+      paths.target = concatPaths [
+        wineBase
+        subprefix
+        "drive_c/windows"
+      ];
+    }))
+  ];
+  # }}}
 in
 {
   options.satellite.games = {
@@ -193,6 +275,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # {{{ Pegasus config file
     xdg.configFile = {
       "pegasus-frontend/metafiles/nix.metadata.pegasus.txt".text = ''
         collection: Nix
@@ -229,16 +312,17 @@ in
         ]}
       '';
     };
-
-    satellite.persistence.at.state.at = {
-      wine.directories = [ ".wine" ];
-      pegasus.directories = [
+    # }}}
+    # {{{ State persistence
+    satellite.persistence.at.state = {
+      at.wine.directories = [ ".wine" ];
+      at.pegasus.directories = [
         "${config.xdg.configHome}/pegasus-frontend"
       ];
 
-      steam.directories = [ steamDir ];
+      at.steam.directories = [ steamDir ];
 
-      heroic.directories = [
+      at.heroic.directories = [
         heroicConfigDir
         heroicGameDir
 
@@ -247,28 +331,35 @@ in
       ];
 
       # There might be more to cache in `.cache/lutris`, but this works for now
-      lutris.directories = [
+      at.lutris.directories = [
         "${config.xdg.configHome}/lutris" # General configuration data
         "${config.xdg.cacheHome}/lutris/banners" # Game banners
         "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
         "${gameDir}/lutris"
       ];
-    };
 
-    satellite.persistence.at.cache.at = {
-      umu.directories = [
+      directories = winePersistentDirectories;
+    };
+    # }}}
+    # {{{ Cache persistence
+    satellite.persistence.at.cache = {
+      at.umu.directories = [
         "${config.xdg.dataHome}/umu"
         "${config.xdg.cacheHome}/umu"
         "${config.xdg.cacheHome}/umu-protonfixes"
       ];
-    };
 
+      directories = winePrefixDirectories;
+    };
+    # }}}
+    # {{{ Directory scaffolding (should we really be using tmpfiles here?)
     systemd.user.tmpfiles.rules = [
       "d /persist/local/cache${config.xdg.dataHome}/umu"
       "d /persist/local/cache${config.xdg.cacheHome}/umu"
       "d /persist/local/cache${config.xdg.cacheHome}/umu-protonfixes"
     ];
-
+    # }}}
+    # {{{ Desktop entries
     xdg.desktopEntries = lib.mapAttrs (_: entry: {
       inherit (entry) name;
       icon = entry.assets.icon;
@@ -277,8 +368,10 @@ in
       terminal = false;
       exec = toString entry.launch;
     }) cfg.entries;
+    # }}}
 
     home.packages = [
+      # {{{ Packages
       pkgs.lutris
       wine
       pkgs.pegasus-frontend
@@ -288,7 +381,8 @@ in
           pkgs.gamemode
         ];
       })
-
+      # }}}
+      # {{{ historia-stats
       (pkgs.writeShellScriptBin "historia-stats" ''
         if [ $# -eq 0 ]; then
           sqlite3 ${historiaDbPath} -table \
@@ -305,6 +399,7 @@ in
              AND minutes >= 5"
         fi
       '')
+      # }}}
     ];
   };
 }

@@ -8,13 +8,13 @@ in
     name = "Void Stranger";
     developers = [ "System Erasure" ];
     release = "2023-09-01";
-    description = ''
-      Place your faith and embrace the Void.
-    '';
+    description = "Place your faith and embrace the Void.";
 
     file = "${dir}/void-stranger/VoidStranger.exe";
-    winePrefix = "${dir}/prefix";
     script = "wine";
+
+    wine.state = "${dir}/prefix";
+    wine.paths = [ "AppData/Local/void_stranger" ];
 
     assets = {
       poster = ./assets/void-stranger/grid.jpg;
@@ -34,15 +34,15 @@ in
     '';
 
     file = "${dir}/zero-ranger/ZeroRanger.exe";
-    winePrefix = "${dir}/prefix";
     script = "wine";
+
+    wine.state = "${dir}/prefix";
+    wine.paths = [ "AppData/Local/ZeroRanger" ];
 
     assets = {
       poster = ./assets/zero-ranger/grid.jpg;
       logo = ./assets/zero-ranger/logo.png;
       icon = ./assets/zero-ranger/icon.png;
-      # background = ./assets/void-stranger/background.jpg;
-      # screenshot = ./assets/void-stranger/screenshot.jpg;
     };
   };
 
@@ -50,7 +50,7 @@ in
     inherit (config.satellite.games.entries.zero-ranger)
       historiaId
       file
-      winePrefix
+      wine
       script
       assets
       ;
@@ -73,19 +73,8 @@ in
 
     pegasus = false;
     name = "Zero Ranger (Dora)";
-    winePrefix = "${dir}/prefix-dora";
-  };
 
-  satellite.games.entries.zero-ranger-mara-iuli = {
-    inherit (config.satellite.games.entries.zero-ranger)
-      historiaId
-      file
-      script
-      assets
-      ;
-
-    pegasus = false;
-    name = "Zero Ranger (Mara / Iuli)";
-    winePrefix = "${dir}/prefix-mara-iuli";
+    wine.state = "${dir}/prefix-dora";
+    wine.paths = config.satellite.games.entries.zero-ranger.wine.paths;
   };
 }

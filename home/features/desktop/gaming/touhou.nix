@@ -16,7 +16,6 @@ in
     '';
 
     file = "${dir}/06/th06e.exe";
-    winePrefix = "${dir}/prefix";
     script = "umu";
 
     assets = {

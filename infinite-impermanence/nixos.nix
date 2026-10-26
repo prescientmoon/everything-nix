@@ -50,7 +50,7 @@ let
           {
             permissions.user = user.name;
             permissions.group = user.group;
-            permissions.mode = user.homeMode;
+            permissions.mode = "755";
             bounds.target = user.home;
             bounds.source = lib.mkDefault "/";
             autoScaffold = false;
