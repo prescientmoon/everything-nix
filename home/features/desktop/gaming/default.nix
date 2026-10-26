@@ -3,7 +3,6 @@
     ./module.nix
 
     # ./baba-is-you.nix
-    # ./bobbys-bounce.nix
     # ./crypt-of-the-necrodancer.nix
     ./edopro.nix
     ./gridsage.nix
