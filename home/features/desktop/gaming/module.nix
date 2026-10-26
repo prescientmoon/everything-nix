@@ -17,10 +17,9 @@ let
   persistentCacheDir = config.satellite.persistence.at.cache.bounds.source;
   gamingStateDir = "${persistentStateDir}/gaming";
 
-  gameDir = "${config.home.homeDirectory}/media/games";
   protonPath = "UMU-Proton";
-  wineUser = "moon";
 
+  wineUser = "moon";
   wineBase = "${config.xdg.dataHome}/satellite/gaming/prefixes";
 
   # I really need to abstract this away somewhere...
