@@ -1,4 +1,4 @@
-# TODO: remove all references to Heroic and Lutris
+# TODO: remove all references to Heroic
 {
   config,
   lib,
@@ -364,14 +364,6 @@ in
         heroicDataDir
       ];
 
-      # There might be more to cache in `.cache/lutris`, but this works for now
-      at.lutris.directories = [
-        "${config.xdg.configHome}/lutris" # General configuration data
-        "${config.xdg.cacheHome}/lutris/banners" # Game banners
-        "${config.xdg.cacheHome}/lutris/coverart" # Game cover art
-        "${gameDir}/lutris"
-      ];
-
       directories = persistentDirectories;
     };
     # }}}
@@ -406,7 +398,6 @@ in
 
     home.packages = [
       # {{{ Packages
-      pkgs.lutris
       wine
       pkgs.pegasus-frontend
       (upkgs.heroic.override {

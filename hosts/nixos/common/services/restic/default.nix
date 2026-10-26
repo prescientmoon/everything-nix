@@ -88,7 +88,6 @@ in
             "${home}/discord"
             "${home}/element"
             "${home}/firefox"
-            "${home}/lutris"
             "${home}/qmk"
             "${home}/signal"
             "${home}/spotify" # TODO: remove once I deleted this

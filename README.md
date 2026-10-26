@@ -131,6 +131,7 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Lutris](https://lutris.net/) — I prefer managing my games manually.
 - [Diplomatic Timekeeper](https://github.com/bhickey/Diplomatic-Timekeeper) — I haven't needed this hosted in years (I first did it for a friend I think?).
 - [Jupyterhub](https://github.com/jupyterhub/jupyterhub) — I only installed this because a course required it.
 - [beesd](https://github.com/Zygo/bees) — Was slowing down my computer a lot. Will likely try this again in the future.
