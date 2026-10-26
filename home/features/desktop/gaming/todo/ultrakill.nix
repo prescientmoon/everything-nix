@@ -16,7 +16,7 @@ in
     '';
 
     # TODO: Handle the actual launching of the game :/
-    file = "${persistentStateDir}/baba-is-you/itch-install/bin64/Chowdren";
+    file = "???";
     script = "umu";
 
     assets = {
@@ -24,7 +24,6 @@ in
       logo = ./assets/ultrakill/logo.png;
       icon = ./assets/ultrakill/icon.jpg;
       background = ./assets/ultrakill/background.jpg;
-      screenshot = ./assets/ultrakill/screenshot.jpg;
     };
   };
 }

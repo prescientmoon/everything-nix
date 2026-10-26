@@ -26,7 +26,6 @@ in
       logo = ./assets/rain-world/logo.png;
       icon = ./assets/rain-world/icon.png;
       background = ./assets/rain-world/background.png;
-      screenshot = ./assets/rain-world/screenshot.png;
     };
   };
 }

@@ -29,7 +29,6 @@ in
       logo = ./assets/noita/logo.png;
       icon = ./assets/noita/icon.png;
       background = ./assets/noita/background.png;
-      screenshot = ./assets/noita/screenshot.jpg;
     };
   };
 

@@ -1,8 +1,4 @@
 { config, ... }:
-let
-  persistentStateDir = "/persist/state${config.home.homeDirectory}";
-  dir = "${persistentStateDir}/system-erasure";
-in
 {
   satellite.games.entries.void-stranger = {
     name = "Void Stranger";
@@ -10,18 +6,15 @@ in
     release = "2023-09-01";
     description = "Place your faith and embrace the Void.";
 
-    file = "${dir}/void-stranger/VoidStranger.exe";
     script = "wine";
-
-    wine.state = "${dir}/prefix";
-    wine.paths = [ "AppData/Local/void_stranger" ];
+    file = "steam/VoidStranger.exe";
+    paths = [ "AppData/Local/void_stranger" ];
 
     assets = {
       poster = ./assets/void-stranger/grid.jpg;
       logo = ./assets/void-stranger/logo.png;
       icon = ./assets/void-stranger/icon.png;
       background = ./assets/void-stranger/background.jpg;
-      screenshot = ./assets/void-stranger/screenshot.jpg;
     };
   };
 
@@ -33,11 +26,9 @@ in
       This is the story of a fighter who wanted to become...
     '';
 
-    file = "${dir}/zero-ranger/ZeroRanger.exe";
     script = "wine";
-
-    wine.state = "${dir}/prefix";
-    wine.paths = [ "AppData/Local/ZeroRanger" ];
+    file = "itch/ZeroRanger.exe";
+    paths = [ "AppData/Local/ZeroRanger" ];
 
     assets = {
       poster = ./assets/zero-ranger/grid.jpg;
@@ -48,33 +39,22 @@ in
 
   satellite.games.entries.zero-ranger-trainer = {
     inherit (config.satellite.games.entries.zero-ranger)
-      historiaId
-      file
-      wine
-      script
-      assets
-      ;
+      assets file historiaId paths prefix script state wine;
 
     pegasus = false;
     name = "Zero Ranger (ZeroTrainer)";
     args = [
       "-game"
-      "${dir}/zero-ranger/data-steam-zt.win"
+      "${config.satellite.games.state}/zero-ranger/itch/data-steam-zt.win"
     ];
   };
 
   satellite.games.entries.zero-ranger-dora = {
     inherit (config.satellite.games.entries.zero-ranger)
-      historiaId
-      file
-      script
-      assets
-      ;
+      assets file historiaId paths script state;
 
     pegasus = false;
     name = "Zero Ranger (Dora)";
-
-    wine.state = "${dir}/prefix-dora";
-    wine.paths = config.satellite.games.entries.zero-ranger.wine.paths;
+    prefix = "prefix-dora";
   };
 }

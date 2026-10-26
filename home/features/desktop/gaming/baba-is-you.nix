@@ -1,7 +1,4 @@
 { config, ... }:
-let
-  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
-in
 {
   satellite.games.entries.baba-is-you = {
     name = "Baba Is You";
@@ -18,19 +15,15 @@ in
       different.
     '';
 
-    file = "${persistentStateDir}/baba-is-you/itch-install/run.sh";
-    script = "umu";
+    script = "steam-run";
+    file = "itch/run.sh";
+    paths = [ "${config.xdg.dataHome}/Baba_Is_You" ];
 
     assets = {
       poster = ./assets/baba-is-you/grid.jpg;
       logo = ./assets/baba-is-you/logo.png;
-      icon = ./assets/baba-is-you/icon.jpg;
+      icon = ./assets/baba-is-you/icon.png;
       background = ./assets/baba-is-you/background.jpg;
-      screenshot = ./assets/baba-is-you/screenshot.jpg;
     };
   };
-
-  satellite.persistence.at.state.at.baba-is-you.directories = [
-    "${config.xdg.dataHome}/Baba_Is_You"
-  ];
 }

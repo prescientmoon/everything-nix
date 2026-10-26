@@ -24,7 +24,6 @@ in
       logo = ./assets/braid/logo.png;
       icon = ./assets/braid/icon.png;
       background = ./assets/braid/background.jpg;
-      screenshot = ./assets/braid/screenshot.jpg;
     };
   };
 
@@ -39,7 +38,6 @@ in
       poster = ./assets/ootss/grid.jpg;
       icon = ./assets/ootss/icon.png;
       background = ./assets/ootss/background.jpg;
-      screenshot = ./assets/ootss/screenshot.jpg;
     };
   };
 }

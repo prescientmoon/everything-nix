@@ -2,7 +2,7 @@
   imports = [
     ./module.nix
 
-    # ./baba-is-you.nix
+    ./baba-is-you.nix
     # ./crypt-of-the-necrodancer.nix
     ./edopro.nix
     ./gridsage.nix

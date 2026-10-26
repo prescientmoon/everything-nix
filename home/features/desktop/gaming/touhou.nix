@@ -1,8 +1,4 @@
 { config, ... }:
-let
-  persistentStateDir = config.satellite.persistence.at.state.bounds.source;
-  dir = "${persistentStateDir}/touhou";
-in
 {
   satellite.games.entries.touhou06 = {
     name = "Touhou 6: Koumakyou - The Embodiment of Scarlet Devil";
@@ -15,7 +11,7 @@ in
       with the goal of “questioning” those who live there.
     '';
 
-    file = "${dir}/06/th06e.exe";
+    file = "touhou06/th06e.exe";
     script = "umu";
 
     assets = {

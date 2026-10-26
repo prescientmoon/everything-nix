@@ -9,17 +9,14 @@
       idea - what if you reversed gravity instead of jumping?
     '';
 
-    file = "${pkgs.vvvvvv}/bin/vvvvvv";
+    filePath = "${pkgs.vvvvvv}/bin/vvvvvv";
+    paths = [ "${config.xdg.dataHome}/VVVVVV" ];
+
     assets = {
       poster = ./assets/vvvvvv/grid.png;
       logo = ./assets/vvvvvv/logo.png;
       icon = ./assets/vvvvvv/icon.png;
       background = ./assets/vvvvvv/background.png;
-      screenshot = ./assets/vvvvvv/screenshot.jpg;
     };
   };
-
-  satellite.persistence.at.state.at.vvvvvv.directories = [
-    "${config.xdg.dataHome}/VVVVVV"
-  ];
 }

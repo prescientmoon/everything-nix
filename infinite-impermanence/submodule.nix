@@ -273,6 +273,7 @@ lib.fix (
     };
 
     # {{{ Entry scaffolding
+    # Do we also need to generate the bounds themselves? Hm... I guess not?
     config.scaffolding =
       lib.map (entry: {
         inherit (entry.parent) user group mode;

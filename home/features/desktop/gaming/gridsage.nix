@@ -1,12 +1,8 @@
 { config, ... }:
-let
-  persistentStateDir = "/persist/state${config.home.homeDirectory}";
-  dir = "${persistentStateDir}/gridsage";
-in
 {
   satellite.games.entries.cogmind = {
     name = "Cogmind";
-    file = "${dir}/cogmind/COGMIND.exe";
+    file = "cogmind/COGMIND.exe";
     script = "umu";
 
     assets = {

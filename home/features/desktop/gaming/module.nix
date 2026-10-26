@@ -16,6 +16,7 @@ let
   historiaDbPath = "/persist/state${config.home.homeDirectory}/historia/db.sqlite";
   persistentStateDir = config.satellite.persistence.at.state.bounds.source;
   persistentCacheDir = config.satellite.persistence.at.cache.bounds.source;
+  gamingStateDir = "${persistentStateDir}/gaming";
 
   gameDir = "${config.home.homeDirectory}/media/games";
   heroicGameDir = "${gameDir}/heroic";
@@ -52,6 +53,15 @@ let
           description = "The internal name for use in places like file paths.";
         };
 
+        state = lib.mkOption {
+          type = lib.types.str;
+          default = name;
+          description = ''
+            The name of the directory to use within
+            /persist/state/home/???/gaming.
+          '';
+        };
+
         historiaId = lib.mkOption {
           type = lib.types.str;
           default = name;
@@ -65,11 +75,19 @@ let
         };
 
         file = lib.mkOption {
-          type = lib.types.oneOf [
-            lib.types.str
-            lib.types.path
-          ];
-          description = "The file that belongs to this game.";
+          type = lib.types.str;
+          description = ''
+            The executable that belongs to this game. The path must be relative
+            to the game's state directory. Absolute paths can instead be given
+            to the filePath option.
+          '';
+        };
+
+        filePath = lib.mkOption {
+          type = lib.types.str;
+          defaultText = "derived from the entry's `file` option";
+          description = "Full path to the game's executable.";
+          default = concatPaths [ cfg.state config.state config.file ];
         };
 
         args = lib.mkOption {
@@ -83,36 +101,41 @@ let
           description = "Additional arguments to pass to the game executable.";
         };
 
+        prefix = lib.mkOption {
+          type = lib.types.str;
+          default = "prefix";
+          description = ''
+            The name of the directory within the game's stateDir where the
+            persistent paths should be stored. Not to be confused with
+            `wine.prefix`! (this one applies to both wine and non-wine games!)
+          '';
+        };
+
         wine.prefix = lib.mkOption {
           type = lib.types.str;
           default = config.script;
-          description = "The name of the prefix to use for Windows games.";
+          description = ''
+            The name of the prefix to use for Windows games. The prefix data is
+            stored in /persist/local/cache/home/???/gaming/prefixes/$name.
+          '';
         };
 
         wine.subprefix = lib.mkOption {
           type = lib.types.str;
           default = config.id;
-          description = "The name of the subprefix to use for Windows games.";
-        };
-
-        wine.state = lib.mkOption {
-          type = lib.types.str;
           description = ''
-            Path to the directory where the state of the prefix should be kept.
+            The name of the subprefix to use for Windows games. The subprefix
+            will be mounted to ~/.local/share/satellite/gaming/prefixes/$name.
           '';
-          default = concatPaths [
-            persistentStateDir
-            config.id
-            "prefix"
-          ];
         };
 
-        wine.paths = lib.mkOption {
+        paths = lib.mkOption {
           type = lib.types.listOf lib.types.str;
           default = [];
           description = ''
-            List of paths inside the wine prefix' main user that must be backed
-            up.
+            List of paths inside that must be backed up. When using wine/umu,
+            the paths are relative to the prefix' main directory. Otherwise,
+            the paths are relative to ~.
           '';
         };
 
@@ -163,7 +186,6 @@ let
               logo = "The title art over a transparent background";
               poster = "Poster, usually with 2:3 aspect ratio";
               background = "A background image, eg. artwork or a screenshot";
-              screenshot = "An in-game screenshot";
 
               # Non-standard! We'll use this for generating XDG entries
               icon = "The desktop icon";
@@ -193,26 +215,26 @@ let
             if config.script == "umu" then
               [
                 "${upkgs.umu-launcher}/bin/umu-run"
-                config.file
+                config.filePath
               ]
             else if config.script == "wine" then
               [
                 "${wine}/bin/wine"
-                config.file
+                config.filePath
               ]
             else if config.script == "steam-run" then
               # NOTE: this doesn't work with `pkgs.steam-run`.
               # This could be because I add additional packages in `steam.nix`?
               [
                 "steam-run"
-                config.file
+                config.filePath
               ]
             else
-              [ config.file ];
+              [ config.filePath ];
         in
         pkgs.writeShellScript "launch-${config.id}" ''
           set -euo pipefail
-          cd "$(dirname "$(realpath "${config.file}")")"
+          cd "$(dirname "$(realpath "${config.filePath}")")"
           ${
             lib.pipe envVars [
               (lib.mapAttrsToList (k: v: ''${k}="${v}"''))
@@ -224,20 +246,24 @@ let
     };
   # }}}
   # {{{ Wine state persistence
-  winePersistentDirectories = lib.concatMap (entry:
-    lib.forEach entry.wine.paths (path: {
-      paths.source = concatPaths [
-        entry.wine.state
-        path
+  persistentDirectories = lib.concatMap (entry:
+    lib.forEach entry.paths (path: {
+      base = path;
+
+      bounds.source = concatPaths [
+        cfg.state
+        entry.state
+        entry.prefix
       ];
 
-      paths.target = concatPaths [
-        wineBase
-        entry.wine.subprefix
-        "drive_c/users"
-        wineUser
-        path
-      ];
+      bounds.target = lib.mkIf
+        (entry.script == "wine" || entry.script == "umu")
+        (concatPaths [
+          wineBase
+          entry.wine.subprefix
+          "drive_c/users"
+          wineUser
+        ]);
     })
   ) (builtins.attrValues cfg.entries);
   # }}}
@@ -266,12 +292,20 @@ let
 in
 {
   options.satellite.games = {
+    # {{{ Options
     enable = lib.mkEnableOption "satellite's game management";
     entries = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule gameOptions);
       default = { };
       description = "The games to include in the collection";
     };
+
+    state = lib.mkOption {
+      type = lib.types.str;
+      default = gamingStateDir;
+      readOnly = true;
+    };
+    # }}}
   };
 
   config = lib.mkIf cfg.enable {
@@ -294,7 +328,7 @@ in
             lib.concatStringsSep "\n" (
               [
                 "game: ${entry.name}"
-                "file: ${entry.file}"
+                "file: ${entry.filePath}"
               ]
               ++ forEach entry.developers (developer: "developer: ${developer}")
               ++ single "launch"
@@ -338,7 +372,7 @@ in
         "${gameDir}/lutris"
       ];
 
-      directories = winePersistentDirectories;
+      directories = persistentDirectories;
     };
     # }}}
     # {{{ Cache persistence

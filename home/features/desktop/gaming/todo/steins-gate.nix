@@ -25,7 +25,6 @@ in
       logo = ./assets/steins-gate/logo.png;
       icon = ./assets/steins-gate/icon.png;
       background = ./assets/steins-gate/background.jpg;
-      screenshot = ./assets/steins-gate/screenshot.jpg;
     };
   };
 }

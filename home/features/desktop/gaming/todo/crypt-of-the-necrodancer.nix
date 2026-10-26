@@ -31,7 +31,6 @@ in
       logo = ./assets/crypt/logo.png;
       icon = ./assets/crypt/icon.png;
       background = ./assets/crypt/background.png;
-      screenshot = ./assets/crypt/screenshot.png;
     };
   };
 
