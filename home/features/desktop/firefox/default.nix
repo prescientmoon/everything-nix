@@ -9,8 +9,9 @@
   programs.firefox = {
     enable = true;
 
-# Change this to math the XDG spec once I'm ready to migrate my devices!
-    configPath = ".mozilla/firefox";
+    # I tried making this use dataHome instead, but Firefox was refusing to
+    # behave... Such a flimsy piece of software...
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
 
     # {{{ Policies
     policies = {
@@ -166,6 +167,9 @@
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.pinned" = false;
 
+        # Nevermind, the new tab page is not salvageable...
+        "browser.newtab.url" = "about:blank";
+
         # Privacy
         "browser.contentblocking.category" = "strict";
         "app.shield.optoutstudies.enabled" = false;
@@ -200,11 +204,11 @@
   # }}}
   # {{{ Persistence
   satellite.persistence.at.state.at.firefox.directories = [
-    ".mozilla/firefox" # More important stuff
+    "${config.xdg.configHome}/mozilla/firefox"
   ];
 
   satellite.persistence.at.cache.at.firefox.directories = [
-    "${config.xdg.cacheHome}/mozilla/firefox" # Non-important cache
+    "${config.xdg.cacheHome}/mozilla/firefox"
   ];
   # }}}
 }

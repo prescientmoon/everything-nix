@@ -18,7 +18,7 @@ nixos-rebuild action="switch" host=hostname:
 
   host = "{{host}}"
   users = {
-    'tethys': 'adrielus',
+    'tethys': 'moon',
     'lapetus': 'root',
     'calypso': 'moon',
   }

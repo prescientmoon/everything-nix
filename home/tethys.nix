@@ -9,7 +9,7 @@
   ];
 
   home.stateVersion = "23.05";
-  home.username = "adrielus";
+  home.username = "moon";
 
   satellite = {
     dev.enable = true; # Enable symlinks outside the nix store

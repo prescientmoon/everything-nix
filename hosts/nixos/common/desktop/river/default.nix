@@ -41,9 +41,6 @@ in
     # TODO: make this use nothing but infinite impermanence
     home-manager.users.pilot = { config, ... }: {
       xdg.configFile."river/config.rh".source = ./config.rh;
-      satellite.persistence.at.cache.at.river.files = [
-        "${config.xdg.cacheHome}/rhine.restore"
-      ];
     };
   };
 }

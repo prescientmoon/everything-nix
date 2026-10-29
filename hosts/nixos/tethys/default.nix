@@ -11,7 +11,7 @@
     ./services/syncthing.nix
   ];
 
-  satellite.pilot.name = "adrielus";
+  satellite.pilot.name = "moon";
   satellite.machine.graphical = true;
   satellite.machine.gaming = true;
 
