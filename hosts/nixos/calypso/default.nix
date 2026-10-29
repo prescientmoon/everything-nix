@@ -12,7 +12,6 @@
     ./services/cgit.nix
     ./services/snapper.nix
     ./services/syncthing.nix
-    ./services/soulseek.nix
     # ./services/nftables.nix
   ];
 
@@ -22,6 +21,7 @@
 
   satellite.wireless.backend = "iwd";
   satellite.river.enable = true;
+  satellite.soulseek.enable = true;
 
   # Machine ids
   networking.hostName = "calypso";

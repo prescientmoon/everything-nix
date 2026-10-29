@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 import json
 import logging
+import os
 import shutil
 import sys
 from pathlib import Path
 
 log = logging.getLogger("ii-directories")
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=os.environ.get("IILOGLEVEL", "INFO").upper())
 
 if len(sys.argv) != 2:
 	log.error("Usage: ii-directories <config-path>.")

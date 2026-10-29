@@ -17,6 +17,7 @@
 
   satellite.wireless.backend = "iwd";
   satellite.river.enable = true;
+  satellite.soulseek.enable = true;
 
   # Machine ids
   networking.hostName = "tethys";

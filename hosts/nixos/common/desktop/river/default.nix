@@ -23,6 +23,7 @@ in
       }
     ];
 
+    # TODO: simply inline whatever this does...
     programs.river-next = {
       enable = true;
       windowManagers = [ "rhine" ];

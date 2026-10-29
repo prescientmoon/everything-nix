@@ -117,9 +117,15 @@ icon    = "https://www.gogdb.org/favicon.ico"
 
 ["Arcaea wiki"]
 aliases = ["@ae", "@arcaea"]
-url     = "https://arcaea.fandom.com/wiki/Special:Search?scope = internal&navigationSearch = true"
+url     = "https://arcaea.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true"
 param   = "query"
 icon    = "https://arcaea.lowiro.com/icon/favicon.ico"
+
+["Baba is You wiki"]
+aliases = ["@baba"]
+url     = "https://babaiswiki.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true"
+param   = "query"
+icon    = "https://static.wikia.nocookie.net/babaiswiki/images/4/4a/Site-favicon.ico/revision/latest"
 
 ["Noita wiki"]
 aliases = ["@noita"]

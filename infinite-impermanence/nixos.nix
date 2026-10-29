@@ -7,6 +7,8 @@
   ...
 }:
 let
+  logLevel = "INFO";
+
   elib = pkgs.callPackage ./lib.nix { };
   cfg = config.satellite.persistence;
   outerConfig = config;
@@ -102,6 +104,7 @@ in
                 wantedBy = [ "local-fs.target" ];
                 before = [ "local-fs.target" ];
                 path = [ pkgs.util-linux ];
+                environment.IILOGLEVEL = logLevel;
                 serviceConfig = {
                   Type = "oneshot";
                   RemainAfterExit = true;
@@ -172,7 +175,7 @@ in
             entries = everything.scaffolding;
             jsonConfig = pkgs.writeText "paths.json" (builtins.toJSON entries);
           in
-          "${pyScript} ${jsonConfig}";
+          "IILOGLEVEL=${logLevel} ${pyScript} ${jsonConfig}";
       };
       # }}}
       # {{{ Assertions

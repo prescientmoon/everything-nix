@@ -39,6 +39,7 @@ let
     ./services/postgres.nix
     ./services/qbittorrent.nix
     ./services/restic
+    ./services/soulseek.nix
     ./services/syncthing.nix
     ./services/wireguard
   ];

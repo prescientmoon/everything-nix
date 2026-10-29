@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import logging
-import sys
+import os
 import subprocess
+import sys
 from pathlib import Path
 
 log = logging.getLogger("ii-files")
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=os.environ.get("IILOGLEVEL", "INFO").upper())
 
 if len(sys.argv) != 4:
 	log.error("Usage: ii-files <source> <mount-point> <mode>.")
