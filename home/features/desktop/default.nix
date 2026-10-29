@@ -9,7 +9,6 @@
     ./firefox
     ./elisa
 
-    ./amberol.nix
     ./foot.nix
     ./gimp.nix
     ./inlyne.nix

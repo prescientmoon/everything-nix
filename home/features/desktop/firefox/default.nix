@@ -46,7 +46,11 @@
       search.default = "Moonythm";
 
       # Set styles applied to firefox itself
-      userChrome = builtins.readFile ./userChrome.css;
+      userChrome = ''
+        #TabsToolbar {
+          visibility: collapse;
+        }
+      '';
       # }}}
       # {{{ Extensions
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [

@@ -84,6 +84,7 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Amberol](https://apps.gnome.org/Amberol/) — pretty limited, switched to [Elisa](https://apps.kde.org/elisa/).
 - [Actual](https://actualbudget.org/) — kept breaking idk.
 - [Commafeed](https://github.com/Athou/commafeed) — rss reader. Eats too much RAM even after following the instructions for reducing the amount. Switched to [Miniflux](https://miniflux.app/).
 - [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) — screenshot tool. Switched to [grim](https://sr.ht/~emersion/grim/) + [slurp](https://github.com/emersion/slurp).
