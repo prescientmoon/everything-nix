@@ -1,25 +1,13 @@
 # Welcome to _the Satellite_
 
-> Note: a lot of the info in this README might be a bit outdated. I plan to document things on my website once I finish rebuilding it.
+This is a collection of configuration files which build all my systems in a declarative manner. The tool used to configure the global system is called [nixos](https://nixos.org/), and the one used to configure the individual users is called [home-manager](https://github.com/nix-community/home-manager).
 
-In case you are not familiar with nix/nixos, this is a collection of configuration files which build all my systems in a declarative manner. The tool used to configure the global system is called [nixos](https://nixos.org/), and the one used to configure the individual users is called [home-manager](https://github.com/nix-community/home-manager).
-
-> A [visual history](./docs/history.md) of my setup is in the works!
-
-> Woah, I can't believe this repo made it to 1000 commits :O
-
-## Features this repository includes:
-
-- Sets up all the apps I use — including git, neovim, fish, starship, hyprland, anyrun, discord, Zathura, foot & much more.
-- Sets up my entire homelab — including zfs-based [impermanence](https://grahamc.com/blog/erase-your-darlings), automatic let's-encrypt certificates, wireguard, syncthing, vaultwarden, pounce, calico, actual & more.
-- Consistent base16 theming using [stylix](https://github.com/danth/stylix)
-- Declarative secret management using [sops-nix](https://github.com/Mic92/sops-nix)
-
-The current state of this repo is a refactor of my old, messy nixos config, based on the structure of [this template](https://github.com/Misterio77/nix-starter-configs).
+- A lot of the info in this README might be a bit outdated. I plan to document things on my website once I finish rebuilding it.
+- A [visual history](./docs/history.md) of my setup is in the works!
+- Woah, I can't believe this repo made it to 1000 commits :O
+- The current state of this repo is a refactor of my old, messy nixos config, based on the structure of [this template](https://github.com/Misterio77/nix-starter-configs).
 
 ## Hosts
-
-This repo's structure is based on separating configuration into individual hosts - different machines configured by me. Each host is named after things in space/mythology (_they are the same picture_). The hosts I have right now are:
 
 - [calypso](./hosts/nixos/calypso/) — my personal laptop
 - [tethys](./hosts/nixos/tethys/) — my previous personal laptop
@@ -32,33 +20,6 @@ The following hosts are not configured using nix, but might be referenced in pla
 - erriapus — my tablet
 - euporie — VM used for testing
 
-## File structure
-
-| Location                     | Description                                         |
-| ---------------------------- | --------------------------------------------------- |
-| [common](./common)           | Configuration loaded on both nixos and home-manager |
-| [devshells](./devshells)     | Nix shells                                          |
-| [dns](./dns)                 | Directory for parts of my octodns nix-based wrapper |
-| [docs](./docs)               | Additional documentation regarding my setup         |
-| [home](./home)               | Home manager configurations                         |
-| [hosts/nixos](./hosts/nixos) | Nixos configurations                                |
-| [modules](./modules)         | Custom generic/nixos/home-manager modules           |
-| [overlays](./overlays)       | Nix overlays                                        |
-| [pkgs](./pkgs)               | Nix packages                                        |
-| [flake.nix](./flake.nix)     | Nix flake entrypoint!                               |
-| [scripts](./scripts)         | Bash scripts that come in handy when on a live cd   |
-| [.sops.yaml](./.sops.yaml)   | Sops entrypoint                                     |
-| [stylua.toml](./stylua.toml) | Lua formatter config for the repo                   |
-
-## Points of interest
-
-Here's some things you might want to check out:
-
-- My [neovim config](./home/features/neovim/default.nix)
-- written using a [custom neovim config generation framework](./modules/common/korora-neovim.nix)
-- [snippets](./home/features/neovim/snippets) written in [miros](https://github.com/prescientmoon/miros) — my custom snippet generation language
-- The [flake](./flake.nix) entrypoint for this repository
-
 ## Things I use
 
 > This does not include links to every plugin I use for every program here. You can see more details in the respective configurations.
@@ -69,40 +30,35 @@ Here's some things you might want to check out:
 - [Home-manager](https://github.com/nix-community/home-manager) — manage user configuration using nix
 - [Sops-nix](https://github.com/Mic92/sops-nix) — secret management
 - [disko](https://github.com/nix-community/disko) — format disks using nix
-- [zfs](https://openzfs.org/wiki/Main_Page) — filesystem (on my server)
-- [btrfs](https://btrfs.readthedocs.io/en/latest/) — filesystem (on my laptop)
-
-### Input handling
-
-- [kanata](https://github.com/jtroo/kanata) — software-level keyboard layout customizer. One of the few such programs with support for chording
-- [opentabletdriver](https://opentabletdriver.net/)
+	- [zfs](https://openzfs.org/wiki/Main_Page) — filesystem (on my server)
+	- [btrfs](https://btrfs.readthedocs.io/en/latest/) — filesystem (on my laptop)
 
 ### Graphical
 
-- [Stylix](https://github.com/danth/stylix) — base16 module for nix
-- [Base16 templates](https://github.com/chriskempson/base16-templates-source) — list of base16 theme templates
-- [Catpuccin](https://github.com/catppuccin/catppuccin) — base16 theme I use
-- [Rosepine](https://rosepinetheme.com/) — another theme I use
-- [Gruvbox](https://github.com/morhetz/gruvbox) — yet another theme I use
-- [Hyprland](https://hyprland.org/) — wayland compositor
-- [Wlogout](https://github.com/ArtsyMacaw/wlogout) — wayland logout menu
-- [Hyprpicker](https://github.com/hyprwm/hyprpicker) — hyprland color picker
-- [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) — screenshot tool
-- [Dunst](https://dunst-project.org/) — notification daemon
-- [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustments
-- [Anyrun](https://github.com/Kirottu/anyrun) — program launcher
-- [Foot](https://codeberg.org/dnkl/foot) — terminal emulator
-- [Zathura](https://pwmt.org/projects/zathura/) — pdf viewer
-- [Firefox](https://www.mozilla.org/en-US/firefox/) — web browser
-- [Tesseract](https://github.com/tesseract-ocr/tesseract) — OCR engine
-- [Bitwarden](https://bitwarden.com/) — client for self-hosted password manager
+- [Stylix](https://github.com/danth/stylix) — base16 module for nix.
+- [Base16 templates](https://github.com/chriskempson/base16-templates-source) — list of base16 theme templates.
+	- [Catpuccin](https://github.com/catppuccin/catppuccin) — base16 theme I use.
+	- [Rosepine](https://rosepinetheme.com/) — another theme I use.
+	- [Gruvbox](https://github.com/morhetz/gruvbox) — yet another theme I use.
+- [River](https://codeberg.org/river/river) & [Rhine](https://codeberg.org/Sivecano/rhine) — window manager.
+	- [Wlogout](https://github.com/ArtsyMacaw/wlogout) — wayland logout menu.
+	- [Hyprpicker](https://github.com/hyprwm/hyprpicker) — color picker.
+	- [Dunst](https://dunst-project.org/) — notification daemon.
+	- [Wlsunset](https://sr.ht/~kennylevinsen/wlsunset/) — day/night screen gamma adjustments.
+	- [Anyrun](https://github.com/Kirottu/anyrun) — program launcher.
+- [Foot](https://codeberg.org/dnkl/foot) — terminal emulator.
+- [Zathura](https://pwmt.org/projects/zathura/) — pdf viewer.
+- [Firefox](https://www.mozilla.org/en-US/firefox/) — web browser.
+- [Bitwarden](https://bitwarden.com/) — client for self-hosted password manager.
+- [Elisa](https://apps.kde.org/elisa/) — music player.
 
 ### Terminal
 
 > There are many clis I use which I did not include here, for the sake of brevity.
 
-- [Neovim](https://neovim.io/) — my editor
-  - [Vimclip](https://github.com/hrantzsch/vimclip) — vim anywhere!
+- [vim-classic](https://vim-classic.org/) — editor :3
+- [Neovim](https://neovim.io/) — legacy editor (will remove eventually)
+- [Vimclip](https://github.com/hrantzsch/vimclip) — vim anywhere!
 - [Fish](https://fishshell.com/) — user friendly shell
   - [Starship](https://starship.rs/) — shell prompt
 - [yazi](https://github.com/sxyazi/yazi) — file manager
@@ -113,13 +69,10 @@ Here's some things you might want to check out:
 
 Most services are served over [wireguard](https://www.wireguard.com/), using certificates generated by [let's encrypt](https://letsencrypt.org/).
 
-- [Actual](https://actualbudget.org/) — budgeting tool.
-- [Commafeed](https://github.com/Athou/commafeed) — rss reader
 - [Forgejo](https://forgejo.org/) — git forge
 - [Invidious](https://invidious.io/) — alternate YouTube client
 - [Jellyfin](https://jellyfin.org/) — media server
-- [Jupyterhub](https://jupyter.org/hub) — notebook collaboration suite
-- [Microbin](https://microbin.eu/) - code & file sharing service
+- [Picoshare](https://github.com/mtlynch/picoshare) — paste service
 - [Pounce](https://git.causal.agency/pounce/about/) & [calico](https://git.causal.agency/pounce/about/calico.1) — irc bouncer
 - [Qbittorrent](https://www.qbittorrent.org) — torrent client
 - [Radicale](https://radicale.org/v3.html) — calendar server
@@ -131,6 +84,10 @@ Most services are served over [wireguard](https://www.wireguard.com/), using cer
 
 This section contains links to things which used to be in the previous section but are not used anymore. This section was created in June 2023, hence stuff I dropped earlier might not be here. Moreover, this list is sorted with the most recently dropped things at the top, as a sort of reverse-timeline.
 
+- [Actual](https://actualbudget.org/) — kept breaking idk.
+- [Commafeed](https://github.com/Athou/commafeed) — rss reader. Eats too much RAM even after following the instructions for reducing the amount. Switched to [Miniflux](https://miniflux.app/).
+- [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) — screenshot tool. Switched to [grim](https://sr.ht/~emersion/grim/) + [slurp](https://github.com/emersion/slurp).
+- [Hyprland](https://hyprland.org/) — I switched away a while ago but forgot to move this here. Guy behind it sucks. It also keeps introducing breaking changes :/ Switched to [River](https://codeberg.org/river/river) & [Rhine](https://codeberg.org/Sivecano/rhine).
 - [Heroic](https://heroicgameslauncher.com/) — I prefer managing my games manually.
 - [Lutris](https://lutris.net/) — I prefer managing my games manually.
 - [Diplomatic Timekeeper](https://github.com/bhickey/Diplomatic-Timekeeper) — I haven't needed this hosted in years (I first did it for a friend I think?).
@@ -185,7 +142,7 @@ This section contains links to things which used to be in the previous section b
 - [Purescript-vim](https://github.com/purescript-contrib/purescript-vim) — The treesitter grammar should hopefully be enough
 - [Neotest](https://github.com/nvim-neotest/neotest) — I was hardly ever using this
 - [Navigator.nvim](https://github.com/numToStr/Navigator.nvim) — I no longer use tmux, nor Wezterm, hence this was a bit useless
-- [microbin](https://github.com/szabodanika/microbin) — Was fairly clunky, thus I switched to [picoshare](https://github.com/mtlynch/picoshare)
+- [microbin](https://github.com/szabodanika/microbin) — Was fairly clunky, thus I switched to [picoshare](https://github.com/mtlynch/picoshare).
 - [sponge](https://github.com/meaningful-ooo/sponge) — I kept losing commands I wanted to keep in my history
 - [hyprland-vim-syntax](https://github.com/theRealCarneiro/hyprland-vim-syntax) — Neovim supports hyprlang files out of the box now
 - [typst.vim](https://github.com/kaarmu/typst.vim) — Neovim supports typst files out of the box now

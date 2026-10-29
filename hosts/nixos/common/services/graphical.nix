@@ -7,7 +7,6 @@
     programs.nix-ld.enable = true; # Useful for running non-nix executables
 
     services.gnome.gnome-keyring.enable = true;
-    security.pam.services.hyprland.enableGnomeKeyring = true;
     services.gnome.evolution-data-server.enable = true;
     services.gnome.gnome-online-accounts.enable = true;
 
@@ -16,6 +15,7 @@
 
     environment.systemPackages = [
       pkgs.android-tools # adb and the like
+      pkgs.xdg-utils
     ];
 
     # Toggle when connecting joycons, I guess
