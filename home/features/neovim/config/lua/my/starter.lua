@@ -128,76 +128,76 @@ end
 -- }}}
 -- {{{ Refresh
 M.refresh = function(buf_id)
-  buf_id = buf_id or vim.api.nvim_get_current_buf()
+buf_id = buf_id or vim.api.nvim_get_current_buf()
 
-  if vim.o.ft ~= "starter" then
-    return
-  end
+if vim.o.ft ~= "starter" then
+return
+end
 
-  local config = M.config
+local config = M.config
 
-  -- Normalize certain config values
-  local header = H.normalize_header_footer(config.header)
-  local footer = H.normalize_header_footer(config.footer)
+-- Normalize certain config values
+local header = H.normalize_header_footer(config.header)
+local footer = H.normalize_header_footer(config.footer)
 
-  -- {{{ Evaluate content
-  local header_units = {}
-  for _, l in ipairs(header) do
-    table.insert(
-      header_units,
-      { H.content_unit(l, "header", "MiniStarterHeader") }
-    )
-  end
-  H.content_add_empty_lines(header_units, #header > 0 and 1 or 0)
+-- {{{ Evaluate content
+local header_units = {}
+for _, l in ipairs(header) do
+table.insert(
+header_units,
+{ H.content_unit(l, "header", "MiniStarterHeader") }
+)
+end
+H.content_add_empty_lines(header_units, #header > 0 and 1 or 0)
 
-  local footer_units = {}
-  for _, l in ipairs(footer) do
-    table.insert(
-      footer_units,
-      { H.content_unit(l, "footer", "MiniStarterFooter") }
-    )
-  end
+local footer_units = {}
+for _, l in ipairs(footer) do
+table.insert(
+footer_units,
+{ H.content_unit(l, "footer", "MiniStarterFooter") }
+)
+end
 
-  local content = H.concat_tables(
-    H.gen_hook.aligning("center", nil, header_units, buf_id),
-    H.gen_hook.aligning("center", nil, footer_units, buf_id)
-  )
-  content = H.gen_hook.aligning(nil, "center", content, buf_id)
-  -- }}}
+local content = H.concat_tables(
+H.gen_hook.aligning("center", nil, header_units, buf_id),
+H.gen_hook.aligning("center", nil, footer_units, buf_id)
+)
+content = H.gen_hook.aligning(nil, "center", content, buf_id)
+-- }}}
 
-  -- Add content
-  vim.bo.modifiable = true
-  vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, H.content_to_lines(content))
-  vim.bo.modifiable = false
+-- Add content
+vim.bo.modifiable = true
+vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, H.content_to_lines(content))
+vim.bo.modifiable = false
 
-  -- {{{ Add highlighting
-  for l_num, content_line in ipairs(content) do
-    -- Track 0-based starting column of current unit (using byte length)
-    local start_col = 0
-    for _, unit in ipairs(content_line) do
-      if unit.hl ~= nil then
-        -- Use `priority` because of the regression bug (highlights are not stacked
-        -- properly): https://github.com/neovim/neovim/issues/17358
-        vim.hl.range(
-          buf_id,
-          H.ns.general,
-          unit.hl,
-          { l_num - 1, start_col },
-          { l_num - 1, start_col + unit.string:len() },
-          { priority = 50 }
-        )
-      end
-      start_col = start_col + unit.string:len()
-    end
-  end
-  -- }}}
+-- {{{ Add highlighting
+for l_num, content_line in ipairs(content) do
+-- Track 0-based starting column of current unit (using byte length)
+local start_col = 0
+for _, unit in ipairs(content_line) do
+if unit.hl ~= nil then
+-- Use `priority` because of the regression bug (highlights are not stacked
+-- properly): https://github.com/neovim/neovim/issues/17358
+vim.hl.range(
+buf_id,
+H.ns.general,
+unit.hl,
+{ l_num - 1, start_col },
+{ l_num - 1, start_col + unit.string:len() },
+{ priority = 50 }
+)
+end
+start_col = start_col + unit.string:len()
+end
+end
+-- }}}
 end
 
 M.close = function(buf_id)
-  buf_id = buf_id or vim.api.nvim_get_current_buf()
+buf_id = buf_id or vim.api.nvim_get_current_buf()
 
-  -- Use `pcall` to allow calling for already non-existing buffer
-  pcall(vim.api.nvim_buf_delete, buf_id, {})
+-- Use `pcall` to allow calling for already non-existing buffer
+pcall(vim.api.nvim_buf_delete, buf_id, {})
 end
 -- }}}
 -- {{{ Content helpers

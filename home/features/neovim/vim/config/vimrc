@@ -80,7 +80,13 @@ nnoremap <C-p> :call OpenFileFuzzy()<cr>
 nnoremap <C-t> :find! ./**/
 
 " Search through project
-nnoremap <C-f> :execute "vimgrep" input("Pattern: ") "**/*" <cr>
+function! SearchProject()
+	let l:pattern = input("Pattern: ")
+	if !empty(l:pattern)
+		execute "vimgrep \"".l:pattern."\" **/*"
+	endif
+endfunction
+nnoremap <C-f> :call SearchProject()<cr>
 
 " Toggle the color column via <leader>sc
 let g:default_colorcolumn=join(range(81,999),",")
@@ -121,7 +127,24 @@ vnoremap <f11> "+
 nnoremap <silent> <f12> :silent! write<cr>
 
 " Sort lines using *gs*
-vnoremap gs :!sort<cr>
+xnoremap gs :!sort<cr>
+
+" The overwrite operator. Dot repeat will work just fine :3
+function! OverwriteMotion(type)
+	" Delete to the blackhole register ("_), then paste behind us
+	let l:keys = '"_d"'.v:register.'P'
+	if a:type == "char"
+		" Strip line ending for regions that got copied linewise
+		let l:reg = substitute(getreg(v:register), "\n$", "", "g")
+		call setreg(v:register, l:reg, "v") " Set register mode to inline (v)
+		execute "normal! `[v`]".l:keys
+	elseif a:type == "line"
+		execute "normal! '[V']".l:keys
+	endif
+endfunction
+nnoremap gr :set opfunc=OverwriteMotion<cr>g@
+nnoremap grr :set opfunc=OverwriteMotion<cr>g@_
+xnoremap gr :<C-U>set opfunc=OverwriteMotion<cr>gvg@
 
 " Set cursor shapes based on the mode we're in.
 "
@@ -157,10 +180,14 @@ nnoremap <leader>ss :set spell!<cr>
 
 " Quickfix
 function! ToggleQuickFix()
-	if empty(filter(getwininfo(), 'v:val.quickfix'))
+	let l:focused = win_getid()
+	let l:winlist = filter(getwininfo(), 'v:val.quickfix')
+	if empty(l:winlist)
 		copen
-	else
+	elseif l:winlist[0].winid == l:focused
 		cclose
+	else
+		call win_gotoid(l:winlist[0].winid)
 	endif
 endfunction
 nnoremap <silent> <leader>q :call ToggleQuickFix()<cr>
@@ -223,7 +250,7 @@ function! YaziEdit()
 		\ expand("%:h")
 
 	if filereadable("/tmp/vim-yazi-chosen")
-		let l:path=readfile("/tmp/vim-yazi-chosen")[0]
+		let l:path = readfile("/tmp/vim-yazi-chosen")[0]
 		" We don't want these to influence future runs
 		silent !rm /tmp/vim-yazi-chosen
 		execute "edit!" l:path

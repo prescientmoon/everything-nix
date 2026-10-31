@@ -57,7 +57,7 @@
     # ouch-rar # Unified compression / decompression tool
     ouch
     mkpasswd # Hash passwords
-    jq # JSON manipulation
+    jaq # JSON manipulation
     ffsend # File sharing
     file # Filetype detection
     moreutils # Contains some useful commands

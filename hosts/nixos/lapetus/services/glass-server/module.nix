@@ -146,7 +146,7 @@ in
         Group = cfg.user;
         ExecStart = pkgs.writeShellScript "glass-server-startup" ''
           # Copy secrets into config
-          ${lib.getExe pkgs.jq} "\
+          ${lib.getExe pkgs.jaq} "\
               .SECRET_KEY=\"$(cat ${cfg.secretKeyFile})\" |\
               .PASSWORD=\"$(cat ${cfg.passwordFile})\" |\
               .API_TOKEN=\"$(cat ${cfg.apiTokenFile})\" \

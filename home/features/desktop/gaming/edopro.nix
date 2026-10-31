@@ -6,7 +6,7 @@
     developers = [ "Project Ignis team" ];
     description = "EDOPro is an automatic Yu-Gi-Oh! dueling simulator.";
 
-    file = "edopro/EDOPro";
+    file = "EDOPro";
     script = "steam-run";
 
     assets = {
