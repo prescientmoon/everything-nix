@@ -13,6 +13,7 @@
     script = "wine";
     file = "itch/GMTK.exe";
     paths = [ "AppData/Local/GMTK" ];
+    pegasus = false; # I need to draw a grid thingy
 
     assets = {
       icon = ./assets/grapplehook-midpoint-teleport-killer/icon.png;
