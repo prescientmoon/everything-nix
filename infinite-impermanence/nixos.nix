@@ -7,7 +7,7 @@
   ...
 }:
 let
-  logLevel = "INFO";
+  logLevel = "DEBUG";
 
   elib = pkgs.callPackage ./lib.nix { };
   cfg = config.satellite.persistence;
