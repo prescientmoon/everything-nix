@@ -173,6 +173,11 @@
             system = "x86_64-linux";
             hostname = "calypso";
           };
+
+          dione = nixos {
+            system = "x86_64-linux";
+            hostname = "dione";
+          };
         };
       # }}}
     };
