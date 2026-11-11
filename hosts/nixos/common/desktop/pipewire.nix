@@ -1,7 +1,11 @@
 # Configure for the audio stack.
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   config = lib.mkIf config.satellite.machine.interactible {
+    environment.systemPackages = [
+      pkgs.alsa-utils # alsamixer is very useful for tweaking volume levels!
+    ];
+
     security.rtkit.enable = config.satellite.machine.graphical;
     services.pulseaudio.enable = false;
 

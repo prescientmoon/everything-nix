@@ -23,7 +23,7 @@
   # of Vim does not support the XDG directory specification. Oh well!
   home.file.".vim".source =
     config.satellite.dev.path # .
-      "home/features/neovim/vim/config";
+      "home/features/vim/config";
 
   # Ensure the undo & swap directories exists, and delete files inside them
   # after 7 days.

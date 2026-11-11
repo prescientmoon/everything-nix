@@ -11,8 +11,12 @@
     inputs.sops-nix.homeManagerModules.sops
 
     ./features/cli
-    ./features/persistence.nix
+    ./features/desktop
+    ./features/vim
+
     ./features/dev.nix
+    ./features/persistence.nix
+
     ../common
   ];
 

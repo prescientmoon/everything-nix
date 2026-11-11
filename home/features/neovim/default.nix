@@ -1082,8 +1082,6 @@ let
 in
 # }}}
 {
-  imports = [ ./vim ];
-
   satellite.lua.styluaConfig = ../../../stylua.toml;
 
   # {{{ Basic config
@@ -1094,7 +1092,6 @@ in
   # Install packages
   home.packages = [
     neovim
-    (pkgs.callPackage ./vimclip.nix { })
   ];
   # }}}
   # {{{ Persistence

@@ -36,32 +36,26 @@
   home.packages = with pkgs; [
     # System information
     acpi # Battery stats
-    nerdfetch # Display system information
     tokei # Useless but fun line of code counter (sloc alternative)
     bottom # System monitor
     bandwhich # Network bandwidth info
 
-    # Storage
-    dua # du + ncdu replacement
-    dust # Similar to du, but with prettier output
-    dysk # Similar to df, but with prettier output
-
     # Alternatives to usual commands
-    ripgrep # Better grep
-    fd # Better find
-    sd # Better sed
-    httpie # Better curl
+    ripgrep # grep-like CLI
+    fd # find-like CLI
+    sd # sed-like CLI
+    httpie # HTTP client
 
     # Misc
     # NOTE: only available from 26.05
-    # ouch-rar # Unified compression / decompression tool
-    ouch
+    ouch-rar # Unified compression / decompression tool
     mkpasswd # Hash passwords
     jaq # JSON manipulation
     ffsend # File sharing
     file # Filetype detection
     moreutils # Contains some useful commands
-    alsa-utils # alsamixer is very useful!
+    ffmpeg # Video operations
+    imagemagick # Image operations
 
     # Normally, I'd recommend against installing this globally, although
     # it seems the completions don't play nicely with direnv otherwise.
