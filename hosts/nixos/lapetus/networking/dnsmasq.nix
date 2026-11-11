@@ -27,9 +27,20 @@ let
   } "${lib.getExe pkgs.python3} ${./gen-dns-blocklist.py} > $out";
 in
 {
+  networking.nameservers = [
+    "9.9.9.9" # Quad9
+    "8.8.8.8" # Google
+    "1.1.1.1" # Cloudflare
+  ];
+
   services.resolved.enable = false;
   services.dnsmasq = {
     enable = true;
+
+    # This feels a bit sad, but leaving this on seems to break logo's acme DNS
+    # propagation check...
+    resolveLocalQueries = false;
+
     settings = {
       # Upstream DNS servers
       server = [

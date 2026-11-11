@@ -93,10 +93,7 @@
               ];
             };
         in
-        {
-          "google".metaData.alias = "@g";
-        }
-        // lib.attrsets.mapAttrs (_: mkBasicSearchEngine) (lib.importTOML ./engines.toml);
+        lib.attrsets.mapAttrs (_: mkBasicSearchEngine) (lib.importTOML ./engines.toml);
       # }}}
       # {{{ Other lower level settings
       settings = {

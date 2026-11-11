@@ -10,7 +10,7 @@
     ./services/actual.nix
     ./services/ddns-updater.nix
     ./services/forgejo.nix
-    ./services/glass-server
+    # ./services/glass-server
     ./services/gotosocial.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
@@ -22,7 +22,7 @@
     ./services/qbittorrent.nix
     ./services/radicale.nix
     ./services/redlib.nix
-    ./services/shimmeringmoon.nix
+    # ./services/shimmeringmoon.nix
     ./services/sillyring.nix
     ./services/syncthing.nix
     ./services/tmp.nix

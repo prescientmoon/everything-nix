@@ -71,7 +71,8 @@ nnoremap <leader>rw :%s/<C-r><C-w>/
 
 " Open file using fzy
 function! OpenFileFuzzy()
-	execute "edit!" system("fd --type f --strip-cwd-prefix | fzy")
+	let l:paths = join(split(&path, ","), " ")
+	execute "edit!" system("fd --type f . " . l:paths . " | fzy")
 	redraw!
 endfunction
 nnoremap <C-p> :call OpenFileFuzzy()<cr>
@@ -232,6 +233,8 @@ set wildignore+=**/*.gif
 set wildignore+=**/*.pdf
 set wildignore+=**/secrets*.yaml
 set wildignore+=**/flake.lock
+
+set path=.,,
 
 let g:netrw_banner=0
 let g:netrw_altfile=1 " Keep netrw out of the alt file

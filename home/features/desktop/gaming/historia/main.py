@@ -4,6 +4,8 @@ import sqlite3
 import subprocess
 import sys
 import time
+import socket
+
 
 log = logging.getLogger("historia")
 logging.basicConfig(level=logging.INFO)
@@ -36,6 +38,12 @@ migrations = [
     end   DATETIME NOT NULL
   );
   PRAGMA user_version=1;
+  """,
+  f"""
+  ALTER TABLE timespans
+    ADD host TEXT NOT NULL
+    DEFAULT '{socket.gethostname()}';
+  PRAGMA user_version=2;
   """
 ]
 

@@ -1,3 +1,11 @@
+# {{{ General purpose
+# We declare this manually in order to force &udm=14, disabling AI overview.
+["Google"]
+aliases = ["@g", "@google"]
+url     = "https://www.google.com/search?udm=14"
+param   = "q"
+icon    = "https://www.google.com/favicon.ico"
+# }}}
 # {{{ Nix
 ["Nixpkgs packages"]
 aliases = ["@np", "@nixpkgs-packages"]
