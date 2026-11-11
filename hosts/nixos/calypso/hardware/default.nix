@@ -17,9 +17,6 @@ in
   # }}}
   # {{{ Misc
   hardware.enableAllFirmware = true;
-  hardware.graphics.enable = true;
-  hardware.opentabletdriver.enable = true;
-  hardware.keyboard.qmk.enable = true;
   # }}}
   # {{{ Power management
   powerManagement.cpuFreqGovernor = profile;

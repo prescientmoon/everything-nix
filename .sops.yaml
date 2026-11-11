@@ -2,10 +2,12 @@ keys:
   - &users:
     - &prescientmoon_tethys age14mga4r0xa82a2uus3wq5q7rqnvflms3jmhknz4f3hsda8wttk9gsv2k9fs
     - &prescientmoon_calypso age13c346xw9kzsvra04ck8h8pa47mwdp8nh3aess4pwhyvdsufyhf0qt65ja8
+    - &prescientmoon_dione age1cl55gxcelttegmlr8qcwxvxz0a5nplrv8kdt6hdsfc2ac3deeupsaf4mmy
   - &hosts:
     - &tethys age1avsekqqyr62urdwtpfpt0ledzm49wy0rq7wcg3rnsprdx22er5usp0jxgs
     - &lapetus age1jem6jfkmfq54wzhqqhrnf786jsn5dmx82ewtt4vducac8m2fyukskun2p4
     - &calypso age18gengezksnt0wtc3sv28ypmx546quzeg88kw5s8sywxyje5rmqyqh9daxe
+    - &dione age1s6wva90jjs7uwhr0xvt4ze4gxu8h37tehm4cjudh9z4uj0fqk96qymz9qs
     - &hermes age1r2vlh9tgdmf6r0xj025zun0cvudn2p6jqav84pql8k928newtepq9ttw8z
 creation_rules:
   - path_regex: hosts/nixos/common/secrets.yaml
@@ -13,15 +15,18 @@ creation_rules:
       - age:
         - *prescientmoon_tethys
         - *prescientmoon_calypso
+        - *prescientmoon_dione
         - *tethys
         - *lapetus
         - *calypso
         - *hermes
+        - *dione
   - path_regex: hosts/nixos/lapetus/secrets.yaml
     key_groups:
       - age:
         - *prescientmoon_tethys
         - *prescientmoon_calypso
+        - *prescientmoon_dione
         - *lapetus
         - *hermes
   - path_regex: hosts/nixos/calypso/secrets.yaml
@@ -29,6 +34,7 @@ creation_rules:
       - age:
         - *prescientmoon_tethys
         - *prescientmoon_calypso
+        - *prescientmoon_dione
         - *calypso
         - *hermes
   - path_regex: hosts/nixos/tethys/secrets.yaml
@@ -36,13 +42,23 @@ creation_rules:
       - age:
         - *prescientmoon_tethys
         - *prescientmoon_calypso
+        - *prescientmoon_dione
         - *tethys
+        - *hermes
+  - path_regex: hosts/nixos/dione/secrets.yaml
+    key_groups:
+      - age:
+        - *prescientmoon_tethys
+        - *prescientmoon_calypso
+        - *prescientmoon_dione
+        - *dione
         - *hermes
   - path_regex: home/secrets.yaml
     key_groups:
       - age:
         - *prescientmoon_tethys
         - *prescientmoon_calypso
+        - *prescientmoon_dione
         - *hermes
   - path_regex: ^.*/secrets.user.yaml$
     key_groups:

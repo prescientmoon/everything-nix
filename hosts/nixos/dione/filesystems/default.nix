@@ -1,0 +1,66 @@
+{ lib, ... }:
+{
+  imports = [ (import ./partitions.nix { }) ];
+
+  boot.supportedFilesystems = [ "btrfs" ];
+  services.btrfs.autoScrub.enable = true;
+
+  # {{{ Mark a bunch of paths as needed for boot
+  fileSystems =
+    lib.attrsets.genAttrs
+      [
+        "/"
+        "/nix"
+        "/persist/data"
+        "/persist/state"
+        "/persist/local/cache"
+        "/boot"
+      ]
+      (p: {
+        neededForBoot = true;
+      });
+  # }}}
+  # {{{ Rollback
+  boot.initrd.systemd.services.rollback = {
+    description = "Rollback BTRFS root subvolume to a pristine state";
+    wantedBy = [ "initrd.target" ];
+    after = [ "systemd-cryptsetup@crypted.service" ];
+    before = [ "sysroot.mount" ];
+    unitConfig.DefaultDependencies = "no";
+    serviceConfig.Type = "oneshot";
+
+    # See: https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
+    #
+    # The following script is pretty much taken from the aforementioned link
+    # (I do now own any of it).
+    script = ''
+      mkdir -p /mnt
+
+      # We first mount the btrfs root to /mnt
+      # so we can manipulate btrfs subvolumes.
+      mount -o subvol=/ /dev/mapper/crypted /mnt
+
+      # While we're tempted to just delete /root and create
+      # a new snapshot from /root-blank, /root is already
+      # populated at this point with a number of subvolumes,
+      # which makes `btrfs subvolume delete` fail.
+      # So, we remove them first.
+      btrfs subvolume list -o /mnt/root | # List subvolumes
+        cut -f9 -d' ' | # Select the file names only
+        while read subvolume; do # Save the path into $subvolume
+          echo "deleting /$subvolume subvolume..."
+          btrfs subvolume delete "/mnt/$subvolume"
+        done &&
+        echo "deleting /root subvolume..." &&
+        btrfs subvolume delete /mnt/root
+
+      echo "restoring blank /root subvolume..."
+      btrfs subvolume snapshot /mnt/blank /mnt/root
+
+      # Once we're done rolling back to a blank snapshot,
+      # we can unmount /mnt and continue on the boot process.
+      umount /mnt
+    '';
+  };
+  # }}}
+}

@@ -34,9 +34,9 @@
     miros.url = "github:prescientmoon/miros";
     miros.flake = false;
 
-    shimmeringmoon.url = "github:prescientmoon/shimmeringmoon";
+    # shimmeringmoon.url = "github:prescientmoon/shimmeringmoon";
     # shimmeringmoon.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringmoon.git";
-    shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # shimmeringmoon.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nihil.url = "github:prescientmoon/nihil";
     # nihil.url = "git+ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/nihil.git";
@@ -114,7 +114,7 @@
       # {{{ Overlays and modules
       # Custom packages and modifications, exported as overlays
       overlays = import ./overlays // {
-        shimmeringmoon = inputs.shimmeringmoon.overlays.default;
+        # shimmeringmoon = inputs.shimmeringmoon.overlays.default;
       };
 
       # Reusable nixos modules
@@ -172,11 +172,6 @@
           calypso = nixos {
             system = "x86_64-linux";
             hostname = "calypso";
-          };
-
-          iso = nixos {
-            system = "x86_64-linux";
-            hostname = "iso";
           };
         };
       # }}}

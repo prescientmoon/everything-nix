@@ -1,6 +1,5 @@
 { inputs, ... }:
 {
-  # {{{ Imports
   imports = with inputs.nixos-hardware.nixosModules; [
     common-cpu-intel
     # common-gpu-intel # This leads to a "prop ... defined twice" error
@@ -8,22 +7,7 @@
     common-pc-ssd
     ./generated.nix
   ];
-  # }}}
-  # {{{ Misc
-  hardware.enableAllFirmware = true;
-  hardware.graphics.enable = true;
-  hardware.opentabletdriver.enable = true;
-  hardware.keyboard.qmk.enable = true;
+
   boot.kernelParams = [ "i915.enable_guc=2" ]; # Required by wl-screenrec for low power mode
-  # }}}
-  # {{{ Power management
   powerManagement.cpuFreqGovernor = "performance";
-  # services.tlp = {
-  #   enable = true;
-  #   settings = {
-  #     CPU_SCALING_GOVERNOR_ON_BAT = "performance";
-  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
-  #   };
-  # };
-  # }}}
 }

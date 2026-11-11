@@ -36,7 +36,7 @@
         mkKnownHost = kind: name: _: {
           name = "${name}/${kind}";
           value = {
-            publicKeyFile = ../../../${name}/keys/ssh_host_${kind}_key.pub;
+            publicKeyFile = ../../../${name}/keys/host_${kind}_key.pub;
             hostNames = [ name ] ++ lib.lists.optional (name == config.networking.hostName) "localhost";
           };
         };

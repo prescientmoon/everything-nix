@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   upkgs,
   ...
@@ -46,7 +47,7 @@
 
     # We technically don't want this on non TWMs, but I don't use any such WMs
     GTK_CSD = 0;
-  }
+  };
 
   # Base packages
   home.packages =

@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "arcaea-ptt-data": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1763813977,
-        "narHash": "sha256-C/0myI3YgLwo0wRSnXn0s5ck5L5yBTpcGiKKCnGzHZY=",
-        "owner": "OllyDoge",
-        "repo": "ASCPSongConstant",
-        "rev": "54bb2ac02ee2d132eac1b198f970066ec07aa6b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "OllyDoge",
-        "repo": "ASCPSongConstant",
-        "type": "github"
-      }
-    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -128,11 +112,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1789099409,
-        "narHash": "sha256-dAGoOmXjG+5uPwTWgsIep1Qo6pPSsTG1feXRpC29xGA=",
+        "lastModified": 1794110558,
+        "narHash": "sha256-rFaS/p7g4SWsK4n7pD006HE4vDg7tU83OZ1Vkf4fRjM=",
         "ref": "refs/heads/master",
-        "rev": "fcf6f00c8e0869c68635cb624757f5824ad38e41",
-        "revCount": 4938,
+        "rev": "c2939c05dfc5c3854f2086fbbf9ecba6c310f92c",
+        "revCount": 5036,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
@@ -179,24 +163,6 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1710146030,
-        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -211,22 +177,6 @@
         "owner": "SenchoPens",
         "repo": "fromYaml",
         "type": "github"
-      }
-    },
-    "glass-maps": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759837422,
-        "narHash": "sha256-qPJwLud5ujDXbR8+2odZk5aZr5F96i/MDzdtibDXML8=",
-        "ref": "refs/heads/publish",
-        "rev": "018006e6598afef8e9313d0cd87eb14d1066b96b",
-        "revCount": 22,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/glass-maps.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/starlitcanopy/glass-maps.git"
       }
     },
     "gnome-shell": {
@@ -385,11 +335,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1790750587,
-        "narHash": "sha256-VfjaoJ1Uyb7JZTrBgE5Jf2nhjtQPmD9KOd19HJwmZwM=",
+        "lastModified": 1793865203,
+        "narHash": "sha256-/cpdPHaySDIyCgZI6EWngiM6jK3YLUNzv1b7lTzy6Bk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "78e9c786dc08cd4f3420c2395cd977206a9b1da2",
+        "rev": "c56a87d8e41ce69bd2af57eb35dcc117a9dfca33",
         "type": "github"
       },
       "original": {
@@ -471,68 +421,10 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "river-next": "river-next",
-        "shimmeringmoon": "shimmeringmoon",
         "sillyring": "sillyring",
         "sops-nix": "sops-nix",
         "starlitpkgs": "starlitpkgs",
         "stylix": "stylix"
-      }
-    },
-    "shimmeringdarkness": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1753698968,
-        "narHash": "sha256-S0NSaDh9vZMJ80XAH0UHlMv3HOUqpjuEKdmJ6UkEUbo=",
-        "ref": "refs/heads/main",
-        "rev": "6b9fdbd4c5bf8306513f1378d98f44919a47c7d6",
-        "revCount": 4,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringdarkness.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringdarkness.git"
-      }
-    },
-    "shimmeringmoon": {
-      "inputs": {
-        "arcaea-ptt-data": "arcaea-ptt-data",
-        "flake-utils": "flake-utils",
-        "glass-maps": "glass-maps",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ],
-        "shimmeringdarkness": "shimmeringdarkness",
-        "shimmeringvoid": "shimmeringvoid"
-      },
-      "locked": {
-        "lastModified": 1766958879,
-        "narHash": "sha256-rWX3ZzmEbv5e+itmyE8W36VXCNpmE7RcZ/I4lvxwPro=",
-        "owner": "prescientmoon",
-        "repo": "shimmeringmoon",
-        "rev": "ea554dc8ba5dc7c30cb25b2d0125d781db4dcbca",
-        "type": "github"
-      },
-      "original": {
-        "owner": "prescientmoon",
-        "repo": "shimmeringmoon",
-        "type": "github"
-      }
-    },
-    "shimmeringvoid": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1764093536,
-        "narHash": "sha256-AB4xXuTG1dG2QC66493J3E7SMcuSGwAvR9QTvKJarws=",
-        "ref": "refs/heads/main",
-        "rev": "1e3c6bb54d8f1f83e78ea7b82d10d914ff18a724",
-        "revCount": 26,
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringvoid.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://forgejo@ssh.git.moonythm.dev/prescientmoon/shimmeringvoid.git"
       }
     },
     "sillyring": {
@@ -598,7 +490,7 @@
         "gnome-shell": "gnome-shell",
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
-        "systems": "systems_2",
+        "systems": "systems",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
         "tinted-tmux": "tinted-tmux",
@@ -620,21 +512,6 @@
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

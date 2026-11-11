@@ -1,7 +1,11 @@
 # Misc defaults for all graphical machines
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, ... }:
 {
   config = lib.mkIf config.satellite.machine.graphical {
+    hardware.graphics.enable = true;
+    hardware.opentabletdriver.enable = true;
+    hardware.keyboard.qmk.enable = true;
+
     programs.kdeconnect.enable = true;
     programs.firejail.enable = true;
     programs.nix-ld.enable = true; # Useful for running non-nix executables
@@ -17,9 +21,5 @@
       pkgs.android-tools # adb and the like
       pkgs.xdg-utils
     ];
-
-    # Toggle when connecting joycons, I guess
-    services.joycond.enable = false;
-    services.blueman.enable = false;
   };
 }

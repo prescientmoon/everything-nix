@@ -19,7 +19,6 @@
   satellite.river.enable = true;
   satellite.soulseek.enable = true;
 
-  # Machine ids
   networking.hostName = "tethys";
   environment.etc.machine-id.text = "08357db3540c4cd2b76d4bb7f825ec88";
 

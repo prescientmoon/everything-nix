@@ -26,10 +26,11 @@ let
     ./wireless
     ./persistence.nix
     ./networking.nix
-    ./users/pilot.nix
+    ./pilot.nix
 
     # Services
     ./services/acme.nix
+    ./services/gaming.nix
     ./services/graphical.nix
     ./services/greetd.nix
     ./services/kanata
@@ -68,4 +69,7 @@ in
 
   # Root domain used throughout my config
   satellite.dns.domain = lib.mkDefault "moonythm.dev";
+
+  # Hardware
+  hardware.enableAllFirmware = lib.mkDefault true;
 }

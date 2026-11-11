@@ -30,5 +30,10 @@
       id = 4;
       publicKey = "ezxZI/TVMSJ8+2Lmj6wfiiYIv2Dv5IkdI8ZxCM+JDxA=";
     };
+
+    hosts.dione = {
+      id = 5;
+      publicKey = "e4DolTh2dQXrRO4C1Ik18+NReuU0paFcNtxdCzOGq2g=";
+    };
   };
 }
