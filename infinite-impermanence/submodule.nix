@@ -273,7 +273,8 @@ lib.fix (
     };
 
     # {{{ Entry scaffolding
-    # Do we also need to generate the bounds themselves? Hm... I guess not?
+    # TODO: remove per file/directory bounds (this has been a massive
+    # mistake...)
     config.scaffolding =
       lib.map (entry: {
         inherit (entry.parent) user group mode;
@@ -281,19 +282,39 @@ lib.fix (
         bound = entry.bounds.source;
       }) config.files
       ++ lib.map (entry: {
+        inherit (outerConfig.permissions) user group mode;
+        path = entry.bounds.source;
+        bound = outerConfig.bounds.source;
+      }) config.files
+      ++ lib.map (entry: {
         inherit (entry) user group mode;
         path = entry.paths.source;
         bound = entry.bounds.source;
       }) config.directories
       ++ lib.map (entry: {
+        inherit (outerConfig.permissions) user group mode;
+        path = entry.bounds.source;
+        bound = outerConfig.bounds.source;
+      }) config.directories
+      ++ lib.map (entry: {
         inherit (entry.parent) user group mode;
-        path = dirOf entry.paths.target;
+        path = entry.paths.target;
         bound = entry.bounds.target;
+      }) config.files
+      ++ lib.map (entry: {
+        inherit (outerConfig.permissions) user group mode;
+        path = entry.bounds.target;
+        bound = outerConfig.bounds.target;
       }) config.files
       ++ lib.map (entry: {
         inherit (entry) user group mode;
         path = entry.paths.target;
         bound = entry.bounds.target;
+      }) config.directories
+      ++ lib.map (entry: {
+        inherit (outerConfig.permissions) user group mode;
+        path = entry.bounds.target;
+        bound = outerConfig.bounds.target;
       }) config.directories;
     # }}}
   }
