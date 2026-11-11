@@ -17,13 +17,13 @@
           };
         };
         # }}}
-        # {{{ Luks
+        # {{{ LUKS
         luks = {
-          size = "384G"; # The remaining space is left for windows
+          size = "100%";
           content = {
             type = "luks";
             name = "crypted";
-            passwordFile = "/hermes/secrets/calypso/disk.key";
+            passwordFile = "/hermes/secrets/dione/disk.key";
             settings.allowDiscards = true;
             content = {
               type = "btrfs";
