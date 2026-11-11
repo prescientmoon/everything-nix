@@ -12,7 +12,6 @@
     ./foot.nix
     ./gimp.nix
     ./inlyne.nix
-    ./monitors.nix
     ./mpv.nix
     ./obsidian.nix
     ./zathura.nix

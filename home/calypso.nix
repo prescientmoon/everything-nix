@@ -19,9 +19,5 @@
 
   satellite = {
     dev.enable = true; # Enable symlinks outside the nix store
-
-    monitors = [
-      # ...
-    ];
   };
 }

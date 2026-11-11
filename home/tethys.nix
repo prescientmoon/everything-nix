@@ -13,13 +13,5 @@
 
   satellite = {
     dev.enable = true; # Enable symlinks outside the nix store
-
-    monitors = [
-      {
-        name = "eDP-1";
-        width = 1920;
-        height = 1080;
-      }
-    ];
   };
 }
