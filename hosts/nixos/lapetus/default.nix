@@ -44,6 +44,7 @@
   # SSH configuration
   users.users.pilot.openssh.authorizedKeys.keyFiles = [
     ../calypso/keys/id_ed25519.pub
+    ../dione/keys/id_ed25519.pub
     ../tethys/keys/id_ed25519.pub
   ];
 

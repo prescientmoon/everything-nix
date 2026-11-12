@@ -27,13 +27,17 @@ let
   } "${lib.getExe pkgs.python3} ${./gen-dns-blocklist.py} > $out";
 in
 {
+  services.resolved.enable = false;
+
   networking.nameservers = [
     "9.9.9.9" # Quad9
     "8.8.8.8" # Google
     "1.1.1.1" # Cloudflare
   ];
 
-  services.resolved.enable = false;
+  # The service fails to start without this
+  systemd.tmpfiles.rules = [ "f /etc/dmsmasq-conf.conf - dnsmasq dnsmasq" ];
+
   services.dnsmasq = {
     enable = true;
 
