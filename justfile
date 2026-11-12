@@ -18,15 +18,17 @@ nixos-rebuild action="switch" host=hostname:
 
   host = "{{host}}"
   users = {
-    'tethys': 'moon',
-    'lapetus': 'root',
     'calypso': 'moon',
+    'dione': 'moon',
+    'lapetus': 'root',
+    'tethys': 'moon',
   }
   hosts = {
-    'tethys': 'tethys',
+    'calypso': 'calypso',
+    'dione': 'dione.overlay.moonythm.dev',
     # 'lapetus': '192.168.10.1',
     'lapetus': 'lapetus.overlay.moonythm.dev',
-    'calypso': 'calypso',
+    'tethys': 'tethys',
   }
 
   args = [

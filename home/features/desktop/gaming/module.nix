@@ -351,6 +351,13 @@ in
       at.steam.directories = [ steamDir ];
 
       directories = persistentDirectories;
+
+      scaffolding = [
+        {
+          path = dirOf historiaDbPath;
+          bound = persistentStateDir;
+        }
+      ];
     };
     # }}}
     # {{{ Cache persistence

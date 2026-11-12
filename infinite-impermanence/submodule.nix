@@ -250,6 +250,8 @@ lib.fix (
                     defaultText = "The given path's parent directory.";
                   };
                 };
+
+                config.mode = lib.mkDefault "755";
               }
             )
           ]
@@ -298,7 +300,7 @@ lib.fix (
       }) config.directories
       ++ lib.map (entry: {
         inherit (entry.parent) user group mode;
-        path = entry.paths.target;
+        path = dirOf entry.paths.target;
         bound = entry.bounds.target;
       }) config.files
       ++ lib.map (entry: {

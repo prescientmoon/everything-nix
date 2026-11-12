@@ -1,6 +1,6 @@
 # {{{ General purpose
 # We declare this manually in order to force &udm=14, disabling AI overview.
-["google"]
+["Google"]
 aliases = ["@g", "@google"]
 url     = "https://www.google.com/search?udm=14"
 param   = "q"
