@@ -52,7 +52,7 @@ let
           default = name;
           description = ''
             The name of the directory to use within
-            /persist/state/home/???/gaming.
+            /persist/state/home/gaming/???.
           '';
         };
 
