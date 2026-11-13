@@ -37,7 +37,10 @@
           name = "${name}/${kind}";
           value = {
             publicKeyFile = ../../../${name}/keys/host_${kind}_key.pub;
-            hostNames = [ name ] ++ lib.lists.optional (name == config.networking.hostName) "localhost";
+            hostNames =
+              [ name "${name}.overlay.${config.satellite.dns.domain}" ] ++
+              lib.lists.optional (name == config.networking.hostName)
+                "localhost";
           };
         };
 
